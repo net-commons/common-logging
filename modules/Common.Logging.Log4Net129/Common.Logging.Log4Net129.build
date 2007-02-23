@@ -1,0 +1,30 @@
+<?xml version="1.0" ?>
+<project default="compile-all">
+
+  <!-- global project settings -->
+  <property name="project.name" value="Common.Logging.Log4Net129"/>
+  <property name="logging.basedir" value="${project::get-base-directory()}"/>
+
+  <!-- debug or release -->
+  <property name="project.build.config" value="debug"/>
+  <property name="project.build.package" value="false"/>
+
+  <property name="compile-net-1.0" value="true"/>
+  <property name="compile-net-1.1" value="true"/>
+  <property name="compile-net-2.0" value="true"/>
+
+
+  <property name="package.version" value="1.0.0" unless="${property::exists('project.version')}"/>
+
+  <property name="build-examples" value="false"/>
+  <property name="build-tests" value="true"/>
+  <property name="build-integration-tests" value="true"/>
+
+
+
+  <!-- Include spring helpers -->
+  <include buildfile="${logging.basedir}/../../shared/Logging.include"/>
+  <!-- Include main build targets -->
+  <include buildfile="${logging.basedir}/../../shared/Logging.build"/>
+
+</project>
