@@ -29,11 +29,11 @@
     <foreach item="String" in="debug,release" delim="," property="release-mode">
       <!-- Copy Common.Logging dll -->
       <copy todir="package/Common.Logging/bin/net/1.0/${release-mode}"
-            file="modules\Common.Logging\build\net\1.0\${release-mode}\Common.Logging.dll"/>
+            file="modules\Common.Logging\build\net\1.0\release\Common.Logging.dll"/>
       <copy todir="package/Common.Logging/bin/net/1.1/${release-mode}"
-            file="modules\Common.Logging\build\net\1.0\${release-mode}\Common.Logging.dll"/>
+            file="modules\Common.Logging\build\net\1.0\release\Common.Logging.dll"/>
       <copy todir="package/Common.Logging/bin/net/2.0/${release-mode}"
-            file="modules\Common.Logging\build\net\1.0\${release-mode}\Common.Logging.dll"/>
+            file="modules\Common.Logging\build\net\1.0\release\Common.Logging.dll"/>
 
       <!-- Copy Common.Logging.Log4Net dll -->
       <copy todir="package/Common.Logging/bin/net/1.0/${release-mode}"
@@ -43,10 +43,21 @@
       <copy todir="package/Common.Logging/bin/net/2.0/${release-mode}"
             file="modules\Common.Logging.Log4Net\build\net\2.0\${release-mode}\Common.Logging.Log4Net.dll"/>      
 
+      <!-- Copy Log4Net dll -->
+      <copy todir="package/Common.Logging/bin/net/1.0/${release-mode}"
+            file="modules\Common.Logging.Log4Net\build\net\1.0\${release-mode}\log4net.dll"/>      
+      <copy todir="package/Common.Logging/bin/net/1.1/${release-mode}"
+            file="modules\Common.Logging.Log4Net\build\net\1.1\${release-mode}\log4net.dll"/>      
+      <copy todir="package/Common.Logging/bin/net/2.0/${release-mode}"
+            file="modules\Common.Logging.Log4Net\build\net\2.0\${release-mode}\log4net.dll"/>      
+
       <!-- Copy Common.Logging.Log4Net129 dll -->
       <copy todir="package/Common.Logging/bin/net/1.1/${release-mode}"
             file="modules\Common.Logging.Log4Net129\build\net\1.1\${release-mode}\Common.Logging.Log4Net129.dll"/>
 
+      <!-- Copy Common.Logging.Log4Net129 dll -->
+      <copy todir="package/Common.Logging/bin/net/1.1/${release-mode}"
+            file="modules\Common.Logging.Log4Net129\build\net\1.1\${release-mode}\log4net.dll"/>
 
     </foreach>
 
