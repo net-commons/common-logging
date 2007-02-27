@@ -31,7 +31,7 @@
     <para>Note that it is not the intention of this library to be a
     replacement for the many fine logging libraries that are out there. The
     API is incredibly minimal and will very likely stay that way. Only use
-    this library if you truely need to support multiple logging APIs.</para>
+    this library if you truly need to support multiple logging APIs.</para>
   </section>
 
   <section id="logging-usage">
@@ -95,7 +95,7 @@ log.Debug("hello world");</programlisting>
     <title>Configuring Logging</title>
 
     <para>There are 2 ways of configuring logging in your application - either
-    declaratively or programmatically.</para>
+    declaratively or pro grammatically.</para>
 
     <section>
       <title>Declarative Configuration</title>
