@@ -70,6 +70,22 @@
         <include name="**/*"/>
       </fileset>
     </copy>
-          
+
+    <copy todir="package/Common.Logging" file="readme.txt"/>
+    <copy todir="package/Common.Logging" file="license.txt"/>
+
+
   </target>
+
+  <target name="package-zip" description="Build and Package distribution as .zip file">
+    <call target="package"/>
+    <property name="project.zip-path" value="package/Common.Logging-1.0.0.zip"/>
+    <zip zipfile="${project.zip-path}">
+      <fileset basedir="package">
+        <include name="**/*"/>
+        <exclude name="*.zip"/>
+      </fileset>
+    </zip>
+  </target>
+
 </project>
