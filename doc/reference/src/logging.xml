@@ -11,12 +11,12 @@
     share a common interface and therefore impose a particular logging
     implementation on the users of your library. To solve this dependency
     problem the Common.Logging library introduces a simple abstraction to
-    allow you to select a specific logging implementation at runtime. </para>
+    allow you to select a specific logging implementation at runtime.</para>
 
     <para>The library is based on work done by the developers of IBatis.NET
     and it's usage is inspired by log4net. Many thanks to the developers of
     those projects! The library is available for .NET 1.0, 1.1, and 2.0 with
-    both debug and strongly signed release assemblies. </para>
+    both debug and strongly signed release assemblies.</para>
 
     <para>The the base logging library, Common.Logging, provides the base
     logging interfaces that appear in your code and also include simple
@@ -88,7 +88,7 @@ log.Debug("hello world");</programlisting>
 
 }</programlisting>
 
-    <para>The Adapter property is used by the framework itself. </para>
+    <para>The Adapter property is used by the framework itself.</para>
   </section>
 
   <section id="logging-config">
@@ -112,7 +112,7 @@ log.Debug("hello world");</programlisting>
 
   &lt;common&gt;
     &lt;logging&gt;
-      &lt;factoryAdapter type="Common.Logging.Simple.TraceLoggerFactoryAdapter, Common.Logging"&gt;
+      &lt;factoryAdapter type="Common.Logging.Simple.ConsoleOutLoggerFactoryAdapter, Common.Logging"&gt;
         &lt;arg key="level" value="DEBUG" /&gt;
         &lt;arg key="showLogName" value="true" /&gt;
         &lt;arg key="showDataTime" value="true" /&gt;
@@ -139,7 +139,7 @@ NameValueCollection properties = new NameValueCollection();
 properties["showDateTime"] = "true";
 
 // set Adapter
-Common.Logging.LogManager.Adapter = new Common.Logging.Simple.TraceLoggerFactoryAdapter(properties);</programlisting>
+Common.Logging.LogManager.Adapter = new Common.Logging.Simple.ConsoleOutLoggerFactoryAdapter(properties);</programlisting>
 
       <note>
         <para>The concrete set of properties you may specify depends on the
@@ -371,7 +371,49 @@ Common.Logging.LogManager.Adapter = new Common.Logging.Simple.TraceLoggerFactory
   &lt;/common&gt;</programlisting>
 
       <para>For log4net 1.2.9, change the assembly name
-      <package>Common.Logging.Log4Net129</package></para>
+      <package>Common.Logging.Log4Net129.</package></para>
+
+      <para>Another example that shows the log4net configuration 'inline' with
+      the standard application configuration file is shown below.</para>
+
+      <para><programlisting> &lt;configSections&gt;
+
+  &lt;sectionGroup name="common"&gt;
+   &lt;section name="logging" type="Common.Logging.ConfigurationSectionHandler, Common.Logging" /&gt;
+  &lt;/sectionGroup&gt;
+
+
+  &lt;section name="log4net" type="log4net.Config.Log4NetConfigurationSectionHandler, log4net"/&gt;
+
+ &lt;/configSections&gt;
+
+ &lt;common&gt;
+   &lt;logging&gt;
+     &lt;factoryAdapter type="Common.Logging.Log4Net.Log4NetLoggerFactoryAdapter, Common.Logging.Log4Net"&gt;
+       &lt;arg key="configType" value="INLINE" /&gt;
+     &lt;/factoryAdapter&gt;
+   &lt;/logging&gt;
+ &lt;/common&gt;
+
+
+ &lt;log4net&gt;
+
+   &lt;appender name="ConsoleAppender" type="log4net.Appender.ConsoleAppender"&gt;
+     &lt;layout type="log4net.Layout.PatternLayout"&gt;
+       &lt;conversionPattern value="%date [%thread] %-5level %logger %ndc - %message%newline" /&gt;
+     &lt;/layout&gt;
+   &lt;/appender&gt;
+
+   &lt;root&gt;
+     &lt;level value="DEBUG" /&gt;
+     &lt;appender-ref ref="ConsoleAppender" /&gt;
+   &lt;/root&gt;
+
+   &lt;logger name="MyApp.DataAccessLayer"&gt;
+     &lt;level value="DEBUG" /&gt;
+   &lt;/logger&gt;
+
+ &lt;/log4net&gt;</programlisting></para>
     </section>
   </section>
 
