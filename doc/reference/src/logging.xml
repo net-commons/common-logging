@@ -5,25 +5,28 @@
   <section id="logging-abstract">
     <title>Introduction</title>
 
-    <para>Common.Logging provides a simple logging abstraction in order to provide
-    a layer of indirection between logging calls in your application and the specific
-    logging library that will perform the actual work of logging.  The specific
-    library can be either log4net, EntLib logging, NLog, however this first release
-    only provides support for log4net.</para>
+    <para>There are a variety of logging implementations for .NET currently in
+    use, log4net, Enterprise Library Logging, NLog, to name the most popular.
+    The downside of having differerent implementation is that they do not
+    share a common interface and therefore impose a particular logging
+    implementation on the users of your library. To solve this dependency
+    problem the Common.Logging library introduces a simple abstraction to
+    allow you to select a specific logging implementation at runtime. </para>
 
-    <para>This logging abstraction goes by the name 'Common.Logging' and is
-    simply a more packaged version of the logging abstraction used inside the
-    iBATIS project. Many thanks to them! The library is available for .NET
-    1.0, 1.1, and 2.0 with both debug and strongly signed release assemblies.</para>
+    <para>The library is based on work done by the developers of IBatis.NET
+    and it's usage is inspired by log4net. Many thanks to the developers of
+    those projects! The library is available for .NET 1.0, 1.1, and 2.0 with
+    both debug and strongly signed release assemblies. </para>
 
-    <para>The the base logging library, Common.Logging, provides the base logging
-    interfaces that appear in your code and also include simple console and
-    trace based logger implementations.  The libraries are located under
-    bin/net/&lt;framework-version&gt;/debug or release.
-    There are two enterprise log4net implementations, one for
-    log4net 1.2.9 and another for log4net 1.2.10. The need for two log4net
-    versions is due to the fact that each is signed with a different strong
-    key making assembly redirection impossible.</para>
+    <para>The the base logging library, Common.Logging, provides the base
+    logging interfaces that appear in your code and also include simple
+    console and trace based logger implementations. The libraries are located
+    under bin/net/&lt;framework-version&gt;/debug or release. There are two
+    enterprise log4net implementations, one for log4net 1.2.9 and another for
+    log4net 1.2.10. The need for two log4net versions is due to the fact that
+    each is signed with a different strong key making assembly redirection
+    impossible. Future releases will support Enterprise Library Logging and
+    NLog.</para>
 
     <para>Note that it is not the intention of this library to be a
     replacement for the many fine logging libraries that are out there. The
@@ -42,6 +45,10 @@
 ... 
 ILog log = LogManager.GetLogger(this.GetType()); 
 log.Debug("hello world");</programlisting>
+
+    <para>It is also possible to obtain a logger by name</para>
+
+    <programlisting>ILog log = LogManager.GetLogger("mylogger");</programlisting>
 
     <para>A logger instance provides the following methods for logging:</para>
 
@@ -65,6 +72,10 @@ log.Debug("hello world");</programlisting>
   bool IsWarnEnabled  { get; }
 }</programlisting>
 
+    <para>Since the ILog interface mimics that of the interface used in
+    log4net, migration from log4net is just a matter of changing the 'using'
+    statement.</para>
+
     <para>You can get a reference to an instance of an ILog using the
     LoggingManager class. Its API is shown below:</para>
 
@@ -77,7 +88,7 @@ log.Debug("hello world");</programlisting>
 
 }</programlisting>
 
-    <para>The Adapter property is used by the framework itself.</para>
+    <para>The Adapter property is used by the framework itself. </para>
   </section>
 
   <section id="logging-config">
@@ -143,6 +154,15 @@ Common.Logging.LogManager.Adapter = new Common.Logging.Simple.TraceLoggerFactory
     <para>There are simple out-of-the-box implementations coming with
     Common.Logging itself. For connecting to log4net, separate adapters do
     exist.</para>
+
+    <note>
+      <para>Be sure to correctly specify the type of the FactoryAdapter in the
+      common logging configuration section and to copy the logging
+      implementation .dlls to your runtime directory. At the moment, if the
+      specified FactoryAdapter type is not found or its dependent libraries,
+      the NoOpLoggerFactoryAdaptor is used by default and you will not see any
+      logging output.</para>
+    </note>
 
     <section>
       <title>NoOpLoggerFactoryAdapter</title>
