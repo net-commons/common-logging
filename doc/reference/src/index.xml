@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding="iso-8859-1"?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+                      "../../reference/lib/docbook-dtd/docbookx.dtd"
+[
+<!ENTITY logging          SYSTEM "logging.xml">
+]>
+<book>
+  <bookinfo>
+    <title>Common Infrastructure Libraries for .NET</title>
+    <subtitle>Reference Documentation</subtitle>
+    <releaseinfo>Version 1.0.0</releaseinfo>
+    <pubdate>Last Updated Feb 26, 2007 - (Work in progress)</pubdate>
+    <authorgroup>
+      <author>
+        <firstname>Mark</firstname>
+        <surname>Pollack</surname>
+      </author>
+    </authorgroup>
+    <legalnotice>
+      <para>
+        Copies of this document may be made for your own use and for
+        distribution to others, provided that you do not charge any fee for such
+        copies and further provided that each copy contains this Copyright
+        Notice, whether distributed in print or electronically.
+        </para>
+    </legalnotice>
+  </bookinfo>
+  <toc/>
+      &logging;
+</book>
+
+

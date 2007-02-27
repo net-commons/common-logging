@@ -30,10 +30,12 @@ using System.Reflection;
 // This is as good a convention as any for supporting side-by-side deployment of 
 // .NET 1.1 and .NET 2.0 versions of the assembly.
 
-#if !NET_2_0
-[assembly: AssemblyVersion("1.1.0.1")]
-#else
-[assembly: AssemblyVersion("1.1.0.2")]
+#if (NET_1_0)
+[assembly: AssemblyVersion("1.0.0.0")]
+#elif (NET_1_1)
+[assembly: AssemblyVersion("1.0.0.1")]
+#elif (NET_2_0)
+[assembly: AssemblyVersion("1.0.0.2")]
 #endif
 
 //
@@ -64,6 +66,6 @@ using System.Reflection;
 #if STRONG
 [assembly: AssemblyDelaySign(false)]
 #if !NET_2_0
-[assembly: AssemblyKeyFile("Spring.Net.snk")]
+[assembly: AssemblyKeyFile("Common.Net.snk")]
 #endif
 #endif

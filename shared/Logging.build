@@ -308,7 +308,7 @@
 
   <target name="copykeys">
     <if test="${current.build.config.release}">
-      <if test="${not file::exists(logging.basedir + '/Common.Net.snk')}">
+      <if test="${not file::exists(logging.basedir + '/../Common.Net.snk')}">
         <if test="${property::exists('project.build.package') and project.build.package}">
           <fail message="Key file not found."/>
         </if>
@@ -319,13 +319,13 @@
           <property name="temp.build.skip" value="true"/>
         </if>
       </if>
-      <if test="${file::exists(logging.basedir + '/Common.Net.snk')}">
+      <if test="${file::exists(logging.basedir + '/../Common.Net.snk')}">
         <!-- copy the Common key file to the location where the compiler expects it to be -->
-        <copy file="Common.Net.snk" todir="${current.bin.dir}"/>
+        <copy file="../Common.Net.snk" todir="${current.bin.dir}"/>
       </if>
       <!-- for release on .NET 2.0 need to provide keyfile argument to compiler -->
       <if test="${net-2.0}">
-        <property name="compiler.args" value="/keyfile:..\..\..\Common.Net.snk"/>
+        <property name="compiler.args" value="/keyfile:..\..\..\..\Common.Net.snk"/>
       </if>
     </if>
   </target>
@@ -603,25 +603,6 @@
         <exclude name="**/sdk-web/**"/>
       </fileset>
     </zip>
-  </target>
-
-  <target name="upload-cvs-release">
-    <call target="set-package-configuration"/>
-    <property name="filetoupload" value="${project.name}-${package.version}.zip"/>
-
-    <property name="logging.ssh.server" value="www.springframework.org" />
-    <property name="logging.ssh.user" value="markp"/>
-    <property name="logging.ssh.args" value=" -l ${logging.ssh.user} " />
-    <property name="logging.web.path" value="/var/www/domains/springframework.net/www/htdocs" />
-    <!-- setup property that holds partial path to be used by scp -->
-    <property name="serverpart" value="${logging.ssh.user + '@' + logging.ssh.server + ':' + logging.web.path}" />
-    <property name="nightly.builds.path" value="downloads/${project.name}"/>
-
-    <echo message="uploading ${filetoupload} to www.springframework.org"/>
-    <exec workingdir="${package.dir}" program="scp" verbose="true">
-      <arg value="${filetoupload}" />
-      <arg value="${serverpart}/${nightly.builds.path}/${filetoupload}" />
-    </exec>
   </target>
 
   <target name="package-release-files" depends="set-package-configuration">

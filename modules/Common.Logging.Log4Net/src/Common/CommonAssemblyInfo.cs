@@ -13,9 +13,9 @@ using System.Reflection;
 #else
 [assembly: AssemblyConfiguration("net-2.0.win32; Release")]
 #endif
-[assembly: AssemblyCompany("http://www.springframework.net")]
-[assembly: AssemblyProduct("Spring.NET Framework")]
-[assembly: AssemblyCopyright("Copyright 2002-2006 Spring.NET Framework Team.")]
+[assembly: AssemblyCompany("http://netcommon.sourceforge.net/")]
+[assembly: AssemblyProduct("Common Infrastructure Libraries for .NET")]
+[assembly: AssemblyCopyright("Copyright 2006-2007 CIL for NET Team.")]
 [assembly: AssemblyTrademark("Apache License, Version 2.0")]
 [assembly: AssemblyCulture("")]
 
@@ -30,10 +30,12 @@ using System.Reflection;
 // This is as good a convention as any for supporting side-by-side deployment of 
 // .NET 1.1 and .NET 2.0 versions of the assembly.
 
-#if !NET_2_0
-[assembly: AssemblyVersion("1.1.0.1")]
-#else
-[assembly: AssemblyVersion("1.1.0.2")]
+#if (NET_1_0)
+[assembly: AssemblyVersion("1.0.0.0")]
+#elif (NET_1_1)
+[assembly: AssemblyVersion("1.0.0.1")]
+#elif (NET_2_0)
+[assembly: AssemblyVersion("1.0.0.2")]
 #endif
 
 //
@@ -64,6 +66,6 @@ using System.Reflection;
 #if STRONG
 [assembly: AssemblyDelaySign(false)]
 #if !NET_2_0
-[assembly: AssemblyKeyFile("Spring.Net.snk")]
+[assembly: AssemblyKeyFile("Common.Net.snk")]
 #endif
 #endif
