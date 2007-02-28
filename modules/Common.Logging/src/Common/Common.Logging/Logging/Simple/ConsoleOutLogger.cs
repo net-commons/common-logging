@@ -87,7 +87,7 @@ namespace Common.Logging.Simple
 				sb.Append( " " );
 			}	
 			// Append a readable representation of the log level
-			sb.Append( string.Format( "[{0}]", level.ToString().ToUpper() ).PadRight( 8 ) );
+			sb.Append( ("[" + level.ToString().ToUpper() + "]").PadRight( 8 ) );
 
 			// Append the name of the log instance if so configured
 			if ( _showLogName )
@@ -96,7 +96,7 @@ namespace Common.Logging.Simple
 			}
 
 			// Append the message
-			sb.Append( message.ToString() );
+			sb.Append( message );
 
 			// Append stack trace if not null
 			if ( e != null )
