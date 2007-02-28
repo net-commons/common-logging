@@ -14,8 +14,8 @@ using System.Reflection;
 [assembly: AssemblyConfiguration("net-2.0.win32; Release")]
 #endif
 [assembly: AssemblyCompany("http://netcommon.sourceforge.net/")]
-[assembly: AssemblyProduct("Common Infrastructure Libraries for .NET")]
-[assembly: AssemblyCopyright("Copyright 2006-2007 CIL for NET Team.")]
+[assembly: AssemblyProduct("Common Logging Framework")]
+[assembly: AssemblyCopyright("Copyright 2006-2007 the Common Logging Framework Team.")]
 [assembly: AssemblyTrademark("Apache License, Version 2.0")]
 [assembly: AssemblyCulture("")]
 

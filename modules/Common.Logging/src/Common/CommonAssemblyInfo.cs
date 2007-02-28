@@ -13,9 +13,9 @@ using System.Reflection;
 #else
 [assembly: AssemblyConfiguration("net-2.0.win32; Release")]
 #endif
-[assembly: AssemblyCompany("http://www.springframework.net")]
+[assembly: AssemblyCompany("http://netcommon.sf.net")]
 [assembly: AssemblyProduct("Common Logging Framework")]
-[assembly: AssemblyCopyright("Copyright 2002-2006 Spring.NET Framework Team.")]
+[assembly: AssemblyCopyright("Copyright 2006-2007 the Common Logging Framework Team.")]
 [assembly: AssemblyTrademark("Apache License, Version 2.0")]
 [assembly: AssemblyCulture("")]
 
