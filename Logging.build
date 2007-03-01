@@ -93,6 +93,7 @@
 
     <copy todir="package/Common.Logging" file="readme.txt"/>
     <copy todir="package/Common.Logging" file="license.txt"/>
+    <copy todir="package/Common.Logging" file="changelog.txt"/>
 
 
   </target>

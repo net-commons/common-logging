@@ -1,0 +1,36 @@
+Common.Logging CHANGELOG
+=====================================
+http://netcommon.sf.net
+
+
+Release 1.0.1, March 1 2007
+
+Summary:  Bug Fix Release
+
+Bug
+
+[CL-1] - Null Pointer Exception when passing in null value for message.
+[CL-2] - Add log4net 1.2.9 .dll to distribution for .NET 1.0
+
+
+
+---------------------------
+
+Release 1.0.0, February 27 2007
+
+Summary:  Initial Release
+
+Release Notes 
+
+Contains support for log4net 1.2.10 and 1.2.9
+
+Bug
+
+Improvement
+
+
+New Feature
+
+Task
+
+
