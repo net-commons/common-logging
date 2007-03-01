@@ -100,7 +100,7 @@
 
   <target name="package-zip" description="Build and Package distribution as .zip file">
     <call target="package"/>
-    <property name="project.zip-path" value="package/Common.Logging-1.0.0.zip"/>
+    <property name="project.zip-path" value="package/Common.Logging-1.0.1.zip"/>
     <zip zipfile="${project.zip-path}">
       <fileset basedir="package">
         <include name="**/*"/>

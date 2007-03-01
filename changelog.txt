@@ -9,11 +9,11 @@ Summary:  Bug Fix Release
 
 Bug
 
-[CL-1] - Null Pointer Exception when passing in null value for message.
-[CL-2] - Add log4net 1.2.9 .dll to distribution for .NET 1.0
+[CIL-1] - Null Pointer Exception when passing in null value for message.
+[CIL2] - Add log4net 1.2.9 .dll to distribution for .NET 1.0
 
 Improvement
-[CL-3] - Add simple NUnit test for Common.Logging
+[CIL-3] - Add simple NUnit test for Common.Logging
 
 ---------------------------
 
