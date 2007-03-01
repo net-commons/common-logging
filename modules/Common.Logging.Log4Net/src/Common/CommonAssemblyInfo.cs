@@ -31,11 +31,11 @@ using System.Reflection;
 // .NET 1.1 and .NET 2.0 versions of the assembly.
 
 #if (NET_1_0)
-[assembly: AssemblyVersion("1.0.0.0")]
+[assembly: AssemblyVersion("1.0.1.0")]
 #elif (NET_1_1)
-[assembly: AssemblyVersion("1.0.0.1")]
+[assembly: AssemblyVersion("1.0.1.1")]
 #elif (NET_2_0)
-[assembly: AssemblyVersion("1.0.0.2")]
+[assembly: AssemblyVersion("1.0.1.2")]
 #endif
 
 //

@@ -1,7 +1,7 @@
 <VisualStudioProject>
     <CSHARP
         ProjectType = "Local"
-        ProductVersion = "7.10.6030"
+        ProductVersion = "7.10.3077"
         SchemaVersion = "2.0"
         ProjectGuid = "{DD5B5D91-016F-40AB-8FF0-481113A3C8B8}"
     >
@@ -90,14 +90,9 @@
                     HintPath = "..\..\..\lib\net\1.1\log4net.dll"
                 />
                 <Reference
-                    Name = "DotNetMock"
-                    AssemblyName = "DotNetMock"
-                    HintPath = "..\..\..\..\..\common\lib\net\1.1\DotNetMock.dll"
-                />
-                <Reference
-                    Name = "nunit.framework"
-                    AssemblyName = "nunit.framework"
-                    HintPath = "..\..\..\..\..\common\lib\net\1.1\nunit.framework.dll"
+                    Name = "Common.Logging"
+                    AssemblyName = "Common.Logging"
+                    HintPath = "..\..\..\lib\net\1.1\Common.Logging.dll"
                 />
             </References>
         </Build>
@@ -105,11 +100,6 @@
             <Include>
                 <File
                     RelPath = "AssemblyInfo.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Class1.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

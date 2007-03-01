@@ -1,7 +1,7 @@
 <VisualStudioProject>
     <CSHARP
         ProjectType = "Local"
-        ProductVersion = "7.10.6030"
+        ProductVersion = "7.10.3077"
         SchemaVersion = "2.0"
         ProjectGuid = "{815B4611-F10B-4779-9E97-849483770735}"
     >
@@ -90,14 +90,9 @@
                     HintPath = "..\..\..\lib\net\1.1\log4net.dll"
                 />
                 <Reference
-                    Name = "Spring.Core"
-                    AssemblyName = "Spring.Core"
-                    HintPath = "..\..\..\..\..\common\lib\net\1.1\Spring.Core.dll"
-                />
-                <Reference
                     Name = "nunit.framework"
                     AssemblyName = "nunit.framework"
-                    HintPath = "..\..\..\..\..\common\lib\net\1.1\nunit.framework.dll"
+                    HintPath = "..\..\..\lib\net\1.1\nunit.framework.dll"
                 />
             </References>
         </Build>
@@ -105,11 +100,6 @@
             <Include>
                 <File
                     RelPath = "AssemblyInfo.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Class1.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

@@ -1,11 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 9.00
 # Visual Studio 2005
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.Log4Net129.2005", "src\Spring\Common.Logging.Log4Net129\Common.Logging.Log4Net129.2005.csproj", "{A6A7257A-D1AE-4A09-8C1C-F55E099C8A8A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.Log4Net129.2005", "src\Common\Common.Logging.Log4Net129\Common.Logging.Log4Net129.2005.csproj", "{A6A7257A-D1AE-4A09-8C1C-F55E099C8A8A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.Log4Net129.Integration.Tests.2005", "test\Spring\Common.Logging.Log4Net129.Integration.Tests\Common.Logging.Log4Net129.Integration.Tests.2005.csproj", "{E641F51F-1B51-4B94-B419-F902EABCE4D4}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.Log4Net129.Tests.2005", "test\Spring\Common.Logging.Log4Net129.Tests\Common.Logging.Log4Net129.Tests.2005.csproj", "{94E4E1B4-D424-4EB9-BF34-2EE8CC3D7048}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.Log4Net129.Tests.2005", "test\Common\Common.Logging.Log4Net129.Tests\Common.Logging.Log4Net129.Tests.2005.csproj", "{94E4E1B4-D424-4EB9-BF34-2EE8CC3D7048}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +15,6 @@ Global
 		{A6A7257A-D1AE-4A09-8C1C-F55E099C8A8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A6A7257A-D1AE-4A09-8C1C-F55E099C8A8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A6A7257A-D1AE-4A09-8C1C-F55E099C8A8A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E641F51F-1B51-4B94-B419-F902EABCE4D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E641F51F-1B51-4B94-B419-F902EABCE4D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E641F51F-1B51-4B94-B419-F902EABCE4D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E641F51F-1B51-4B94-B419-F902EABCE4D4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{94E4E1B4-D424-4EB9-BF34-2EE8CC3D7048}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{94E4E1B4-D424-4EB9-BF34-2EE8CC3D7048}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{94E4E1B4-D424-4EB9-BF34-2EE8CC3D7048}.Release|Any CPU.ActiveCfg = Release|Any CPU

@@ -1,7 +1,7 @@
 <VisualStudioProject>
     <CSHARP
         ProjectType = "Local"
-        ProductVersion = "7.10.6030"
+        ProductVersion = "7.10.3077"
         SchemaVersion = "2.0"
         ProjectGuid = "{5E1602C0-E1EC-4DD5-B76E-9EF8F3F70403}"
     >
@@ -87,7 +87,7 @@
                 <Reference
                     Name = "nunit.framework"
                     AssemblyName = "nunit.framework"
-                    HintPath = "..\..\..\..\..\common\lib\net\1.1\nunit.framework.dll"
+                    HintPath = "..\..\..\lib\net\1.1\nunit.framework.dll"
                 />
             </References>
         </Build>
@@ -99,7 +99,12 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "Class1.cs"
+                    RelPath = "Logging\AbstractLogTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Logging\Simple\NoOpLoggerTests.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

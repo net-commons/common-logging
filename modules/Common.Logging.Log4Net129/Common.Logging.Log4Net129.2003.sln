@@ -1,13 +1,9 @@
 Microsoft Visual Studio Solution File, Format Version 8.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.Log4Net129.2003", "src\Spring\Common.Logging.Log4Net129\Common.Logging.Log4Net129.2003.csproj", "{3191A32F-0C61-426D-B6A5-452DA15E9B40}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.Log4Net129.2003", "src\Common\Common.Logging.Log4Net129\Common.Logging.Log4Net129.2003.csproj", "{3191A32F-0C61-426D-B6A5-452DA15E9B40}"
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.Log4Net129.Integration.Tests.2003", "test\Spring\Common.Logging.Log4Net129.Integration.Tests\Common.Logging.Log4Net129.Integration.Tests.2003.csproj", "{00F4791D-7B79-4AC0-AECE-96F666BF78B8}"
-	ProjectSection(ProjectDependencies) = postProject
-	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.Log4Net129.Tests.2003", "test\Spring\Common.Logging.Log4Net129.Tests\Common.Logging.Log4Net129.Tests.2003.csproj", "{815B4611-F10B-4779-9E97-849483770735}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.Log4Net129.Tests.2003", "test\Common\Common.Logging.Log4Net129.Tests\Common.Logging.Log4Net129.Tests.2003.csproj", "{815B4611-F10B-4779-9E97-849483770735}"
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
@@ -21,10 +17,6 @@ Global
 		{3191A32F-0C61-426D-B6A5-452DA15E9B40}.Debug.Build.0 = Debug|.NET
 		{3191A32F-0C61-426D-B6A5-452DA15E9B40}.Release.ActiveCfg = Release|.NET
 		{3191A32F-0C61-426D-B6A5-452DA15E9B40}.Release.Build.0 = Release|.NET
-		{00F4791D-7B79-4AC0-AECE-96F666BF78B8}.Debug.ActiveCfg = Debug|.NET
-		{00F4791D-7B79-4AC0-AECE-96F666BF78B8}.Debug.Build.0 = Debug|.NET
-		{00F4791D-7B79-4AC0-AECE-96F666BF78B8}.Release.ActiveCfg = Release|.NET
-		{00F4791D-7B79-4AC0-AECE-96F666BF78B8}.Release.Build.0 = Release|.NET
 		{815B4611-F10B-4779-9E97-849483770735}.Debug.ActiveCfg = Debug|.NET
 		{815B4611-F10B-4779-9E97-849483770735}.Debug.Build.0 = Debug|.NET
 		{815B4611-F10B-4779-9E97-849483770735}.Release.ActiveCfg = Release|.NET
