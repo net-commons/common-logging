@@ -23,15 +23,15 @@
     </para>
 
     <para>
-      The the base logging library, Common.Logging, provides the base
+      The base logging library, Common.Logging, provides the base
       logging interfaces that appear in your code and also include simple
       console and trace based logger implementations. The libraries are located
-      under bin/net/&lt;framework-version&gt;/debug or release. There are two
-      enterprise log4net implementations, one for log4net 1.2.9 and another for
-      log4net 1.2.10. The need for two log4net versions is due to the fact that
-      each is signed with a different strong key making assembly redirection
-      impossible. Future releases will support Enterprise Library Logging and
-      NLog.
+      under bin/net/&lt;framework-version&gt;/debug or release. There is one 
+      NLog implementation and two enterprise log4net implementations, 
+      one for log4net 1.2.9 and another for log4net 1.2.10. The need for two 
+      log4net versions is due to the fact that each is signed with a different 
+      strong key making assembly redirection impossible. Future releases will 
+      support Enterprise Library Logging.
     </para>
 
     <para>
