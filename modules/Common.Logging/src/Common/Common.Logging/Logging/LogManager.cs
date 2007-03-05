@@ -125,7 +125,7 @@ namespace Common.Logging
 			{
 				ILoggerFactoryAdapter defaultFactory = BuildDefaultLoggerFactoryAdapter();
 				ILog log = defaultFactory.GetLogger( typeof(LogManager) );
-				log.Warn( "Type " + setting.FactoryAdapterType.FullName + " does not implement ILogFactory. Using default logger" );
+                log.Warn("Type " + setting.FactoryAdapterType.FullName + " does not implement ILoggerFactoryAdapter. Using default logger");
 				return defaultFactory;
 			}
 
