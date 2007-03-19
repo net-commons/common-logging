@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Logging\AbstractLogTest.cs" />
+    <Compile Include="Logging\SerializationTestUtils.cs" />
     <Compile Include="Logging\Simple\NoOpLoggerTests.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

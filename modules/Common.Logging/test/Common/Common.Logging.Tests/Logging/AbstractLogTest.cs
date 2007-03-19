@@ -19,10 +19,11 @@
 #endregion
 
 using System;
+using System.Runtime.Serialization;
 using Common.Logging;
 using NUnit.Framework;
 
-namespace Spring.Logging
+namespace Common.Logging
 {
     /// <summary>
     /// Base class for testing logger functionality.
@@ -91,6 +92,16 @@ namespace Spring.Logging
 
             log.Warn(log.GetType().FullName + ": warn statement w/ exception", new Exception());
         }    
+        
+        [Test]
+        public void LoggerIsSerializable(ILog logger)
+        {
+            //TODO assign some non-default state to the logger...?
+            SerializationTestUtils.TrySerialization(logger);
+            Assert.IsTrue(SerializationTestUtils.IsSerializable(logger));
+            ILog logger2 = (ILog) SerializationTestUtils.SerializeAndDeserialize(logger);
+            Assert.IsTrue(logger != logger2);
+        }
 
     }
 }

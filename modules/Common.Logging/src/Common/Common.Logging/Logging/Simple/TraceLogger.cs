@@ -30,6 +30,7 @@ namespace Common.Logging.Simple
 	/// </summary>
 	/// <author>Gilles Bayon</author>
     /// <version>$Id: TraceLogger.cs,v 1.1 2006/11/13 07:17:55 markpollack Exp $</version>
+    [Serializable]
     public class TraceLogger: ILog
 	{
 		private bool _showDateTime = false;

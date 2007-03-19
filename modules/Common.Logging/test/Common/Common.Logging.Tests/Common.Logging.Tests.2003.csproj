@@ -104,6 +104,11 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Logging\SerializationTestUtils.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Logging\Simple\NoOpLoggerTests.cs"
                     SubType = "Code"
                     BuildAction = "Compile"

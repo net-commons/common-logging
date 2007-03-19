@@ -35,6 +35,7 @@ namespace Common.Logging.Log4Net
 	/// </remarks>
     /// <author>Gilles Bayon</author>
     /// <version>$Id: Log4NetLogger.cs,v 1.1 2006/11/13 07:25:46 markpollack Exp $</version>
+    [Serializable] 
 	public class Log4NetLogger : ILog
 	{
 		#region Fields

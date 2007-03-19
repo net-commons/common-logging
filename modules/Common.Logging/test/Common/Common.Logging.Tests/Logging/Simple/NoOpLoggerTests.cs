@@ -49,6 +49,12 @@ namespace Spring.Logging.Simple
             CheckLog(LogObject);
         }
         
+        [Test]
+        public void LoggerSerialization()
+        {
+            LoggerIsSerializable(LogObject);
+        }
+        
         private void CheckLog(ILog log)
         {
             Assert.IsNotNull(log);

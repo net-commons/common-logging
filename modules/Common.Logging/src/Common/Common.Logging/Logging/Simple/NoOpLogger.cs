@@ -27,6 +27,7 @@ namespace Common.Logging.Simple
 	/// </summary>
     /// <author>Gilles Bayon</author>
     /// <version>$Id: NoOpLogger.cs,v 1.1 2006/11/13 07:17:55 markpollack Exp $</version>
+    [Serializable]
 	public sealed class NoOpLogger: ILog
 	{
 		#region Members of ILog
