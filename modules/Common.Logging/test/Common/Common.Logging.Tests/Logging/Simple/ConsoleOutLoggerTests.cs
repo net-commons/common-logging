@@ -1,7 +1,7 @@
 #region License
 
 /*
- * Copyright © 2002-2006 the original author or authors.
+ * Copyright © 2002-2007 the original author or authors.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,11 +25,12 @@ using NUnit.Framework;
 namespace Common.Logging.Simple
 {
     /// <summary>
-    /// Exercises the NoOpLogger implementation.
+    /// Exercises the ConsoleOutLogger implementation.
     /// </summary>
     /// <author>Mark Pollack</author>
     /// <version>$Id:$</version>
-    public class NoOpLoggerTests : AbstractSimpleLogTest
+    [TestFixture]
+    public class ConsoleOutLoggerTests : AbstractSimpleLogTest
     {
         [SetUp]
         public void Setup()
@@ -37,17 +38,17 @@ namespace Common.Logging.Simple
             NameValueCollection properties = GetProperties();
 
             // set Adapter
-            LogManager.Adapter = new NoOpLoggerFactoryAdapter(properties);
+            LogManager.Adapter = new ConsoleOutLoggerFactoryAdapter(properties);
             defaultLogInstance = LogManager.GetLogger(LoggerType.FullName);
         }
 
         public override Type LoggerType
         {
-            get { return typeof (NoOpLogger); }
+            get { return typeof (ConsoleOutLogger); }
         }
 
         /// <summary>
-        /// Basic checks specific to NoOpLogger
+        /// Basic checks specific to ConsoleOutLogger
         /// </summary>
         /// <param name="log">The log.</param>
         protected override void CheckLog(ILog log)
@@ -57,11 +58,11 @@ namespace Common.Logging.Simple
 
             // Can we call level checkers with no exceptions?
             // Note that everything is hard-coded to be disabled for NoOpLogger
-            Assert.IsFalse(log.IsDebugEnabled);
-            Assert.IsFalse(log.IsInfoEnabled);
-            Assert.IsFalse(log.IsWarnEnabled);
-            Assert.IsFalse(log.IsErrorEnabled);
-            Assert.IsFalse(log.IsFatalEnabled);
+            Assert.IsTrue(log.IsDebugEnabled);
+            Assert.IsTrue(log.IsInfoEnabled);
+            Assert.IsTrue(log.IsWarnEnabled);
+            Assert.IsTrue(log.IsErrorEnabled);
+            Assert.IsTrue(log.IsFatalEnabled);
         }
     }
 }

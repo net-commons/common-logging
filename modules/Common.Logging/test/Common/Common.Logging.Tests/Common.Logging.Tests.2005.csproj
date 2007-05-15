@@ -7,7 +7,7 @@
     <ProjectGuid>{94E4E1B4-D424-4EB9-BF34-2EE8CC3D7048}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Spring</RootNamespace>
+    <RootNamespace>Common</RootNamespace>
     <AssemblyName>Common.Logging.Tests</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -43,9 +43,23 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExceptionsTest.cs" />
     <Compile Include="Logging\AbstractLogTest.cs" />
+    <Compile Include="Logging\LoggingExceptionTests.cs" />
+    <Compile Include="Logging\LogManagerTests.cs" />
+    <Compile Include="Logging\MissingCtorFactoryAdapter.cs" />
     <Compile Include="Logging\SerializationTestUtils.cs" />
+    <Compile Include="Logging\Simple\ConsoleOutLoggerTests.cs" />
+    <Compile Include="Logging\Simple\TraceLoggerTests.cs" />
     <Compile Include="Logging\Simple\NoOpLoggerTests.cs" />
+    <Compile Include="Logging\Simple\AbstractSimpleLogTest.cs" />
+    <Compile Include="Logging\StandaloneConfigurationReader.cs" />
+    <Compile Include="StandardsComplianceTest.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Common.Logging.Tests.dll.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

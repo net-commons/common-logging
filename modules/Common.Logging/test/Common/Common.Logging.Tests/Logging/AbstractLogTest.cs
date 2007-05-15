@@ -19,26 +19,23 @@
 #endregion
 
 using System;
-using System.Runtime.Serialization;
-using Common.Logging;
 using NUnit.Framework;
 
 namespace Common.Logging
 {
     /// <summary>
-    /// Base class for testing logger functionality.
+    /// Generic tests that can be applied to any log implementation by
+    /// subclassing and defining the property LogObject.
     /// </summary>
     /// <remarks>
-    /// Exercises basic API
+    /// Exercises basic API of the ILog implemetation.
     /// </remarks>
     /// <author>Mark Pollack</author>
+    /// <version>$Id:$</version>
     [TestFixture]
     public abstract class AbstractLogTest
     {
-        public abstract ILog LogObject
-        {
-            get;
-        }
+        public abstract ILog LogObject { get; }
 
         [Test]
         public void LoggingWithNullParameters()
@@ -91,9 +88,8 @@ namespace Common.Logging
             log.Warn(log.GetType().FullName + ": warn statement");
 
             log.Warn(log.GetType().FullName + ": warn statement w/ exception", new Exception());
-        }    
-        
-        [Test]
+        }
+
         public void LoggerIsSerializable(ILog logger)
         {
             //TODO assign some non-default state to the logger...?
@@ -102,6 +98,5 @@ namespace Common.Logging
             ILog logger2 = (ILog) SerializationTestUtils.SerializeAndDeserialize(logger);
             Assert.IsTrue(logger != logger2);
         }
-
     }
 }

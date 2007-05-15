@@ -28,7 +28,17 @@ namespace Common.Logging.Simple
     /// Factory for creating <see cref="ILog" /> instances that send 
     /// everything to the system.Diagnostics.Trace output stream.
 	/// </summary>
+    /// <remarks>Default settings are LogLevel.All, showDateTime = true, showLogName = true, and no DateTimeFormat.
+    /// The keys in the NameValueCollection to configure this adapters are the following
+    /// <list type="bullet">
+    ///     <item>level</item>
+    ///     <item>showDateTime</item>
+    ///     <item>showLogName</item>
+    ///     <item>dateTimeFormat</item>
+    /// </list>
+    /// </remarks>
     /// <author>Gilles Bayon</author>
+    /// <author>Mark Pollack</author>
     /// <version>$Id: TraceLoggerFactoryAdapter.cs,v 1.2 2006/12/04 22:11:51 oakinger Exp $</version>
 	public class TraceLoggerFactoryAdapter: ILoggerFactoryAdapter 
 	{
@@ -38,10 +48,27 @@ namespace Common.Logging.Simple
 		private bool _showLogName = true;
 		private string _dateTimeFormat = string.Empty;
 
-		/// <summary>
-		/// Constructor
-		/// </summary>
-		/// <param name="properties"></param>
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TraceLoggerFactoryAdapter"/> class using default settings.
+        /// </summary>
+	    public TraceLoggerFactoryAdapter() 
+	    {
+	        
+	    }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TraceLoggerFactoryAdapter"/> class.
+        /// </summary>
+        /// <remarks>
+        /// Looks for level, showDateTime, showLogName, dateTimeFormat items from 
+        /// <paramref name="properties" /> for use when the GetLogger methods are called.
+        /// <see cref="ConfigurationSectionHandler"/> for more information on how to use the 
+        /// standard .NET application configuraiton file (App.config/Web.config) 
+        /// to configure this adapter.
+        /// </remarks>
+        /// <param name="properties">The name value collection, typically specified by the user in 
+        /// a configuration section named common/logging.</param>
 		public TraceLoggerFactoryAdapter(NameValueCollection properties)
 		{
 			try

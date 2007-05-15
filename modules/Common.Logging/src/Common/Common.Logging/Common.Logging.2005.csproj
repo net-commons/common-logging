@@ -38,6 +38,9 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Logging\ConfigurationException.cs" />
+    <Compile Include="Logging\ConfigurationReader.cs" />
+    <Compile Include="Logging\IConfigurationReader.cs" />
     <Compile Include="Logging\LoggingException.cs" />
     <Compile Include="Logging\ConfigurationSectionHandler.cs" />
     <Compile Include="Logging\ILog.cs" />

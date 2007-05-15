@@ -19,34 +19,34 @@
 #endregion
 
 using System;
-using System.Configuration;
-using Common.Logging.Simple;
 
 namespace Common.Logging
 {
-	/// <summary>
-	/// The LogManager can produce ILogFactory for various logging APIs,
-	/// most notably for log4net. 
-	/// Other implemenations such as
-	/// * SimpleLogger
-	/// * NoOpLogger are also supported.
-	/// </summary>
+    /// <summary>
+    /// The LogManager can produce ILogFactory for various logging APIs,
+    /// most notably for log4net. 
+    /// Other implemenations such as
+    /// * SimpleLogger
+    /// * NoOpLogger are also supported.
+    /// </summary>
     /// <author>Gilles Bayon</author>
     /// <version>$Id: LogManager.cs,v 1.1 2006/11/13 07:17:55 markpollack Exp $</version>
-	public sealed class LogManager
-	{
-		private static ILoggerFactoryAdapter _adapter = null;
-		private static object _loadLock = new object();
-		private static readonly string COMMON_SECTION_LOGGING = "common/logging";
+    public sealed class LogManager
+    {
+        private static ILoggerFactoryAdapter _adapter = null;
+        private static object _loadLock = new object();
+        private static IConfigurationReader _configurationReader = new ConfigurationReader();
+        private static readonly string COMMON_SECTION_LOGGING = "common/logging";
 
-		/// <summary>
-		/// Initializes a new instance of the <see cref="LogManager" /> class. 
-		/// </summary>
-		/// <remarks>
-		/// Uses a private access modifier to prevent instantiation of this class.
-		/// </remarks>
-		private LogManager()
-		{ }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LogManager" /> class. 
+        /// </summary>
+        /// <remarks>
+        /// Uses a private access modifier to prevent instantiation of this class.
+        /// </remarks>
+        private LogManager()
+        {
+        }
 
 
         /// <summary>
@@ -54,30 +54,29 @@ namespace Common.Logging
         /// </summary>
         /// <value>The adapter.</value>
         public static ILoggerFactoryAdapter Adapter
-		{
-			get
-			{
-				if ( _adapter == null )
-				{
-					lock (_loadLock)
-					{
-						if (_adapter == null)
-						{	
-							_adapter = BuildLoggerFactoryAdapter();
-						}
-					}
-				}
-				return _adapter;				
-			}
-		    set
-			{
-				lock (_loadLock)
-				{
-					_adapter = value;
-				}
-			}
-
-		}
+        {
+            get
+            {
+                if (_adapter == null)
+                {
+                    lock (_loadLock)
+                    {
+                        if (_adapter == null)
+                        {
+                            _adapter = BuildLoggerFactoryAdapter();
+                        }
+                    }
+                }
+                return _adapter;
+            }
+            set
+            {
+                lock (_loadLock)
+                {
+                    _adapter = value;
+                }
+            }
+        }
 
 
         /// <summary>
@@ -85,10 +84,10 @@ namespace Common.Logging
         /// </summary>
         /// <param name="type">The type.</param>
         /// <returns></returns>
-		public static ILog GetLogger( Type type )
-		{
-			return Adapter.GetLogger( type );
-		}
+        public static ILog GetLogger(Type type)
+        {
+            return Adapter.GetLogger(type);
+        }
 
 
         /// <summary>
@@ -96,103 +95,88 @@ namespace Common.Logging
         /// </summary>
         /// <param name="name">The name.</param>
         /// <returns></returns>
-		public static ILog GetLogger( string name )
-		{
-			return Adapter.GetLogger(name);
-		}
+        public static ILog GetLogger(string name)
+        {
+            return Adapter.GetLogger(name);
+        }
 
 
         /// <summary>
         /// Builds the logger factory adapter.
         /// </summary>
         /// <returns></returns>
-		private static ILoggerFactoryAdapter BuildLoggerFactoryAdapter()
-		{
-			LogSetting setting = null;
-			try
-			{
-                setting = (LogSetting)GetSection(COMMON_SECTION_LOGGING);
-            }
-			catch ( Exception ex )
-			{
-				ILoggerFactoryAdapter defaultFactory = BuildDefaultLoggerFactoryAdapter();
-				ILog log = defaultFactory.GetLogger( typeof(LogManager) );
-				log.Warn( "Unable to read configuration. Using default logger.", ex );
-				return defaultFactory;
-			}
-
-			if ( setting!= null && !typeof ( ILoggerFactoryAdapter ).IsAssignableFrom( setting.FactoryAdapterType ) )
-			{
-				ILoggerFactoryAdapter defaultFactory = BuildDefaultLoggerFactoryAdapter();
-				ILog log = defaultFactory.GetLogger( typeof(LogManager) );
-                log.Warn("Type " + setting.FactoryAdapterType.FullName + " does not implement ILoggerFactoryAdapter. Using default logger");
-				return defaultFactory;
-			}
-
-			ILoggerFactoryAdapter instance = null;
-
-			if (setting!=null)
-			{
-				if (setting.Properties.Count>0)
-				{
-					try
-					{
-						object[] args = {setting.Properties};
-
-						instance = (ILoggerFactoryAdapter)Activator.CreateInstance( setting.FactoryAdapterType, args );
-					}
-					catch ( Exception ex )
-					{
-						ILoggerFactoryAdapter defaultFactory = BuildDefaultLoggerFactoryAdapter();
-						ILog log = defaultFactory.GetLogger( typeof(LogManager) );
-						log.Warn( "Unable to create instance of type " + setting.FactoryAdapterType.FullName + ". Using default logger.", ex );
-						return defaultFactory;
-					}					
-				}
-				else
-				{
-					try
-					{
-						instance = (ILoggerFactoryAdapter)Activator.CreateInstance( setting.FactoryAdapterType );
-					}
-					catch ( Exception ex )
-					{
-						ILoggerFactoryAdapter defaultFactory = BuildDefaultLoggerFactoryAdapter();
-						ILog log = defaultFactory.GetLogger( typeof(LogManager) );
-						log.Warn( "Unable to create instance of type " + setting.FactoryAdapterType.FullName + ". Using default logger.", ex );
-						return defaultFactory;
-					}
-				}
-			}
-			else
-			{
-				ILoggerFactoryAdapter defaultFactory = BuildDefaultLoggerFactoryAdapter();
-				ILog log = defaultFactory.GetLogger( typeof(LogManager) );
-				log.Warn( "Unable to read configuration common/logging. Using default logger (ConsoleLogger)." );
-				return defaultFactory;
-			}
-
-			return instance;
-		}
-
-        private static object GetSection(string sectionName)
+        private static ILoggerFactoryAdapter BuildLoggerFactoryAdapter()
         {
-#if !NET_2_0
-            return ConfigurationSettings.GetConfig(sectionName);
-#else
-            return ConfigurationManager.GetSection(sectionName);
-#endif
+            LogSetting setting = null;
+            try
+            {
+                setting = (LogSetting) ConfigurationReader.GetSection(COMMON_SECTION_LOGGING);
+            }
+            catch (Exception ex)
+            {
+                throw new ConfigurationException(
+                    "Could not configure Common.Logging from configuration section 'common/logging'.", ex);
+            }
+
+            if (setting != null && !typeof (ILoggerFactoryAdapter).IsAssignableFrom(setting.FactoryAdapterType))
+            {
+                throw new ConfigurationException(
+                    "Specified FactoryAdapter does not implement ILoggerFactoryAdapter.  Check implementation of class " +
+                    setting.FactoryAdapterType.AssemblyQualifiedName);
+            }
+
+            ILoggerFactoryAdapter instance = null;
+
+            if (setting != null)
+            {
+                try
+                {
+                    if (setting.Properties.Count > 0)
+                    {
+                        object[] args = {setting.Properties};
+
+                        instance =
+                            (ILoggerFactoryAdapter) Activator.CreateInstance(setting.FactoryAdapterType, args);
+                    }
+                    else
+                    {
+                        instance = (ILoggerFactoryAdapter) Activator.CreateInstance(setting.FactoryAdapterType);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new ConfigurationException(
+                        "Unable to create instance of type " + setting.FactoryAdapterType.FullName + 
+                        ". Possible explanation is lack of zero arg and single arg NameValueCollection constructors", ex);
+                }
+            }
+            else
+            {
+                throw new ConfigurationException("Unable to read configuration section common/logging." +
+                                                 "Please check that the .NET Application Configuration file is in the runtime directory and " +
+                                                 "read the Common.Logging documentation for example configuration settings.");
+            }
+
+            return instance;
         }
 
-
         /// <summary>
-        /// Builds the default logger factory adapter.
+        /// Gets or sets the configuration reader.
         /// </summary>
-        /// <returns></returns>
-		private static ILoggerFactoryAdapter BuildDefaultLoggerFactoryAdapter()
-		{
-            return new NoOpLoggerFactoryAdapter();
-		}
-	}
-}
+        /// <remarks>Primarily used for testing purposes but maybe useful to obtain configuration
+        /// information from some place other than the .NET application configuration file.</remarks>
+        /// <value>The configuration reader.</value>
+        public static IConfigurationReader ConfigurationReader
+        {
+            get
+            {
+                return _configurationReader;
+            }
+            set
+            {
+                _configurationReader = value;
+            }
+        }
 
+    }
+}
