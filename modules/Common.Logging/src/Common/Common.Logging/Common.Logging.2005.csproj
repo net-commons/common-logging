@@ -41,7 +41,6 @@
     <Compile Include="Logging\ConfigurationException.cs" />
     <Compile Include="Logging\ConfigurationReader.cs" />
     <Compile Include="Logging\IConfigurationReader.cs" />
-    <Compile Include="Logging\LoggingException.cs" />
     <Compile Include="Logging\ConfigurationSectionHandler.cs" />
     <Compile Include="Logging\ILog.cs" />
     <Compile Include="Logging\ILoggerFactoryAdapter.cs" />

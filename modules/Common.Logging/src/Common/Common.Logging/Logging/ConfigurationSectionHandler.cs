@@ -96,7 +96,7 @@ namespace Common.Logging
             
 			if ( factoryTypeString == string.Empty )
 			{
-				throw new LoggingException
+				throw new ConfigurationException
 					( "Required Attribute '" 
 					+ LOGFACTORYADAPTER_ELEMENT_TYPE_ATTRIB 
 					+ "' not found in element '"
@@ -127,7 +127,7 @@ namespace Common.Logging
 			}
 			catch ( Exception e )
 			{
-				throw new LoggingException
+				throw new ConfigurationException
 					( "Unable to create type '" + factoryTypeString + "'"
 					  , e
 					);
@@ -151,7 +151,7 @@ namespace Common.Logging
 
 				if ( keyAttrib == null )
 				{
-					throw new LoggingException
+					throw new ConfigurationException
 						( "Required Attribute '" 
 						  + ARGUMENT_ELEMENT_KEY_ATTRIB 
 						  + "' not found in element '"
@@ -193,7 +193,7 @@ namespace Common.Logging
 			
 			if ( logFactoryElementsCount > 1 )
 			{
-				throw new LoggingException( "Only one <logFactoryAdapter> element allowed" );
+                throw new ConfigurationException("Only one <factoryAdapter> element allowed");
 			}
 			else if ( logFactoryElementsCount == 1 )
 			{

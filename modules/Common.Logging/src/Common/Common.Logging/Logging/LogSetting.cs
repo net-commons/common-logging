@@ -28,7 +28,7 @@ namespace Common.Logging
 	/// </summary>
     /// <author>Gilles Bayon</author>
     /// <version>$Id: LogSetting.cs,v 1.1 2006/11/13 07:17:55 markpollack Exp $</version>
-	internal class LogSetting
+	public class LogSetting
 	{
 
 		#region Fields

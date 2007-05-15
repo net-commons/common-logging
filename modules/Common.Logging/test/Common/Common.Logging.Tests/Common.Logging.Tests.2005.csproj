@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="ExceptionsTest.cs" />
     <Compile Include="Logging\AbstractLogTest.cs" />
+    <Compile Include="Logging\ConfigurationSectionHandlerTests.cs" />
     <Compile Include="Logging\LoggingExceptionTests.cs" />
     <Compile Include="Logging\LogManagerTests.cs" />
     <Compile Include="Logging\MissingCtorFactoryAdapter.cs" />
