@@ -65,12 +65,12 @@ namespace Common.Logging.NLog
 			{
                 if (configFile == string.Empty)
                 {
-                    throw new LoggingException("Configration property 'configFile' must be set for NLog configuration of type 'FILE'.");
+                    throw new ConfigurationException("Configration property 'configFile' must be set for NLog configuration of type 'FILE'.");
                 }
 
                 if (!File.Exists(configFile))
                 {
-                    throw new LoggingException("NLog configuration file '" + configFile + "' does not exists");
+                    throw new ConfigurationException("NLog configuration file '" + configFile + "' does not exists");
                 }
 			}
 

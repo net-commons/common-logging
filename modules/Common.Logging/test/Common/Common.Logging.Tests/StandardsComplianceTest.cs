@@ -37,8 +37,7 @@ namespace Common
         #region Constructor (s) / Destructor
 
         /// <summary>
-        /// Creates a new instance of the
-        /// <see cref="Spring.StandardsComplianceTest"/> class.
+        /// Creates a new instance of the <see cref="StandardsComplianceTest"/> class.
         /// </summary>
         /// <remarks>
         /// <para>

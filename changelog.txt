@@ -2,7 +2,22 @@ Common.Logging CHANGELOG
 =====================================
 http://netcommon.sf.net
 
-Releaes 1.0.2, March 15 2007
+Release 1.1.0, July 6 2007
+
+Summary; New Features and Bug Fixe release
+
+Feature Requests
+
+[1749332]  - Add additonal unit tests
+[1715338]  - Add error reporting when can't load Factory Adapter
+[1749329]  - Add support for NLog
+
+Bug
+
+[1718812]  - Simple adapters fail to initialize if no arguments are specifed in XML configuration.
+
+
+Release 1.0.2, March 15 2007
 
 Summary:  Bug Fix Release
 

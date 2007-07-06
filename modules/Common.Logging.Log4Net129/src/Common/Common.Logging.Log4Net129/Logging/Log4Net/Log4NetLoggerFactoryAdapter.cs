@@ -64,14 +64,14 @@ namespace Common.Logging.Log4Net
                 if (configFile == string.Empty)
                 {
     
-                    throw new LoggingException("Configration property 'configFile' must be set for log4Net configuration of type 'FILE'.");
+                    throw new ConfigurationException("Configration property 'configFile' must be set for log4Net configuration of type 'FILE'.");
 
                 }
 
                 if (!File.Exists(configFile))
                 {
 
-                    throw new LoggingException("log4net configuration file '" + configFile + "' does not exists");
+                    throw new ConfigurationException("log4net configuration file '" + configFile + "' does not exists");
 
                 }
 			}

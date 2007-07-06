@@ -36,6 +36,8 @@
 				<include name="**/*.config" />
 			</fileset>
 		</copy>
+		<copy file="${project::get-base-directory()}/${project::get-name()}.dll.config"
+		      tofile="${current.bin.dir}/${project::get-name()}.dll.config"/>
 	</target>
 	<target name="test" depends="build">
 		<nunit2>
