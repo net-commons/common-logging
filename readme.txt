@@ -1,4 +1,4 @@
-Common.Logging, release 1.0.2 (March 15 2007)
+Common.Logging, release 1.1.0 (July 10 2007)
 ---------------------------------------------------------
 http://netcommon.sf.net/
 
