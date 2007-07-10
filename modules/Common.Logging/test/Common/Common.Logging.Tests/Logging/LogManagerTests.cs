@@ -120,7 +120,6 @@ namespace Common.Logging
         }
 
         [Test]
-        [ExpectedException(typeof (ConfigurationException))]
         public void InvalidXmlSection()
         {
             const string xml =
@@ -133,6 +132,9 @@ namespace Common.Logging
     </logging>
 </foo>";
             ILog log = GetLog(xml);
+            // lack of proper config section fallsback to no-op logging.
+            NoOpLogger noOpLogger = log as NoOpLogger;
+            Assert.IsNotNull(noOpLogger);
         }
 
         private static ILog GetLog(string xml)

@@ -19,6 +19,8 @@
 #endregion
 
 using System;
+using System.Diagnostics;
+using Common.Logging.Simple;
 
 namespace Common.Logging
 {
@@ -114,8 +116,7 @@ namespace Common.Logging
             }
             catch (Exception ex)
             {
-                throw new ConfigurationException(
-                    "Could not configure Common.Logging from configuration section 'common/logging'.", ex);
+                throw new ConfigurationException("Could not configure Common.Logging from configuration section 'common/logging'.", ex);
             }
 
             if (setting != null && !typeof (ILoggerFactoryAdapter).IsAssignableFrom(setting.FactoryAdapterType))
@@ -152,9 +153,9 @@ namespace Common.Logging
             }
             else
             {
-                throw new ConfigurationException("Unable to read configuration section common/logging." +
-                                                 "Please check that the .NET Application Configuration file is in the runtime directory and " +
-                                                 "read the Common.Logging documentation for example configuration settings.");
+                ILoggerFactoryAdapter defaultFactory = new NoOpLoggerFactoryAdapter();
+                Trace.WriteLine("Unable to read configuration section common/logging.  Using no-op implemenation.");
+                return defaultFactory;               
             }
 
             return instance;

@@ -82,6 +82,23 @@
       <copy todir="package/Common.Logging/bin/net/1.1/${release-mode}"
             file="modules\Common.Logging.Log4Net129\build\net\1.1\${release-mode}\log4net.dll"/>
 
+
+      <!-- Copy Common.Logging.NLog dll -->
+      <copy todir="package/Common.Logging/bin/net/1.0/${release-mode}"
+            file="modules\Common.Logging.NLog\build\net\1.0\${release-mode}\Common.Logging.NLog.dll"/>      
+      <copy todir="package/Common.Logging/bin/net/1.1/${release-mode}"
+            file="modules\Common.Logging.NLog\build\net\1.1\${release-mode}\Common.Logging.NLog.dll"/>      
+      <copy todir="package/Common.Logging/bin/net/2.0/${release-mode}"
+            file="modules\Common.Logging.NLog\build\net\2.0\${release-mode}\Common.Logging.NLog.dll"/>      
+
+      <!-- Copy NLog dll -->
+      <copy todir="package/Common.Logging/bin/net/1.0/${release-mode}"
+            file="modules\Common.Logging.NLog\build\net\1.0\${release-mode}\NLog.dll"/>
+      <copy todir="package/Common.Logging/bin/net/1.1/${release-mode}"
+            file="modules\Common.Logging.NLog\build\net\1.1\${release-mode}\NLog.dll"/>
+      <copy todir="package/Common.Logging/bin/net/2.0/${release-mode}"
+            file="modules\Common.Logging.NLog\build\net\2.0\${release-mode}\NLog.dll"/>      
+
     </foreach>
 
     <!-- copy over pdb and xml for Common.Logging.Log4Net -->
@@ -102,6 +119,16 @@
           file="modules\Common.Logging.Log4Net129\build\net\1.1\debug\Common.Logging.Log4Net129.pdb"/>
     <copy todir="package/Common.Logging/bin/net/1.1/debug"
           file="modules\Common.Logging.Log4Net129\build\net\1.1\debug\Common.Logging.Log4Net129.xml"/>
+
+
+    <!-- copy over pdb and xml for Common.Logging.Log4Net -->
+    <foreach item="String" in="1.0,1.1,2.0" delim="," property="framework-version">
+      <copy todir="package/Common.Logging/bin/net/${framework-version}/debug"
+            file="modules\Common.Logging.NLog\build\net\${framework-version}\debug\Common.Logging.NLog.pdb"/>
+      <copy todir="package/Common.Logging/bin/net/${framework-version}/debug"
+            file="modules\Common.Logging.NLog\build\net\${framework-version}\debug\Common.Logging.NLog.xml"/>
+    </foreach>
+
 
     <!-- copy over docs -->
     <copy todir="package/Common.Logging/doc/">

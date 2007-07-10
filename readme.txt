@@ -5,11 +5,13 @@ http://netcommon.sf.net/
 
 1. INTRODUCTION
 
-Provides a simple logging abstraction to switch between different logging implementations, log4net, Enterprise Library logging etc.
+Provides a simple logging abstraction to switch between different logging implementations. 
+There is current support for log4net (1.2.10 and 1.2.9) and NLog.  
+Support for Enterprise Library logging is planned.
 
 2. KNOWN ISSUES
 
-If logging assembly specified in Common.Logging configuration section is not found, no error is reported.
+No known issues
 
 3. RELEASE INFO
 
