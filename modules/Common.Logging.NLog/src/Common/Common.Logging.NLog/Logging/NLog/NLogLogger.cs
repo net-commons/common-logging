@@ -21,9 +21,10 @@
 #region Imports
 
 using System;
-
+using NLog;
 using LogLevelNLog = NLog.LogLevel;
 using LoggerNLog = NLog.Logger;
+
 
 #endregion
 
@@ -38,11 +39,13 @@ namespace Common.Logging.NLog
 	/// </remarks>
     /// <author>Bruno Baia</author>
     /// <version>$Id: $</version>
+    [Serializable]
 	public class NLogLogger : ILog
 	{
 		#region Fields
 
         private LoggerNLog _logger = null;
+        private readonly static Type declaringType = typeof(NLogLogger);
 
 		#endregion 
 
@@ -112,7 +115,8 @@ namespace Common.Logging.NLog
 		/// <param name="e"></param>
 		public void Info(object message, Exception e)
 		{
-			_logger.LogException(LogLevelNLog.Info, message.ToString(), e);
+		    LogEventInfo logEvent = new LogEventInfo(LogLevelNLog.Info, _logger.Name, null, message.ToString(), null, e);
+		    _logger.Log(declaringType, logEvent);
 		}
 
 		/// <summary>
@@ -121,7 +125,8 @@ namespace Common.Logging.NLog
 		/// <param name="message"></param>
 		public void Info(object message)
 		{
-            _logger.Log(LogLevelNLog.Info, message);
+            LogEventInfo logEvent = new LogEventInfo(LogLevelNLog.Info, _logger.Name, null, message.ToString(), null, null);
+            _logger.Log(declaringType, logEvent);		   
 		}
 
 		/// <summary>
@@ -131,7 +136,9 @@ namespace Common.Logging.NLog
 		/// <param name="e"></param>
 		public void Debug(object message, Exception e)
 		{
-            _logger.LogException(LogLevelNLog.Debug, message.ToString(), e);
+            //LogEventInfo logEvent = new LogEventInfo(LogLevelNLog.Debug, _logger.Name, null, message.ToString(), null, e);
+            //_logger.Log(declaringType, logEvent);
+		    _logger.DebugException(message.ToString(), e);
 		}
 
 		/// <summary>
@@ -140,7 +147,8 @@ namespace Common.Logging.NLog
 		/// <param name="message"></param>
 		public void Debug(object message)
 		{
-            _logger.Log(LogLevelNLog.Debug, message);
+            LogEventInfo logEvent = new LogEventInfo(LogLevelNLog.Debug, _logger.Name, null, message.ToString(), null, null);
+            _logger.Log(declaringType, logEvent);	
 		}
 
 		/// <summary>
@@ -150,7 +158,8 @@ namespace Common.Logging.NLog
 		/// <param name="e"></param>
 		public void Warn(object message, Exception e)
 		{
-            _logger.LogException(LogLevelNLog.Warn, message.ToString(), e);
+            LogEventInfo logEvent = new LogEventInfo(LogLevelNLog.Warn, _logger.Name, null, message.ToString(), null, e);
+            _logger.Log(declaringType, logEvent);
 		}
 
 		/// <summary>
@@ -159,7 +168,8 @@ namespace Common.Logging.NLog
 		/// <param name="message"></param>
 		public void Warn(object message)
 		{
-            _logger.Log(LogLevelNLog.Warn, message);
+            LogEventInfo logEvent = new LogEventInfo(LogLevelNLog.Warn, _logger.Name, null, message.ToString(), null, null);
+            _logger.Log(declaringType, logEvent);	
 		}
 
 		/// <summary>
@@ -169,7 +179,8 @@ namespace Common.Logging.NLog
 		/// <param name="e"></param>
 		public void Trace(object message, Exception e)
 		{
-            _logger.LogException(LogLevelNLog.Trace, message.ToString(), e);
+            LogEventInfo logEvent = new LogEventInfo(LogLevelNLog.Trace, _logger.Name, null, message.ToString(), null, e);
+            _logger.Log(declaringType, logEvent);
 		}
 
 		/// <summary>
@@ -178,7 +189,8 @@ namespace Common.Logging.NLog
 		/// <param name="message"></param>
 		public void Trace(object message)
 		{
-            _logger.Log(LogLevelNLog.Trace, message);
+            LogEventInfo logEvent = new LogEventInfo(LogLevelNLog.Trace, _logger.Name, null, message.ToString(), null, null);
+            _logger.Log(declaringType, logEvent);
 		}
 
 		/// <summary>
@@ -188,7 +200,8 @@ namespace Common.Logging.NLog
 		/// <param name="e"></param>
 		public void Fatal(object message, Exception e)
 		{
-            _logger.LogException(LogLevelNLog.Fatal, message.ToString(), e);
+            LogEventInfo logEvent = new LogEventInfo(LogLevelNLog.Fatal, _logger.Name, null, message.ToString(), null, e);
+            _logger.Log(declaringType, logEvent);
 		}
 
 		/// <summary>
@@ -197,7 +210,8 @@ namespace Common.Logging.NLog
 		/// <param name="message"></param>
 		public void Fatal(object message)
 		{
-            _logger.Log(LogLevelNLog.Fatal, message);
+            LogEventInfo logEvent = new LogEventInfo(LogLevelNLog.Fatal, _logger.Name, null, message.ToString(), null, null);
+            _logger.Log(declaringType, logEvent);
 		}
 
 		/// <summary>
@@ -207,7 +221,8 @@ namespace Common.Logging.NLog
 		/// <param name="e"></param>
 		public void Error(object message, Exception e)
 		{
-            _logger.LogException(LogLevelNLog.Error, message.ToString(), e);
+            LogEventInfo logEvent = new LogEventInfo(LogLevelNLog.Error, _logger.Name, null, message.ToString(), null, e);
+            _logger.Log(declaringType, logEvent);
 		}
 
 		/// <summary>
@@ -216,7 +231,8 @@ namespace Common.Logging.NLog
 		/// <param name="message"></param>
 		public void Error(object message)
 		{
-            _logger.Log(LogLevelNLog.Error, message);
+            LogEventInfo logEvent = new LogEventInfo(LogLevelNLog.Error, _logger.Name, null, message.ToString(), null, null);
+            _logger.Log(declaringType, logEvent);
 		}
 
 		#endregion
