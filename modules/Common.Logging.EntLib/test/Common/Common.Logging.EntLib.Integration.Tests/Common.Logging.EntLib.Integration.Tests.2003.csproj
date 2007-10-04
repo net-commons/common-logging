@@ -1,15 +1,15 @@
 <VisualStudioProject>
     <CSHARP
         ProjectType = "Local"
-        ProductVersion = "7.10.6030"
+        ProductVersion = "7.10.3077"
         SchemaVersion = "2.0"
-        ProjectGuid = "{29A41648-D17A-4938-BA22-C2CA8F768F0D}"
+        ProjectGuid = "{5DB4761A-1426-4662-91AB-D815DB8B97FF}"
     >
         <Build>
             <Settings
                 ApplicationIcon = ""
                 AssemblyKeyContainerName = ""
-                AssemblyName = "Common.Logging.Log4Net"
+                AssemblyName = "Common.Logging.EntLib.Integration.Tests"
                 AssemblyOriginatorKeyFile = ""
                 DefaultClientScript = "JScript"
                 DefaultHTMLPageLayout = "Grid"
@@ -29,14 +29,14 @@
                     CheckForOverflowUnderflow = "false"
                     ConfigurationOverrideFile = ""
                     DefineConstants = "DEBUG;TRACE"
-                    DocumentationFile = "Common.Logging.Log4Net.xml"
+                    DocumentationFile = ""
                     DebugSymbols = "true"
                     FileAlignment = "4096"
                     IncrementalBuild = "false"
                     NoStdLib = "false"
                     NoWarn = ""
                     Optimize = "false"
-                    OutputPath = "..\..\..\build\VS.NET.2003\Common.Logging.Log4Net\Debug\"
+                    OutputPath = "..\..\..\build\VS.NET.2003\Common.Logging.EntLib.Integration.Tests\Debug\"
                     RegisterForComInterop = "false"
                     RemoveIntegerChecks = "false"
                     TreatWarningsAsErrors = "false"
@@ -56,7 +56,7 @@
                     NoStdLib = "false"
                     NoWarn = ""
                     Optimize = "true"
-                    OutputPath = "..\..\..\build\VS.NET.2003\Common.Logging.Log4Net\Release\"
+                    OutputPath = "..\..\..\build\VS.NET.2003\Common.Logging.EntLib.Integration.Tests\Release\"
                     RegisterForComInterop = "false"
                     RemoveIntegerChecks = "false"
                     TreatWarningsAsErrors = "false"
@@ -80,36 +80,24 @@
                     HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.XML.dll"
                 />
                 <Reference
-                    Name = "log4net"
-                    AssemblyName = "log4net"
-                    HintPath = "..\..\..\lib\net\1.1\log4net.dll"
+                    Name = "Spring.Core"
+                    AssemblyName = "Spring.Core"
+                    HintPath = "..\..\..\lib\net\1.1\Spring.Core.dll"
                 />
                 <Reference
-                    Name = "Common.Logging"
-                    AssemblyName = "Common.Logging"
-                    HintPath = "..\..\..\lib\net\1.1\Common.Logging.dll"
+                    Name = "nunit.framework"
+                    AssemblyName = "nunit.framework"
+                    HintPath = "..\..\..\lib\net\1.1\nunit.framework.dll"
+                />
+                <Reference
+                    Name = "Common.Logging.EntLib.2003"
+                    Project = "{15E0EFC1-5575-4583-90F4-241CF1DA0585}"
+                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
                 />
             </References>
         </Build>
         <Files>
-            <Include>
-                <File
-                    RelPath = "CommonAssemblyInfo.cs"
-                    Link = "..\CommonAssemblyInfo.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Logging\Log4Net\Log4NetLogger.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "Logging\Log4Net\Log4NetLoggerFactoryAdapter.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-            </Include>
+            <Include/>
         </Files>
     </CSHARP>
 </VisualStudioProject>

@@ -2,9 +2,22 @@ Common.Logging CHANGELOG
 =====================================
 http://netcommon.sf.net
 
+Release 1.2.0, August 4 2007
+
+Summary: New Features and Bug Fix release
+
+Feature Requests
+
+[1749340] - Add support for EntLib logging 
+[1807769] - Add Trace level method to ILog interface  
+
+Bug
+
+[1792900] - NLog logging is not performed relative to correct callsite 
+
 Release 1.1.0, July 10 2007
 
-Summary; New Features and Bug Fixe release
+Summary: New Features and Bug Fix release
 
 Feature Requests
 

@@ -85,29 +85,24 @@
                     HintPath = "..\..\..\lib\net\1.1\log4net.dll"
                 />
                 <Reference
+                    Name = "Common.Logging.Tests"
+                    AssemblyName = "Common.Logging.Tests"
+                    HintPath = "..\..\..\lib\net\1.1\Common.Logging.Tests.dll"
+                />
+                <Reference
+                    Name = "Common.Logging"
+                    AssemblyName = "Common.Logging"
+                    HintPath = "..\..\..\lib\net\1.1\Common.Logging.dll"
+                />
+                <Reference
                     Name = "Common.Logging.Log4Net.2003"
                     Project = "{29A41648-D17A-4938-BA22-C2CA8F768F0D}"
                     Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
                 />
                 <Reference
-                    Name = "Common.Logging.Log4Net.Tests.2003"
-                    Project = "{DD5B5D91-016F-40AB-8FF0-481113A3C8B8}"
-                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
-                />
-                <Reference
                     Name = "nunit.framework"
                     AssemblyName = "nunit.framework"
-                    HintPath = "..\..\..\..\..\common\lib\net\1.1\nunit.framework.dll"
-                />
-                <Reference
-                    Name = "DotNetMock"
-                    AssemblyName = "DotNetMock"
-                    HintPath = "..\..\..\..\..\common\lib\net\1.1\DotNetMock.dll"
-                />
-                <Reference
-                    Name = "Spring.Core"
-                    AssemblyName = "Spring.Core"
-                    HintPath = "..\..\..\..\..\common\lib\net\1.1\Spring.Core.dll"
+                    HintPath = "..\..\..\lib\net\1.1\nunit.framework.dll"
                 />
             </References>
         </Build>
@@ -119,7 +114,7 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "Class1.cs"
+                    RelPath = "Logging\Log4Net\Log4NetTests.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

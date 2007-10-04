@@ -1,0 +1,41 @@
+<!--
+/*
+ * Copyright 2002-2005 the original author or authors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+-->
+<chapter id="quickstarts">
+  <title>Quickstarts</title>
+  <sect1>
+    <title>Introduction</title>
+    <para>
+      This chapter includes a grab bag of quickstart examples for using the
+      Common.Logging.EntLib
+    </para>
+  </sect1>
+  <sect1>
+    <title>Sample Title</title>
+    <para>
+      Section 1 Paragraph
+    </para>
+
+    <sect2>
+      <title>Section 2</title>
+      <para>
+      Section 2 Paragraph
+      </para>
+    </sect2>
+  </sect1>
+</chapter>
+

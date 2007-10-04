@@ -19,7 +19,6 @@
 #endregion
 
 using System;
-using System.Diagnostics;
 using System.Globalization;
 using System.Text;
 
@@ -110,7 +109,7 @@ namespace Common.Logging.Simple
 			}
 
 			// Print to the appropriate destination
-			Trace.WriteLine( sb.ToString() );			
+			System.Diagnostics.Trace.WriteLine( sb.ToString() );			
 		}
 
 		/// <summary>
@@ -127,6 +126,28 @@ namespace Common.Logging.Simple
 		}
 
 		#region ILog Members
+
+        /// <summary>
+        /// Log a trace level message.
+        /// </summary>
+        /// <param name="message"></param>
+        public void Trace(object message)
+        {
+            Trace(message, null);
+        }
+
+        /// <summary>
+        /// log a trace level message
+        /// </summary>
+        /// <param name="message"></param>
+        /// <param name="e"></param>
+        public void Trace(object message, Exception e)
+        {
+            if (IsLevelEnabled(LogLevel.Trace))
+            {
+                Write(LogLevel.Debug, message, e);
+            }
+        }
 
 		/// <summary>
 		/// Log a debug message.
@@ -238,6 +259,14 @@ namespace Common.Logging.Simple
 				Write( LogLevel.Warn, message, e );
 			}
 		}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool IsTraceEnabled
+        {
+            get { return IsLevelEnabled(LogLevel.Trace); }
+        }
 
 		/// <summary>
 		/// 

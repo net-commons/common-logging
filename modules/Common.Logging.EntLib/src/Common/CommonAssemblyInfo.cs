@@ -13,28 +13,26 @@ using System.Reflection;
 #else
 [assembly: AssemblyConfiguration("net-2.0.win32; Release")]
 #endif
-[assembly: AssemblyCompany("http://netcommon.sourceforge.net/")]
-[assembly: AssemblyProduct("Common Logging Framework")]
-[assembly: AssemblyCopyright("Copyright 2006-2007 the Common Logging Framework Team.")]
+[assembly: AssemblyCompany("http://www.springframework.net")]
+[assembly: AssemblyProduct("Spring.NET Framework")]
+[assembly: AssemblyCopyright("Copyright 2002-2006 Spring.NET Framework Team.")]
 [assembly: AssemblyTrademark("Apache License, Version 2.0")]
 [assembly: AssemblyCulture("")]
 
 //
 // Version information for an assembly consists of the following four values:
 //
+//      .NET Framework Version
 //      Major Version
 //      Minor Version 
 //      Revision
-//      .NET Framework Version
 //
 // This is as good a convention as any for supporting side-by-side deployment of 
 // .NET 1.1 and .NET 2.0 versions of the assembly.
 
-#if (NET_1_0)
-[assembly: AssemblyVersion("1.2.0.0")]
-#elif (NET_1_1)
+#if !NET_2_0
 [assembly: AssemblyVersion("1.2.0.1")]
-#elif (NET_2_0)
+#else
 [assembly: AssemblyVersion("1.2.0.2")]
 #endif
 
@@ -66,6 +64,6 @@ using System.Reflection;
 #if STRONG
 [assembly: AssemblyDelaySign(false)]
 #if !NET_2_0
-[assembly: AssemblyKeyFile("Common.Net.snk")]
+[assembly: AssemblyKeyFile("Spring.Net.snk")]
 #endif
 #endif

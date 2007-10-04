@@ -30,33 +30,37 @@ namespace Common.Logging
 	public enum LogLevel
 	{
 		/// <summary>
-		/// 
+		/// All logging levels
 		/// </summary>
 		All   = 0,
+        /// <summary>
+        /// A trace logging level
+        /// </summary>
+        Trace = 1,
 		/// <summary>
-		/// 
+		/// A debug logging level
 		/// </summary>
-		Debug = 1,
+		Debug = 2,
 		/// <summary>
-		/// 
+		/// A info logging level
 		/// </summary>
-		Info  = 2,
+		Info  = 3,
 		/// <summary>
-		/// 
+		/// A warn logging level
 		/// </summary>
-		Warn  = 3,
+		Warn  = 4,
 		/// <summary>
-		/// 
+		/// An error logging level
 		/// </summary>
-		Error = 4,
+		Error = 5,
 		/// <summary>
-		///
+		/// A fatal logging level
 		/// </summary>
-		Fatal = 5,
+		Fatal = 6,
 		/// <summary>
 		/// Do not log anything.
 		/// </summary>
-		Off  = 6,
+		Off  = 7,
 	}
 
 	/// <summary>
@@ -64,6 +68,22 @@ namespace Common.Logging
 	/// </summary>
 	public interface ILog
 	{
+
+        /// <summary>
+        /// Log a message object with the <see cref="LogLevel.Trace"/> level.
+        /// </summary>
+        /// <param name="message">The message object to log.</param>
+        void Trace(object message);
+
+        /// <summary>
+        /// Log a message object with the <see cref="LogLevel.Trace"/> level including
+        /// the stack trace of the <see cref="Exception"/> passed
+        /// as a parameter.
+        /// </summary>
+        /// <param name="message">The message object to log.</param>
+        /// <param name="exception">The exception to log, including its stack trace.</param>
+        void Trace(object message, Exception exception);
+
 		/// <summary>
 		/// Log a message object with the <see cref="LogLevel.Debug"/> level.
 		/// </summary>
@@ -213,6 +233,14 @@ namespace Common.Logging
 //		/// <param name="format">A String containing zero or more format items</param>
 //		/// <param name="args">An Object array containing zero or more objects to format</param>
 //		void WarnFormat(IFormatProvider provider, string format, params object[] args);
+
+        /// <summary>
+        /// Checks if this logger is enabled for the <see cref="LogLevel.Trace"/> level.
+        /// </summary>
+        bool IsTraceEnabled
+        {
+            get;
+        }
 
 		/// <summary>
 		/// Checks if this logger is enabled for the <see cref="LogLevel.Debug"/> level.

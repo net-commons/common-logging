@@ -31,6 +31,11 @@
         <include name="**/*.test" />
       </fileset>
     </copy>
+   <copy todir="${current.bin.dir}" verbose="true">
+     <fileset basedir=".">
+       <include name="*.dll.config" />
+     </fileset>
+   </copy>
     <copy todir="${current.bin.dir}">
       <fileset basedir="${project::get-name()}">
         <include name="**/*.config" />

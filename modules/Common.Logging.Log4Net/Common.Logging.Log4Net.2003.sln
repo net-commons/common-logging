@@ -7,10 +7,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.Log4Net.Test
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.Log4Net.Integration.Tests.2003", "test\Common\Common.Logging.Log4Net.Integration.Tests\Common.Logging.Log4Net.Integration.Tests.2003.csproj", "{0E8DF9EA-9C59-4D9A-9E03-8F3A0AABDF1A}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfiguration) = preSolution
 		Debug = Debug
 		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectDependencies) = postSolution
 	EndGlobalSection
 	GlobalSection(ProjectConfiguration) = postSolution
 		{29A41648-D17A-4938-BA22-C2CA8F768F0D}.Debug.ActiveCfg = Debug|.NET
@@ -21,6 +27,10 @@ Global
 		{DD5B5D91-016F-40AB-8FF0-481113A3C8B8}.Debug.Build.0 = Debug|.NET
 		{DD5B5D91-016F-40AB-8FF0-481113A3C8B8}.Release.ActiveCfg = Release|.NET
 		{DD5B5D91-016F-40AB-8FF0-481113A3C8B8}.Release.Build.0 = Release|.NET
+		{0E8DF9EA-9C59-4D9A-9E03-8F3A0AABDF1A}.Debug.ActiveCfg = Debug|.NET
+		{0E8DF9EA-9C59-4D9A-9E03-8F3A0AABDF1A}.Debug.Build.0 = Debug|.NET
+		{0E8DF9EA-9C59-4D9A-9E03-8F3A0AABDF1A}.Release.ActiveCfg = Release|.NET
+		{0E8DF9EA-9C59-4D9A-9E03-8F3A0AABDF1A}.Release.Build.0 = Release|.NET
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 	EndGlobalSection

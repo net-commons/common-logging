@@ -125,6 +125,31 @@ namespace Common.Logging.Simple
 
 		#region ILog Members
 
+        /// <summary>
+        /// Log a <see cref="LogLevel.Trace" /> message.
+        /// </summary>
+        /// <param name="message">The message to log.</param>
+        public void Trace(object message)
+        {
+            Trace(message, null);
+        }
+
+        /// <summary>
+        /// Log a <see cref="LogLevel.Trace" /> message with an optional <see cref="Exception" />.
+        /// </summary>
+        /// <param name="message">The message to log.</param>
+        /// <param name="e">
+        /// The	<see cref="Exception" /> associated with the message. If there isn't any
+        /// <see cref="Exception" /> associated with the message, pass <see langword="null" />.
+        /// </param>
+        public void Trace(object message, Exception e)
+        {
+            if (IsLevelEnabled(LogLevel.Trace))
+            {
+                Write(LogLevel.Trace, message, e);
+            }
+        }
+
 		/// <summary>
 		/// Log a <see cref="LogLevel.Debug" /> message.
 		/// </summary>
@@ -249,6 +274,15 @@ namespace Common.Logging.Simple
 				Write( LogLevel.Warn, message, e );
 			}
 		}
+
+        /// <summary>
+        /// Returns <see langword="true" /> if the current <see cref="LogLevel" /> is greater than or
+        /// equal to <see cref="LogLevel.Trace" />. If it is, all messages will be sent to <see cref="Console.Out" />.
+        /// </summary>
+        public bool IsTraceEnabled
+        {
+            get { return IsLevelEnabled(LogLevel.Trace); }
+        }
 
 		/// <summary>
 		/// Returns <see langword="true" /> if the current <see cref="LogLevel" /> is greater than or

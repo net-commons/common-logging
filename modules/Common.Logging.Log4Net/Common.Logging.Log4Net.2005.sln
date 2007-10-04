@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.Log4Net.2005
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.Log4Net.Tests.2005", "test\Common\Common.Logging.Log4Net.Tests\Common.Logging.Log4Net.Tests.2005.csproj", "{94E4E1B4-D424-4EB9-BF34-2EE8CC3D7048}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.Log4Net.Integration.Tests.2005", "test\Common\Common.Logging.Log4Net.Integration.Tests\Common.Logging.Log4Net.Integration.Tests.2005.csproj", "{E641F51F-1B51-4B94-B419-F902EABCE4D4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,10 @@ Global
 		{94E4E1B4-D424-4EB9-BF34-2EE8CC3D7048}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{94E4E1B4-D424-4EB9-BF34-2EE8CC3D7048}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{94E4E1B4-D424-4EB9-BF34-2EE8CC3D7048}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E641F51F-1B51-4B94-B419-F902EABCE4D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E641F51F-1B51-4B94-B419-F902EABCE4D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E641F51F-1B51-4B94-B419-F902EABCE4D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E641F51F-1B51-4B94-B419-F902EABCE4D4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -6,6 +6,24 @@
     <!-- build base common.logging .dll -->
     <exec workingdir=".\modules\Common.Logging" program="cmd.exe" commandline="/c nant"/>
 
+    <!-- ******* -->
+    <!-- EntLib  -->
+    <!-- ******* -->
+
+    <!-- copy base common.logging .dll to NLog build directory -->
+    <copy todir="modules/Common.Logging.EntLib/lib/net/2.0/"
+          file="modules\Common.Logging\build\net\1.0\release\Common.Logging.dll"/>
+    <!-- copy base common.logging.tests.dll to NLog build directory -->
+    <copy todir="modules/Common.Logging.EntLib/lib/net/2.0/"
+          file="modules\Common.Logging\build\net\1.0\release\Common.Logging.Tests.dll"/>
+    <!-- build NLog module -->
+    <exec workingdir=".\modules\Common.Logging.EntLib" program="cmd.exe" commandline="/c nant"/>
+
+
+    <!-- ******* -->
+    <!-- log4net -->
+    <!-- ******* -->
+
     <!-- copy base common.logging .dll to Log4Net build directory -->
     <copy todir="modules/Common.Logging.Log4Net/lib/net/1.0/"
           file="modules\Common.Logging\build\net\1.0\release\Common.Logging.dll"/>
@@ -13,17 +31,33 @@
           file="modules\Common.Logging\build\net\1.0\release\Common.Logging.dll"/>
     <copy todir="modules/Common.Logging.Log4Net/lib/net/2.0/"
           file="modules\Common.Logging\build\net\1.0\release\Common.Logging.dll"/>
-    <!-- build log4net module -->
+    <!-- copy base common.logging.tests.dll to Log4Net build directory -->
+    <copy todir="modules/Common.Logging.Log4Net/lib/net/1.0/"
+          file="modules\Common.Logging\build\net\1.0\release\Common.Logging.Tests.dll"/>
+    <copy todir="modules/Common.Logging.Log4Net/lib/net/1.1/"
+          file="modules\Common.Logging\build\net\1.0\release\Common.Logging.Tests.dll"/>
+    <copy todir="modules/Common.Logging.Log4Net/lib/net/2.0/"
+          file="modules\Common.Logging\build\net\1.0\release\Common.Logging.Tests.dll"/>
+
+    <!-- build log4net 1.2.10 module -->
     <exec workingdir=".\modules\Common.Logging.Log4Net" program="cmd.exe" commandline="/c nant"/>
 
-    <!-- copy base common.logging .dll to Log4Net129 build directory -->
+    <!-- copy base common.logging.dll to Log4Net129 build directory -->
     <copy todir="modules/Common.Logging.Log4Net129/lib/net/1.0/"
           file="modules\Common.Logging\build\net\1.0\release\Common.Logging.dll"/>
     <copy todir="modules/Common.Logging.Log4Net129/lib/net/1.1/"
           file="modules\Common.Logging\build\net\1.0\release\Common.Logging.dll"/>
-    <!-- build log4net129 module -->
+    <!-- copy base common.logging.tests.dll to Log4Net129 build directory -->
+    <copy todir="modules/Common.Logging.Log4Net129/lib/net/1.0/"
+          file="modules\Common.Logging\build\net\1.0\release\Common.Logging.Tests.dll"/>
+    <copy todir="modules/Common.Logging.Log4Net129/lib/net/1.1/"
+          file="modules\Common.Logging\build\net\1.0\release\Common.Logging.Tests.dll"/>
+    <!-- build log4net 1.2.9 module -->
     <exec workingdir=".\modules\Common.Logging.Log4Net129" program="cmd.exe" commandline="/c nant"/>
 
+    <!-- ******* -->
+    <!-- NLog    -->
+    <!-- ******* -->
 
     <!-- copy base common.logging .dll to NLog build directory -->
     <copy todir="modules/Common.Logging.NLog/lib/net/1.0/"
@@ -32,8 +66,17 @@
           file="modules\Common.Logging\build\net\1.0\release\Common.Logging.dll"/>
     <copy todir="modules/Common.Logging.NLog/lib/net/2.0/"
           file="modules\Common.Logging\build\net\1.0\release\Common.Logging.dll"/>
-    <!-- build log4net module -->
+    <!-- copy base common.logging.tests.dll to NLog build directory -->
+    <copy todir="modules/Common.Logging.NLog/lib/net/1.0/"
+          file="modules\Common.Logging\build\net\1.0\release\Common.Logging.Tests.dll"/>
+    <copy todir="modules/Common.Logging.NLog/lib/net/1.1/"
+          file="modules\Common.Logging\build\net\1.0\release\Common.Logging.Tests.dll"/>
+    <copy todir="modules/Common.Logging.NLog/lib/net/2.0/"
+          file="modules\Common.Logging\build\net\1.0\release\Common.Logging.Tests.dll"/>
+    <!-- build NLog module -->
     <exec workingdir=".\modules\Common.Logging.NLog" program="cmd.exe" commandline="/c nant"/>
+
+
 
 
   </target>
@@ -99,6 +142,10 @@
       <copy todir="package/Common.Logging/bin/net/2.0/${release-mode}"
             file="modules\Common.Logging.NLog\build\net\2.0\${release-mode}\NLog.dll"/>      
 
+      <!-- Copy Common.Logging.NLog dll -->
+      <copy todir="package/Common.Logging/bin/net/2.0/${release-mode}"
+            file="modules\Common.Logging.NLog\build\net\2.0\${release-mode}\Common.Logging.EntLib.dll"/>      
+
     </foreach>
 
     <!-- copy over pdb and xml for Common.Logging.Log4Net -->
@@ -129,6 +176,14 @@
             file="modules\Common.Logging.NLog\build\net\${framework-version}\debug\Common.Logging.NLog.xml"/>
     </foreach>
 
+    <!-- copy over pdb and xml for Common.Logging.EntLib -->
+    <foreach item="String" in="1.0,1.1,2.0" delim="," property="framework-version">
+      <copy todir="package/Common.Logging/bin/net/${framework-version}/debug"
+            file="modules\Common.Logging.EntLib\build\net\${framework-version}\debug\Common.Logging.EntLib.pdb"/>
+      <copy todir="package/Common.Logging/bin/net/${framework-version}/debug"
+            file="modules\Common.Logging.EntLib\build\net\${framework-version}\debug\Common.Logging.EntLib.xml"/>
+    </foreach>
+
 
     <!-- copy over docs -->
     <copy todir="package/Common.Logging/doc/">
@@ -146,7 +201,7 @@
 
   <target name="package-zip" description="Build and Package distribution as .zip file">
     <call target="package"/>
-    <property name="project.zip-path" value="package/Common.Logging-1.0.2.zip"/>
+    <property name="project.zip-path" value="package/Common.Logging-1.1.0.zip"/>
     <zip zipfile="${project.zip-path}">
       <fileset basedir="package">
         <include name="**/*"/>

@@ -32,6 +32,25 @@ namespace Common.Logging.Simple
 	{
 		#region Members of ILog
 
+        /// <summary>
+        /// Ignores message.
+        /// </summary>
+        /// <param name="message"></param>
+        public void Trace(object message)
+        {
+            // NOP - no operation
+        }
+
+        /// <summary>
+        /// Ignores message.
+        /// </summary>
+        /// <param name="message"></param>
+        /// <param name="e"></param>
+        public void Trace(object message, Exception e)
+        {
+            // NOP - no operation
+        }
+
 		/// <summary>
 		/// Ignores message.
 		/// </summary>
@@ -127,6 +146,14 @@ namespace Common.Logging.Simple
 		{
 			// NOP - no operation
 		}
+
+        /// <summary>
+        /// Always returns <see langword="false" />.
+        /// </summary>
+        public bool IsTraceEnabled
+        {
+            get { return false; }
+        }
 
 		/// <summary>
 		/// Always returns <see langword="false" />.

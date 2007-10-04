@@ -19,6 +19,7 @@
 #endregion
 
 using System;
+using System.Runtime.Serialization;
 using NUnit.Framework;
 
 namespace Common.Logging
@@ -51,7 +52,7 @@ namespace Common.Logging
 
             log.Debug(log.GetType().FullName + ": debug statement");
 
-            log.Debug(log.GetType().FullName + ": debug statement w/ exception", new Exception());
+            log.Debug(log.GetType().FullName + ": debug statement w/ exception", new Exception("exception message"));
 
 
             log.Error(null);
@@ -60,7 +61,7 @@ namespace Common.Logging
 
             log.Error(log.GetType().FullName + ": error statement");
 
-            log.Error(log.GetType().FullName + ": error statement w/ exception", new Exception());
+            log.Error(log.GetType().FullName + ": error statement w/ exception", new Exception("exception message"));
 
 
             log.Fatal(null);
@@ -69,7 +70,7 @@ namespace Common.Logging
 
             log.Fatal(log.GetType().FullName + ": fatal statement");
 
-            log.Fatal(log.GetType().FullName + ": fatal statement w/ exception", new Exception());
+            log.Fatal(log.GetType().FullName + ": fatal statement w/ exception", new Exception("exception message"));
 
 
             log.Info(null);
@@ -78,7 +79,7 @@ namespace Common.Logging
 
             log.Info(log.GetType().FullName + ": info statement");
 
-            log.Info(log.GetType().FullName + ": info statement w/ exception", new Exception());
+            log.Info(log.GetType().FullName + ": info statement w/ exception", new Exception("exception message"));
 
 
             log.Warn(null);
@@ -87,16 +88,20 @@ namespace Common.Logging
 
             log.Warn(log.GetType().FullName + ": warn statement");
 
-            log.Warn(log.GetType().FullName + ": warn statement w/ exception", new Exception());
+            log.Warn(log.GetType().FullName + ": warn statement w/ exception", new Exception("exception message"));
         }
 
         public void LoggerIsSerializable(ILog logger)
         {
             //TODO assign some non-default state to the logger...?
-            SerializationTestUtils.TrySerialization(logger);
-            Assert.IsTrue(SerializationTestUtils.IsSerializable(logger));
-            ILog logger2 = (ILog) SerializationTestUtils.SerializeAndDeserialize(logger);
-            Assert.IsTrue(logger != logger2);
+
+            if (logger.GetType().IsSerializable)
+            {
+                SerializationTestUtils.TrySerialization(logger);
+                Assert.IsTrue(SerializationTestUtils.IsSerializable(logger));
+                ILog logger2 = (ILog) SerializationTestUtils.SerializeAndDeserialize(logger);
+                Assert.IsTrue(logger != logger2);
+            }
         }
     }
 }
