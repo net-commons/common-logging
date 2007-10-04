@@ -602,9 +602,10 @@
       <title>EntLibLoggingAdapter</title>
 
       <para>There is one implementation located in the assembly
-      Common.Logging.EntLib and is linked against the Microsoft Enterprise
-      Library v 3.1, aka EntLib 3.1. The .dlls for EntLib can not be
-      redistributed so you will need to download EntLib separately.</para>
+      <classname>Common.Logging.EntLib</classname> and is linked against the
+      Microsoft Enterprise Library v 3.1, aka EntLib 3.1. The .dlls for EntLib
+      can not be redistributed so you will need to download EntLib
+      separately.</para>
 
       <para>There are no configuration options for the adapter. Configuration
       of EntLib logging is done entirely though App.config. The example below
@@ -618,18 +619,20 @@
 
       <para>Future releases may include configuration of the priority and also
       the format in which information about an exception is logged. The
-      current priority used is -1, the default. Note that the following
-      mapping of Common.Logging LogLevel and is used.</para>
+      current priority used is -1, the default. </para>
+
+      <para>Note that the following mapping of Common.Logging LogLevel to
+      System.Diagnostics.TraceEventType is used.</para>
 
       <para><table id="entlib-level-mapping">
-          <title>EntLib to Common.Logging log evel mapping</title>
+          <title>EntLib to Common.Logging log level mapping</title>
 
           <tgroup cols="2">
             <thead>
               <row>
                 <entry>Common.Logging.LogLevel</entry>
 
-                <entry>System.Diagnostics. TraceEventType</entry>
+                <entry>System.Diagnostics.TraceEventType</entry>
               </row>
             </thead>
 
