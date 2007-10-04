@@ -142,9 +142,9 @@
       <copy todir="package/Common.Logging/bin/net/2.0/${release-mode}"
             file="modules\Common.Logging.NLog\build\net\2.0\${release-mode}\NLog.dll"/>      
 
-      <!-- Copy Common.Logging.NLog dll -->
+      <!-- Copy Common.Logging.EntLib dll -->
       <copy todir="package/Common.Logging/bin/net/2.0/${release-mode}"
-            file="modules\Common.Logging.NLog\build\net\2.0\${release-mode}\Common.Logging.EntLib.dll"/>      
+            file="modules\Common.Logging.EntLib\build\net\2.0\debug\Common.Logging.EntLib.dll"/>      
 
     </foreach>
 
@@ -177,7 +177,7 @@
     </foreach>
 
     <!-- copy over pdb and xml for Common.Logging.EntLib -->
-    <foreach item="String" in="1.0,1.1,2.0" delim="," property="framework-version">
+    <foreach item="String" in="2.0" delim="," property="framework-version">
       <copy todir="package/Common.Logging/bin/net/${framework-version}/debug"
             file="modules\Common.Logging.EntLib\build\net\${framework-version}\debug\Common.Logging.EntLib.pdb"/>
       <copy todir="package/Common.Logging/bin/net/${framework-version}/debug"
