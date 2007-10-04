@@ -57,6 +57,8 @@
     <programlisting>
     public interface ILog
     {
+      void Trace( object message );
+      void Trace( object message, Exception exception );
       void Debug( object message );
       void Debug( object message, Exception exception );
       void Error( object message );
@@ -68,6 +70,7 @@
       void Warn( object message );
       void Warn( object message, Exception exception );
 
+      bool IsTraceEnabled { get; }
       bool IsDebugEnabled { get; }
       bool IsErrorEnabled { get; }
       bool IsFatalEnabled { get; }
@@ -256,7 +259,7 @@
       url="www.sysinternals.com">www.sysinternals.com</ulink>.</para>
 
       <table id="logging-trace-config-props">
-        &gt; 
+         &gt; 
 
         <title>Configuration Properties</title>
 
@@ -338,7 +341,7 @@
       properties:</para>
 
       <table id="logging-log4net-config-props">
-        &gt; 
+         &gt; 
 
         <title>Configuration Properties</title>
 
@@ -593,6 +596,82 @@
             &lt;/rules&gt;
           &lt;/nlog&gt;
         </programlisting></para>
+    </section>
+
+    <section>
+      <title>EntLibLoggingAdapter</title>
+
+      <para>There is one implementation located in the assembly
+      Common.Logging.EntLib and is linked against the Microsoft Enterprise
+      Library v 3.1, aka EntLib 3.1. The .dlls for EntLib can not be
+      redistributed so you will need to download EntLib separately.</para>
+
+      <para>There are no configuration options for the adapter. Configuration
+      of EntLib logging is done entirely though App.config. The example below
+      shows the basic configuration of the EntLibLoggingAdapter</para>
+
+      <programlisting>        &lt;common&gt;
+          &lt;logging&gt;
+            &lt;factoryAdapter type="Common.Logging.EntLib.EntLibLoggerFactoryAdapter, Common.Logging.EntLib"/&gt;
+          &lt;/logging&gt;
+        &lt;/common&gt;</programlisting>
+
+      <para>Future releases may include configuration of the priority and also
+      the format in which information about an exception is logged. The
+      current priority used is -1, the default. Note that the following
+      mapping of Common.Logging LogLevel and is used.</para>
+
+      <para><table id="entlib-level-mapping">
+          <title>EntLib to Common.Logging log evel mapping</title>
+
+          <tgroup cols="2">
+            <thead>
+              <row>
+                <entry>Common.Logging.LogLevel</entry>
+
+                <entry>System.Diagnostics. TraceEventType</entry>
+              </row>
+            </thead>
+
+            <tbody>
+              <row>
+                <entry>Trace</entry>
+
+                <entry>Verbose</entry>
+              </row>
+
+              <row>
+                <entry>Debug</entry>
+
+                <entry>Verbose</entry>
+              </row>
+
+              <row>
+                <entry>Error</entry>
+
+                <entry>Error</entry>
+              </row>
+
+              <row>
+                <entry>Fatal</entry>
+
+                <entry>Critical</entry>
+              </row>
+
+              <row>
+                <entry>Info</entry>
+
+                <entry>Information</entry>
+              </row>
+
+              <row>
+                <entry>Warn</entry>
+
+                <entry>Warning</entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </table></para>
     </section>
   </section>
 
