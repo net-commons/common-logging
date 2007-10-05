@@ -305,7 +305,7 @@ namespace Common.Logging.EntLib
         protected virtual void ConfigureLogEntry(LogEntry log, object message, Exception ex)
         {
             string nullSafeMessage = (message == null ? null : message.ToString());
-            if (ex != null)
+            if (ex == null)
             {
                 log.Message = nullSafeMessage;
             }
