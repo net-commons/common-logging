@@ -1,4 +1,4 @@
-Common.Logging, release 1.1.0 (July 10 2007)
+Common.Logging, release 1.2.0 (October 10 2007)
 ---------------------------------------------------------
 http://netcommon.sf.net/
 
@@ -6,8 +6,7 @@ http://netcommon.sf.net/
 1. INTRODUCTION
 
 Provides a simple logging abstraction to switch between different logging implementations. 
-There is current support for log4net (1.2.10 and 1.2.9) and NLog.  
-Support for Enterprise Library logging is planned.
+There is current support for log4net (1.2.10 and 1.2.9), NLog and Enterprise Library logging 3.1
 
 2. KNOWN ISSUES
 
