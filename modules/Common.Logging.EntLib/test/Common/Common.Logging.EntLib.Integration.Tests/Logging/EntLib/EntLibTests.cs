@@ -31,7 +31,7 @@ using NUnit.Framework;
 namespace Common.Logging.EntLib
 {
     /// <summary>
-    /// This calss contains tests for 
+    /// Test for the EntLib implementation of ILog 
     /// </summary>
     /// <author>Mark Pollack</author>
     /// <version>$Id:$</version>

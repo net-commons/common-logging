@@ -45,6 +45,21 @@ namespace Common.Logging
 
             Assert.IsNotNull(log);
 
+            log.Trace(null);
+
+            log.Trace(null, null);
+
+            log.Trace(log.GetType().FullName + ": debug statement");
+
+
+            try
+            {
+                new Exception("exception message");
+            }
+            catch (Exception e)
+            {
+                log.Trace(log.GetType().FullName + ": debug statement w/ exception", e);
+            }
 
             log.Debug(null);
 
@@ -52,8 +67,15 @@ namespace Common.Logging
 
             log.Debug(log.GetType().FullName + ": debug statement");
 
-            log.Debug(log.GetType().FullName + ": debug statement w/ exception", new Exception("exception message"));
 
+            try
+            {
+                new Exception("exception message");
+            } catch (Exception e)
+            {
+                log.Debug(log.GetType().FullName + ": debug statement w/ exception", e);
+            }
+           
 
             log.Error(null);
 
@@ -61,7 +83,14 @@ namespace Common.Logging
 
             log.Error(log.GetType().FullName + ": error statement");
 
-            log.Error(log.GetType().FullName + ": error statement w/ exception", new Exception("exception message"));
+            try
+            {
+                throw new Exception("exception message");
+            }
+            catch (Exception e)
+            {
+                log.Error(log.GetType().FullName + ": error statement w/ exception", e);
+            }
 
 
             log.Fatal(null);
@@ -70,7 +99,15 @@ namespace Common.Logging
 
             log.Fatal(log.GetType().FullName + ": fatal statement");
 
-            log.Fatal(log.GetType().FullName + ": fatal statement w/ exception", new Exception("exception message"));
+            try
+            {
+                throw new Exception("exception message");
+            } catch (Exception e)
+            {
+                log.Fatal(log.GetType().FullName + ": fatal statement w/ exception", e);
+            }
+            
+            
 
 
             log.Info(null);
@@ -79,7 +116,14 @@ namespace Common.Logging
 
             log.Info(log.GetType().FullName + ": info statement");
 
-            log.Info(log.GetType().FullName + ": info statement w/ exception", new Exception("exception message"));
+            try
+            {
+                throw new Exception("exception message");
+            } catch (Exception e)
+            {
+                log.Info(log.GetType().FullName + ": info statement w/ exception", e);
+            }
+           
 
 
             log.Warn(null);
@@ -88,7 +132,14 @@ namespace Common.Logging
 
             log.Warn(log.GetType().FullName + ": warn statement");
 
-            log.Warn(log.GetType().FullName + ": warn statement w/ exception", new Exception("exception message"));
+            try
+            {
+                throw new Exception("exception message");
+            } catch(Exception e)
+            {
+                log.Warn(log.GetType().FullName + ": warn statement w/ exception", e);                
+            }
+            
         }
 
         public void LoggerIsSerializable(ILog logger)
