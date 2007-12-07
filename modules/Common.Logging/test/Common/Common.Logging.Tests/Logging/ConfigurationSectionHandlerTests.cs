@@ -119,5 +119,24 @@ namespace Common.Logging
                 "NoOpLoggerFactoryAdapter", setting.FactoryAdapterType.Name);
 
         }
+
+        [Test]
+        public void ArgumentKeysCaseInsensitive()
+        {
+            const string xml =
+    @"<?xml version='1.0' encoding='UTF-8' ?>
+    <logging>
+      <factoryAdapter type='CONSOLE'>
+        <arg key='LeVel' value='DEBUG' />
+        <arg key='LEVEL' value='DEBUG' />
+        <arg key='level' value='DEBUG' />
+      </factoryAdapter>
+    </logging>";
+            StandaloneConfigurationReader reader = new StandaloneConfigurationReader( xml );
+            LogSetting setting = reader.GetSection( null ) as LogSetting;
+            Assert.IsNotNull( setting );
+            Assert.AreEqual( 1, setting.Properties.Count );
+            Assert.AreEqual( 3, setting.Properties.GetValues("LeVeL").Length );
+        }
     }
 }

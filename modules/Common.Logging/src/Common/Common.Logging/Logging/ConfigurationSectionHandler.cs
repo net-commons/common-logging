@@ -136,11 +136,8 @@ namespace Common.Logging
 			XmlNodeList propertyNodes = logFactoryElement.SelectNodes( ARGUMENT_ELEMENT );
 
 			NameValueCollection properties = null;
-#if NET_2_0
-            properties = new NameValueCollection(StringComparer.InvariantCultureIgnoreCase);
-#else
-			properties = new NameValueCollection( null, new CaseInsensitiveComparer() );
-#endif
+			properties = new NameValueCollection(); // defaults to case-insensitive keys
+
 			foreach ( XmlNode propertyNode in propertyNodes )
 			{
 				string key = string.Empty;

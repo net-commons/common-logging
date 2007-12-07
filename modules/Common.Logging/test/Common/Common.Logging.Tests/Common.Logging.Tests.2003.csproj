@@ -17,7 +17,7 @@
                 DelaySign = "false"
                 OutputType = "Library"
                 PreBuildEvent = ""
-                PostBuildEvent = ""
+                PostBuildEvent = 'echo Copying .xml files for tests&#xd;&#xa;xcopy "$(ProjectDir)$(TargetFileName).config" "$(TargetDir)" /y /s /q /d&#xd;&#xa;'
                 RootNamespace = "Spring"
                 RunPostBuildEvent = "OnBuildSuccess"
                 StartupObject = ""
@@ -99,6 +99,10 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Common.Logging.Tests.dll.config"
+                    BuildAction = "None"
+                />
+                <File
                     RelPath = "ExceptionsTest.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -144,7 +148,22 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Logging\Simple\AbstractSimpleLogTest.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Logging\Simple\ConsoleOutLoggerTests.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Logging\Simple\NoOpLoggerTests.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Logging\Simple\TraceLoggerTests.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
