@@ -22,7 +22,13 @@ Release contents:
 The Common Infrastructure Libraries for .NET are released under the terms of the Apache Software License (see license.txt).
 
 
+4. BUILDING
 
+For building Common.Logging library, you need to have NAnt and Enterprise Library 3.1 installed. From the commandline execute
+
+  c:\netcommon>nant build
+
+to build
 
 
 
