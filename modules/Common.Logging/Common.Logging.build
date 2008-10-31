@@ -21,7 +21,7 @@
 
 
 
-  <!-- Include spring helpers -->
+  <!-- Include shared helpers -->
   <include buildfile="${logging.basedir}/../../shared/Logging.include"/>
   <!-- Include main build targets -->
   <include buildfile="${logging.basedir}/../../shared/Logging.build"/>

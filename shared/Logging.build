@@ -624,19 +624,6 @@
       </fileset>
     </copy>
 
-    <copy todir="${current.package.dir}">
-      <fileset>
-        <!-- quick work around of 260 limit of Path.GetFullPath used in nant -->
-        <!-- Seems like there is a patch at http://www.mail-archive.com/nant-developers@lists.sourceforge.net/msg05689.html -->
-	<!-- but it has not been applied -->
-
-        <include name="${current.package.dir}\examples\Common\${project::get-name()}\src\${project::get-name()}.2005\Bin\*.dll.refresh"/>
-	<!-- causes PathTooLongException
-        <include name="**/Bin/*.dll.refresh"/>
-	-->
-      </fileset>
-    </copy>
-
     <!-- copy built assemblies -->
     <mkdir dir="${current.package.dir}/bin/net"/>
 

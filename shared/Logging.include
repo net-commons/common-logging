@@ -161,6 +161,7 @@
     <target name="set-debug-build-configuration">
         <property name="compiler.args" value=""/>
         <property name="net-2.0" value="false"/>
+        <property name="build.optimize" value="false"/>
         <property name="build.debug" value="true"/>
         <property name="build.defines.csc" value="DEBUG,TRACE"/>
         <property name="build.defines.jsc" value="DEBUG,TRACE"/>
@@ -174,7 +175,8 @@
     <target name="set-release-build-configuration">
         <property name="compiler.args" value=""/>
         <property name="net-2.0" value="false"/>
-        <property name="build.debug" value="false"/>
+        <property name="build.optimize" value="true"/>
+        <property name="build.debug" value="PdbOnly"/>
         <property name="build.defines.csc" value="TRACE,STRONG"/>
         <property name="build.defines.jsc" value="TRACE,STRONG"/>
         <property name="build.defines.vbc" value="TRACE=True,STRONG=True"/>

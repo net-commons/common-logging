@@ -80,8 +80,10 @@
 
 
   </target>
-
+<!--
   <target name="package" depends="build">
+-->
+  <target name="package">
     <delete dir="package"/>
     <foreach item="String" in="1.0,1.1,2.0" delim="," property="framework-version">
       <mkdir dir="package/Common.Logging/bin/net/${framework-version}/debug"/>
@@ -195,7 +197,6 @@
     <copy todir="package/Common.Logging" file="readme.txt"/>
     <copy todir="package/Common.Logging" file="license.txt"/>
     <copy todir="package/Common.Logging" file="changelog.txt"/>
-
 
   </target>
 
