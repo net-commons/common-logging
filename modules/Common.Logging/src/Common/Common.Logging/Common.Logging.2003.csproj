@@ -90,6 +90,16 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Logging\AbstractLogger.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Logging\CommonLoggingTraceListener.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Logging\ConfigurationException.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -101,6 +111,11 @@
                 />
                 <File
                     RelPath = "Logging\ConfigurationSectionHandler.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Logging\FormatMessageCallback.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
@@ -120,12 +135,22 @@
                     BuildAction = "Compile"
                 />
                 <File
+                    RelPath = "Logging\LogLevel.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
                     RelPath = "Logging\LogManager.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
                     RelPath = "Logging\LogSetting.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Logging\Simple\AbstractSimpleLogger.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

@@ -31,7 +31,13 @@ namespace Common.Logging
     /// <summary>
     /// TraceListener sending all trace output to Common.Logging infrastructure.
     /// </summary>
-    /// <author>Erich Eichinger</author>
+	/// <remarks>
+	/// This listener captures all output sent by calls to <see cref="System.Diagnostics.Trace"/> and
+	/// sends it to an <see cref="ILog"/> instance using the <see cref="Common.Logging.LogLevel"/> specified 
+	/// on <see cref="LogLevel"/>. The <see cref="ILog"/> instance to be used is obtained by calling
+	/// <see cref="LogManager.GetLogger(string)"/>, using <see cref="Name"/> as the argument.
+	/// </remarks>
+	/// <author>Erich Eichinger</author>
     public sealed class CommonLoggingTraceListener : TraceListener
     {
         private delegate void LogHandler(string message);
@@ -41,6 +47,15 @@ namespace Common.Logging
 
         #region Properties
 
+		/// <summary>
+		/// Sets the <see cref="Common.Logging.LogLevel"/> to use for logging
+		/// all events captured by this listener.
+		/// </summary>
+		/// <remarks>
+		/// This listener captures all output sent by calls to <see cref="System.Diagnostics.Trace"/> and
+		/// sends it to an <see cref="ILog"/> instance using the <see cref="Common.Logging.LogLevel"/> specified 
+		/// on <see cref="LogLevel"/>.
+		/// </remarks>
         public LogLevel LogLevel
         {
             get { return _logLevel; }
@@ -51,6 +66,10 @@ namespace Common.Logging
             }
         }
 
+		/// <summary>
+		/// The Name of this <see cref="TraceListener"/>. This name is also used
+		/// for obtaining the underlying logger using <see cref="LogManager.GetLogger(string)"/>.
+		/// </summary>
         public override string Name
         {
             get
@@ -68,10 +87,22 @@ namespace Common.Logging
 
         #region Construction
 
+		/// <summary>
+		/// Creates a new instance with the default name "Diagnostics" and <see cref="LogLevel"/> "All".
+		/// </summary>
         public CommonLoggingTraceListener()
-            : this("Name=Diagnostics")
+            : this("Name=Diagnostics;LogLevel=All")
         { }
 
+		/// <summary>
+		/// Creates a new instance initialized with properties from the <paramref name="initializeData"/>. string.
+		/// </summary>
+		/// <remarks>
+		/// <paramref name="initializeData"/> is a semicolon separated string of name/value pairs, where each pair has
+		/// the form <c>key=value</c>. E.g. 
+		/// "<code>Name=MyLoggerName;LogLevel=Debug</code>"
+		/// </remarks>
+		/// <param name="initializeData">a semicolon separated list of name/value pairs.</param>
         public CommonLoggingTraceListener(string initializeData)
             : this(GetPropertiesFromInitString(initializeData))
         {

@@ -1,5 +1,4 @@
 #region License
-
 /*
  * Copyright © 2002-2008 the original author or authors.
  * 
@@ -15,10 +14,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 #endregion
 
+#region Imports
+
 using System;
+
+#endregion
 
 namespace Common.Logging.Simple
 {
