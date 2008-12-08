@@ -18,44 +18,29 @@
 
 #endregion
 
-using System;
-using System.Collections;
+#region Imports
+
 using System.Collections.Specialized;
+
+#endregion
 
 namespace Common.Logging.Simple
 {
 	/// <summary>
     /// Factory for creating <see cref="ILog" /> instances that send 
-    /// everything to the system.Diagnostics.Trace output stream.
+    /// everything to the <see cref="System.Diagnostics.Trace"/> output stream.
 	/// </summary>
-    /// <remarks>Default settings are LogLevel.All, showDateTime = true, showLogName = true, and no DateTimeFormat.
-    /// The keys in the NameValueCollection to configure this adapters are the following
-    /// <list type="bullet">
-    ///     <item>level</item>
-    ///     <item>showDateTime</item>
-    ///     <item>showLogName</item>
-    ///     <item>dateTimeFormat</item>
-    /// </list>
-    /// </remarks>
+	/// <seealso cref="AbstractSimpleLoggerFactoryAdapter"/>
     /// <author>Gilles Bayon</author>
     /// <author>Mark Pollack</author>
-    /// <version>$Id: TraceLoggerFactoryAdapter.cs,v 1.2 2006/12/04 22:11:51 oakinger Exp $</version>
-	public class TraceLoggerFactoryAdapter: ILoggerFactoryAdapter 
+    /// <author>Erich Eichinger</author>
+	public class TraceLoggerFactoryAdapter: AbstractSimpleLoggerFactoryAdapter 
 	{
-		private Hashtable _logs = new Hashtable();
-		private LogLevel _Level = LogLevel.All;
-		private bool _showDateTime = true;
-		private bool _showLogName = true;
-		private string _dateTimeFormat = string.Empty;
-
-
         /// <summary>
         /// Initializes a new instance of the <see cref="TraceLoggerFactoryAdapter"/> class using default settings.
         /// </summary>
-	    public TraceLoggerFactoryAdapter() 
-	    {
-	        
-	    }
+	    public TraceLoggerFactoryAdapter():base(null)
+	    {}
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TraceLoggerFactoryAdapter"/> class.
@@ -69,66 +54,16 @@ namespace Common.Logging.Simple
         /// </remarks>
         /// <param name="properties">The name value collection, typically specified by the user in 
         /// a configuration section named common/logging.</param>
-		public TraceLoggerFactoryAdapter(NameValueCollection properties)
-		{
-			try
-			{
-				_Level = (LogLevel)Enum.Parse( typeof(LogLevel), properties["level"], true );
-			}
-			catch ( Exception )
-			{
-				_Level = LogLevel.All;
-			}
-			try
-			{
-				_showDateTime = bool.Parse( properties["showDateTime"] );
-			}
-			catch ( Exception )
-			{
-				_showDateTime = true;
-			}
-			try 
-			{
-				_showLogName = bool.Parse( properties["showLogName"] );
-			}
-			catch ( Exception )
-			{
-				_showLogName = true;
-			}
-			_dateTimeFormat =  properties["dateTimeFormat"];
-		}
+		public TraceLoggerFactoryAdapter(NameValueCollection properties):base(properties)
+		{}
 
-		#region ILoggerFactoryAdapter Members
-
-		/// <summary>
-		/// Get a ILog instance by type 
-		/// </summary>
-		/// <param name="type"></param>
-		/// <returns></returns>
-		public ILog GetLogger(Type type)
-		{
-			return GetLogger( type.FullName );
-		}
-
-		/// <summary>
-		/// Get a ILog instance by type name 
-		/// </summary>
-		/// <param name="name"></param>
-		/// <returns></returns>
-		public ILog GetLogger(string name)
-		{
-			lock(_logs)
-			{
-				ILog log = _logs[name] as ILog;
-				if ( log == null )
-				{
-					log = new TraceLogger( name, _Level, _showDateTime, _showLogName, _dateTimeFormat );
-					_logs.Add( name, log );
-				}
-				return log;
-			}
-		}
-
-		#endregion
+	    /// <summary>
+	    /// Creates a new <see cref="TraceLogger"/> instance.
+	    /// </summary>
+	    protected override ILog CreateLogger(string name, LogLevel level, bool showDateTime, bool showLogName, string dateTimeFormat)
+	    {
+            ILog log = new TraceLogger(name, level, showDateTime, showLogName, dateTimeFormat);
+            return log;	        	        
+	    }
 	}
 }

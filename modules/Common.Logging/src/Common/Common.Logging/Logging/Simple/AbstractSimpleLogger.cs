@@ -18,9 +18,13 @@
 
 #endregion
 
+#region Imports
+
 using System;
 using System.Globalization;
 using System.Text;
+
+#endregion
 
 namespace Common.Logging.Simple
 {
@@ -31,13 +35,67 @@ namespace Common.Logging.Simple
     [Serializable]
     public abstract class AbstractSimpleLogger : AbstractLogger
     {
+        private readonly string _name = string.Empty;
         private readonly bool _showDateTime = false;
         private readonly bool _showLogName = false;
-        private readonly string _logName = string.Empty;
-        private readonly LogLevel _currentLogLevel = LogLevel.All;
+        private LogLevel _currentLogLevel = LogLevel.All;
         private readonly string _dateTimeFormat = string.Empty;
         private readonly bool _hasDateTimeFormat = false;
 
+        #region Properties
+
+        /// <summary>
+        /// The name of the logger.
+        /// </summary>
+        public string Name
+        {
+            get { return _name; }
+        }
+
+        /// <summary>
+        /// Include the current time in the log message.
+        /// </summary>
+        public bool ShowDateTime
+        {
+            get { return _showDateTime; }
+        }
+
+        /// <summary>
+        /// Include the instance name in the log message.
+        /// </summary>
+        public bool ShowLogName
+        {
+            get { return _showLogName; }
+        }
+
+        /// <summary>
+        /// The current logging threshold. Messages recieved that are beneath this threshold will not be logged.
+        /// </summary>
+        public LogLevel CurrentLogLevel
+        {
+            get { return _currentLogLevel; }
+            set { _currentLogLevel = value; }
+        }
+
+        /// <summary>
+        /// The date and time format to use in the log message.
+        /// </summary>
+        public string DateTimeFormat
+        {
+            get { return _dateTimeFormat; }
+        }
+
+        /// <summary>
+        /// Determines Whether <see cref="DateTimeFormat"/> is set.
+        /// </summary>
+        public bool HasDateTimeFormat
+        {
+            get { return _hasDateTimeFormat; }
+        }
+
+
+        #endregion
+        
         /// <summary>
         /// Creates and initializes a the simple logger.
         /// </summary>
@@ -49,7 +107,7 @@ namespace Common.Logging.Simple
         public AbstractSimpleLogger(string logName, LogLevel logLevel
                                  , bool showDateTime, bool showLogName, string dateTimeFormat)
         {
-            _logName = logName;
+            _name = logName;
             _currentLogLevel = logLevel;
             _showDateTime = showDateTime;
             _showLogName = showLogName;
@@ -96,7 +154,7 @@ namespace Common.Logging.Simple
             // Append the name of the log instance if so configured
             if (_showLogName)
             {
-                stringBuilder.Append(_logName).Append(" - ");
+                stringBuilder.Append(_name).Append(" - ");
             }
 
             // Append the message

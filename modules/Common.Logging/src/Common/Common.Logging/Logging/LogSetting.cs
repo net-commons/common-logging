@@ -18,8 +18,12 @@
 
 #endregion
 
+#region Imports
+
 using System;
 using System.Collections.Specialized;
+
+#endregion
 
 namespace Common.Logging
 {
@@ -27,7 +31,6 @@ namespace Common.Logging
 	/// Container used to hold configuration information from config file.
 	/// </summary>
     /// <author>Gilles Bayon</author>
-    /// <version>$Id: LogSetting.cs,v 1.1 2006/11/13 07:17:55 markpollack Exp $</version>
 	public class LogSetting
 	{
 

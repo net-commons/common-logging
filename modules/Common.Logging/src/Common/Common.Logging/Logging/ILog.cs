@@ -25,7 +25,28 @@ namespace Common.Logging
     /// <summary>
 	/// A simple logging interface abstracting logging APIs. 
 	/// </summary>
-	public interface ILog
+    /// <remarks>
+    /// <para>
+    /// Implementations should defer calling a message's <see cref="object.ToString()"/> until the message really needs
+    /// to be logged to avoid performance penalties.
+    /// </para>
+    /// <para>
+    /// Each <see cref="ILog"/> log method offers to pass in a <see cref="FormatMessageCallback"/> instead of the actual message.
+    /// Using style has the advantage to defer possibly expensive message formatting (and formatting arguments!) until the message gets
+    /// actually logged. If the message is not logged at all (e.g. due to <see cref="LogLevel"/> settings), 
+    /// you won't have to pay the peformance penalty of creating the message.
+    /// </para>
+    /// </remarks>
+    /// <example>
+    /// The example below demonstrates using callback style for creating the message, where the call to 
+    /// <see cref="string.Format(string,object,object,object)"/> only happens, if level <see cref="LogLevel.Debug"/> is enabled:
+    /// <code>
+    /// Log.Debug( () =&gt; string.Format(&quot;result is {0}&quot;, random.NextDouble()) );
+    /// Log.Debug(delegate { return string.Format(&quot;result is {0}&quot;, random.NextDouble()); });
+    /// </code>
+    /// </example>
+    /// <seealso cref="FormatMessageCallback"/>
+    public interface ILog
 	{
         /// <summary>
         /// Log a message object with the <see cref="LogLevel.Trace"/> level.

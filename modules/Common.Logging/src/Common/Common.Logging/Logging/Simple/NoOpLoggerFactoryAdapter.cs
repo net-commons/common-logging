@@ -18,8 +18,12 @@
 
 #endregion
 
+#region Imports
+
 using System;
 using System.Collections.Specialized;
+
+#endregion
 
 namespace Common.Logging.Simple
 {
@@ -28,26 +32,21 @@ namespace Common.Logging.Simple
     /// logging requests.
 	/// </summary>
     /// <author>Gilles Bayon</author>
-    /// <version>$Id: NoOpLoggerFactoryAdapter.cs,v 1.1 2006/11/13 07:17:55 markpollack Exp $</version>
 	public sealed class NoOpLoggerFactoryAdapter : ILoggerFactoryAdapter
 	{
-		private ILog _nopLogger = null;
+		private static readonly ILog s_nopLogger = new NoOpLogger();
 
         /// <summary>
         /// Constructor
         /// </summary>
         public NoOpLoggerFactoryAdapter()
-        {
-            _nopLogger = new NoOpLogger();
-        }
+        {}
 
 		/// <summary>
 		/// Constructor
 		/// </summary>
         public NoOpLoggerFactoryAdapter(NameValueCollection properties)
-		{
-			_nopLogger = new NoOpLogger();
-		}
+		{}
 
 		#region ILoggerFactoryAdapter Members
 
@@ -58,7 +57,7 @@ namespace Common.Logging.Simple
 		/// <returns></returns>
 		public ILog GetLogger(Type type)
 		{
-			return _nopLogger;
+			return s_nopLogger;
 		}
 
 		/// <summary>
@@ -68,7 +67,7 @@ namespace Common.Logging.Simple
 		/// <returns></returns>
 		ILog ILoggerFactoryAdapter.GetLogger(string name)
 		{
-			return _nopLogger;
+			return s_nopLogger;
 
 		}
 

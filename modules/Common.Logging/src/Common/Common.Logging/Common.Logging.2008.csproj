@@ -73,6 +73,7 @@
     <Compile Include="Logging\LogSetting.cs" />
     <Compile Include="Logging\FormatMessageCallback.cs" />
     <Compile Include="Logging\Simple\AbstractSimpleLogger.cs" />
+    <Compile Include="Logging\Simple\AbstractSimpleLoggerFactoryAdapter.cs" />
     <Compile Include="Logging\Simple\ConsoleOutLogger.cs" />
     <Compile Include="Logging\Simple\ConsoleOutLoggerFactoryAdapter.cs" />
     <Compile Include="Logging\Simple\NoOpLogger.cs" />

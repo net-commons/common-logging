@@ -70,6 +70,7 @@
     <Compile Include="Logging\AbstractLoggerTests.cs" />
     <Compile Include="ExceptionsTest.cs" />
     <Compile Include="Logging\AbstractLogTest.cs" />
+    <Compile Include="Logging\CommonLoggingTraceListenerTests.cs" />
     <Compile Include="Logging\ConfigurationSectionHandlerTests.cs" />
     <Compile Include="Logging\LoggingExceptionTests.cs" />
     <Compile Include="Logging\LogManagerTests.cs" />
@@ -80,6 +81,9 @@
     <Compile Include="Logging\Simple\NoOpLoggerTests.cs" />
     <Compile Include="Logging\Simple\AbstractSimpleLogTest.cs" />
     <Compile Include="Logging\StandaloneConfigurationReader.cs" />
+    <Compile Include="TestUtil\TestLogger.cs" />
+    <Compile Include="TestUtil\TestLoggerEvent.cs" />
+    <Compile Include="TestUtil\TestLoggerFactoryAdapter.cs" />
     <Compile Include="StandardsComplianceTest.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -18,44 +18,30 @@
 
 #endregion
 
+#region Imports
+
 using System;
-using System.Collections;
 using System.Collections.Specialized;
+
+#endregion
 
 namespace Common.Logging.Simple
 {
 	/// <summary>
 	/// Factory for creating <see cref="ILog" /> instances that write data to <see cref="Console.Out" />.
 	/// </summary>
-    /// <remarks>Default settings are LogLevel.All, showDateTime = true, showLogName = true, and no DateTimeFormat.
-    /// The keys in the NameValueCollection to configure this adapters are the following
-    /// <list type="bullet">
-    ///     <item>level</item>
-    ///     <item>showDateTime</item>
-    ///     <item>showLogName</item>
-    ///     <item>dateTimeFormat</item>
-    /// </list>
-    /// </remarks>
+	/// <seealso cref="AbstractSimpleLoggerFactoryAdapter"/>
     /// <author>Gilles Bayon</author>
     /// <author>Mark Pollack</author>
-    /// <version>$Id: ConsoleOutLoggerFactoryAdapter.cs,v 1.2 2006/12/04 22:11:50 oakinger Exp $</version>
-	public class ConsoleOutLoggerFactoryAdapter: ILoggerFactoryAdapter 
+    /// <author>Erich Eichinger</author>
+	public class ConsoleOutLoggerFactoryAdapter: AbstractSimpleLoggerFactoryAdapter 
 	{
-		private Hashtable _logs = new Hashtable();
-		private LogLevel _Level = LogLevel.All;
-		private bool _showDateTime = true;
-		private bool _showLogName = true;
-		private string _dateTimeFormat = string.Empty;
-
-
         /// <summary>
         /// Initializes a new instance of the <see cref="ConsoleOutLoggerFactoryAdapter"/> class using default 
         /// settings.
         /// </summary>
-	    public ConsoleOutLoggerFactoryAdapter() 
-	    {
-	        
-	    }
+	    public ConsoleOutLoggerFactoryAdapter() : base(null)            
+	    {}
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ConsoleOutLoggerFactoryAdapter"/> class.
@@ -69,66 +55,16 @@ namespace Common.Logging.Simple
         /// </remarks>
         /// <param name="properties">The name value collection, typically specified by the user in 
         /// a configuration section named common/logging.</param>
-		public ConsoleOutLoggerFactoryAdapter(NameValueCollection properties)
-		{
-			try
-			{
-				_Level = (LogLevel)Enum.Parse( typeof(LogLevel), properties["level"], true );
-			}
-			catch ( Exception )
-			{
-				_Level = LogLevel.All;
-			}
-			try
-			{
-				_showDateTime = bool.Parse( properties["showDateTime"] );
-			}
-			catch ( Exception )
-			{
-				_showDateTime = true;
-			}
-			try 
-			{
-				_showLogName = bool.Parse( properties["showLogName"] );
-			}
-			catch ( Exception )
-			{
-				_showLogName = true;
-			}
-			_dateTimeFormat =  properties["dateTimeFormat"];
-		}
+		public ConsoleOutLoggerFactoryAdapter(NameValueCollection properties):base(properties)
+		{}
 
-		#region ILoggerFactoryAdapter Members
-
-		/// <summary>
-		/// Get a ILog instance by <see cref="Type" />.
-		/// </summary>
-		/// <param name="type">Usually the <see cref="Type" /> of the current class.</param>
-		/// <returns>An ILog instance that will write data to <see cref="Console.Out" />.</returns>
-		public ILog GetLogger(Type type)
-		{
-			return GetLogger( type.FullName );
-		}
-
-		/// <summary>
-		/// Get a ILog instance by name.
-		/// </summary>
-		/// <param name="name">Usually a <see cref="Type" />'s Name or FullName property.</param>
-		/// <returns>An ILog instance that will write data to <see cref="Console.Out" />.</returns>
-		public ILog GetLogger(string name)
-		{
-			lock(_logs)
-			{
-				ILog log = _logs[name] as ILog;
-				if ( log == null )
-				{
-					log = new ConsoleOutLogger( name, _Level, _showDateTime, _showLogName, _dateTimeFormat );
-					_logs.Add( name, log );
-				}
-				return log;
-			}
-		}
-
-		#endregion
+	    /// <summary>
+	    /// Creates a new <see cref="ConsoleOutLogger"/> instance.
+	    /// </summary>
+	    protected override ILog CreateLogger(string name, LogLevel level, bool showDateTime, bool showLogName, string dateTimeFormat)
+	    {
+            ILog log = new ConsoleOutLogger(name, level, showDateTime, showLogName, dateTimeFormat);
+	        return log;	        
+	    }
 	}
 }

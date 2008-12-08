@@ -46,7 +46,7 @@ namespace Common.Logging
     ///     &lt;listeners&gt;
     ///       &lt;clear /&gt;
     ///       &lt;add name=&quot;myDiagnostics&quot;
-    ///            type=&quot;System.Diagnostics.TextWriterTraceListener&quot;
+    ///            type=&quot;Common.Logging.CommonLoggingTraceListener, Common.Logging&quot;
     ///            initializeData=&quot;LogLevel=Trace&quot; /&gt;
     ///     &lt;/listeners&gt;
     ///     &lt;/trace&gt;
@@ -59,7 +59,7 @@ namespace Common.Logging
     {
         private delegate void LogHandler(object message);
 
-        private LogLevel _logLevel = Logging.LogLevel.All;
+        private LogLevel _logLevel = Logging.LogLevel.Trace;
         private LogHandler _log;
 
         #region Properties
@@ -105,10 +105,10 @@ namespace Common.Logging
         #region Construction
 
 		/// <summary>
-		/// Creates a new instance with the default name "Diagnostics" and <see cref="LogLevel"/> "All".
+		/// Creates a new instance with the default name "Diagnostics" and <see cref="LogLevel"/> "Trace".
 		/// </summary>
         public CommonLoggingTraceListener()
-            : this("Name=Diagnostics;LogLevel=All")
+            : this(string.Empty)
         { }
 
 		/// <summary>
@@ -117,7 +117,7 @@ namespace Common.Logging
 		/// <remarks>
 		/// <paramref name="initializeData"/> is a semicolon separated string of name/value pairs, where each pair has
 		/// the form <c>key=value</c>. E.g. 
-		/// "<code>Name=MyLoggerName;LogLevel=Debug</code>"
+		/// "<c>Name=MyLoggerName;LogLevel=Debug</c>"
 		/// </remarks>
 		/// <param name="initializeData">a semicolon separated list of name/value pairs.</param>
         public CommonLoggingTraceListener(string initializeData)
@@ -143,12 +143,13 @@ namespace Common.Logging
         {
             if (props["logLevel"] != null)
             {
-                this._logLevel = (LogLevel)Enum.Parse(typeof(LogLevel), props["logLevel"]);
+                this._logLevel = (LogLevel)Enum.Parse(typeof(LogLevel), props["logLevel"], true);
             }
             else
             {
                 this._logLevel = LogLevel.Trace;
             }
+
             if (props["name"] != null)
             {
                 this.Name = props["name"];
@@ -159,6 +160,10 @@ namespace Common.Logging
             }
         }
 
+        /// <summary>
+        /// Obtains a new logger instance from <see cref="LogManager"/>
+        /// based on the current values of <see cref="Name"/> and <see cref="LogLevel"/>.
+        /// </summary>
         private void RefreshLogger()
         {
             ILog log = LogManager.GetLogger(this.Name);
@@ -184,12 +189,16 @@ namespace Common.Logging
                 default:
                     throw new ArgumentOutOfRangeException("LogLevel", LogLevel, "unknown log level");
             }
-            _log = new LogHandler(log.Trace);
         }
 
         private static NameValueCollection GetPropertiesFromInitString(string initializeData)
         {
             NameValueCollection props = new NameValueCollection();
+
+            if (initializeData == null)
+            {
+                return props;
+            }
 
             string[] parts = initializeData.Split(';');
             foreach (string s in parts)
@@ -219,7 +228,10 @@ namespace Common.Logging
         /// </summary>
         public override void Write(string message)
         {
-            _log(message);
+            if (_logLevel != LogLevel.Off)
+            {
+                _log(message);
+            }
         }
 
         /// <summary>
@@ -227,7 +239,10 @@ namespace Common.Logging
         /// </summary>
         public override void WriteLine(string message)
         {
-            _log(message);
+            if (_logLevel != LogLevel.Off)
+            {
+                _log(message);
+            }
         }
 
         /// <summary>

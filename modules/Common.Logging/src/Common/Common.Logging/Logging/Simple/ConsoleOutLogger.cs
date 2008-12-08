@@ -18,9 +18,12 @@
 
 #endregion
 
+#region Imports
+
 using System;
-using System.Globalization;
 using System.Text;
+
+#endregion
 
 namespace Common.Logging.Simple
 {
@@ -28,7 +31,6 @@ namespace Common.Logging.Simple
 	/// Sends log messages to <see cref="Console.Out" />.
 	/// </summary>
     /// <author>Gilles Bayon</author>
-    /// <version>$Id: ConsoleOutLogger.cs,v 1.1 2006/11/13 07:17:55 markpollack Exp $</version>
     [Serializable]
 	public class ConsoleOutLogger : AbstractSimpleLogger
 	{
