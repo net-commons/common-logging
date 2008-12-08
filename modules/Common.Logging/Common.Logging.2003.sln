@@ -9,18 +9,20 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.Tests.2003",
 EndProject
 Global
 	GlobalSection(SolutionConfiguration) = preSolution
-		Debug = Debug
-		Release = Release
+		Debug-1.1 = Debug-1.1
+		Release-1.1 = Release-1.1
+	EndGlobalSection
+	GlobalSection(ProjectDependencies) = postSolution
 	EndGlobalSection
 	GlobalSection(ProjectConfiguration) = postSolution
-		{B1B4C34B-6710-409F-BF91-B91DB0A2EAFE}.Debug.ActiveCfg = Debug|.NET
-		{B1B4C34B-6710-409F-BF91-B91DB0A2EAFE}.Debug.Build.0 = Debug|.NET
-		{B1B4C34B-6710-409F-BF91-B91DB0A2EAFE}.Release.ActiveCfg = Release|.NET
-		{B1B4C34B-6710-409F-BF91-B91DB0A2EAFE}.Release.Build.0 = Release|.NET
-		{5E1602C0-E1EC-4DD5-B76E-9EF8F3F70403}.Debug.ActiveCfg = Debug|.NET
-		{5E1602C0-E1EC-4DD5-B76E-9EF8F3F70403}.Debug.Build.0 = Debug|.NET
-		{5E1602C0-E1EC-4DD5-B76E-9EF8F3F70403}.Release.ActiveCfg = Release|.NET
-		{5E1602C0-E1EC-4DD5-B76E-9EF8F3F70403}.Release.Build.0 = Release|.NET
+		{B1B4C34B-6710-409F-BF91-B91DB0A2EAFE}.Debug-1.1.ActiveCfg = Debug-1.1|.NET
+		{B1B4C34B-6710-409F-BF91-B91DB0A2EAFE}.Debug-1.1.Build.0 = Debug-1.1|.NET
+		{B1B4C34B-6710-409F-BF91-B91DB0A2EAFE}.Release-1.1.ActiveCfg = Release-1.1|.NET
+		{B1B4C34B-6710-409F-BF91-B91DB0A2EAFE}.Release-1.1.Build.0 = Release-1.1|.NET
+		{5E1602C0-E1EC-4DD5-B76E-9EF8F3F70403}.Debug-1.1.ActiveCfg = Debug-1.1|.NET
+		{5E1602C0-E1EC-4DD5-B76E-9EF8F3F70403}.Debug-1.1.Build.0 = Debug-1.1|.NET
+		{5E1602C0-E1EC-4DD5-B76E-9EF8F3F70403}.Release-1.1.ActiveCfg = Release-1.1|.NET
+		{5E1602C0-E1EC-4DD5-B76E-9EF8F3F70403}.Release-1.1.Build.0 = Release-1.1|.NET
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 	EndGlobalSection

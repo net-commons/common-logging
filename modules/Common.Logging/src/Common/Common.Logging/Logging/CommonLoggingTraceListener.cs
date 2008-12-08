@@ -32,15 +32,32 @@ namespace Common.Logging
     /// TraceListener sending all trace output to Common.Logging infrastructure.
     /// </summary>
 	/// <remarks>
-	/// This listener captures all output sent by calls to <see cref="System.Diagnostics.Trace"/> and
-	/// sends it to an <see cref="ILog"/> instance using the <see cref="Common.Logging.LogLevel"/> specified 
-	/// on <see cref="LogLevel"/>. The <see cref="ILog"/> instance to be used is obtained by calling
-	/// <see cref="LogManager.GetLogger(string)"/>, using <see cref="Name"/> as the argument.
+	/// This listener captures all output sent by calls to <see cref="System.Diagnostics.Trace">System.Diagnostics.Trace</see> and
+	/// sends it to an <see cref="ILog"/> instance using the log level specified 
+	/// on <see cref="LogLevel"/>. 
+	/// The <see cref="ILog"/> instance to be used is obtained by calling
+	/// <see cref="LogManager.GetLogger(string)"/>, using this listener's <see cref="Name"/> as the argument.
 	/// </remarks>
+	/// <example>
+	/// The snippet below shows how to add this listener to your app.config:
+	/// <code>
+    /// &lt;configuration&gt;
+    ///   &lt;system.diagnostics&gt;
+    ///     &lt;listeners&gt;
+    ///       &lt;clear /&gt;
+    ///       &lt;add name=&quot;myDiagnostics&quot;
+    ///            type=&quot;System.Diagnostics.TextWriterTraceListener&quot;
+    ///            initializeData=&quot;LogLevel=Trace&quot; /&gt;
+    ///     &lt;/listeners&gt;
+    ///     &lt;/trace&gt;
+    ///   &lt;/system.diagnostics&gt;
+    /// &lt;/configuration&gt;
+	/// </code>
+	/// </example>
 	/// <author>Erich Eichinger</author>
     public sealed class CommonLoggingTraceListener : TraceListener
     {
-        private delegate void LogHandler(string message);
+        private delegate void LogHandler(object message);
 
         private LogLevel _logLevel = Logging.LogLevel.All;
         private LogHandler _log;
@@ -108,6 +125,10 @@ namespace Common.Logging
         {
         }
 
+        /// <summary>
+        /// Creates a new instance initialized with the specified properties.
+        /// </summary>
+        /// <param name="properties">name/value configuration properties.</param>
         public CommonLoggingTraceListener(NameValueCollection properties)
             : base()
         {
@@ -212,7 +233,7 @@ namespace Common.Logging
         /// <summary>
         /// NoOp Log Method
         /// </summary>
-        private static void LogIgnore(string message)
+        private static void LogIgnore(object message)
         {
         }
     }

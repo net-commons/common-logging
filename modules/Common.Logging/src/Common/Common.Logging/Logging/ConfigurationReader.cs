@@ -18,8 +18,11 @@
 
 #endregion
 
+#region Imports
+
 using System.Configuration;
 
+#endregion
 
 namespace Common.Logging
 {
@@ -28,7 +31,6 @@ namespace Common.Logging
     /// configuration APIs, ConfigurationSettings in 1.x and ConfigurationManager in 2.0
     /// </summary>
     /// <author>Mark Pollack</author>
-    /// <version>$Id:$</version>
     public class ConfigurationReader : IConfigurationReader
     {
         /// <summary>

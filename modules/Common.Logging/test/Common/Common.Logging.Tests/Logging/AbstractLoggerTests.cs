@@ -73,12 +73,12 @@ namespace Common.Logging
             Assert.AreEqual("format3 arg3", log.LastMessage);
             Assert.AreEqual(ex, log.LastException);
 
-            Invoke(log, logMethods[4], CultureInfo.GetCultureInfo("de-de"), "format4 {0}", new object[] { 4.1 });
+            Invoke(log, logMethods[4], CultureInfo.CreateSpecificCulture("de-de"), "format4 {0}", new object[] { 4.1 });
             Assert.AreEqual(logLevel, log.LastLogLevel);
             Assert.AreEqual("format4 4,1", log.LastMessage);
             Assert.AreEqual(null, log.LastException);
 
-            Invoke(log, logMethods[5], ex, CultureInfo.GetCultureInfo("de-de"), "format5 {0}", new object[] { 5.1 });
+            Invoke(log, logMethods[5], ex, CultureInfo.CreateSpecificCulture("de-de"), "format5 {0}", new object[] { 5.1 });
             Assert.AreEqual(logLevel, log.LastLogLevel);
             Assert.AreEqual("format5 5,1", log.LastMessage);
             Assert.AreEqual(ex, log.LastException);
