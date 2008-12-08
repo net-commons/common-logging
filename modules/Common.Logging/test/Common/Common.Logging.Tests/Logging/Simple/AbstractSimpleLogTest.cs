@@ -110,7 +110,9 @@ namespace Common.Logging.Simple
 
         protected virtual void CanCallIsEnabled(ILog log)
         {
-            bool b = log.IsDebugEnabled;
+            bool b;
+            b = log.IsTraceEnabled;
+            b = log.IsDebugEnabled;
             b = log.IsErrorEnabled;
             b = log.IsFatalEnabled;
             b = log.IsInfoEnabled;
@@ -119,20 +121,22 @@ namespace Common.Logging.Simple
 
         protected virtual void CanLogMessage(ILog log)
         {
+            log.TraceFormat("Hi");
             log.Debug("Hi");
-            log.Error("Hi");
-            log.Fatal("Hi");
             log.Info("Hi");
             log.Warn("Hi");
+            log.Error("Hi");
+            log.Fatal("Hi");
         }
 
         protected virtual void CanLogMessageWithException(ILog log)
         {
+            log.TraceFormat("Hi");
             log.Debug("Hi", new ArithmeticException());
-            log.Error("Hi", new ArithmeticException());
-            log.Fatal("Hi", new ArithmeticException());
             log.Info("Hi", new ArithmeticException());
             log.Warn("Hi", new ArithmeticException());
+            log.Error("Hi", new ArithmeticException());
+            log.Fatal("Hi", new ArithmeticException());
         }
 
         /// <summary>

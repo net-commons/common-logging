@@ -57,7 +57,7 @@ namespace Common.Logging.Simple
             Assert.IsInstanceOfType(LoggerType, log);
 
             // Can we call level checkers with no exceptions?
-            // Note that everything is hard-coded to be disabled for NoOpLogger
+            Assert.IsTrue(log.IsTraceEnabled);
             Assert.IsTrue(log.IsDebugEnabled);
             Assert.IsTrue(log.IsInfoEnabled);
             Assert.IsTrue(log.IsWarnEnabled);

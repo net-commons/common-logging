@@ -45,21 +45,10 @@ namespace Common.Logging
 
             Assert.IsNotNull(log);
 
-            log.Trace(null);
-
-            log.Trace(null, null);
-
-            log.Trace(log.GetType().FullName + ": debug statement");
-
-
-            try
-            {
-                new Exception("exception message");
-            }
-            catch (Exception e)
-            {
-                log.Trace(log.GetType().FullName + ": debug statement w/ exception", e);
-            }
+            log.Trace((object)null);
+            log.Trace((object)null, null);
+            log.TraceFormat(log.GetType().FullName + ": debug statement");
+            log.Trace(log.GetType().FullName + ": debug statement w/ exception", new Exception("exception message"));
 
             log.Debug(null);
 

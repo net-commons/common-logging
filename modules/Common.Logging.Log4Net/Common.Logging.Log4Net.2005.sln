@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 9.00
-# Visual Studio 2005
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.Log4Net.2005", "src\Common\Common.Logging.Log4Net\Common.Logging.Log4Net.2005.csproj", "{0FEA262C-4EAF-49DB-8D32-8E90DDEF23B6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.Log4Net.Tests.2005", "test\Common\Common.Logging.Log4Net.Tests\Common.Logging.Log4Net.Tests.2005.csproj", "{94E4E1B4-D424-4EB9-BF34-2EE8CC3D7048}"
