@@ -18,10 +18,13 @@
 
 #endregion
 
+#region Imports
+
 using System;
 using System.Diagnostics;
-using System.Text;
 using Microsoft.Practices.EnterpriseLibrary.Logging;
+
+#endregion
 
 namespace Common.Logging.EntLib
 {
@@ -29,259 +32,201 @@ namespace Common.Logging.EntLib
     /// Concrete implementation of <see cref="ILog"/> interface specific to Enterprise Logging.
     /// </summary>
     /// <remarks>
-    /// Default priority is used.  The category name used is the name passed into 
-    /// LogManger.GetLogger
+    /// Default priority is used.  The category name used is the name passed into <see cref="LogManager">LogManager.GetLogger()</see>.
     /// </remarks>
     /// <author>Mark Pollack</author>
-    /// <version>$Id:$</version>
-    public class EntLibLogger  : ILog
+    /// <author>Erich Eichinger</author>
+    public class EntLibLogger  : AbstractLogger
     {
-        private string category;
-        
-        //TODO these will be configurable in a future version
-        //format like nlog is good - i.e. ${exception:format=message,stacktrace:separator=, }
-        private int priority = -1;
-        private string separator = ", ";
-        
+        private class TraceLevelLogEntry : LogEntry
+        {
+            public TraceLevelLogEntry(string category, TraceEventType severity)
+            {
+                Categories.Add(category);
+                Severity = severity;               
+            }
+        }
+
+        private readonly LogEntry VerboseLogEntry;
+        private readonly LogEntry InformationLogEntry;
+        private readonly LogEntry WarningLogEntry;
+        private readonly LogEntry ErrorLogEntry;
+        private readonly LogEntry CriticalLogEntry;
+
+        private readonly string category;
+        private readonly EntLibLoggerSettings settings;
+        private readonly LogWriter logWriter;
+
+        /// <summary>
+        /// The category of this logger
+        /// </summary>
+        public string Category
+        {
+            get { return category; }
+        }
+
+        /// <summary>
+        /// The settings used by this logger
+        /// </summary>
+        public EntLibLoggerSettings Settings
+        {
+            get { return settings; }
+        }
+
+        /// <summary>
+        /// The <see cref="LogWriter"/> used by this logger.
+        /// </summary>
+        public LogWriter LogWriter
+        {
+            get { return logWriter; }
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="EntLibLogger"/> class.
         /// </summary>
         /// <param name="category">The category.</param>
-        public EntLibLogger(string category)
+        /// <param name="logWriter">the <see cref="LogWriter"/> to write log events to.</param>
+        /// <param name="settings">the logger settings</param>
+        public EntLibLogger(string category, LogWriter logWriter, EntLibLoggerSettings settings)
         {
             this.category = category;
+            this.logWriter = logWriter;
+            this.settings = settings;
+
+            VerboseLogEntry = new TraceLevelLogEntry(category, TraceEventType.Verbose);
+            InformationLogEntry = new TraceLevelLogEntry(category, TraceEventType.Information);
+            WarningLogEntry = new TraceLevelLogEntry(category, TraceEventType.Warning);
+            ErrorLogEntry = new TraceLevelLogEntry(category, TraceEventType.Error);
+            CriticalLogEntry = new TraceLevelLogEntry(category, TraceEventType.Critical);
         }
 
-        /// <summary>
-        /// Logs the specified message at the TraceEventType.Verbose level.
-        /// </summary>
-        /// <param name="message">The message.</param>
-        public void Trace(object message)
-        {
-            WriteLog(TraceEventType.Verbose, message);
-        }
-
-        /// <summary>
-        /// Logs the specified message and exception at the TraceEventType.Verbose level.
-        /// </summary>
-        /// <param name="message">The message.</param>
-        /// <param name="exception">The exception.</param>
-        public void Trace(object message, Exception exception)
-        {
-            WriteLog(TraceEventType.Verbose, message, exception);
-        }
-
-        /// <summary>
-        /// Logs the specified message at the TraceEventType.Verbose level.
-        /// </summary>
-        /// <param name="message">The message.</param>
-        public void Debug(object message)
-        {            
-            WriteLog(TraceEventType.Verbose, message);
-        }
-
-        /// <summary>
-        /// Logs the specified message and excpetion at the TraceEventType.Verbose level.
-        /// </summary>
-        /// <param name="message">The message.</param>
-        /// <param name="exception">The exception.</param>
-        public void Debug(object message, Exception exception)
-        {
-            WriteLog(TraceEventType.Verbose, message, exception);
-        }
-
-        /// <summary>
-        /// Logs the specified message at the TraceEventType.Error level.
-        /// </summary>
-        /// <param name="message">The message.</param>
-        public void Error(object message)
-        {
-            WriteLog(TraceEventType.Error, message);
-        }
-
-        /// <summary>
-        /// Logs the specified message and excpetion at the TraceEventType.Error level.
-        /// </summary>
-        /// <param name="message">The message.</param>
-        /// <param name="exception">The exception.</param>
-        public void Error(object message, Exception exception)
-        {
-            WriteLog(TraceEventType.Error, message, exception);
-        }
-
-        /// <summary>
-        /// Logs the specified message at the TraceEventType.Critical level.
-        /// </summary>
-        /// <param name="message">The message.</param>
-        public void Fatal(object message)
-        {
-            WriteLog(TraceEventType.Critical, message);
-        }
-
-        /// <summary>
-        /// Logs the specified message and excpetion at the TraceEventType.Critical level.
-        /// </summary>
-        /// <param name="message">The message.</param>
-        /// <param name="exception">The exception.</param>
-        public void Fatal(object message, Exception exception)
-        {
-            WriteLog(TraceEventType.Critical, message, exception);
-        }
-
-        /// <summary>
-        /// Logs the specified message at the TraceEventType.Information level.
-        /// </summary>
-        /// <param name="message">The message.</param>
-        public void Info(object message)
-        {
-            WriteLog(TraceEventType.Information, message);
-        }
-
-        /// <summary>
-        /// Logs the specified message and excpetion at the TraceEventType.Information level.
-        /// </summary>
-        /// <param name="message">The message.</param>
-        /// <param name="exception">The exception.</param>
-        public void Info(object message, Exception exception)
-        {
-            WriteLog(TraceEventType.Information, message, exception);
-        }
-
-        /// <summary>
-        /// Logs the specified message at the TraceEventType.Warning level.
-        /// </summary>
-        /// <param name="message">The message.</param>
-        public void Warn(object message)
-        {
-            WriteLog(TraceEventType.Warning, message);
-        }
-
-        /// <summary>
-        /// Logs the specified message and excpetion at the TraceEventType.Warning level.
-        /// </summary>
-        /// <param name="message">The message.</param>
-        /// <param name="exception">The exception.</param>
-        public void Warn(object message, Exception exception)
-        {
-            WriteLog(TraceEventType.Warning, message, exception);
-        }
-
-        // Needs investigation.  At the moment it doesn't seem possible to check
-        // for 'ShouldLog' based on log level.
+        #region IsXXXXEnabled
 
         /// <summary>
         /// Gets a value indicating whether this instance is trace enabled.  
         /// </summary>
-        /// <value>
-        /// 	<c>true</c> always.
-        /// </value>
-        public bool IsTraceEnabled
+        public override bool IsTraceEnabled
         {
-            get { return true; }
+            get { return ShouldLog(VerboseLogEntry); }
         }
 
         /// <summary>
         /// Gets a value indicating whether this instance is debug enabled. 
         /// </summary>
-        /// <value>
-        /// 	<c>true</c> always
-        /// </value>
-        public bool IsDebugEnabled
+        public override bool IsDebugEnabled
         {
-            get { return true; }
-        }
-
-        /// <summary>
-        /// Gets a value indicating whether this instance is error enabled.
-        /// </summary>
-        /// <value>
-        /// 	<c>true</c> always.
-        /// </value>
-        public bool IsErrorEnabled
-        {
-            get { return true; }
-        }
-
-        /// <summary>
-        /// Gets a value indicating whether this instance is fatal enabled.
-        /// </summary>
-        /// <value>
-        /// 	<c>true</c> always
-        /// </value>
-        public bool IsFatalEnabled
-        {
-            get { return true; }
+            get { return ShouldLog(VerboseLogEntry); }
         }
 
         /// <summary>
         /// Gets a value indicating whether this instance is info enabled.
         /// </summary>
-        /// <value>
-        /// 	<c>true</c> always
-        /// </value>
-        public bool IsInfoEnabled
+        public override bool IsInfoEnabled
         {
-            get { return true; }
+            get { return ShouldLog(InformationLogEntry); }
         }
 
         /// <summary>
         /// Gets a value indicating whether this instance is warn enabled.
         /// </summary>
-        /// <value>
-        /// 	<c>true</c> always
-        /// </value>
-        public bool IsWarnEnabled
+        public override bool IsWarnEnabled
         {
-            get { return true; }
-        }
-
-
-        /// <summary>
-        /// Writes the log.
-        /// </summary>
-        /// <param name="traceEventType">Type of the trace event.</param>
-        /// <param name="message">The message.</param>
-        protected virtual void WriteLog(TraceEventType traceEventType, object message)
-        {
-            WriteLog(traceEventType, message, null);
+            get { return ShouldLog(WarningLogEntry); }
         }
 
         /// <summary>
-        /// Writes the log.
+        /// Gets a value indicating whether this instance is error enabled.
         /// </summary>
-        /// <param name="traceEventType">Type of the trace event.</param>
-        /// <param name="message">The message.</param>
-        /// <param name="ex">The ex.</param>
-        protected virtual void WriteLog(TraceEventType traceEventType, object message, Exception ex)
+        public override bool IsErrorEnabled
         {
-            LogEntry log = CreateLogEntry(traceEventType);
-            
-            // 'Logger.ShouldLog' type functionality should go here, but it doesn't take into account levels.
-            // One apporach is to have execution of ShouldLog part of the configuration.  
-            // In anycase, the extra info collected isn't very expensive to generate.   
-         
-            if (ex != null)
+            get { return ShouldLog(ErrorLogEntry); }
+        }
+
+        /// <summary>
+        /// Gets a value indicating whether this instance is fatal enabled.
+        /// </summary>
+        public override bool IsFatalEnabled
+        {
+            get { return ShouldLog(CriticalLogEntry); }
+        }
+
+
+        #endregion
+        
+        /// <summary>
+        /// Actually sends the message to the EnterpriseLogging log system.
+        /// </summary>
+        /// <param name="logLevel">the level of this log event.</param>
+        /// <param name="message">the message to log</param>
+        /// <param name="exception">the exception to log (may be null)</param>
+        protected override void Write(LogLevel logLevel, object message, Exception exception)
+        {
+            LogEntry log = CreateLogEntry(GetTraceEventType(logLevel));
+
+            if (ShouldLog(log))
             {
-                ConfigureLogEntry(log, message, ex);
+                PopulateLogEntry(log, message, exception);
+                WriteLog(log);
             }
-            else
-            {
-                ConfigureLogEntry(log, message);
-            }            
-            Logger.Write(log);
         }
 
         /// <summary>
-        /// Creates the log entry.
+        /// May be overridden for custom filter logic
         /// </summary>
-        /// <param name="traceEventType">Type of the trace event.</param>
+        /// <param name="log"></param>
+        /// <returns></returns>
+        protected virtual bool ShouldLog(LogEntry log)
+        {
+            return logWriter.ShouldLog(log);
+        }
+
+        /// <summary>
+        /// Write the fully populated event to the log.
+        /// </summary>
+        protected virtual void WriteLog(LogEntry log)
+        {
+            logWriter.Write(log);
+        }
+
+        /// <summary>
+        /// Translates a <see cref="LogLevel"/> to a <see cref="TraceEventType"/>.
+        /// </summary>
+        protected virtual TraceEventType GetTraceEventType(LogLevel logLevel)
+        {
+            switch (logLevel)
+            {
+                case LogLevel.All:
+                    return TraceEventType.Verbose;
+                case LogLevel.Trace:
+                    return TraceEventType.Verbose;
+                case LogLevel.Debug:
+                    return TraceEventType.Verbose;
+                case LogLevel.Info:
+                    return TraceEventType.Information;
+                case LogLevel.Warn:
+                    return TraceEventType.Warning;
+                case LogLevel.Error:
+                    return TraceEventType.Error;
+                case LogLevel.Fatal:
+                    return TraceEventType.Critical;
+                case LogLevel.Off:
+                    return 0;
+                default:
+                    throw new ArgumentOutOfRangeException("logLevel", logLevel, "unknown log level");
+            }
+        }
+
+        /// <summary>
+        /// Creates a minimal log entry instance that will be passed into <see cref="Logger.ShouldLog"/>
+        /// to asap decide, whether this event should be logged.
+        /// </summary>
+        /// <param name="traceEventType">trace event severity.</param>
         /// <returns></returns>
         protected virtual LogEntry CreateLogEntry(TraceEventType traceEventType)
         {
             LogEntry log = new LogEntry();
             log.Categories.Add(category);
-            log.Priority = priority;
+            log.Priority = settings.defaultPriority;
             log.Severity = traceEventType;
             return log;
         }
@@ -291,50 +236,41 @@ namespace Common.Logging.EntLib
         /// </summary>
         /// <param name="log">The log.</param>
         /// <param name="message">The message.</param>
-        protected virtual void ConfigureLogEntry(LogEntry log, object message)
-        {
-            ConfigureLogEntry(log, message, null);
-        }
-
-        /// <summary>
-        /// Configures the log entry.
-        /// </summary>
-        /// <param name="log">The log.</param>
-        /// <param name="message">The message.</param>
         /// <param name="ex">The ex.</param>
-        protected virtual void ConfigureLogEntry(LogEntry log, object message, Exception ex)
+        protected virtual void PopulateLogEntry(LogEntry log, object message, Exception ex)
         {
-            string nullSafeMessage = (message == null ? null : message.ToString());
-            if (ex == null)
+            log.Message = (message == null ? null : message.ToString());
+            if (ex != null)
             {
-                log.Message = nullSafeMessage;
+                AddExceptionInfo(log, ex);
             }
-            else
-            {
-                log.Message = AddExceptionInfo(nullSafeMessage, ex);
-            }            
         }
 
         /// <summary>
         /// Adds the exception info.
         /// </summary>
-        /// <param name="message">The message.</param>
+        /// <param name="log">The log entry.</param>
         /// <param name="exception">The exception.</param>
         /// <returns></returns>
-        protected virtual string AddExceptionInfo(string message, Exception exception)
+        protected virtual void AddExceptionInfo(LogEntry log, Exception exception)
         {
-            if (exception != null)
+            if (exception != null && settings.exceptionFormat != null)
             {
-                StringBuilder sb = new StringBuilder(128);
-                sb.Append(message).Append(separator);
-                sb.Append("Exception[ ");
-                sb.Append("message = ").Append(exception.Message).Append(separator);
-                sb.Append("source = ").Append(exception.Source).Append(separator);
-                sb.Append("targetsite = ").Append(exception.TargetSite).Append(separator);
-                sb.Append("stacktrace = ").Append(exception.StackTrace).Append("]");
-                return sb.ToString();
+                string errorMessage = settings.exceptionFormat
+                    .Replace("$(exception.message)", exception.Message)
+                    .Replace("$(exception.source)", exception.Source)
+                    .Replace("$(exception.targetsite)", (exception.TargetSite==null)?string.Empty:exception.TargetSite.ToString())
+                    .Replace("$(exception.stacktrace)", exception.StackTrace)
+                    ;
+                //                StringBuilder sb = new StringBuilder(128);
+                //                sb.Append("Exception[ ");
+                //                sb.Append("message = ").Append(exception.Message).Append(separator);
+                //                sb.Append("source = ").Append(exception.Source).Append(separator);
+                //                sb.Append("targetsite = ").Append(exception.TargetSite).Append(separator);
+                //                sb.Append("stacktrace = ").Append(exception.StackTrace).Append("]");
+                //                return sb.ToString();
+                log.AddErrorMessage(errorMessage);
             }
-            return message;
         }
     }
 }

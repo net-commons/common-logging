@@ -43,9 +43,8 @@ namespace Common.Logging.Simple
     /// <author>Gilles Bayon</author>
     /// <author>Mark Pollack</author>
     /// <author>Erich Eichinger</author>
-    public abstract class AbstractSimpleLoggerFactoryAdapter : ILoggerFactoryAdapter
+    public abstract class AbstractSimpleLoggerFactoryAdapter : AbstractCachingLoggerFactoryAdapter
     {
-        private readonly Hashtable _cachedLoggers = new Hashtable();
         private readonly LogLevel _Level = LogLevel.All;
         private readonly bool _showDateTime = true;
         private readonly bool _showLogName = true;
@@ -64,48 +63,23 @@ namespace Common.Logging.Simple
         /// <param name="properties">The name value collection, typically specified by the user in 
         /// a configuration section named common/logging.</param>
         protected AbstractSimpleLoggerFactoryAdapter(NameValueCollection properties)
+            : base(true)
         {
             if (properties != null)
             {
-                _Level = (LogLevel)TryParseEnum(_Level, properties["level"]);
-                _showDateTime = TryParseBoolean(_showDateTime, properties["showDateTime"]);
-                _showLogName = TryParseBoolean(_showLogName, properties["showLogName"]);
+                _Level = (LogLevel)ConfigurationUtils.TryParseEnum(_Level, properties["level"]);
+                _showDateTime = ConfigurationUtils.TryParseBoolean(_showDateTime, properties["showDateTime"]);
+                _showLogName = ConfigurationUtils.TryParseBoolean(_showLogName, properties["showLogName"]);
                 _dateTimeFormat = properties["dateTimeFormat"];
             }
         }
 
         /// <summary>
-        /// Tries parsing <paramref name="stringValue"/> into an enum of the type of <paramref name="defaultValue"/>.
+        /// Create the specified logger instance
         /// </summary>
-        /// <param name="defaultValue">the default value to return if parsing fails</param>
-        /// <param name="stringValue">the string value to parse</param>
-        /// <returns>the successfully parsed value, <paramref name="defaultValue"/> otherwise.</returns>
-        protected static object TryParseEnum(Enum defaultValue, string stringValue)
+        protected override ILog CreateLogger(string name)
         {
-            object result = defaultValue;
-            try
-            {
-                result = Enum.Parse(defaultValue.GetType(), stringValue, true);
-            }
-            catch { }
-            return result;
-        }
-
-        /// <summary>
-        /// Tries parsing <paramref name="stringValue"/> into a <see cref="bool"/>.
-        /// </summary>
-        /// <param name="defaultValue">the default value to return if parsing fails</param>
-        /// <param name="stringValue">the string value to parse</param>
-        /// <returns>the successfully parsed value, <paramref name="defaultValue"/> otherwise.</returns>
-        protected static bool TryParseBoolean(bool defaultValue, string stringValue)
-        {
-            bool result = defaultValue;
-            try
-            {
-                result = bool.Parse(stringValue);
-            }
-            catch { }
-            return result;
+            return CreateLogger(name, _Level, _showDateTime, _showLogName, _dateTimeFormat);
         }
 
         /// <summary>
@@ -114,62 +88,5 @@ namespace Common.Logging.Simple
         /// </summary>
         /// <returns>a new logger instance. Must never be <c>null</c>!</returns>
         protected abstract ILog CreateLogger(string name, LogLevel level, bool showDateTime, bool showLogName, string dateTimeFormat);
-
-        #region ILoggerFactoryAdapter Members
-
-        /// <summary>
-        /// Get a ILog instance by <see cref="Type" />.
-        /// </summary>
-        /// <param name="type">Usually the <see cref="Type" /> of the current class.</param>
-        /// <returns>
-        /// An ILog instance either obtained from the internal cache or created by a call to <see cref="CreateLogger"/>.
-        /// </returns>
-        public virtual ILog GetLogger(Type type)
-        {
-            return GetLoggerInternal(type.FullName);
-        }
-
-        /// <summary>
-        /// Get a ILog instance by name.
-        /// </summary>
-        /// <param name="name">Usually a <see cref="Type" />'s Name or FullName property.</param>
-        /// <returns>
-        /// An ILog instance either obtained from the internal cache or created by a call to <see cref="CreateLogger"/>.
-        /// </returns>
-        public virtual ILog GetLogger(string name)
-        {
-            return GetLoggerInternal(name);
-        }
-
-        /// <summary>
-        /// Get or create a ILog instance by name.
-        /// </summary>
-        /// <param name="name">Usually a <see cref="Type" />'s Name or FullName property.</param>
-        /// <returns>
-        /// An ILog instance either obtained from the internal cache or created by a call to <see cref="CreateLogger"/>.
-        /// </returns>
-        private ILog GetLoggerInternal(string name)
-        {
-            ILog log = _cachedLoggers[name] as ILog;
-            if (log == null)
-            {
-                lock (_cachedLoggers)
-                {
-                    log = _cachedLoggers[name] as ILog;
-                    if (log == null)
-                    {
-                        log = CreateLogger(name, _Level, _showLogName, _showDateTime, _dateTimeFormat);
-                        if (log == null)
-                        {
-                            throw new ArgumentException(string.Format("{0} returned null on creating logger instance for name {1}", this.GetType().FullName, name));
-                        }
-                        _cachedLoggers.Add(name, log);
-                    }
-                }
-            }
-            return log;
-        }
-
-        #endregion
     }
 }

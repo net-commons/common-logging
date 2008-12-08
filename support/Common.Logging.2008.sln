@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.2008", "..\modules\Common.Logging\src\Common\Common.Logging\Common.Logging.2008.csproj", "{440D903A-D409-48FC-A6C4-3EE69CCD663B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.Tests.2008", "..\modules\Common.Logging\test\Common\Common.Logging.Tests\Common.Logging.Tests.2008.csproj", "{94E4E1B4-D424-4EB9-BF34-2EE8CC3D7048}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.EntLib.2008", "..\modules\Common.Logging.EntLib\src\Common\Common.Logging.EntLib\Common.Logging.EntLib.2008.csproj", "{C493B9F9-EB13-4D07-BBBD-A333DCF15164}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.EntLib.Tests.2008", "..\modules\Common.Logging.EntLib\test\Common\Common.Logging.EntLib.Tests\Common.Logging.EntLib.Tests.2008.csproj", "{74434B76-0465-45E6-8262-1745638E19D8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{440D903A-D409-48FC-A6C4-3EE69CCD663B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{440D903A-D409-48FC-A6C4-3EE69CCD663B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{440D903A-D409-48FC-A6C4-3EE69CCD663B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{440D903A-D409-48FC-A6C4-3EE69CCD663B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94E4E1B4-D424-4EB9-BF34-2EE8CC3D7048}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94E4E1B4-D424-4EB9-BF34-2EE8CC3D7048}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94E4E1B4-D424-4EB9-BF34-2EE8CC3D7048}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94E4E1B4-D424-4EB9-BF34-2EE8CC3D7048}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C493B9F9-EB13-4D07-BBBD-A333DCF15164}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C493B9F9-EB13-4D07-BBBD-A333DCF15164}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C493B9F9-EB13-4D07-BBBD-A333DCF15164}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C493B9F9-EB13-4D07-BBBD-A333DCF15164}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74434B76-0465-45E6-8262-1745638E19D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74434B76-0465-45E6-8262-1745638E19D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74434B76-0465-45E6-8262-1745638E19D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74434B76-0465-45E6-8262-1745638E19D8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		NAntAddinLastFileName = Common.Logging.build
+	EndGlobalSection
+EndGlobal

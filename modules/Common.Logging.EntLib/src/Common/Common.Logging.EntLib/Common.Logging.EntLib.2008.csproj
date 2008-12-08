@@ -4,11 +4,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{440D903A-D409-48FC-A6C4-3EE69CCD663B}</ProjectGuid>
+    <ProjectGuid>{C493B9F9-EB13-4D07-BBBD-A333DCF15164}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Common</RootNamespace>
-    <AssemblyName>Common.Logging</AssemblyName>
+    <AssemblyName>Common.Logging.EntLib</AssemblyName>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <OldToolsVersion>2.0</OldToolsVersion>
@@ -34,54 +34,49 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\..\build\VS.NET.2008\Common.Logging\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <OutputPath>..\..\..\build\VS.NET.2005\Common.Logging.EntLib\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;NET_2_0</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>..\..\..\build\VS.NET.2008\Common.Logging\Debug\Common.Logging.xml</DocumentationFile>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <NoWarn>618</NoWarn>
+    <DocumentationFile>..\..\..\build\VS.NET.2005\Common.Logging.EntLib\Debug\Common.Logging.EntLib.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\..\build\VS.NET.2005\Common.Logging\Release\</OutputPath>
+    <OutputPath>..\..\..\build\VS.NET.2005\Common.Logging.EntLib\Release\</OutputPath>
     <DefineConstants>TRACE;NET_2_0</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=3.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\lib\net\2.0\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Logging, Version=3.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\lib\net\2.0\Microsoft.Practices.EnterpriseLibrary.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ObjectBuilder, Version=1.0.51206.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\lib\net\2.0\Microsoft.Practices.ObjectBuilder.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\CommonAssemblyInfo.cs">
-      <Link>CommonAssemblyInfo.cs</Link>
-    </Compile>
-    <Compile Include="Logging\AbstractLogger.cs" />
-    <Compile Include="Logging\AbstractCachingLoggerFactoryAdapter.cs" />
-    <Compile Include="Logging\CommonLoggingTraceListener.cs" />
-    <Compile Include="Logging\ConfigurationException.cs" />
-    <Compile Include="Logging\ConfigurationReader.cs" />
-    <Compile Include="Logging\ConfigurationUtils.cs" />
-    <Compile Include="Logging\IConfigurationReader.cs" />
-    <Compile Include="Logging\ConfigurationSectionHandler.cs" />
-    <Compile Include="Logging\ILog.cs" />
-    <Compile Include="Logging\ILoggerFactoryAdapter.cs" />
-    <Compile Include="Logging\LogLevel.cs" />
-    <Compile Include="Logging\LogManager.cs" />
-    <Compile Include="Logging\LogSetting.cs" />
-    <Compile Include="Logging\FormatMessageCallback.cs" />
-    <Compile Include="Logging\Simple\AbstractSimpleLogger.cs" />
-    <Compile Include="Logging\Simple\AbstractSimpleLoggerFactoryAdapter.cs" />
-    <Compile Include="Logging\Simple\ConsoleOutLogger.cs" />
-    <Compile Include="Logging\Simple\ConsoleOutLoggerFactoryAdapter.cs" />
-    <Compile Include="Logging\Simple\NoOpLogger.cs" />
-    <Compile Include="Logging\Simple\NoOpLoggerFactoryAdapter.cs" />
-    <Compile Include="Logging\Simple\TraceLogger.cs" />
-    <Compile Include="Logging\Simple\TraceLoggerFactoryAdapter.cs" />
+    <Compile Include="Logging\EntLib\EntLibLogger.cs" />
+    <Compile Include="Logging\EntLib\EntLibLoggerFactoryAdapter.cs" />
+    <Compile Include="Logging\EntLib\EntLibLoggerSettings.cs" />
+    <Compile Include="Logging\EntLib\SeverityFilter.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Common.Logging\src\Common\Common.Logging\Common.Logging.2008.csproj">
+      <Project>{440D903A-D409-48FC-A6C4-3EE69CCD663B}</Project>
+      <Name>Common.Logging.2008</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

@@ -18,55 +18,124 @@
 
 #endregion
 
-using System;
+#region Imports
+
 using System.Collections.Specialized;
+using Microsoft.Practices.EnterpriseLibrary.Logging;
+
+#endregion
 
 namespace Common.Logging.EntLib
 {
     /// <summary>
-    /// This is 
+    /// Adapts the EnterpriseLibrary logging system to Common.Logging.
     /// </summary>
     /// <remarks>
-    ///
+    /// The following configuration property values may be configured:
+    /// <list type="bullet">
+    ///     <item>DefaultPriority (see <see cref="DefaultPriority"/>)</item>
+    ///     <item>ExceptionFormat (see <see cref="ExceptionFormat"/>)</item>
+    /// </list>
     /// </remarks>
     /// <author>Mark Pollack</author>
-    /// <version>$Id:$</version>
-    public class EntLibLoggerFactoryAdapter : ILoggerFactoryAdapter
+    /// <author>Erich Eichinger</author>
+    public class EntLibLoggerFactoryAdapter : AbstractCachingLoggerFactoryAdapter
     {
+        private readonly EntLibLoggerSettings _settings;
+        private LogWriter _logWriter;
+
+        /// <summary>
+        /// The default priority used to log events.
+        /// </summary>
+        /// <remarks>defaults to <see cref="EntLibLoggerSettings.DEFAULTPRIORITY"/></remarks>
+        public int DefaultPriority
+        {
+            get { return _settings.defaultPriority; }
+        }
+
+        /// <summary>
+        /// The format string used for formatting exceptions
+        /// </summary>
+        /// <remarks>
+        /// defaults to <see cref="EntLibLoggerSettings.DEFAULTEXCEPTIONFORMAT"/>
+        /// </remarks>
+        public string ExceptionFormat
+        {
+            get { return _settings.exceptionFormat; }
+        }
+
+        /// <summary>
+        /// the <see cref="_logWriter"/> to write log events to.
+        /// </summary>
+        /// <remarks>
+        /// defaults to <see cref="Logger.Writer"/>.
+        /// </remarks>
+        public LogWriter LogWriter
+        {
+            get
+            {
+                if (_logWriter == null)
+                {
+                    lock (this)
+                    {
+                        if (_logWriter == null)
+                        {
+                            _logWriter = Logger.Writer;
+                        }
+                    }
+                }
+                return _logWriter;
+            }
+        }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="EntLibLoggerFactoryAdapter"/> class.
         /// </summary>
         public EntLibLoggerFactoryAdapter()
-        {
+            : this(EntLibLoggerSettings.DEFAULTPRIORITY, EntLibLoggerSettings.DEFAULTEXCEPTIONFORMAT, null)
+        {}
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EntLibLoggerFactoryAdapter"/> class
+        /// with the specified configuration parameters.
+        /// </summary>
+        public EntLibLoggerFactoryAdapter(int defaultPriority, string exceptionFormat, LogWriter logWriter)
+            :base(true)
+        {            
+            if (exceptionFormat.Length == 0)
+            {
+                exceptionFormat = null;
+            }
+            _settings = new EntLibLoggerSettings(defaultPriority, exceptionFormat);
+            _logWriter = logWriter;
         }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="EntLibLoggerFactoryAdapter"/> class.
         /// </summary>
         /// <remarks>passed in values are not used, configuration is external to EntLib logging API</remarks>
         /// <param name="properties">The properties.</param>
         public EntLibLoggerFactoryAdapter(NameValueCollection properties)
+            : this(ConfigurationUtils.TryParseInt(EntLibLoggerSettings.DEFAULTPRIORITY, ConfigurationUtils.GetValue(properties, "defaultPriority"))
+                 , ConfigurationUtils.Coalesce(ConfigurationUtils.GetValue(properties, "exceptionFormat"), EntLibLoggerSettings.DEFAULTEXCEPTIONFORMAT)
+                 , null
+            )
+        {}
+
+        /// <summary>
+        /// Creates a new <see cref="EntLibLogger"/> instance.
+        /// </summary>
+        protected override ILog CreateLogger(string name)
         {
+            return CreateLogger(name, LogWriter, _settings);            
         }
 
         /// <summary>
-        /// Gets the logger.
+        /// Creates a new <see cref="EntLibLogger"/> instance.
         /// </summary>
-        /// <param name="name">The name to use as the category.</param>
-        /// <returns></returns>
-        public ILog GetLogger(string name)
+        protected virtual ILog CreateLogger(string name, LogWriter logWriter, EntLibLoggerSettings settings)
         {
-            return new EntLibLogger(name);
+            return new EntLibLogger(name, LogWriter, _settings);                        
         }
-        /// <summary>
-        /// Gets the logger.
-        /// </summary>
-        /// <param name="type">The type property FullName is used as the category.</param>
-        /// <returns></returns>
-        public ILog GetLogger(Type type)
-        {
-            return new EntLibLogger(type.FullName);
-        }
-
-
     }
 }
