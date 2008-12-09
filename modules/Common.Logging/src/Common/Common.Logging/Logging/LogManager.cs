@@ -1,7 +1,7 @@
 #region License
 
 /*
- * Copyright © 2002-2006 the original author or authors.
+ * Copyright © 2002-2008 the original author or authors.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,9 +18,13 @@
 
 #endregion
 
+#region Imports
+
 using System;
 using System.Diagnostics;
 using Common.Logging.Simple;
+
+#endregion
 
 namespace Common.Logging
 {
@@ -32,11 +36,10 @@ namespace Common.Logging
     /// * NoOpLogger are also supported.
     /// </summary>
     /// <author>Gilles Bayon</author>
-    /// <version>$Id: LogManager.cs,v 1.1 2006/11/13 07:17:55 markpollack Exp $</version>
     public sealed class LogManager
     {
         private static ILoggerFactoryAdapter _adapter = null;
-        private static object _loadLock = new object();
+        private static readonly object _loadLock = new object();
         private static IConfigurationReader _configurationReader = new ConfigurationReader();
         private static readonly string COMMON_SECTION_LOGGING = "common/logging";
 

@@ -159,7 +159,7 @@ namespace Common.Logging.EntLib
         /// <param name="logLevel">the level of this log event.</param>
         /// <param name="message">the message to log</param>
         /// <param name="exception">the exception to log (may be null)</param>
-        protected override void Write(LogLevel logLevel, object message, Exception exception)
+        protected override void WriteInternal(LogLevel logLevel, object message, Exception exception)
         {
             LogEntry log = CreateLogEntry(GetTraceEventType(logLevel));
 

@@ -21,6 +21,7 @@
 #region Imports
 
 using System;
+using System.Reflection;
 using NLog;
 using LogLevelNLog = NLog.LogLevel;
 using LoggerNLog = NLog.Logger;
@@ -38,27 +39,46 @@ namespace Common.Logging.NLog
     /// http://www.nlog-project.org/
 	/// </remarks>
     /// <author>Bruno Baia</author>
-    /// <version>$Id: $</version>
-	public class NLogLogger : ILog
+	public class NLogLogger : AbstractLogger
 	{
 		#region Fields
 
-        private LoggerNLog _logger = null;
-        private readonly static Type declaringType = typeof(NLogLogger);
+        private readonly LoggerNLog _logger;
+        private readonly static Type declaringType = typeof(AbstractLogger);
 
 		#endregion 
 
 		/// <summary>
 		/// Constructor
 		/// </summary>
-        /// <param name="logger"></param>
-        internal NLogLogger(LoggerNLog logger)
+        protected internal NLogLogger(LoggerNLog logger)
 		{
 			_logger = logger;
 		}
 
 		#region ILog Members
 
+        /// <summary>
+        /// Gets a value indicating whether this instance is trace enabled.
+        /// </summary>
+        /// <value>
+        /// 	<c>true</c> if this instance is trace enabled; otherwise, <c>false</c>.
+        /// </value>
+        public override bool IsTraceEnabled
+        {
+            get { return _logger.IsTraceEnabled; }
+        }
+
+        /// <summary>
+        /// Gets a value indicating whether this instance is debug enabled.
+        /// </summary>
+        /// <value>
+        /// 	<c>true</c> if this instance is debug enabled; otherwise, <c>false</c>.
+        /// </value>
+        public override bool IsDebugEnabled
+        {
+            get { return _logger.IsDebugEnabled; }
+        }
 
         /// <summary>
         /// Gets a value indicating whether this instance is info enabled.
@@ -66,7 +86,7 @@ namespace Common.Logging.NLog
         /// <value>
         /// 	<c>true</c> if this instance is info enabled; otherwise, <c>false</c>.
         /// </value>
-		public bool IsInfoEnabled
+        public override bool IsInfoEnabled
 		{
 			get { return _logger.IsInfoEnabled; }
 		}
@@ -78,7 +98,7 @@ namespace Common.Logging.NLog
         /// <value>
         /// 	<c>true</c> if this instance is warn enabled; otherwise, <c>false</c>.
         /// </value>
-		public bool IsWarnEnabled
+        public override bool IsWarnEnabled
 		{
 			get { return _logger.IsWarnEnabled; }
 		}
@@ -89,11 +109,10 @@ namespace Common.Logging.NLog
         /// <value>
         /// 	<c>true</c> if this instance is error enabled; otherwise, <c>false</c>.
         /// </value>
-		public bool IsErrorEnabled
+        public override bool IsErrorEnabled
 		{
             get { return _logger.IsErrorEnabled; }
 		}
-
 
         /// <summary>
         /// Gets a value indicating whether this instance is fatal enabled.
@@ -101,163 +120,49 @@ namespace Common.Logging.NLog
         /// <value>
         /// 	<c>true</c> if this instance is fatal enabled; otherwise, <c>false</c>.
         /// </value>
-		public bool IsFatalEnabled
+        public override bool IsFatalEnabled
 		{
             get { return _logger.IsFatalEnabled; }
 		}
 
-        /// <summary>
-        /// Gets a value indicating whether this instance is debug enabled.
-        /// </summary>
-        /// <value>
-        /// 	<c>true</c> if this instance is debug enabled; otherwise, <c>false</c>.
-        /// </value>
-		public bool IsDebugEnabled
-		{
-            get { return _logger.IsDebugEnabled; }
-		}
-
-
-        /// <summary>
-        /// Gets a value indicating whether this instance is trace enabled.
-        /// </summary>
-        /// <value>
-        /// 	<c>true</c> if this instance is trace enabled; otherwise, <c>false</c>.
-        /// </value>
-		public bool IsTraceEnabled
-		{
-            get { return _logger.IsTraceEnabled; }
-		}
-
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="message"></param>
-		/// <param name="e"></param>
-		public void Info(object message, Exception e)
-		{
-            LogEventInfo logEvent = new LogEventInfo(LogLevelNLog.Info, _logger.Name, null, (message == null ? null : message.ToString()), null, e);
-		    _logger.Log(declaringType, logEvent);
-		}
-
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="message"></param>
-		public void Info(object message)
-		{
-            LogEventInfo logEvent = new LogEventInfo(LogLevelNLog.Info, _logger.Name, null, (message == null ? null : message.ToString()), null, null);
-            _logger.Log(declaringType, logEvent);		   
-		}
-
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="message"></param>
-		/// <param name="e"></param>
-		public void Debug(object message, Exception e)
-		{
-            //LogEventInfo logEvent = new LogEventInfo(LogLevelNLog.Debug, _logger.Name, null, message.ToString(), null, e);
-            //_logger.Log(declaringType, logEvent);
-            _logger.DebugException((message == null ? null : message.ToString()), e);
-		}
-
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="message"></param>
-		public void Debug(object message)
-		{
-            LogEventInfo logEvent = new LogEventInfo(LogLevelNLog.Debug, _logger.Name, null, (message == null ? null : message.ToString()), null, null);
-            _logger.Log(declaringType, logEvent);	
-		}
-
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="message"></param>
-		/// <param name="e"></param>
-		public void Warn(object message, Exception e)
-		{
-            LogEventInfo logEvent = new LogEventInfo(LogLevelNLog.Warn, _logger.Name, null, (message == null ? null : message.ToString()), null, e);
-            _logger.Log(declaringType, logEvent);
-		}
-
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="message"></param>
-		public void Warn(object message)
-		{
-            LogEventInfo logEvent = new LogEventInfo(LogLevelNLog.Warn, _logger.Name, null, (message == null ? null : message.ToString()), null, null);
-            _logger.Log(declaringType, logEvent);	
-		}
-
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="message"></param>
-		/// <param name="e"></param>
-		public void Trace(object message, Exception e)
-		{
-            LogEventInfo logEvent = new LogEventInfo(LogLevelNLog.Trace, _logger.Name, null, (message == null ? null : message.ToString()), null, e);
-            _logger.Log(declaringType, logEvent);
-		}
-
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="message"></param>
-		public void Trace(object message)
-		{
-            LogEventInfo logEvent = new LogEventInfo(LogLevelNLog.Trace, _logger.Name, null, (message == null ? null : message.ToString()), null, null);
-            _logger.Log(declaringType, logEvent);
-		}
-
-
-        /// <summary>
-        /// Logs the specified message and exception at the Fatal log level.
-        /// </summary>
-        /// <param name="message">The message.</param>
-        /// <param name="e">The e.</param>
-		public void Fatal(object message, Exception e)
-		{
-            LogEventInfo logEvent = new LogEventInfo(LogLevelNLog.Fatal, _logger.Name, null, (message == null ? null : message.ToString()), null, e);
-            _logger.Log(declaringType, logEvent);
-		}
-
-
-        /// <summary>
-        /// Logs the specified message at the Fatal log level.
-        /// </summary>
-        /// <param name="message">The message.</param>
-		public void Fatal(object message)
-		{
-            LogEventInfo logEvent = new LogEventInfo(LogLevelNLog.Fatal, _logger.Name, null, (message == null ? null : message.ToString()), null, null);
-            _logger.Log(declaringType, logEvent);
-		}
-
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="message"></param>
-		/// <param name="e"></param>
-		public void Error(object message, Exception e)
-		{
-            LogEventInfo logEvent = new LogEventInfo(LogLevelNLog.Error, _logger.Name, null, (message == null ? null : message.ToString()), null, e);
-            _logger.Log(declaringType, logEvent);
-		}
-
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="message"></param>
-		public void Error(object message)
-		{
-            LogEventInfo logEvent = new LogEventInfo(LogLevelNLog.Error, _logger.Name, null, (message == null ? null : message.ToString()), null, null);
-            _logger.Log(declaringType, logEvent);
-		}
-
 		#endregion
-	}
+
+        /// <summary>
+        /// Actually sends the message to the underlying log system.
+        /// </summary>
+        /// <param name="logLevel">the level of this log event.</param>
+        /// <param name="message">the message to log</param>
+        /// <param name="exception">the exception to log (may be null)</param>
+        protected override void WriteInternal(LogLevel logLevel, object message, Exception exception)
+        {
+            LogLevelNLog level = GetLevel(logLevel);
+            LogEventInfo logEvent = new LogEventInfo(level, _logger.Name, null, "{0}", new object[] { message }, exception);
+            _logger.Log(declaringType, logEvent);
+        }
+
+        private static LogLevelNLog GetLevel(LogLevel logLevel)
+        {
+            switch (logLevel)
+            {
+                case LogLevel.All:
+                    return LogLevelNLog.Trace;
+                case LogLevel.Trace:
+                    return LogLevelNLog.Trace;
+                case LogLevel.Debug:
+                    return LogLevelNLog.Debug;
+                case LogLevel.Info:
+                    return LogLevelNLog.Info;
+                case LogLevel.Warn:
+                    return LogLevelNLog.Warn;
+                case LogLevel.Error:
+                    return LogLevelNLog.Error;
+                case LogLevel.Fatal:
+                    return LogLevelNLog.Fatal;
+                case LogLevel.Off:
+                    return LogLevelNLog.Off;
+                default:
+                    throw new ArgumentOutOfRangeException("logLevel", logLevel, "unknown log level");
+            }
+        }
+    }
 }

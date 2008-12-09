@@ -33,14 +33,14 @@ namespace Common.Logging.Log4Net
 	/// Concrete subclass of ILoggerFactoryAdapter specific to log4net.
 	/// </summary>
 	/// <author>Gilles Bayon</author>
-    /// <version>$Id: Log4NetLoggerFactoryAdapter.cs,v 1.2 2006/11/29 23:42:01 oakinger Exp $</version>
-    public class Log4NetLoggerFactoryAdapter : ILoggerFactoryAdapter
+	/// <author>Erich Eichinger</author>
+    public class Log4NetLoggerFactoryAdapter : AbstractCachingLoggerFactoryAdapter
 	{
 		/// <summary>
 		/// Constructor
 		/// </summary>
 		/// <param name="properties"></param>
-		public Log4NetLoggerFactoryAdapter(NameValueCollection properties)
+		public Log4NetLoggerFactoryAdapter(NameValueCollection properties):base(true)
 		{
 			string configType = string.Empty;
 			
@@ -96,28 +96,14 @@ namespace Common.Logging.Log4Net
 			}
 		}
 
-		#region ILoggerFactoryAdapter Members
-
 		/// <summary>
-		/// Get a ILog instance by type name 
+		/// Create a ILog instance by name 
 		/// </summary>
 		/// <param name="name"></param>
 		/// <returns></returns>
-		public ILog GetLogger(string name)
+		protected override ILog CreateLogger(string name)
 		{
 			return new Log4NetLogger( log4net.LogManager.GetLogger( name ) );
 		}
-
-		/// <summary>
-		/// Get a ILog instance by type 
-		/// </summary>
-		/// <param name="type"></param>
-		/// <returns></returns>
-		public ILog GetLogger(Type type)
-		{
-			return new Log4NetLogger( log4net.LogManager.GetLogger( type ) );
-		}
-
-		#endregion
 	}
 }

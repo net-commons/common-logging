@@ -16,7 +16,7 @@ namespace Common.TestUtil
             _owner = owner;
         }
            
-        protected override void Write(LogLevel level, object message, Exception exception)
+        protected override void WriteInternal(LogLevel level, object message, Exception exception)
         {
             LastEvent = new TestLoggerEvent(this, level, message, exception);
             _owner.AddEvent(LastEvent);

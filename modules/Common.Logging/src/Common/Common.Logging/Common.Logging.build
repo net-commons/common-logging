@@ -7,11 +7,11 @@
       * current.build.defines.csc - framework-specific build defines for C# compiler
  -->
 	<target name="build">
-		<csc target="library" define="${current.build.defines.csc}" 
-		        warnaserror="true" 
+		<csc target="library" define="${current.build.defines.csc}"
+		        warnaserror="true"
 	                optimize="${build.optimize}"
 			debug="${current.build.debug}"
-			output="${current.bin.dir}/${project::get-name()}.dll" 
+			output="${current.bin.dir}/${project::get-name()}.dll"
 			doc="${current.bin.dir}/${project::get-name()}.xml"
 			>
 			<arg line="${compiler.args}"/>
@@ -20,7 +20,7 @@
 			</nowarn>
 			<sources failonempty="true">
 				<include name="**/*.cs" />
-				<include name="../CommonAssemblyInfo.cs" />
+				<include name="../../../../CommonAssemblyInfo.cs" />
 			</sources>
 			<references basedir="${current.bin.dir}">
 				<include name="*.dll" />

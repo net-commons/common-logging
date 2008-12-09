@@ -48,7 +48,7 @@ namespace Common.Logging.Log4Net
 		/// Constructor
 		/// </summary>
 		/// <param name="log"></param>
-		internal Log4NetLogger(log4net.ILog log )
+		internal protected Log4NetLogger(ILoggerWrapper log )
 		{
 			_logger = log.Logger;
 		}
@@ -109,7 +109,7 @@ namespace Common.Logging.Log4Net
         /// <param name="logLevel">the level of this log event.</param>
 	    /// <param name="message">the message to log</param>
 	    /// <param name="exception">the exception to log (may be null)</param>
-        protected override void Write(LogLevel logLevel, object message, Exception exception)
+        protected override void WriteInternal(LogLevel logLevel, object message, Exception exception)
 		{
 		    Level level = GetLevel(logLevel);
             _logger.Log(declaringType, level, message, exception);

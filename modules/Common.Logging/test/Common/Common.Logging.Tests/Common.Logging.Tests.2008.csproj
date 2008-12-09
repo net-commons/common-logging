@@ -14,6 +14,7 @@
     <OldToolsVersion>2.0</OldToolsVersion>
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -26,7 +27,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -81,6 +81,8 @@
     <Compile Include="Logging\Simple\NoOpLoggerTests.cs" />
     <Compile Include="Logging\Simple\AbstractSimpleLogTest.cs" />
     <Compile Include="Logging\StandaloneConfigurationReader.cs" />
+    <Compile Include="MethodInvokePerformanceTests.cs" />
+    <Compile Include="StopWatch.cs" />
     <Compile Include="TestUtil\TestLogger.cs" />
     <Compile Include="TestUtil\TestLoggerEvent.cs" />
     <Compile Include="TestUtil\TestLoggerFactoryAdapter.cs" />

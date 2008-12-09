@@ -81,7 +81,7 @@ namespace Common.Logging.Simple
 		/// <param name="level"></param>
 		/// <param name="message"></param>
 		/// <param name="e"></param>
-		protected override void Write( LogLevel level, object message, Exception e )
+		protected override void WriteInternal( LogLevel level, object message, Exception e )
 		{
 			// Print to the appropriate destination
 			System.Diagnostics.Trace.WriteLine( new FormatOutputMessage(this, level, message, e) );			

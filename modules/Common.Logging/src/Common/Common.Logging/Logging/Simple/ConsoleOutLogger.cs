@@ -54,7 +54,7 @@ namespace Common.Logging.Simple
 		/// <param name="level">The <see cref="LogLevel" /> of the message.</param>
 		/// <param name="message">The log message.</param>
 		/// <param name="e">An optional <see cref="Exception" /> associated with the message.</param>
-		protected override void Write( LogLevel level, object message, Exception e )
+		protected override void WriteInternal( LogLevel level, object message, Exception e )
 		{
             // Use a StringBuilder for better performance
             StringBuilder sb = new StringBuilder();

@@ -64,6 +64,39 @@ namespace Common.Logging
         #endregion
 
         /// <summary>
+        /// Represents a method responsible for writing a message to the log system.
+        /// </summary>
+        protected delegate void WriteHandler(LogLevel level, object message, Exception exception);
+
+        /// <summary>
+        /// Holds the method for writing a message to the log system.
+        /// </summary>
+        private readonly WriteHandler Write;
+
+        /// <summary>
+        /// Creates a new logger instance using <see cref="WriteInternal"/> for 
+        /// writing log events to the underlying log system.
+        /// </summary>
+        /// <seealso cref="GetWriteHandler"/>
+        protected AbstractLogger()
+        {
+            Write = GetWriteHandler();
+            if (Write == null)
+            {
+                Write = new WriteHandler(WriteInternal);
+            }
+        }
+
+        /// <summary>
+        /// Override this method to use a different method than <see cref="WriteInternal"/> 
+        /// for writing log events to the underlying log system.
+        /// </summary>
+        protected virtual WriteHandler GetWriteHandler()
+        {
+            return null;
+        }
+
+        /// <summary>
         /// Checks if this logger is enabled for the <see cref="LogLevel.Trace"/> level.
         /// </summary>
         public abstract bool IsTraceEnabled { get; }
@@ -99,7 +132,7 @@ namespace Common.Logging
         /// <param name="level">the level of this log event.</param>
         /// <param name="message">the message to log</param>
         /// <param name="exception">the exception to log (may be null)</param>
-        protected abstract void Write(LogLevel level, object message, Exception exception);
+        protected abstract void WriteInternal(LogLevel level, object message, Exception exception);
 
         #region Trace
 

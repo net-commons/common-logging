@@ -346,7 +346,7 @@ namespace Common.Logging
 
         public abstract class AbstractTestLogger : AbstractLogger
         {
-            protected override void Write(LogLevel level, object message, Exception exception)
+            protected override void WriteInternal(LogLevel level, object message, Exception exception)
             {
                 Log(level, message, exception);
             }

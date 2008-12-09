@@ -18,8 +18,13 @@
 
 #endregion
 
+#region Imports
+
 using System;
+using System.Reflection;
 using log4net.Core;
+
+#endregion
 
 namespace Common.Logging.Log4Net
 {
@@ -34,14 +39,14 @@ namespace Common.Logging.Log4Net
 	/// log4net where in the stack to begin looking for location information.
 	/// </remarks>
     /// <author>Gilles Bayon</author>
-    /// <version>$Id: Log4NetLogger.cs,v 1.1 2006/11/13 07:36:27 markpollack Exp $</version>
+    /// <author>Erich Eichinger</author>
     [Serializable]
-	public class Log4NetLogger : ILog
+	public class Log4NetLogger : AbstractLogger
 	{
 		#region Fields
 
-		private ILogger _logger = null;
-		private readonly static Type declaringType = typeof(Log4NetLogger);
+		private readonly ILogger _logger = null;
+		private readonly static Type declaringType = MethodBase.GetCurrentMethod().DeclaringType;
 
 		#endregion 
 
@@ -49,17 +54,33 @@ namespace Common.Logging.Log4Net
 		/// Constructor
 		/// </summary>
 		/// <param name="log"></param>
-		internal Log4NetLogger(log4net.ILog log )
+		internal protected Log4NetLogger(ILoggerWrapper log )
 		{
 			_logger = log.Logger;
 		}
 
 		#region ILog Members
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public override bool IsTraceEnabled
+        {
+            get { return _logger.IsEnabledFor(Level.Trace); }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public override bool IsDebugEnabled
+        {
+            get { return _logger.IsEnabledFor(Level.Debug); }
+        }
+
 		/// <summary>
 		/// 
 		/// </summary>
-		public bool IsInfoEnabled
+        public override bool IsInfoEnabled
 		{
 			get { return _logger.IsEnabledFor(Level.Info); }
 		}
@@ -67,7 +88,7 @@ namespace Common.Logging.Log4Net
 		/// <summary>
 		/// 
 		/// </summary>
-		public bool IsWarnEnabled
+        public override bool IsWarnEnabled
 		{
 			get { return _logger.IsEnabledFor(Level.Warn); }
 		}
@@ -75,7 +96,7 @@ namespace Common.Logging.Log4Net
 		/// <summary>
 		/// 
 		/// </summary>
-		public bool IsErrorEnabled
+		public override bool IsErrorEnabled
 		{
 			get { return _logger.IsEnabledFor(Level.Error); }
 		}
@@ -83,140 +104,45 @@ namespace Common.Logging.Log4Net
 		/// <summary>
 		/// 
 		/// </summary>
-		public bool IsFatalEnabled
+        public override bool IsFatalEnabled
 		{
 			get { return _logger.IsEnabledFor(Level.Fatal); }
 		}
 
-		/// <summary>
-		/// 
-		/// </summary>
-		public bool IsDebugEnabled
-		{
-			get { return _logger.IsEnabledFor(Level.Debug); }
-		}
+	    /// <summary>
+	    /// Actually sends the message to the underlying log system.
+	    /// </summary>
+	    /// <param name="logLevel">the level of this log event.</param>
+	    /// <param name="message">the message to log</param>
+	    /// <param name="exception">the exception to log (may be null)</param>
+	    protected override void WriteInternal(LogLevel logLevel, object message, Exception exception)
+        {
+            Level level = GetLevel(logLevel);
+            _logger.Log(declaringType, level, message, exception);
+        }
 
-		/// <summary>
-		/// 
-		/// </summary>
-		public bool IsTraceEnabled
-		{
-			get { return _logger.IsEnabledFor(Level.Trace); }
-		}
-
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="message"></param>
-		/// <param name="e"></param>
-		public void Info(object message, Exception e)
-		{
-			_logger.Log(declaringType, Level.Info, message, e);
-		}
-
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="message"></param>
-		public void Info(object message)
-		{
-			_logger.Log(declaringType, Level.Info, message, null);
-		}
-
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="message"></param>
-		/// <param name="e"></param>
-		public void Debug(object message, Exception e)
-		{
-			_logger.Log(declaringType, Level.Debug, message, e);
-		}
-
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="message"></param>
-		public void Debug(object message)
-		{
-			_logger.Log(declaringType, Level.Debug, message, null);
-		}
-
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="message"></param>
-		/// <param name="e"></param>
-		public void Warn(object message, Exception e)
-		{
-			_logger.Log(declaringType, Level.Warn, message, e);
-		}
-
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="message"></param>
-		public void Warn(object message)
-		{
-			_logger.Log(declaringType, Level.Warn, message, null);
-		}
-
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="message"></param>
-		/// <param name="e"></param>
-		public void Trace(object message, Exception e)
-		{
-			_logger.Log(declaringType, Level.Trace, message, e);
-		}
-
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="message"></param>
-		public void Trace(object message)
-		{
-			_logger.Log(declaringType, Level.Trace, message, null);
-		}
-
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="message"></param>
-		/// <param name="e"></param>
-		public void Fatal(object message, Exception e)
-		{
-			_logger.Log(declaringType, Level.Fatal, message, e);
-		}
-
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="message"></param>
-		public void Fatal(object message)
-		{
-			_logger.Log(declaringType, Level.Fatal, message, null);
-		}
-
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="message"></param>
-		/// <param name="e"></param>
-		public void Error(object message, Exception e)
-		{
-			_logger.Log(declaringType, Level.Error, message, e);
-		}
-
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="message"></param>
-		public void Error(object message)
-		{
-			_logger.Log(declaringType, Level.Error, message, null);
-		}
+	    private static Level GetLevel(LogLevel logLevel)
+        {
+            switch (logLevel)
+            {
+                case LogLevel.All:
+                    return Level.All;
+                case LogLevel.Trace:
+                    return Level.Trace;
+                case LogLevel.Debug:
+                    return Level.Debug;
+                case LogLevel.Info:
+                    return Level.Info;
+                case LogLevel.Warn:
+                    return Level.Warn;
+                case LogLevel.Error:
+                    return Level.Error;
+                case LogLevel.Fatal:
+                    return Level.Fatal;
+                default:
+                    throw new ArgumentOutOfRangeException("logLevel", logLevel, "unknown log level");
+            }
+        }
 
 		#endregion
 	}
