@@ -19,6 +19,18 @@
     <!-- build NLog module -->
     <exec workingdir=".\modules\Common.Logging.EntLib" program="cmd.exe" commandline="/c nant"/>
 
+    <!-- ******* -->
+    <!-- EntLib 4.1 -->
+    <!-- ******* -->
+
+    <!-- copy base common.logging .dll to EntLib41 build directory -->
+    <copy todir="modules/Common.Logging.EntLib41/lib/net/2.0/"
+          file="modules\Common.Logging\build\net\1.0\release\Common.Logging.dll"/>
+    <!-- copy base common.logging.tests.dll to NLog build directory -->
+    <copy todir="modules/Common.Logging.EntLib41/lib/net/2.0/"
+          file="modules\Common.Logging\build\net\1.0\release\Common.Logging.Tests.dll"/>
+    <!-- build NLog module -->
+    <exec workingdir=".\modules\Common.Logging.EntLib41" program="cmd.exe" commandline="/c nant"/>
 
     <!-- ******* -->
     <!-- log4net -->
@@ -41,6 +53,10 @@
 
     <!-- build log4net 1.2.10 module -->
     <exec workingdir=".\modules\Common.Logging.Log4Net" program="cmd.exe" commandline="/c nant"/>
+
+    <!-- ******* -->
+    <!-- log4net 1.2.9 -->
+    <!-- ******* -->
 
     <!-- copy base common.logging.dll to Log4Net129 build directory -->
     <copy todir="modules/Common.Logging.Log4Net129/lib/net/1.0/"
@@ -148,6 +164,10 @@
       <copy todir="package/Common.Logging/bin/net/2.0/${release-mode}"
             file="modules\Common.Logging.EntLib\build\net\2.0\debug\Common.Logging.EntLib.dll"/>
 
+      <!-- Copy Common.Logging.EntLib41 dll -->
+      <copy todir="package/Common.Logging/bin/net/2.0/${release-mode}"
+            file="modules\Common.Logging.EntLib41\build\net\2.0\debug\Common.Logging.EntLib41.dll"/>
+
     </foreach>
 
     <!-- copy over pdb and xml for Common.Logging.Log4Net -->
@@ -158,7 +178,7 @@
             file="modules\Common.Logging.Log4Net\build\net\${framework-version}\debug\Common.Logging.Log4Net.xml"/>
     </foreach>
 
-    <!-- copy over files for Common.Logging.Log4Net -->
+    <!-- copy over files for Common.Logging.Log4Net129 -->
     <copy todir="package/Common.Logging/bin/net/1.0/debug"
           file="modules\Common.Logging.Log4Net129\build\net\1.0\debug\Common.Logging.Log4Net129.pdb"/>
     <copy todir="package/Common.Logging/bin/net/1.0/debug"
@@ -170,7 +190,7 @@
           file="modules\Common.Logging.Log4Net129\build\net\1.1\debug\Common.Logging.Log4Net129.xml"/>
 
 
-    <!-- copy over pdb and xml for Common.Logging.Log4Net -->
+    <!-- copy over pdb and xml for Common.Logging.NLog -->
     <foreach item="String" in="1.0,1.1,2.0" delim="," property="framework-version">
       <copy todir="package/Common.Logging/bin/net/${framework-version}/debug"
             file="modules\Common.Logging.NLog\build\net\${framework-version}\debug\Common.Logging.NLog.pdb"/>
@@ -186,6 +206,13 @@
             file="modules\Common.Logging.EntLib\build\net\${framework-version}\debug\Common.Logging.EntLib.xml"/>
     </foreach>
 
+    <!-- copy over pdb and xml for Common.Logging.EntLib41 -->
+    <foreach item="String" in="2.0" delim="," property="framework-version">
+      <copy todir="package/Common.Logging/bin/net/${framework-version}/debug"
+            file="modules\Common.Logging.EntLib41\build\net\${framework-version}\debug\Common.Logging.EntLib41.pdb"/>
+      <copy todir="package/Common.Logging/bin/net/${framework-version}/debug"
+            file="modules\Common.Logging.EntLib41\build\net\${framework-version}\debug\Common.Logging.EntLib41.xml"/>
+    </foreach>
 
     <!-- copy over docs -->
     <copy todir="package/Common.Logging/doc/">
@@ -202,7 +229,7 @@
 
   <target name="package-zip" description="Build and Package distribution as .zip file">
     <call target="package"/>
-    <property name="project.zip-path" value="package/Common.Logging-1.1.0.zip"/>
+    <property name="project.zip-path" value="package/Common.Logging-1.3.0.zip"/>
     <zip zipfile="${project.zip-path}">
       <fileset basedir="package">
         <include name="**/*"/>

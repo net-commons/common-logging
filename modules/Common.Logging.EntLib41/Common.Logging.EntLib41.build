@@ -1,8 +1,8 @@
 <?xml version="1.0" ?>
-<project name="Common.Logging.EntLib" default="compile-all">
+<project name="Common.Logging.EntLib41" default="compile-all">
 
   <!-- global project settings -->
-  <property name="project.name" value="Common.Logging.EntLib"/>
+  <property name="project.name" value="Common.Logging.EntLib41"/>
   <property name="logging.basedir" value="${project::get-base-directory()}"/>
 
   <!-- debug or release -->

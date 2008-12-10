@@ -10,11 +10,11 @@ using System.Reflection;
 //
 
 #if NET_1_0
-[assembly: AssemblyConfiguration("net-1.0.win32; Release")]
+[assembly: AssemblyConfiguration("net-1.0.win32; unofficial Beta")]
 #elif (NET_1_1)
-[assembly: AssemblyConfiguration("net-1.1.win32; Release")]
+[assembly: AssemblyConfiguration("net-1.1.win32; unofficial Beta")]
 #else
-[assembly: AssemblyConfiguration("net-2.0.win32; Release")]
+[assembly: AssemblyConfiguration("net-2.0.win32; unofficial Beta")]
 #endif
 [assembly: AssemblyCompany("http://netcommon.sourceforge.net/")]
 //[assembly: AssemblyProduct("Common Logging Framework")]
