@@ -32,7 +32,6 @@ namespace Common.Logging
     /// Exercises basic API of the ILog implemetation.
     /// </remarks>
     /// <author>Mark Pollack</author>
-    /// <version>$Id:$</version>
     [TestFixture]
     public abstract class AbstractLogTest
     {

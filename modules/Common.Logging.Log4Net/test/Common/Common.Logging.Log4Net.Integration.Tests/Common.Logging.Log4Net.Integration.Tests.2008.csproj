@@ -4,17 +4,16 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{94E4E1B4-D424-4EB9-BF34-2EE8CC3D7048}</ProjectGuid>
+    <ProjectGuid>{F7D4B5FA-16FC-4C8A-97B4-FCD391ADE0AF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Common</RootNamespace>
-    <AssemblyName>Common.Logging.Tests</AssemblyName>
+    <RootNamespace>Spring</RootNamespace>
+    <AssemblyName>Common.Logging.Log4Net.Integration.Tests</AssemblyName>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <OldToolsVersion>2.0</OldToolsVersion>
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -27,6 +26,7 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -34,64 +34,45 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\..\build\VS.NET.2008\Common.Logging.Tests\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <OutputPath>..\..\..\build\VS.NET.2008\Common.Logging.Log4Net.Integration.Tests\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\..\build\VS.NET.2008\Common.Logging.Tests\Release\</OutputPath>
-    <DefineConstants>TRACE;NET_2_0</DefineConstants>
+    <OutputPath>..\..\..\build\VS.NET.2008\Common.Logging.Log4Net.Integration.Tests\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="nunit.framework, Version=2.2.8.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821">
+      <SpecificVersion>True</SpecificVersion>
+      <HintPath>..\..\..\lib\net\2.0\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework, Version=2.2.7.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\lib\net\2.0\nunit.framework.dll</HintPath>
-    </Reference>
-    <Reference Include="Rhino.Mocks, Version=2.9.6.40350, Culture=neutral, PublicKeyToken=0b3305902db7183f">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\lib\net\1.0\Rhino.Mocks.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\src\Common\Common.Logging\Common.Logging.2008.csproj">
+    <ProjectReference Include="..\..\..\..\Common.Logging\src\Common\Common.Logging\Common.Logging.2008.csproj">
       <Project>{440D903A-D409-48FC-A6C4-3EE69CCD663B}</Project>
       <Name>Common.Logging.2008</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Logging\AbstractLoggerTests.cs" />
-    <Compile Include="ExceptionsTest.cs" />
-    <Compile Include="Logging\AbstractLogTest.cs" />
-    <Compile Include="Logging\CommonLoggingTraceListenerTests.cs" />
-    <Compile Include="Logging\ConfigurationSectionHandlerTests.cs" />
-    <Compile Include="Logging\LoggingExceptionTests.cs" />
-    <Compile Include="Logging\LogManagerTests.cs" />
-    <Compile Include="Logging\MissingCtorFactoryAdapter.cs" />
-    <Compile Include="Logging\SerializationTestUtils.cs" />
-    <Compile Include="Logging\Simple\ConsoleOutLoggerTests.cs" />
-    <Compile Include="Logging\Simple\TraceLoggerTests.cs" />
-    <Compile Include="Logging\Simple\NoOpLoggerTests.cs" />
-    <Compile Include="Logging\Simple\AbstractSimpleLogTest.cs" />
-    <Compile Include="Logging\StandaloneConfigurationReader.cs" />
-    <Compile Include="MethodInvokePerformanceTests.cs" />
-    <Compile Include="StopWatch.cs" />
-    <Compile Include="TestUtil\TestLogger.cs" />
-    <Compile Include="TestUtil\TestLoggerEvent.cs" />
-    <Compile Include="TestUtil\TestLoggerFactoryAdapter.cs" />
-    <Compile Include="StandardsComplianceTest.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Common.Logging.Tests.dll.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <ProjectReference Include="..\..\..\..\Common.Logging\test\Common\Common.Logging.Tests\Common.Logging.Tests.2008.csproj">
+      <Project>{94E4E1B4-D424-4EB9-BF34-2EE8CC3D7048}</Project>
+      <Name>Common.Logging.Tests.2008</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\src\Common\Common.Logging.Log4Net\Common.Logging.Log4Net.2008.csproj">
+      <Project>{0FEA262C-4EAF-49DB-8D32-8E90DDEF23B6}</Project>
+      <Name>Common.Logging.Log4Net.2008</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -119,6 +100,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Logging\Log4Net\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

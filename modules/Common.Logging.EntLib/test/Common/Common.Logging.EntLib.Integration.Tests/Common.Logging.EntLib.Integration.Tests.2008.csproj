@@ -4,17 +4,16 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{94E4E1B4-D424-4EB9-BF34-2EE8CC3D7048}</ProjectGuid>
+    <ProjectGuid>{63F2C13B-4377-4BAA-9104-5BEA389A4621}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Common</RootNamespace>
-    <AssemblyName>Common.Logging.Tests</AssemblyName>
+    <AssemblyName>Common.Logging.EntLib.Integration.Tests</AssemblyName>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <OldToolsVersion>2.0</OldToolsVersion>
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -27,6 +26,7 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -34,64 +34,60 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\..\build\VS.NET.2008\Common.Logging.Tests\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <OutputPath>..\..\..\build\VS.NET.2008\Common.Logging.EntLib.Integration.Tests\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;NET_2_0</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\..\build\VS.NET.2008\Common.Logging.Tests\Release\</OutputPath>
+    <OutputPath>..\..\..\build\VS.NET.2008\Common.Logging.EntLib.Integration.Tests\Release\</OutputPath>
     <DefineConstants>TRACE;NET_2_0</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="nunit.framework, Version=2.2.8.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=3.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\lib\net\2.0\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Logging, Version=3.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\lib\net\2.0\Microsoft.Practices.EnterpriseLibrary.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ObjectBuilder, Version=1.0.51206.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\lib\net\2.0\Microsoft.Practices.ObjectBuilder.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework, Version=2.2.7.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\lib\net\2.0\nunit.framework.dll</HintPath>
     </Reference>
-    <Reference Include="Rhino.Mocks, Version=2.9.6.40350, Culture=neutral, PublicKeyToken=0b3305902db7183f">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\lib\net\1.0\Rhino.Mocks.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\src\Common\Common.Logging\Common.Logging.2008.csproj">
+    <ProjectReference Include="..\..\..\..\Common.Logging\src\Common\Common.Logging\Common.Logging.2008.csproj">
       <Project>{440D903A-D409-48FC-A6C4-3EE69CCD663B}</Project>
       <Name>Common.Logging.2008</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Common.Logging\test\Common\Common.Logging.Tests\Common.Logging.Tests.2008.csproj">
+      <Project>{94E4E1B4-D424-4EB9-BF34-2EE8CC3D7048}</Project>
+      <Name>Common.Logging.Tests.2008</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\src\Common\Common.Logging.EntLib\Common.Logging.EntLib.2008.csproj">
+      <Project>{C493B9F9-EB13-4D07-BBBD-A333DCF15164}</Project>
+      <Name>Common.Logging.EntLib.2008</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Logging\AbstractLoggerTests.cs" />
-    <Compile Include="ExceptionsTest.cs" />
-    <Compile Include="Logging\AbstractLogTest.cs" />
-    <Compile Include="Logging\CommonLoggingTraceListenerTests.cs" />
-    <Compile Include="Logging\ConfigurationSectionHandlerTests.cs" />
-    <Compile Include="Logging\LoggingExceptionTests.cs" />
-    <Compile Include="Logging\LogManagerTests.cs" />
-    <Compile Include="Logging\MissingCtorFactoryAdapter.cs" />
-    <Compile Include="Logging\SerializationTestUtils.cs" />
-    <Compile Include="Logging\Simple\ConsoleOutLoggerTests.cs" />
-    <Compile Include="Logging\Simple\TraceLoggerTests.cs" />
-    <Compile Include="Logging\Simple\NoOpLoggerTests.cs" />
-    <Compile Include="Logging\Simple\AbstractSimpleLogTest.cs" />
-    <Compile Include="Logging\StandaloneConfigurationReader.cs" />
-    <Compile Include="MethodInvokePerformanceTests.cs" />
-    <Compile Include="StopWatch.cs" />
-    <Compile Include="TestUtil\TestLogger.cs" />
-    <Compile Include="TestUtil\TestLoggerEvent.cs" />
-    <Compile Include="TestUtil\TestLoggerFactoryAdapter.cs" />
-    <Compile Include="StandardsComplianceTest.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Common.Logging.Tests.dll.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <None Include="Common.Logging.EntLib.Integration.Tests.build" />
+    <None Include="Common.Logging.EntLib.Integration.Tests.dll.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Logging\EntLib\EntLibTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

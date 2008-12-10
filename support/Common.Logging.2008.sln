@@ -25,6 +25,18 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.EntLib41.200
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.EntLib41.Tests.2008", "..\modules\Common.Logging.EntLib41\test\Common\Common.Logging.EntLib41.Tests\Common.Logging.EntLib41.Tests.2008.csproj", "{B7DF833E-8260-40CC-9384-7CF747E30B12}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.Integration.Tests.2008", "..\modules\Common.Logging\test\Common\Common.Logging.Integration.Tests\Common.Logging.Integration.Tests.2008.csproj", "{E641F51F-1B51-4B94-B419-F902EABCE4D4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.EntLib.Integration.Tests.2008", "..\modules\Common.Logging.EntLib\test\Common\Common.Logging.EntLib.Integration.Tests\Common.Logging.EntLib.Integration.Tests.2008.csproj", "{63F2C13B-4377-4BAA-9104-5BEA389A4621}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.Log4Net.Integration.Tests.2008", "..\modules\Common.Logging.Log4Net\test\Common\Common.Logging.Log4Net.Integration.Tests\Common.Logging.Log4Net.Integration.Tests.2008.csproj", "{F7D4B5FA-16FC-4C8A-97B4-FCD391ADE0AF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.Log4Net129.Integration.Tests.2008", "..\modules\Common.Logging.Log4Net129\test\Common\Common.Logging.Log4Net129.Integration.Tests\Common.Logging.Log4Net129.Integration.Tests.2008.csproj", "{F8F786C4-6B20-4E71-9693-6BF367ED6AA1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.NLog.Integration.Tests.2008", "..\modules\Common.Logging.NLog\test\Common\Common.Logging.NLog.Integration.Tests\Common.Logging.NLog.Integration.Tests.2008.csproj", "{EE5CA38F-3F29-43E1-B385-03798EDDC765}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.EntLib41.Integration.Tests.2008", "..\modules\Common.Logging.EntLib41\test\Common\Common.Logging.EntLib41.Integration.Tests\Common.Logging.EntLib41.Integration.Tests.2008.csproj", "{E641F51F-1B51-4B94-B419-F902EABCE4D5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -79,6 +91,30 @@ Global
 		{B7DF833E-8260-40CC-9384-7CF747E30B12}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B7DF833E-8260-40CC-9384-7CF747E30B12}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B7DF833E-8260-40CC-9384-7CF747E30B12}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E641F51F-1B51-4B94-B419-F902EABCE4D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E641F51F-1B51-4B94-B419-F902EABCE4D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E641F51F-1B51-4B94-B419-F902EABCE4D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E641F51F-1B51-4B94-B419-F902EABCE4D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63F2C13B-4377-4BAA-9104-5BEA389A4621}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63F2C13B-4377-4BAA-9104-5BEA389A4621}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63F2C13B-4377-4BAA-9104-5BEA389A4621}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63F2C13B-4377-4BAA-9104-5BEA389A4621}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7D4B5FA-16FC-4C8A-97B4-FCD391ADE0AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7D4B5FA-16FC-4C8A-97B4-FCD391ADE0AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7D4B5FA-16FC-4C8A-97B4-FCD391ADE0AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7D4B5FA-16FC-4C8A-97B4-FCD391ADE0AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8F786C4-6B20-4E71-9693-6BF367ED6AA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8F786C4-6B20-4E71-9693-6BF367ED6AA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8F786C4-6B20-4E71-9693-6BF367ED6AA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8F786C4-6B20-4E71-9693-6BF367ED6AA1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE5CA38F-3F29-43E1-B385-03798EDDC765}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE5CA38F-3F29-43E1-B385-03798EDDC765}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE5CA38F-3F29-43E1-B385-03798EDDC765}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE5CA38F-3F29-43E1-B385-03798EDDC765}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E641F51F-1B51-4B94-B419-F902EABCE4D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E641F51F-1B51-4B94-B419-F902EABCE4D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E641F51F-1B51-4B94-B419-F902EABCE4D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E641F51F-1B51-4B94-B419-F902EABCE4D5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
