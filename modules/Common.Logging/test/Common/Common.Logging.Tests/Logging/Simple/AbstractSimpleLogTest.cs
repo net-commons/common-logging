@@ -39,7 +39,7 @@ namespace Common.Logging.Simple
         {
             NameValueCollection properties = new NameValueCollection();
             properties["showDateTime"] = "true";
-            if ((count%2) == 0)
+            if ((count % 2) == 0)
             {
                 properties["dateTimeFormat"] = "yyyy/MM/dd HH:mm:ss:fff";
             }

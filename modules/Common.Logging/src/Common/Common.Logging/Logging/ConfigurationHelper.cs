@@ -32,12 +32,12 @@ namespace Common.Logging
     /// Various utility methods for using during factory and logger instance configuration
     /// </summary>
     /// <author>Erich Eichinger</author>
-    public sealed class ConfigurationUtils
+    public sealed class ConfigurationHelper
     {
         /// <summary>
         /// Do not instantiate
         /// </summary>
-        private ConfigurationUtils()
+        private ConfigurationHelper()
         {}
 
         /// <summary>

@@ -67,9 +67,9 @@ namespace Common.Logging.Simple
         {
             if (properties != null)
             {
-                _Level = (LogLevel)ConfigurationUtils.TryParseEnum(_Level, properties["level"]);
-                _showDateTime = ConfigurationUtils.TryParseBoolean(_showDateTime, properties["showDateTime"]);
-                _showLogName = ConfigurationUtils.TryParseBoolean(_showLogName, properties["showLogName"]);
+                _Level = (LogLevel)ConfigurationHelper.TryParseEnum(_Level, properties["level"]);
+                _showDateTime = ConfigurationHelper.TryParseBoolean(_showDateTime, properties["showDateTime"]);
+                _showLogName = ConfigurationHelper.TryParseBoolean(_showLogName, properties["showLogName"]);
                 _dateTimeFormat = properties["dateTimeFormat"];
             }
         }

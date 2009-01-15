@@ -72,8 +72,8 @@ namespace Common.Logging.EntLib
         public SeverityFilter(NameValueCollection attributes)
             : base((attributes != null && attributes["name"] != null) ? attributes["name"] : "Severity Filter")
         {
-            this.severityMask = ConfigurationUtils.TryParseInt(this.severityMask
-                                                               , ConfigurationUtils.GetValue(attributes, "SeverityMask"));
+            this.severityMask = ConfigurationHelper.TryParseInt(this.severityMask
+                                                               , ConfigurationHelper.GetValue(attributes, "SeverityMask"));
         }
 
         /// <summary>

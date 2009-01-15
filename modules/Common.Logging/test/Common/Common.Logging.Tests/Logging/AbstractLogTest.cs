@@ -59,11 +59,12 @@ namespace Common.Logging
             try
             {
                 new Exception("exception message");
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 log.Debug(log.GetType().FullName + ": debug statement w/ exception", e);
             }
-           
+
 
             log.Error(null);
 
@@ -90,12 +91,13 @@ namespace Common.Logging
             try
             {
                 throw new Exception("exception message");
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 log.Fatal(log.GetType().FullName + ": fatal statement w/ exception", e);
             }
-            
-            
+
+
 
 
             log.Info(null);
@@ -107,11 +109,12 @@ namespace Common.Logging
             try
             {
                 throw new Exception("exception message");
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 log.Info(log.GetType().FullName + ": info statement w/ exception", e);
             }
-           
+
 
 
             log.Warn(null);
@@ -123,11 +126,12 @@ namespace Common.Logging
             try
             {
                 throw new Exception("exception message");
-            } catch(Exception e)
-            {
-                log.Warn(log.GetType().FullName + ": warn statement w/ exception", e);                
             }
-            
+            catch (Exception e)
+            {
+                log.Warn(log.GetType().FullName + ": warn statement w/ exception", e);
+            }
+
         }
 
         public void LoggerIsSerializable(ILog logger)
@@ -138,7 +142,7 @@ namespace Common.Logging
             {
                 SerializationTestUtils.TrySerialization(logger);
                 Assert.IsTrue(SerializationTestUtils.IsSerializable(logger));
-                ILog logger2 = (ILog) SerializationTestUtils.SerializeAndDeserialize(logger);
+                ILog logger2 = (ILog)SerializationTestUtils.SerializeAndDeserialize(logger);
                 Assert.IsTrue(logger != logger2);
             }
         }

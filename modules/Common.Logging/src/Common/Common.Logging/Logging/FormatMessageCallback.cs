@@ -12,10 +12,16 @@ namespace Common.Logging
     /// <example>
     /// The example below demonstrates using callback style for creating the message:
     /// <code>
-    /// Log.Debug( () =&gt; string.Format(&quot;result is {0}&quot;, random.NextDouble()) );
-    /// Log.Debug(delegate { return string.Format(&quot;result is {0}&quot;, random.NextDouble()); });
+    /// Log.Debug( m=&gt;m(&quot;result is {0}&quot;, random.NextDouble()) );
+    /// Log.Debug(delegate(m) { m(&quot;result is {0}&quot;, random.NextDouble()); });
     /// </code>
     /// </example>
     /// <seealso cref="ILog"/>
-    public delegate string FormatMessageCallback();
+    public delegate string FormatMessageCallback(FormatMessageHandler fmcb);
+
+    ///<summary>
+    ///</summary>
+    ///<param name="format"></param>
+    ///<param name="args"></param>
+    public delegate string FormatMessageHandler(string format, params object[] args);
 }

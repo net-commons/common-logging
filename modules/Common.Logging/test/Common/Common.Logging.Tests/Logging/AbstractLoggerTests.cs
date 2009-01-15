@@ -305,7 +305,7 @@ namespace Common.Logging
                 return new FormatMessageCallback(new TestFormatMessageCallback(message).FormatMessage);
             }
 
-            private string FormatMessage()
+            private string FormatMessage(FormatMessageHandler fmh)
             {
                 if (throwOnInvocation)
                 {

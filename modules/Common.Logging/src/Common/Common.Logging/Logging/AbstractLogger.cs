@@ -26,9 +26,14 @@ namespace Common.Logging
             {
                 if (cachedMessage == null && formatMessageCallback != null)
                 {
-                    cachedMessage = formatMessageCallback();
+                    cachedMessage = formatMessageCallback(new FormatMessageHandler(FormatMessage));
                 }
                 return cachedMessage;
+            }
+
+            private string FormatMessage(string format, params object[] args)
+            {
+                return string.Format(format, args);
             }
         }
 

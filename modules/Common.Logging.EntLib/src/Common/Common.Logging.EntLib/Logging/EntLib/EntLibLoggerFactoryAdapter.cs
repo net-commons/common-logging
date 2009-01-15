@@ -116,8 +116,8 @@ namespace Common.Logging.EntLib
         /// <remarks>passed in values are not used, configuration is external to EntLib logging API</remarks>
         /// <param name="properties">The properties.</param>
         public EntLibLoggerFactoryAdapter(NameValueCollection properties)
-            : this(ConfigurationUtils.TryParseInt(EntLibLoggerSettings.DEFAULTPRIORITY, ConfigurationUtils.GetValue(properties, "priority"))
-                 , ConfigurationUtils.Coalesce(ConfigurationUtils.GetValue(properties, "exceptionFormat"), EntLibLoggerSettings.DEFAULTEXCEPTIONFORMAT)
+            : this(ConfigurationHelper.TryParseInt(EntLibLoggerSettings.DEFAULTPRIORITY, ConfigurationHelper.GetValue(properties, "priority"))
+                 , ConfigurationHelper.Coalesce(ConfigurationHelper.GetValue(properties, "exceptionFormat"), EntLibLoggerSettings.DEFAULTEXCEPTIONFORMAT)
                  , null
             )
         {}

@@ -96,10 +96,11 @@
 
 
   </target>
+
 <!--
-  <target name="package" depends="build">
--->
   <target name="package">
+-->
+  <target name="package" depends="build">
     <delete dir="package"/>
     <foreach item="String" in="1.0,1.1,2.0" delim="," property="framework-version">
       <mkdir dir="package/Common.Logging/bin/net/${framework-version}/debug"/>
