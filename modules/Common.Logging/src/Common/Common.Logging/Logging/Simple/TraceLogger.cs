@@ -1,7 +1,7 @@
 #region License
 
 /*
- * Copyright © 2002-2006 the original author or authors.
+ * Copyright © 2002-2009 the original author or authors.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,7 +27,13 @@ namespace Common.Logging.Simple
 	/// <summary>
 	/// Logger sending everything to the trace output stream using <see cref="System.Diagnostics.Trace"/>.
 	/// </summary>
-	/// <author>Gilles Bayon</author>
+	/// <remarks>
+	/// Beware not to use <see cref="CommonLoggingTraceListener"/> in combination with this logger as 
+	/// this would result in an endless loop for obvious reasons!
+	/// </remarks>
+    /// <seealso cref="LogManager.Adapter"/>
+    /// <seealso cref="ConfigurationSectionHandler"/>
+    /// <author>Gilles Bayon</author>
 	/// <author>Erich Eichinger</author>
     [Serializable]
     public class TraceLogger: AbstractSimpleLogger

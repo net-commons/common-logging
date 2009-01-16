@@ -67,6 +67,7 @@
     <Compile Include="Logging\ConfigurationException.cs" />
     <Compile Include="Logging\ConfigurationReader.cs" />
     <Compile Include="Logging\ConfigurationHelper.cs" />
+    <Compile Include="Logging\FormatMessageHandler.cs" />
     <Compile Include="Logging\IConfigurationReader.cs" />
     <Compile Include="Logging\ConfigurationSectionHandler.cs" />
     <Compile Include="Logging\ILog.cs" />

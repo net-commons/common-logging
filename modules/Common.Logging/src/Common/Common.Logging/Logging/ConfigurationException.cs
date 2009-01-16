@@ -1,7 +1,7 @@
 #region License
 
 /*
- * Copyright © 2002-2007 the original author or authors.
+ * Copyright © 2002-2009 the original author or authors.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,7 +27,6 @@ namespace Common.Logging
     /// The exception that is thrown when a configuration system error has occurred with Common.Logging
     /// </summary>
     /// <author>Mark Pollack</author>
-    /// <version>$Id:$</version>
     [Serializable]
     public class ConfigurationException : ApplicationException
     {

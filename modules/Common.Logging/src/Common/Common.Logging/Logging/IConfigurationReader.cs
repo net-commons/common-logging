@@ -1,7 +1,7 @@
 #region License
 
 /*
- * Copyright © 2002-2007 the original author or authors.
+ * Copyright © 2002-2009 the original author or authors.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,7 +29,6 @@ namespace Common.Logging
     /// <remarks>Provides a simple abstraction to handle BCL API differences between .NET 1.x and 2.0. Also
     /// useful for testing scenarios.</remarks>
     /// <author>Mark Pollack</author>
-    /// <version>$Id:$</version>
     public interface IConfigurationReader
     {
         /// <summary>

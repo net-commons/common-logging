@@ -67,8 +67,8 @@ namespace Common.Logging
             Assert.AreEqual(logLevel, log.LastLogLevel);
             Assert.AreEqual("format2 arg2", log.LastMessage);
             Assert.AreEqual(null, log.LastException);
-            
-            Invoke(log, logMethods[3], ex, "format3 {0}", new object[] { "arg3" });
+
+            Invoke(log, logMethods[3], "format3 {0}", ex, new object[] { "arg3" });
             Assert.AreEqual(logLevel, log.LastLogLevel);
             Assert.AreEqual("format3 arg3", log.LastMessage);
             Assert.AreEqual(ex, log.LastException);
@@ -78,7 +78,7 @@ namespace Common.Logging
             Assert.AreEqual("format4 4,1", log.LastMessage);
             Assert.AreEqual(null, log.LastException);
 
-            Invoke(log, logMethods[5], ex, CultureInfo.CreateSpecificCulture("de-de"), "format5 {0}", new object[] { 5.1 });
+            Invoke(log, logMethods[5], CultureInfo.CreateSpecificCulture("de-de"), "format5 {0}", ex, new object[] { 5.1 });
             Assert.AreEqual(logLevel, log.LastLogLevel);
             Assert.AreEqual("format5 5,1", log.LastMessage);
             Assert.AreEqual(ex, log.LastException);
@@ -91,6 +91,16 @@ namespace Common.Logging
             Invoke(log, logMethods[7], TestFormatMessageCallback.MessageCallback("message7"), ex);
             Assert.AreEqual(logLevel, log.LastLogLevel);
             Assert.AreEqual("message7", log.LastMessage);
+            Assert.AreEqual(ex, log.LastException);
+
+            Invoke(log, logMethods[8], CultureInfo.CreateSpecificCulture("de-de"), TestFormatMessageCallback.MessageCallback("format8 {0}", new object[] { 8.1 }));
+            Assert.AreEqual(logLevel, log.LastLogLevel);
+            Assert.AreEqual("format8 8,1", log.LastMessage);
+            Assert.AreEqual(null, log.LastException);
+
+            Invoke(log, logMethods[9], CultureInfo.CreateSpecificCulture("de-de"), TestFormatMessageCallback.MessageCallback("format9 {0}", new object[] { 9.1 }), ex);
+            Assert.AreEqual(logLevel, log.LastLogLevel);
+            Assert.AreEqual("format9 9,1", log.LastMessage);
             Assert.AreEqual(ex, log.LastException);
         }
 
@@ -141,17 +151,23 @@ namespace Common.Logging
                 LastCall.Constraints(Is.Equal(logLevel), Is.Anything(), Is.Null());
                 log.Log(logLevel, null, ex);
                 LastCall.Constraints(Is.Equal(logLevel), Is.Anything(), Is.Same(ex));
+                log.Log(logLevel, null, null);
+                LastCall.Constraints(Is.Equal(logLevel), Is.Anything(), Is.Null());
+                log.Log(logLevel, null, ex);
+                LastCall.Constraints(Is.Equal(logLevel), Is.Anything(), Is.Same(ex));
             }
             mocks.ReplayAll();
 
             Invoke(log, logMethods[0], messageObject);
             Invoke(log, logMethods[1], messageObject, ex);
             Invoke(log, logMethods[2], "format", new object[] { formatArg });
-            Invoke(log, logMethods[3], ex, "format", new object[] { formatArg });
+            Invoke(log, logMethods[3], "format", ex, new object[] { formatArg });
             Invoke(log, logMethods[4], CultureInfo.InvariantCulture, "format", new object[] { formatArg });
-            Invoke(log, logMethods[5], ex, CultureInfo.InvariantCulture, "format", new object[] { formatArg });
+            Invoke(log, logMethods[5], CultureInfo.InvariantCulture, "format", ex, new object[] { formatArg });
             Invoke(log, logMethods[6], failCallback);
             Invoke(log, logMethods[7], failCallback, ex);
+            Invoke(log, logMethods[8], CultureInfo.InvariantCulture, failCallback);
+            Invoke(log, logMethods[9], CultureInfo.InvariantCulture, failCallback, ex);
 
             mocks.VerifyAll();
         }
@@ -195,13 +211,13 @@ namespace Common.Logging
                 Invoke(log, logMethods[2], "format", new object[] { formatArg });
                 LastCall.CallOriginalMethod();
                 Expect.Call(IsLevelEnabled(log, levelName)).Return(false);
-                Invoke(log, logMethods[3], ex, "format", new object[] { formatArg });
+                Invoke(log, logMethods[3], "format", ex, new object[] { formatArg });
                 LastCall.CallOriginalMethod();
                 Expect.Call(IsLevelEnabled(log, levelName)).Return(false);
                 Invoke(log, logMethods[4], CultureInfo.InvariantCulture, "format", new object[] { formatArg });
                 LastCall.CallOriginalMethod();
                 Expect.Call(IsLevelEnabled(log, levelName)).Return(false);
-                Invoke(log, logMethods[5], ex, CultureInfo.InvariantCulture, "format", new object[] { formatArg });
+                Invoke(log, logMethods[5], CultureInfo.InvariantCulture, "format", ex, new object[] { formatArg });
                 LastCall.CallOriginalMethod();
                 Expect.Call(IsLevelEnabled(log, levelName)).Return(false);
                 Invoke(log, logMethods[6], failCallback);
@@ -210,17 +226,25 @@ namespace Common.Logging
                 Invoke(log, logMethods[7], failCallback, ex);
                 LastCall.CallOriginalMethod();
                 Expect.Call(IsLevelEnabled(log, levelName)).Return(false);
+                Invoke(log, logMethods[8], CultureInfo.InvariantCulture, failCallback);
+                LastCall.CallOriginalMethod();
+                Expect.Call(IsLevelEnabled(log, levelName)).Return(false);
+                Invoke(log, logMethods[9], CultureInfo.InvariantCulture, failCallback, ex);
+                LastCall.CallOriginalMethod();
+                Expect.Call(IsLevelEnabled(log, levelName)).Return(false);
             }
             mocks.ReplayAll();
 
             Invoke(log, logMethods[0], messageObject);
             Invoke(log, logMethods[1], messageObject, ex);
             Invoke(log, logMethods[2], "format", new object[] {formatArg});
-            Invoke(log, logMethods[3], ex, "format", new object[] {formatArg});
+            Invoke(log, logMethods[3], "format", ex, new object[] { formatArg });
             Invoke(log, logMethods[4], CultureInfo.InvariantCulture, "format", new object[] {formatArg});
-            Invoke(log, logMethods[5], ex, CultureInfo.InvariantCulture, "format", new object[] {formatArg});
+            Invoke(log, logMethods[5], CultureInfo.InvariantCulture, "format", ex, new object[] { formatArg });
             Invoke(log, logMethods[6], failCallback);
             Invoke(log, logMethods[7], failCallback, ex);
+            Invoke(log, logMethods[8], CultureInfo.InvariantCulture, failCallback);
+            Invoke(log, logMethods[9], CultureInfo.InvariantCulture, failCallback, ex);
 
             mocks.VerifyAll();
         }
@@ -251,11 +275,13 @@ namespace Common.Logging
                 new Type[] {typeof (object)},
                 new Type[] {typeof (object), typeof (Exception)},
                 new Type[] {typeof (string), typeof (object[])},
-                new Type[] {typeof (Exception), typeof (string), typeof (object[])},
+                new Type[] {typeof (string), typeof (Exception), typeof (object[])},
                 new Type[] {typeof (IFormatProvider), typeof (string), typeof (object[])},
-                new Type[] {typeof (Exception), typeof (IFormatProvider), typeof (string), typeof (object[])},
+                new Type[] {typeof (IFormatProvider), typeof (string), typeof (Exception), typeof (object[])},
                 new Type[] {typeof (FormatMessageCallback)},
-                new Type[] {typeof (FormatMessageCallback), typeof (Exception)}
+                new Type[] {typeof (FormatMessageCallback), typeof (Exception)},
+                new Type[] {typeof (IFormatProvider), typeof (FormatMessageCallback)},
+                new Type[] {typeof (IFormatProvider), typeof (FormatMessageCallback), typeof (Exception)}
             };
 
         private static MethodInfo[] GetLogMethodSignatures(string levelName)
@@ -269,7 +295,9 @@ namespace Common.Logging
                            typeof (ILog).GetMethod(levelName + "Format", methodSignatures[4]),
                            typeof (ILog).GetMethod(levelName + "Format", methodSignatures[5]),
                            typeof (ILog).GetMethod(levelName, methodSignatures[6]),
-                           typeof (ILog).GetMethod(levelName, methodSignatures[7])
+                           typeof (ILog).GetMethod(levelName, methodSignatures[7]),
+                           typeof (ILog).GetMethod(levelName, methodSignatures[8]),
+                           typeof (ILog).GetMethod(levelName, methodSignatures[9])
                        };
         }
 
@@ -284,15 +312,17 @@ namespace Common.Logging
         {
             private readonly bool throwOnInvocation;
             private readonly string messageToReturn;
+            private readonly object[] argsToReturn;
 
             private TestFormatMessageCallback(bool throwOnInvocation)
             {
                 this.throwOnInvocation = throwOnInvocation;
             }
 
-            private TestFormatMessageCallback(string messageToReturn)
+            private TestFormatMessageCallback(string messageToReturn, object[] args)
             {
                 this.messageToReturn = messageToReturn;
+                this.argsToReturn = args;
             }
 
             public static FormatMessageCallback FailCallback()
@@ -300,18 +330,18 @@ namespace Common.Logging
                 return new FormatMessageCallback(new TestFormatMessageCallback(true).FormatMessage);
             }
 
-            public static FormatMessageCallback MessageCallback(string message)
+            public static FormatMessageCallback MessageCallback(string message, params object[] args)
             {
-                return new FormatMessageCallback(new TestFormatMessageCallback(message).FormatMessage);
+                return new FormatMessageCallback(new TestFormatMessageCallback(message, args).FormatMessage);
             }
 
-            private string FormatMessage(FormatMessageHandler fmh)
+            private void FormatMessage(FormatMessageHandler fmh)
             {
                 if (throwOnInvocation)
                 {
                     Assert.Fail();
                 }
-                return messageToReturn;
+                fmh(messageToReturn, argsToReturn);
             }
         }
 

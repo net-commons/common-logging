@@ -1,4 +1,24 @@
-﻿using System;
+﻿#region License
+
+/*
+ * Copyright © 2002-2009 the original author or authors.
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+#endregion
+
+using System;
 
 namespace Common.Logging
 {
@@ -15,6 +35,7 @@ namespace Common.Logging
         {
             private volatile string cachedMessage;
 
+            private readonly IFormatProvider formatProvider;
             private readonly FormatMessageCallback formatMessageCallback;
 
             public FormatMessageCallbackFormattedMessage(FormatMessageCallback formatMessageCallback)
@@ -22,18 +43,24 @@ namespace Common.Logging
                 this.formatMessageCallback = formatMessageCallback;
             }
 
+            public FormatMessageCallbackFormattedMessage(IFormatProvider formatProvider, FormatMessageCallback formatMessageCallback)
+            {
+                this.formatProvider = formatProvider;
+                this.formatMessageCallback = formatMessageCallback;
+            }
+
             public override string ToString()
             {
                 if (cachedMessage == null && formatMessageCallback != null)
                 {
-                    cachedMessage = formatMessageCallback(new FormatMessageHandler(FormatMessage));
+                    formatMessageCallback(new FormatMessageHandler(FormatMessage));
                 }
                 return cachedMessage;
             }
 
-            private string FormatMessage(string format, params object[] args)
+            private void FormatMessage(string format, params object[] args)
             {
-                return string.Format(format, args);
+                cachedMessage = string.Format(formatProvider, format, args);
             }
         }
 
@@ -183,7 +210,7 @@ namespace Common.Logging
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="exception">The exception to log.</param>
         /// <param name="args"></param>
-        public virtual void TraceFormat(Exception exception, IFormatProvider formatProvider, string format, params object[] args)
+        public virtual void TraceFormat(IFormatProvider formatProvider, string format, Exception exception, params object[] args)
         {
             if (IsTraceEnabled)
                 Write(LogLevel.Trace, new StringFormatFormattedMessage(formatProvider, format, args), exception);
@@ -206,7 +233,7 @@ namespace Common.Logging
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="exception">The exception to log.</param>
         /// <param name="args">the list of format arguments</param>
-        public virtual void TraceFormat(Exception exception, string format, params object[] args)
+        public virtual void TraceFormat(string format, Exception exception, params object[] args)
         {
             if (IsTraceEnabled)
                 Write(LogLevel.Trace, new StringFormatFormattedMessage(null, format, args), exception);
@@ -239,6 +266,37 @@ namespace Common.Logging
         {
             if (IsTraceEnabled)
                 Write(LogLevel.Trace, new FormatMessageCallbackFormattedMessage(formatMessageCallback), exception);
+        }
+
+        /// <summary>
+        /// Log a message with the <see cref="LogLevel.Trace"/> level using a callback to obtain the message
+        /// </summary>
+        /// <remarks>
+        /// Using this method avoids the cost of creating a message and evaluating message arguments 
+        /// that probably won't be logged due to loglevel settings.
+        /// </remarks>
+        /// <param name="formatProvider">An <see cref="IFormatProvider"/> that supplies culture-specific formatting information.</param>
+        /// <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
+        public virtual void Trace(IFormatProvider formatProvider, FormatMessageCallback formatMessageCallback)
+        {
+            if (IsTraceEnabled)
+                Write(LogLevel.Trace, new FormatMessageCallbackFormattedMessage(formatProvider, formatMessageCallback), null);
+        }
+
+        /// <summary>
+        /// Log a message with the <see cref="LogLevel.Trace"/> level using a callback to obtain the message
+        /// </summary>
+        /// <remarks>
+        /// Using this method avoids the cost of creating a message and evaluating message arguments 
+        /// that probably won't be logged due to loglevel settings.
+        /// </remarks>
+        /// <param name="formatProvider">An <see cref="IFormatProvider"/> that supplies culture-specific formatting information.</param>
+        /// <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
+        /// <param name="exception">The exception to log, including its stack trace.</param>
+        public virtual void Trace(IFormatProvider formatProvider, FormatMessageCallback formatMessageCallback, Exception exception)
+        {
+            if (IsTraceEnabled)
+                Write(LogLevel.Trace, new FormatMessageCallbackFormattedMessage(formatProvider, formatMessageCallback), exception);
         }
 
         #endregion
@@ -287,7 +345,7 @@ namespace Common.Logging
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="exception">The exception to log.</param>
         /// <param name="args"></param>
-        public virtual void DebugFormat(Exception exception, IFormatProvider formatProvider, string format, params object[] args)
+        public virtual void DebugFormat(IFormatProvider formatProvider, string format, Exception exception, params object[] args)
         {
             if (IsDebugEnabled)
                 Write(LogLevel.Debug, new StringFormatFormattedMessage(formatProvider, format, args), exception);
@@ -310,7 +368,7 @@ namespace Common.Logging
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="exception">The exception to log.</param>
         /// <param name="args">the list of format arguments</param>
-        public virtual void DebugFormat(Exception exception, string format, params object[] args)
+        public virtual void DebugFormat(string format, Exception exception, params object[] args)
         {
             if (IsDebugEnabled)
                 Write(LogLevel.Debug, new StringFormatFormattedMessage(null, format, args), exception);
@@ -343,6 +401,37 @@ namespace Common.Logging
         {
             if (IsDebugEnabled)
                 Write(LogLevel.Debug, new FormatMessageCallbackFormattedMessage(formatMessageCallback), exception);
+        }
+
+        /// <summary>
+        /// Log a message with the <see cref="LogLevel.Debug"/> level using a callback to obtain the message
+        /// </summary>
+        /// <remarks>
+        /// Using this method avoids the cost of creating a message and evaluating message arguments 
+        /// that probably won't be logged due to loglevel settings.
+        /// </remarks>
+        /// <param name="formatProvider">An <see cref="IFormatProvider"/> that supplies culture-specific formatting information.</param>
+        /// <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
+        public virtual void Debug(IFormatProvider formatProvider, FormatMessageCallback formatMessageCallback)
+        {
+            if (IsDebugEnabled)
+                Write(LogLevel.Debug, new FormatMessageCallbackFormattedMessage(formatProvider, formatMessageCallback), null);
+        }
+
+        /// <summary>
+        /// Log a message with the <see cref="LogLevel.Debug"/> level using a callback to obtain the message
+        /// </summary>
+        /// <remarks>
+        /// Using this method avoids the cost of creating a message and evaluating message arguments 
+        /// that probably won't be logged due to loglevel settings.
+        /// </remarks>
+        /// <param name="formatProvider">An <see cref="IFormatProvider"/> that supplies culture-specific formatting information.</param>
+        /// <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
+        /// <param name="exception">The exception to log, including its stack Debug.</param>
+        public virtual void Debug(IFormatProvider formatProvider, FormatMessageCallback formatMessageCallback, Exception exception)
+        {
+            if (IsDebugEnabled)
+                Write(LogLevel.Debug, new FormatMessageCallbackFormattedMessage(formatProvider, formatMessageCallback), exception);
         }
 
         #endregion
@@ -391,7 +480,7 @@ namespace Common.Logging
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="exception">The exception to log.</param>
         /// <param name="args"></param>
-        public virtual void InfoFormat(Exception exception, IFormatProvider formatProvider, string format, params object[] args)
+        public virtual void InfoFormat(IFormatProvider formatProvider, string format, Exception exception, params object[] args)
         {
             if (IsInfoEnabled)
                 Write(LogLevel.Info, new StringFormatFormattedMessage(formatProvider, format, args), exception);
@@ -414,7 +503,7 @@ namespace Common.Logging
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="exception">The exception to log.</param>
         /// <param name="args">the list of format arguments</param>
-        public virtual void InfoFormat(Exception exception, string format, params object[] args)
+        public virtual void InfoFormat(string format, Exception exception, params object[] args)
         {
             if (IsInfoEnabled)
                 Write(LogLevel.Info, new StringFormatFormattedMessage(null, format, args), exception);
@@ -447,6 +536,37 @@ namespace Common.Logging
         {
             if (IsInfoEnabled)
                 Write(LogLevel.Info, new FormatMessageCallbackFormattedMessage(formatMessageCallback), exception);
+        }
+
+        /// <summary>
+        /// Log a message with the <see cref="LogLevel.Info"/> level using a callback to obtain the message
+        /// </summary>
+        /// <remarks>
+        /// Using this method avoids the cost of creating a message and evaluating message arguments 
+        /// that probably won't be logged due to loglevel settings.
+        /// </remarks>
+        /// <param name="formatProvider">An <see cref="IFormatProvider"/> that supplies culture-specific formatting information.</param>
+        /// <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
+        public virtual void Info(IFormatProvider formatProvider, FormatMessageCallback formatMessageCallback)
+        {
+            if (IsInfoEnabled)
+                Write(LogLevel.Info, new FormatMessageCallbackFormattedMessage(formatProvider, formatMessageCallback), null);
+        }
+
+        /// <summary>
+        /// Log a message with the <see cref="LogLevel.Info"/> level using a callback to obtain the message
+        /// </summary>
+        /// <remarks>
+        /// Using this method avoids the cost of creating a message and evaluating message arguments 
+        /// that probably won't be logged due to loglevel settings.
+        /// </remarks>
+        /// <param name="formatProvider">An <see cref="IFormatProvider"/> that supplies culture-specific formatting information.</param>
+        /// <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
+        /// <param name="exception">The exception to log, including its stack Info.</param>
+        public virtual void Info(IFormatProvider formatProvider, FormatMessageCallback formatMessageCallback, Exception exception)
+        {
+            if (IsInfoEnabled)
+                Write(LogLevel.Info, new FormatMessageCallbackFormattedMessage(formatProvider, formatMessageCallback), exception);
         }
 
         #endregion
@@ -495,7 +615,7 @@ namespace Common.Logging
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="exception">The exception to log.</param>
         /// <param name="args"></param>
-        public virtual void WarnFormat(Exception exception, IFormatProvider formatProvider, string format, params object[] args)
+        public virtual void WarnFormat(IFormatProvider formatProvider, string format, Exception exception, params object[] args)
         {
             if (IsWarnEnabled)
                 Write(LogLevel.Warn, new StringFormatFormattedMessage(formatProvider, format, args), exception);
@@ -518,7 +638,7 @@ namespace Common.Logging
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="exception">The exception to log.</param>
         /// <param name="args">the list of format arguments</param>
-        public virtual void WarnFormat(Exception exception, string format, params object[] args)
+        public virtual void WarnFormat(string format, Exception exception, params object[] args)
         {
             if (IsWarnEnabled)
                 Write(LogLevel.Warn, new StringFormatFormattedMessage(null, format, args), exception);
@@ -551,6 +671,37 @@ namespace Common.Logging
         {
             if (IsWarnEnabled)
                 Write(LogLevel.Warn, new FormatMessageCallbackFormattedMessage(formatMessageCallback), exception);
+        }
+
+        /// <summary>
+        /// Log a message with the <see cref="LogLevel.Warn"/> level using a callback to obtain the message
+        /// </summary>
+        /// <remarks>
+        /// Using this method avoids the cost of creating a message and evaluating message arguments 
+        /// that probably won't be logged due to loglevel settings.
+        /// </remarks>
+        /// <param name="formatProvider">An <see cref="IFormatProvider"/> that supplies culture-specific formatting information.</param>
+        /// <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
+        public virtual void Warn(IFormatProvider formatProvider, FormatMessageCallback formatMessageCallback)
+        {
+            if (IsWarnEnabled)
+                Write(LogLevel.Warn, new FormatMessageCallbackFormattedMessage(formatProvider, formatMessageCallback), null);
+        }
+
+        /// <summary>
+        /// Log a message with the <see cref="LogLevel.Warn"/> level using a callback to obtain the message
+        /// </summary>
+        /// <remarks>
+        /// Using this method avoids the cost of creating a message and evaluating message arguments 
+        /// that probably won't be logged due to loglevel settings.
+        /// </remarks>
+        /// <param name="formatProvider">An <see cref="IFormatProvider"/> that supplies culture-specific formatting information.</param>
+        /// <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
+        /// <param name="exception">The exception to log, including its stack Warn.</param>
+        public virtual void Warn(IFormatProvider formatProvider, FormatMessageCallback formatMessageCallback, Exception exception)
+        {
+            if (IsWarnEnabled)
+                Write(LogLevel.Warn, new FormatMessageCallbackFormattedMessage(formatProvider, formatMessageCallback), exception);
         }
 
         #endregion
@@ -599,7 +750,7 @@ namespace Common.Logging
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="exception">The exception to log.</param>
         /// <param name="args"></param>
-        public virtual void ErrorFormat(Exception exception, IFormatProvider formatProvider, string format, params object[] args)
+        public virtual void ErrorFormat(IFormatProvider formatProvider, string format, Exception exception, params object[] args)
         {
             if (IsErrorEnabled)
                 Write(LogLevel.Error, new StringFormatFormattedMessage(formatProvider, format, args), exception);
@@ -622,7 +773,7 @@ namespace Common.Logging
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="exception">The exception to log.</param>
         /// <param name="args">the list of format arguments</param>
-        public virtual void ErrorFormat(Exception exception, string format, params object[] args)
+        public virtual void ErrorFormat(string format, Exception exception, params object[] args)
         {
             if (IsErrorEnabled)
                 Write(LogLevel.Error, new StringFormatFormattedMessage(null, format, args), exception);
@@ -655,6 +806,37 @@ namespace Common.Logging
         {
             if (IsErrorEnabled)
                 Write(LogLevel.Error, new FormatMessageCallbackFormattedMessage(formatMessageCallback), exception);
+        }
+
+        /// <summary>
+        /// Log a message with the <see cref="LogLevel.Error"/> level using a callback to obtain the message
+        /// </summary>
+        /// <remarks>
+        /// Using this method avoids the cost of creating a message and evaluating message arguments 
+        /// that probably won't be logged due to loglevel settings.
+        /// </remarks>
+        /// <param name="formatProvider">An <see cref="IFormatProvider"/> that supplies culture-specific formatting information.</param>
+        /// <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
+        public virtual void Error(IFormatProvider formatProvider, FormatMessageCallback formatMessageCallback)
+        {
+            if (IsErrorEnabled)
+                Write(LogLevel.Error, new FormatMessageCallbackFormattedMessage(formatProvider, formatMessageCallback), null);
+        }
+
+        /// <summary>
+        /// Log a message with the <see cref="LogLevel.Error"/> level using a callback to obtain the message
+        /// </summary>
+        /// <remarks>
+        /// Using this method avoids the cost of creating a message and evaluating message arguments 
+        /// that probably won't be logged due to loglevel settings.
+        /// </remarks>
+        /// <param name="formatProvider">An <see cref="IFormatProvider"/> that supplies culture-specific formatting information.</param>
+        /// <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
+        /// <param name="exception">The exception to log, including its stack Error.</param>
+        public virtual void Error(IFormatProvider formatProvider, FormatMessageCallback formatMessageCallback, Exception exception)
+        {
+            if (IsErrorEnabled)
+                Write(LogLevel.Error, new FormatMessageCallbackFormattedMessage(formatProvider, formatMessageCallback), exception);
         }
 
         #endregion
@@ -703,7 +885,7 @@ namespace Common.Logging
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="exception">The exception to log.</param>
         /// <param name="args"></param>
-        public virtual void FatalFormat(Exception exception, IFormatProvider formatProvider, string format, params object[] args)
+        public virtual void FatalFormat(IFormatProvider formatProvider, string format, Exception exception, params object[] args)
         {
             if (IsFatalEnabled)
                 Write(LogLevel.Fatal, new StringFormatFormattedMessage(formatProvider, format, args), exception);
@@ -726,7 +908,7 @@ namespace Common.Logging
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="exception">The exception to log.</param>
         /// <param name="args">the list of format arguments</param>
-        public virtual void FatalFormat(Exception exception, string format, params object[] args)
+        public virtual void FatalFormat(string format, Exception exception, params object[] args)
         {
             if (IsFatalEnabled)
                 Write(LogLevel.Fatal, new StringFormatFormattedMessage(null, format, args), exception);
@@ -759,6 +941,37 @@ namespace Common.Logging
         {
             if (IsFatalEnabled)
                 Write(LogLevel.Fatal, new FormatMessageCallbackFormattedMessage(formatMessageCallback), exception);
+        }
+
+        /// <summary>
+        /// Log a message with the <see cref="LogLevel.Fatal"/> level using a callback to obtain the message
+        /// </summary>
+        /// <remarks>
+        /// Using this method avoids the cost of creating a message and evaluating message arguments 
+        /// that probably won't be logged due to loglevel settings.
+        /// </remarks>
+        /// <param name="formatProvider">An <see cref="IFormatProvider"/> that supplies culture-specific formatting information.</param>
+        /// <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
+        public virtual void Fatal(IFormatProvider formatProvider, FormatMessageCallback formatMessageCallback)
+        {
+            if (IsFatalEnabled)
+                Write(LogLevel.Fatal, new FormatMessageCallbackFormattedMessage(formatProvider, formatMessageCallback), null);
+        }
+
+        /// <summary>
+        /// Log a message with the <see cref="LogLevel.Fatal"/> level using a callback to obtain the message
+        /// </summary>
+        /// <remarks>
+        /// Using this method avoids the cost of creating a message and evaluating message arguments 
+        /// that probably won't be logged due to loglevel settings.
+        /// </remarks>
+        /// <param name="formatProvider">An <see cref="IFormatProvider"/> that supplies culture-specific formatting information.</param>
+        /// <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
+        /// <param name="exception">The exception to log, including its stack Fatal.</param>
+        public virtual void Fatal(IFormatProvider formatProvider, FormatMessageCallback formatMessageCallback, Exception exception)
+        {
+            if (IsFatalEnabled)
+                Write(LogLevel.Fatal, new FormatMessageCallbackFormattedMessage(formatProvider, formatMessageCallback), exception);
         }
 
         #endregion

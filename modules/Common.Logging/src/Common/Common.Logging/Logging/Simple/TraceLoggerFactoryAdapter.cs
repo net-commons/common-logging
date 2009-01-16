@@ -1,7 +1,7 @@
 #region License
 
 /*
- * Copyright © 2002-2006 the original author or authors.
+ * Copyright © 2002-2009 the original author or authors.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,11 +18,7 @@
 
 #endregion
 
-#region Imports
-
 using System.Collections.Specialized;
-
-#endregion
 
 namespace Common.Logging.Simple
 {
@@ -30,7 +26,13 @@ namespace Common.Logging.Simple
     /// Factory for creating <see cref="ILog" /> instances that send 
     /// everything to the <see cref="System.Diagnostics.Trace"/> output stream.
 	/// </summary>
-	/// <seealso cref="AbstractSimpleLoggerFactoryAdapter"/>
+    /// <remarks>
+    /// Beware not to use <see cref="CommonLoggingTraceListener"/> in combination with this logger factory
+    /// as this would result in an endless loop for obvious reasons!
+    /// </remarks>
+    /// <seealso cref="AbstractSimpleLoggerFactoryAdapter"/>
+    /// <seealso cref="LogManager.Adapter"/>
+    /// <seealso cref="ConfigurationSectionHandler"/>
     /// <author>Gilles Bayon</author>
     /// <author>Mark Pollack</author>
     /// <author>Erich Eichinger</author>

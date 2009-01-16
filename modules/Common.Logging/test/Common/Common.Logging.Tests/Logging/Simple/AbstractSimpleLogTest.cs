@@ -129,15 +129,27 @@ namespace Common.Logging.Simple
             log.Fatal("Hi");
         }
 
+#if NET_3_0
         protected virtual void CanLogMessageWithException(ILog log)
         {
-            log.TraceFormat("Hi");
-            log.Debug("Hi", new ArithmeticException());
-            log.Info("Hi", new ArithmeticException());
-            log.Warn("Hi", new ArithmeticException());
-            log.Error("Hi", new ArithmeticException());
-            log.Fatal("Hi", new ArithmeticException());
+            log.Trace(m => m("Hi {0}", "dude"));
+            log.Debug(m => m("Hi {0}", "dude"), new ArithmeticException());
+            log.Info(m => m("Hi {0}", "dude"), new ArithmeticException());
+            log.Warn(m => m("Hi {0}", "dude"), new ArithmeticException());
+            log.Error(m => m("Hi {0}", "dude"), new ArithmeticException());
+            log.Fatal(m => m("Hi {0}", "dude"), new ArithmeticException());
         }
+#else
+        protected virtual void CanLogMessageWithException(ILog log)
+        {
+            log.TraceFormat("Hi {0}", new ArithmeticException(), "dude");
+            log.DebugFormat("Hi {0}", new ArithmeticException(), "dude");
+            log.InfoFormat("Hi {0}", new ArithmeticException(), "dude");
+            log.WarnFormat("Hi {0}", new ArithmeticException(), "dude");
+            log.ErrorFormat("Hi {0}", new ArithmeticException(), "dude");
+            log.FatalFormat("Hi {0}", new ArithmeticException(), "dude");
+        }
+#endif
 
         /// <summary>
         /// Basic sanity checks of default values for a log implementation.

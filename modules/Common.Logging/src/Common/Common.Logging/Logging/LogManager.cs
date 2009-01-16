@@ -1,7 +1,7 @@
 #region License
 
 /*
- * Copyright © 2002-2008 the original author or authors.
+ * Copyright © 2002-2009 the original author or authors.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,23 +18,37 @@
 
 #endregion
 
-#region Imports
-
 using System;
 using System.Diagnostics;
 using Common.Logging.Simple;
-
-#endregion
 
 namespace Common.Logging
 {
     /// <summary>
     /// The LogManager can produce ILogFactory for various logging APIs,
     /// most notably for log4net. 
-    /// Other implemenations such as
-    /// * SimpleLogger
-    /// * NoOpLogger are also supported.
+    /// Other implementations such as <see cref="TraceLogger"/>, <see cref="ConsoleOutLogger"/> 
+    /// and <see cref="NoOpLogger"/> are also supported.
     /// </summary>
+    /// <remarks>
+    /// For configuring the underlying log system, see the example at <see cref="ConfigurationSectionHandler"/>.
+    /// </remarks>
+    /// <example>
+    /// The example below shows the typical use of LogManager to obtain a reference to a logger
+    /// and log an exception:
+    /// <code>
+    /// ILog log = LogManager.GetLogger(this.GetType());
+    /// ...
+    /// try 
+    /// { 
+    ///   /* .... */ 
+    /// }
+    /// catch(Exception ex)
+    /// {
+    ///   log.ErrorFormat("Hi {0}", ex, "dude");
+    /// }
+    /// </code>
+    /// </example>
     /// <author>Gilles Bayon</author>
     public sealed class LogManager
     {

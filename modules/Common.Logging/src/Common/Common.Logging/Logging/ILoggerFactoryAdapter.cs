@@ -1,7 +1,7 @@
 #region License
 
 /*
- * Copyright © 2002-2006 the original author or authors.
+ * Copyright © 2002-2009 the original author or authors.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,7 +28,6 @@ namespace Common.Logging
 	/// worry about this interface.
 	/// </summary>
     /// <author>Gilles Bayon</author>
-    /// <version>$Id: ILoggerFactoryAdapter.cs,v 1.1 2006/11/13 07:17:55 markpollack Exp $</version>
 	public interface ILoggerFactoryAdapter 
 	{
 

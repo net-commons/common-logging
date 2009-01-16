@@ -18,7 +18,7 @@ using System.Reflection;
 #endif
 [assembly: AssemblyCompany("http://netcommon.sourceforge.net/")]
 //[assembly: AssemblyProduct("Common Logging Framework")]
-[assembly: AssemblyCopyright("Copyright 2006-2008 the Common Logging Framework Team.")]
+[assembly: AssemblyCopyright("Copyright 2006-2009 the Common Logging Framework Team.")]
 [assembly: AssemblyTrademark("Apache License, Version 2.0")]
 [assembly: AssemblyCulture("")]
 

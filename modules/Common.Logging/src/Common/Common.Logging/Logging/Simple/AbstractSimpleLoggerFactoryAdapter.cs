@@ -1,7 +1,7 @@
 ﻿#region License
 
 /*
- * Copyright © 2002-2006 the original author or authors.
+ * Copyright © 2002-2009 the original author or authors.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,13 +18,7 @@
 
 #endregion
 
-#region Imports
-
-using System;
-using System.Collections;
 using System.Collections.Specialized;
-
-#endregion
 
 namespace Common.Logging.Simple
 {
@@ -40,15 +34,53 @@ namespace Common.Logging.Simple
     ///     <item>dateTimeFormat</item>
     /// </list>
     /// </remarks>
+    /// <seealso cref="LogManager.Adapter"/>
+    /// <seealso cref="ConfigurationSectionHandler"/>
     /// <author>Gilles Bayon</author>
     /// <author>Mark Pollack</author>
     /// <author>Erich Eichinger</author>
     public abstract class AbstractSimpleLoggerFactoryAdapter : AbstractCachingLoggerFactoryAdapter
     {
-        private readonly LogLevel _Level = LogLevel.All;
-        private readonly bool _showDateTime = true;
-        private readonly bool _showLogName = true;
-        private readonly string _dateTimeFormat = string.Empty;
+        private LogLevel _level = LogLevel.All;
+        private bool _showDateTime = true;
+        private bool _showLogName = true;
+        private string _dateTimeFormat = string.Empty;
+
+        /// <summary>
+        /// The default <see cref="LogLevel"/> to use when creating new <see cref="ILog"/> instances.
+        /// </summary>
+        public LogLevel Level
+        {
+            get { return _level; }
+            set { _level = value; }
+        }
+
+        /// <summary>
+        /// The default setting to use when creating new <see cref="ILog"/> instances.
+        /// </summary>
+        public bool ShowDateTime
+        {
+            get { return _showDateTime; }
+            set { _showDateTime = value; }
+        }
+
+        /// <summary>
+        /// The default setting to use when creating new <see cref="ILog"/> instances.
+        /// </summary>
+        public bool ShowLogName
+        {
+            get { return _showLogName; }
+            set { _showLogName = value; }
+        }
+
+        /// <summary>
+        /// The default setting to use when creating new <see cref="ILog"/> instances.
+        /// </summary>
+        public string DateTimeFormat
+        {
+            get { return _dateTimeFormat; }
+            set { _dateTimeFormat = value; }
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AbstractSimpleLoggerFactoryAdapter"/> class.
@@ -67,7 +99,7 @@ namespace Common.Logging.Simple
         {
             if (properties != null)
             {
-                _Level = (LogLevel)ConfigurationHelper.TryParseEnum(_Level, properties["level"]);
+                _level = (LogLevel)ConfigurationHelper.TryParseEnum(_level, properties["level"]);
                 _showDateTime = ConfigurationHelper.TryParseBoolean(_showDateTime, properties["showDateTime"]);
                 _showLogName = ConfigurationHelper.TryParseBoolean(_showLogName, properties["showLogName"]);
                 _dateTimeFormat = properties["dateTimeFormat"];
@@ -79,7 +111,7 @@ namespace Common.Logging.Simple
         /// </summary>
         protected override ILog CreateLogger(string name)
         {
-            return CreateLogger(name, _Level, _showDateTime, _showLogName, _dateTimeFormat);
+            return CreateLogger(name, _level, _showDateTime, _showLogName, _dateTimeFormat);
         }
 
         /// <summary>

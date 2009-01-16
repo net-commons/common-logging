@@ -1,6 +1,7 @@
 #region License
+
 /*
- * Copyright © 2002-2008 the original author or authors.
+ * Copyright © 2002-2009 the original author or authors.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,13 +15,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#endregion
 
-#region Imports
+#endregion
 
 using System;
-
-#endregion
 
 namespace Common.Logging.Simple
 {
@@ -122,7 +120,7 @@ namespace Common.Logging.Simple
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="exception">The exception to log.</param>
         /// <param name="args">the list of message format arguments</param>
-        public void TraceFormat(Exception exception, string format, params object[] args)
+        public void TraceFormat(string format, Exception exception, params object[] args)
         {
             // NOP - no operation
         }
@@ -145,7 +143,7 @@ namespace Common.Logging.Simple
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="exception">The exception to log.</param>
         /// <param name="args">the list of message format arguments</param>
-        public void TraceFormat(Exception exception, IFormatProvider formatProvider, string format, params object[] args)
+        public void TraceFormat(IFormatProvider formatProvider, string format, Exception exception, params object[] args)
         {
             // NOP - no operation
         }
@@ -165,6 +163,27 @@ namespace Common.Logging.Simple
         /// <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
         /// <param name="exception">The exception to log, including its stack trace.</param>
         public void Trace(FormatMessageCallback formatMessageCallback, Exception exception)
+        {
+            // NOP - no operation
+        }
+
+        /// <summary>
+        /// Ignores message.
+        /// </summary>
+        /// <param name="formatProvider">An <see cref="IFormatProvider"/> that supplies culture-specific formatting information.</param>
+        /// <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
+        public void Trace(IFormatProvider formatProvider, FormatMessageCallback formatMessageCallback)
+        {
+            // NOP - no operation
+        }
+
+        /// <summary>
+        /// Ignores message.
+        /// </summary>
+        /// <param name="formatProvider">An <see cref="IFormatProvider"/> that supplies culture-specific formatting information.</param>
+        /// <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
+        /// <param name="exception">The exception to log, including its stack trace.</param>
+        public void Trace(IFormatProvider formatProvider, FormatMessageCallback formatMessageCallback, Exception exception)
         {
             // NOP - no operation
         }
@@ -208,7 +227,7 @@ namespace Common.Logging.Simple
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="exception">The exception to log.</param>
         /// <param name="args">the list of message format arguments</param>
-        public void DebugFormat(Exception exception, string format, params object[] args)
+        public void DebugFormat(string format, Exception exception, params object[] args)
         {
             // NOP - no operation
         }
@@ -231,7 +250,7 @@ namespace Common.Logging.Simple
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="exception">The exception to log.</param>
         /// <param name="args">the list of message format arguments</param>
-        public void DebugFormat(Exception exception, IFormatProvider formatProvider, string format, params object[] args)
+        public void DebugFormat(IFormatProvider formatProvider, string format, Exception exception, params object[] args)
         {
             // NOP - no operation
         }
@@ -251,6 +270,27 @@ namespace Common.Logging.Simple
         /// <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
         /// <param name="exception">The exception to log, including its stack Debug.</param>
         public void Debug(FormatMessageCallback formatMessageCallback, Exception exception)
+        {
+            // NOP - no operation
+        }
+
+        /// <summary>
+        /// Ignores message.
+        /// </summary>
+        /// <param name="formatProvider">An <see cref="IFormatProvider"/> that supplies culture-specific formatting information.</param>
+        /// <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
+        public void Debug(IFormatProvider formatProvider, FormatMessageCallback formatMessageCallback)
+        {
+            // NOP - no operation
+        }
+
+        /// <summary>
+        /// Ignores message.
+        /// </summary>
+        /// <param name="formatProvider">An <see cref="IFormatProvider"/> that supplies culture-specific formatting information.</param>
+        /// <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
+        /// <param name="exception">The exception to log, including its stack Debug.</param>
+        public void Debug(IFormatProvider formatProvider, FormatMessageCallback formatMessageCallback, Exception exception)
         {
             // NOP - no operation
         }
@@ -294,7 +334,7 @@ namespace Common.Logging.Simple
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="exception">The exception to log.</param>
         /// <param name="args">the list of message format arguments</param>
-        public void InfoFormat(Exception exception, string format, params object[] args)
+        public void InfoFormat(string format, Exception exception, params object[] args)
         {
             // NOP - no operation
         }
@@ -317,7 +357,7 @@ namespace Common.Logging.Simple
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="exception">The exception to log.</param>
         /// <param name="args">the list of message format arguments</param>
-        public void InfoFormat(Exception exception, IFormatProvider formatProvider, string format, params object[] args)
+        public void InfoFormat(IFormatProvider formatProvider, string format, Exception exception, params object[] args)
         {
             // NOP - no operation
         }
@@ -337,6 +377,27 @@ namespace Common.Logging.Simple
         /// <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
         /// <param name="exception">The exception to log, including its stack Info.</param>
         public void Info(FormatMessageCallback formatMessageCallback, Exception exception)
+        {
+            // NOP - no operation
+        }
+
+        /// <summary>
+        /// Ignores message.
+        /// </summary>
+        /// <param name="formatProvider">An <see cref="IFormatProvider"/> that supplies culture-specific formatting information.</param>
+        /// <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
+        public void Info(IFormatProvider formatProvider, FormatMessageCallback formatMessageCallback)
+        {
+            // NOP - no operation
+        }
+
+        /// <summary>
+        /// Ignores message.
+        /// </summary>
+        /// <param name="formatProvider">An <see cref="IFormatProvider"/> that supplies culture-specific formatting information.</param>
+        /// <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
+        /// <param name="exception">The exception to log, including its stack Info.</param>
+        public void Info(IFormatProvider formatProvider, FormatMessageCallback formatMessageCallback, Exception exception)
         {
             // NOP - no operation
         }
@@ -380,7 +441,7 @@ namespace Common.Logging.Simple
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="exception">The exception to log.</param>
         /// <param name="args">the list of message format arguments</param>
-        public void WarnFormat(Exception exception, string format, params object[] args)
+        public void WarnFormat(string format, Exception exception, params object[] args)
         {
             // NOP - no operation
         }
@@ -403,7 +464,7 @@ namespace Common.Logging.Simple
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="exception">The exception to log.</param>
         /// <param name="args">the list of message format arguments</param>
-        public void WarnFormat(Exception exception, IFormatProvider formatProvider, string format, params object[] args)
+        public void WarnFormat(IFormatProvider formatProvider, string format, Exception exception, params object[] args)
         {
             // NOP - no operation
         }
@@ -423,6 +484,27 @@ namespace Common.Logging.Simple
         /// <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
         /// <param name="exception">The exception to log, including its stack Warn.</param>
         public void Warn(FormatMessageCallback formatMessageCallback, Exception exception)
+        {
+            // NOP - no operation
+        }
+
+        /// <summary>
+        /// Ignores message.
+        /// </summary>
+        /// <param name="formatProvider">An <see cref="IFormatProvider"/> that supplies culture-specific formatting information.</param>
+        /// <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
+        public void Warn(IFormatProvider formatProvider, FormatMessageCallback formatMessageCallback)
+        {
+            // NOP - no operation
+        }
+
+        /// <summary>
+        /// Ignores message.
+        /// </summary>
+        /// <param name="formatProvider">An <see cref="IFormatProvider"/> that supplies culture-specific formatting information.</param>
+        /// <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
+        /// <param name="exception">The exception to log, including its stack Warn.</param>
+        public void Warn(IFormatProvider formatProvider, FormatMessageCallback formatMessageCallback, Exception exception)
         {
             // NOP - no operation
         }
@@ -466,7 +548,7 @@ namespace Common.Logging.Simple
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="exception">The exception to log.</param>
         /// <param name="args">the list of message format arguments</param>
-        public void ErrorFormat(Exception exception, string format, params object[] args)
+        public void ErrorFormat(string format, Exception exception, params object[] args)
         {
             // NOP - no operation
         }
@@ -489,7 +571,7 @@ namespace Common.Logging.Simple
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="exception">The exception to log.</param>
         /// <param name="args">the list of message format arguments</param>
-        public void ErrorFormat(Exception exception, IFormatProvider formatProvider, string format, params object[] args)
+        public void ErrorFormat(IFormatProvider formatProvider, string format, Exception exception, params object[] args)
         {
             // NOP - no operation
         }
@@ -509,6 +591,27 @@ namespace Common.Logging.Simple
         /// <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
         /// <param name="exception">The exception to log, including its stack Error.</param>
         public void Error(FormatMessageCallback formatMessageCallback, Exception exception)
+        {
+            // NOP - no operation
+        }
+
+        /// <summary>
+        /// Ignores message.
+        /// </summary>
+        /// <param name="formatProvider">An <see cref="IFormatProvider"/> that supplies culture-specific formatting information.</param>
+        /// <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
+        public void Error(IFormatProvider formatProvider, FormatMessageCallback formatMessageCallback)
+        {
+            // NOP - no operation
+        }
+
+        /// <summary>
+        /// Ignores message.
+        /// </summary>
+        /// <param name="formatProvider">An <see cref="IFormatProvider"/> that supplies culture-specific formatting information.</param>
+        /// <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
+        /// <param name="exception">The exception to log, including its stack Error.</param>
+        public void Error(IFormatProvider formatProvider, FormatMessageCallback formatMessageCallback, Exception exception)
         {
             // NOP - no operation
         }
@@ -552,7 +655,7 @@ namespace Common.Logging.Simple
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="exception">The exception to log.</param>
         /// <param name="args">the list of message format arguments</param>
-        public void FatalFormat(Exception exception, string format, params object[] args)
+        public void FatalFormat(string format, Exception exception, params object[] args)
         {
             // NOP - no operation
         }
@@ -575,7 +678,7 @@ namespace Common.Logging.Simple
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="exception">The exception to log.</param>
         /// <param name="args">the list of message format arguments</param>
-        public void FatalFormat(Exception exception, IFormatProvider formatProvider, string format, params object[] args)
+        public void FatalFormat(IFormatProvider formatProvider, string format, Exception exception, params object[] args)
         {
             // NOP - no operation
         }
@@ -595,6 +698,27 @@ namespace Common.Logging.Simple
         /// <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
         /// <param name="exception">The exception to log, including its stack Fatal.</param>
         public void Fatal(FormatMessageCallback formatMessageCallback, Exception exception)
+        {
+            // NOP - no operation
+        }
+
+        /// <summary>
+        /// Ignores message.
+        /// </summary>
+        /// <param name="formatProvider">An <see cref="IFormatProvider"/> that supplies culture-specific formatting information.</param>
+        /// <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
+        public void Fatal(IFormatProvider formatProvider, FormatMessageCallback formatMessageCallback)
+        {
+            // NOP - no operation
+        }
+
+        /// <summary>
+        /// Ignores message.
+        /// </summary>
+        /// <param name="formatProvider">An <see cref="IFormatProvider"/> that supplies culture-specific formatting information.</param>
+        /// <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
+        /// <param name="exception">The exception to log, including its stack Fatal.</param>
+        public void Fatal(IFormatProvider formatProvider, FormatMessageCallback formatMessageCallback, Exception exception)
         {
             // NOP - no operation
         }

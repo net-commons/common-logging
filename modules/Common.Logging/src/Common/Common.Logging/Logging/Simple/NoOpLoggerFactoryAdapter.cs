@@ -1,7 +1,7 @@
 #region License
 
 /*
- * Copyright © 2002-2006 the original author or authors.
+ * Copyright © 2002-2009 the original author or authors.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,12 +18,8 @@
 
 #endregion
 
-#region Imports
-
 using System;
 using System.Collections.Specialized;
-
-#endregion
 
 namespace Common.Logging.Simple
 {
@@ -31,6 +27,8 @@ namespace Common.Logging.Simple
     /// Factory for creating <see cref="ILog" /> instances that silently ignores
     /// logging requests.
 	/// </summary>
+    /// <seealso cref="LogManager.Adapter"/>
+    /// <seealso cref="ConfigurationSectionHandler"/>
     /// <author>Gilles Bayon</author>
 	public sealed class NoOpLoggerFactoryAdapter : ILoggerFactoryAdapter
 	{
