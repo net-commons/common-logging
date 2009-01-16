@@ -56,7 +56,7 @@ p.releaseinfo {
 
 p.pubdate {
     font-size: 120%;
-    font-weight: bold; 
+    font-weight: bold;
     font-family: Verdana, Arial, helvetica, sans-serif;
 }
 
@@ -83,7 +83,7 @@ blockquote {
 }
 
 .title {
-    font-size: 110%; 
+//    font-size: 110%;
     font-weight: 800;
 }
 
@@ -126,6 +126,10 @@ div.table {
 	padding: 10px;
 }
 
+div.table .title {
+  font-size: 90%;
+}
+
 div.table > p.title {
 	padding-left: 10px;
 }
@@ -134,7 +138,7 @@ table[summary^="Navigation footer"] {
     border-collapse: collapse;
     border-spacing: 0;
     border: 1px black;
-    empty-cells: hide;    
+    empty-cells: hide;
     margin: 0px;
     width: 100%;
 }
@@ -143,7 +147,7 @@ table[summary^="Note"], table[summary^="Warning"], table[summary^="Tip"] {
     border-collapse: collapse;
     border-spacing: 0;
     border: 1px black;
-    empty-cells: hide;    
+    empty-cells: hide;
     margin: 10px 0px 10px -20px;
     width: 100%;
 }
@@ -157,28 +161,28 @@ div.warning TD {
 	text-align: justify;
 }
 
-h1 { 
-    font-size: 150%; 
+h1 {
+    font-size: 150%;
 }
 
-h2 { 
-    font-size: 110%; 
+h2 {
+    font-size: 130%;
 }
 
 h3 {
-    font-size: 100%; font-weight: bold; 
+    font-size: 100%; font-weight: bold;
 }
 
-h4 { 
+h4 {
     font-size: 90%; font-weight: bold;
 }
 
 h5 {
-    font-size: 90%; font-style: italic; 
+    font-size: 90%; font-style: italic;
 }
 
-h6 { 
-    font-size: 100%; font-style: italic; 
+h6 {
+    font-size: 100%; font-style: italic;
 }
 
 tt {
@@ -222,19 +226,19 @@ hr {
     padding: 0px;
 }
 
-.variablelist { 
-    padding-top: 10px; 
-    padding-bottom: 10px; 
+.variablelist {
+    padding-top: 10px;
+    padding-bottom: 10px;
     margin: 0;
 }
 
-.term { 
+.term {
     font-weight:bold;
 }
 
 .mediaobject {
-    padding-top: 30px; 
-    padding-bottom: 30px; 
+    padding-top: 30px;
+    padding-bottom: 30px;
 }
 
 .legalnotice {

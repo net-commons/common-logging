@@ -2,13 +2,13 @@
 
 /*
  * Copyright © 2002-2009 the original author or authors.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -29,8 +29,8 @@ namespace Common.Logging
     /// </summary>
 	/// <remarks>
 	/// This listener captures all output sent by calls to <see cref="System.Diagnostics.Trace">System.Diagnostics.Trace</see> and
-	/// sends it to an <see cref="ILog"/> instance using the log level specified 
-	/// on <see cref="LogLevel"/>. 
+	/// sends it to an <see cref="ILog"/> instance using the log level specified
+	/// on <see cref="LogLevel"/>.
 	/// The <see cref="ILog"/> instance to be used is obtained by calling
 	/// <see cref="LogManager.GetLogger(string)"/>, using this listener's <see cref="Name"/> as the argument.
 	/// </remarks>
@@ -38,7 +38,8 @@ namespace Common.Logging
 	/// The snippet below shows how to add this listener to your app.config:
 	/// <code>
     /// &lt;configuration&gt;
-    ///   &lt;system.diagnostics&gt;
+    ///   &lt;system.diagnostics&gt
+    ///     &lt;trace&gt;
     ///     &lt;listeners&gt;
     ///       &lt;clear /&gt;
     ///       &lt;add name=&quot;myDiagnostics&quot;
@@ -66,7 +67,7 @@ namespace Common.Logging
 		/// </summary>
 		/// <remarks>
 		/// This listener captures all output sent by calls to <see cref="System.Diagnostics.Trace"/> and
-		/// sends it to an <see cref="ILog"/> instance using the <see cref="Common.Logging.LogLevel"/> specified 
+		/// sends it to an <see cref="ILog"/> instance using the <see cref="Common.Logging.LogLevel"/> specified
 		/// on <see cref="LogLevel"/>.
 		/// </remarks>
         public LogLevel LogLevel
@@ -112,7 +113,7 @@ namespace Common.Logging
 		/// </summary>
 		/// <remarks>
 		/// <paramref name="initializeData"/> is a semicolon separated string of name/value pairs, where each pair has
-		/// the form <c>key=value</c>. E.g. 
+		/// the form <c>key=value</c>. E.g.
 		/// "<c>Name=MyLoggerName;LogLevel=Debug</c>"
 		/// </remarks>
 		/// <param name="initializeData">a semicolon separated list of name/value pairs.</param>
