@@ -21,7 +21,7 @@
           <fo:table-row>
             <fo:table-cell text-align="center">
               <fo:block>
-                <fo:external-graphic src="file:../../src/images/logo.png"/>
+                <fo:external-graphic src="file:../../src/images/netcommon-logo.gif" content-width="scale-to-fit" width="100%" scaling="uniform" />
               </fo:block>
               <fo:block font-family="Helvetica" font-size="22pt" padding-before="10mm">
                 <xsl:value-of select="bookinfo/subtitle"/>
@@ -90,7 +90,7 @@
     <xsl:param name="gentext-key" select="''" />
     <xsl:variable name="Version">
       <xsl:if test="//releaseinfo">
-        <xsl:text>Spring Framework (</xsl:text>
+        <xsl:text>Common Infrastructure Libraries (</xsl:text>
         <xsl:value-of select="//releaseinfo" />
         <xsl:text>)</xsl:text>
       </xsl:if>

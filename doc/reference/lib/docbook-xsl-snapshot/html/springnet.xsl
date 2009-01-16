@@ -85,8 +85,7 @@
   </xsl:template>
   <xsl:template match="authorgroup" mode="titlepage.mode">
     <div class="{name(.)}">
-      <h2>Authors</h2>
-      <p />
+      <p class="title">Authors</p>
       <xsl:apply-templates mode="titlepage.mode" />
     </div>
   </xsl:template>
