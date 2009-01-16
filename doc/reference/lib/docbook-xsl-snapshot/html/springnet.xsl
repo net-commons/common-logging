@@ -108,7 +108,7 @@
 -->
 		<div style="border: 1px solid black; background-color: white; height: 73px;" xmlns="http://www.w3.org/TR/xhtml1/transitional">
 			<a title="Common Infrastructure Libraries for .NET" href="http://netcommon.sf.net/" style="border: medium none ;">
-				<img src="images/common.logging-logo.png" style="border: medium none ;"/>
+				<img src="images/netcommon-logo.gif" style="border: medium none ;"/>
 			</a>
 			<a title="Common Infrastructure Libraries for .NET" href="http://netcommon.sf.net/" style="border: medium none ;">
 				<img src="images/bubble-big.jpg" style="border: medium none ; position: absolute; padding-top: 5px; right: 32px;"/>
