@@ -2,6 +2,16 @@ Common.Logging CHANGELOG
 =====================================
 http://netcommon.sf.net
 
+Release 2.0.0, xxxxx xx 2009
+
+Summary: New Features and Bug Fix release
+
+Feature Requests
+
+
+Bug
+
+
 Release 1.2.0, October 10 2007
 
 Summary: New Features and Bug Fix release
