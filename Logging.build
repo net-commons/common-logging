@@ -1,6 +1,7 @@
 <?xml version="1.0" ?>
 <project name="Common.Logging" default="package" basedir=".">
 
+  <property name="project.version" value="2.0-beta"/>
 
   <target name="build">
     <!-- build base common.logging .dll -->
@@ -97,10 +98,14 @@
 
   </target>
 
+  <target name="doc">
+		<nant buildfile="doc/reference/docbook.build" target="all" />
+  </target>
+
 <!--
   <target name="package">
 -->
-  <target name="package" depends="build">
+  <target name="package" depends="build, doc">
     <delete dir="package"/>
     <foreach item="String" in="1.0,1.1,2.0" delim="," property="framework-version">
       <mkdir dir="package/Common.Logging/bin/net/${framework-version}/debug"/>
@@ -217,7 +222,7 @@
 
     <!-- copy over docs -->
     <copy todir="package/Common.Logging/doc/">
-      <fileset basedir="./doc/output/reference/">
+      <fileset basedir="./doc/reference/target/">
         <include name="**/*"/>
       </fileset>
     </copy>
@@ -230,7 +235,7 @@
 
   <target name="package-zip" description="Build and Package distribution as .zip file">
     <call target="package"/>
-    <property name="project.zip-path" value="package/Common.Logging-1.3.0.zip"/>
+    <property name="project.zip-path" value="package/Common.Logging-${project.version}.zip"/>
     <zip zipfile="${project.zip-path}">
       <fileset basedir="package">
         <include name="**/*"/>
