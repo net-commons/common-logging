@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <chapter version="5" xmlns="http://docbook.org/ns/docbook"
          xmlns:xlink="http://www.w3.org/1999/xlink"
          xmlns:ns5="http://www.w3.org/1998/Math/MathML"
@@ -142,66 +142,78 @@ log.Debug("hello world");</programlisting></para>
     void Trace(FormatMessageCallback formatMessageCallback);
     void Trace(FormatMessageCallback formatMessageCallback, Exception exception);
     void Trace(IFormatProvider formatProvider, FormatMessageCallback formatMessageCallback);
-    void Trace(IFormatProvider formatProvider, FormatMessageCallback formatMessageCallback, Exception exception);
+    void Trace(IFormatProvider formatProvider, FormatMessageCallback formatMessageCallback
+               , Exception exception);
     void TraceFormat(string format, params object[] args);
     void TraceFormat(string format, Exception exception, params object[] args);
     void TraceFormat(IFormatProvider formatProvider, string format, params object[] args);
-    void TraceFormat(IFormatProvider formatProvider, string format, Exception exception, params object[] args);
+    void TraceFormat(IFormatProvider formatProvider, string format, Exception exception
+                     , params object[] args);
 
     void Debug(object message);
     void Debug(object message, Exception exception);
     void Debug(FormatMessageCallback formatMessageCallback);
     void Debug(FormatMessageCallback formatMessageCallback, Exception exception);
     void Debug(IFormatProvider formatProvider, FormatMessageCallback formatMessageCallback);
-    void Debug(IFormatProvider formatProvider, FormatMessageCallback formatMessageCallback, Exception exception);
+    void Debug(IFormatProvider formatProvider, FormatMessageCallback formatMessageCallback
+               , Exception exception);
     void DebugFormat(string format, params object[] args);
     void DebugFormat(string format, Exception exception, params object[] args);
     void DebugFormat(IFormatProvider formatProvider, string format, params object[] args);
-    void DebugFormat(IFormatProvider formatProvider, string format, Exception exception, params object[] args);
+    void DebugFormat(IFormatProvider formatProvider, string format, Exception exception
+                     , params object[] args);
 
     void Info(object message);
     void Info(object message, Exception exception);
     void Info(FormatMessageCallback formatMessageCallback);
     void Info(FormatMessageCallback formatMessageCallback, Exception exception);
     void Info(IFormatProvider formatProvider, FormatMessageCallback formatMessageCallback);
-    void Info(IFormatProvider formatProvider, FormatMessageCallback formatMessageCallback, Exception exception);
+    void Info(IFormatProvider formatProvider, FormatMessageCallback formatMessageCallback
+              , Exception exception);
     void InfoFormat(string format, params object[] args);
     void InfoFormat(string format, Exception exception, params object[] args);
     void InfoFormat(IFormatProvider formatProvider, string format, params object[] args);
-    void InfoFormat(IFormatProvider formatProvider, string format, Exception exception, params object[] args);
+    void InfoFormat(IFormatProvider formatProvider, string format, Exception exception
+                    , params object[] args);
 
     void Warn(object message);
     void Warn(object message, Exception exception);
     void Warn(FormatMessageCallback formatMessageCallback);
     void Warn(FormatMessageCallback formatMessageCallback, Exception exception);
     void Warn(IFormatProvider formatProvider, FormatMessageCallback formatMessageCallback);
-    void Warn(IFormatProvider formatProvider, FormatMessageCallback formatMessageCallback, Exception exception);
+    void Warn(IFormatProvider formatProvider, FormatMessageCallback formatMessageCallback
+              , Exception exception);
     void WarnFormat(string format, params object[] args);
     void WarnFormat(string format, Exception exception, params object[] args);
     void WarnFormat(IFormatProvider formatProvider, string format, params object[] args);
-    void WarnFormat(IFormatProvider formatProvider, string format, Exception exception, params object[] args);
+    void WarnFormat(IFormatProvider formatProvider, string format, Exception exception
+                    , params object[] args);
 
     void Error(object message);
     void Error(object message, Exception exception);
     void Error(FormatMessageCallback formatMessageCallback);
     void Error(FormatMessageCallback formatMessageCallback, Exception exception);
     void Error(IFormatProvider formatProvider, FormatMessageCallback formatMessageCallback);
-    void Error(IFormatProvider formatProvider, FormatMessageCallback formatMessageCallback, Exception exception);
+    void Error(IFormatProvider formatProvider, FormatMessageCallback formatMessageCallback
+               , Exception exception);
     void ErrorFormat(string format, params object[] args);
     void ErrorFormat(string format, Exception exception, params object[] args);
     void ErrorFormat(IFormatProvider formatProvider, string format, params object[] args);
-    void ErrorFormat(IFormatProvider formatProvider, string format, Exception exception, params object[] args);
+    void ErrorFormat(IFormatProvider formatProvider, string format, Exception exception
+                     , params object[] args);
 
     void Fatal(object message);
     void Fatal(object message, Exception exception);
     void Fatal(FormatMessageCallback formatMessageCallback);
     void Fatal(FormatMessageCallback formatMessageCallback, Exception exception);
     void Fatal(IFormatProvider formatProvider, FormatMessageCallback formatMessageCallback);
-    void Fatal(IFormatProvider formatProvider, FormatMessageCallback formatMessageCallback, Exception exception);
+    void Fatal(IFormatProvider formatProvider, FormatMessageCallback formatMessageCallback
+               , Exception exception);
     void FatalFormat(string format, params object[] args);
     void FatalFormat(string format, Exception exception, params object[] args);
     void FatalFormat(IFormatProvider formatProvider, string format, params object[] args);
-    void FatalFormat(IFormatProvider formatProvider, string format, Exception exception, params object[] args);
+    void FatalFormat(IFormatProvider formatProvider, string format, Exception exception
+                     , params object[] args);
 
     // Properties
     bool IsDebugEnabled { get; }
@@ -325,6 +337,9 @@ Common.Logging.LogManager.Adapter = new Common.Logging.Simple.ConsoleOutLoggerFa
         <title>Configuration Properties</title>
 
         <tgroup cols="3">
+        	<colspec colnum="1" colname="key" colwidth="1*"/>
+					<colspec colnum="2" colname="val" colwidth="1*"/>
+					<colspec colnum="3" colname="desc" colwidth="2*"/>
           <thead>
             <row>
               <entry>Key</entry>
@@ -388,6 +403,9 @@ Common.Logging.LogManager.Adapter = new Common.Logging.Simple.ConsoleOutLoggerFa
         <title>Configuration Properties</title>
 
         <tgroup cols="3">
+        	<colspec colnum="1" colname="key" colwidth="1*"/>
+					<colspec colnum="2" colname="val" colwidth="1*"/>
+					<colspec colnum="3" colname="desc" colwidth="2*"/>
           <thead>
             <row>
               <entry>Key</entry>
@@ -464,6 +482,10 @@ Common.Logging.LogManager.Adapter = new Common.Logging.Simple.ConsoleOutLoggerFa
         <title>Configuration Properties</title>
 
         <tgroup cols="3">
+        	<colspec colnum="1" colname="key" colwidth="1*"/>
+					<colspec colnum="2" colname="val" colwidth="1*"/>
+					<colspec colnum="3" colname="desc" colwidth="2*"/>
+
           <thead>
             <row>
               <entry>Key</entry>
@@ -493,9 +515,9 @@ Common.Logging.LogManager.Adapter = new Common.Logging.Simple.ConsoleOutLoggerFa
 
               <entry>&lt;path to your log4net.config file&gt;</entry>
 
-              <entry>if configType is FILE or FILE-WATCH, the value of
+              <entry><para>if configType is FILE or FILE-WATCH, the value of
               "configFile" is passed to XmlConfigurator.Configure (FileInfo) /
-              ConfigureAndWatch(FileInfo) method.</entry>
+              ConfigureAndWatch(FileInfo) method.</para></entry>
             </row>
           </tbody>
         </tgroup>
@@ -598,6 +620,9 @@ Common.Logging.LogManager.Adapter = new Common.Logging.Simple.ConsoleOutLoggerFa
         <title>Configuration Properties</title>
 
         <tgroup cols="3">
+        	<colspec colnum="1" colname="key" colwidth="1*"/>
+					<colspec colnum="2" colname="val" colwidth="1*"/>
+					<colspec colnum="3" colname="desc" colwidth="2*"/>
           <thead>
             <row>
               <entry>Key</entry>
@@ -623,8 +648,8 @@ Common.Logging.LogManager.Adapter = new Common.Logging.Simple.ConsoleOutLoggerFa
 
               <entry>&lt;path to your NLog.config file&gt;</entry>
 
-              <entry>if configType is FILE, the value of "configFile" is
-              passed to XmlLoggingConfiguration(string) constructor.</entry>
+              <entry><para>if configType is FILE, the value of "configFile" is
+              passed to XmlLoggingConfiguration(string) constructor.</para></entry>
             </row>
           </tbody>
         </tgroup>
@@ -665,7 +690,8 @@ Common.Logging.LogManager.Adapter = new Common.Logging.Simple.ConsoleOutLoggerFa
     &lt;/logging&gt;
   &lt;/common&gt;
 
-  &lt;nlog xmlns="http://www.nlog-project.org/schemas/NLog.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
+  &lt;nlog xmlns="http://www.nlog-project.org/schemas/NLog.xsd"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
     &lt;targets&gt;
       &lt;target name="console" xsi:type="Console" layout="${date:format=HH\:MM\:ss} ${logger} ${message}" /&gt;
     &lt;/targets&gt;
@@ -706,6 +732,8 @@ Common.Logging.LogManager.Adapter = new Common.Logging.Simple.ConsoleOutLoggerFa
           <title>EntLib 3.1 to Common.Logging log level mapping</title>
 
           <tgroup cols="2">
+	        	<colspec colnum="1" colname="key" colwidth="1*"/>
+						<colspec colnum="2" colname="val" colwidth="1*"/>
             <thead>
               <row>
                 <entry>Common.Logging.LogLevel</entry>
@@ -785,6 +813,8 @@ Common.Logging.LogManager.Adapter = new Common.Logging.Simple.ConsoleOutLoggerFa
           <title>EntLib 4,1 to Common.Logging log level mapping</title>
 
           <tgroup cols="2">
+	        	<colspec colnum="1" colname="key" colwidth="1*"/>
+						<colspec colnum="2" colname="val" colwidth="1*"/>
             <thead>
               <row>
                 <entry>Common.Logging.LogLevel</entry>
@@ -859,8 +889,8 @@ Common.Logging.LogManager.Adapter = new Common.Logging.Simple.ConsoleOutLoggerFa
       &lt;trace&gt;
          &lt;listeners&gt;
             &lt;clear /&gt;
-            &lt;add name="commonLoggingListener" 
-                 type="Common.Logging.CommonLoggingTraceListener, Common.Logging" 
+            &lt;add name="commonLoggingListener"
+                 type="Common.Logging.CommonLoggingTraceListener, Common.Logging"
                  initializeData="LogLevel=Trace" /&gt;
          &lt;/listeners&gt;
       &lt;/trace&gt;
