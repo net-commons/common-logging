@@ -148,7 +148,7 @@ namespace Common
             {
                 for (int i = 0; i < runs; i++)
                 {
-                    log.InfoFormat("some logger info {0}", (object)myObj);
+                    log.Info( m=>m("some logger info {0}", (object)myObj) );
                 }
             }
 
@@ -159,8 +159,10 @@ namespace Common
             {
                 for (int i = 0; i < runs; i++)
                 {
-                    // no way to determine log level, no log level per category!
-                    traceSource.TraceEvent(TraceEventType.Information, -1, "some tracesource info {0}", (object)myObj);
+                    if (traceSource.Switch.ShouldTrace(TraceEventType.Information))
+                    {
+                        traceSource.TraceEvent(TraceEventType.Information, -1, "some tracesource info {0}", (object)myObj);
+                    }
                 }
             }
 
@@ -177,8 +179,7 @@ namespace Common
             {
                 for (int i = 0; i < runs; i++)
                 {
-                    // no way to determine log level, no log level per category!
-                    log.InfoFormat("some logger info {0}", (object)myObj);
+                    log.Info(m => m("some logger info {0}", (object)myObj));
                 }
             }
             Assert.AreEqual(0, adapter.Messages.Count);
@@ -186,14 +187,15 @@ namespace Common
             // Use configured TraceSource
             traceSource = new TraceSource("DiagnosticsTracePerformanceTest");
             listener = (MyTestTraceListener) traceSource.Listeners[0];
-//            if (traceSource.Switch.ShouldTrace(TraceEventType.Information))
             sw = new StopWatch();
             using (sw.Start("Time:{0} - traceSource.TraceEvent"))
             {
                 for (int i = 0; i < runs; i++)
                 {
-                    // no way to determine log level, no log level per category!
-                    traceSource.TraceEvent(TraceEventType.Information, -1, "some tracesource info {0}", (object)myObj);
+                    if (traceSource.Switch.ShouldTrace(TraceEventType.Information))
+                    {
+                        traceSource.TraceEvent(TraceEventType.Information, -1, "some tracesource info {0}", (object)myObj);
+                    }
                 }
             }
             Assert.AreEqual(0, listener.Messages.Count);
