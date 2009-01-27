@@ -1,7 +1,9 @@
 using System;
 using System.Reflection;
+using System.Runtime.InteropServices;
 
 [assembly: CLSCompliant(true)]
+[assembly: ComVisible(false)]
 
 //
 // General Information about an assembly is controlled through the following
@@ -14,10 +16,9 @@ using System.Reflection;
 #elif (NET_1_1)
 [assembly: AssemblyConfiguration("net-1.1.win32; unofficial Beta")]
 #else
-[assembly: AssemblyConfiguration("net-2.0.win32; unofficial Beta")]
+[assembly: AssemblyConfiguration("net-2.0.win32; beta")]
 #endif
 [assembly: AssemblyCompany("http://netcommon.sourceforge.net/")]
-//[assembly: AssemblyProduct("Common Logging Framework")]
 [assembly: AssemblyCopyright("Copyright 2006-2009 the Common Logging Framework Team.")]
 [assembly: AssemblyTrademark("Apache License, Version 2.0")]
 [assembly: AssemblyCulture("")]

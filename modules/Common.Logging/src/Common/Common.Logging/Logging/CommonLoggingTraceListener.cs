@@ -38,7 +38,7 @@ namespace Common.Logging
 	/// The snippet below shows how to add this listener to your app.config:
 	/// <code>
     /// &lt;configuration&gt;
-    ///   &lt;system.diagnostics&gt
+    ///   &lt;system.diagnostics&gt;
     ///     &lt;trace&gt;
     ///     &lt;listeners&gt;
     ///       &lt;clear /&gt;
