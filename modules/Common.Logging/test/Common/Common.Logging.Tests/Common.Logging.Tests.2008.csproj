@@ -86,6 +86,7 @@
     <Compile Include="Logging\Simple\AbstractSimpleLogTest.cs" />
     <Compile Include="Logging\StandaloneConfigurationReader.cs" />
     <Compile Include="MethodInvokePerformanceTests.cs" />
+    <Compile Include="PerformanceTests.cs" />
     <Compile Include="StopWatch.cs" />
     <Compile Include="TestUtil\TestLogger.cs" />
     <Compile Include="TestUtil\TestLoggerEvent.cs" />
@@ -132,4 +133,9 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <PropertyGroup>
+    <PostBuildEvent>echo "Copying .xml files for tests"
+xcopy "$(ProjectDir)Data" "$(OutDir)" /Y /S /Q /D
+xcopy  "$(ProjectDir)$(TargetFileName).config" "$(OutDir)" /Y /S /Q /D /I</PostBuildEvent>
+  </PropertyGroup>
 </Project>

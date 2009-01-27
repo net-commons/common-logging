@@ -14,9 +14,9 @@ namespace Common
         private delegate void WriteHandler(int x, object message, Exception ex);
 
         [Test]
-        public void PerformanceTest()
+        public void DelegatePerformanceTest()
         {
-            int runs = 1000000;
+            int runs = 5000000;
 
             StopWatch sw;
             sw = new StopWatch(); 
