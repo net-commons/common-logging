@@ -143,5 +143,14 @@ namespace Common.Logging
             LogManager.ConfigurationReader = configReader;
             return LogManager.GetLogger(typeof (LogManagerTests));
         }
+
+        [Test]
+        public void GetCurrentClassLoggerUsesCorrectType()
+        {
+            LogManager.Adapter = new ConsoleOutLoggerFactoryAdapter();
+            ConsoleOutLogger log = (ConsoleOutLogger) LogManager.GetCurrentClassLogger();
+            Assert.AreEqual(this.GetType().FullName, log.Name);
+        }
+
     }
 }

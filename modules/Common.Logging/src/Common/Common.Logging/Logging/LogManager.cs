@@ -20,6 +20,7 @@
 
 using System;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
 using Common.Logging.Simple;
 
 namespace Common.Logging
@@ -97,12 +98,25 @@ namespace Common.Logging
             }
         }
 
+        /// <summary>
+        /// Gets the logger by calling <see cref="ILoggerFactoryAdapter.GetLogger(Type)"/>
+        /// on the currently configured <see cref="Adapter"/> using the type of the calling class.
+        /// </summary>
+        /// <seealso cref="GetLogger(Type)"/>
+        /// <returns>the logger instance obtained from the current <see cref="Adapter"/></returns>
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        public static ILog GetCurrentClassLogger()
+        {
+            StackFrame frame = new StackFrame(1, false);
+            return Adapter.GetLogger(frame.GetMethod().DeclaringType);
+        }
 
         /// <summary>
-        /// Gets the logger.
+        /// Gets the logger by calling <see cref="ILoggerFactoryAdapter.GetLogger(Type)"/>
+        /// on the currently configured <see cref="Adapter"/> using the specified type.
         /// </summary>
         /// <param name="type">The type.</param>
-        /// <returns></returns>
+        /// <returns>the logger instance obtained from the current <see cref="Adapter"/></returns>
         public static ILog GetLogger(Type type)
         {
             return Adapter.GetLogger(type);
@@ -110,10 +124,11 @@ namespace Common.Logging
 
 
         /// <summary>
-        /// Gets the logger.
+        /// Gets the logger by calling <see cref="ILoggerFactoryAdapter.GetLogger(string)"/>
+        /// on the currently configured <see cref="Adapter"/> using the specified name.
         /// </summary>
         /// <param name="name">The name.</param>
-        /// <returns></returns>
+        /// <returns>the logger instance obtained from the current <see cref="Adapter"/></returns>
         public static ILog GetLogger(string name)
         {
             return Adapter.GetLogger(name);
