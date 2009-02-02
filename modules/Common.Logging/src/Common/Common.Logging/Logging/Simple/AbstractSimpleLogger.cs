@@ -32,6 +32,7 @@ namespace Common.Logging.Simple
     public abstract class AbstractSimpleLogger : AbstractLogger
     {
         private readonly string _name = string.Empty;
+        private readonly bool _showLevel = false;
         private readonly bool _showDateTime = false;
         private readonly bool _showLogName = false;
         private LogLevel _currentLogLevel = LogLevel.All;
@@ -46,6 +47,14 @@ namespace Common.Logging.Simple
         public string Name
         {
             get { return _name; }
+        }
+
+        /// <summary>
+        /// Include the current log level in the log message.
+        /// </summary>
+        public bool ShowLevel
+        {
+            get { return _showLevel; }
         }
 
         /// <summary>
@@ -97,14 +106,16 @@ namespace Common.Logging.Simple
         /// </summary>
         /// <param name="logName">The name, usually type name of the calling class, of the logger.</param>
         /// <param name="logLevel">The current logging threshold. Messages recieved that are beneath this threshold will not be logged.</param>
+        /// <param name="showlevel">Include level in the log message.</param>
         /// <param name="showDateTime">Include the current time in the log message.</param>
         /// <param name="showLogName">Include the instance name in the log message.</param>
         /// <param name="dateTimeFormat">The date and time format to use in the log message.</param>
-        public AbstractSimpleLogger(string logName, LogLevel logLevel
+        public AbstractSimpleLogger(string logName, LogLevel logLevel, bool showlevel
                                  , bool showDateTime, bool showLogName, string dateTimeFormat)
         {
             _name = logName;
             _currentLogLevel = logLevel;
+            _showLevel = showlevel;
             _showDateTime = showDateTime;
             _showLogName = showLogName;
             _dateTimeFormat = dateTimeFormat;
@@ -144,8 +155,11 @@ namespace Common.Logging.Simple
                 stringBuilder.Append(" ");
             }
 
-            // Append a readable representation of the log level
-            stringBuilder.Append(("[" + level.ToString().ToUpper() + "]").PadRight(8));
+            if (_showLevel)
+            {
+                // Append a readable representation of the log level
+                stringBuilder.Append(("[" + level.ToString().ToUpper() + "]").PadRight(8));
+            }
 
             // Append the name of the log instance if so configured
             if (_showLogName)
@@ -168,7 +182,7 @@ namespace Common.Logging.Simple
         /// </summary>
         /// <param name="level"></param>
         /// <returns></returns>
-        protected bool IsLevelEnabled(LogLevel level)
+        protected virtual bool IsLevelEnabled(LogLevel level)
         {
             int iLevel = (int)level;
             int iCurrentLogLevel = (int)_currentLogLevel;

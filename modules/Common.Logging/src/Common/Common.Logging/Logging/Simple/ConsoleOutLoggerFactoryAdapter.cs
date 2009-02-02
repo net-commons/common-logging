@@ -59,9 +59,9 @@ namespace Common.Logging.Simple
 	    /// <summary>
 	    /// Creates a new <see cref="ConsoleOutLogger"/> instance.
 	    /// </summary>
-	    protected override ILog CreateLogger(string name, LogLevel level, bool showDateTime, bool showLogName, string dateTimeFormat)
+	    protected override ILog CreateLogger(string name, LogLevel level, bool showLevel, bool showDateTime, bool showLogName, string dateTimeFormat)
 	    {
-            ILog log = new ConsoleOutLogger(name, level, showDateTime, showLogName, dateTimeFormat);
+            ILog log = new ConsoleOutLogger(name, level, showLevel, showDateTime, showLogName, dateTimeFormat);
 	        return log;	        
 	    }
 	}

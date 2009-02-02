@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using Common.Logging;
 using Common.Logging.Simple;
 
@@ -11,7 +10,7 @@ namespace Common.TestUtil
         public TestLoggerEvent LastEvent;
  
         public TestLogger(TestLoggerFactoryAdapter owner, string logName) 
-            : base(logName, LogLevel.All, true, true, null)
+            : base(logName, LogLevel.All, true, true, true, null)
         {
             _owner = owner;
         }

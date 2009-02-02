@@ -21,102 +21,94 @@
 using System;
 using System.Collections.Specialized;
 using System.Diagnostics;
+using System.Text;
 
 namespace Common.Logging
 {
     /// <summary>
-    /// TraceListener sending all trace output to Common.Logging infrastructure.
+    /// A TraceListener implementation sending all trace output to Common.Logging infrastructure.
     /// </summary>
-	/// <remarks>
-	/// This listener captures all output sent by calls to <see cref="System.Diagnostics.Trace">System.Diagnostics.Trace</see> and
-	/// sends it to an <see cref="ILog"/> instance using the log level specified
-	/// on <see cref="LogLevel"/>.
-	/// The <see cref="ILog"/> instance to be used is obtained by calling
-	/// <see cref="LogManager.GetLogger(string)"/>, using this listener's <see cref="Name"/> as the argument.
-	/// </remarks>
-	/// <example>
-	/// The snippet below shows how to add this listener to your app.config:
-	/// <code>
-    /// &lt;configuration&gt;
-    ///   &lt;system.diagnostics&gt;
-    ///     &lt;trace&gt;
+    /// <remarks>
+    /// This listener captures all output sent by calls to <see cref="System.Diagnostics.Trace">System.Diagnostics.Trace</see> and
+    /// and <see cref="TraceSource"/> and sends it to an <see cref="ILog"/> instance.<br/>
+    /// The <see cref="ILog"/> instance to be used is obtained by calling
+    /// <see cref="LogManager.GetLogger(string)"/>. The name of the logger is created by passing 
+    /// this listener's <see cref="TraceListener.Name"/> and any <c>source</c> or <c>category</c> passed 
+    /// into this listener (see <see cref="TraceListener.WriteLine(object,string)"/> or <see cref="TraceListener.TraceEvent(TraceEventCache,string,TraceEventType,int,string,object[])"/> for example).
+    /// </remarks>
+    /// <example>
+    /// The snippet below shows how to add and configure this listener to your app.config:
+    /// <code>
+    /// &lt;system.diagnostics&gt;
+    ///   &lt;sharedListeners&gt;
+    ///     &lt;add name=&quot;Diagnostics&quot;
+    ///          type=&quot;Common.Logging.CommonLoggingTraceListener, Common.Logging&quot;
+    ///          initializeData=&quot;DefaultTraceEventType=Information; LoggerNameFormat={0}.{1}&quot;&gt;
+    ///       &lt;filter type=&quot;System.Diagnostics.EventTypeFilter&quot; initializeData=&quot;Information&quot;/&gt;
+    ///     &lt;/add&gt;
+    ///   &lt;/sharedListeners&gt;
+    ///   &lt;trace&gt;
     ///     &lt;listeners&gt;
-    ///       &lt;clear /&gt;
-    ///       &lt;add name=&quot;myDiagnostics&quot;
-    ///            type=&quot;Common.Logging.CommonLoggingTraceListener, Common.Logging&quot;
-    ///            initializeData=&quot;LogLevel=Trace&quot; /&gt;
+    ///       &lt;add name=&quot;Diagnostics&quot; /&gt;
     ///     &lt;/listeners&gt;
-    ///     &lt;/trace&gt;
-    ///   &lt;/system.diagnostics&gt;
-    /// &lt;/configuration&gt;
-	/// </code>
-	/// </example>
-	/// <author>Erich Eichinger</author>
-    public sealed class CommonLoggingTraceListener : TraceListener
+    ///   &lt;/trace&gt;
+    /// &lt;/system.diagnostics&gt;
+    /// </code>
+    /// </example>
+    /// <author>Erich Eichinger</author>
+    public class CommonLoggingTraceListener : TraceListener
     {
-        private delegate void LogHandler(object message);
-
-        private LogLevel _logLevel = Logging.LogLevel.Trace;
-        private LogHandler _log;
+        private TraceEventType _defaultTraceEventType = TraceEventType.Verbose;
+        private string _loggerNameFormat = "{0}.{1}";
 
         #region Properties
 
-		/// <summary>
-		/// Sets the <see cref="Common.Logging.LogLevel"/> to use for logging
-		/// all events captured by this listener.
-		/// </summary>
-		/// <remarks>
-		/// This listener captures all output sent by calls to <see cref="System.Diagnostics.Trace"/> and
-		/// sends it to an <see cref="ILog"/> instance using the <see cref="Common.Logging.LogLevel"/> specified
-		/// on <see cref="LogLevel"/>.
-		/// </remarks>
-        public LogLevel LogLevel
+        /// <summary>
+        /// Sets the default <see cref="TraceEventType"/> to use for logging
+        /// all events emitted by <see cref="Trace"/><c>.Write(...)</c> and
+        /// <see cref="Trace"/><c>.WriteLine(...)</c> methods.
+        /// </summary>
+        /// <remarks>
+        /// This listener captures all output sent by calls to <see cref="System.Diagnostics.Trace"/> and
+        /// sends it to an <see cref="ILog"/> instance using the <see cref="Common.Logging.LogLevel"/> specified
+        /// on <see cref="LogLevel"/>.
+        /// </remarks>
+        public TraceEventType DefaultTraceEventType
         {
-            get { return _logLevel; }
-            set
-            {
-                _logLevel = value;
-                RefreshLogger();
-            }
+            get { return _defaultTraceEventType; }
+            set { _defaultTraceEventType = value; }
         }
 
-		/// <summary>
-		/// The Name of this <see cref="TraceListener"/>. This name is also used
-		/// for obtaining the underlying logger using <see cref="LogManager.GetLogger(string)"/>.
-		/// </summary>
-        public override string Name
+        /// <summary>
+        /// Format to use for creating the logger name. Defaults to "{0}.{1}".
+        /// </summary>
+        /// <seealso cref="string.Format(string,object[])"/>
+        public string LoggerNameFormat
         {
-            get
-            {
-                return base.Name;
-            }
-            set
-            {
-                base.Name = value;
-                RefreshLogger();
-            }
+            get { return _loggerNameFormat; }
+            set { _loggerNameFormat = value; }
         }
 
         #endregion
 
         #region Construction
 
-		/// <summary>
-		/// Creates a new instance with the default name "Diagnostics" and <see cref="LogLevel"/> "Trace".
-		/// </summary>
+        /// <summary>
+        /// Creates a new instance with the default name "Diagnostics" and <see cref="LogLevel"/> "Trace".
+        /// </summary>
         public CommonLoggingTraceListener()
             : this(string.Empty)
         { }
 
-		/// <summary>
-		/// Creates a new instance initialized with properties from the <paramref name="initializeData"/>. string.
-		/// </summary>
-		/// <remarks>
-		/// <paramref name="initializeData"/> is a semicolon separated string of name/value pairs, where each pair has
-		/// the form <c>key=value</c>. E.g.
-		/// "<c>Name=MyLoggerName;LogLevel=Debug</c>"
-		/// </remarks>
-		/// <param name="initializeData">a semicolon separated list of name/value pairs.</param>
+        /// <summary>
+        /// Creates a new instance initialized with properties from the <paramref name="initializeData"/>. string.
+        /// </summary>
+        /// <remarks>
+        /// <paramref name="initializeData"/> is a semicolon separated string of name/value pairs, where each pair has
+        /// the form <c>key=value</c>. E.g.
+        /// "<c>Name=MyLoggerName;LogLevel=Debug</c>"
+        /// </remarks>
+        /// <param name="initializeData">a semicolon separated list of name/value pairs.</param>
         public CommonLoggingTraceListener(string initializeData)
             : this(GetPropertiesFromInitString(initializeData))
         {
@@ -138,13 +130,13 @@ namespace Common.Logging
 
         private void ApplyProperties(NameValueCollection props)
         {
-            if (props["logLevel"] != null)
+            if (props["defaultTraceEventType"] != null)
             {
-                this._logLevel = (LogLevel)Enum.Parse(typeof(LogLevel), props["logLevel"], true);
+                this._defaultTraceEventType = (TraceEventType)Enum.Parse(typeof(TraceEventType), props["defaultTraceEventType"], true);
             }
             else
             {
-                this._logLevel = LogLevel.Trace;
+                this._defaultTraceEventType = TraceEventType.Verbose;
             }
 
             if (props["name"] != null)
@@ -155,36 +147,51 @@ namespace Common.Logging
             {
                 this.Name = "Diagnostics";
             }
+
+            if (props["loggerNameFormat"] != null)
+            {
+                this.LoggerNameFormat = props["loggerNameFormat"];
+            }
+            else
+            {
+                this.LoggerNameFormat = "{0}.{1}";
+            }
         }
 
         /// <summary>
-        /// Obtains a new logger instance from <see cref="LogManager"/>
-        /// based on the current values of <see cref="Name"/> and <see cref="LogLevel"/>.
+        /// Logs the given message to the Common.Logging infrastructure.
         /// </summary>
-        private void RefreshLogger()
+        /// <param name="eventType">the eventType</param>
+        /// <param name="source">the <see cref="TraceSource"/> name or category name passed into e.g. <see cref="Trace.Write(object,string)"/>.</param>
+        /// <param name="format">the message format</param>
+        /// <param name="args">the message arguments</param>
+        protected void Log(TraceEventType eventType, string source, string format, params object[] args)
         {
-            ILog log = LogManager.GetLogger(this.Name);
-
-            switch (LogLevel)
+            if (!string.IsNullOrEmpty(source))
             {
-                case LogLevel.All:
-                    _log = new LogHandler(log.Trace); break;
+                source = string.Format(_loggerNameFormat, this.Name, source);
+            }
+            ILog log = LogManager.GetLogger(source);
+            LogLevel logLevel = MapLogLevel(eventType);
+
+            switch (logLevel)
+            {
                 case LogLevel.Trace:
-                    _log = new LogHandler(log.Trace); break;
+                    log.TraceFormat(format, args); break;
                 case LogLevel.Debug:
-                    _log = new LogHandler(log.Debug); break;
+                    log.DebugFormat(format, args); break;
                 case LogLevel.Info:
-                    _log = new LogHandler(log.Info); break;
+                    log.InfoFormat(format, args); break;
                 case LogLevel.Warn:
-                    _log = new LogHandler(log.Warn); break;
+                    log.WarnFormat(format, args); break;
                 case LogLevel.Error:
-                    _log = new LogHandler(log.Error); break;
+                    log.ErrorFormat(format, args); break;
                 case LogLevel.Fatal:
-                    _log = new LogHandler(log.Fatal); break;
+                    log.FatalFormat(format, args); break;
                 case LogLevel.Off:
-                    _log = new LogHandler(LogIgnore); break;
+                    break;
                 default:
-                    throw new ArgumentOutOfRangeException("LogLevel", LogLevel, "unknown log level");
+                    throw new ArgumentOutOfRangeException("eventType", eventType, "invalid TraceEventType value");
             }
         }
 
@@ -223,11 +230,66 @@ namespace Common.Logging
         /// <summary>
         /// Writes message to logger provided by <see cref="LogManager.GetLogger(string)"/>.
         /// </summary>
+        public override void Write(object o)
+        {
+            if (((this.Filter == null) || this.Filter.ShouldTrace(null, this.Name, this.DefaultTraceEventType, 0, null, null, o, null)))
+            {
+                Log(this.DefaultTraceEventType, null, "{0}", o);
+            }
+        }
+
+        /// <summary>
+        /// Writes message to logger provided by <see cref="LogManager.GetLogger(string)"/>.
+        /// </summary>
+        public override void Write(object o, string category)
+        {
+            if (((this.Filter == null) || this.Filter.ShouldTrace(null, this.Name, this.DefaultTraceEventType, 0, null, null, o, null)))
+            {
+                Log(this.DefaultTraceEventType, category, "{0}", o);
+            }
+        }
+
+        /// <summary>
+        /// Writes message to logger provided by <see cref="LogManager.GetLogger(string)"/>.
+        /// </summary>
         public override void Write(string message)
         {
-            if (_logLevel != LogLevel.Off)
+            if (((this.Filter == null) || this.Filter.ShouldTrace(null, this.Name, this.DefaultTraceEventType, 0, null, null, null, null)))
             {
-                _log(message);
+                Log(this.DefaultTraceEventType, null, message);
+            }
+        }
+
+        /// <summary>
+        /// Writes message to logger provided by <see cref="LogManager.GetLogger(string)"/>.
+        /// </summary>
+        public override void Write(string message, string category)
+        {
+            if (((this.Filter == null) || this.Filter.ShouldTrace(null, this.Name, this.DefaultTraceEventType, 0, null, null, null, null)))
+            {
+                Log(this.DefaultTraceEventType, category, message);
+            }
+        }
+
+        /// <summary>
+        /// Writes message to logger provided by <see cref="LogManager.GetLogger(string)"/>.
+        /// </summary>
+        public override void WriteLine(object o)
+        {
+            if (((this.Filter == null) || this.Filter.ShouldTrace(null, this.Name, this.DefaultTraceEventType, 0, null, null, o, null)))
+            {
+                Log(this.DefaultTraceEventType, null, "{0}", o);
+            }
+        }
+
+        /// <summary>
+        /// Writes message to logger provided by <see cref="LogManager.GetLogger(string)"/>.
+        /// </summary>
+        public override void WriteLine(object o, string category)
+        {
+            if (((this.Filter == null) || this.Filter.ShouldTrace(null, this.Name, this.DefaultTraceEventType, 0, null, null, o, null)))
+            {
+                Log(this.DefaultTraceEventType, category, "{0}", o);
             }
         }
 
@@ -236,17 +298,115 @@ namespace Common.Logging
         /// </summary>
         public override void WriteLine(string message)
         {
-            if (_logLevel != LogLevel.Off)
+            if (((this.Filter == null) || this.Filter.ShouldTrace(null, this.Name, this.DefaultTraceEventType, 0, null, null, null, null)))
             {
-                _log(message);
+                Log(this.DefaultTraceEventType, null, message);
             }
         }
 
         /// <summary>
-        /// NoOp Log Method
+        /// Writes message to logger provided by <see cref="LogManager.GetLogger(string)"/>
         /// </summary>
-        private static void LogIgnore(object message)
+        public override void WriteLine(string message, string category)
         {
+            if (((this.Filter == null) || this.Filter.ShouldTrace(null, this.Name, this.DefaultTraceEventType, 0, null, null, null, null)))
+            {
+                Log(this.DefaultTraceEventType, category, message);
+            }
+        }
+
+        /// <summary>
+        /// Writes message to logger provided by <see cref="LogManager.GetLogger(string)"/>
+        /// </summary>
+        public override void TraceEvent(TraceEventCache eventCache, string source, TraceEventType eventType, int id)
+        {
+            if ((this.Filter == null) || this.Filter.ShouldTrace(eventCache, source, eventType, id, null, null, null, null))
+            {
+                Log(eventType, source, "Event Id {0}", id);
+            }
+        }
+
+        /// <summary>
+        /// Writes message to logger provided by <see cref="LogManager.GetLogger(string)"/>
+        /// </summary>
+        public override void TraceEvent(TraceEventCache eventCache, string source, TraceEventType eventType, int id, string message)
+        {
+            if ((this.Filter == null) || this.Filter.ShouldTrace(eventCache, source, eventType, id, message, null, null, null))
+            {
+                Log(eventType, source, message);
+            }
+        }
+
+        /// <summary>
+        /// Writes message to logger provided by <see cref="LogManager.GetLogger(string)"/>
+        /// </summary>
+        public override void TraceEvent(TraceEventCache eventCache, string source, TraceEventType eventType, int id, string message, params object[] args)
+        {
+            if ((this.Filter == null) || this.Filter.ShouldTrace(eventCache, source, eventType, id, message, args, null, null))
+            {
+                Log(eventType, source, message, args);
+            }
+        }
+
+        /// <summary>
+        /// Writes message to logger provided by <see cref="LogManager.GetLogger(string)"/>
+        /// </summary>
+        public override void TraceData(TraceEventCache eventCache, string source, TraceEventType eventType, int id, params object[] data)
+        {
+            if ((this.Filter == null) || this.Filter.ShouldTrace(eventCache, source, eventType, id, null, null, null, data))
+            {
+                string fmt = GetFormat((object[])data);
+                Log(eventType, source, fmt, data);
+            }
+        }
+
+        /// <summary>
+        /// Writes message to logger provided by <see cref="LogManager.GetLogger(string)"/>
+        /// </summary>
+        public override void TraceData(TraceEventCache eventCache, string source, TraceEventType eventType, int id, object data)
+        {
+            if ((this.Filter == null) || this.Filter.ShouldTrace(eventCache, source, eventType, id, null, null, data, null))
+            {
+                string fmt = GetFormat((object)data);
+                Log(eventType, source, fmt, data);
+            }
+        }
+
+        private string GetFormat(params object[] data)
+        {
+            if (data == null || data.Length==0) return null;
+            StringBuilder fmt = new StringBuilder();
+            for(int i=0;i<data.Length;i++)
+            {
+                fmt.Append('{').Append(i).Append('}');
+                if (i<data.Length-1) fmt.Append(',');
+            }
+            return fmt.ToString();
+        }
+
+        private LogLevel MapLogLevel(TraceEventType eventType)
+        {
+            switch (eventType)
+            {
+                case TraceEventType.Start:
+                case TraceEventType.Stop:
+                case TraceEventType.Suspend:
+                case TraceEventType.Resume:
+                case TraceEventType.Transfer:
+                    return LogLevel.Trace;
+                case TraceEventType.Verbose:
+                    return LogLevel.Debug;
+                case TraceEventType.Information:
+                    return LogLevel.Info;
+                case TraceEventType.Warning:
+                    return LogLevel.Warn;
+                case TraceEventType.Error:
+                    return LogLevel.Error;
+                case TraceEventType.Critical:
+                    return LogLevel.Fatal;
+                default:
+                    return LogLevel.Trace;
+            }           
         }
     }
 }

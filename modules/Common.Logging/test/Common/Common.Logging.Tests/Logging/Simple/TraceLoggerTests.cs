@@ -20,6 +20,8 @@
 
 using System;
 using System.Collections.Specialized;
+using System.Diagnostics;
+using Common.TestUtil;
 using NUnit.Framework;
 
 namespace Common.Logging.Simple
@@ -28,7 +30,6 @@ namespace Common.Logging.Simple
     /// Exercises the TraceLogger implementation.
     /// </summary>
     /// <author>Mark Pollack</author>
-    /// <version>$Id:$</version>
     [TestFixture]
     public class TraceLoggerTests : AbstractSimpleLogTest
     {
@@ -63,6 +64,30 @@ namespace Common.Logging.Simple
             Assert.IsTrue(log.IsWarnEnabled);
             Assert.IsTrue(log.IsErrorEnabled);
             Assert.IsTrue(log.IsFatalEnabled);
+        }
+
+        [Test]
+        public void UsesTraceSource()
+        {
+            // just ensure, that <system.diagnostics> is configured for our test
+            TraceSource ts = new TraceSource("TraceLoggerTests", SourceLevels.All);
+            CapturingTraceListener.Events.Clear();
+            ts.TraceEvent(TraceEventType.Information, 0, "message");
+            Assert.AreEqual(TraceEventType.Information, CapturingTraceListener.Events[0].EventType);
+            Assert.AreEqual("message", CapturingTraceListener.Events[0].FormattedMessage);
+
+            // reset events and set loggerFactoryAdapter
+            CapturingTraceListener.Events.Clear();
+            NameValueCollection props = new NameValueCollection();
+            props["useTraceSource"] = "TRUE";
+            TraceLoggerFactoryAdapter adapter = new TraceLoggerFactoryAdapter(props);
+            adapter.ShowDateTime = false;
+            LogManager.Adapter = adapter;
+
+            ILog log = LogManager.GetLogger("TraceLoggerTests");            
+            log.WarnFormat("info {0}", "arg");
+            Assert.AreEqual(TraceEventType.Warning, CapturingTraceListener.Events[0].EventType);
+            Assert.AreEqual("[WARN]  TraceLoggerTests - info arg", CapturingTraceListener.Events[0].FormattedMessage);
         }
     }
 }

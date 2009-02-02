@@ -42,6 +42,7 @@ namespace Common.Logging.Simple
     public abstract class AbstractSimpleLoggerFactoryAdapter : AbstractCachingLoggerFactoryAdapter
     {
         private LogLevel _level = LogLevel.All;
+        private bool _showLevel = true;
         private bool _showDateTime = true;
         private bool _showLogName = true;
         private string _dateTimeFormat = string.Empty;
@@ -53,6 +54,15 @@ namespace Common.Logging.Simple
         {
             get { return _level; }
             set { _level = value; }
+        }
+
+        /// <summary>
+        /// The default setting to use when creating new <see cref="ILog"/> instances.
+        /// </summary>
+        public bool ShowLevel
+        {
+            get { return _showLevel; }
+            set { _showLevel = value; }
         }
 
         /// <summary>
@@ -111,7 +121,7 @@ namespace Common.Logging.Simple
         /// </summary>
         protected override ILog CreateLogger(string name)
         {
-            return CreateLogger(name, _level, _showDateTime, _showLogName, _dateTimeFormat);
+            return CreateLogger(name, _level, _showLevel, _showDateTime, _showLogName, _dateTimeFormat);
         }
 
         /// <summary>
@@ -119,6 +129,6 @@ namespace Common.Logging.Simple
         /// actual logger instance.
         /// </summary>
         /// <returns>a new logger instance. Must never be <c>null</c>!</returns>
-        protected abstract ILog CreateLogger(string name, LogLevel level, bool showDateTime, bool showLogName, string dateTimeFormat);
+        protected abstract ILog CreateLogger(string name, LogLevel level, bool showLevel, bool showDateTime, bool showLogName, string dateTimeFormat);
     }
 }

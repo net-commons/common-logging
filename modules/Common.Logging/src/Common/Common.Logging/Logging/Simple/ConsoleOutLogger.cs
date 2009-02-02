@@ -35,11 +35,12 @@ namespace Common.Logging.Simple
 		/// </summary>
 		/// <param name="logName">The name, usually type name of the calling class, of the logger.</param>
 		/// <param name="logLevel">The current logging threshold. Messages recieved that are beneath this threshold will not be logged.</param>
+		/// <param name="showLevel">Include the current log level in the log message.</param>
 		/// <param name="showDateTime">Include the current time in the log message.</param>
 		/// <param name="showLogName">Include the instance name in the log message.</param>
 		/// <param name="dateTimeFormat">The date and time format to use in the log message.</param>
-        public ConsoleOutLogger(string logName, LogLevel logLevel, bool showDateTime, bool showLogName, string dateTimeFormat)
-            : base(logName, logLevel, showDateTime, showLogName, dateTimeFormat)
+        public ConsoleOutLogger(string logName, LogLevel logLevel, bool showLevel, bool showDateTime, bool showLogName, string dateTimeFormat)
+            : base(logName, logLevel, showLevel, showDateTime, showLogName, dateTimeFormat)
         {
         }
 

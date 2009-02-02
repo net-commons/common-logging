@@ -96,8 +96,8 @@ namespace Common
         {
             private readonly IList messages;
 
-            public MySimpleLogger(ArrayList messages, string logName, LogLevel logLevel, bool showDateTime, bool showLogName, string dateTimeFormat)
-                : base(logName, logLevel, showDateTime, showLogName, dateTimeFormat)
+            public MySimpleLogger(ArrayList messages, string logName, LogLevel logLevel, bool showLevel, bool showDateTime, bool showLogName, string dateTimeFormat)
+                : base(logName, logLevel, showLevel, showDateTime, showLogName, dateTimeFormat)
             {
                 this.messages = messages;
             }
@@ -113,9 +113,9 @@ namespace Common
         {
         }
 
-        protected override ILog CreateLogger(string name, LogLevel level, bool showDateTime, bool showLogName, string dateTimeFormat)
+        protected override ILog CreateLogger(string name, LogLevel level, bool showLevel, bool showDateTime, bool showLogName, string dateTimeFormat)
         {
-            return new MySimpleLogger(Messages, name, level, showDateTime, showLogName, dateTimeFormat);
+            return new MySimpleLogger(Messages, name, level, showLevel, showDateTime, showLogName, dateTimeFormat);
         }
     }
 
@@ -128,6 +128,7 @@ namespace Common
             TraceSource traceSource = new TraceSource("DiagnosticsTracePerformanceTest");
             traceSource.TraceEvent(TraceEventType.Verbose, -1, "test trace info {0}", new MyTestObjectUnderTrace());
             //            Trace.TraceInformation("traced info");
+            Trace.WriteLine("some message", "myCategory");
             Console.WriteLine("from console");
         }
 
