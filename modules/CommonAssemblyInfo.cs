@@ -10,16 +10,8 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 //
-
-#if NET_1_0
-[assembly: AssemblyConfiguration("net-1.0.win32; unofficial Beta")]
-#elif (NET_1_1)
-[assembly: AssemblyConfiguration("net-1.1.win32; unofficial Beta")]
-#else
-[assembly: AssemblyConfiguration("net-2.0.win32; beta")]
-#endif
 [assembly: AssemblyCompany("http://netcommon.sourceforge.net/")]
-[assembly: AssemblyCopyright("Copyright 2006-2009 the Common Logging Framework Team.")]
+[assembly: AssemblyCopyright("Copyright 2006-2009 the Common Infrastructure Libraries Team.")]
 [assembly: AssemblyTrademark("Apache License, Version 2.0")]
 [assembly: AssemblyCulture("")]
 
@@ -28,19 +20,10 @@ using System.Runtime.InteropServices;
 //
 //      Major Version
 //      Minor Version
-//      Revision
-//      .NET Framework Version
+//      Build Version
+//      Revision Number
 //
-// This is as good a convention as any for supporting side-by-side deployment of
-// .NET 1.1 and .NET 2.0 versions of the assembly.
-
-#if (NET_1_0)
 [assembly: AssemblyVersion("2.0.0.0")]
-#elif (NET_1_1)
-[assembly: AssemblyVersion("2.0.0.1")]
-#else
-[assembly: AssemblyVersion("2.0.0.2")]
-#endif
 
 //
 // In order to sign your assembly you must specify a key to use. Refer to the

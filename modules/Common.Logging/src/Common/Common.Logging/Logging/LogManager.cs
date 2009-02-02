@@ -53,6 +53,11 @@ namespace Common.Logging
     /// <author>Gilles Bayon</author>
     public sealed class LogManager
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        public static readonly FormatMessageHandler handler = null; // DO NOT REMOVE - FIXES A C# COMPILER BUG
+
         private static ILoggerFactoryAdapter _adapter = null;
         private static readonly object _loadLock = new object();
         private static IConfigurationReader _configurationReader = new ConfigurationReader();

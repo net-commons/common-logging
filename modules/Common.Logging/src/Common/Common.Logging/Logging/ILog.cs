@@ -19,6 +19,7 @@
 #endregion
 
 using System;
+using FormatMessageCallback = System.Action<Common.Logging.FormatMessageHandler>;
 
 namespace Common.Logging
 {

@@ -9,9 +9,9 @@
   <property name="project.build.config" value="debug"/>
   <property name="project.build.package" value="true"/>
 
-  <property name="compile-net-1.0" value="true"/>
-  <property name="compile-net-1.1" value="true"/>
-  <property name="compile-net-2.0" value="false"/>
+  <property name="compile-net-1.0" value="false"/>
+  <property name="compile-net-1.1" value="false"/>
+  <property name="compile-net-2.0" value="true"/>
 
 
   <property name="package.version" value="1.0.0" unless="${property::exists('project.version')}"/>

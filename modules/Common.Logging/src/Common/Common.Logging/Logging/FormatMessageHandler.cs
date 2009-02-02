@@ -18,6 +18,8 @@
 
 #endregion
 
+using FormatMessageCallback = System.Action<Common.Logging.FormatMessageHandler>;
+
 namespace Common.Logging
 {
     ///<summary>
@@ -29,5 +31,5 @@ namespace Common.Logging
     ///<seealso cref="ILog"/>
     ///<seealso cref="FormatMessageCallback"/>
     /// <author>Erich Eichinger</author>
-    public delegate void FormatMessageHandler(string format, params object[] args);
+    public delegate string FormatMessageHandler(string format, params object[] args);
 }

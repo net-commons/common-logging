@@ -5,6 +5,8 @@ using System.Reflection;
 using NUnit.Framework;
 using Rhino.Mocks;
 
+using FormatMessageCallback = System.Action<Common.Logging.FormatMessageHandler>;
+
 namespace Common.Logging
 {
     [TestFixture]
@@ -185,7 +187,7 @@ namespace Common.Logging
 
         /// <summary>
         /// This test ensures, that for a given loglevel
-        /// a) <see cref="AbstractLogger.Write"/> is not called if that loglevel is disabled
+        /// a) <c>AbstractLogger.Write</c> is not called if that loglevel is disabled
         /// b) No argument is evaluated (e.g. calling ToString()) if that loglevel is disabled
         /// </summary>
         private static void WriteAndEvaluateOnlyWhenLevelEnabled(string levelName)

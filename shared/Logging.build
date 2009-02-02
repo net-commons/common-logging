@@ -168,9 +168,11 @@
       <call target="compile-netcf-1.0"/>
     -->
 
+		<!--
     <call target="compile-build-1.0"/>
 
     <call target="compile-build-1.1"/>
+		-->
 
     <call target="compile-build-2.0"/>
 

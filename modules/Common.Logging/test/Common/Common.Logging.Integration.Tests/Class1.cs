@@ -1,17 +1,25 @@
-using System;
+#if NET_3_0
 
-namespace Common.Logging.Integration.Tests
+using System;
+using System.Globalization;
+using Common.Logging;
+using NUnit.Framework;
+
+namespace Common
 {
-	/// <summary>
+    /// <summary>
 	/// Summary description for Class1.
 	/// </summary>
+	[TestFixture]
 	public class Class1
 	{
-		public Class1()
+        [Test]
+		public void CanCompile()
 		{
-			//
-			// TODO: Add constructor logic here
-			//
+            ILog log = LogManager.GetCurrentClassLogger();
+            log.Trace(CultureInfo.InvariantCulture,  m => m("test {0}", "test"), new Exception());
 		}
 	}
 }
+
+#endif

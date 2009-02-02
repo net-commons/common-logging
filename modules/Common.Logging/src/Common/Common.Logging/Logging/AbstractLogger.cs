@@ -19,6 +19,7 @@
 #endregion
 
 using System;
+using FormatMessageCallback = System.Action<Common.Logging.FormatMessageHandler>;
 
 namespace Common.Logging
 {
@@ -58,9 +59,10 @@ namespace Common.Logging
                 return cachedMessage;
             }
 
-            private void FormatMessage(string format, params object[] args)
+            private string FormatMessage(string format, params object[] args)
             {
                 cachedMessage = string.Format(formatProvider, format, args);
+                return cachedMessage;
             }
         }
 
