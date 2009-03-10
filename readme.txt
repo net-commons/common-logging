@@ -1,4 +1,4 @@
-Common.Logging, beta 2.0 (January 16 2009)
+Common.Logging 2.0 (March 10 2009)
 ---------------------------------------------------------
 http://netcommon.sf.net/
 
