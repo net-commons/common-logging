@@ -6,7 +6,7 @@
   <!-- path to Common.Logging build output shared by all plugin modules-->
   <property name="common.logging.base-version.dir" value="${project.basedir}/modules/Common.Logging/build/net/2.0/release" />
   <!--target dir for packaging dist -->
-  <property name="package.dir" value="${project::get-base-directory()}/../package" />
+  <property name="package.dir" value="${project::get-base-directory()}/package" />
 
   <target name="build-common">
     <!-- ******* -->
@@ -142,7 +142,7 @@
           <include name="test/**"/>
           <include name="lib/**"/>
           <!-- but exclude non-redists -->
-          <exclude name="lib/**/Microsoft.*" />
+          <exclude name="**/Microsoft.Practices.*" />
         </fileset>
       </copy>
     </foreach>
@@ -218,12 +218,12 @@
     <copy todir="${package.dir}" file="${project.basedir}/changelog.txt"/>
 
     <!-- TODO: JUST FOR TESTING! -->
-    <copy todir="${package.dir}\modules" file="${project.basedir}/modules/Common.Net.snk"/>
-    <copy todir="${package.dir}\modules">
+    <!-- copy todir="${package.dir}\modules" file="${project.basedir}/modules/Common.Net.snk"/ -->
+    <!-- copy todir="${package.dir}\modules">
       <fileset basedir="${project.basedir}\modules">
         <include name="**/lib/**/Microsoft.*"/>
       </fileset>
-    </copy>
+    </copy -->
 
   </target>
 
