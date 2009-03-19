@@ -1,5 +1,5 @@
 <?xml version="1.0" ?>
-<project default="compile-all">
+<project default="package"> <!-- compile-all -->
 
   <!-- global project settings -->
   <property name="project.name" value="Common.Logging"/>
@@ -18,8 +18,6 @@
   <property name="build-examples" value="false"/>
   <property name="build-tests" value="true"/>
   <property name="build-integration-tests" value="true"/>
-
-
 
   <!-- Include shared helpers -->
   <include buildfile="${logging.basedir}/../../shared/Logging.include"/>

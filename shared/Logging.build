@@ -42,6 +42,7 @@
       <property name="htmlhelp.compiler" value="${sys.os.folder.programfiles}/HTML Help Worshop/hhc.exe"/>
     </if>
   </target>
+
   <!-- Target for cleaning up the current package directory -->
   <target name="clean-current-package-dir" depends="check-current-package-dir"
           description="Cleans the current package directory">
@@ -467,7 +468,6 @@
 
     <call target="clean-current-package-dir"/>
 
-
     <call target="compile-all"/>
     <echo message="TODO - create documentation targets!!!"/>
     <!--
@@ -612,8 +612,7 @@
     <echo message="build.allnamespaces = ${build.allnamespaces}"/>
     <copy todir="${current.package.dir}">
       <fileset>
-        <include name="${project::get-name()}.2003.sln"/>
-        <include name="${project::get-name()}.2005.sln"/>
+        <include name="${project::get-name()}.2008.sln"/>
         <include name="readme.txt"/>
         <include name="changelog.txt"/>
         <include name="license.txt"/>
@@ -832,6 +831,7 @@
     <property name="build.allnamespaces" value="true"/>
 
     <fileset id="src.to.copy">
+      <include name="*.sln"/>
       <include name="src/**"/>
       <include name="examples/**"/>
       <include name="test/**"/>

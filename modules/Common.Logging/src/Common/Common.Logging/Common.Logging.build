@@ -1,33 +1,58 @@
 <?xml version="1.0" ?>
 <project name="Common.Logging" default="build" xmlns="http://nant.sf.net/schemas/nant.xsd">
-<!--
+    <!--
   Required properties:
     * current.bin.dir           - (path) root level to build to
     * current.build.debug       - (true|false) debug build?
     * current.build.defines.csc - framework-specific build defines for C# compiler
  -->
-  <target name="build">
-    <csc target="library" define="${current.build.defines.csc}"
-      warnaserror="true"
-      optimize="${build.optimize}"
-      debug="${current.build.debug}"
-      output="${current.bin.dir}/${project::get-name()}.dll"
-      doc="${current.bin.dir}/${project::get-name()}.xml"
-      >
-      <arg line="${compiler.args}"/>
-      <nowarn>
-        <warning number="${nowarn.numbers}" />
-      </nowarn>
-      <sources failonempty="true">
+    <patternset id="sources">
         <include name="**/*.cs" />
         <include name="../../../../CommonAssemblyInfo.cs" />
         <include name="../../../../CommonAssemblyInfo-${nant.settings.currentframework}-${current.build.config}.cs" />
-      </sources>
-      <references basedir="${current.bin.dir}">
-        <include name="*.dll" />
-      </references>
-    </csc>
-  </target>
+    </patternset>
 
+    <target name="build">
+        <csc target="library" define="${current.build.defines.csc}"
+          warnaserror="true"
+          optimize="${build.optimize}"
+          debug="${current.build.debug}"
+          output="${current.bin.dir}/${project::get-name()}.dll"
+          doc="${current.bin.dir}/${project::get-name()}.xml"
+        >
+            <arg line="${compiler.args}"/>
+            <nowarn>
+                <warning number="${nowarn.numbers}" />
+            </nowarn>
+            <sources failonempty="true">
+                <!--<include name="**/*.cs" />
+        <include name="../../../../CommonAssemblyInfo.cs" />
+        <include name="../../../../CommonAssemblyInfo-${nant.settings.currentframework}-${current.build.config}.cs" />-->
+                <patternset refid="sources" />
+            </sources>
+            <references basedir="${current.bin.dir}">
+                <include name="*.dll" />
+            </references>
+        </csc>
+    </target>
 
+    <target name="package">
+        <!-- copy over source files -->
+        <copy todir="${package.dir}/modules/Common.Logging">
+            <fileset basedir="./doc/reference/target/">
+                <patternset refid="build.sources" />
+            </fileset>
+        </copy>
+
+        <foreach item="String" in="debug,release" delim="," property="release-mode">
+            <!-- Copy Common.Logging dll -->
+            <copy todir="${package.dir}/bin/net/2.0/${release-mode}"
+                  file="${common.logging.base-version.dir}\Common.Logging.dll"/>
+            <copy todir="${package.dir}/bin/net/2.0/${release-mode}"
+                  file="${common.logging.base-version.dir}\Common.Logging.pdb" />
+            <copy todir="${package.dir}/bin/net/2.0/${release-mode}"
+                  file="${common.logging.base-version.dir}\Common.Logging.xml"/>
+        </foreach>
+        
+        </target>
 </project>

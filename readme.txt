@@ -1,14 +1,14 @@
-Common.Logging 2.0 (March 10 2009)
+﻿Common.Logging 2.0 (March 10 2009)
 ---------------------------------------------------------
 http://netcommon.sf.net/
 
 
 1. INTRODUCTION
 
-Provides a simple logging abstraction to switch between different logging implementations. 
-There is current support for log4net (1.2.10 and 1.2.9), NLog, Enterprise Library logging 3.1 
+Provides a simple logging abstraction to switch between different logging implementations.
+There is current support for log4net (1.2.10 and 1.2.9), NLog, Enterprise Library logging 3.1
 and Enterprise Library logging 4.1.
-Additionally Common.Logging comes with a set of base classes making integration of any log 
+Additionally Common.Logging comes with a set of base classes making integration of any log
 system a breeze.
 
 2. KNOWN ISSUES
@@ -27,15 +27,14 @@ The Common Infrastructure Libraries for .NET are released under the terms of the
 
 4. BUILDING
 
-For building Common.Logging library, you need to have NAnt, Enterprise Library 3.1 and Enterprise Library 4.1 installed. 
+For building Common.Logging library, you need to have NAnt, Enterprise Library 3.1 and Enterprise Library 4.1 installed.
 From the commandline execute
 
   c:\netcommon>nant build
 
 to build
 
-
-5. CONFIGURING 
+5. CONFIGURING
 
 in your app.config or web.config add the lines
 

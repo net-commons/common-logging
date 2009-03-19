@@ -6,11 +6,29 @@ Release 2.0.0, March 10 2009
 
 Summary: New Features and Bug Fix release
 
+IMPORTANT: starting with version 2.0 we dropped support for .NET versions 1.0 and 1.1. - if you need
+
 Feature Requests
 
+[2485203] - Add support for EntLib 4.1 logging
+[2512017] - Provide base classes for implementing custom factoryAdapters
+[1749338] - Only make .NET 1.0 build since nothing 1.1/2.0 specific
+[1810787] - Add source code to distribution
+[1826632] - Make Common.Logging ClsCompliant
+[1970386] - Support for Enterprise Library 4.0
+[1852882] - Add optimize flag + PdbOnly in release build
+[1847554] - Add TraceListener to capture Diagnostics.Trace calls
+[1710163] - Add xxxFormat methods to Common.Logging.ILog interface
+[2545123] - Add LogManager.GetCurrentClassLogger()  oakinger  oakinger  2 - Closed  2009-01-29
+[1810785] - Clean up code comments
 
-Bug
+Bug Fixes
 
+[1683776] - Implementations of ILog are not serializable
+[1683773] - Add log4net 1.2.9 .dll to distribution for .NET 1.0
+[1683772] - Null Pointer Exception when passing in null value for msg
+[1683774] - Add unit tests for Common.Logging
+[1846258] - ConfigurationSectionHandler not case-insensitive in NET 2.0
 
 Release 1.2.0, October 10 2007
 
@@ -18,12 +36,12 @@ Summary: New Features and Bug Fix release
 
 Feature Requests
 
-[1749340] - Add support for EntLib logging 
-[1807769] - Add Trace level method to ILog interface  
+[1749340] - Add support for EntLib logging
+[1807769] - Add Trace level method to ILog interface
 
 Bug
 
-[1792900] - NLog logging is not performed relative to correct callsite 
+[1792900] - NLog logging is not performed relative to correct callsite
 
 Release 1.1.0, July 10 2007
 
@@ -68,7 +86,7 @@ Release 1.0.0, February 27 2007
 
 Summary:  Initial Release
 
-Release Notes 
+Release Notes
 
 Contains support for log4net 1.2.10 and 1.2.9
 

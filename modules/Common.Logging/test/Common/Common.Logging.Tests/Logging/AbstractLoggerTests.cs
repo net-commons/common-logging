@@ -4,7 +4,6 @@ using System.Globalization;
 using System.Reflection;
 using NUnit.Framework;
 using Rhino.Mocks;
-
 using FormatMessageCallback = System.Action<Common.Logging.FormatMessageHandler>;
 
 namespace Common.Logging
