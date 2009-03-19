@@ -21,6 +21,9 @@ Release contents:
 
 * "bin" contains the Common.Logging distribution dll files
 * "doc" contains reference documentation.
+* "shared" contains shared nant build scripts
+* "modules" contains the sourcecode for Common.Logging.XXXX modules
+* "redist" contains redistributable assemblies like log4net for your convenience
 
 The Common Infrastructure Libraries for .NET are released under the terms of the Apache Software License (see license.txt).
 

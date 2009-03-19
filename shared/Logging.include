@@ -113,7 +113,7 @@
 
     <target name="check-logging-basedir">
         <if test="${not property::exists('logging.basedir')}">
-            <fail message="The spring base directory has not been specified."/>
+            <fail message="The logging base directory has not been specified."/>
         </if>
     </target>
     <target name="check-logging-output-dir">
@@ -194,7 +194,7 @@
     </target>
     <target name="set-framework-configuration" depends="check-current-build-config">
         <if test="${not target::exists('set-' + framework::get-target-framework() + '-runtime-configuration')}">
-            <fail message="The current target framework (${framework::get-description(framework::get-target-framework())}) is not supported by Spring.NET."/>
+            <fail message="The current target framework (${framework::get-description(framework::get-target-framework())}) is not supported by Common.Logging."/>
         </if>
         <call target="set-${framework::get-target-framework()}-runtime-configuration"/>
     </target>

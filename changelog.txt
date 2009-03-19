@@ -12,14 +12,13 @@ Feature Requests
 
 [2485203] - Add support for EntLib 4.1 logging
 [2512017] - Provide base classes for implementing custom factoryAdapters
-[1749338] - Only make .NET 1.0 build since nothing 1.1/2.0 specific
 [1810787] - Add source code to distribution
 [1826632] - Make Common.Logging ClsCompliant
 [1970386] - Support for Enterprise Library 4.0
 [1852882] - Add optimize flag + PdbOnly in release build
 [1847554] - Add TraceListener to capture Diagnostics.Trace calls
 [1710163] - Add xxxFormat methods to Common.Logging.ILog interface
-[2545123] - Add LogManager.GetCurrentClassLogger()  oakinger  oakinger  2 - Closed  2009-01-29
+[2545123] - Add LogManager.GetCurrentClassLogger()
 [1810785] - Clean up code comments
 
 Bug Fixes
@@ -36,6 +35,7 @@ Summary: New Features and Bug Fix release
 
 Feature Requests
 
+[1749338] - Only make .NET 1.0 build since nothing 1.1/2.0 specific
 [1749340] - Add support for EntLib logging
 [1807769] - Add Trace level method to ILog interface
 
