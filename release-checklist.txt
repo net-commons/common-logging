@@ -15,3 +15,6 @@ Common.Logging.2008.sln opens and compiles w/o errors (readd non-redistributable
 
 *)
 File Versions of Common.Logging.* binaries match Release Version
+
+*)
+Release Versions are all signed

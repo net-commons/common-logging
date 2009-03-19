@@ -155,11 +155,11 @@
 
       <!-- Copy Common.Logging dll -->
       <copy todir="${package.dir}/bin/net/2.0/${release-mode}"
-            file="modules\Common.Logging\build\net\2.0\${release-mode}\Common.Logging.dll"/>
+            file="${common.logging.base-version.dir}/Common.Logging.dll"/>
       <copy todir="${package.dir}/bin/net/2.0/${release-mode}"
-            file="modules\Common.Logging\build\net\2.0\${release-mode}\Common.Logging.pdb" />
+            file="${common.logging.base-version.dir}/Common.Logging.pdb" />
       <copy todir="${package.dir}/bin/net/2.0/${release-mode}"
-            file="modules\Common.Logging\build\net\2.0\${release-mode}\Common.Logging.xml"/>
+            file="${common.logging.base-version.dir}/Common.Logging.xml"/>
 
       <foreach item="String" in="EntLib,EntLib41,Log4Net,Log4Net129,NLog" delim="," property="modulename">
         <!-- ensure module was built -->
