@@ -1,0 +1,17 @@
+
+*)
+Reference Doc Release Version + Date
+
+*)
+"nant build" from package root
+
+*)
+ensure non-redistributables are excluded:
+
+all Microsoft.* assemblies
+
+*)
+Common.Logging.2008.sln opens and compiles w/o errors (readd non-redistributables first!)
+
+*)
+File Versions of Common.Logging.* binaries match Release Version

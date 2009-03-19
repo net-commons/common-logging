@@ -8,10 +8,6 @@
   <!--target dir for packaging dist -->
   <property name="package.dir" value="${project::get-base-directory()}/../package" />
 
-  <patternset id="nonredistributables">
-    <include name="Microsoft.*" />
-  </patternset>
-  
   <target name="build-common">
     <!-- ******* -->
     <!-- Common.Logging  -->
@@ -158,27 +154,27 @@
     <foreach item="String" in="debug,release" delim="," property="release-mode">
 
       <!-- Copy Common.Logging dll -->
-      <copy todir="package/Common.Logging/bin/net/2.0/${release-mode}"
-            file="${common.logging.base-version.dir}\Common.Logging.dll"/>
-      <copy todir="package/Common.Logging/bin/net/2.0/${release-mode}"
-            file="${common.logging.base-version.dir}\Common.Logging.pdb" />
-      <copy todir="package/Common.Logging/bin/net/2.0/${release-mode}"
-            file="${common.logging.base-version.dir}\Common.Logging.xml"/>
+      <copy todir="${package.dir}/bin/net/2.0/${release-mode}"
+            file="modules\Common.Logging\build\net\2.0\${release-mode}\Common.Logging.dll"/>
+      <copy todir="${package.dir}/bin/net/2.0/${release-mode}"
+            file="modules\Common.Logging\build\net\2.0\${release-mode}\Common.Logging.pdb" />
+      <copy todir="${package.dir}/bin/net/2.0/${release-mode}"
+            file="modules\Common.Logging\build\net\2.0\${release-mode}\Common.Logging.xml"/>
 
       <foreach item="String" in="EntLib,EntLib41,Log4Net,Log4Net129,NLog" delim="," property="modulename">
         <!-- ensure module was built -->
         <call target="build-${modulename}" cascade="false" />
 
         <!-- Copy Common.Logging.{modulename} dll -->
-        <copy todir="package/Common.Logging/bin/net/2.0/${release-mode}"
+        <copy todir="${package.dir}/bin/net/2.0/${release-mode}"
               file="modules\Common.Logging.${modulename}\build\net\2.0\${release-mode}\Common.Logging.${modulename}.dll"/>
-        <copy todir="package/Common.Logging/bin/net/2.0/${release-mode}"
+        <copy todir="${package.dir}/bin/net/2.0/${release-mode}"
               file="modules\Common.Logging.${modulename}\build\net\2.0\${release-mode}\Common.Logging.${modulename}.pdb"/>
-        <copy todir="package/Common.Logging/bin/net/2.0/${release-mode}"
+        <copy todir="${package.dir}/bin/net/2.0/${release-mode}"
               file="modules\Common.Logging.${modulename}\build\net\2.0\${release-mode}\Common.Logging.${modulename}.xml"/>
         <!-- Copy {modulename} redistributables -->
-        <!--<mkdir dir="package/Common.Logging/redist/${modulename}"/>-->
-        <copy todir="package/Common.Logging/redist/${modulename}">
+        <!--<mkdir dir="${package.dir}/redist/${modulename}"/>-->
+        <copy todir="${package.dir}/redist/${modulename}">
           <fileset basedir="modules\Common.Logging.${modulename}\redist">
             <include name="**/*"/>
           </fileset>
