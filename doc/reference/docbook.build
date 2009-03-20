@@ -71,7 +71,7 @@
     </copy>
 
     <!-- docbook -> HTML Help Workshop project (.hhp) -->
-    <exec workingdir="${project.targetdir}" program="java" commandline='-cp "..\lib\saxon6-5-5\saxon.jar;..\lib\xslthl-2.0.0\xslthl-2.0.0.jar" com.icl.saxon.StyleSheet ../src/index.xml "..\lib\docbook-xsl-snapshot\htmlhelp\springnet.xsl" highlight.xslthl.config="file:///${project.basedir}/lib/docbook-xsl-snapshot/highlighting/xslthl-config.xml"' />
+    <exec workingdir="${project.targetdir}" program="java" commandline='-cp "..\lib\saxon6-5-5\saxon.jar;..\lib\xslthl-2.0.0\xslthl-2.0.0.jar" com.icl.saxon.StyleSheet ../src/index.xml "..\lib\docbook-xsl-snapshot\htmlhelp\springnet.xsl" highlight.xslthl.config="file:///${project.basedir}/lib/docbook-xsl-snapshot/highlighting/xslthl-config.xml" htmlhelp.chm=netcommon-reference.chm' />
     <!-- HTML Help Workshop project (.hhp) -> HTML Help file (.chm) -->
     <!--<readregistry property="hhc.path" key="SOFTWARE\Microsoft\HTML Help Workshop\InstallDir" hive="CurrentUser" />-->
     <exec program="C:\Program Files\HTML Help Workshop\hhc.exe" commandline="${project.targetdir}\htmlhelp\htmlhelp.hhp" failonerror="false" />
@@ -83,6 +83,7 @@
         <exclude name="*.chm"/>
       </fileset>
     </delete>
+
   </target>
 
   <target name="pdf">
