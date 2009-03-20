@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<DocumentXProject Version="5.0" CompileHelpFile="True" RefreshIfExists="False" DocumentSourceCode="False" AlwaysCopySupportFiles="True" PropertyCommentsFrom="0" RelationshipsFrom="2" DefaultRelsOnlyForCollections="True" ProjectGroupName="Common Infrastructure Libraries API Reference" HTMLHelpVersion="1" HHNamespace="Common.Logging" HHIdentifier="netcommon-api" H2PlugIn="False" H2PlugInNamespace="" LocaleID="0" ExcludeFiltersRegExp="False" OutputFileExtension=".html">
+    <OutputLocation OutputFolder="target\html\" HelpFileName="target\htmlhelp\netcommon-api.chm" UseFilenameAliases="False" StripMetadata="False" ClearBeforeBuild="True" RemoveOutputFilesAfterCompile="False"/>
+    <HTMLHelpOptions UseALinkMenus="False"/>
+    <OtherOptions CreateContextLinks="True" WriteHelpDescriptions="True" CopySourceCode="False" CreateWinHelpStub="False" Language="English"/>
+    <IncludeFilters IncludePrivate="False" IncludeFriend="False" IncludeProtected="True" IdentifyVisibility="False">
+        <Namespaces>
+            <Property Name="DX.NET:Method">True</Property>
+            <Property Name="DX.NET:Property">True</Property>
+            <Property Name="DX.NET:Field">True</Property>
+            <Property Name="DX.NET:Event">True</Property>
+            <Property Name="DX.NET:Constructor">True</Property>
+            <Property Name="DX.NET:Operator">True</Property>
+        </Namespaces>
+    </IncludeFilters>
+    <CommentExtraction UnTaggedBlocks="False" UnTaggedEnumerations="False" UnTaggedEvents="False" UnTaggedModules="False" UnTaggedUDTs="False" UnTaggedVariables="False" HelpDescriptionImport="1"/>
+    <Diagrams PageNestingLevels="2" OverviewNestingLevels="3" SupressSingleObjectDiagrams="True" DiagramStyleSource="0" ObjFillColor="0" ObjTextColor="0" ObjBorderColor="0" ColFillColor="0" ColTextColor="0" ColBorderColor="0" UseDropShadow="False" CenterCaptions="False" DiagramBold="False" BorderWidth="0" UseDiagramShapes="False"/>
+    <VariableValues/>
+    <AdditionalFiles/>
+    <ModelComments/>
+    <IgnoreRelationships/>
+    <NamespaceExclusions>
+        <e>Common.Logging~Common.Logging.AbstractLogger+FormatMessageCallbackFormattedMessage</e>
+        <e>Common.Logging~Common.Logging.AbstractLogger+StringFormatFormattedMessage</e>
+        <e>Common.Logging~__Delegates</e>
+        <e>Common.Logging~Common.Logging.Simple.TraceLogger+FormatOutputMessage</e>
+        <e>Common.Logging.EntLib~Common.Logging.EntLib.EntLibLogger+TraceLevelLogEntry</e>
+        <e>Common.Logging.EntLib41~Common.Logging.EntLib.EntLibLogger+TraceLevelLogEntry</e>
+    </NamespaceExclusions>
+    <DotNetProperties IncludeRelationshipDiagrams="True" IncludeInheritanceHierarchies="True" IncludeBaseMembers="False" StandardInterfaces="System.*,Microsoft.*" OnlyLinkInherited="True" ExternalDocs="True" UseCommentFiles="True" DrillCommentFiles="True" GenerateXMLLinks="False" XMLIsland="" NoInheritedTopics="True" NoInheritedInLists="False" CreateXMLCommentFile="False" ExcludedLanguages="Delphi,JScript,Ajax,Ajax_Usage" GenerateAttributes="True" AttributeFilter="" AttributeFilterInclude="False" VBNETDefaultConstructor="False" LinkOverridenMembersToBaseImplementation="False" UseOverloadSummaryForMasterSummary="True" ExcludeEditorBrowsable="True" GenerateBreadCrumbs="True" IncludeAssemblyBreadCrumb="False"/>
+    <DatabaseProperties DocumentViewSource="True" DocumentTriggerSource="True" DocumentProcedureSource="True" RetainTaggedComments="False"/>
+    <XSDProperties UseCustomSettings="False" PageNestingLevels="2" SuppressSingleObjectDiagrams="True" ElementFillColor="15780518" ElementTextColor="0" ElementBorderColor="10789024" ElementBorders="True" ElementRefFillColor="12648447" ElementRefTextColor="0" ElementRefBorderColor="10789024" ElementRefBorders="True" ComplexTypeFillColor="15780518" ComplexTypeTextColor="0" ComplexTypeBorderColor="10789024" ComplexTypeBorders="True" AnyFillColor="13421772" AnyTextColor="0" AnyBorderColor="10789024" AnyBorders="True" NotationTextColor="8421504" RootLinesColor="10789024" DropShadows="False" BoldCaptions="True" GroupParticleSequenceImageFilename="C:\Program Files (x86)\Innovasys\documentx5\Configuration\Templates\XMLSchema\xDiagramImages\sequence.gif" GroupParticleChoiceImageFilename="C:\Program Files (x86)\Innovasys\documentx5\Configuration\Templates\XMLSchema\xDiagramImages\choice.gif" GroupParticleAllImageFilename="C:\Program Files (x86)\Innovasys\documentx5\Configuration\Templates\XMLSchema\xDiagramImages\all.gif"/>
+    <CommentFiles>
+        <CommentFile FileName="Common.Logging.dxc" DocType="dx.net" ItemMoniker="Common.Logging\build\VS.NET.2008\Common.Logging\Debug\Common.Logging.dll"/>
+        <CommentFile FileName="Common.Logging.EntLib.dxc" DocType="dx.net" ItemMoniker="Common.Logging.EntLib\build\VS.NET.2008\Common.Logging.EntLib\Debug\Common.Logging.EntLib.dll"/>
+        <CommentFile FileName="Common.Logging.Log4Net.dxc" DocType="dx.net" ItemMoniker="Common.Logging.Log4Net\build\VS.NET.2008\Common.Logging.Log4Net\Debug\Common.Logging.Log4Net.dll"/>
+        <CommentFile FileName="Common.Logging.Log4Net129.dxc" DocType="dx.net" ItemMoniker="Common.Logging.Log4Net129\build\VS.NET.2008\Common.Logging.Log4Net129\Debug\Common.Logging.Log4Net129.dll"/>
+        <CommentFile FileName="Common.Logging.NLog.dxc" DocType="dx.net" ItemMoniker="Common.Logging.NLog\build\VS.NET.2008\Common.Logging.NLog\Debug\Common.Logging.NLog.dll"/>
+        <CommentFile FileName="Common.Logging.EntLib41.dxc" DocType="dx.net" ItemMoniker="Common.Logging.EntLib41\build\VS.NET.2008\Common.Logging.EntLib41\Debug\Common.Logging.EntLib41.dll"/>
+    </CommentFiles>
+    <CommunityExtensions CommunityProjectKey="" Enabled="false" ServerType="0" URL="" HostingId="" UseLocalProxyURL="false" LocalProxyURL=""/>
+    <DocType Name="dx.net" Template="Visual Studio 2005 Style" UseHelpTemplates="False">
+        <TOCSource TOCSource="0" SpecificTOCName=""/>
+        <ModelCommentProfile Version="6.0" Namespace="dx.net" Name="" Description=""/>
+    </DocType>
+    <NetAssemblies RootAssemblyName="Common.Logging">
+        <Assembly Version="5.0" FileName="..\..\modules\Common.Logging\build\VS.NET.2008\Common.Logging\Debug\Common.Logging.dll" mRootModule="" AssemblyName="Common.Logging" AssemblyType="1" ExamplesOnly="False" LoadIncludeFilter="" LoadExcludeFilter="" LoadPrivateItems="True"/>
+        <Assembly Version="5.0" FileName="..\..\modules\Common.Logging.EntLib\build\VS.NET.2008\Common.Logging.EntLib\Debug\Common.Logging.EntLib.dll" mRootModule="" AssemblyName="Common.Logging.EntLib" AssemblyType="1" ExamplesOnly="False" LoadIncludeFilter="" LoadExcludeFilter="" LoadPrivateItems="True"/>
+        <Assembly Version="5.0" FileName="..\..\modules\Common.Logging.Log4Net\build\VS.NET.2008\Common.Logging.Log4Net\Debug\Common.Logging.Log4Net.dll" mRootModule="" AssemblyName="Common.Logging.Log4Net" AssemblyType="1" ExamplesOnly="False" LoadIncludeFilter="" LoadExcludeFilter="" LoadPrivateItems="True"/>
+        <Assembly Version="5.0" FileName="..\..\modules\Common.Logging.Log4Net129\build\VS.NET.2008\Common.Logging.Log4Net129\Debug\Common.Logging.Log4Net129.dll" mRootModule="" AssemblyName="Common.Logging.Log4Net129" AssemblyType="1" ExamplesOnly="False" LoadIncludeFilter="" LoadExcludeFilter="" LoadPrivateItems="True"/>
+        <Assembly Version="5.0" FileName="..\..\modules\Common.Logging.NLog\build\VS.NET.2008\Common.Logging.NLog\Debug\Common.Logging.NLog.dll" mRootModule="" AssemblyName="Common.Logging.NLog" AssemblyType="1" ExamplesOnly="False" LoadIncludeFilter="" LoadExcludeFilter="" LoadPrivateItems="True"/>
+        <Assembly Version="5.0" FileName="..\..\modules\Common.Logging.EntLib41\build\VS.NET.2008\Common.Logging.EntLib41\Debug\Common.Logging.EntLib41.dll" mRootModule="" AssemblyName="Common.Logging.EntLib41" AssemblyType="1" ExamplesOnly="False" LoadIncludeFilter="" LoadExcludeFilter="" LoadPrivateItems="True"/>
+    </NetAssemblies>
+    <PropertyBag/>
+</DocumentXProject>
