@@ -1,5 +1,8 @@
 
 *)
+Update release date in readme.txt, changelog.txt and doc/reference/src/index.xml
+
+*)
 Reference Doc Release Version + Date
 
 *)

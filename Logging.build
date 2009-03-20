@@ -197,7 +197,7 @@
     <call target="package.sources" cascade="false" />
 
     <!-- copy docs -->
-    <!--<call target="doc" cascade="false"/>-->
+    <call target="doc" cascade="false"/>
     <copy todir="${package.dir}/doc/">
       <fileset basedir="${project.basedir}/doc/reference/target/">
         <include name="**/*"/>
