@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<DocumentXComments Version="5.0" Moniker="C:\projects\netcommon\logging\modules\Common.Logging.Log4Net\build\VS.NET.2008\Common.Logging.Log4Net\Debug\Common.Logging.Log4Net.dll" DocType="dx.Net" Template="" ShowInherited="False" SpellLastCheckDateTime="30.12.1899 00:00:00" TreePath="Common.Logging.Log4Net" RelatedProject="netcommon-api.dxp" RelatedHSProject="" LoadIncludeFilter="" LoadExcludeFilter="" LoadPrivate="False" LoadOnDemand="True" LoadSourceComments="False">
+    <IgnoreWordList/>
+<UserData>
+    <InPlaceEditor>
+        <dtscrollpos>0</dtscrollpos>
+        <inheritedMembers>on</inheritedMembers>
+        <protectedMembers>on</protectedMembers>
+    </InPlaceEditor>
+</UserData>
+<c eid="Common.Logging.Log4Net" tid="##SUMMARY" q="" cd="39896.8958680556"><![CDATA[Provides an adapter to plug&nbsp;log4net 1.2.10&nbsp;into Common.Logging]]></c>
+<c eid="Common.Logging.Log4Net" tid="##REMARKS" q="" cd="39896.8964351852">For using Common.Logging, see %LogManager:Common.Logging~Common.Logging.LogManager%. For configuring the log4net adapter, see %Log4NetLoggerFactoryAdapter:Common.Logging.Log4Net~Common.Logging.Log4Net.Log4NetLoggerFactoryAdapter%</c>
+    </DocumentXComments>

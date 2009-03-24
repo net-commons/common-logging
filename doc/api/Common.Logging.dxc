@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<DocumentXComments Version="5.0" Moniker="C:\projects\netcommon\logging\modules\Common.Logging\build\VS.NET.2008\Common.Logging\Debug\Common.Logging.dll" DocType="dx.Net" Template="" ShowInherited="False" SpellLastCheckDateTime="30.12.1899 00:00:00" TreePath="Common.Logging|Common.Logging~Common.Logging.Simple_namespace" RelatedProject="netcommon-api.dxp" RelatedHSProject="" LoadIncludeFilter="" LoadExcludeFilter="" LoadPrivate="False" LoadOnDemand="True" LoadSourceComments="False">
+    <IgnoreWordList/>
+<UserData>
+    <InPlaceEditor>
+        <inheritedMembers>on</inheritedMembers>
+        <protectedMembers>on</protectedMembers>
+        <lang_VB>on</lang_VB>
+        <lang_VBUsage>on</lang_VBUsage>
+        <lang_CS>on</lang_CS>
+        <lang_CPP>on</lang_CPP>
+        <lang_CPP2005>on</lang_CPP2005>
+        <dtscrollpos>0</dtscrollpos>
+    </InPlaceEditor>
+</UserData>
+<c eid="Common.Logging" tid="##REMARKS" q="" cd="39896.7976157407"><![CDATA[<P><STRONG><FONT size=2>Overview</FONT></STRONG></P>
+<P>There are a variety of logging implementations for .NET currently in use, log4net, Enterprise Library Logging, NLog, to name the most popular. The downside of having differerent implementation is that they do not share a common interface and therefore impose a particular logging implementation on the users of your library. To solve this dependency problem the Common.Logging library introduces a simple abstraction to allow you to select a specific logging implementation at runtime.</P>
+<P>The library is based on work done by the developers of IBatis.NET and it's usage is inspired by log4net. Many thanks to the developers of those projects!</P>
+<P>&nbsp;</P>
+<P><STRONG><FONT size=2>Usage</FONT></STRONG></P>
+<P>The core logging library <STRONG>Common.Logging</STRONG> provides the base logging&nbsp;%ILog:Common.Logging~Common.Logging.ILog% interface as well as the global %LogManager:Common.Logging~Common.Logging.LogManager% that&nbsp;you use to instrument your code. </P>
+<DIV class=LanguageSpecific id=Example_CS style="DISPLAY: block">
+<TABLE class=syntaxtable cellSpacing=0 cellPadding=0 width="100%">
+<TBODY>
+<TR>
+<TH>C#</TH>
+<TH><SPAN class=copyCode onkeypress=CopyCode_CheckKey(this) onmouseover=changeCopyCodeIcon(this,true) onfocusout=changeCopyCodeIcon(this,false) onclick=copyCode(this) onfocusin=changeCopyCodeIcon(this,true) tabIndex=0 onmouseout=changeCopyCodeIcon(this,false)><IMG class=copyCodeImage src="dotnetimages/copycode.gif" align=absMiddle name=ccImage>$$copyCode$$</SPAN></TH></TR>
+<TR>
+<TD colSpan=2>
+<P><CODE class=CS>ILog&nbsp;log&nbsp;=&nbsp;LogManager.GetLogger(this.GetType());&nbsp;&nbsp;<BR></CODE><CODE class=CS><BR>log.DebugFormat("Hi&nbsp;{0}",&nbsp;"dude");</P></CODE></TD></TR></TBODY></TABLE></DIV>
+<P><BR>To output the information logged, you need to tell Common.Logging, what underlying logging system to use.&nbsp;Common.Logging already includes simple console and trace based logger implementations usable out of the box. Adding the following configuration snippet to your app.config causes Common.Logging to output all information to the console:</P>
+<DIV class=LanguageSpecific id=Example_XML style="DISPLAY: block">
+<TABLE class=syntaxtable cellSpacing=0 cellPadding=0 width="100%">
+<TBODY>
+<TR>
+<TH>XML</TH>
+<TH><SPAN class=copyCode onkeypress=CopyCode_CheckKey(this) onmouseover=changeCopyCodeIcon(this,true) onfocusout=changeCopyCodeIcon(this,false) onclick=copyCode(this) onfocusin=changeCopyCodeIcon(this,true) tabIndex=0 onmouseout=changeCopyCodeIcon(this,false)><IMG class=copyCodeImage src="dotnetimages/copycode.gif" align=absMiddle name=ccImage>$$copyCode$$</SPAN></TH></TR>
+<TR>
+<TD colSpan=2><CODE class=XML>&lt;configuration&gt;&nbsp;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&lt;configSections&gt;&nbsp;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;sectionGroup&nbsp;name="common"&gt;&nbsp;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;section&nbsp;name="logging"&nbsp;type="Common.Logging.ConfigurationSectionHandler,&nbsp;Common.Logging"&nbsp;/&gt;&nbsp;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/sectionGroup&gt;&nbsp;&nbsp;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/configSections&gt;&nbsp;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&lt;common&gt;&nbsp;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;logging&gt;&nbsp;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;factoryAdapter&nbsp;type="Common.Logging.Simple.ConsoleOutLoggerFactoryAdapter,&nbsp;Common.Logging"&gt;&nbsp;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;arg&nbsp;key="level"&nbsp;value="DEBUG"&nbsp;/&gt;&nbsp;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/factoryAdapter&gt;&nbsp;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/logging&gt;&nbsp;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/common&gt;&nbsp;<BR>&lt;/configuration&gt;&nbsp;</CODE></TD></TR></TBODY></TABLE></DIV>
+<DIV class=LanguageSpecific>&nbsp;</DIV>
+<P><STRONG><FONT size=2>Customizing</FONT></STRONG></P>
+<P>In the case you want to integrate your own logging system that is not supported by Common.Logging yet, it is easily possible to implement your own plugin by implementing %ILoggerFactoryAdapter:Common.Logging~Common.Logging.ILoggerFactoryAdapter%. For convenience there is a base %AbstractCachingLoggerFactoryAdapter:Common.Logging~Common.Logging.AbstractCachingLoggerFactoryAdapter%&nbsp;implementation available that usually makes implementing your own adapter a breeze.</P>
+<P>&nbsp;</P>
+<P><STRONG><FONT size=2>&lt;system.diagnostics&gt; Integration</FONT></STRONG></P>
+<P>If your code already uses the .NET framework's built-in <A href="http://msdn.microsoft.com/library/system.diagnostics.trace.aspx">System.Diagnostics.Trace</A> system, you can use %CommonLoggingTraceListener:Common.Logging~Common.Logging.CommonLoggingTraceListener% to redirect all trace output to the Common.Logging infrastructure.</P>]]></c>
+<c eid="Common.Logging" tid="##SUMMARY" q="" cd="39896.7682175926"><![CDATA[The Common.Logging assembly provides the core interfaces and classes to use&nbsp;its logging infrastructure. It also provides interfaces and convenience base classes for&nbsp;plugging in&nbsp;your own logging system if necessary. Please read the <STRONG>Remarks</STRONG> section below for more information.]]></c>
+<c eid="Common.Logging~Common.Logging_namespace" tid="##SUMMARY" q="" cd="39896.7944212963">This namespace contains all core classes making up the Common.Logging framework.</c>
+<c eid="Common.Logging~Common.Logging_namespace" tid="##SEEALSO" q="" cd="39896.7946875"><![CDATA[Target="Common.Logging~Common.Logging.LogManager", Caption="LogManager"]]></c>
+<c eid="Common.Logging~Common.Logging_namespace" tid="##SEEALSO" q="" cd="39896.7951157407"><![CDATA[Target="Common.Logging~Common.Logging.ILog", Caption="ILog"]]></c>
+<c eid="Common.Logging~Common.Logging_namespace" tid="##SEEALSO" q="" cd="39896.7955092593"><![CDATA[Target="Common.Logging~Common.Logging.ConfigurationSectionHandler", Caption="Configuration"]]></c>
+<c eid="Common.Logging~Common.Logging.Simple_namespace" tid="##SUMMARY" q="" cd="39896.799525463">This namespace contains out-of-the-box adapters for outputting log information to the console and System.Diagnostics.Trace</c>
+    </DocumentXComments>

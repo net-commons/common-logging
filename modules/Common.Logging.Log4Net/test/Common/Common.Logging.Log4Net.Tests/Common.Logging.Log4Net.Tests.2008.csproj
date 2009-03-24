@@ -7,7 +7,7 @@
     <ProjectGuid>{8FBECEDA-78A0-4429-B791-B9219ED49B36}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Spring</RootNamespace>
+    <RootNamespace>Common</RootNamespace>
     <AssemblyName>Common.Logging.Log4Net.Tests</AssemblyName>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
@@ -41,15 +41,30 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\lib\net\2.0\nunit.framework.dll</HintPath>
     </Reference>
+    <Reference Include="Rhino.Mocks, Version=2.9.6.40350, Culture=neutral, PublicKeyToken=0b3305902db7183f">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Common.Logging\lib\net\2.0\Rhino.Mocks.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Common.Logging\src\Common\Common.Logging\Common.Logging.2008.csproj">
+      <Project>{440D903A-D409-48FC-A6C4-3EE69CCD663B}</Project>
+      <Name>Common.Logging.2008</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\src\Common\Common.Logging.Log4Net\Common.Logging.Log4Net.2008.csproj">
       <Project>{0FEA262C-4EAF-49DB-8D32-8E90DDEF23B6}</Project>
       <Name>Common.Logging.Log4Net.2008</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="Logging\Log4Net\Log4NetLoggerFactoryAdapterTests.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Common.Logging.Log4Net.Tests.build" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

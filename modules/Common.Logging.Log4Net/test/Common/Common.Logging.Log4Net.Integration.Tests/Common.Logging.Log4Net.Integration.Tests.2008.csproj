@@ -102,6 +102,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Common.Logging.Log4Net.Integration.Tests.build" />
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="Logging\Log4Net\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

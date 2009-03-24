@@ -26,18 +26,19 @@ using Common.Logging.Simple;
 namespace Common.Logging
 {
     /// <summary>
-    /// The LogManager can produce ILogFactory for various logging APIs,
-    /// most notably for log4net. 
-    /// Other implementations such as <see cref="TraceLogger"/>, <see cref="ConsoleOutLogger"/> 
-    /// and <see cref="NoOpLogger"/> are also supported.
+    /// Use the LogManager's <see cref="GetLogger(string)"/> or <see cref="GetLogger(System.Type)"/> 
+    /// methods to obtain <see cref="ILog"/> instances for logging.
     /// </summary>
     /// <remarks>
-    /// For configuring the underlying log system, see the example at <see cref="ConfigurationSectionHandler"/>.
+    /// For configuring the underlying log system using application configuration, see the example 
+    /// at <see cref="ConfigurationSectionHandler"/>. 
+    /// For configuring programmatically, see the example section below.
     /// </remarks>
     /// <example>
     /// The example below shows the typical use of LogManager to obtain a reference to a logger
     /// and log an exception:
     /// <code>
+    /// 
     /// ILog log = LogManager.GetLogger(this.GetType());
     /// ...
     /// try 
@@ -48,16 +49,28 @@ namespace Common.Logging
     /// {
     ///   log.ErrorFormat("Hi {0}", ex, "dude");
     /// }
+    /// 
+    /// </code>
+    /// The example below shows programmatic configuration of the underlying log system:
+    /// <code>
+    /// 
+    /// // create properties
+    /// NameValueCollection properties = new NameValueCollection();
+    /// properties[&quot;showDateTime&quot;] = &quot;true&quot;;
+    /// 
+    /// // set Adapter
+    /// Common.Logging.LogManager.Adapter = new 
+    /// Common.Logging.Simple.ConsoleOutLoggerFactoryAdapter(properties);
+    /// 
     /// </code>
     /// </example>
+    /// <seealso cref="ILog"/>
+    /// <seealso cref="Adapter"/>
+    /// <seealso cref="ILoggerFactoryAdapter"/>
+    /// <seealso cref="ConfigurationSectionHandler"/>
     /// <author>Gilles Bayon</author>
     public sealed class LogManager
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        public static readonly FormatMessageHandler handler = null; // DO NOT REMOVE - FIXES A C# COMPILER BUG
-
         private static ILoggerFactoryAdapter _adapter = null;
         private static readonly object _loadLock = new object();
         private static IConfigurationReader _configurationReader = new ConfigurationReader();

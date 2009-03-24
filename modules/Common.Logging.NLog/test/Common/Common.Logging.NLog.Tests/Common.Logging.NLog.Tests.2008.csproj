@@ -73,7 +73,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AssemblyInfo.cs" />
     <Compile Include="Logger\NLog\NLogLoggerFactoryAdapterTests.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Common.Logging.NLog.Tests.build" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

@@ -27,181 +27,179 @@ using Common.Logging.Simple;
 
 namespace Common.Logging
 {
-	/// <summary>
-	/// Used in an application's configuration file (App.Config or Web.Config) to configure the logging subsystem.
-	/// </summary>
-	/// <remarks>
-	/// <example>
-	/// An example configuration section that writes log messages to the Console using the built-in Console Logger.
-	/// <code lang="XML" escaped="true">
-	/// <configuration>
-	///		<configSections>
-	///			<sectionGroup name="common">
-	///				<section name="logging" type="Common.Logging.ConfigurationSectionHandler, Common.Logging" />
-	///			</sectionGroup>	
-	///		</configSections>
-	///		<common>
-	///			<logging>
-	///				<factoryAdapter type="Common.Logging.Simple.ConsoleOutLoggerFactoryAdapter, Common.Logging">
-	///					<arg key="showLogName" value="true" />
-	///					<arg key="showDataTime" value="true" />
-	///					<arg key="level" value="ALL" />
-	///					<arg key="dateTimeFormat" value="yyyy/MM/dd HH:mm:ss:fff" />
-	///				</factoryAdapter>
-	///			</logging>
-	///		</common>
-	/// </configuration>
-	/// </code> 
-	/// </example>
-	/// </remarks>
-    /// <author>Gilles Bayon</author>
-	public class ConfigurationSectionHandler: IConfigurationSectionHandler
-	{
+  /// <summary>
+  /// Used in an application's configuration file (App.Config or Web.Config) to configure the logging subsystem.
+  /// </summary>
+  /// <example>
+  /// An example configuration section that writes log messages to the Console using the
+  /// built-in Console Logger.
+  /// <code lang="XML">
+  /// &lt;configuration&gt;
+  ///     &lt;configSections&gt;
+  ///       &lt;sectionGroup name=&quot;common&quot;&gt;
+  ///         &lt;section name=&quot;logging&quot; type=&quot;Common.Logging.ConfigurationSectionHandler, Common.Logging&quot; /&gt;
+  ///       &lt;/sectionGroup&gt; 
+  ///     &lt;/configSections&gt;
+  ///     &lt;common&gt;
+  ///       &lt;logging&gt;
+  ///         &lt;factoryAdapter type=&quot;Common.Logging.Simple.ConsoleOutLoggerFactoryAdapter, Common.Logging&quot;&gt;
+  ///           &lt;arg key=&quot;showLogName&quot; value=&quot;true&quot; /&gt;
+  ///           &lt;arg key=&quot;showDataTime&quot; value=&quot;true&quot; /&gt;
+  ///           &lt;arg key=&quot;level&quot; value=&quot;ALL&quot; /&gt;
+  ///           &lt;arg key=&quot;dateTimeFormat&quot; value=&quot;yyyy/MM/dd HH:mm:ss:fff&quot; /&gt;
+  ///         &lt;/factoryAdapter&gt;
+  ///       &lt;/logging&gt;
+  ///     &lt;/common&gt;
+  /// &lt;/configuration&gt;
+  /// </code>
+  /// </example>
+  public class ConfigurationSectionHandler : IConfigurationSectionHandler
+  {
 
-		#region Fields
+    #region Fields
 
-		private static readonly string LOGFACTORYADAPTER_ELEMENT = "factoryAdapter";
-		private static readonly string LOGFACTORYADAPTER_ELEMENT_TYPE_ATTRIB = "type";
-		private static readonly string ARGUMENT_ELEMENT = "arg";
-		private static readonly string ARGUMENT_ELEMENT_KEY_ATTRIB = "key";
-		private static readonly string ARGUMENT_ELEMENT_VALUE_ATTRIB = "value";
+    private static readonly string LOGFACTORYADAPTER_ELEMENT = "factoryAdapter";
+    private static readonly string LOGFACTORYADAPTER_ELEMENT_TYPE_ATTRIB = "type";
+    private static readonly string ARGUMENT_ELEMENT = "arg";
+    private static readonly string ARGUMENT_ELEMENT_KEY_ATTRIB = "key";
+    private static readonly string ARGUMENT_ELEMENT_VALUE_ATTRIB = "value";
 
-		#endregion 
+    #endregion
 
-		/// <summary>
-		/// Constructor
-		/// </summary>
-		public ConfigurationSectionHandler()
-		{
-		}
+    /// <summary>
+    /// Constructor
+    /// </summary>
+    public ConfigurationSectionHandler()
+    {
+    }
 
-		/// <summary>
-		/// Retrieves the <see cref="Type" /> of the logger the use by looking at the logFactoryAdapter element
-		/// of the logging configuration element.
-		/// </summary>
-		/// <param name="section"></param>
-		/// <returns>
-		/// A <see cref="LogSetting" /> object containing the specified type that implements 
-		/// <see cref="ILoggerFactoryAdapter" /> along with zero or more properties that will be 
-		/// passed to the logger factory adapter's constructor as an <see cref="IDictionary" />.
-		/// </returns>
-		private LogSetting ReadConfiguration( XmlNode section )
-		{
-			XmlNode logFactoryElement = section.SelectSingleNode( LOGFACTORYADAPTER_ELEMENT );
-			
-			string factoryTypeString = string.Empty;
-			if ( logFactoryElement.Attributes[LOGFACTORYADAPTER_ELEMENT_TYPE_ATTRIB] != null )
-				factoryTypeString = logFactoryElement.Attributes[LOGFACTORYADAPTER_ELEMENT_TYPE_ATTRIB].Value;
-            
-			if ( factoryTypeString == string.Empty )
-			{
-				throw new ConfigurationException
-					( "Required Attribute '" 
-					+ LOGFACTORYADAPTER_ELEMENT_TYPE_ATTRIB 
-					+ "' not found in element '"
-					+ LOGFACTORYADAPTER_ELEMENT
-					+ "'"
-					);
-			}
+    /// <summary>
+    /// Retrieves the <see cref="Type" /> of the logger the use by looking at the logFactoryAdapter element
+    /// of the logging configuration element.
+    /// </summary>
+    /// <param name="section"></param>
+    /// <returns>
+    /// A <see cref="LogSetting" /> object containing the specified type that implements 
+    /// <see cref="ILoggerFactoryAdapter" /> along with zero or more properties that will be 
+    /// passed to the logger factory adapter's constructor as an <see cref="IDictionary" />.
+    /// </returns>
+    private LogSetting ReadConfiguration(XmlNode section)
+    {
+      XmlNode logFactoryElement = section.SelectSingleNode(LOGFACTORYADAPTER_ELEMENT);
 
-			Type factoryType = null;
-			try
-			{
-				if (String.Compare(factoryTypeString, "CONSOLE", true) == 0)
-				{
-					factoryType = typeof(ConsoleOutLoggerFactoryAdapter);
-				}
-				else if (String.Compare(factoryTypeString, "TRACE", true) == 0)
-				{
-					factoryType = typeof(TraceLoggerFactoryAdapter);
-				}
-				else if (String.Compare(factoryTypeString, "NOOP", true) == 0)
-				{
-					factoryType = typeof(NoOpLoggerFactoryAdapter);
-				}
-				else
-				{
-					factoryType = Type.GetType( factoryTypeString, true, false );
-				}
-			}
-			catch ( Exception e )
-			{
-				throw new ConfigurationException
-					( "Unable to create type '" + factoryTypeString + "'"
-					  , e
-					);
-			}
-			
-			XmlNodeList propertyNodes = logFactoryElement.SelectNodes( ARGUMENT_ELEMENT );
+      string factoryTypeString = string.Empty;
+      if (logFactoryElement.Attributes[LOGFACTORYADAPTER_ELEMENT_TYPE_ATTRIB] != null)
+        factoryTypeString = logFactoryElement.Attributes[LOGFACTORYADAPTER_ELEMENT_TYPE_ATTRIB].Value;
 
-			NameValueCollection properties = null;
-			properties = new NameValueCollection(); // defaults to case-insensitive keys
+      if (factoryTypeString == string.Empty)
+      {
+        throw new ConfigurationException
+          ("Required Attribute '"
+          + LOGFACTORYADAPTER_ELEMENT_TYPE_ATTRIB
+          + "' not found in element '"
+          + LOGFACTORYADAPTER_ELEMENT
+          + "'"
+          );
+      }
 
-			foreach ( XmlNode propertyNode in propertyNodes )
-			{
-				string key = string.Empty;
-				string itsValue = string.Empty;
+      Type factoryType = null;
+      try
+      {
+        if (String.Compare(factoryTypeString, "CONSOLE", true) == 0)
+        {
+          factoryType = typeof(ConsoleOutLoggerFactoryAdapter);
+        }
+        else if (String.Compare(factoryTypeString, "TRACE", true) == 0)
+        {
+          factoryType = typeof(TraceLoggerFactoryAdapter);
+        }
+        else if (String.Compare(factoryTypeString, "NOOP", true) == 0)
+        {
+          factoryType = typeof(NoOpLoggerFactoryAdapter);
+        }
+        else
+        {
+          factoryType = Type.GetType(factoryTypeString, true, false);
+        }
+      }
+      catch (Exception e)
+      {
+        throw new ConfigurationException
+          ("Unable to create type '" + factoryTypeString + "'"
+            , e
+          );
+      }
 
-				XmlAttribute keyAttrib = propertyNode.Attributes[ARGUMENT_ELEMENT_KEY_ATTRIB];
-				XmlAttribute valueAttrib = propertyNode.Attributes[ARGUMENT_ELEMENT_VALUE_ATTRIB];
+      XmlNodeList propertyNodes = logFactoryElement.SelectNodes(ARGUMENT_ELEMENT);
 
-				if ( keyAttrib == null )
-				{
-					throw new ConfigurationException
-						( "Required Attribute '" 
-						  + ARGUMENT_ELEMENT_KEY_ATTRIB 
-						  + "' not found in element '"
-						  + ARGUMENT_ELEMENT
-						  + "'"
-						);
-				}
-				else
-				{
-					key = keyAttrib.Value;
-				}
+      NameValueCollection properties = null;
+      properties = new NameValueCollection(); // defaults to case-insensitive keys
 
-				if ( valueAttrib != null )
-				{
-					itsValue = valueAttrib.Value;
-				}
+      foreach (XmlNode propertyNode in propertyNodes)
+      {
+        string key = string.Empty;
+        string itsValue = string.Empty;
 
-				properties.Add( key, itsValue );
-			}
+        XmlAttribute keyAttrib = propertyNode.Attributes[ARGUMENT_ELEMENT_KEY_ATTRIB];
+        XmlAttribute valueAttrib = propertyNode.Attributes[ARGUMENT_ELEMENT_VALUE_ATTRIB];
 
-			return new LogSetting( factoryType, properties );
-		}
+        if (keyAttrib == null)
+        {
+          throw new ConfigurationException
+            ("Required Attribute '"
+              + ARGUMENT_ELEMENT_KEY_ATTRIB
+              + "' not found in element '"
+              + ARGUMENT_ELEMENT
+              + "'"
+            );
+        }
+        else
+        {
+          key = keyAttrib.Value;
+        }
 
-		#region IConfigurationSectionHandler Members
+        if (valueAttrib != null)
+        {
+          itsValue = valueAttrib.Value;
+        }
 
-		/// <summary>
-		/// Verifies that the logFactoryAdapter element appears once in the configuration section.
-		/// </summary>
-		/// <param name="parent">The parent of the current item.</param>
-		/// <param name="configContext">Additional information about the configuration process.</param>
-		/// <param name="section">The configuration section to apply an XPath query too.</param>
-		/// <returns>
-		/// A <see cref="LogSetting" /> object containing the specified logFactoryAdapter type
-		/// along with user supplied configuration properties.
-		/// </returns>
-		public object Create(object parent, object configContext, XmlNode section)
-		{
-			int logFactoryElementsCount = section.SelectNodes( LOGFACTORYADAPTER_ELEMENT ).Count;
-			
-			if ( logFactoryElementsCount > 1 )
-			{
-                throw new ConfigurationException("Only one <factoryAdapter> element allowed");
-			}
-			else if ( logFactoryElementsCount == 1 )
-			{
-				return ReadConfiguration( section );
-			}
-			else
-			{
-				return null;
-			}
-		}
+        properties.Add(key, itsValue);
+      }
 
-		#endregion
-	}
+      return new LogSetting(factoryType, properties);
+    }
+
+    #region IConfigurationSectionHandler Members
+
+    /// <summary>
+    /// Verifies that the logFactoryAdapter element appears once in the configuration section.
+    /// </summary>
+    /// <param name="parent">The parent of the current item.</param>
+    /// <param name="configContext">Additional information about the configuration process.</param>
+    /// <param name="section">The configuration section to apply an XPath query too.</param>
+    /// <returns>
+    /// A <see cref="LogSetting" /> object containing the specified logFactoryAdapter type
+    /// along with user supplied configuration properties.
+    /// </returns>
+    public object Create(object parent, object configContext, XmlNode section)
+    {
+      int logFactoryElementsCount = section.SelectNodes(LOGFACTORYADAPTER_ELEMENT).Count;
+
+      if (logFactoryElementsCount > 1)
+      {
+        throw new ConfigurationException("Only one <factoryAdapter> element allowed");
+      }
+      else if (logFactoryElementsCount == 1)
+      {
+        return ReadConfiguration(section);
+      }
+      else
+      {
+        return null;
+      }
+    }
+
+    #endregion
+  }
 }
 

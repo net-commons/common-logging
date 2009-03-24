@@ -1,7 +1,7 @@
 #region License
 
 /*
- * Copyright 2002-2007 the original author or authors.
+ * Copyright 2002-2009 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,13 +18,9 @@
 
 #endregion
 
-#region Imports
-
 using System;
 using System.Diagnostics;
 using Microsoft.Practices.EnterpriseLibrary.Logging;
-
-#endregion
 
 namespace Common.Logging.EntLib
 {
@@ -32,8 +28,12 @@ namespace Common.Logging.EntLib
     /// Concrete implementation of <see cref="ILog"/> interface specific to Enterprise Logging.
     /// </summary>
     /// <remarks>
-    /// Default priority is used.  The category name used is the name passed into <see cref="LogManager">LogManager.GetLogger()</see>.
+    /// Instances are created by the <see cref="EntLibLoggerFactoryAdapter"/>. <see cref="EntLibLoggerFactoryAdapter.DefaultPriority"/>
+    /// is used for logging a <see cref="LogEntry"/> to <see cref="Microsoft.Practices.EnterpriseLibrary.Logging.LogWriter.Write"/>.
+    /// The category name used is the name passed into <see cref="LogManager.GetLogger(string)" />. For configuring logging, see <see cref="EntLibLoggerFactoryAdapter"/>.
     /// </remarks>
+    /// <seealso cref="ILog"/>
+    /// <seealso cref="EntLibLoggerFactoryAdapter"/>
     /// <author>Mark Pollack</author>
     /// <author>Erich Eichinger</author>
     public class EntLibLogger  : AbstractLogger

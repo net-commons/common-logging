@@ -125,6 +125,11 @@ namespace Common.Logging
         /// Override this method to use a different method than <see cref="WriteInternal"/> 
         /// for writing log events to the underlying log system.
         /// </summary>
+        /// <remarks>
+        /// Usually you don't need to override thise method. The default implementation returns
+        /// <c>null</c> to indicate that the default handler <see cref="WriteInternal"/> should be 
+        /// used.
+        /// </remarks>
         protected virtual WriteHandler GetWriteHandler()
         {
             return null;
@@ -133,31 +138,49 @@ namespace Common.Logging
         /// <summary>
         /// Checks if this logger is enabled for the <see cref="LogLevel.Trace"/> level.
         /// </summary>
+        /// <remarks>
+        /// Override this in your derived class to comply with the underlying logging system
+        /// </remarks>
         public abstract bool IsTraceEnabled { get; }
 
         /// <summary>
         /// Checks if this logger is enabled for the <see cref="LogLevel.Debug"/> level.
         /// </summary>
+        /// <remarks>
+        /// Override this in your derived class to comply with the underlying logging system
+        /// </remarks>
         public abstract bool IsDebugEnabled { get; }
 
         /// <summary>
         /// Checks if this logger is enabled for the <see cref="LogLevel.Info"/> level.
         /// </summary>
+        /// <remarks>
+        /// Override this in your derived class to comply with the underlying logging system
+        /// </remarks>
         public abstract bool IsInfoEnabled { get; }
 
         /// <summary>
         /// Checks if this logger is enabled for the <see cref="LogLevel.Warn"/> level.
         /// </summary>
+        /// <remarks>
+        /// Override this in your derived class to comply with the underlying logging system
+        /// </remarks>
         public abstract bool IsWarnEnabled { get; }
 
         /// <summary>
         /// Checks if this logger is enabled for the <see cref="LogLevel.Error"/> level.
         /// </summary>
+        /// <remarks>
+        /// Override this in your derived class to comply with the underlying logging system
+        /// </remarks>
         public abstract bool IsErrorEnabled { get; }
 
         /// <summary>
         /// Checks if this logger is enabled for the <see cref="LogLevel.Fatal"/> level.
         /// </summary>
+        /// <remarks>
+        /// Override this in your derived class to comply with the underlying logging system
+        /// </remarks>
         public abstract bool IsFatalEnabled { get; }
 
         /// <summary>

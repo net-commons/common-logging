@@ -18,48 +18,47 @@
 
 #endregion
 
-#region Imports
-
 using System;
 using System.Reflection;
 using log4net.Core;
 
-#endregion
-
 namespace Common.Logging.Log4Net
 {
-	/// <remarks>
-	/// Log4net is capable of outputting extended debug information about where the current 
-	/// message was generated: class name, method name, file, line, etc. Log4net assumes that the location
-	/// information should be gathered relative to where Debug() was called. 
-	/// When using Common.Logging, Debug() is called in Common.Logging.Log4Net.Log4NetLogger. This means that
-	/// the location information will indicate that Common.Logging.Log4Net.Log4NetLogger always made
-	/// the call to Debug(). We need to know where Common.Logging.ILog.Debug()
-	/// was called. To do this we need to use the log4net.ILog.Logger.Log method and pass in a Type telling
-	/// log4net where in the stack to begin looking for location information.
-	/// </remarks>
+    /// <summary>
+    /// Concrete implementation of <see cref="ILog"/> interface specific to log4net 1.2.9.
+    /// </summary>
+    /// <remarks>
+    /// Log4net is capable of outputting extended debug information about where the current 
+    /// message was generated: class name, method name, file, line, etc. Log4net assumes that the location
+    /// information should be gathered relative to where Debug() was called. 
+    /// When using Common.Logging, Debug() is called in Common.Logging.Log4Net.Log4NetLogger. This means that
+    /// the location information will indicate that Common.Logging.Log4Net.Log4NetLogger always made
+    /// the call to Debug(). We need to know where Common.Logging.ILog.Debug()
+    /// was called. To do this we need to use the log4net.ILog.Logger.Log method and pass in a Type telling
+    /// log4net where in the stack to begin looking for location information.
+    /// </remarks>
     /// <author>Gilles Bayon</author>
     /// <author>Erich Eichinger</author>
     [Serializable]
-	public class Log4NetLogger : AbstractLogger
-	{
-		#region Fields
+    public class Log4NetLogger : AbstractLogger
+    {
+        #region Fields
 
-		private readonly ILogger _logger = null;
-		private readonly static Type declaringType = MethodBase.GetCurrentMethod().DeclaringType;
+        private readonly ILogger _logger = null;
+        private readonly static Type declaringType = MethodBase.GetCurrentMethod().DeclaringType;
 
-		#endregion 
+        #endregion
 
-		/// <summary>
-		/// Constructor
-		/// </summary>
-		/// <param name="log"></param>
-		internal protected Log4NetLogger(ILoggerWrapper log )
-		{
-			_logger = log.Logger;
-		}
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="log"></param>
+        internal protected Log4NetLogger(ILoggerWrapper log)
+        {
+            _logger = log.Logger;
+        }
 
-		#region ILog Members
+        #region ILog Members
 
         /// <summary>
         /// 
@@ -77,51 +76,51 @@ namespace Common.Logging.Log4Net
             get { return _logger.IsEnabledFor(Level.Debug); }
         }
 
-		/// <summary>
-		/// 
-		/// </summary>
+        /// <summary>
+        /// 
+        /// </summary>
         public override bool IsInfoEnabled
-		{
-			get { return _logger.IsEnabledFor(Level.Info); }
-		}
+        {
+            get { return _logger.IsEnabledFor(Level.Info); }
+        }
 
-		/// <summary>
-		/// 
-		/// </summary>
+        /// <summary>
+        /// 
+        /// </summary>
         public override bool IsWarnEnabled
-		{
-			get { return _logger.IsEnabledFor(Level.Warn); }
-		}
+        {
+            get { return _logger.IsEnabledFor(Level.Warn); }
+        }
 
-		/// <summary>
-		/// 
-		/// </summary>
-		public override bool IsErrorEnabled
-		{
-			get { return _logger.IsEnabledFor(Level.Error); }
-		}
+        /// <summary>
+        /// 
+        /// </summary>
+        public override bool IsErrorEnabled
+        {
+            get { return _logger.IsEnabledFor(Level.Error); }
+        }
 
-		/// <summary>
-		/// 
-		/// </summary>
+        /// <summary>
+        /// 
+        /// </summary>
         public override bool IsFatalEnabled
-		{
-			get { return _logger.IsEnabledFor(Level.Fatal); }
-		}
+        {
+            get { return _logger.IsEnabledFor(Level.Fatal); }
+        }
 
-	    /// <summary>
-	    /// Actually sends the message to the underlying log system.
-	    /// </summary>
-	    /// <param name="logLevel">the level of this log event.</param>
-	    /// <param name="message">the message to log</param>
-	    /// <param name="exception">the exception to log (may be null)</param>
-	    protected override void WriteInternal(LogLevel logLevel, object message, Exception exception)
+        /// <summary>
+        /// Actually sends the message to the underlying log system.
+        /// </summary>
+        /// <param name="logLevel">the level of this log event.</param>
+        /// <param name="message">the message to log</param>
+        /// <param name="exception">the exception to log (may be null)</param>
+        protected override void WriteInternal(LogLevel logLevel, object message, Exception exception)
         {
             Level level = GetLevel(logLevel);
             _logger.Log(declaringType, level, message, exception);
         }
 
-	    private static Level GetLevel(LogLevel logLevel)
+        private static Level GetLevel(LogLevel logLevel)
         {
             switch (logLevel)
             {
@@ -144,6 +143,6 @@ namespace Common.Logging.Log4Net
             }
         }
 
-		#endregion
-	}
+        #endregion
+    }
 }

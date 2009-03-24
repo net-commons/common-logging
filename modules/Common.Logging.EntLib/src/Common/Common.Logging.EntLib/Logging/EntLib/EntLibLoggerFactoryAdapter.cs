@@ -1,7 +1,7 @@
 #region License
 
 /*
- * Copyright 2002-2007 the original author or authors.
+ * Copyright 2002-2009 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,12 +18,8 @@
 
 #endregion
 
-#region Imports
-
 using System.Collections.Specialized;
 using Microsoft.Practices.EnterpriseLibrary.Logging;
-
-#endregion
 
 namespace Common.Logging.EntLib
 {
@@ -37,6 +33,28 @@ namespace Common.Logging.EntLib
     ///     <item>ExceptionFormat (see <see cref="ExceptionFormat"/>)</item>
     /// </list>
     /// </remarks>
+    /// <example>
+    /// The following snippet shows how to configure EntLib logging for Common.Logging:
+    /// <code>
+    /// &lt;configuration&gt;
+    ///   &lt;configSections&gt;
+    ///       &lt;section name=&quot;logging&quot; type=&quot;Common.Logging.ConfigurationSectionHandler, Common.Logging&quot; /&gt;
+    ///       &lt;section name=&quot;loggingConfiguration&quot; type=&quot;Microsoft.Practices.EnterpriseLibrary.Logging.Configuration.LoggingSettings, Microsoft.Practices.EnterpriseLibrary.Logging, Version=3.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a&quot; /&gt;
+    ///   &lt;/configSections&gt;
+    ///   &lt;common&gt;
+    ///     &lt;logging&gt;
+    ///       &lt;factoryAdapter type=&quot;Common.Logging.EntLib.EntLibLoggerFactoryAdapter, Common.Logging.EntLib&quot;&gt;
+    ///         &lt;arg key=&quot;DefaultPriority&quot; value=&quot;-1&quot; /&gt;
+    ///       &lt;/factoryAdapter&gt;
+    ///     &lt;/logging&gt;
+    ///   &lt;/common&gt;
+    ///   &lt;loggingConfiguration name=&quot;Logging Application Block&quot;
+    /// &lt;-- configure enterprise logging application block here --&gt;
+    /// ...
+    ///   &lt;/loggingConfiguration&gt;
+    /// &lt;/configuration&gt;
+    /// </code>
+    /// </example>
     /// <author>Mark Pollack</author>
     /// <author>Erich Eichinger</author>
     public class EntLibLoggerFactoryAdapter : AbstractCachingLoggerFactoryAdapter
@@ -93,15 +111,15 @@ namespace Common.Logging.EntLib
         /// </summary>
         public EntLibLoggerFactoryAdapter()
             : this(EntLibLoggerSettings.DEFAULTPRIORITY, EntLibLoggerSettings.DEFAULTEXCEPTIONFORMAT, null)
-        {}
+        { }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="EntLibLoggerFactoryAdapter"/> class
         /// with the specified configuration parameters.
         /// </summary>
         public EntLibLoggerFactoryAdapter(int defaultPriority, string exceptionFormat, LogWriter logWriter)
-            :base(true)
-        {            
+            : base(true)
+        {
             if (exceptionFormat.Length == 0)
             {
                 exceptionFormat = null;
@@ -120,14 +138,14 @@ namespace Common.Logging.EntLib
                  , ConfigurationHelper.Coalesce(ConfigurationHelper.GetValue(properties, "exceptionFormat"), EntLibLoggerSettings.DEFAULTEXCEPTIONFORMAT)
                  , null
             )
-        {}
+        { }
 
         /// <summary>
         /// Creates a new <see cref="EntLibLogger"/> instance.
         /// </summary>
         protected override ILog CreateLogger(string name)
         {
-            return CreateLogger(name, LogWriter, _settings);            
+            return CreateLogger(name, LogWriter, _settings);
         }
 
         /// <summary>
@@ -135,7 +153,7 @@ namespace Common.Logging.EntLib
         /// </summary>
         protected virtual ILog CreateLogger(string name, LogWriter logWriter, EntLibLoggerSettings settings)
         {
-            return new EntLibLogger(name, LogWriter, _settings);                        
+            return new EntLibLogger(name, LogWriter, _settings);
         }
     }
 }

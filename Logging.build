@@ -196,11 +196,22 @@
     <!-- copy sources -->
     <call target="package.sources" cascade="false" />
 
-    <!-- copy docs -->
+    <!-- copy reference docs -->
     <call target="doc" cascade="false"/>
-    <copy todir="${package.dir}/doc/">
+    <copy todir="${package.dir}/doc/reference/">
       <fileset basedir="${project.basedir}/doc/reference/target/">
         <include name="**/*"/>
+      </fileset>
+    </copy>
+
+    <!-- copy sdk docs -->
+    <copy todir="${package.dir}/doc/api">
+      <fileset basedir="${project.basedir}/doc/api/target/">
+        <include name="**/*"/>
+        <exclude name="**/*.chw" />
+        <exclude name="**/*.hhc" />
+        <exclude name="**/*.hhk" />
+        <exclude name="**/*.hhp" />
       </fileset>
     </copy>
 

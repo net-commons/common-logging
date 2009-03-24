@@ -1,7 +1,7 @@
 #region License
 
 /*
- * Copyright © 2002-2006 the original author or authors.
+ * Copyright © 2002-2009 the original author or authors.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,37 +23,40 @@ using log4net.Core;
 
 namespace Common.Logging.Log4Net
 {
-	/// <remarks>
-	/// Log4net is capable of outputting extended debug information about where the current 
-	/// message was generated: class name, method name, file, line, etc. Log4net assumes that the location
-	/// information should be gathered relative to where Debug() was called. 
-	/// When using Common.Logging, Debug() is called in Common.Logging.Log4Net.Log4NetLogger. This means that
-	/// the location information will indicate that Common.Logging.Log4Net.Log4NetLogger always made
-	/// the call to Debug(). We need to know where Common.Logging.ILog.Debug()
-	/// was called. To do this we need to use the log4net.ILog.Logger.Log method and pass in a Type telling
-	/// log4net where in the stack to begin looking for location information.
-	/// </remarks>
+    /// <summary>
+    /// Concrete implementation of <see cref="ILog"/> interface specific to log4net 1.2.10.
+    /// </summary>
+    /// <remarks>
+    /// Log4net is capable of outputting extended debug information about where the current 
+    /// message was generated: class name, method name, file, line, etc. Log4net assumes that the location
+    /// information should be gathered relative to where Debug() was called. 
+    /// When using Common.Logging, Debug() is called in Common.Logging.Log4Net.Log4NetLogger. This means that
+    /// the location information will indicate that Common.Logging.Log4Net.Log4NetLogger always made
+    /// the call to Debug(). We need to know where Common.Logging.ILog.Debug()
+    /// was called. To do this we need to use the log4net.ILog.Logger.Log method and pass in a Type telling
+    /// log4net where in the stack to begin looking for location information.
+    /// </remarks>
     /// <author>Gilles Bayon</author>
     /// <author>Erich Eichinger</author>
-	public class Log4NetLogger : AbstractLogger
-	{
-		#region Fields
+    public class Log4NetLogger : AbstractLogger
+    {
+        #region Fields
 
-		private ILogger _logger = null;
-		private readonly static Type declaringType = typeof(Log4NetLogger);
+        private readonly ILogger _logger = null;
+        private readonly static Type declaringType = typeof(Log4NetLogger);
 
-		#endregion 
+        #endregion
 
-		/// <summary>
-		/// Constructor
-		/// </summary>
-		/// <param name="log"></param>
-		internal protected Log4NetLogger(ILoggerWrapper log )
-		{
-			_logger = log.Logger;
-		}
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="log"></param>
+        internal protected Log4NetLogger(ILoggerWrapper log)
+        {
+            _logger = log.Logger;
+        }
 
-		#region ILog Members
+        #region ILog Members
 
         /// <summary>
         /// Checks if this logger is enabled for the <see cref="F:Common.Logging.LogLevel.Trace" /> level.
@@ -72,52 +75,52 @@ namespace Common.Logging.Log4Net
         }
 
         /// <summary>
-	    /// Checks if this logger is enabled for the <see cref="F:Common.Logging.LogLevel.Info" /> level.
-	    /// </summary>
-	    public override bool IsInfoEnabled
-		{
-			get { return _logger.IsEnabledFor(Level.Info); }
-		}
+        /// Checks if this logger is enabled for the <see cref="F:Common.Logging.LogLevel.Info" /> level.
+        /// </summary>
+        public override bool IsInfoEnabled
+        {
+            get { return _logger.IsEnabledFor(Level.Info); }
+        }
 
         /// <summary>
         /// Checks if this logger is enabled for the <see cref="F:Common.Logging.LogLevel.Warn" /> level.
         /// </summary>
         public override bool IsWarnEnabled
-		{
-			get { return _logger.IsEnabledFor(Level.Warn); }
-		}
+        {
+            get { return _logger.IsEnabledFor(Level.Warn); }
+        }
 
         /// <summary>
         /// Checks if this logger is enabled for the <see cref="F:Common.Logging.LogLevel.Error" /> level.
         /// </summary>
         public override bool IsErrorEnabled
-		{
-			get { return _logger.IsEnabledFor(Level.Error); }
-		}
+        {
+            get { return _logger.IsEnabledFor(Level.Error); }
+        }
 
         /// <summary>
         /// Checks if this logger is enabled for the <see cref="F:Common.Logging.LogLevel.Fatal" /> level.
         /// </summary>
         public override bool IsFatalEnabled
-		{
-			get { return _logger.IsEnabledFor(Level.Fatal); }
-		}
+        {
+            get { return _logger.IsEnabledFor(Level.Fatal); }
+        }
 
-	    /// <summary>
-	    /// Sends the message to the underlying log4net system.
-	    /// </summary>
+        /// <summary>
+        /// Sends the message to the underlying log4net system.
+        /// </summary>
         /// <param name="logLevel">the level of this log event.</param>
-	    /// <param name="message">the message to log</param>
-	    /// <param name="exception">the exception to log (may be null)</param>
+        /// <param name="message">the message to log</param>
+        /// <param name="exception">the exception to log (may be null)</param>
         protected override void WriteInternal(LogLevel logLevel, object message, Exception exception)
-		{
-		    Level level = GetLevel(logLevel);
+        {
+            Level level = GetLevel(logLevel);
             _logger.Log(declaringType, level, message, exception);
-		}
+        }
 
         private static Level GetLevel(LogLevel logLevel)
         {
-            switch(logLevel)
+            switch (logLevel)
             {
                 case LogLevel.All:
                     return Level.All;
@@ -138,6 +141,6 @@ namespace Common.Logging.Log4Net
             }
         }
 
-		#endregion
-	}
+        #endregion
+    }
 }

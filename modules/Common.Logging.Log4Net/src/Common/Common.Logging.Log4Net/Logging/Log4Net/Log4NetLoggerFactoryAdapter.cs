@@ -1,7 +1,7 @@
 #region License
 
 /*
- * Copyright © 2002-2006 the original author or authors.
+ * Copyright © 2002-2009 the original author or authors.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,92 +18,154 @@
 
 #endregion
 
-#region Imports
-
 using System;
 using System.Collections.Specialized;
 using System.IO;
 using log4net.Config;
 
-#endregion 
-
 namespace Common.Logging.Log4Net
 {
-	/// <summary>
-	/// Concrete subclass of ILoggerFactoryAdapter specific to log4net.
-	/// </summary>
-	/// <author>Gilles Bayon</author>
-	/// <author>Erich Eichinger</author>
+    /// <summary>
+    /// Concrete subclass of ILoggerFactoryAdapter specific to log4net 1.2.10.
+    /// </summary>
+    /// <remarks>
+    /// The following configuration property values may be configured:
+    /// <list type="bullet">
+    ///     <item><c>configType</c>: <c>INLINE|FILE|FILE-WATCH|EXTERNAL</c></item>
+    ///     <item><c>configFile</c>: log4net configuration file path in case of FILE or FILE-WATCH</item>
+    /// </list>
+    /// The configType values have the following implications:
+    /// <list type="bullet">
+    ///     <item>INLINE: simply calls <see cref="XmlConfigurator.Configure()"/></item>
+    ///     <item>FILE: calls <see cref="XmlConfigurator.Configure(System.IO.FileInfo)"/> using <c>configFile</c>.</item>
+    ///     <item>FILE-WATCH: calls <see cref="XmlConfigurator.ConfigureAndWatch(System.IO.FileInfo)"/> using <c>configFile</c>.</item>
+    ///     <item>EXTERNAL: does nothing and expects log4net to be configured elsewhere.</item>
+    /// </list>
+    /// </remarks>
+    /// <example>
+    /// 
+    /// </example>
+    /// <author>Gilles Bayon</author>
+    /// <author>Erich Eichinger</author>
     public class Log4NetLoggerFactoryAdapter : AbstractCachingLoggerFactoryAdapter
-	{
-		/// <summary>
-		/// Constructor
-		/// </summary>
-		/// <param name="properties"></param>
-		public Log4NetLoggerFactoryAdapter(NameValueCollection properties):base(true)
-		{
-			string configType = string.Empty;
-			
-			if ( properties["configType"] != null )
-			{
-				configType = properties["configType"].ToUpper();	
-			}
+    {
+        /// <summary>
+        /// Abstract interface to the underlying log4net runtime
+        /// </summary>
+        public interface ILog4NetRuntime
+        {
+            /// <summary>Calls <see cref="XmlConfigurator.Configure()"/></summary>
+            void XmlConfiguratorConfigure();
+            /// <summary>Calls <see cref="XmlConfigurator.Configure(System.IO.FileInfo)"/></summary>
+            void XmlConfiguratorConfigure(string configFile);
+            /// <summary>Calls <see cref="XmlConfigurator.ConfigureAndWatch(System.IO.FileInfo)"/></summary>
+            void XmlConfiguratorConfigureAndWatch(string configFile);
+            /// <summary>Calls <see cref="BasicConfigurator.Configure()"/></summary>
+            void BasicConfiguratorConfigure();
+            /// <summary>Calls <see cref="LogManager.GetLogger(string)"/></summary>
+            log4net.ILog GetLogger(string name);
+        }
 
-			string configFile = string.Empty;
-			if ( properties["configFile"] != null )
-			{
-				configFile = properties["configFile"];			
-				if (configFile.StartsWith("~/") || configFile.StartsWith("~\\"))
-				{
-					configFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory.TrimEnd('/', '\\') + "/", configFile.Substring(2));
-				}
-			}
+        private class Log4NetRuntime : ILog4NetRuntime
+        {
+            public void XmlConfiguratorConfigure()
+            {
+                XmlConfigurator.Configure();
+            }
+            public void XmlConfiguratorConfigure(string configFile)
+            {
+                XmlConfigurator.Configure(new FileInfo(configFile));
+            }
+            public void XmlConfiguratorConfigureAndWatch(string configFile)
+            {
+                XmlConfigurator.ConfigureAndWatch(new FileInfo(configFile));
+            }
+            public void BasicConfiguratorConfigure()
+            {
+                BasicConfigurator.Configure();
+            }
+            public log4net.ILog GetLogger(string name)
+            {
+                return log4net.LogManager.GetLogger(name);
+            }
+        }
 
-			if ( configType == "FILE" || configType == "FILE-WATCH" )
-			{
+        private readonly ILog4NetRuntime _runtime;
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="properties">configuration properties, see <see cref="Log4NetLoggerFactoryAdapter"/> for more.</param>
+        public Log4NetLoggerFactoryAdapter(NameValueCollection properties)
+            : this(properties, new Log4NetRuntime())
+        { }
+
+        /// <summary>
+        /// Constructor accepting configuration properties and an arbitrary 
+        /// <see cref="ILog4NetRuntime"/> instance.
+        /// </summary>
+        /// <param name="properties">configuration properties, see <see cref="Log4NetLoggerFactoryAdapter"/> for more.</param>
+        /// <param name="runtime">a log4net runtime adapter</param>
+        protected Log4NetLoggerFactoryAdapter(NameValueCollection properties, ILog4NetRuntime runtime)
+            : base(true)
+        {
+            if (runtime == null)
+            {
+                throw new ArgumentNullException("runtime");
+            }
+            _runtime = runtime;
+
+            // parse config properties
+            string configType = ConfigurationHelper.GetValue(properties, "configType", string.Empty).ToUpper();
+            string configFile = ConfigurationHelper.GetValue(properties, "configFile", string.Empty);
+
+            // app-relative path?
+            if (configFile.StartsWith("~/") || configFile.StartsWith("~\\"))
+            {
+                configFile = string.Format( "{0}/{1}", AppDomain.CurrentDomain.BaseDirectory.TrimEnd('/', '\\') , configFile.Substring(2));
+            }
+
+            if (configType == "FILE" || configType == "FILE-WATCH")
+            {
                 if (configFile == string.Empty)
                 {
-    
-                    throw new ConfigurationException("Configration property 'configFile' must be set for log4Net configuration of type 'FILE'.");
-
+                    throw new ConfigurationException("Configuration property 'configFile' must be set for log4Net configuration of type 'FILE' or 'FILE-WATCH'.");
                 }
 
                 if (!File.Exists(configFile))
                 {
-
                     throw new ConfigurationException("log4net configuration file '" + configFile + "' does not exists");
-
                 }
-			}
+            }
 
-			switch ( configType )
-			{
-				case "INLINE":
-					XmlConfigurator.Configure();
-					break;
-				case "FILE":
-					XmlConfigurator.Configure( new FileInfo( configFile ) );
-					break;
-				case "FILE-WATCH":
-					XmlConfigurator.ConfigureAndWatch( new FileInfo( configFile ) );
-					break;
-				case "EXTERNAL":
-					// Log4net will be configured outside of Common.Logging
-					break;
-				default:
-					BasicConfigurator.Configure();
-					break;
-			}
-		}
+            switch (configType)
+            {
+                case "INLINE":
+                    _runtime.XmlConfiguratorConfigure();
+                    break;
+                case "FILE":
+                    _runtime.XmlConfiguratorConfigure(configFile);
+                    break;
+                case "FILE-WATCH":
+                    _runtime.XmlConfiguratorConfigureAndWatch(configFile);
+                    break;
+                case "EXTERNAL":
+                    // Log4net will be configured outside of Common.Logging
+                    break;
+                default:
+                    _runtime.BasicConfiguratorConfigure();
+                    break;
+            }
+        }
 
-		/// <summary>
-		/// Create a ILog instance by name 
-		/// </summary>
-		/// <param name="name"></param>
-		/// <returns></returns>
-		protected override ILog CreateLogger(string name)
-		{
-			return new Log4NetLogger( log4net.LogManager.GetLogger( name ) );
-		}
-	}
+        /// <summary>
+        /// Create a ILog instance by name 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        protected override ILog CreateLogger(string name)
+        {
+            return new Log4NetLogger(_runtime.GetLogger(name));
+        }
+    }
 }

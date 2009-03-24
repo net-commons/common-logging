@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<DocumentXComments Version="5.0" Moniker="C:\projects\netcommon\logging\modules\Common.Logging.EntLib\build\VS.NET.2008\Common.Logging.EntLib\Debug\Common.Logging.EntLib.dll" DocType="dx.Net" Template="" ShowInherited="False" SpellLastCheckDateTime="30.12.1899 00:00:00" TreePath="Common.Logging.EntLib" RelatedProject="netcommon-api.dxp" RelatedHSProject="" LoadIncludeFilter="" LoadExcludeFilter="" LoadPrivate="False" LoadOnDemand="True" LoadSourceComments="False">
+    <IgnoreWordList/>
+<UserData>
+    <InPlaceEditor>
+        <inheritedMembers>on</inheritedMembers>
+        <protectedMembers>on</protectedMembers>
+        <dtscrollpos>0</dtscrollpos>
+    </InPlaceEditor>
+</UserData>
+<c eid="Common.Logging.EntLib" tid="##SUMMARY" q="" cd="39896.8618287037">Provides an adapter to plug Enterprise Logging Application Block into Common.Logging</c>
+<c eid="Common.Logging.EntLib" tid="##REMARKS" q="" cd="39896.8671064815">For using Common.Logging, see %LogManager:Common.Logging~Common.Logging.LogManager%. For configuring the EntLib adapter, see %EntLibLoggerFactoryAdapter:Common.Logging.EntLib~Common.Logging.EntLib.EntLibLoggerFactoryAdapter%</c>
+    </DocumentXComments>

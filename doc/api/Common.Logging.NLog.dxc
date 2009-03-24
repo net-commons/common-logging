@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<DocumentXComments Version="5.0" Moniker="C:\projects\netcommon\logging\modules\Common.Logging.NLog\build\VS.NET.2008\Common.Logging.NLog\Debug\Common.Logging.NLog.dll" DocType="dx.Net" Template="" ShowInherited="False" SpellLastCheckDateTime="30.12.1899 00:00:00" TreePath="Common.Logging.NLog" RelatedProject="netcommon-api.dxp" RelatedHSProject="" LoadIncludeFilter="" LoadExcludeFilter="" LoadPrivate="False" LoadOnDemand="True" LoadSourceComments="False">
+    <IgnoreWordList/>
+<UserData>
+    <InPlaceEditor>
+        <dtscrollpos>0</dtscrollpos>
+        <inheritedMembers>on</inheritedMembers>
+        <protectedMembers>on</protectedMembers>
+    </InPlaceEditor>
+</UserData>
+<c eid="Common.Logging.NLog" tid="##SUMMARY" q="" cd="39896.9837037037"><![CDATA[Provides an adapter to plug&nbsp;NLog 1.0.0.505&nbsp;into Common.Logging]]></c>
+<c eid="Common.Logging.NLog" tid="##REMARKS" q="" cd="39896.984212963">For using Common.Logging, see %LogManager:Common.Logging~Common.Logging.LogManager%. For configuring the NLog adapter, see %NLogLoggerFactoryAdapter:Common.Logging.NLog~Common.Logging.NLog.NLogLoggerFactoryAdapter%</c>
+    </DocumentXComments>
