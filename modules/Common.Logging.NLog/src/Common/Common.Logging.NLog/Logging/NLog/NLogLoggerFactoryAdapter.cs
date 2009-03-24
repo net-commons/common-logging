@@ -1,7 +1,7 @@
 #region License
 
 /*
- * Copyright © 2002-2007 the original author or authors.
+ * Copyright © 2002-2009 the original author or authors.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,84 +18,108 @@
 
 #endregion
 
-#region Imports
-
 using System;
 using System.IO;
 using System.Collections.Specialized;
 
-using LogManagerNLog = NLog.LogManager;
-using XmlLoggingConfigurationNLog = NLog.Config.XmlLoggingConfiguration;
-
-#endregion 
-
 namespace Common.Logging.NLog
 {
-	/// <summary>
-    /// Concrete implementation of <see cref="ILog"/> interface specific to NLog.
-	/// </summary>
-	/// <author>Bruno Baia</author>
+    /// <summary>
+    /// Concrete subclass of ILoggerFactoryAdapter specific to log4net 1.2.10.
+    /// </summary>
+    /// <remarks>
+    /// The following configuration property values may be configured:
+    /// <list type="bullet">
+    ///     <item><c>configType</c>: <c>INLINE|FILE</c></item>
+    ///     <item><c>configFile</c>: NLog XML configuration file path in case of FILE</item>
+    /// </list>
+    /// The configType values have the following implications:
+    /// <list type="bullet">
+    ///     <item>FILE: calls <c>NLog.LogManager.Configuration = new NLog.Config.XmlLoggingConfiguration(configFile)</c>.</item>
+    ///     <item>&lt;any other value&gt;: expects NLog to be configured externally</item>
+    /// </list>
+    /// </remarks>
+    /// <example>
+    /// The following snippet shows how to configure EntLib logging for Common.Logging:
+    /// <code>
+    /// &lt;configuration&gt;
+    ///   &lt;configSections&gt;
+    ///       &lt;section name=&quot;logging&quot; type=&quot;Common.Logging.ConfigurationSectionHandler, Common.Logging&quot; /&gt;
+    ///   &lt;/configSections&gt;
+    ///   &lt;common&gt;
+    ///     &lt;logging&gt;
+    ///       &lt;factoryAdapter type=&quot;Common.Logging.NLog.NLogLoggerFactoryAdapter, Common.Logging.NLog&quot;&gt;
+    ///         &lt;arg key=&quot;configType&quot; value=&quot;FILE&quot; /&gt;
+    ///         &lt;arg key=&quot;configFile&quot; value=&quot;~/nlog.config&quot; /&gt;
+    ///       &lt;/factoryAdapter&gt;
+    ///     &lt;/logging&gt;
+    ///   &lt;/common&gt;
+    /// &lt;/configuration&gt;
+    /// </code>
+    /// </example>
+    /// <author>Bruno Baia</author>
+    /// <author>Erich Eichinger</author>
     public class NLogLoggerFactoryAdapter : AbstractCachingLoggerFactoryAdapter
-	{
-		/// <summary>
-		/// Constructor
-		/// </summary>
-		/// <param name="properties"></param>
+    {
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="properties"></param>
         public NLogLoggerFactoryAdapter(NameValueCollection properties)
-		    :base(true)
+            : base(true)
         {
-			string configType = string.Empty;
+            string configType = string.Empty;
             string configFile = string.Empty;
-            
+
             if (properties != null)
-		    {
-		        if ( properties["configType"] != null )
-		        {
-		            configType = properties["configType"].ToUpper();	
-		        }
+            {
+                if (properties["configType"] != null)
+                {
+                    configType = properties["configType"].ToUpper();
+                }
 
-		        if ( properties["configFile"] != null )
-		        {
-		            configFile = properties["configFile"];			
-		            if (configFile.StartsWith("~/") || configFile.StartsWith("~\\"))
-		            {
-		                configFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory.TrimEnd('/', '\\') + "/", configFile.Substring(2));
-		            }
-		        }
+                if (properties["configFile"] != null)
+                {
+                    configFile = properties["configFile"];
+                    if (configFile.StartsWith("~/") || configFile.StartsWith("~\\"))
+                    {
+                        configFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory.TrimEnd('/', '\\') + "/", configFile.Substring(2));
+                    }
+                }
 
-		        if ( configType == "FILE" || configType == "FILE-WATCH" )
-		        {
-		            if (configFile == string.Empty)
-		            {
-		                throw new ConfigurationException("Configration property 'configFile' must be set for NLog configuration of type 'FILE'.");
-		            }
+                if (configType == "FILE")
+                {
+                    if (configFile == string.Empty)
+                    {
+                        throw new ConfigurationException("Configuration property 'configFile' must be set for NLog configuration of type 'FILE'.");
+                    }
 
-		            if (!File.Exists(configFile))
-		            {
-		                throw new ConfigurationException("NLog configuration file '" + configFile + "' does not exists");
-		            }
-		        }
-		    }
-			switch ( configType )
-			{
-				case "INLINE":
-					break;
-				case "FILE":
-                    LogManagerNLog.Configuration = new XmlLoggingConfigurationNLog(configFile);
-					break;
-				default:
-					break;
-			}
-		}
+                    if (!File.Exists(configFile))
+                    {
+                        throw new ConfigurationException("NLog configuration file '" + configFile + "' does not exists");
+                    }
+                }
+            }
+            switch (configType)
+            {
+                case "INLINE":
+                    break;
+                case "FILE":
+                    global::NLog.LogManager.Configuration = new global::NLog.Config.XmlLoggingConfiguration(configFile);
+                    break;
+                default:
+                    break;
+            }
+        }
 
-		/// <summary>
-		/// Get a ILog instance by type name 
-		/// </summary>
-		/// <param name="name"></param>
-		/// <returns></returns>
-		protected override ILog CreateLogger(string name)
-		{
-            return new NLogLogger(LogManagerNLog.GetLogger(name));
-		}
-	}
+        /// <summary>
+        /// Get a ILog instance by type name 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        protected override ILog CreateLogger(string name)
+        {
+            return new NLogLogger(global::NLog.LogManager.GetLogger(name));
+        }
+    }
 }

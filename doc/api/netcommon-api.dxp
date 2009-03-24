@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<DocumentXProject Version="5.0" CompileHelpFile="True" RefreshIfExists="False" DocumentSourceCode="False" AlwaysCopySupportFiles="True" PropertyCommentsFrom="0" RelationshipsFrom="2" DefaultRelsOnlyForCollections="True" ProjectGroupName="Common Infrastructure Libraries API Reference" HTMLHelpVersion="1" HHNamespace="Common.Logging" HHIdentifier="netcommon-api" H2PlugIn="False" H2PlugInNamespace="" LocaleID="0" ExcludeFiltersRegExp="False" OutputFileExtension=".html">
+<DocumentXProject Version="5.0" CompileHelpFile="True" RefreshIfExists="False" DocumentSourceCode="False" AlwaysCopySupportFiles="True" PropertyCommentsFrom="0" RelationshipsFrom="2" DefaultRelsOnlyForCollections="True" ProjectGroupName="Common Logging 2.0 API Reference" HTMLHelpVersion="1" HHNamespace="Common.Logging" HHIdentifier="netcommon-api" H2PlugIn="False" H2PlugInNamespace="" LocaleID="0" ExcludeFiltersRegExp="False" OutputFileExtension=".html">
     <OutputLocation OutputFolder="target\html\" HelpFileName="target\htmlhelp\netcommon-api.chm" UseFilenameAliases="False" StripMetadata="False" ClearBeforeBuild="True" RemoveOutputFilesAfterCompile="False"/>
     <HTMLHelpOptions UseALinkMenus="False"/>
     <OtherOptions CreateContextLinks="True" WriteHelpDescriptions="True" CopySourceCode="False" CreateWinHelpStub="False" Language="English"/>
@@ -16,7 +16,7 @@
     <CommentExtraction UnTaggedBlocks="False" UnTaggedEnumerations="False" UnTaggedEvents="False" UnTaggedModules="False" UnTaggedUDTs="False" UnTaggedVariables="False" HelpDescriptionImport="1"/>
     <Diagrams PageNestingLevels="2" OverviewNestingLevels="3" SupressSingleObjectDiagrams="True" DiagramStyleSource="0" ObjFillColor="0" ObjTextColor="0" ObjBorderColor="0" ColFillColor="0" ColTextColor="0" ColBorderColor="0" UseDropShadow="False" CenterCaptions="False" DiagramBold="False" BorderWidth="0" UseDiagramShapes="False"/>
     <VariableValues>
-        <VariableValue Name="CopyrightNotice" Value=""/>
+        <VariableValue Name="CopyrightNotice" Value="Common Logging 2.0 (March, 20 2009)"/>
         <VariableValue Name="NonScrollingPageFooter" Value="&amp;copy; The Common Infrastructure Libraries for .NET Team %%year%% All Rights Reserved."/>
         <VariableValue Name="FeedbackLink" Value="&lt;a href=&quot;http://netcommon.sourceforge.net/support.html&quot;&gt;Send comments&lt;/a&gt; on this topic."/>
         <VariableValue Name="DocumentTitle" Value="Common Logging SDK Reference"/>
@@ -32,6 +32,8 @@
         <e>Common.Logging~Common.Logging.Simple.TraceLogger+FormatOutputMessage</e>
         <e>Common.Logging.EntLib~Common.Logging.EntLib.EntLibLogger+TraceLevelLogEntry</e>
         <e>Common.Logging.EntLib41~Common.Logging.EntLib.EntLibLogger+TraceLevelLogEntry</e>
+        <e>Common.Logging.Log4Net129~Common.Logging.Log4Net.Log4NetLoggerFactoryAdapter+Log4NetRuntime</e>
+        <e>Common.Logging.Log4Net~Common.Logging.Log4Net.Log4NetLoggerFactoryAdapter+Log4NetRuntime</e>
     </NamespaceExclusions>
     <DotNetProperties IncludeRelationshipDiagrams="True" IncludeInheritanceHierarchies="True" IncludeBaseMembers="False" StandardInterfaces="System.*,Microsoft.*" OnlyLinkInherited="True" ExternalDocs="True" UseCommentFiles="True" DrillCommentFiles="True" GenerateXMLLinks="False" XMLIsland="" NoInheritedTopics="True" NoInheritedInLists="False" CreateXMLCommentFile="False" ExcludedLanguages="Delphi,JScript,Ajax,Ajax_Usage" GenerateAttributes="True" AttributeFilter="" AttributeFilterInclude="False" VBNETDefaultConstructor="False" LinkOverridenMembersToBaseImplementation="False" UseOverloadSummaryForMasterSummary="True" ExcludeEditorBrowsable="True" GenerateBreadCrumbs="True" IncludeAssemblyBreadCrumb="True"/>
     <DatabaseProperties DocumentViewSource="True" DocumentTriggerSource="True" DocumentProcedureSource="True" RetainTaggedComments="False"/>

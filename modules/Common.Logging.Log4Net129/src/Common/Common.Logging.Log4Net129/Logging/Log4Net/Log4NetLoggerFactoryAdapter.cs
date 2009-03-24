@@ -36,14 +36,30 @@ namespace Common.Logging.Log4Net
     /// </list>
     /// The configType values have the following implications:
     /// <list type="bullet">
-    ///     <item>INLINE: simply calls <see cref="XmlConfigurator.Configure()"/></item>
-    ///     <item>FILE: calls <see cref="XmlConfigurator.Configure(System.IO.FileInfo)"/> using <c>configFile</c>.</item>
-    ///     <item>FILE-WATCH: calls <see cref="XmlConfigurator.ConfigureAndWatch(System.IO.FileInfo)"/> using <c>configFile</c>.</item>
+    ///     <item>INLINE: simply calls <c>XmlConfigurator.Configure()</c></item>
+    ///     <item>FILE: calls <c>XmlConfigurator.Configure(System.IO.FileInfo)</c> using <c>configFile</c>.</item>
+    ///     <item>FILE-WATCH: calls <c>XmlConfigurator.ConfigureAndWatch(System.IO.FileInfo)</c> using <c>configFile</c>.</item>
     ///     <item>EXTERNAL: does nothing and expects log4net to be configured elsewhere.</item>
+    ///     <item>&lt;any&gt;: calls <c>BasicConfigurator.Configure()</c></item>
     /// </list>
     /// </remarks>
     /// <example>
-    /// 
+    /// The following snippet shows how to configure EntLib logging for Common.Logging:
+    /// <code>
+    /// &lt;configuration&gt;
+    ///   &lt;configSections&gt;
+    ///       &lt;section name=&quot;logging&quot; type=&quot;Common.Logging.ConfigurationSectionHandler, Common.Logging&quot; /&gt;
+    ///   &lt;/configSections&gt;
+    ///   &lt;common&gt;
+    ///     &lt;logging&gt;
+    ///       &lt;factoryAdapter type=&quot;Common.Logging.Log4Net.Log4NetLoggerFactoryAdapter, Common.Logging.Log4Net129&quot;&gt;
+    ///         &lt;arg key=&quot;configType&quot; value=&quot;FILE&quot; /&gt;
+    ///         &lt;arg key=&quot;configFile&quot; value=&quot;~/log4net.config&quot; /&gt;
+    ///       &lt;/factoryAdapter&gt;
+    ///     &lt;/logging&gt;
+    ///   &lt;/common&gt;
+    /// &lt;/configuration&gt;
+    /// </code>
     /// </example>
     /// <author>Gilles Bayon</author>
     /// <author>Erich Eichinger</author>
