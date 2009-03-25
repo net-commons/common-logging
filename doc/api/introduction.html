@@ -1,0 +1,62 @@
+<html dir="LTR" xmlns:ndoc="urn:ndoc-schema">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=Windows-1252" />
+    <meta name="vs_targetSchema" content="http://schemas.microsoft.com/intellisense/ie5" />
+    <title>Introduction</title>
+    <xml>
+    </xml>
+    <link rel="stylesheet" type="text/css" href="MSDN.css" />
+  </head>
+  <body id="bodyID" class="dtBODY">
+    <div id="nsbanner">
+      <div id="bannerrow1">
+        <table class="bannerparthead" cellspacing="0">
+          <tr id="hdr">
+            <td class="runninghead">Common Logging 2.0 API Reference</td>
+            <td class="product">
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div id="TitleRow">
+        <h1 class="dtH1">Introduction</h1>
+      </div>
+    </div>
+    <div id="nstext">
+    				<p/>
+            <h1 xmlns="urn:ndoc-schema">Overview</h1>
+            <p> There are a variety of logging implementations for .NET currently in use, log4net, Enterprise Library Logging, NLog, to name the most popular. The downside of having differerent implementation is that they do not share a common interface and therefore impose a particular logging implementation on the users of your library. To solve this dependency problem the Common.Logging library introduces a simple abstraction to allow you to select a specific logging implementation at runtime. </p>
+            <p> The library is based on work done by the developers of IBatis.NET and it's usage is inspired by log4net. Many thanks to the developers of those projects! </p>
+            <h1 xmlns="urn:ndoc-schema">Usage</h1>
+            <p> The core logging library Common.Logging provides the base logging <a href="Common.Logging.ILog.html">ILog</a> interface as well as the global <a href="Common.Logging.LogManager.html">LogManager</a> that you use to instrument your code: </p>
+            <pre class="code"><span class="lang">[C#]
+</span>ILog log = LogManager.GetLogger(this.GetType());
+
+log.DebugFormat("Hi {0}", "dude");
+</pre>
+            <p> To output the information logged, you need to tell Common.Logging, what underlying logging system to use. Common.Logging already includes simple console and trace based logger implementations usable out of the box. Adding the following configuration snippet to your app.config causes Common.Logging to output all information to the console: </p>
+            <pre class="code"><span class="lang">[XML]
+</span>&lt;configuration&gt;
+    &lt;configSections&gt;
+      &lt;sectionGroup name="common"&gt;
+        &lt;section name="logging" type="Common.Logging.ConfigurationSectionHandler, Common.Logging" /&gt;
+      &lt;/sectionGroup&gt;
+    &lt;/configSections&gt;
+
+    &lt;common&gt;
+      &lt;logging&gt;
+        &lt;factoryAdapter type="Common.Logging.Simple.ConsoleOutLoggerFactoryAdapter, Common.Logging"&gt;
+          &lt;arg key="level" value="DEBUG" /&gt;
+        &lt;/factoryAdapter&gt;
+      &lt;/logging&gt;
+    &lt;/common&gt;
+&lt;/configuration&gt;
+</pre>
+            <h1 xmlns="urn:ndoc-schema">Customizing</h1>
+            <p> In the case you want to integrate your own logging system that is not supported by Common.Logging yet, it is easily possible to implement your own plugin by implementing <a href="Common.Logging.ILoggerFactoryAdapter.html">ILoggerFactoryAdapter</a>. For convenience there is a base <a href="Common.Logging.AbstractCachingLoggerFactoryAdapter.html">AbstractCachingLoggerFactoryAdapter</a> implementation available that usually makes implementing your own adapter a breeze. </p>
+            <h1 xmlns="urn:ndoc-schema">&lt;system.diagnostics&gt; Integration</h1>
+            <p> If your code already uses the .NET framework's built-in <a href="http://msdn.microsoft.com/library/system.diagnostics.trace.aspx" xmlns="urn:ndoc-schema">System.Diagnostics.Trace</a> system, you can use <a href="Common.Logging.CommonLoggingTraceListener.html">CommonLoggingTraceListener</a> to redirect all trace output to the Common.Logging infrastructure. </p>
+	<hr />
+	<div id="footer"><p><a href="mailto:netcommon-developer@lists.sourceforge.net?subject=Common%20Logging%202.0%20API%20Reference%20Documentation%20Feedback:%20Introduction">Send comments on this topic.</a></p><p><a>© The Common Infrastructure Libraries for .NET Team 2009 All Rights Reserved.</a></p><p></p></div></div>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NDoc3.Documenter.Latex</name>
+    </assembly>
+    <members>
+        <member name="T:NDoc3.Documenter.Latex.LatexDocumenter">
+            <summary>
+            LaTeX generating documenter class.
+            </summary>
+        </member>
+        <member name="M:NDoc3.Documenter.Latex.LatexDocumenter.#ctor(NDoc3.Documenter.Latex.LatexDocumenterConfig)">
+            <summary>
+            Constructs a new LaTeX documenter.
+            </summary>
+            <remarks>
+            The documenter name is set to "LaTeX".
+            </remarks>
+        </member>
+        <member name="M:NDoc3.Documenter.Latex.LatexDocumenter.Build(NDoc3.Core.Project)">
+            <summary>
+            <see cref="M:NDoc3.Core.BaseDocumenter.Build(NDoc3.Core.Project)"/>
+            </summary>
+            <param name="project"></param>
+        </member>
+        <member name="M:NDoc3.Documenter.Latex.LatexDocumenter.MakeTextTeXCompatible(System.Xml.XmlNode)">
+            <summary>
+            Translates all text contained in the node (and it's children)
+            into LaTeX compatable text.
+            </summary>
+            <param name="node"></param>
+        </member>
+        <member name="M:NDoc3.Documenter.Latex.LatexDocumenter.CompileTexDocument">
+            <summary>
+            Calls the LaTeX processor to compile the TeX file into a DVI or PDF.
+            </summary>
+        </member>
+        <member name="M:NDoc3.Documenter.Latex.LatexDocumenter.WriteTeXDocument(NDoc3.Core.Workspace,System.Xml.XmlDocument)">
+            <summary>
+            Uses XSLT to transform the current document into LaTeX source.
+            </summary>
+        </member>
+        <member name="P:NDoc3.Documenter.Latex.LatexDocumenter.LatexConfig">
+            <summary>
+            Gets the Configuration object for this documenter.
+            </summary>
+        </member>
+        <member name="P:NDoc3.Documenter.Latex.LatexDocumenter.MainOutputFile">
+            <summary>
+            Returns the path to the output file.
+            </summary>
+            <remarks>
+            If a PDF or DVI file with the same name as the TeX file exists 
+            the path to that file is returned.
+            </remarks>
+        </member>
+        <member name="T:NDoc3.Documenter.Latex.LatexDocumenterConfig">
+            <summary>
+            Summary description for LatexDocumenterConfig.
+            </summary>
+            <remarks>
+            <para>The LaTeX documenter can be used to create dvi or postscript documents.</para>
+            <para>This documenter requires that a LaTeX compiler be installed.
+            You can download a free one from <a href="http://www.miktex.org">www.MiKTeX.org</a>.</para>
+            </remarks>
+        </member>
+        <member name="M:NDoc3.Documenter.Latex.LatexDocumenterConfig.#ctor(NDoc3.Documenter.Latex.LatexDocumenterInfo)">
+            <summary>
+            Creates a new instance of the class
+            </summary>
+            <param name="info">Info class descrbing the documenter</param>
+        </member>
+        <member name="M:NDoc3.Documenter.Latex.LatexDocumenterConfig.CreateDocumenter">
+            <summary>
+            Creates an instance of a documenter <see cref="M:NDoc3.Core.IDocumenterConfig.CreateDocumenter"/>
+            </summary>
+            <returns>IDocumenter instance</returns>		
+        </member>
+        <member name="P:NDoc3.Documenter.Latex.LatexDocumenterConfig.OutputDirectory">
+            <summary>Gets or sets the output directory.</summary>
+            <remarks>The folder documentation will be created. This can be 
+            absolute or relative from the .ndoc project file.</remarks>
+        </member>
+        <member name="P:NDoc3.Documenter.Latex.LatexDocumenterConfig.TextFileFullName">
+            <summary>Gets the full name of the LaTeX document.</summary>
+        </member>
+        <member name="P:NDoc3.Documenter.Latex.LatexDocumenterConfig.TexFileBaseName">
+            <summary>Gets or sets the name of the LaTeX document excluding the file extension.</summary>
+            <remarks>Name of the LaTeX document, excluding the file extension.</remarks>
+        </member>
+        <member name="P:NDoc3.Documenter.Latex.LatexDocumenterConfig.LatexCompiler">
+            <summary>Gets or sets the LaTeX compiler path.</summary>
+            <remarks>Path to the LaTeX compiler executable (Set to empty if you do not have LaTeX installed).</remarks>
+        </member>
+        <member name="P:NDoc3.Documenter.Latex.LatexDocumenterConfig.TexFileFullPath">
+            <summary>Gets the path of the output file.</summary>
+        </member>
+        <member name="T:NDoc3.Documenter.Latex.LatexDocumenterInfo">
+            <summary>
+            Information about the Xml Documenter
+            </summary>
+        </member>
+        <member name="M:NDoc3.Documenter.Latex.LatexDocumenterInfo.#ctor">
+            <summary>
+            Creates a new instance of the class
+            </summary>
+        </member>
+        <member name="M:NDoc3.Documenter.Latex.LatexDocumenterInfo.CreateConfig">
+            <summary>
+            See <see cref="M:NDoc3.Core.IDocumenterInfo.CreateConfig"/>
+            </summary>
+            <returns>A config instance</returns>
+        </member>
+        <member name="T:NDoc3.Documenter.Latex.LatexWorkspace">
+            <summary>
+            Summary description for LatexWorkspace.
+            </summary>
+        </member>
+        <member name="M:NDoc3.Documenter.Latex.LatexWorkspace.#ctor(System.String)">
+            <summary>
+            Manages the location of the documentation build process
+            </summary>
+            <param name="rootDir">The location to create the workspace</param>
+        </member>
+    </members>
+</doc>

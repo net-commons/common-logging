@@ -93,7 +93,21 @@
   </target>
 
   <target name="doc">
+    <call target="doc-reference" cascade="false" />
+    <call target="doc-sdk" cascade="false" />
+  </target>
+
+  <target name="doc-reference">
     <nant buildfile="doc/reference/docbook.build" target="all" />
+  </target>
+
+  <target name="doc-sdk">
+    <echo message="Creating SDK Documentation for NDoc3 Core." />
+    <exec workingdir="." program="./tools/ndoc3/NDoc3Console.exe" verbose="true">
+      <!-- arg value="-verbose" /-->
+      <!-- arg value="-documenter=MSDN" /-->
+      <arg value="-project=./Logging.ndoc" />
+    </exec>
   </target>
 
   <target name="build" depends="build-common" description="compiles and tests all modules">
@@ -185,6 +199,34 @@
 
   </target>
 
+	<target name="package.doc">
+    <!-- copy reference docs -->
+    <call target="doc" cascade="false"/>
+    <copy todir="${package.dir}/doc/reference/">
+      <fileset basedir="${project.basedir}/doc/reference/target/">
+        <include name="**/*"/>
+      </fileset>
+    </copy>
+
+    <!-- copy sdk docs -->
+    <copy todir="${package.dir}/doc/api/html">
+      <fileset basedir="${project.basedir}/doc/api/target/msdn/">
+        <include name="**/*"/>
+        <exclude name="*.chw" />
+        <exclude name="*.hhc" />
+        <exclude name="*.hhk" />
+        <exclude name="*.hhp" />
+        <exclude name="*.chm" />
+        <exclude name="ndoc3_msdn_temp" />
+      </fileset>
+    </copy>
+    <copy todir="${package.dir}/doc/api/htmlhelp">
+      <fileset basedir="${project.basedir}/doc/api/target/msdn/">
+        <include name="*.chm"/>
+      </fileset>
+    </copy>
+	</target>
+
   <target name="package" description="Builds all modules and documentation">
 
     <!-- clean package dir -->
@@ -197,23 +239,7 @@
     <call target="package.sources" cascade="false" />
 
     <!-- copy reference docs -->
-    <call target="doc" cascade="false"/>
-    <copy todir="${package.dir}/doc/reference/">
-      <fileset basedir="${project.basedir}/doc/reference/target/">
-        <include name="**/*"/>
-      </fileset>
-    </copy>
-
-    <!-- copy sdk docs -->
-    <copy todir="${package.dir}/doc/api">
-      <fileset basedir="${project.basedir}/doc/api/target/">
-        <include name="**/*"/>
-        <exclude name="**/*.chw" />
-        <exclude name="**/*.hhc" />
-        <exclude name="**/*.hhk" />
-        <exclude name="**/*.hhp" />
-      </fileset>
-    </copy>
+    <call target="package.doc" cascade="false"/>
 
     <!-- build scripts -->
     <copy todir="${package.dir}/shared/">

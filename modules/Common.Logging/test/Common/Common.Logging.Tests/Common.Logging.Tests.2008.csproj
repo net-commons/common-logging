@@ -136,8 +136,8 @@
   </Target>
   -->
   <PropertyGroup>
-    <PostBuildEvent>echo "Copying .xml files for tests"
-xcopy "$(ProjectDir)Data" "$(OutDir)" /Y /S /Q /D
-xcopy  "$(ProjectDir)$(TargetFileName).config" "$(OutDir)" /Y /S /Q /D /I</PostBuildEvent>
+    <PostBuildEvent>rem echo "Copying .xml files for tests"
+rem xcopy "$(ProjectDir)Data" "$(OutDir)" /Y /S /Q /D
+rem xcopy  "$(ProjectDir)$(TargetFileName).config" "$(OutDir)" /Y /S /Q /D /I</PostBuildEvent>
   </PropertyGroup>
 </Project>

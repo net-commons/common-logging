@@ -79,6 +79,10 @@
     <Compile Include="Logging\LogLevel.cs" />
     <Compile Include="Logging\LogManager.cs" />
     <Compile Include="Logging\LogSetting.cs" />
+    <Compile Include="Logging\NamespaceDoc.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NamespaceDoc_Introduction.cs" />
     <Compile Include="Logging\Simple\AbstractSimpleLogger.cs" />
     <Compile Include="Logging\Simple\AbstractSimpleLoggerFactoryAdapter.cs" />
     <Compile Include="Logging\Simple\ConsoleOutLogger.cs" />
