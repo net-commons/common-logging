@@ -35,7 +35,6 @@ From the commandline execute
 
   c:\netcommon>nant build
 
-to build
 
 5. CONFIGURING
 
