@@ -102,7 +102,7 @@
   </target>
 
   <target name="doc-sdk">
-    <echo message="Creating SDK Documentation for NDoc3 Core." />
+    <echo message="Creating SDK Documentation for Common.Logging." />
     <exec workingdir="." program="./tools/ndoc3/NDoc3Console.exe" verbose="true">
       <!-- arg value="-verbose" /-->
       <!-- arg value="-documenter=MSDN" /-->

@@ -83,5 +83,6 @@ using Common.Logging;
     /// </summary>
     internal sealed class NamespaceDoc
     {
-        // serves as namespace summary for NDoc3 - used to generate ./doc/api/introduction.html
+        // serves as namespace summary for NDoc3 (http://ndoc3.sourceforge.net)
+        // - used to generate ./doc/api/introduction.html
     }

@@ -18,16 +18,13 @@
 
 #endregion
 
-namespace Common.Logging
+/// <summary>
+/// This assembly contains the adapter to the 
+/// Microsoft Enterprise Logging Library 4.1
+/// </summary>
+internal sealed class AssemblyDoc
 {
-    /// <summary>
-    /// This namespace contains all core classes making up the Common.Logging framework.
-    /// </summary>
-    internal sealed class NamespaceDoc
-    {
-        // serves as namespace summary for NDoc3 (http://ndoc3.sourceforge.net)
-        private NamespaceDoc()
-        {
-        }
-    }
+    // serves as assembly summary for NDoc3 (http://ndoc3.sourceforge.net)
+    private AssemblyDoc()
+    { }
 }

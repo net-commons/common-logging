@@ -24,7 +24,7 @@ using Microsoft.Practices.EnterpriseLibrary.Logging;
 namespace Common.Logging.EntLib
 {
     /// <summary>
-    /// Adapts the EnterpriseLibrary logging system to Common.Logging.
+    /// Adapts the EnterpriseLibrary 4.1 logging system to Common.Logging.
     /// </summary>
     /// <remarks>
     /// The following configuration property values may be configured:
@@ -43,7 +43,7 @@ namespace Common.Logging.EntLib
     ///   &lt;/configSections&gt;
     ///   &lt;common&gt;
     ///     &lt;logging&gt;
-    ///       &lt;factoryAdapter type=&quot;Common.Logging.EntLib.EntLibLoggerFactoryAdapter, Common.Logging.EntLib&quot;&gt;
+    ///       &lt;factoryAdapter type=&quot;Common.Logging.EntLib.EntLibLoggerFactoryAdapter, Common.Logging.EntLib41&quot;&gt;
     ///         &lt;arg key=&quot;DefaultPriority&quot; value=&quot;-1&quot; /&gt;
     ///       &lt;/factoryAdapter&gt;
     ///     &lt;/logging&gt;

@@ -25,7 +25,7 @@ using Microsoft.Practices.EnterpriseLibrary.Logging;
 namespace Common.Logging.EntLib
 {
     /// <summary>
-    /// Concrete implementation of <see cref="ILog"/> interface specific to Enterprise Logging.
+    /// Concrete implementation of <see cref="ILog"/> interface specific to Enterprise Logging 4.1.
     /// </summary>
     /// <remarks>
     /// Instances are created by the <see cref="EntLibLoggerFactoryAdapter"/>. <see cref="EntLibLoggerFactoryAdapter.DefaultPriority"/>

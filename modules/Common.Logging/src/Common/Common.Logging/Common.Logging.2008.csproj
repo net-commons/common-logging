@@ -63,6 +63,7 @@
     <Compile Include="..\..\..\..\CommonAssemblyInfo.cs">
       <Link>CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="AssemblyDoc.cs" />
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="Logging\AbstractLogger.cs" />
     <Compile Include="Logging\AbstractCachingLoggerFactoryAdapter.cs" />
@@ -82,6 +83,7 @@
     <Compile Include="Logging\NamespaceDoc.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Logging\Simple\NamespaceDoc.cs" />
     <Compile Include="NamespaceDoc_Introduction.cs" />
     <Compile Include="Logging\Simple\AbstractSimpleLogger.cs" />
     <Compile Include="Logging\Simple\AbstractSimpleLoggerFactoryAdapter.cs" />

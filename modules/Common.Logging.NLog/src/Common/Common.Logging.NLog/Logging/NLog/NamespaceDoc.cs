@@ -1,4 +1,4 @@
-#region License
+﻿#region License
 
 /*
  * Copyright 2002-2009 the original author or authors.
@@ -18,16 +18,16 @@
 
 #endregion
 
-namespace Common.Logging
+namespace Common.Logging.NLog
 {
     /// <summary>
-    /// This namespace contains all core classes making up the Common.Logging framework.
+    /// This namespace contains the <see cref="ILoggerFactoryAdapter"/> implementation 
+    /// <see cref="NLogLoggerFactoryAdapter"/> to plug NLog 1.0.0.505 into Common.Logging.
     /// </summary>
     internal sealed class NamespaceDoc
     {
         // serves as namespace summary for NDoc3 (http://ndoc3.sourceforge.net)
         private NamespaceDoc()
-        {
-        }
+        { }
     }
 }

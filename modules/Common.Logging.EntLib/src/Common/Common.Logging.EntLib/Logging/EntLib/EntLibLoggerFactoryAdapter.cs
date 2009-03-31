@@ -24,7 +24,7 @@ using Microsoft.Practices.EnterpriseLibrary.Logging;
 namespace Common.Logging.EntLib
 {
     /// <summary>
-    /// Adapts the EnterpriseLibrary logging system to Common.Logging.
+    /// Adapts the EnterpriseLibrary 3.1 logging system to Common.Logging.
     /// </summary>
     /// <remarks>
     /// The following configuration property values may be configured:

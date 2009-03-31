@@ -18,16 +18,16 @@
 
 #endregion
 
-namespace Common.Logging
+namespace Common.Logging.Simple
 {
     /// <summary>
-    /// This namespace contains all core classes making up the Common.Logging framework.
+    /// This namespace contains out-of-the-box adapters to intrinsic systems, namely
+    /// <see cref="ConsoleOutLoggerFactoryAdapter"/> and <see cref="TraceLoggerFactoryAdapter"/>.
     /// </summary>
     internal sealed class NamespaceDoc
     {
         // serves as namespace summary for NDoc3 (http://ndoc3.sourceforge.net)
         private NamespaceDoc()
-        {
-        }
+        { }
     }
 }

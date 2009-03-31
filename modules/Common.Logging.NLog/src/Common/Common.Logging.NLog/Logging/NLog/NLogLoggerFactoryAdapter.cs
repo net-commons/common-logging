@@ -25,7 +25,7 @@ using System.Collections.Specialized;
 namespace Common.Logging.NLog
 {
     /// <summary>
-    /// Concrete subclass of ILoggerFactoryAdapter specific to log4net 1.2.10.
+    /// Concrete subclass of ILoggerFactoryAdapter specific to NLog 1.0.0.505.
     /// </summary>
     /// <remarks>
     /// The following configuration property values may be configured:
@@ -71,37 +71,29 @@ namespace Common.Logging.NLog
             string configType = string.Empty;
             string configFile = string.Empty;
 
-            if (properties != null)
-            {
-                if (properties["configType"] != null)
-                {
+            if (properties != null) {
+                if (properties["configType"] != null) {
                     configType = properties["configType"].ToUpper();
                 }
 
-                if (properties["configFile"] != null)
-                {
+                if (properties["configFile"] != null) {
                     configFile = properties["configFile"];
-                    if (configFile.StartsWith("~/") || configFile.StartsWith("~\\"))
-                    {
+                    if (configFile.StartsWith("~/") || configFile.StartsWith("~\\")) {
                         configFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory.TrimEnd('/', '\\') + "/", configFile.Substring(2));
                     }
                 }
 
-                if (configType == "FILE")
-                {
-                    if (configFile == string.Empty)
-                    {
+                if (configType == "FILE") {
+                    if (configFile == string.Empty) {
                         throw new ConfigurationException("Configuration property 'configFile' must be set for NLog configuration of type 'FILE'.");
                     }
 
-                    if (!File.Exists(configFile))
-                    {
+                    if (!File.Exists(configFile)) {
                         throw new ConfigurationException("NLog configuration file '" + configFile + "' does not exists");
                     }
                 }
             }
-            switch (configType)
-            {
+            switch (configType) {
                 case "INLINE":
                     break;
                 case "FILE":

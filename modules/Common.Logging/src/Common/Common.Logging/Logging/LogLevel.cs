@@ -21,7 +21,7 @@
 namespace Common.Logging
 {
     /// <summary>
-    /// The 7 logging levels used by Log are (in order): 
+    /// The 7 possible logging levels
     /// </summary>
     /// <author>Gilles Bayon</author>
     public enum LogLevel

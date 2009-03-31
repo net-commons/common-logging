@@ -1,4 +1,4 @@
-<project SchemaVersion="1.3">
+﻿<project SchemaVersion="1.3">
     <assemblies>
         <assembly location=".\modules\Common.Logging\build\net\2.0\Debug\Common.Logging.dll" documentation=".\modules\Common.Logging\build\net\2.0\Debug\Common.Logging.xml" />
         <assembly location=".\modules\Common.Logging.EntLib\build\net\2.0\Debug\Common.Logging.EntLib.dll" documentation=".\modules\Common.Logging.EntLib\build\net\2.0\Debug\Common.Logging.EntLib.xml" />
@@ -8,16 +8,11 @@
         <assembly location=".\modules\Common.Logging.NLog\build\net\2.0\Debug\Common.Logging.NLog.dll" documentation=".\modules\Common.Logging.NLog\build\net\2.0\Debug\Common.Logging.NLog.xml" />
     </assemblies>
     <documenters>
-        <documenter name="MSDN 2003">
-            <property name="OutputDirectory" value=".\doc\" />
-            <property name="Title" value="An NDoc3 Documented Class Library" />
-            <property name="SdkDocVersionString" value="VS.80" />
-        </documenter>
         <documenter name="MSDN">
             <property name="OutputDirectory" value=".\doc\api\target\msdn\" />
             <property name="HtmlHelpName" value="Common Logging 2.0" />
             <property name="Title" value="Common Logging 2.0 API Reference" />
-            <property name="OutputTarget" value="HtmlHelp" />
+            <property name="ShowVisualBasic" value="True" />
             <property name="MergeAssemblies" value="False" />
             <property name="RootPageTOCName" value="Introduction" />
             <property name="RootPageFileName" value="./doc/api/introduction.html" />
