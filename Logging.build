@@ -8,12 +8,15 @@
   <!--target dir for packaging dist -->
   <property name="package.dir" value="${project::get-base-directory()}/package" />
 
+<!-- force net-2.0 -->
+  <property name="nant.settings.currentframework" value="net-2.0"/>
+
   <target name="build-common">
     <!-- ******* -->
     <!-- Common.Logging  -->
     <!-- ******* -->
     <!-- build base Common.Logging module -->
-    <exec workingdir=".\modules\Common.Logging" program="cmd.exe" commandline="/c nant"/>
+    <exec workingdir=".\modules\Common.Logging" program="cmd.exe" commandline="/c nant -t:${framework::get-target-framework()}"/>
   </target>
 
   <target name="build-EntLib">
@@ -28,7 +31,7 @@
     <copy todir="modules/Common.Logging.EntLib/lib/net/2.0/"
           file="${common.logging.base-version.dir}\Common.Logging.Tests.dll"/>
     <!-- build EntLib module -->
-    <exec workingdir=".\modules\Common.Logging.EntLib" program="cmd.exe" commandline="/c nant"/>
+    <exec workingdir=".\modules\Common.Logging.EntLib" program="cmd.exe" commandline="/c nant -t:${framework::get-target-framework()}"/>
   </target>
 
   <target name="build-EntLib41" depends="build-common">
@@ -43,7 +46,7 @@
     <copy todir="modules/Common.Logging.EntLib41/lib/net/2.0/"
           file="${common.logging.base-version.dir}\Common.Logging.Tests.dll"/>
     <!-- build EntLib41 module -->
-    <exec workingdir=".\modules\Common.Logging.EntLib41" program="cmd.exe" commandline="/c nant"/>
+    <exec workingdir=".\modules\Common.Logging.EntLib41" program="cmd.exe" commandline="/c nant -t:${framework::get-target-framework()}"/>
   </target>
 
   <target name="build-Log4Net" depends="build-common">
@@ -59,7 +62,7 @@
           file="${common.logging.base-version.dir}\Common.Logging.Tests.dll"/>
 
     <!-- build log4net 1.2.10 module -->
-    <exec workingdir=".\modules\Common.Logging.Log4Net" program="cmd.exe" commandline="/c nant"/>
+    <exec workingdir=".\modules\Common.Logging.Log4Net" program="cmd.exe" commandline="/c nant -t:${framework::get-target-framework()}"/>
   </target>
 
   <target name="build-Log4Net129" depends="build-common">
@@ -74,7 +77,7 @@
     <copy todir="modules/Common.Logging.Log4Net129/lib/net/2.0/"
           file="${common.logging.base-version.dir}\Common.Logging.Tests.dll"/>
     <!-- build log4net 1.2.9 module -->
-    <exec workingdir=".\modules\Common.Logging.Log4Net129" program="cmd.exe" commandline="/c nant"/>
+    <exec workingdir=".\modules\Common.Logging.Log4Net129" program="cmd.exe" commandline="/c nant -t:${framework::get-target-framework()}"/>
   </target>
 
   <target name="build-NLog" depends="build-common">
@@ -89,7 +92,7 @@
     <copy todir="modules/Common.Logging.NLog/lib/net/2.0/"
           file="${common.logging.base-version.dir}\Common.Logging.Tests.dll"/>
     <!-- build NLog module -->
-    <exec workingdir=".\modules\Common.Logging.NLog" program="cmd.exe" commandline="/c nant"/>
+    <exec workingdir=".\modules\Common.Logging.NLog" program="cmd.exe" commandline="/c nant -t:${framework::get-target-framework()}"/>
   </target>
 
   <target name="doc">
