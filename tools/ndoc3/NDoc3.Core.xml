@@ -4,982 +4,6 @@
         <name>NDoc3.Core</name>
     </assembly>
     <members>
-        <member name="T:NDoc3.Core.MemberDisplayName">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:NDoc3.Core.MemberDisplayName.GetMemberDisplayName(System.Type)">
-            <summary>
-            
-            </summary>
-            <param name="type"></param>
-            <returns></returns>
-        </member>
-        <member name="T:NDoc3.Core.MemberID">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:NDoc3.Core.MemberID.GetMemberID(System.Type)">
-            <summary>
-            
-            </summary>
-            <param name="type"></param>
-            <returns></returns>
-        </member>
-        <member name="M:NDoc3.Core.MemberID.GetMemberID(System.Reflection.FieldInfo)">
-            <summary>
-            
-            </summary>
-            <param name="field"></param>
-            <returns></returns>
-        </member>
-        <member name="M:NDoc3.Core.MemberID.GetMemberID(System.Reflection.PropertyInfo)">
-            <summary>
-            
-            </summary>
-            <param name="property"></param>
-            <returns></returns>
-        </member>
-        <member name="M:NDoc3.Core.MemberID.GetMemberID(System.Reflection.MethodBase)">
-            <summary>
-            
-            </summary>
-            <param name="method"></param>
-            <returns></returns>
-        </member>
-        <member name="M:NDoc3.Core.MemberID.GetMemberID(System.Reflection.EventInfo)">
-            <summary>
-            
-            </summary>
-            <param name="eventInfo"></param>
-            <returns></returns>
-        </member>
-        <member name="M:NDoc3.Core.MemberID.GetDeclaringTypeName(System.Reflection.MemberInfo)">
-            <summary>
-            
-            </summary>
-            <param name="member"></param>
-            <returns></returns>
-        </member>
-        <member name="M:NDoc3.Core.MemberID.GetTypeName(System.Type)">
-            <summary>
-            
-            </summary>
-            <param name="type"></param>
-            <returns></returns>
-        </member>
-        <member name="M:NDoc3.Core.MemberID.GetTypeName(System.Type,System.Boolean)">
-            <summary>
-            
-            </summary>
-            <param name="type"></param>
-            <param name="UsePositionalNumber"></param>
-            <returns></returns>
-        </member>
-        <member name="M:NDoc3.Core.MemberID.GetParameterList(System.Reflection.MethodBase)">
-            <summary>
-            Return a string representation of method parameters
-            </summary>
-            <param name="method">The method</param>
-            <returns>String representation</returns>
-        </member>
-        <member name="T:NDoc3.Core.Reflection.NamespaceHierarchyCollection">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:NDoc3.Core.Reflection.NamespaceHierarchyCollection.#ctor">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:NDoc3.Core.Reflection.NamespaceHierarchyCollection.Add(System.String,System.Type,System.Type)">
-            <summary>
-            
-            </summary>
-            <param name="namespaceName"></param>
-            <param name="baseType"></param>
-            <param name="derivedType"></param>
-        </member>
-        <member name="M:NDoc3.Core.Reflection.NamespaceHierarchyCollection.GetDerivedTypesCollection(System.String)">
-            <summary>
-            
-            </summary>
-            <param name="namespaceName"></param>
-            <returns></returns>
-        </member>
-        <member name="P:NDoc3.Core.Reflection.NamespaceHierarchyCollection.DefinedNamespaces">
-            <summary>
-            
-            </summary>
-            <value></value>
-        </member>
-        <member name="T:NDoc3.Core.Reflection.ReflectionEngine">
-            <summary>
-            Summary description for ReflectionEngine.
-            </summary>
-        </member>
-        <member name="M:NDoc3.Core.Reflection.ReflectionEngine.#ctor">
-            <summary>
-            constructor for ReflectionEngine.
-            </summary>
-        </member>
-        <member name="M:NDoc3.Core.Reflection.ReflectionEngine.GetNamespacesFromAssembly(NDoc3.Core.Reflection.ReflectionEngineParameters,System.String)">
-            <summary>
-            Gets the namespaces from assembly.
-            </summary>
-            <param name="rep">ReflectionEngine Parameters.</param>
-            <param name="assemblyFile">Assembly file name.</param>
-            <returns></returns>
-        </member>
-        <member name="M:NDoc3.Core.Reflection.ReflectionEngine.MakeXmlFile(NDoc3.Core.Reflection.ReflectionEngineParameters,System.String)">
-            <summary>Builds an Xml file combining the reflected metadata with the /doc comments.</summary>
-            <returns>full pathname of XML file</returns>
-            <remarks>The caller is responsible for deleting the xml file after use...</remarks>
-        </member>
-        <member name="M:NDoc3.Core.Reflection.ReflectionEngine.MakeXml(NDoc3.Core.Reflection.ReflectionEngineParameters)">
-            <summary>Builds an Xml string combining the reflected metadata with the /doc comments.</summary>
-            <remarks>This now evidently writes the string in utf-16 format (and 
-            says so, correctly I suppose, in the xml text) so if you write this string to a file with 
-            utf-8 encoding it will be unparseable because the file will claim to be utf-16
-            but will actually be utf-8.</remarks>
-            <returns>XML string</returns>
-        </member>
-        <member name="M:NDoc3.Core.Reflection.ReflectionEngine.MakeXmlReaderSettings">
-            <summary>
-            Generates the XmlReaderSettings for validating against the XML Schema.
-            </summary>
-            <returns>The XmlReaderSettings.</returns>
-        </member>
-        <member name="M:NDoc3.Core.Reflection.ReflectionEngine.ValidateXML(System.Xml.XmlReader)">
-            <summary>
-            Validates the generated XML file against the XML schema.
-            </summary>
-            <param name="reader">An instance of a XmlReader, containing the XML to be validated.</param>
-        </member>
-        <member name="M:NDoc3.Core.Reflection.ReflectionEngine.validator_ValidationEventHandler(System.Object,System.Xml.Schema.ValidationEventArgs)">
-            <summary>
-            Event handler which is run when the XML file, does not validate against the XML Schema.
-            </summary>
-            <param name="sender">The event sender.</param>
-            <param name="args">The validation event arguments.</param>
-        </member>
-        <member name="M:NDoc3.Core.Reflection.ReflectionEngine.BuildXml(System.Xml.XmlWriter)">
-            <summary>
-            Builds an Xml file combining the reflected metadata with the /doc comments.
-            </summary>
-            <param name="writer">An instance of a XmlWriter</param>
-        </member>
-        <member name="M:NDoc3.Core.Reflection.ReflectionEngine.WriteModule(System.Xml.XmlWriter,System.Reflection.Module)">
-            <summary>Writes documentation about a module out as XML.</summary>
-            <param name="writer">XmlWriter to write on.</param>
-            <param name="module">Module to document.</param>
-        </member>
-        <member name="M:NDoc3.Core.Reflection.ReflectionEngine.WriteClass(System.Xml.XmlWriter,System.Type,System.Boolean)">
-            <summary>Writes XML documenting a class.</summary>
-            <param name="writer">XmlWriter to write on.</param>
-            <param name="type">Class to document.</param>
-            <param name="hiding">true if hiding base members</param>
-        </member>
-        <member name="M:NDoc3.Core.Reflection.ReflectionEngine.WriteInterface(System.Xml.XmlWriter,System.Type)">
-            <summary>Writes XML documenting an interface.</summary>
-            <param name="writer">XmlWriter to write on.</param>
-            <param name="type">Interface to document.</param>
-        </member>
-        <member name="M:NDoc3.Core.Reflection.ReflectionEngine.WriteDelegate(System.Xml.XmlWriter,System.Type)">
-            <summary>Writes XML documenting a delegate.</summary>
-            <param name="writer">XmlWriter to write on.</param>
-            <param name="type">Delegate to document.</param>
-        </member>
-        <member name="M:NDoc3.Core.Reflection.ReflectionEngine.WriteEnumeration(System.Xml.XmlWriter,System.Type)">
-            <summary>Writes XML documenting an enumeration.</summary>
-            <param name="writer">XmlWriter to write on.</param>
-            <param name="type">Enumeration to document.</param>
-        </member>
-        <member name="M:NDoc3.Core.Reflection.ReflectionEngine.WriteBaseType(System.Xml.XmlWriter,System.Type)">
-            <summary>
-            Writes the XML structure for the base type of a class
-            </summary>
-            <param name="writer">The XML writer</param>
-            <param name="type">The type of the basetype</param>
-        </member>
-        <member name="M:NDoc3.Core.Reflection.ReflectionEngine.WriteField(System.Xml.XmlWriter,System.Reflection.FieldInfo,System.Type,System.Boolean)">
-            <summary>Writes XML documenting a field.</summary>
-            <param name="writer">XmlWriter to write on.</param>
-            <param name="field">Field to document.</param>
-            <param name="type">Type containing the field.</param>
-            <param name="hiding">true if hiding base members</param>
-        </member>
-        <member name="M:NDoc3.Core.Reflection.ReflectionEngine.WriteDeclaringType(System.String,System.Xml.XmlWriter)">
-            <summary>
-            Write the declaring type to the XML file
-            </summary>
-            <param name="type">The name of the declaring type</param>
-            <param name="writer">The XML writer</param>
-        </member>
-        <member name="M:NDoc3.Core.Reflection.ReflectionEngine.GetDisplayValue(System.Type,System.Object)">
-            <summary>
-            
-            </summary>
-            <param name="parent"></param>
-            <param name="value"></param>
-            <returns></returns>
-        </member>
-        <member name="M:NDoc3.Core.Reflection.ReflectionEngine.WriteEvent(System.Xml.XmlWriter,System.Reflection.EventInfo)">
-            <summary>Writes XML documenting an event.</summary>
-            <param name="writer">XmlWriter to write on.</param>
-            <param name="eventInfo">Event to document.</param>
-        </member>
-        <member name="M:NDoc3.Core.Reflection.ReflectionEngine.WriteConstructor(System.Xml.XmlWriter,System.Reflection.ConstructorInfo,System.Int32)">
-            <summary>Writes XML documenting a constructor.</summary>
-            <param name="writer">XmlWriter to write on.</param>
-            <param name="constructor">Constructor to document.</param>
-            <param name="overload">If &gt; 0, indicates this is the nth overloaded constructor.</param>
-        </member>
-        <member name="M:NDoc3.Core.Reflection.ReflectionEngine.WriteProperty(System.Xml.XmlWriter,System.Reflection.PropertyInfo,System.Boolean,System.Int32,System.Boolean)">
-            <summary>Writes XML documenting a property.</summary>
-            <param name="writer">XmlWriter to write on.</param>
-            <param name="property">Property to document.</param>
-            <param name="inherited">true if a declaringType attribute should be included.</param>
-            <param name="overload">If &gt; 0, indicates this it the nth overloaded method with the same name.</param>
-            <param name="hiding">true if this property is hiding base class members with the same name.</param>
-        </member>
-        <member name="M:NDoc3.Core.Reflection.ReflectionEngine.WriteMethod(System.Xml.XmlWriter,System.Reflection.MethodInfo,System.Boolean,System.Int32,System.Boolean)">
-            <summary>Writes XML documenting a method.</summary>
-            <param name="writer">XmlWriter to write on.</param>
-            <param name="method">Method to document.</param>
-            <param name="inherited">true if a declaringType attribute should be included.</param>
-            <param name="overload">If &gt; 0, indicates this it the nth overloaded method with the same name.</param>
-            <param name="hiding">true if this method hides methods of the base class with the same signature.</param>
-        </member>
-        <member name="M:NDoc3.Core.Reflection.ReflectionEngine.GetTypeNamespaceName(System.Type)">
-            <summary>Used by GetFullNamespaceName(MemberInfo member) functions to build
-            up most of the /doc member name.</summary>
-            <param name="type"></param>
-        </member>
-        <member name="M:NDoc3.Core.Reflection.ReflectionEngine.GetMemberName(System.Reflection.FieldInfo,System.Type)">
-            <summary>Derives the member name ID for the base of an inherited field.</summary>
-            <param name="field">The field to derive the member name ID from.</param>
-            <param name="declaringType">The declaring type.</param>
-        </member>
-        <member name="M:NDoc3.Core.Reflection.ReflectionEngine.GetMemberName(System.Reflection.EventInfo,System.Type)">
-            <summary>Derives the member name ID for an event. Used to match nodes in the /doc XML.</summary>
-            <param name="eventInfo">The event to derive the member name ID from.</param>
-            <param name="declaringType">The declaring type.</param>
-        </member>
-        <member name="M:NDoc3.Core.Reflection.ReflectionEngine.GetMemberName(System.Reflection.PropertyInfo,System.Type)">
-            <summary>Derives the member name ID for the base of an inherited property.</summary>
-            <param name="property">The property to derive the member name ID from.</param>
-            <param name="declaringType">The declaring type.</param>
-        </member>
-        <member name="M:NDoc3.Core.Reflection.ReflectionEngine.GetMemberName(System.Reflection.MethodBase,System.Type)">
-            <summary>Derives the member name ID for the basse of an inherited member function.</summary>
-            <param name="method">The method to derive the member name ID from.</param>
-            <param name="declaringType">The declaring type.</param>
-        </member>
-        <member name="M:NDoc3.Core.Reflection.ReflectionEngine.WriteGenericArgumentsAndParametersMethod(System.Reflection.MethodInfo,System.Xml.XmlWriter)">
-            <summary>
-            Writes generic arguments and parameters for a method
-            </summary>
-            <param name="m">Generic method</param>
-            <param name="writer">XMLWriter to write the XML</param>
-        </member>
-        <member name="M:NDoc3.Core.Reflection.ReflectionEngine.WriteGenericArgumentsAndParameters(System.Type,System.Xml.XmlWriter)">
-            <summary>
-            Writes generic arguments and parameters for a type
-            </summary>
-            <param name="type">Generic type</param>
-            <param name="writer">XMLWriter to write the XML</param>
-        </member>
-        <member name="M:NDoc3.Core.Reflection.ReflectionEngine.WriteGenericTypeConstraints(System.Type,System.Xml.XmlWriter)">
-            <summary>
-            Write constraints for a generic type
-            </summary>
-            <param name="type">The generic type</param>
-            <param name="writer">The current XMLWriter</param>
-        </member>
-        <member name="M:NDoc3.Core.Reflection.ReflectionEngine.WriteGenericMethodConstraints(System.Reflection.MethodInfo,System.Xml.XmlWriter)">
-            <summary>
-            Write constrains for a generic method
-            </summary>
-            <param name="m">The generic method</param>
-            <param name="writer">The current XMLWriter</param>
-        </member>
-        <member name="M:NDoc3.Core.Reflection.ReflectionEngine.WriteGenericConstraints(System.Type[],System.Xml.XmlWriter)">
-            <summary>
-            Writes generic constraints
-            </summary>
-            <param name="args">An array of generic arguments of a type or method</param>
-            <param name="writer">The current XMLWriter</param>
-        </member>
-        <member name="M:NDoc3.Core.Reflection.ReflectionEngine.CheckForMissingTypeDocumentation(System.Type)">
-            <summary>
-            Checks for missing type documentation
-            </summary>
-            <param name="type">The type to check</param>
-            <returns>True if documentation is missing</returns>
-        </member>
-        <member name="M:NDoc3.Core.Reflection.ReflectionEngine.CheckForPropertyBacker(System.Xml.XmlWriter,System.String,System.Type)">
-            <summary>
-            This checks whether a field is a property backer, meaning
-            it stores the information for the property.
-            </summary>
-            <remarks>
-            <para>This takes advantage of the fact that most people
-            have a simple convention for the names of the fields
-            and the properties that they back.
-            If the field doesn't have a summary already, and it
-            looks like it backs a property, and the BaseDocumenterConfig
-            property is set appropriately, then this adds a
-            summary indicating that.</para>
-            <para>Note that this design will call multiple fields the 
-            backer for a single property.</para>
-            <para/>This also will call a public field a backer for a
-            property, when typically that wouldn't be the case.
-            </remarks>
-            <param name="writer">The XmlWriter to write to.</param>
-            <param name="memberName">The full name of the field.</param>
-            <param name="type">The Type which contains the field
-            and potentially the property.</param>
-            <returns>True only if a property backer is auto-documented.</returns>
-        </member>
-        <member name="M:NDoc3.Core.Reflection.ReflectionEngine.FindProperty(System.String,System.Type)">
-            <summary>
-            Find a particular property of the specified type, by name.
-            Return the PropertyInfo for it.
-            </summary>
-            <param name="expectedPropertyName">The name of the property to
-            find.</param>
-            <param name="type">The type in which to search for 
-            the property.</param>
-            <returns>PropertyInfo - The property info, or null for 
-            not found.</returns>
-        </member>
-        <member name="M:NDoc3.Core.Reflection.ReflectionEngine.WritePropertyBackerDocumentation(System.Xml.XmlWriter,System.String,System.Reflection.PropertyInfo)">
-            <summary>
-            Write xml info for a property's backer field to the specified writer.
-            This writes a string with a link to the property.
-            </summary>
-            <param name="writer">The XmlWriter to write to.</param>
-            <param name="element">The field which backs the property.</param>
-            <param name="property">The property backed by the field.</param>
-        </member>
-        <member name="M:NDoc3.Core.Reflection.ReflectionEngine.WriteDerivedTypes(System.Xml.XmlWriter,System.Type)">
-            <summary>
-            Writes the XML documenting which classes derives from the current class
-            </summary>
-            <param name="writer">XML writer</param>
-            <param name="type">Current class type</param>
-        </member>
-        <member name="T:NDoc3.Core.Reflection.ReflectionEngine.Constraint">
-            <summary>
-            Contains information about constraints on a generic parameter template
-            </summary>
-        </member>
-        <member name="F:NDoc3.Core.Reflection.ReflectionEngine.Constraint.typeparam">
-            <summary>
-            Name of the parameter
-            </summary>
-        </member>
-        <member name="F:NDoc3.Core.Reflection.ReflectionEngine.Constraint.constraint">
-            <summary>
-            List of constraints on the parameter
-            </summary>
-        </member>
-        <member name="T:NDoc3.Core.Reflection.ReflectionEngineParameters">
-            <summary>
-            Summary description for ReflectionEngineParameters.
-            </summary>
-        </member>
-        <member name="M:NDoc3.Core.Reflection.ReflectionEngineParameters.#ctor(NDoc3.Core.Project)">
-            <summary>
-            constructor for ReflectionEngineParameters.
-            </summary>
-        </member>
-        <member name="M:NDoc3.Core.Reflection.ReflectionEngineParameters.#ctor(NDoc3.Core.Project,NDoc3.Core.Reflection.BaseReflectionDocumenterConfig)">
-            <summary>
-            constructor for ReflectionEngineParameters.
-            </summary>
-        </member>
-        <member name="F:NDoc3.Core.Reflection.ReflectionEngineParameters.AssemblyFileNames">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:NDoc3.Core.Reflection.ReflectionEngineParameters.XmlDocFileNames">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:NDoc3.Core.Reflection.ReflectionEngineParameters.ReferencePaths">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:NDoc3.Core.Reflection.ReflectionEngineParameters.NamespaceSummaries">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:NDoc3.Core.Reflection.ReflectionEngineParameters.AssemblyVersionInfo">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:NDoc3.Core.Reflection.ReflectionEngineParameters.UseNamespaceDocSummaries">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:NDoc3.Core.Reflection.ReflectionEngineParameters.AutoPropertyBackerSummaries">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:NDoc3.Core.Reflection.ReflectionEngineParameters.AutoDocumentConstructors">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:NDoc3.Core.Reflection.ReflectionEngineParameters.SdkDocLanguage">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:NDoc3.Core.Reflection.ReflectionEngineParameters.ShowMissingSummaries">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:NDoc3.Core.Reflection.ReflectionEngineParameters.ShowMissingRemarks">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:NDoc3.Core.Reflection.ReflectionEngineParameters.ShowMissingParams">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:NDoc3.Core.Reflection.ReflectionEngineParameters.ShowMissingReturns">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:NDoc3.Core.Reflection.ReflectionEngineParameters.ShowMissingValues">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:NDoc3.Core.Reflection.ReflectionEngineParameters.DocumentInheritedMembers">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:NDoc3.Core.Reflection.ReflectionEngineParameters.DocumentInheritedFrameworkMembers">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:NDoc3.Core.Reflection.ReflectionEngineParameters.DocumentExplicitInterfaceImplementations">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:NDoc3.Core.Reflection.ReflectionEngineParameters.DocumentInternals">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:NDoc3.Core.Reflection.ReflectionEngineParameters.DocumentProtected">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:NDoc3.Core.Reflection.ReflectionEngineParameters.DocumentSealedProtected">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:NDoc3.Core.Reflection.ReflectionEngineParameters.DocumentPrivates">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:NDoc3.Core.Reflection.ReflectionEngineParameters.DocumentProtectedInternalAsProtected">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:NDoc3.Core.Reflection.ReflectionEngineParameters.DocumentEmptyNamespaces">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:NDoc3.Core.Reflection.ReflectionEngineParameters.SkipNamespacesWithoutSummaries">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:NDoc3.Core.Reflection.ReflectionEngineParameters.EditorBrowsableFilter">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:NDoc3.Core.Reflection.ReflectionEngineParameters.DocumentAttributes">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:NDoc3.Core.Reflection.ReflectionEngineParameters.DocumentInheritedAttributes">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:NDoc3.Core.Reflection.ReflectionEngineParameters.ShowTypeIdInAttributes">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:NDoc3.Core.Reflection.ReflectionEngineParameters.DocumentedAttributes">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:NDoc3.Core.Reflection.ReflectionEngineParameters.CopyrightText">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:NDoc3.Core.Reflection.ReflectionEngineParameters.CopyrightHref">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:NDoc3.Core.Reflection.ReflectionEngineParameters.FeedbackEmailAddress">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:NDoc3.Core.Reflection.ReflectionEngineParameters.Preliminary">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:NDoc3.Core.Reflection.ReflectionEngineParameters.IncludeDefaultThreadSafety">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:NDoc3.Core.Reflection.ReflectionEngineParameters.StaticMembersDefaultToSafe">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:NDoc3.Core.Reflection.ReflectionEngineParameters.InstanceMembersDefaultToSafe">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="T:NDoc3.Core.Reflection.TypeHierarchy">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:NDoc3.Core.Reflection.TypeHierarchy.#ctor">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:NDoc3.Core.Reflection.TypeHierarchy.Add(System.Type,System.Type)">
-            <summary>
-            
-            </summary>
-            <param name="baseType">Base type.</param>
-            <param name="derivedType">Derived type.</param>
-        </member>
-        <member name="M:NDoc3.Core.Reflection.TypeHierarchy.GetDerivedTypes(System.Type)">
-            <summary>
-            
-            </summary>
-            <param name="baseType">Base type.</param>
-            <returns></returns>
-        </member>
-        <member name="T:NDoc3.Core.Reflection.AssemblyLoader">
-            <summary>
-            Handles the resolution and loading of assemblies.
-            </summary>
-        </member>
-        <member name="F:NDoc3.Core.Reflection.AssemblyLoader.SearchDirectories">
-            <summary>primary search directories.</summary>
-        </member>
-        <member name="F:NDoc3.Core.Reflection.AssemblyLoader.directoryLists">
-            <summary>List of subdirectory lists already scanned.</summary>
-        </member>
-        <member name="F:NDoc3.Core.Reflection.AssemblyLoader.searchedDirectories">
-            <summary>List of directories already scanned.</summary>
-        </member>
-        <member name="F:NDoc3.Core.Reflection.AssemblyLoader.unresolvedAssemblies">
-            <summary>List of Assemblies that could not be resolved.</summary>
-        </member>
-        <member name="F:NDoc3.Core.Reflection.AssemblyLoader.AssemblyNameFileNameMap">
-            <summary>assemblies already scanned, but not loaded.</summary>
-            <remarks>Maps Assembly FullName to Filename for assemblies scanned, 
-            but not loaded because they were not a match to the required FullName.
-            <p>This list is scanned twice,</p>
-            <list type="unordered">
-            <term>If the requested assembly has not been loaded, but is in this list, then the file is loaded.</term>
-            <term>Once all search paths have been exhausted in an exact name match, this list is checked for a 'partial' match.</term>
-            </list></remarks>
-        </member>
-        <member name="M:NDoc3.Core.Reflection.AssemblyLoader.#ctor(NDoc3.Core.ReferencePathCollection)">
-            <summary>
-            Initializes a new instance of the <see cref="T:NDoc3.Core.Reflection.AssemblyLoader"/> class.
-            </summary>
-            <param name="referenceDirectories">Reference directories.</param>
-        </member>
-        <member name="M:NDoc3.Core.Reflection.AssemblyLoader.Install">
-            <summary> 
-            Installs the assembly resolver by hooking up to the AppDomain's AssemblyResolve event.
-            </summary>
-        </member>
-        <member name="M:NDoc3.Core.Reflection.AssemblyLoader.Deinstall">
-            <summary> 
-            Deinstalls the assembly resolver.
-            </summary>
-        </member>
-        <member name="M:NDoc3.Core.Reflection.AssemblyLoader.LoadAssembly(System.String)">
-            <summary>Loads an assembly.</summary>
-            <param name="fileName">The assembly filename.</param>
-            <returns>The assembly object.</returns>
-            <remarks>This method loads an assembly into memory. If you
-            use Assembly.Load or Assembly.LoadFrom the assembly file locks.
-            This method doesn't lock the assembly file.</remarks>
-        </member>
-        <member name="M:NDoc3.Core.Reflection.AssemblyLoader.CreateAssemblyEvidence(System.String)">
-            <summary>
-            Creates assembly evidence
-            </summary>
-            <param name="fileName">The assembly filename</param>
-            <returns>The new assembly evidence</returns>
-        </member>
-        <member name="M:NDoc3.Core.Reflection.AssemblyLoader.ResolveAssembly(System.Object,System.ResolveEventArgs)">
-            <summary> 
-            Resolves the location and loads an assembly not found by the system.
-            </summary>
-            <remarks>The CLR will take care of loading Framework and GAC assemblies.
-            <p>The resolution process uses the following heuristic</p>
-            </remarks>
-            <param name="sender">the sender of the event</param>
-            <param name="args">event arguments</param>
-            <returns>the loaded assembly, null, if not found</returns>
-        </member>
-        <member name="M:NDoc3.Core.Reflection.AssemblyLoader.LoadAssemblyFrom(System.String,System.String)">
-            <summary> 
-            Search for and load the specified assembly in a set of directories.
-            This will optionally search recursively.
-            </summary>
-            <param name="fullName">
-            Fully qualified assembly name. If not empty, the full name of each assembly found is
-            compared to this name and the assembly is accepted only, if the names match.
-            </param>
-            <param name="fileName">The name of the assembly.</param>
-            <returns>The assembly, or null if not found.</returns>
-        </member>
-        <member name="M:NDoc3.Core.Reflection.AssemblyLoader.LoadAssemblyFrom(System.String,System.String,System.String,System.Boolean)">
-            <summary> 
-            Search for and load the specified assembly in a given directory.
-            This will optionally search recursively into sub-directories if requested.
-            </summary>
-            <param name="path">The directory to look in.</param>
-            <param name="fullName">
-            Fully qualified assembly name. If not empty, the full name of each assembly found is
-            compared to this name and the assembly is accepted only, if the names match.
-            </param>
-            <param name="fileName">The name of the assembly.</param>
-            <param name="includeSubDirs">true, search subdirectories.</param>
-            <returns>The assembly, or null if not found.</returns>
-        </member>
-        <member name="M:NDoc3.Core.Reflection.AssemblyLoader.GetSubDirectories(System.String)">
-            <summary>
-            Gets all subdirectories of a directory
-            </summary>
-            <param name="parentDir">The parent directory</param>
-            <returns>Array containing all subdirectories</returns>
-        </member>
-        <member name="P:NDoc3.Core.Reflection.AssemblyLoader.SearchedDirectories">
-            <summary>
-            Directories Searched for assemblies.
-            </summary>
-        </member>
-        <member name="P:NDoc3.Core.Reflection.AssemblyLoader.UnresolvedAssemblies">
-            <summary>
-            Assemblies that could not be resolved.
-            </summary>
-        </member>
-        <member name="T:NDoc3.Core.AssemblySlashDoc">
-            <summary>Represents the path to an assembly and its associated documentation comment XML file.</summary>
-            <remarks>Documentation comment XML files are known colloquially as <i>"SlashDoc"</i> files as they produced
-            by the Microsoft C# compiler when the /doc command-line option is specified. The format of these files is detailed in
-            the ECMA C# Specification (Appendix E). 
-            See <see href="http://www.ecma-international.org/publications/standards/Ecma-334.htm">here</see> for further details.
-            </remarks>
-        </member>
-        <member name="F:NDoc3.Core.AssemblySlashDoc.assembly">
-            <summary>Path to assembly</summary>
-        </member>
-        <member name="F:NDoc3.Core.AssemblySlashDoc.slashDoc">
-            <summary>Path to slashdoc</summary>
-        </member>
-        <member name="M:NDoc3.Core.AssemblySlashDoc.#ctor">
-            <overloads>Initializes a new instance of the <see cref="T:NDoc3.Core.AssemblySlashDoc"/> class.</overloads>
-            <summary>Initializes a blank instance of the <see cref="T:NDoc3.Core.AssemblySlashDoc"/> class.</summary>
-        </member>
-        <member name="M:NDoc3.Core.AssemblySlashDoc.#ctor(System.String,System.String)">
-            <summary>Initializes a new instance of the <see cref="T:NDoc3.Core.AssemblySlashDoc"/> class
-            with the specified Assembly and SlashDoc paths.</summary>
-            <param name="assemblyFilename">An assembly filename.</param>
-            <param name="slashDocFilename">A documentation comment XML filename.</param>
-        </member>
-        <member name="M:NDoc3.Core.AssemblySlashDoc.Clone">
-            <summary>
-            <see cref="T:System.ICloneable"/>
-            </summary>
-            <returns>Cloned object</returns>
-        </member>
-        <member name="P:NDoc3.Core.AssemblySlashDoc.Assembly">
-            <summary>
-            Gets or sets the path to an assembly file.
-            </summary>
-            <value>A <see cref="T:NDoc3.Core.FilePath"/> representing the path to an assembly.</value>
-        </member>
-        <member name="P:NDoc3.Core.AssemblySlashDoc.SlashDoc">
-            <summary>
-            Gets or sets the path to a documentation comment XML file.
-            </summary>
-            <value>A <see cref="T:NDoc3.Core.FilePath"/> representing the path to a documentation comment XML file.</value>
-        </member>
-        <member name="T:NDoc3.Core.AssemblySlashDocEventArgs">
-            <summary>
-            Event arguments class for events related to an AssemblySlashDoc
-            </summary>
-        </member>
-        <member name="F:NDoc3.Core.AssemblySlashDocEventArgs.AssemblySlashDoc">
-            <summary>
-            The AssemblySlashDoc
-            </summary>
-        </member>
-        <member name="T:NDoc3.Core.AssemblySlashDocEventHandler">
-            <summary>
-            Event handler delegate for AssemblySlashDoc related events
-            </summary>
-        </member>
-        <member name="T:NDoc3.Core.AssemblySlashDocCollection">
-            <summary>
-            Represents a collection of assemblies and their associated documentation comment XML files. 
-            </summary>
-        </member>
-        <member name="M:NDoc3.Core.AssemblySlashDocCollection.#ctor">
-            <summary>
-            Creates an instance of the class
-            </summary>
-        </member>
-        <member name="M:NDoc3.Core.AssemblySlashDocCollection.Add(NDoc3.Core.AssemblySlashDoc)">
-            <summary>
-            Adds the specified <see cref="T:NDoc3.Core.AssemblySlashDoc"/> object to the collection.
-            </summary>
-            <param name="assySlashDoc">The <see cref="T:NDoc3.Core.AssemblySlashDoc"/> to add to the collection.</param>
-            <exception cref="T:System.ArgumentNullException"><paramref name="assySlashDoc"/> is a <see langword="null"/>.</exception>
-            <remarks>
-            If the path of the <see cref="P:NDoc3.Core.AssemblySlashDoc.Assembly"/> 
-            in <paramref name="assySlashDoc"/> matches one already existing in the collection, the
-            operation is silently ignored.
-            </remarks>
-        </member>
-        <member name="M:NDoc3.Core.AssemblySlashDocCollection.OnClear">
-            <summary>
-            Raises the <see cref="E:NDoc3.Core.AssemblySlashDocCollection.Cleared"/> event
-            </summary>
-        </member>
-        <member name="M:NDoc3.Core.AssemblySlashDocCollection.OnInsertComplete(System.Int32,System.Object)">
-            <summary>
-            Raises the <see cref="E:NDoc3.Core.AssemblySlashDocCollection.ItemAdded"/> event
-            </summary>
-        </member>
-        <member name="M:NDoc3.Core.AssemblySlashDocCollection.Remove(NDoc3.Core.AssemblySlashDoc)">
-            <summary>
-            Removes the first occurence of a specific <see cref="T:NDoc3.Core.AssemblySlashDoc"/> from the collection.
-            </summary>
-            <param name="assySlashDoc">The <see cref="T:NDoc3.Core.AssemblySlashDoc"/> to remove from the collection.</param>
-            <exception cref="T:System.ArgumentNullException"><paramref name="assySlashDoc"/> is a <see langword="null"/>.</exception>
-            <remarks>
-            Elements that follow the removed element move up to occupy the vacated spot and the indexes of the elements that are moved are also updated.
-            </remarks>
-        </member>
-        <member name="M:NDoc3.Core.AssemblySlashDocCollection.OnRemoveComplete(System.Int32,System.Object)">
-            <summary>
-            Raises the <see cref="E:NDoc3.Core.AssemblySlashDocCollection.ItemRemoved"/> event
-            </summary>
-        </member>
-        <member name="M:NDoc3.Core.AssemblySlashDocCollection.Contains(NDoc3.Core.AssemblySlashDoc)">
-            <overloads>Determines whether the collection contains a specified element.</overloads>
-            <summary>
-            Determines whether the collection contains the specified <see cref="T:NDoc3.Core.AssemblySlashDoc"/>.
-            </summary>
-            <param name="assySlashDoc">The <see cref="T:NDoc3.Core.AssemblySlashDoc"/> to locate in the collection.</param>
-            <returns><see langword="true"/> if the collection contains the specified <see cref="T:NDoc3.Core.AssemblySlashDoc"/>, 
-            otherwise <see langword="false"/>.</returns>
-        </member>
-        <member name="M:NDoc3.Core.AssemblySlashDocCollection.Contains(System.String)">
-            <summary>
-            Determines whether the collection contains a specified assembly path.
-            </summary>
-            <param name="path">The assembly path to locate in the collection.</param>
-            <returns><see langword="true"/> if the collection contains the specified path, 
-            otherwise <see langword="false"/>.</returns>
-            <exception cref="T:System.ArgumentNullException"><paramref name="path"/> is a <see langword="null"/>.</exception>
-            <remarks>Path comparison is case-insensitive.</remarks>
-        </member>
-        <member name="M:NDoc3.Core.AssemblySlashDocCollection.ReadXml(System.Xml.XmlReader)">
-            <summary>
-            Loads <see cref="T:NDoc3.Core.AssemblySlashDoc"/> details from an <see cref="T:System.Xml.XmlReader"/>.
-            </summary>
-            <param name="reader">
-            <exception cref="T:NDoc3.Core.DocumenterException">The <i>location</i> attribute is missing or is an empty string</exception>
-            An open <see cref="T:System.Xml.XmlReader"/> positioned before, or on, the <b>&lt;assemblies&gt;</b> element.</param>
-            <remarks>
-            The expected format is is follows
-            <code escaped="true">
-            <assemblies>
-            	<assembly location="relative or fixed path" documentation="relative or fixed path"/>
-            	...
-            </assemblies>
-            </code>
-            <para>If the <i>location</i> attribute is missing or an empty string an exception will be thrown.</para>
-            <para>If the <i>documentation</i> attribute is missing or an empty string it will be silently ignored.</para>
-            </remarks>
-        </member>
-        <member name="M:NDoc3.Core.AssemblySlashDocCollection.WriteXml(System.Xml.XmlWriter)">
-            <summary>
-            Saves <see cref="T:NDoc3.Core.AssemblySlashDoc"/> details to an <see cref="T:System.Xml.XmlWriter"/>.
-            </summary>
-            <param name="writer">An open <see cref="T:System.Xml.XmlWriter"/>.</param>
-            <remarks>
-            The persisted format is is follows
-            <code escaped="true">
-            <assemblies>
-            	<assembly location="relative or fixed path" documentation="relative or fixed path"/>
-            	...
-            </assemblies>
-            </code>
-            </remarks>
-        </member>
-        <member name="E:NDoc3.Core.AssemblySlashDocCollection.Cleared">
-            <summary>
-            Event rasied when the collection is cleared
-            </summary>
-        </member>
-        <member name="E:NDoc3.Core.AssemblySlashDocCollection.ItemAdded">
-            <summary>
-            Event rasied when an item is added to the collection
-            </summary>
-        </member>
-        <member name="E:NDoc3.Core.AssemblySlashDocCollection.ItemRemoved">
-            <summary>
-            Event rasied when an item is removed from the collection
-            </summary>
-        </member>
-        <member name="P:NDoc3.Core.AssemblySlashDocCollection.Item(System.Int32)">
-            <summary>
-            Gets or sets the <see cref="T:NDoc3.Core.AssemblySlashDoc"/> at the specified index.
-            </summary>
-            <param name="index">The zero-based index of the <see cref="T:NDoc3.Core.AssemblySlashDoc"/> to get or set.</param>
-            <value>The <see cref="T:NDoc3.Core.AssemblySlashDoc"/> at the specified index</value>
-            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="index"/> is not a valid index 
-            in the collection.</exception>
-            <exception cref="T:System.ArgumentNullException">set <i>value</i> is a <see langword="null"/>.</exception>
-        </member>
-        <member name="T:NDoc3.Core.Reflection.AssemblyXmlDocCache">
-            <summary>
-            AssemblyXmlDocCache.
-            </summary>
-        </member>
-        <member name="M:NDoc3.Core.Reflection.AssemblyXmlDocCache.#ctor">
-            <summary>
-            Creates a new instance of the <see cref="T:NDoc3.Core.Reflection.AssemblyXmlDocCache"/> class.
-            </summary>
-        </member>
-        <member name="M:NDoc3.Core.Reflection.AssemblyXmlDocCache.Flush">
-            <summary>
-            Flushes the Cache.
-            </summary>
-        </member>
-        <member name="M:NDoc3.Core.Reflection.AssemblyXmlDocCache.CacheDocFile(System.String)">
-            <summary>
-            Populates cache from the given file.
-            </summary>
-            <param name="fileName">Fully-qualified filename of xml file with which to populate the cache.</param>
-        </member>
-        <member name="M:NDoc3.Core.Reflection.AssemblyXmlDocCache.CacheDocs(System.Xml.XmlTextReader)">
-            <summary>
-            Cache the xmld docs into a hashtable for faster access.
-            </summary>
-            <param name="reader">An XMLTextReader containg the docs the cache</param>
-        </member>
-        <member name="M:NDoc3.Core.Reflection.AssemblyXmlDocCache.PreprocessDoc(System.String,System.String)">
-            <summary>
-            Preprocess documentation before placing it in the cache.
-            </summary>
-            <param name="id">Member name 'id' to which the docs belong</param>
-            <param name="doc">A string containing the members documentation</param>
-            <returns>processed doc string</returns>
-        </member>
-        <member name="M:NDoc3.Core.Reflection.AssemblyXmlDocCache.CleanupNodes(System.String,System.Xml.XmlNodeList)">
-            <summary>
-            strip out redundant newlines and spaces from documentation.
-            </summary>
-            <param name="id">member</param>
-            <param name="nodes">list of nodes</param>
-        </member>
-        <member name="M:NDoc3.Core.Reflection.AssemblyXmlDocCache.FixupCodeTag(System.Xml.XmlNode)">
-            <summary>
-            Remove leading spaces from code tag contents.
-            </summary>
-            <param name="node">a code tag node</param>
-        </member>
-        <member name="M:NDoc3.Core.Reflection.AssemblyXmlDocCache.ProcessSeeLinks(System.String,System.Xml.XmlNodeList)">
-            <summary>
-            Add 'nolink' attributes to self referencing or duplicate see tags.
-            </summary>
-            <param name="id">current member name 'id'</param>
-            <param name="nodes">list of top-level nodes</param>
-            <remarks>
-            </remarks>
-        </member>
-        <member name="M:NDoc3.Core.Reflection.AssemblyXmlDocCache.MarkupSeeLinks(System.Collections.Hashtable@,System.String,System.Xml.XmlNode)">
-            <summary>
-            Search tags for duplicate or self-referencing see links.
-            </summary>
-            <param name="linkTable">A table of previous links.</param>
-            <param name="id">current member name 'id'</param>
-            <param name="node">an Xml Node containing a doc tag</param>
-        </member>
-        <member name="M:NDoc3.Core.Reflection.AssemblyXmlDocCache.GetDoc(System.String)">
-            <summary>
-            Gets Xml documentation for the given ID
-            </summary>
-            <param name="memberId">The ID of the item for which documentation is required</param>
-            <returns>a string containg the Xml documentation</returns>
-        </member>
-        <member name="M:NDoc3.Core.Reflection.AssemblyXmlDocCache.HasExcludeTag(System.String)">
-            <summary>
-            Returns whether a member has an exclude tag
-            </summary>
-            <param name="memberId">ID to check</param>
-            <returns>true if the member has an exclude tag, otherwise false</returns>
-        </member>
         <member name="T:NDoc3.Core.PropertyGridUI.AttributesEditor">
             <summary>
             Class which implements a custom UITypeEditor for attributes.
@@ -1131,6 +155,624 @@
             Name attribute
             </summary>
         </member>
+        <member name="T:NDoc3.Core.PropertyGridUI.EnumDescriptionConverter">
+            <summary>
+            EnumConverter supporting System.ComponentModel.DescriptionAttribute
+            </summary>
+        </member>
+        <member name="M:NDoc3.Core.PropertyGridUI.EnumDescriptionConverter.GetEnumDescription(System.Enum)">
+            <summary>
+            Gets the Description of the given Enumeration value 
+            </summary>
+            <param name="value">The enumeration value</param>
+            <returns>The Description from the DescriptionAttribute attached to the value, otherwise the enumeration value's name</returns>
+        </member>
+        <member name="M:NDoc3.Core.PropertyGridUI.EnumDescriptionConverter.GetEnumDescription(System.Type,System.String)">
+            <summary>
+            Gets the Description of a named value in an Enumeration
+            </summary>
+            <param name="value">The type of the Enumeration</param>
+            <param name="name">The name of the Enumeration value</param>
+            <returns>The description, if any, else the passed name</returns>
+        </member>
+        <member name="M:NDoc3.Core.PropertyGridUI.EnumDescriptionConverter.GetEnumValue(System.Type,System.String)">
+            <summary>
+            Gets the value of an Enum, based on it's Description Attribute or named value
+            </summary>
+            <param name="value">The Enum type</param>
+            <param name="description">The description or name of the element</param>
+            <returns>The value, or the passed in description, if it was not found</returns>
+        </member>
+        <member name="M:NDoc3.Core.PropertyGridUI.EnumDescriptionConverter.#ctor(System.Type)">
+            <summary>
+            Constructs EnumDescriptionConverter for a given Enum
+            </summary>
+            <param name="type"></param>
+        </member>
+        <member name="M:NDoc3.Core.PropertyGridUI.EnumDescriptionConverter.ConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object,System.Type)">
+            <summary>
+            <para>Converts the given value object to the specified type, using the specified context and culture information.</para>
+            <para>This member overrides <see cref="M:System.ComponentModel.TypeConverter.ConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object,System.Type)"/>.</para>
+            </summary>
+            <param name="context">An <see cref="T:System.ComponentModel.ITypeDescriptorContext"/> that provides a format context.</param>
+            <param name="culture">A <see cref="T:System.Globalization.CultureInfo"/> object. If a <see langword="null"/> is passed, the current culture is assumed.</param>
+            <param name="value">The <see cref="T:System.Object"/> to convert.</param>
+            <param name="destinationType">The <see cref="T:System.Type"/> to convert the <paramref name="value"/> parameter to.</param>
+            <returns>An <see cref="T:System.Object"/> that represents the converted value.</returns>
+        </member>
+        <member name="M:NDoc3.Core.PropertyGridUI.EnumDescriptionConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)">
+            <summary>
+            <para>Converts the given object to the type of this converter, using the specified context and culture information.</para>
+            <para>This member overrides <see cref="M:System.ComponentModel.TypeConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)"/>.</para>
+            </summary>
+            <param name="context">An <see cref="T:System.ComponentModel.ITypeDescriptorContext"/> that provides a format context.</param>
+            <param name="culture">A <see cref="T:System.Globalization.CultureInfo"/> object. If a <see langword="null"/> is passed, the current culture is assumed.</param>
+            <param name="value">The <see cref="T:System.Object"/> to convert.</param>
+            <returns>An <see cref="T:System.Object"/> that represents the converted value.</returns>
+        </member>
+        <member name="T:NDoc3.Core.PropertyGridUI.FilenameEditor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NDoc3.Core.PropertyGridUI.FilenameEditor.GetEditStyle(System.ComponentModel.ITypeDescriptorContext)">
+            <summary>
+            Gets the edit style.
+            </summary>
+            <param name="context">Context.</param>
+            <returns></returns>
+        </member>
+        <member name="M:NDoc3.Core.PropertyGridUI.FilenameEditor.EditValue(System.ComponentModel.ITypeDescriptorContext,System.IServiceProvider,System.Object)">
+            <summary>
+            Edits the value.
+            </summary>
+            <param name="context">Context.</param>
+            <param name="provider">Provider.</param>
+            <param name="value">Value.</param>
+            <returns></returns>
+        </member>
+        <member name="T:NDoc3.Core.PropertyGridUI.FilenameEditor.FileDialogFilterAttribute">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NDoc3.Core.PropertyGridUI.FilenameEditor.FileDialogFilterAttribute.#ctor(System.String,System.String)">
+            <summary>
+            Define a filter for the UIFilenameEditor.
+            </summary>
+            <param name="title">File dialog title</param>
+            <param name="filter">
+            The filter to use in the file dialog in UIFilenameEditor. 
+            The following is an example of a filter string: 
+            "Text files (*.txt)|*.txt|All files (*.*)|*.*"</param>
+            <remarks></remarks>
+        </member>
+        <member name="P:NDoc3.Core.PropertyGridUI.FilenameEditor.FileDialogFilterAttribute.Title">
+            <summary>
+            Gets the title.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:NDoc3.Core.PropertyGridUI.FilenameEditor.FileDialogFilterAttribute.Filter">
+            <summary>
+            The filter to use in the file dialog in UIFilenameEditor.
+            </summary>
+            <value></value>
+            <remarks>
+            The following is an example of a filter string: 
+            "Text files (*.txt)|*.txt|All files (*.*)|*.*"
+            </remarks>
+        </member>
+        <member name="T:NDoc3.Core.PropertyGridUI.FilenameEditor.SaveFileAttribute">
+            <summary>
+            Indicates that SaveFileDialog must be shown
+            </summary>
+        </member>
+        <member name="T:NDoc3.Core.PropertyGridUI.FoldernameEditor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NDoc3.Core.PropertyGridUI.FoldernameEditor.GetEditStyle(System.ComponentModel.ITypeDescriptorContext)">
+            <summary>
+            Gets the edit style.
+            </summary>
+            <param name="context">Context.</param>
+            <returns></returns>
+        </member>
+        <member name="M:NDoc3.Core.PropertyGridUI.FoldernameEditor.EditValue(System.ComponentModel.ITypeDescriptorContext,System.IServiceProvider,System.Object)">
+            <summary>
+            Edits the value.
+            </summary>
+            <param name="context">Context.</param>
+            <param name="provider">Provider.</param>
+            <param name="value">Value.</param>
+            <returns></returns>
+        </member>
+        <member name="T:NDoc3.Core.PropertyGridUI.FoldernameEditor.FolderDialogTitleAttribute">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NDoc3.Core.PropertyGridUI.FoldernameEditor.FolderDialogTitleAttribute.#ctor(System.String)">
+            <summary>
+            Define a title for the UIFoldernameEditor.
+            </summary>
+            <param name="title">Folder dialog title</param>
+            <remarks></remarks>
+        </member>
+        <member name="P:NDoc3.Core.PropertyGridUI.FoldernameEditor.FolderDialogTitleAttribute.Title">
+            <summary>
+            Gets the title.
+            </summary>
+            <value></value>
+        </member>
+        <member name="T:NDoc3.Core.PropertyGridUI.FoldernameEditor.ExistingFolderOnlyAttribute">
+            <summary>
+            Indicates that only existing folders can be specified
+            </summary>
+        </member>
+        <member name="T:NDoc3.Core.PropertyGridUI.LangIdEditor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NDoc3.Core.PropertyGridUI.LangIdEditor.GetEditStyle(System.ComponentModel.ITypeDescriptorContext)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NDoc3.Core.PropertyGridUI.LangIdEditor.EditValue(System.ComponentModel.ITypeDescriptorContext,System.IServiceProvider,System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+            <param name="provider"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NDoc3.Core.PropertyGridUI.LangIdEditor.List_Click(System.Object,System.EventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="args"></param>
+        </member>
+        <member name="M:NDoc3.Core.PropertyGridUI.LangIdEditor.FillInList(System.ComponentModel.ITypeDescriptorContext,System.IServiceProvider,System.Windows.Forms.ListBox,System.Int16)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+            <param name="provider"></param>
+            <param name="listBox"></param>
+            <param name="value"></param>
+        </member>
+        <member name="T:NDoc3.Core.PropertyGridUI.PropertySorter">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NDoc3.Core.PropertyGridUI.PropertySorter.GetPropertiesSupported(System.ComponentModel.ITypeDescriptorContext)">
+            <summary>
+            Gets whether the GetProperties method is supported.
+            </summary>
+            <param name="context">Context.</param>
+            <returns></returns>
+        </member>
+        <member name="M:NDoc3.Core.PropertyGridUI.PropertySorter.GetProperties(System.ComponentModel.ITypeDescriptorContext,System.Object,System.Attribute[])">
+            <summary>
+            Gets the properties.
+            </summary>
+            <param name="context">Context.</param>
+            <param name="value">Value.</param>
+            <param name="attributes">Attributes.</param>
+            <returns></returns>
+        </member>
+        <member name="T:NDoc3.Core.PropertyGridUI.PropertySorter.PropertyOrderPair">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NDoc3.Core.PropertyGridUI.PropertySorter.PropertyOrderPair.#ctor(System.String,System.Int32)">
+            <summary>
+            Creates a new <see cref="T:NDoc3.Core.PropertyGridUI.PropertySorter.PropertyOrderPair"/> instance.
+            </summary>
+            <param name="name">Name.</param>
+            <param name="order">Order.</param>
+        </member>
+        <member name="M:NDoc3.Core.PropertyGridUI.PropertySorter.PropertyOrderPair.CompareTo(System.Object)">
+            <summary>
+            Compares to.
+            </summary>
+            <param name="obj">Obj.</param>
+            <returns></returns>
+        </member>
+        <member name="P:NDoc3.Core.PropertyGridUI.PropertySorter.PropertyOrderPair.Name">
+            <summary>
+            Gets the name.
+            </summary>
+            <value></value>
+        </member>
+        <member name="T:NDoc3.Core.PropertyGridUI.PropertyOrderAttribute">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NDoc3.Core.PropertyGridUI.PropertyOrderAttribute.#ctor(System.Int32)">
+            <summary>
+            Creates a new <see cref="T:NDoc3.Core.PropertyGridUI.PropertyOrderAttribute"/> instance.
+            </summary>
+            <param name="order">Order.</param>
+        </member>
+        <member name="P:NDoc3.Core.PropertyGridUI.PropertyOrderAttribute.Order">
+            <summary>
+            Gets the order.
+            </summary>
+            <value></value>
+        </member>
+        <member name="T:NDoc3.Core.ReferencePathCollectionEditorForm">
+            <summary>
+            Summary description for ReferencePathCollectionEditorForm.
+            </summary>
+        </member>
+        <member name="M:NDoc3.Core.ReferencePathCollectionEditorForm.#ctor">
+            <summary>
+            Creates a new <see cref="T:NDoc3.Core.ReferencePathCollectionEditorForm"/> instance.
+            </summary>
+        </member>
+        <member name="M:NDoc3.Core.ReferencePathCollectionEditorForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:NDoc3.Core.ReferencePathCollectionEditorForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="P:NDoc3.Core.ReferencePathCollectionEditorForm.ReferencePaths">
+            <summary>
+            Gets or sets the reference paths collection to edit.
+            </summary>
+            <value></value>
+        </member>
+        <member name="T:NDoc3.Core.PropertyGridUI.RuntimePropertyGrid">
+            <summary>
+            A PropertyGrid with context menu to <b>Reset</b> values and show/hide the <b>Description</b> pane.
+            </summary>
+        </member>
+        <member name="M:NDoc3.Core.PropertyGridUI.RuntimePropertyGrid.#ctor">
+            <summary>
+            Creates a new instance of the RuntimePropertyGrid class
+            </summary>
+        </member>
+        <member name="P:NDoc3.Core.PropertyGridUI.RuntimePropertyGrid.LabelWidth">
+            <summary>
+            Gets or sets the width of the label.
+            </summary>
+            <value></value>
+        </member>
+        <member name="T:NDoc3.Core.PropertyGridUI.SimpleEdit">
+            <summary>
+            This is a dialog box to prompt for a name.
+            </summary>
+        </member>
+        <member name="F:NDoc3.Core.PropertyGridUI.SimpleEdit.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:NDoc3.Core.PropertyGridUI.SimpleEdit.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:NDoc3.Core.PropertyGridUI.SimpleEdit"/> form.
+            </summary>
+        </member>
+        <member name="M:NDoc3.Core.PropertyGridUI.SimpleEdit.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:NDoc3.Core.PropertyGridUI.SimpleEdit.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:NDoc3.Core.PropertyGridUI.SimpleEdit.Value">
+            <summary>
+            Contains the value of the text box.
+            </summary>
+        </member>
+        <member name="M:NDoc3.Core.PropertyGridUI.SimpleEdit.SimpleEdit_Load(System.Object,System.EventArgs)">
+            <summary>
+            Event handler called when the form is initialy loaded.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:NDoc3.Core.PropertyGridUI.SimpleEdit.buttonOK_Click(System.Object,System.EventArgs)">
+            <summary>
+            Event handler called when the user clicks the OK button.
+            </summary>
+            <param name="sender">Sender</param>
+            <param name="e">Event arguments</param>
+        </member>
+        <member name="T:NDoc3.Core.PropertyGridUI.TextEditor">
+            <summary>
+            Provides editing facilities for large blocks of text in the <see cref="T:System.Windows.Forms.PropertyGrid"/>.
+            </summary>
+        </member>
+        <member name="M:NDoc3.Core.PropertyGridUI.TextEditor.#ctor">
+            <summary>
+            Creates a new instance of the <see cref="T:NDoc3.Core.PropertyGridUI.TextEditor"/> class.
+            </summary>
+        </member>
+        <member name="M:NDoc3.Core.PropertyGridUI.TextEditor.EditValue(System.ComponentModel.ITypeDescriptorContext,System.IServiceProvider,System.Object)">
+            <summary>
+            Edits the specified object's value using the editor style indicated by <see cref="M:NDoc3.Core.PropertyGridUI.TextEditor.GetEditStyle(System.ComponentModel.ITypeDescriptorContext)"/>.
+            </summary>
+            <param name="context">An <see cref="T:System.ComponentModel.ITypeDescriptorContext"/> that can be used to gain additional context information.</param>
+            <param name="provider">An <see cref="T:System.IServiceProvider"/> that this editor can use to obtain services.</param>
+            <param name="value">The object to edit.</param>
+            <returns>The new value of the object.</returns>
+        </member>
+        <member name="M:NDoc3.Core.PropertyGridUI.TextEditor.GetEditStyle(System.ComponentModel.ITypeDescriptorContext)">
+            <summary>
+            Gets the editor style used by the <see cref="M:NDoc3.Core.PropertyGridUI.TextEditor.EditValue(System.ComponentModel.ITypeDescriptorContext,System.IServiceProvider,System.Object)"/> method.
+            </summary>
+            <param name="context">An <see cref="T:System.ComponentModel.ITypeDescriptorContext"/> that can be used to gain additional context information.</param>
+            <returns>A <see cref="T:System.Drawing.Design.UITypeEditorEditStyle"/> value that indicates the style of editor used by <see cref="M:NDoc3.Core.PropertyGridUI.TextEditor.EditValue(System.ComponentModel.ITypeDescriptorContext,System.IServiceProvider,System.Object)"/>.</returns>
+        </member>
+        <member name="T:NDoc3.Core.PropertyGridUI.TextEditorForm">
+            <summary>
+            Used in the conjunction with the <see cref="T:NDoc3.Core.PropertyGridUI.TextEditor"/>, this form
+            provides the user a larger interface with which to edit text.
+            </summary>
+        </member>
+        <member name="F:NDoc3.Core.PropertyGridUI.TextEditorForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:NDoc3.Core.PropertyGridUI.TextEditorForm.#ctor">
+            <summary>
+            Creates a new instance of the <see cref="T:NDoc3.Core.PropertyGridUI.TextEditorForm"/> form.
+            </summary>
+        </member>
+        <member name="M:NDoc3.Core.PropertyGridUI.TextEditorForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:NDoc3.Core.PropertyGridUI.TextEditorForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="P:NDoc3.Core.PropertyGridUI.TextEditorForm.Value">
+            <summary>
+            Gets or sets the text to edit.
+            </summary>
+            <value>The text to edit.</value>
+        </member>
+        <member name="T:NDoc3.Core.Reflection.AssemblyLoader">
+            <summary>
+            Handles the resolution and loading of assemblies.
+            </summary>
+        </member>
+        <member name="F:NDoc3.Core.Reflection.AssemblyLoader.searchDirectories">
+            <summary>primary search directories.</summary>
+        </member>
+        <member name="F:NDoc3.Core.Reflection.AssemblyLoader.directoryLists">
+            <summary>List of subdirectory lists already scanned.</summary>
+        </member>
+        <member name="F:NDoc3.Core.Reflection.AssemblyLoader.searchedDirectories">
+            <summary>List of directories already scanned.</summary>
+        </member>
+        <member name="F:NDoc3.Core.Reflection.AssemblyLoader.unresolvedAssemblies">
+            <summary>List of Assemblies that could not be resolved.</summary>
+        </member>
+        <member name="F:NDoc3.Core.Reflection.AssemblyLoader.AssemblyNameFileNameMap">
+            <summary>assemblies already scanned, but not loaded.</summary>
+            <remarks>Maps Assembly FullName to Filename for assemblies scanned, 
+            but not loaded because they were not a match to the required FullName.
+            <p>This list is scanned twice,</p>
+            <list type="unordered">
+            <term>If the requested assembly has not been loaded, but is in this list, then the file is loaded.</term>
+            <term>Once all search paths have been exhausted in an exact name match, this list is checked for a 'partial' match.</term>
+            </list></remarks>
+        </member>
+        <member name="F:NDoc3.Core.Reflection.AssemblyLoader.assemblysLoadedFileName">
+            <summary>Loaded assembly cache keyed by Assembly FileName</summary>
+        </member>
+        <member name="M:NDoc3.Core.Reflection.AssemblyLoader.#ctor(NDoc3.Core.ReferencePath[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:NDoc3.Core.Reflection.AssemblyLoader"/> class.
+            </summary>
+            <param name="referenceDirectories">Reference directories.</param>
+        </member>
+        <member name="M:NDoc3.Core.Reflection.AssemblyLoader.#ctor(NDoc3.Core.ReferencePathCollection)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NDoc3.Core.Reflection.AssemblyLoader"/> class.
+            </summary>
+            <param name="referenceDirectories">Reference directories.</param>
+        </member>
+        <member name="M:NDoc3.Core.Reflection.AssemblyLoader.AddSearchDirectory(NDoc3.Core.ReferencePath)">
+            <summary>
+            Add the path to the list of directories for dependency resolution
+            </summary>
+        </member>
+        <member name="M:NDoc3.Core.Reflection.AssemblyLoader.Install">
+            <summary> 
+            Installs the assembly resolver by hooking up to the AppDomain's AssemblyResolve event.
+            </summary>
+        </member>
+        <member name="M:NDoc3.Core.Reflection.AssemblyLoader.GetAssemblyInfo(System.IO.FileInfo)">
+            <summary>Loads an assembly.</summary>
+            <param name="assemblyFile">The assembly filename.</param>
+            <returns>The assembly object.</returns>
+            <remarks>This method loads an assembly into memory. If you
+            use Assembly.Load or Assembly.LoadFrom the assembly file locks.
+            This method doesn't lock the assembly file.</remarks>
+        </member>
+        <member name="M:NDoc3.Core.Reflection.AssemblyLoader.LoadAssembly(System.IO.FileInfo)">
+            <summary>Loads an assembly.</summary>
+            <param name="assemblyFile">The assembly filename.</param>
+            <returns>The assembly object.</returns>
+            <remarks>This method loads an assembly into memory. If you
+            use Assembly.Load or Assembly.LoadFrom the assembly file locks.
+            This method doesn't lock the assembly file.</remarks>
+        </member>
+        <member name="M:NDoc3.Core.Reflection.AssemblyLoader.CreateAssemblyEvidence(System.String)">
+            <summary>
+            Creates assembly evidence
+            </summary>
+            <param name="fileName">The assembly filename</param>
+            <returns>The new assembly evidence</returns>
+        </member>
+        <member name="M:NDoc3.Core.Reflection.AssemblyLoader.ResolveAssembly(System.Object,System.ResolveEventArgs)">
+            <summary> 
+            Resolves the location and loads an assembly not found by the system.
+            </summary>
+            <remarks>The CLR will take care of loading Framework and GAC assemblies.
+            <p>The resolution process uses the following heuristic</p>
+            </remarks>
+            <param name="sender">the sender of the event</param>
+            <param name="args">event arguments</param>
+            <returns>the loaded assembly, null, if not found</returns>
+        </member>
+        <member name="M:NDoc3.Core.Reflection.AssemblyLoader.LoadAssemblyFrom(System.String,System.String)">
+            <summary> 
+            Search for and load the specified assembly in a set of directories.
+            This will optionally search recursively.
+            </summary>
+            <param name="fullName">
+            Fully qualified assembly name. If not empty, the full name of each assembly found is
+            compared to this name and the assembly is accepted only, if the names match.
+            </param>
+            <param name="fileName">The name of the assembly.</param>
+            <returns>The assembly, or null if not found.</returns>
+        </member>
+        <member name="M:NDoc3.Core.Reflection.AssemblyLoader.LoadAssemblyFrom(System.String,System.String,System.String,System.Boolean)">
+            <summary> 
+            Search for and load the specified assembly in a given directory.
+            This will optionally search recursively into sub-directories if requested.
+            </summary>
+            <param name="path">The directory to look in.</param>
+            <param name="fullName">
+            Fully qualified assembly name. If not empty, the full name of each assembly found is
+            compared to this name and the assembly is accepted only, if the names match.
+            </param>
+            <param name="fileName">The name of the assembly.</param>
+            <param name="includeSubDirs">true, search subdirectories.</param>
+            <returns>The assembly, or null if not found.</returns>
+        </member>
+        <member name="M:NDoc3.Core.Reflection.AssemblyLoader.GetSubDirectories(System.String)">
+            <summary>
+            Gets all subdirectories of a directory
+            </summary>
+            <param name="parentDir">The parent directory</param>
+            <returns>Array containing all subdirectories</returns>
+        </member>
+        <member name="P:NDoc3.Core.Reflection.AssemblyLoader.SearchedDirectories">
+            <summary>
+            Directories Searched for assemblies.
+            </summary>
+        </member>
+        <member name="P:NDoc3.Core.Reflection.AssemblyLoader.UnresolvedAssemblies">
+            <summary>
+            Assemblies that could not be resolved.
+            </summary>
+        </member>
+        <member name="T:NDoc3.Core.Reflection.AssemblyXmlDocCache">
+            <summary>
+            AssemblyXmlDocCache.
+            </summary>
+        </member>
+        <member name="M:NDoc3.Core.Reflection.AssemblyXmlDocCache.#ctor">
+            <summary>
+            Creates a new instance of the <see cref="T:NDoc3.Core.Reflection.AssemblyXmlDocCache"/> class.
+            </summary>
+        </member>
+        <member name="M:NDoc3.Core.Reflection.AssemblyXmlDocCache.Flush">
+            <summary>
+            Flushes the Cache.
+            </summary>
+        </member>
+        <member name="M:NDoc3.Core.Reflection.AssemblyXmlDocCache.CacheDocFile(System.String)">
+            <summary>
+            Populates cache from the given file.
+            </summary>
+            <param name="fileName">Fully-qualified filename of xml file with which to populate the cache.</param>
+        </member>
+        <member name="M:NDoc3.Core.Reflection.AssemblyXmlDocCache.CacheDocs(System.Xml.XmlReader)">
+            <summary>
+            Cache the xmld docs into a hashtable for faster access.
+            </summary>
+            <param name="reader">An XmlReader containg the docs the cache</param>
+        </member>
+        <member name="M:NDoc3.Core.Reflection.AssemblyXmlDocCache.PreprocessDoc(NDoc3.Core.Reflection.AssemblyXmlDocCache.XmlDocKey,System.String)">
+            <summary>
+            Preprocess documentation before placing it in the cache.
+            </summary>
+            <param name="key">Member name 'id' to which the docs belong</param>
+            <param name="doc">A string containing the members documentation</param>
+            <returns>processed doc string</returns>
+        </member>
+        <member name="M:NDoc3.Core.Reflection.AssemblyXmlDocCache.CleanupNodes(NDoc3.Core.Reflection.AssemblyXmlDocCache.XmlDocKey,System.Xml.XmlNodeList)">
+            <summary>
+            strip out redundant newlines and spaces from documentation.
+            </summary>
+            <param name="key">member</param>
+            <param name="nodes">list of nodes</param>
+        </member>
+        <member name="M:NDoc3.Core.Reflection.AssemblyXmlDocCache.FixupCodeTag(System.Xml.XmlNode)">
+            <summary>
+            Remove leading spaces from code tag contents.
+            </summary>
+            <param name="node">a code tag node</param>
+        </member>
+        <member name="M:NDoc3.Core.Reflection.AssemblyXmlDocCache.ProcessSeeLinks(NDoc3.Core.Reflection.AssemblyXmlDocCache.XmlDocKey,System.Xml.XmlNodeList)">
+            <summary>
+            Add 'nolink' attributes to self referencing or duplicate see tags.
+            </summary>
+            <param name="key">current member name 'id'</param>
+            <param name="nodes">list of top-level nodes</param>
+            <remarks>
+            </remarks>
+        </member>
+        <member name="M:NDoc3.Core.Reflection.AssemblyXmlDocCache.MarkupSeeLinks(System.Collections.Hashtable@,NDoc3.Core.Reflection.AssemblyXmlDocCache.XmlDocKey,System.Xml.XmlNode)">
+            <summary>
+            Search tags for duplicate or self-referencing see links.
+            </summary>
+            <param name="linkTable">A table of previous links.</param>
+            <param name="key">current member name 'id'</param>
+            <param name="node">an Xml Node containing a doc tag</param>
+        </member>
+        <member name="M:NDoc3.Core.Reflection.AssemblyXmlDocCache.GetDoc(System.Reflection.AssemblyName,System.String)">
+            <summary>
+            Gets Xml documentation for the given ID
+            </summary>
+            <param name="assemblyName">the name of the assembly to lookup</param>
+            <param name="memberId">The ID of the item for which documentation is required</param>
+            <returns>a string containg the Xml documentation</returns>
+        </member>
+        <member name="M:NDoc3.Core.Reflection.AssemblyXmlDocCache.HasExcludeTag(System.Type,System.String)">
+            <summary>
+            Returns whether a member has an exclude tag
+            </summary>
+            <param name="type"></param>
+            <param name="memberId">ID to check</param>
+            <returns>true if the member has an exclude tag, otherwise false</returns>
+        </member>
+        <member name="T:NDoc3.Core.Reflection.BaseReflectionDocumenter">
+            <summary>The base class for documenters which use the <see cref="T:NDoc3.Core.Reflection.ReflectionEngine"/> to extract 
+            documentation from .Net assemblies.</summary>
+        </member>
         <member name="T:NDoc3.Core.BaseDocumenter">
             <summary>Provides an abstract base class for documenters.</summary>
             <remarks>
@@ -1223,6 +865,49 @@
         </member>
         <member name="E:NDoc3.Core.BaseDocumenter.DocBuildingProgress">
             <summary>See <see cref="E:NDoc3.Core.IDocumenter.DocBuildingProgress">IDocumenter.DocBuildingProgress</see>.</summary>
+        </member>
+        <member name="M:NDoc3.Core.Reflection.BaseReflectionDocumenter.#ctor(NDoc3.Core.IDocumenterConfig)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NDoc3.Core.Reflection.BaseReflectionDocumenter"/> class.
+            </summary>
+            <param name="config">Documenter setting</param>
+        </member>
+        <member name="M:NDoc3.Core.Reflection.BaseReflectionDocumenter.MakeXmlFile(NDoc3.Core.Project,System.IO.FileInfo)">
+            <summary>
+            Writes reflected metadata combined with the /doc comments to the 
+            specified file.
+            </summary>
+            <remarks>
+            This is performed in a separate <see cref="T:System.AppDomain"/>.
+            </remarks>
+        </member>
+        <member name="M:NDoc3.Core.Reflection.BaseReflectionDocumenter.MakeXml(NDoc3.Core.Project)">
+            <summary>
+            Returns reflected metadata combined with the /doc comments.
+            </summary>
+            <remarks>This now evidently writes the string in utf-16 format (and 
+            says so, correctly I suppose, in the xml text) so if you write this string to a file with 
+            utf-8 encoding it will be unparseable because the file will claim to be utf-16
+            but will actually be utf-8.</remarks>
+            <returns>XML string</returns>
+            <remarks>
+            This is performed in a separate <see cref="T:System.AppDomain"/>.
+            </remarks>
+        </member>
+        <member name="T:NDoc3.Core.Reflection.BaseReflectionDocumenterConfig">
+            <summary>The base config class for documenters which use the <see cref="T:NDoc3.Core.Reflection.ReflectionEngine"/> to extract 
+            documentation from .Net assemblies.</summary>
+            <remarks>
+            <para>Generating the documentation consists of two high level steps:
+            <list type="number">
+            <item><description>Merging the /doc XML summary with reflected meta-data from the assemblies.</description></item>
+            <item><description>Transforming that merged XML into the documentation (HTML for the MSDN and VS.NET documenters).</description></item>
+            </list></para>
+            <para>The settings below govern how exactly the XML summary data is merged
+            with the reflected meta-data and therefore govern what items will and will not 
+            appear in the final documentation.
+            </para>
+            </remarks>
         </member>
         <member name="T:NDoc3.Core.BaseDocumenterConfig">
             <summary>Provides an abstract base class for documenter configurations.</summary>
@@ -1380,141 +1065,10 @@
             documenters, intermediate files include all of the HTML Help project files, as well as the generated
             HTML files.</para></remarks>
         </member>
-        <member name="T:NDoc3.Core.NonPersistedAttribute">
+        <member name="M:NDoc3.Core.Reflection.BaseReflectionDocumenterConfig.CreateNDocXmlGeneratorParameters">
             <summary>
-            
+             Creates <see cref="T:NDoc3.Core.Reflection.NDocXmlGeneratorParameters"/> based on this configuration's settings.
             </summary>
-        </member>
-        <member name="T:NDoc3.Core.BaseDocumenterInfo">
-            <summary>
-            Holds meta data about a specific type of documenter
-            </summary>
-        </member>
-        <member name="T:NDoc3.Core.IDocumenterInfo">
-            <summary>
-            Descriptive information about a documenter
-            </summary>
-        </member>
-        <member name="M:NDoc3.Core.IDocumenterInfo.CreateConfig(NDoc3.Core.Project)">
-            <summary>
-            Creates an instance of an <see cref="T:NDoc3.Core.IDocumenterConfig"/>
-            for the particular type of documenter and associates it with a project
-            </summary>
-            <param name="project">A project</param>
-            <returns>An <see cref="T:NDoc3.Core.IDocumenterConfig"/> for the documenter type</returns>
-        </member>
-        <member name="M:NDoc3.Core.IDocumenterInfo.CreateConfig">
-            <summary>
-            Creates an instance of an <see cref="T:NDoc3.Core.IDocumenterConfig"/>
-            for the particular type of documenter
-            </summary>
-            <returns>An <see cref="T:NDoc3.Core.IDocumenterConfig"/> for the documenter type</returns>
-        </member>
-        <member name="P:NDoc3.Core.IDocumenterInfo.Name">
-            <summary>
-            The name of the documenter
-            </summary>
-        </member>
-        <member name="P:NDoc3.Core.IDocumenterInfo.DevelopmentStatus">
-            <summary>
-            The development status (alpha, beta, stable) of this documenter.
-            </summary>
-        </member>
-        <member name="M:NDoc3.Core.BaseDocumenterInfo.#ctor(System.String)">
-            <summary>
-            Creates a new instance of the class
-            </summary>
-            <param name="name">The documenter's name</param>
-        </member>
-        <member name="M:NDoc3.Core.BaseDocumenterInfo.#ctor(System.String,NDoc3.Core.DocumenterDevelopmentStatus)">
-            <summary>
-            Creates a new instance of the class
-            </summary>
-            <param name="name">The name of the documenter</param>
-            <param name="status">The development status of the documenter</param>
-        </member>
-        <member name="M:NDoc3.Core.BaseDocumenterInfo.CreateConfig(NDoc3.Core.Project)">
-            <summary>
-            Creates an <see cref="T:NDoc3.Core.IDocumenterConfig"/> object for this documenter type
-            </summary>
-            <param name="project">A project to associate the config with</param>
-            <returns>A config object</returns>
-        </member>
-        <member name="M:NDoc3.Core.BaseDocumenterInfo.CreateConfig">
-            <summary>
-            Creates an <see cref="T:NDoc3.Core.IDocumenterConfig"/> object for this documenter type
-            </summary>
-            <returns>A config object</returns>
-        </member>
-        <member name="M:NDoc3.Core.BaseDocumenterInfo.CompareTo(System.Object)">
-            <summary>Compares the currrent document to another documenter.</summary>
-        </member>
-        <member name="M:NDoc3.Core.BaseDocumenterInfo.ToString">
-            <summary>
-            Override
-            </summary>
-            <returns>Formatted name of the documenter</returns>
-        </member>
-        <member name="P:NDoc3.Core.BaseDocumenterInfo.Name">
-            <summary>
-            The documenter's name
-            </summary>
-        </member>
-        <member name="P:NDoc3.Core.BaseDocumenterInfo.DevelopmentStatus">
-            <summary>
-            Specifies the development status (alpha, beta, stable) of a documenter.
-            </summary>
-            <remarks>
-            As implemented in this class, this always returns <see cref="T:NDoc3.Core.DocumenterDevelopmentStatus">Stable</see>.
-            <note type="inheritinfo">Documenters should override this if they are not yet stable...</note>
-            </remarks>
-        </member>
-        <member name="T:NDoc3.Core.Reflection.BaseReflectionDocumenter">
-            <summary>The base class for documenters which use the <see cref="T:NDoc3.Core.Reflection.ReflectionEngine"/> to extract 
-            documentation from .Net assemblies.</summary>
-        </member>
-        <member name="M:NDoc3.Core.Reflection.BaseReflectionDocumenter.#ctor(NDoc3.Core.IDocumenterConfig)">
-            <summary>
-            Initializes a new instance of the <see cref="T:NDoc3.Core.Reflection.BaseReflectionDocumenter"/> class.
-            </summary>
-            <param name="config">Documenter setting</param>
-        </member>
-        <member name="M:NDoc3.Core.Reflection.BaseReflectionDocumenter.MakeXmlFile(NDoc3.Core.Project,System.String)">
-            <summary>
-            Writes reflected metadata combined with the /doc comments to the 
-            specified file.
-            </summary>
-            <remarks>
-            This is performed in a separate <see cref="T:System.AppDomain"/>.
-            </remarks>
-        </member>
-        <member name="M:NDoc3.Core.Reflection.BaseReflectionDocumenter.MakeXml(NDoc3.Core.Project)">
-            <summary>
-            Returns reflected metadata combined with the /doc comments.
-            </summary>
-            <remarks>This now evidently writes the string in utf-16 format (and 
-            says so, correctly I suppose, in the xml text) so if you write this string to a file with 
-            utf-8 encoding it will be unparseable because the file will claim to be utf-16
-            but will actually be utf-8.</remarks>
-            <returns>XML string</returns>
-            <remarks>
-            This is performed in a separate <see cref="T:System.AppDomain"/>.
-            </remarks>
-        </member>
-        <member name="T:NDoc3.Core.Reflection.BaseReflectionDocumenterConfig">
-            <summary>The base config class for documenters which use the <see cref="T:NDoc3.Core.Reflection.ReflectionEngine"/> to extract 
-            documentation from .Net assemblies.</summary>
-            <remarks>
-            <para>Generating the documentation consists of two high level steps:
-            <list type="number">
-            <item><description>Merging the /doc XML summary with reflected meta-data from the assemblies.</description></item>
-            <item><description>Transforming that merged XML into the documentation (HTML for the MSDN and VS.NET documenters).</description></item>
-            </list></para>
-            <para>The settings below govern how exactly the XML summary data is merged
-            with the reflected meta-data and therefore govern what items will and will not 
-            appear in the final documentation.
-            </para>
-            </remarks>
         </member>
         <member name="M:NDoc3.Core.Reflection.BaseReflectionDocumenterConfig.#ctor(NDoc3.Core.IDocumenterInfo)">
             <summary>
@@ -1767,7 +1321,7 @@
             </summary>
         </member>
         <member name="F:NDoc3.Core.Reflection.SdkVersion.SDK_v1_0">
-            <summary>The SDK version 1.1.</summary>
+            <summary>The SDK version 1.0.</summary>
         </member>
         <member name="F:NDoc3.Core.Reflection.SdkVersion.SDK_v1_1">
             <summary>The SDK version 1.1.</summary>
@@ -1864,98 +1418,6 @@
             </para>
             </summary>
         </member>
-        <member name="T:NDoc3.Core.DocumenterException">
-            <summary>Represents an exception thrown when attempting to build documentation.</summary>
-        </member>
-        <member name="M:NDoc3.Core.DocumenterException.#ctor(System.String)">
-            <summary>Initializes a new instance of the <see cref="T:NDoc3.Core.DocumenterException"/> class with the specified message.</summary>
-            <param name="message">The message to display when the exception is thrown.</param>
-        </member>
-        <member name="M:NDoc3.Core.DocumenterException.#ctor(System.String,System.Exception)">
-            <summary>Initializes a new instance of the <see cref="T:NDoc3.Core.DocumenterException"/> class 
-            with a specified error message and a reference to the 
-            inner exception that is the root cause of this exception.</summary>
-            <param name="message">The error message that explains the reason for the exception.</param>
-            <param name="inner">An instance of Exception that is the cause of the current Exception. 
-            If inner is non-null, then the current Exception is raised in a catch block handling the inner exception.</param>
-        </member>
-        <member name="M:NDoc3.Core.DocumenterException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
-            <remarks>
-            required to serialize across appdomain boundry
-            </remarks>
-        </member>
-        <member name="T:NDoc3.Core.EmbeddedResources">
-            <summary>Utilties to help reading and writing embedded resources.</summary>
-            <remarks>This is used to access the stylesheets.</remarks>
-        </member>
-        <member name="M:NDoc3.Core.EmbeddedResources.WriteEmbeddedResources(System.Reflection.Assembly,System.String,System.String)">
-            <summary>Writes all the embedded resources with the specified prefix to disk.</summary>
-            <param name="assembly">The assembly containing the embedded resources.</param>
-            <param name="prefix">The prefix to search for.</param>
-            <param name="directory">The directory to write the resources to.</param>
-        </member>
-        <member name="M:NDoc3.Core.EmbeddedResources.WriteEmbeddedResource(System.Reflection.Assembly,System.String,System.String,System.String)">
-            <summary>Writes an embedded resource to disk.</summary>
-            <param name="assembly">The assembly containing the embedded resource.</param>
-            <param name="name">The name of the embedded resource.</param>
-            <param name="directory">The directory to write the resource to.</param>
-            <param name="filename">The filename of the resource on disk.</param>
-        </member>
-        <member name="T:NDoc3.Core.PropertyGridUI.EnumDescriptionConverter">
-            <summary>
-            EnumConverter supporting System.ComponentModel.DescriptionAttribute
-            </summary>
-        </member>
-        <member name="M:NDoc3.Core.PropertyGridUI.EnumDescriptionConverter.GetEnumDescription(System.Enum)">
-            <summary>
-            Gets the Description of the given Enumeration value 
-            </summary>
-            <param name="value">The enumeration value</param>
-            <returns>The Description from the DescriptionAttribute attached to the value, otherwise the enumeration value's name</returns>
-        </member>
-        <member name="M:NDoc3.Core.PropertyGridUI.EnumDescriptionConverter.GetEnumDescription(System.Type,System.String)">
-            <summary>
-            Gets the Description of a named value in an Enumeration
-            </summary>
-            <param name="value">The type of the Enumeration</param>
-            <param name="name">The name of the Enumeration value</param>
-            <returns>The description, if any, else the passed name</returns>
-        </member>
-        <member name="M:NDoc3.Core.PropertyGridUI.EnumDescriptionConverter.GetEnumValue(System.Type,System.String)">
-            <summary>
-            Gets the value of an Enum, based on it's Description Attribute or named value
-            </summary>
-            <param name="value">The Enum type</param>
-            <param name="description">The description or name of the element</param>
-            <returns>The value, or the passed in description, if it was not found</returns>
-        </member>
-        <member name="M:NDoc3.Core.PropertyGridUI.EnumDescriptionConverter.#ctor(System.Type)">
-            <summary>
-            Constructs EnumDescriptionConverter for a given Enum
-            </summary>
-            <param name="type"></param>
-        </member>
-        <member name="M:NDoc3.Core.PropertyGridUI.EnumDescriptionConverter.ConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object,System.Type)">
-            <summary>
-            <para>Converts the given value object to the specified type, using the specified context and culture information.</para>
-            <para>This member overrides <see cref="M:System.ComponentModel.TypeConverter.ConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object,System.Type)"/>.</para>
-            </summary>
-            <param name="context">An <see cref="T:System.ComponentModel.ITypeDescriptorContext"/> that provides a format context.</param>
-            <param name="culture">A <see cref="T:System.Globalization.CultureInfo"/> object. If a <see langword="null"/> is passed, the current culture is assumed.</param>
-            <param name="value">The <see cref="T:System.Object"/> to convert.</param>
-            <param name="destinationType">The <see cref="T:System.Type"/> to convert the <paramref name="value"/> parameter to.</param>
-            <returns>An <see cref="T:System.Object"/> that represents the converted value.</returns>
-        </member>
-        <member name="M:NDoc3.Core.PropertyGridUI.EnumDescriptionConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)">
-            <summary>
-            <para>Converts the given object to the type of this converter, using the specified context and culture information.</para>
-            <para>This member overrides <see cref="M:System.ComponentModel.TypeConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)"/>.</para>
-            </summary>
-            <param name="context">An <see cref="T:System.ComponentModel.ITypeDescriptorContext"/> that provides a format context.</param>
-            <param name="culture">A <see cref="T:System.Globalization.CultureInfo"/> object. If a <see langword="null"/> is passed, the current culture is assumed.</param>
-            <param name="value">The <see cref="T:System.Object"/> to convert.</param>
-            <returns>An <see cref="T:System.Object"/> that represents the converted value.</returns>
-        </member>
         <member name="T:NDoc3.Core.Reflection.ExternalXmlSummaryCache">
             <summary>
             Caches XML summaries.
@@ -2029,63 +1491,1122 @@
             <param name="declaringType">The type that declares that member.</param>
             <returns>The summary xml.  If not found, returns an zero length string.</returns>
         </member>
-        <member name="T:NDoc3.Core.PropertyGridUI.FilenameEditor">
+        <member name="M:NDoc3.Core.Reflection.ReflectionAssemblyInfo.GetCustomAttributes``1(System.Boolean)">
+            <summary>
+            Returns the list of attributes
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="inherit"></param>
+            <returns></returns>
+        </member>
+        <member name="T:NDoc3.Core.MemberDisplayName">
             <summary>
             
             </summary>
         </member>
-        <member name="M:NDoc3.Core.PropertyGridUI.FilenameEditor.GetEditStyle(System.ComponentModel.ITypeDescriptorContext)">
+        <member name="M:NDoc3.Core.MemberDisplayName.GetMemberDisplayName(System.Type)">
             <summary>
-            Gets the edit style.
+            
             </summary>
-            <param name="context">Context.</param>
+            <param name="type"></param>
             <returns></returns>
         </member>
-        <member name="M:NDoc3.Core.PropertyGridUI.FilenameEditor.EditValue(System.ComponentModel.ITypeDescriptorContext,System.IServiceProvider,System.Object)">
-            <summary>
-            Edits the value.
-            </summary>
-            <param name="context">Context.</param>
-            <param name="provider">Provider.</param>
-            <param name="value">Value.</param>
-            <returns></returns>
-        </member>
-        <member name="T:NDoc3.Core.PropertyGridUI.FilenameEditor.FileDialogFilterAttribute">
+        <member name="T:NDoc3.Core.MemberID">
             <summary>
             
             </summary>
         </member>
-        <member name="M:NDoc3.Core.PropertyGridUI.FilenameEditor.FileDialogFilterAttribute.#ctor(System.String,System.String)">
+        <member name="M:NDoc3.Core.MemberID.GetMemberID(System.Type)">
             <summary>
-            Define a filter for the UIFilenameEditor.
+            Get the member ID of a type
             </summary>
-            <param name="title">File dialog title</param>
-            <param name="filter">
-            The filter to use in the file dialog in UIFilenameEditor. 
-            The following is an example of a filter string: 
-            "Text files (*.txt)|*.txt|All files (*.*)|*.*"</param>
-            <remarks></remarks>
+            <param name="type">The type</param>
+            <returns>The member ID</returns>
         </member>
-        <member name="P:NDoc3.Core.PropertyGridUI.FilenameEditor.FileDialogFilterAttribute.Title">
+        <member name="M:NDoc3.Core.MemberID.GetMemberID(System.Reflection.FieldInfo)">
             <summary>
-            Gets the title.
+            Get the member ID of a field
+            </summary>
+            <param name="field">The field</param>
+            <returns>The member ID</returns>
+        </member>
+        <member name="M:NDoc3.Core.MemberID.GetMemberID(System.Reflection.PropertyInfo)">
+            <summary>
+            Get the member ID of a property
+            </summary>
+            <param name="property">The property</param>
+            <returns>The member ID</returns>
+        </member>
+        <member name="M:NDoc3.Core.MemberID.GetMemberID(System.Reflection.MethodBase)">
+            <summary>
+            Get the member ID of a method
+            </summary>
+            <param name="method">The method</param>
+            <returns>The memeber ID</returns>
+        </member>
+        <member name="M:NDoc3.Core.MemberID.GetMemberID(System.Reflection.EventInfo)">
+            <summary>
+            Get the member ID of an event
+            </summary>
+            <param name="eventInfo">The event</param>
+            <returns>The member ID</returns>
+        </member>
+        <member name="M:NDoc3.Core.MemberID.GetTypeNamespaceName(System.Type)">
+            <summary>
+            Get the types namespace name (full name)
+            </summary>
+            <param name="type">The type</param>
+            <returns>The namespace name (full name)</returns>
+        </member>
+        <member name="M:NDoc3.Core.MemberID.GetDeclaringTypeName(System.Reflection.MemberInfo)">
+            <summary>
+            Returns the declaring type name of a member
+            </summary>
+            <param name="member">The member</param>
+            <returns>The declaring type name</returns>
+        </member>
+        <member name="M:NDoc3.Core.MemberID.GetFullNamespaceName(System.Reflection.MemberInfo)">
+            <summary>
+            Returns the full namespace name of a member
+            </summary>
+            <param name="member">The member</param>
+            <returns>The full namespace name</returns>
+        </member>
+        <member name="M:NDoc3.Core.MemberID.GetTypeName(System.Type)">
+            <summary>
+            Get the type name of a type
+            </summary>
+            <param name="type">The type</param>
+            <returns>The type name</returns>
+        </member>
+        <member name="M:NDoc3.Core.MemberID.GetTypeName(System.Type,System.Boolean)">
+            <summary>
+            Returns the type name
+            </summary>
+            <param name="type">The type</param>
+            <param name="UsePositionalNumber"></param>
+            <returns>The type name</returns>
+        </member>
+        <member name="M:NDoc3.Core.MemberID.GetTypeArgumentsList(System.Type)">
+            <summary>
+            Get the generic argument list of a type
+            </summary>
+            <param name="type">The type</param>
+            <returns>The generic argument list</returns>
+        </member>
+        <member name="M:NDoc3.Core.MemberID.GetParameterList(System.Reflection.MethodBase)">
+            <summary>
+            Return a string representation of method parameters
+            </summary>
+            <param name="method">The method</param>
+            <returns>String representation of the method parameters</returns>
+        </member>
+        <member name="T:NDoc3.Core.Reflection.MethodContract">
+            <summary>
+             Defines possible values for a method's contract.
+            </summary>
+        </member>
+        <member name="F:NDoc3.Core.Reflection.MethodContract.Normal">
+            <summary>
+            Method is an instance member.
+            </summary>
+        </member>
+        <member name="F:NDoc3.Core.Reflection.MethodContract.Static">
+            <summary>
+            Method is static. (<see cref="F:System.Reflection.MethodAttributes.Static"/>)
+            </summary>
+        </member>
+        <member name="F:NDoc3.Core.Reflection.MethodContract.Abstract">
+            <summary>
+            Method is abstract. (<see cref="F:System.Reflection.MethodAttributes.Abstract"/>)
+            </summary>
+        </member>
+        <member name="F:NDoc3.Core.Reflection.MethodContract.Final">
+            <summary>
+            Method is final. (<see cref="F:System.Reflection.MethodAttributes.Final"/>)
+            </summary>
+        </member>
+        <member name="F:NDoc3.Core.Reflection.MethodContract.Virtual">
+            <summary>
+            Method is virtual. (<see cref="F:System.Reflection.MethodAttributes.Virtual"/>)
+            </summary>
+        </member>
+        <member name="F:NDoc3.Core.Reflection.MethodContract.Override">
+            <summary>
+            Method is an override. (<see cref="F:System.Reflection.MethodAttributes.NewSlot"/>|<see cref="F:System.Reflection.MethodAttributes.Virtual"/>).
+            </summary>
+        </member>
+        <member name="T:NDoc3.Core.Reflection.NamespaceHierarchyCollection">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NDoc3.Core.Reflection.NamespaceHierarchyCollection.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NDoc3.Core.Reflection.NamespaceHierarchyCollection.Add(System.String,System.Type,System.Type)">
+            <summary>
+            
+            </summary>
+            <param name="namespaceName"></param>
+            <param name="baseType"></param>
+            <param name="derivedType"></param>
+        </member>
+        <member name="M:NDoc3.Core.Reflection.NamespaceHierarchyCollection.GetDerivedTypesCollection(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="namespaceName"></param>
+            <returns></returns>
+        </member>
+        <member name="P:NDoc3.Core.Reflection.NamespaceHierarchyCollection.DefinedNamespaces">
+            <summary>
+            
             </summary>
             <value></value>
         </member>
-        <member name="P:NDoc3.Core.PropertyGridUI.FilenameEditor.FileDialogFilterAttribute.Filter">
+        <member name="T:NDoc3.Core.Reflection.NDocXmlGenerator">
             <summary>
-            The filter to use in the file dialog in UIFilenameEditor.
+            Summary description for ReflectionEngine.
             </summary>
-            <value></value>
+        </member>
+        <member name="M:NDoc3.Core.Reflection.NDocXmlGenerator.IsRunningMono">
+            <summary>
+            Checks if we are using the Mono runtime
+            </summary>
+            <returns>
+            Wether or not we are running with Mono
+            </returns>
+        </member>
+        <member name="M:NDoc3.Core.Reflection.NDocXmlGenerator.ValidateNDocXml(System.Uri)">
+            <summary>
+            Validates the given ndoc xml against the schema.
+            </summary>
+        </member>
+        <member name="M:NDoc3.Core.Reflection.NDocXmlGenerator.ValidateNDocXml(System.IO.FileInfo)">
+            <summary>
+            Validates the given ndoc xml against the schema.
+            </summary>
+            <remarks>This method automatically closes the reader instance passed into it.</remarks>
+        </member>
+        <member name="M:NDoc3.Core.Reflection.NDocXmlGenerator.ValidateNDocXml(System.IO.TextReader)">
+            <summary>
+            Validates the given ndoc xml against the schema.
+            </summary>
+            <remarks>This method automatically closes the reader instance passed into it.</remarks>
+        </member>
+        <member name="M:NDoc3.Core.Reflection.NDocXmlGenerator.ValidateNDocXml(System.IO.TextReader,System.Boolean)">
+            <summary>
+            Validates the given ndoc xml against the schema.
+            </summary>
+        </member>
+        <member name="M:NDoc3.Core.Reflection.NDocXmlGenerator.ValidateNDocXmlInternal(System.Xml.XmlReader)">
+            <summary>
+            Validates the generated XML file against the XML schema.
+            </summary>
+            <param name="reader">An instance of a XmlReader, containing the XML to be validated.</param>
+            <exception cref="T:NDoc3.Core.Reflection.ValidationException">Occures if validation fails.</exception>
+        </member>
+        <member name="M:NDoc3.Core.Reflection.NDocXmlGenerator.MakeXmlFile(System.IO.FileInfo)">
+            <summary>Builds an Xml file combining the reflected metadata with the /doc comments.</summary>
+            <returns>full pathname of XML file</returns>
+            <remarks>The caller is responsible for deleting the xml file after use...</remarks>
+        </member>
+        <member name="M:NDoc3.Core.Reflection.NDocXmlGenerator.MakeXmlFile(System.IO.FileInfo,System.Xml.Formatting,System.Int32,System.Char)">
+            <summary>Builds an Xml file combining the reflected metadata with the /doc comments.</summary>
+            <returns>full pathname of XML file</returns>
+            <remarks>The caller is responsible for deleting the xml file after use...</remarks>
+        </member>
+        <member name="M:NDoc3.Core.Reflection.NDocXmlGenerator.MakeXml">
+            <summary>Builds an Xml string combining the reflected metadata with the /doc comments.</summary>
+            <remarks>This now evidently writes the string in utf-16 format (and 
+            says so, correctly I suppose, in the xml text) so if you write this string to a file with 
+            utf-8 encoding it will be unparseable because the file will claim to be utf-16
+            but will actually be utf-8.</remarks>
+            <returns>XML string</returns>
+        </member>
+        <member name="M:NDoc3.Core.Reflection.NDocXmlGenerator.MakeXmlReaderSettings">
+            <summary>
+            Generates the XmlReaderSettings for validating against the XML Schema.
+            </summary>
+            <returns>The XmlReaderSettings.</returns>
+        </member>
+        <member name="M:NDoc3.Core.Reflection.NDocXmlGenerator.BuildXml(System.Xml.XmlWriter)">
+            <summary>
+            Builds an Xml file combining the reflected metadata with the /doc comments.
+            </summary>
+            <param name="writer">An instance of a XmlWriter</param>
+        </member>
+        <member name="M:NDoc3.Core.Reflection.NDocXmlGenerator.WriteAssembly(System.Xml.XmlWriter,NDoc3.Core.Reflection.IAssemblyInfo)">
+            <summary>
+             WriteAssembly
+            	WriteCustomAttributes
+            	WriteModules
+            
+            </summary>
+            <param name="writer"></param>
+            <param name="assembly"></param>
+        </member>
+        <member name="M:NDoc3.Core.Reflection.NDocXmlGenerator.WriteModule(System.Xml.XmlWriter,NDoc3.Core.Reflection.IModuleInfo)">
+            <summary>Writes documentation about a module out as XML.</summary>
+            <param name="writer">XmlWriter to write on.</param>
+            <param name="module">Module to document.</param>
+        </member>
+        <member name="M:NDoc3.Core.Reflection.NDocXmlGenerator.WriteInterfaces(System.Xml.XmlWriter,System.Type[],System.String)">
+            <summary>
+            Write all interfaces in a module
+            </summary>
+            <param name="writer">The XML writer</param>
+            <param name="types">An array of types in the module</param>
+            <param name="namespaceName">The name of the namespace currently being documented</param>
+            <returns>The number of interfaces written</returns>
+        </member>
+        <member name="M:NDoc3.Core.Reflection.NDocXmlGenerator.WriteClass(System.Xml.XmlWriter,System.Type,System.Boolean)">
+            <summary>Writes XML documenting a class.</summary>
+            <param name="writer">XmlWriter to write on.</param>
+            <param name="type">Class to document.</param>
+            <param name="hiding">true if hiding base members</param>
+        </member>
+        <member name="M:NDoc3.Core.Reflection.NDocXmlGenerator.WriteInterface(System.Xml.XmlWriter,System.Type)">
+            <summary>Writes XML documenting an interface.</summary>
+            <param name="writer">XmlWriter to write on.</param>
+            <param name="type">Interface to document.</param>
+        </member>
+        <member name="M:NDoc3.Core.Reflection.NDocXmlGenerator.WriteDelegate(System.Xml.XmlWriter,System.Type)">
+            <summary>Writes XML documenting a delegate.</summary>
+            <param name="writer">XmlWriter to write on.</param>
+            <param name="type">Delegate to document.</param>
+        </member>
+        <member name="M:NDoc3.Core.Reflection.NDocXmlGenerator.WriteEnumeration(System.Xml.XmlWriter,System.Type)">
+            <summary>Writes XML documenting an enumeration.</summary>
+            <param name="writer">XmlWriter to write on.</param>
+            <param name="type">Enumeration to document.</param>
+        </member>
+        <member name="M:NDoc3.Core.Reflection.NDocXmlGenerator.WriteBaseType(System.Xml.XmlWriter,System.Type)">
+            <summary>
+            Writes the XML structure for the base type of a class
+            </summary>
+            <param name="writer">The XML writer</param>
+            <param name="type">The type of the basetype</param>
+        </member>
+        <member name="M:NDoc3.Core.Reflection.NDocXmlGenerator.WriteField(System.Xml.XmlWriter,System.Reflection.FieldInfo,System.Type,System.Boolean)">
+            <summary>Writes XML documenting a field.</summary>
+            <param name="writer">XmlWriter to write on.</param>
+            <param name="field">Field to document.</param>
+            <param name="type">Type containing the field.</param>
+            <param name="hiding">true if hiding base members</param>
+        </member>
+        <member name="M:NDoc3.Core.Reflection.NDocXmlGenerator.WriteDeclaringType(System.String,System.Xml.XmlWriter)">
+            <summary>
+            Write the declaring type to the XML file
+            </summary>
+            <param name="type">The name of the declaring type</param>
+            <param name="writer">The XML writer</param>
+        </member>
+        <member name="M:NDoc3.Core.Reflection.NDocXmlGenerator.GetDisplayValue(System.Type,System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="parent"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NDoc3.Core.Reflection.NDocXmlGenerator.WriteEvent(System.Xml.XmlWriter,System.Reflection.EventInfo,NDoc3.Core.Reflection.NDocXmlGenerator.ImplementsCollection)">
+            <summary>Writes XML documenting an event.</summary>
+            <param name="writer">XmlWriter to write on.</param>
+            <param name="eventInfo">Event to document.</param>
+            <param name="implementations">Holds a mapping of interface members to concrete implementations</param>
+        </member>
+        <member name="M:NDoc3.Core.Reflection.NDocXmlGenerator.WriteConstructor(System.Xml.XmlWriter,System.Reflection.ConstructorInfo,System.Int32)">
+            <summary>Writes XML documenting a constructor.</summary>
+            <param name="writer">XmlWriter to write on.</param>
+            <param name="constructor">Constructor to document.</param>
+            <param name="overload">If &gt; 0, indicates this is the nth overloaded constructor.</param>
+        </member>
+        <member name="M:NDoc3.Core.Reflection.NDocXmlGenerator.WriteProperty(System.Xml.XmlWriter,System.Reflection.PropertyInfo,System.Boolean,System.Int32,System.Boolean,NDoc3.Core.Reflection.NDocXmlGenerator.ImplementsCollection)">
+            <summary>Writes XML documenting a property.</summary>
+            <param name="writer">XmlWriter to write on.</param>
+            <param name="property">Property to document.</param>
+            <param name="inherited">true if a declaringType attribute should be included.</param>
+            <param name="overload">If &gt; 0, indicates this it the nth overloaded method with the same name.</param>
+            <param name="hiding">true if this property is hiding base class members with the same name.</param>
+            <param name="implementations">Holds a mapping of interface members to concrete implementations</param>
+        </member>
+        <member name="M:NDoc3.Core.Reflection.NDocXmlGenerator.WriteMethod(System.Xml.XmlWriter,System.Reflection.MethodInfo,System.Boolean,System.Int32,System.Boolean,NDoc3.Core.Reflection.NDocXmlGenerator.ImplementsCollection)">
+            <summary>Writes XML documenting a method.</summary>
+            <param name="writer">XmlWriter to write on.</param>
+            <param name="method">Method to document.</param>
+            <param name="inherited">true if a declaringType attribute should be included.</param>
+            <param name="overload">If &gt; 0, indicates this it the nth overloaded method with the same name.</param>
+            <param name="hiding">true if this method hides methods of the base class with the same signature.</param>
+            <param name="implementations">Holds a mapping of interface members to concrete implementations</param>
+        </member>
+        <member name="M:NDoc3.Core.Reflection.NDocXmlGenerator.GetTypeNamespaceName(System.Type)">
+            <summary>Used by GetFullNamespaceName(MemberInfo member) functions to build
+            up most of the /doc member name.</summary>
+            <param name="type"></param>
+        </member>
+        <member name="M:NDoc3.Core.Reflection.NDocXmlGenerator.GetMemberName(System.Reflection.FieldInfo,System.Type)">
+            <summary>Derives the member name ID for the base of an inherited field.</summary>
+            <param name="field">The field to derive the member name ID from.</param>
+            <param name="declaringType">The declaring type.</param>
+        </member>
+        <member name="M:NDoc3.Core.Reflection.NDocXmlGenerator.GetMemberName(System.Reflection.EventInfo,System.Type)">
+            <summary>Derives the member name ID for an event. Used to match nodes in the /doc XML.</summary>
+            <param name="eventInfo">The event to derive the member name ID from.</param>
+            <param name="declaringType">The declaring type.</param>
+        </member>
+        <member name="M:NDoc3.Core.Reflection.NDocXmlGenerator.GetMemberName(System.Reflection.PropertyInfo,System.Type)">
+            <summary>Derives the member name ID for the base of an inherited property.</summary>
+            <param name="property">The property to derive the member name ID from.</param>
+            <param name="declaringType">The declaring type.</param>
+        </member>
+        <member name="M:NDoc3.Core.Reflection.NDocXmlGenerator.GetMemberName(System.Reflection.MethodBase,System.Type)">
+            <summary>Derives the member name ID for the basse of an inherited member function.</summary>
+            <param name="method">The method to derive the member name ID from.</param>
+            <param name="declaringType">The declaring type.</param>
+        </member>
+        <member name="M:NDoc3.Core.Reflection.NDocXmlGenerator.WriteGenericArgumentsAndParametersMethod(System.Reflection.MethodInfo,System.Xml.XmlWriter)">
+            <summary>
+            Writes generic arguments and parameters for a method
+            </summary>
+            <param name="m">Generic method</param>
+            <param name="writer">XMLWriter to write the XML</param>
+        </member>
+        <member name="M:NDoc3.Core.Reflection.NDocXmlGenerator.WriteGenericArgumentsAndParameters(System.Type,System.Xml.XmlWriter)">
+            <summary>
+            Writes generic arguments and parameters for a type
+            </summary>
+            <param name="type">Generic type</param>
+            <param name="writer">XMLWriter to write the XML</param>
+        </member>
+        <member name="M:NDoc3.Core.Reflection.NDocXmlGenerator.WriteGenericTypeConstraints(System.Type,System.Xml.XmlWriter)">
+            <summary>
+            Write constraints for a generic type
+            </summary>
+            <param name="type">The generic type</param>
+            <param name="writer">The current XMLWriter</param>
+        </member>
+        <member name="M:NDoc3.Core.Reflection.NDocXmlGenerator.WriteGenericMethodConstraints(System.Reflection.MethodInfo,System.Xml.XmlWriter)">
+            <summary>
+            Write constrains for a generic method
+            </summary>
+            <param name="m">The generic method</param>
+            <param name="writer">The current XMLWriter</param>
+        </member>
+        <member name="M:NDoc3.Core.Reflection.NDocXmlGenerator.WriteGenericConstraints(System.Type[],System.Xml.XmlWriter)">
+            <summary>
+            Writes generic constraints
+            </summary>
+            <param name="args">An array of generic arguments of a type or method</param>
+            <param name="writer">The current XMLWriter</param>
+        </member>
+        <member name="M:NDoc3.Core.Reflection.NDocXmlGenerator.CheckForMissingTypeDocumentation(System.Type)">
+            <summary>
+            Checks for missing type documentation
+            </summary>
+            <param name="type">The type to check</param>
+            <returns>True if documentation is missing</returns>
+        </member>
+        <member name="M:NDoc3.Core.Reflection.NDocXmlGenerator.CheckForPropertyBacker(System.Xml.XmlWriter,System.Reflection.AssemblyName,System.String,System.Type)">
+            <summary>
+            This checks whether a field is a property backer, meaning
+            it stores the information for the property.
+            </summary>
             <remarks>
-            The following is an example of a filter string: 
-            "Text files (*.txt)|*.txt|All files (*.*)|*.*"
+            <para>This takes advantage of the fact that most people
+            have a simple convention for the names of the fields
+            and the properties that they back.
+            If the field doesn't have a summary already, and it
+            looks like it backs a property, and the BaseDocumenterConfig
+            property is set appropriately, then this adds a
+            summary indicating that.</para>
+            <para>Note that this design will call multiple fields the 
+            backer for a single property.</para>
+            <para/>This also will call a public field a backer for a
+            property, when typically that wouldn't be the case.
+            </remarks>
+            <param name="writer">The XmlWriter to write to.</param>
+            <param name="assemblyName">the name of the currently processed assembly</param>
+            <param name="memberName">The full name of the field.</param>
+            <param name="type">The Type which contains the field
+            and potentially the property.</param>
+            <returns>True only if a property backer is auto-documented.</returns>
+        </member>
+        <member name="M:NDoc3.Core.Reflection.NDocXmlGenerator.FindProperty(System.String,System.Type)">
+            <summary>
+            Find a particular property of the specified type, by name.
+            Return the PropertyInfo for it.
+            </summary>
+            <param name="expectedPropertyName">The name of the property to
+            find.</param>
+            <param name="type">The type in which to search for 
+            the property.</param>
+            <returns>PropertyInfo - The property info, or null for 
+            not found.</returns>
+        </member>
+        <member name="M:NDoc3.Core.Reflection.NDocXmlGenerator.WritePropertyBackerDocumentation(System.Xml.XmlWriter,System.String,System.Reflection.PropertyInfo)">
+            <summary>
+            Write xml info for a property's backer field to the specified writer.
+            This writes a string with a link to the property.
+            </summary>
+            <param name="writer">The XmlWriter to write to.</param>
+            <param name="element">The field which backs the property.</param>
+            <param name="property">The property backed by the field.</param>
+        </member>
+        <member name="M:NDoc3.Core.Reflection.NDocXmlGenerator.WriteDerivedTypes(System.Xml.XmlWriter,System.Type)">
+            <summary>
+            Writes the XML documenting which classes derives from the current class
+            </summary>
+            <param name="writer">XML writer</param>
+            <param name="type">Current class type</param>
+        </member>
+        <member name="T:NDoc3.Core.Reflection.NDocXmlGenerator.Constraint">
+            <summary>
+            Contains information about constraints on a generic parameter template
+            </summary>
+        </member>
+        <member name="F:NDoc3.Core.Reflection.NDocXmlGenerator.Constraint.typeparam">
+            <summary>
+            Name of the parameter
+            </summary>
+        </member>
+        <member name="F:NDoc3.Core.Reflection.NDocXmlGenerator.Constraint.constraint">
+            <summary>
+            List of constraints on the parameter
+            </summary>
+        </member>
+        <member name="T:NDoc3.Core.Reflection.NDocXmlGeneratorParameters">
+            <summary>
+            Summary description for NDocXmlGeneratorParameters.
+            </summary>
+        </member>
+        <member name="F:NDoc3.Core.Reflection.NDocXmlGeneratorParameters.NamespaceSummaries">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NDoc3.Core.Reflection.NDocXmlGeneratorParameters.AddAssemblyToDocument(System.Type)">
+            <summary>
+            Adds the type's assembly to the list of assemblies to document.
+            </summary>
+        </member>
+        <member name="M:NDoc3.Core.Reflection.NDocXmlGeneratorParameters.AddAssemblyToDocument(System.IO.FileInfo)">
+            <summary>
+            Adds the assembly to the list of assemblies to document.
+            Adds the assembly's slashdoc file as well using the convention myassembly.dll + myassembly.xml
+            </summary>
+        </member>
+        <member name="F:NDoc3.Core.Reflection.NDocXmlGeneratorParameters.AssemblyVersionInfo">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:NDoc3.Core.Reflection.NDocXmlGeneratorParameters.UseNamespaceDocSummaries">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:NDoc3.Core.Reflection.NDocXmlGeneratorParameters.AutoPropertyBackerSummaries">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:NDoc3.Core.Reflection.NDocXmlGeneratorParameters.AutoDocumentConstructors">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:NDoc3.Core.Reflection.NDocXmlGeneratorParameters.SdkDocLanguage">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:NDoc3.Core.Reflection.NDocXmlGeneratorParameters.ShowMissingSummaries">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:NDoc3.Core.Reflection.NDocXmlGeneratorParameters.ShowMissingRemarks">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:NDoc3.Core.Reflection.NDocXmlGeneratorParameters.ShowMissingParams">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:NDoc3.Core.Reflection.NDocXmlGeneratorParameters.ShowMissingReturns">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:NDoc3.Core.Reflection.NDocXmlGeneratorParameters.ShowMissingValues">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:NDoc3.Core.Reflection.NDocXmlGeneratorParameters.DocumentInheritedMembers">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:NDoc3.Core.Reflection.NDocXmlGeneratorParameters.DocumentInheritedFrameworkMembers">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:NDoc3.Core.Reflection.NDocXmlGeneratorParameters.DocumentExplicitInterfaceImplementations">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:NDoc3.Core.Reflection.NDocXmlGeneratorParameters.DocumentInternals">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:NDoc3.Core.Reflection.NDocXmlGeneratorParameters.DocumentProtected">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:NDoc3.Core.Reflection.NDocXmlGeneratorParameters.DocumentSealedProtected">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:NDoc3.Core.Reflection.NDocXmlGeneratorParameters.DocumentPrivates">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:NDoc3.Core.Reflection.NDocXmlGeneratorParameters.DocumentProtectedInternalAsProtected">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:NDoc3.Core.Reflection.NDocXmlGeneratorParameters.DocumentEmptyNamespaces">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:NDoc3.Core.Reflection.NDocXmlGeneratorParameters.SkipNamespacesWithoutSummaries">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:NDoc3.Core.Reflection.NDocXmlGeneratorParameters.EditorBrowsableFilter">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:NDoc3.Core.Reflection.NDocXmlGeneratorParameters.DocumentAttributes">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:NDoc3.Core.Reflection.NDocXmlGeneratorParameters.DocumentInheritedAttributes">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:NDoc3.Core.Reflection.NDocXmlGeneratorParameters.ShowTypeIdInAttributes">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:NDoc3.Core.Reflection.NDocXmlGeneratorParameters.DocumentedAttributes">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:NDoc3.Core.Reflection.NDocXmlGeneratorParameters.CopyrightText">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:NDoc3.Core.Reflection.NDocXmlGeneratorParameters.CopyrightHref">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:NDoc3.Core.Reflection.NDocXmlGeneratorParameters.FeedbackEmailAddress">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:NDoc3.Core.Reflection.NDocXmlGeneratorParameters.Preliminary">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:NDoc3.Core.Reflection.NDocXmlGeneratorParameters.IncludeDefaultThreadSafety">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:NDoc3.Core.Reflection.NDocXmlGeneratorParameters.StaticMembersDefaultToSafe">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:NDoc3.Core.Reflection.NDocXmlGeneratorParameters.InstanceMembersDefaultToSafe">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:NDoc3.Core.Reflection.ReflectionEngine">
+            <summary>
+             Used to reflect assemblies of a given project
+            </summary>
+        </member>
+        <member name="M:NDoc3.Core.Reflection.ReflectionEngine.#ctor(NDoc3.Core.ReferencePathCollection)">
+            <summary>
+            Sets up a remote domain for reflecting assemblies.
+            </summary>
+            <param name="referencePaths">paths for resolving assembly dependencies</param>
+        </member>
+        <member name="M:NDoc3.Core.Reflection.ReflectionEngine.Dispose">
+            <summary>
+             Unloads the remote <see cref="T:System.AppDomain"/>
+            </summary>
+        </member>
+        <member name="M:NDoc3.Core.Reflection.ReflectionEngine.MakeXmlFile(NDoc3.Core.Reflection.NDocXmlGeneratorParameters,System.IO.FileInfo)">
+            <summary>
+             Reflects assemblies and generates an NDoc xml file
+            </summary>
+            <param name="args">configuration controlling the reflection process.</param>
+            <param name="xmlFile">the file to write the NDoc xml content to</param>
+        </member>
+        <member name="M:NDoc3.Core.Reflection.ReflectionEngine.MakeXml(NDoc3.Core.Reflection.NDocXmlGeneratorParameters)">
+            <summary>
+             Reflects assemblies and generates an NDoc xml content
+            </summary>
+            <param name="args">configuration controlling the reflection process.</param>
+            <returns>A string containing the generated XML content</returns>
+        </member>
+        <member name="M:NDoc3.Core.Reflection.ReflectionEngine.GetNamespacesFromAssembly(System.IO.FileInfo)">
+            <summary>
+             Scans the given assemblyFile for a list of all namespaces.
+            </summary>
+            <param name="assemblyFile">a local file path to the assembly</param>
+             <returns>an array of namespaces. Is never <c>null</c></returns>
+        </member>
+        <member name="T:NDoc3.Core.Reflection.ReflectionEngine.ReflectionEngineServer">
+            <summary>
+             Used for instantiating the server part of the reflection engine
+            </summary>
+        </member>
+        <member name="M:NDoc3.Core.Reflection.ReflectionEngine.ReflectionEngineServer.#ctor">
+            <summary>
+             Creates a new instance and installs the global <see cref="T:NDoc3.Core.Reflection.AssemblyLoader"/>.
+            </summary>
+            <exception cref="T:System.NotSupportedException"></exception>
+        </member>
+        <member name="M:NDoc3.Core.Reflection.ReflectionEngine.ReflectionEngineServer.GetNamespacesFromAssembly(System.IO.FileInfo)">
+            <summary>
+            Gets the namespaces from assembly.
+            </summary>
+            <param name="assemblyFile">Assembly file name.</param>
+            <returns></returns>
+        </member>
+        <member name="T:NDoc3.Core.Reflection.TypeHierarchy">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NDoc3.Core.Reflection.TypeHierarchy.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NDoc3.Core.Reflection.TypeHierarchy.Add(System.Type,System.Type)">
+            <summary>
+            
+            </summary>
+            <param name="baseType">Base type.</param>
+            <param name="derivedType">Derived type.</param>
+        </member>
+        <member name="M:NDoc3.Core.Reflection.TypeHierarchy.GetDerivedTypes(System.Type)">
+            <summary>
+            
+            </summary>
+            <param name="baseType">Base type.</param>
+            <returns></returns>
+        </member>
+        <member name="T:NDoc3.Core.Reflection.ValidationException">
+            <summary>
+            Exception class used if validation of xml fails.
+            </summary>
+        </member>
+        <member name="M:NDoc3.Core.Reflection.ValidationException.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:NDoc3.Core.Reflection.ValidationException"/> class.
+            </summary>
+        </member>
+        <member name="M:NDoc3.Core.Reflection.ValidationException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NDoc3.Core.Reflection.ValidationException"/> class.
+            </summary>
+            <param name="message">The message.</param>
+        </member>
+        <member name="M:NDoc3.Core.Reflection.ValidationException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NDoc3.Core.Reflection.ValidationException"/> class.
+            </summary>
+            <param name="message">The message.</param>
+            <param name="inner">The inner.</param>
+        </member>
+        <member name="M:NDoc3.Core.Reflection.ValidationException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NDoc3.Core.Reflection.ValidationException"/> class.
+            </summary>
+            <param name="info">The object that holds the serialized object data.</param>
+            <param name="context">The contextual information about the source or destination.</param>
+        </member>
+        <member name="T:NDoc3.Core.AssemblySlashDoc">
+            <summary>Represents the path to an assembly and its associated documentation comment XML file.</summary>
+            <remarks>Documentation comment XML files are known colloquially as <i>"SlashDoc"</i> files as they produced
+            by the Microsoft C# compiler when the /doc command-line option is specified. The format of these files is detailed in
+            the ECMA C# Specification (Appendix E). 
+            See <see href="http://www.ecma-international.org/publications/standards/Ecma-334.htm">here</see> for further details.
             </remarks>
         </member>
-        <member name="T:NDoc3.Core.PropertyGridUI.FilenameEditor.SaveFileAttribute">
+        <member name="F:NDoc3.Core.AssemblySlashDoc.assembly">
+            <summary>Path to assembly</summary>
+        </member>
+        <member name="F:NDoc3.Core.AssemblySlashDoc.slashDoc">
+            <summary>Path to slashdoc</summary>
+        </member>
+        <member name="M:NDoc3.Core.AssemblySlashDoc.#ctor">
+            <overloads>Initializes a new instance of the <see cref="T:NDoc3.Core.AssemblySlashDoc"/> class.</overloads>
+            <summary>Initializes a blank instance of the <see cref="T:NDoc3.Core.AssemblySlashDoc"/> class.</summary>
+        </member>
+        <member name="M:NDoc3.Core.AssemblySlashDoc.#ctor(System.String,System.String)">
+            <summary>Initializes a new instance of the <see cref="T:NDoc3.Core.AssemblySlashDoc"/> class
+            with the specified Assembly and SlashDoc paths.</summary>
+            <param name="assemblyFilename">An assembly filename.</param>
+            <param name="slashDocFilename">A documentation comment XML filename.</param>
+        </member>
+        <member name="M:NDoc3.Core.AssemblySlashDoc.Clone">
             <summary>
-            Indicates that SaveFileDialog must be shown
+            <see cref="T:System.ICloneable"/>
             </summary>
+            <returns>Cloned object</returns>
+        </member>
+        <member name="P:NDoc3.Core.AssemblySlashDoc.Assembly">
+            <summary>
+            Gets or sets the path to an assembly file.
+            </summary>
+            <value>A <see cref="T:NDoc3.Core.FilePath"/> representing the path to an assembly.</value>
+        </member>
+        <member name="P:NDoc3.Core.AssemblySlashDoc.SlashDoc">
+            <summary>
+            Gets or sets the path to a documentation comment XML file.
+            </summary>
+            <value>A <see cref="T:NDoc3.Core.FilePath"/> representing the path to a documentation comment XML file.</value>
+        </member>
+        <member name="T:NDoc3.Core.AssemblySlashDocEventArgs">
+            <summary>
+            Event arguments class for events related to an AssemblySlashDoc
+            </summary>
+        </member>
+        <member name="F:NDoc3.Core.AssemblySlashDocEventArgs.AssemblySlashDoc">
+            <summary>
+            The AssemblySlashDoc
+            </summary>
+        </member>
+        <member name="T:NDoc3.Core.AssemblySlashDocEventHandler">
+            <summary>
+            Event handler delegate for AssemblySlashDoc related events
+            </summary>
+        </member>
+        <member name="T:NDoc3.Core.AssemblySlashDocCollection">
+            <summary>
+            Represents a collection of assemblies and their associated documentation comment XML files. 
+            </summary>
+        </member>
+        <member name="M:NDoc3.Core.AssemblySlashDocCollection.Add(NDoc3.Core.AssemblySlashDoc)">
+            <summary>
+            Adds the specified <see cref="T:NDoc3.Core.AssemblySlashDoc"/> object to the collection.
+            </summary>
+            <param name="assySlashDoc">The <see cref="T:NDoc3.Core.AssemblySlashDoc"/> to add to the collection.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="assySlashDoc"/> is a <see langword="null"/>.</exception>
+            <remarks>
+            If the path of the <see cref="P:NDoc3.Core.AssemblySlashDoc.Assembly"/> 
+            in <paramref name="assySlashDoc"/> matches one already existing in the collection, the
+            operation is silently ignored.
+            </remarks>
+        </member>
+        <member name="M:NDoc3.Core.AssemblySlashDocCollection.OnClear">
+            <summary>
+            Raises the <see cref="E:NDoc3.Core.AssemblySlashDocCollection.Cleared"/> event
+            </summary>
+        </member>
+        <member name="M:NDoc3.Core.AssemblySlashDocCollection.OnInsertComplete(System.Int32,System.Object)">
+            <summary>
+            Raises the <see cref="E:NDoc3.Core.AssemblySlashDocCollection.ItemAdded"/> event
+            </summary>
+        </member>
+        <member name="M:NDoc3.Core.AssemblySlashDocCollection.Remove(NDoc3.Core.AssemblySlashDoc)">
+            <summary>
+            Removes the first occurence of a specific <see cref="T:NDoc3.Core.AssemblySlashDoc"/> from the collection.
+            </summary>
+            <param name="assySlashDoc">The <see cref="T:NDoc3.Core.AssemblySlashDoc"/> to remove from the collection.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="assySlashDoc"/> is a <see langword="null"/>.</exception>
+            <remarks>
+            Elements that follow the removed element move up to occupy the vacated spot and the indexes of the elements that are moved are also updated.
+            </remarks>
+        </member>
+        <member name="M:NDoc3.Core.AssemblySlashDocCollection.OnRemoveComplete(System.Int32,System.Object)">
+            <summary>
+            Raises the <see cref="E:NDoc3.Core.AssemblySlashDocCollection.ItemRemoved"/> event
+            </summary>
+        </member>
+        <member name="M:NDoc3.Core.AssemblySlashDocCollection.Contains(NDoc3.Core.AssemblySlashDoc)">
+            <overloads>Determines whether the collection contains a specified element.</overloads>
+            <summary>
+            Determines whether the collection contains the specified <see cref="T:NDoc3.Core.AssemblySlashDoc"/>.
+            </summary>
+            <param name="assySlashDoc">The <see cref="T:NDoc3.Core.AssemblySlashDoc"/> to locate in the collection.</param>
+            <returns><see langword="true"/> if the collection contains the specified <see cref="T:NDoc3.Core.AssemblySlashDoc"/>, 
+            otherwise <see langword="false"/>.</returns>
+        </member>
+        <member name="M:NDoc3.Core.AssemblySlashDocCollection.Contains(System.String)">
+            <summary>
+            Determines whether the collection contains a specified assembly path.
+            </summary>
+            <param name="path">The assembly path to locate in the collection.</param>
+            <returns><see langword="true"/> if the collection contains the specified path, 
+            otherwise <see langword="false"/>.</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="path"/> is a <see langword="null"/>.</exception>
+            <remarks>Path comparison is case-insensitive.</remarks>
+        </member>
+        <member name="M:NDoc3.Core.AssemblySlashDocCollection.ReadXml(System.Xml.XmlReader)">
+            <summary>
+            Loads <see cref="T:NDoc3.Core.AssemblySlashDoc"/> details from an <see cref="T:System.Xml.XmlReader"/>.
+            </summary>
+            <param name="reader">
+            <exception cref="T:NDoc3.Core.DocumenterException">The <i>location</i> attribute is missing or is an empty string</exception>
+            An open <see cref="T:System.Xml.XmlReader"/> positioned before, or on, the <b>&lt;assemblies&gt;</b> element.</param>
+            <remarks>
+            The expected format is is follows
+            <code escaped="true">
+            <assemblies>
+            	<assembly location="relative or fixed path" documentation="relative or fixed path"/>
+            	...
+            </assemblies>
+            </code>
+            <para>If the <i>location</i> attribute is missing or an empty string an exception will be thrown.</para>
+            <para>If the <i>documentation</i> attribute is missing or an empty string it will be silently ignored.</para>
+            </remarks>
+        </member>
+        <member name="M:NDoc3.Core.AssemblySlashDocCollection.WriteXml(System.Xml.XmlWriter)">
+            <summary>
+            Saves <see cref="T:NDoc3.Core.AssemblySlashDoc"/> details to an <see cref="T:System.Xml.XmlWriter"/>.
+            </summary>
+            <param name="writer">An open <see cref="T:System.Xml.XmlWriter"/>.</param>
+            <remarks>
+            The persisted format is is follows
+            <code escaped="true">
+            <assemblies>
+            	<assembly location="relative or fixed path" documentation="relative or fixed path"/>
+            	...
+            </assemblies>
+            </code>
+            </remarks>
+        </member>
+        <member name="E:NDoc3.Core.AssemblySlashDocCollection.Cleared">
+            <summary>
+            Event rasied when the collection is cleared
+            </summary>
+        </member>
+        <member name="E:NDoc3.Core.AssemblySlashDocCollection.ItemAdded">
+            <summary>
+            Event rasied when an item is added to the collection
+            </summary>
+        </member>
+        <member name="E:NDoc3.Core.AssemblySlashDocCollection.ItemRemoved">
+            <summary>
+            Event rasied when an item is removed from the collection
+            </summary>
+        </member>
+        <member name="P:NDoc3.Core.AssemblySlashDocCollection.Item(System.Int32)">
+            <summary>
+            Gets or sets the <see cref="T:NDoc3.Core.AssemblySlashDoc"/> at the specified index.
+            </summary>
+            <param name="index">The zero-based index of the <see cref="T:NDoc3.Core.AssemblySlashDoc"/> to get or set.</param>
+            <value>The <see cref="T:NDoc3.Core.AssemblySlashDoc"/> at the specified index</value>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="index"/> is not a valid index 
+            in the collection.</exception>
+            <exception cref="T:System.ArgumentNullException">set <i>value</i> is a <see langword="null"/>.</exception>
+        </member>
+        <member name="T:NDoc3.Core.NonPersistedAttribute">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:NDoc3.Core.BaseDocumenterInfo">
+            <summary>
+            Holds meta data about a specific type of documenter
+            </summary>
+        </member>
+        <member name="T:NDoc3.Core.IDocumenterInfo">
+            <summary>
+            Descriptive information about a documenter
+            </summary>
+        </member>
+        <member name="M:NDoc3.Core.IDocumenterInfo.CreateConfig(NDoc3.Core.Project)">
+            <summary>
+            Creates an instance of an <see cref="T:NDoc3.Core.IDocumenterConfig"/>
+            for the particular type of documenter and associates it with a project
+            </summary>
+            <param name="project">A project</param>
+            <returns>An <see cref="T:NDoc3.Core.IDocumenterConfig"/> for the documenter type</returns>
+        </member>
+        <member name="M:NDoc3.Core.IDocumenterInfo.CreateConfig">
+            <summary>
+            Creates an instance of an <see cref="T:NDoc3.Core.IDocumenterConfig"/>
+            for the particular type of documenter
+            </summary>
+            <returns>An <see cref="T:NDoc3.Core.IDocumenterConfig"/> for the documenter type</returns>
+        </member>
+        <member name="P:NDoc3.Core.IDocumenterInfo.Name">
+            <summary>
+            The name of the documenter
+            </summary>
+        </member>
+        <member name="P:NDoc3.Core.IDocumenterInfo.DevelopmentStatus">
+            <summary>
+            The development status (alpha, beta, stable) of this documenter.
+            </summary>
+        </member>
+        <member name="M:NDoc3.Core.BaseDocumenterInfo.#ctor(System.String)">
+            <summary>
+            Creates a new instance of the class
+            </summary>
+            <param name="name">The documenter's name</param>
+        </member>
+        <member name="M:NDoc3.Core.BaseDocumenterInfo.#ctor(System.String,NDoc3.Core.DocumenterDevelopmentStatus)">
+            <summary>
+            Creates a new instance of the class
+            </summary>
+            <param name="name">The name of the documenter</param>
+            <param name="status">The development status of the documenter</param>
+        </member>
+        <member name="M:NDoc3.Core.BaseDocumenterInfo.CreateConfig(NDoc3.Core.Project)">
+            <summary>
+            Creates an <see cref="T:NDoc3.Core.IDocumenterConfig"/> object for this documenter type
+            </summary>
+            <param name="project">A project to associate the config with</param>
+            <returns>A config object</returns>
+        </member>
+        <member name="M:NDoc3.Core.BaseDocumenterInfo.CreateConfig">
+            <summary>
+            Creates an <see cref="T:NDoc3.Core.IDocumenterConfig"/> object for this documenter type
+            </summary>
+            <returns>A config object</returns>
+        </member>
+        <member name="M:NDoc3.Core.BaseDocumenterInfo.CompareTo(System.Object)">
+            <summary>Compares the currrent document to another documenter.</summary>
+        </member>
+        <member name="M:NDoc3.Core.BaseDocumenterInfo.ToString">
+            <summary>
+            Override
+            </summary>
+            <returns>Formatted name of the documenter</returns>
+        </member>
+        <member name="P:NDoc3.Core.BaseDocumenterInfo.Name">
+            <summary>
+            The documenter's name
+            </summary>
+        </member>
+        <member name="P:NDoc3.Core.BaseDocumenterInfo.DevelopmentStatus">
+            <summary>
+            Specifies the development status (alpha, beta, stable) of a documenter.
+            </summary>
+            <remarks>
+            As implemented in this class, this always returns <see cref="T:NDoc3.Core.DocumenterDevelopmentStatus">Stable</see>.
+            <note type="inheritinfo">Documenters should override this if they are not yet stable...</note>
+            </remarks>
+        </member>
+        <member name="T:NDoc3.Core.DocumenterException">
+            <summary>Represents an exception thrown when attempting to build documentation.</summary>
+        </member>
+        <member name="M:NDoc3.Core.DocumenterException.#ctor(System.String)">
+            <summary>Initializes a new instance of the <see cref="T:NDoc3.Core.DocumenterException"/> class with the specified message.</summary>
+            <param name="message">The message to display when the exception is thrown.</param>
+        </member>
+        <member name="M:NDoc3.Core.DocumenterException.#ctor(System.String,System.Exception)">
+            <summary>Initializes a new instance of the <see cref="T:NDoc3.Core.DocumenterException"/> class 
+            with a specified error message and a reference to the 
+            inner exception that is the root cause of this exception.</summary>
+            <param name="message">The error message that explains the reason for the exception.</param>
+            <param name="inner">An instance of Exception that is the cause of the current Exception. 
+            If inner is non-null, then the current Exception is raised in a catch block handling the inner exception.</param>
+        </member>
+        <member name="M:NDoc3.Core.DocumenterException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <remarks>
+            required to serialize across appdomain boundry
+            </remarks>
+        </member>
+        <member name="T:NDoc3.Core.EmbeddedResources">
+            <summary>Utilties to help reading and writing embedded resources.</summary>
+            <remarks>This is used to access the stylesheets.</remarks>
+        </member>
+        <member name="M:NDoc3.Core.EmbeddedResources.WriteEmbeddedResources(System.Type,System.IO.DirectoryInfo)">
+            <summary>Writes all the embedded resources with the specified prefix to disk.</summary>
+            <param name="resourceLocationHint">The type who's assembly and namespace denotes the location to search for embedded resources.</param>
+            <param name="directory">The directory to write the resources to.</param>
+        </member>
+        <member name="M:NDoc3.Core.EmbeddedResources.WriteEmbeddedResources(System.Reflection.Assembly,System.String,System.IO.DirectoryInfo)">
+            <summary>Writes all the embedded resources with the specified prefix to disk.</summary>
+            <param name="assembly">The assembly containing the embedded resources.</param>
+            <param name="prefix">The prefix to search for.</param>
+            <param name="directory">The directory to write the resources to.</param>
+        </member>
+        <member name="M:NDoc3.Core.EmbeddedResources.WriteEmbeddedResource(System.Type,System.String,System.IO.DirectoryInfo)">
+            <summary>Writes an embedded resource to disk.</summary>
+            <param name="resourceLocationHint">The type, who's assembly and namespace denote the location containing the embedded resource.</param>
+            <param name="resourceName">The name of the embedded resource.</param>
+            <param name="directory">The directory to write the resource to.</param>
+            <remarks>This essentially copies an embedded resource to a target directory on disk</remarks>
+        </member>
+        <member name="M:NDoc3.Core.EmbeddedResources.WriteEmbeddedResource(System.Reflection.Assembly,System.String,System.IO.DirectoryInfo,System.String)">
+            <summary>Writes an embedded resource to disk.</summary>
+            <param name="assembly">The assembly containing the embedded resource.</param>
+            <param name="manifestResourceName">The name of the embedded resource.</param>
+            <param name="directory">The directory to write the resource to.</param>
+            <param name="filename">The filename of the resource on disk.</param>
+        </member>
+        <member name="M:NDoc3.Core.EmbeddedResources.GetEmbeddedResourceStream(System.Type,System.String)">
+            <summary>
+            Returns a stream to read data from an embedded resource
+            </summary>
+            <param name="resourceLocationHint">The type, who's assembly and namespace denote the location containing the embedded resource.</param>
+            <param name="resourceName">The name of the embedded resource within <paramref name="resourceLocationHint"/>'s <see cref="P:System.Type.Namespace"/>.</param>
+            <returns></returns>
+        </member>
+        <member name="M:NDoc3.Core.EmbeddedResources.GetEmbeddedResourceReader(System.Type,System.String,System.Text.Encoding)">
+            <summary>
+            Returns a stream to read data from an embedded resource
+            </summary>
+            <param name="resourceLocationHint">The type, who's assembly and namespace denote the location containing the embedded resource.</param>
+            <param name="resourceName">The name of the embedded resource within <paramref name="resourceLocationHint"/>'s <see cref="P:System.Type.Namespace"/>.</param>
+            <param name="encoding">the encoding to use for the reader or <c>null</c> to autodetect encoding.</param>
+            <returns></returns>
+        </member>
+        <member name="M:NDoc3.Core.EmbeddedResources.StreamCopy(System.IO.Stream,System.IO.Stream)">
+            <summary>
+            Copies bytes from input stream to an output stream
+            </summary>
+            <param name="input">the input stream to read from</param>
+            <param name="output">the output stream to write to</param>
+            <returns>the number of bytes read</returns>
         </member>
         <member name="T:NDoc3.Core.FilePath">
             <summary>
@@ -2131,10 +2652,25 @@
             <param name="pathItemBase">An existing <see cref="T:NDoc3.Core.PathItemBase"/> instance.</param>
             <exception cref="T:System.ArgumentNullException"><paramref name="pathItemBase"/> is a <see langword="null"/>.</exception>
         </member>
+        <member name="M:NDoc3.Core.PathItemBase.NormalizePath(System.String)">
+            <summary>
+            Normalize the path representation according to the current platform we're running on.
+            </summary>
+            <remarks>
+            The implementation of this method must ensure, that 2 paths pointing to the same location
+            are considered equal. On Windows, this e.g. means case insensitive comparison of paths.
+            </remarks>
+        </member>
         <member name="M:NDoc3.Core.PathItemBase.ToString">
             <inheritDoc/>
         </member>
         <member name="M:NDoc3.Core.PathItemBase.Equals(System.Object)">
+            <inheritDoc/>
+        </member>
+        <member name="M:NDoc3.Core.PathItemBase.Equals(NDoc3.Core.PathItemBase)">
+            <inheritDoc/>
+        </member>
+        <member name="M:NDoc3.Core.PathItemBase.GetHashCode">
             <inheritDoc/>
         </member>
         <member name="M:NDoc3.Core.PathItemBase.op_Equality(NDoc3.Core.PathItemBase,NDoc3.Core.PathItemBase)">
@@ -2142,9 +2678,6 @@
         </member>
         <member name="M:NDoc3.Core.PathItemBase.op_Inequality(NDoc3.Core.PathItemBase,NDoc3.Core.PathItemBase)">
             <summary>Inequality operator.</summary>
-        </member>
-        <member name="M:NDoc3.Core.PathItemBase.GetHashCode">
-            <inheritDoc/>
         </member>
         <member name="P:NDoc3.Core.PathItemBase.BasePath">
             <summary>
@@ -2175,56 +2708,15 @@
             otherwise, it will be saved as a path relative to the NDoc3 project file.
             </value>
         </member>
+        <member name="P:NDoc3.Core.PathItemBase.Exists">
+            <summary>
+            Tests, if the path represented by this instance is valid.
+            </summary>
+        </member>
         <member name="T:NDoc3.Core.PathItemBase.TypeConverter">
             <summary>
             
             </summary>
-        </member>
-        <member name="T:NDoc3.Core.PropertyGridUI.PropertySorter">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:NDoc3.Core.PropertyGridUI.PropertySorter.GetPropertiesSupported(System.ComponentModel.ITypeDescriptorContext)">
-            <summary>
-            Gets whether the GetProperties method is supported.
-            </summary>
-            <param name="context">Context.</param>
-            <returns></returns>
-        </member>
-        <member name="M:NDoc3.Core.PropertyGridUI.PropertySorter.GetProperties(System.ComponentModel.ITypeDescriptorContext,System.Object,System.Attribute[])">
-            <summary>
-            Gets the properties.
-            </summary>
-            <param name="context">Context.</param>
-            <param name="value">Value.</param>
-            <param name="attributes">Attributes.</param>
-            <returns></returns>
-        </member>
-        <member name="T:NDoc3.Core.PropertyGridUI.PropertySorter.PropertyOrderPair">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:NDoc3.Core.PropertyGridUI.PropertySorter.PropertyOrderPair.#ctor(System.String,System.Int32)">
-            <summary>
-            Creates a new <see cref="T:NDoc3.Core.PropertyGridUI.PropertySorter.PropertyOrderPair"/> instance.
-            </summary>
-            <param name="name">Name.</param>
-            <param name="order">Order.</param>
-        </member>
-        <member name="M:NDoc3.Core.PropertyGridUI.PropertySorter.PropertyOrderPair.CompareTo(System.Object)">
-            <summary>
-            Compares to.
-            </summary>
-            <param name="obj">Obj.</param>
-            <returns></returns>
-        </member>
-        <member name="P:NDoc3.Core.PropertyGridUI.PropertySorter.PropertyOrderPair.Name">
-            <summary>
-            Gets the name.
-            </summary>
-            <value></value>
         </member>
         <member name="M:NDoc3.Core.PathItemBase.TypeConverter.ConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object,System.Type)">
             <inheritDoc/>
@@ -2243,11 +2735,19 @@
             <summary>Initializes a new instance of the <see cref="T:NDoc3.Core.FilePath"/> class from a given path string.</summary>
             <param name="path">Path.</param>
         </member>
+        <member name="M:NDoc3.Core.FilePath.#ctor(System.IO.FileInfo)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NDoc3.Core.FilePath"/> class from a given <see cref="T:System.IO.FileInfo"/>.
+            </summary>
+        </member>
         <member name="M:NDoc3.Core.FilePath.#ctor(NDoc3.Core.FilePath)">
             <summary>Initializes a new instance of the <see cref="T:NDoc3.Core.FilePath"/> class from an existing <see cref="T:NDoc3.Core.FilePath"/> instance.</summary>
             <param name="path">An existing <see cref="T:NDoc3.Core.FilePath"/>.</param>
         </member>
         <member name="P:NDoc3.Core.FilePath.Path">
+            <inheritDoc/>
+        </member>
+        <member name="P:NDoc3.Core.FilePath.Exists">
             <inheritDoc/>
         </member>
         <member name="T:NDoc3.Core.FilePath.TypeConverter">
@@ -2273,50 +2773,6 @@
         </member>
         <member name="M:NDoc3.Core.FilePath.UIEditor.EditValue(System.ComponentModel.ITypeDescriptorContext,System.IServiceProvider,System.Object)">
             <inheritDoc/>
-        </member>
-        <member name="T:NDoc3.Core.PropertyGridUI.FoldernameEditor">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:NDoc3.Core.PropertyGridUI.FoldernameEditor.GetEditStyle(System.ComponentModel.ITypeDescriptorContext)">
-            <summary>
-            Gets the edit style.
-            </summary>
-            <param name="context">Context.</param>
-            <returns></returns>
-        </member>
-        <member name="M:NDoc3.Core.PropertyGridUI.FoldernameEditor.EditValue(System.ComponentModel.ITypeDescriptorContext,System.IServiceProvider,System.Object)">
-            <summary>
-            Edits the value.
-            </summary>
-            <param name="context">Context.</param>
-            <param name="provider">Provider.</param>
-            <param name="value">Value.</param>
-            <returns></returns>
-        </member>
-        <member name="T:NDoc3.Core.PropertyGridUI.FoldernameEditor.FolderDialogTitleAttribute">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:NDoc3.Core.PropertyGridUI.FoldernameEditor.FolderDialogTitleAttribute.#ctor(System.String)">
-            <summary>
-            Define a title for the UIFoldernameEditor.
-            </summary>
-            <param name="title">Folder dialog title</param>
-            <remarks></remarks>
-        </member>
-        <member name="P:NDoc3.Core.PropertyGridUI.FoldernameEditor.FolderDialogTitleAttribute.Title">
-            <summary>
-            Gets the title.
-            </summary>
-            <value></value>
-        </member>
-        <member name="T:NDoc3.Core.PropertyGridUI.FoldernameEditor.ExistingFolderOnlyAttribute">
-            <summary>
-            Indicates that only existing folders can be specified
-            </summary>
         </member>
         <member name="T:NDoc3.Core.FolderPath">
             <summary>
@@ -2344,6 +2800,9 @@
             <inheritDoc/>
         </member>
         <member name="P:NDoc3.Core.FolderPath.Path">
+            <inheritDoc/>
+        </member>
+        <member name="P:NDoc3.Core.FolderPath.Exists">
             <inheritDoc/>
         </member>
         <member name="T:NDoc3.Core.FolderPath.TypeConverter">
@@ -2478,54 +2937,16 @@
             Gets the list of available documenters.
             </summary>
         </member>
-        <member name="T:NDoc3.Core.PropertyGridUI.LangIdEditor">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:NDoc3.Core.PropertyGridUI.LangIdEditor.GetEditStyle(System.ComponentModel.ITypeDescriptorContext)">
-            <summary>
-            
-            </summary>
-            <param name="context"></param>
-            <returns></returns>
-        </member>
-        <member name="M:NDoc3.Core.PropertyGridUI.LangIdEditor.EditValue(System.ComponentModel.ITypeDescriptorContext,System.IServiceProvider,System.Object)">
-            <summary>
-            
-            </summary>
-            <param name="context"></param>
-            <param name="provider"></param>
-            <param name="value"></param>
-            <returns></returns>
-        </member>
-        <member name="M:NDoc3.Core.PropertyGridUI.LangIdEditor.List_Click(System.Object,System.EventArgs)">
-            <summary>
-            
-            </summary>
-            <param name="sender"></param>
-            <param name="args"></param>
-        </member>
-        <member name="M:NDoc3.Core.PropertyGridUI.LangIdEditor.FillInList(System.ComponentModel.ITypeDescriptorContext,System.IServiceProvider,System.Windows.Forms.ListBox,System.Int16)">
-            <summary>
-            
-            </summary>
-            <param name="context"></param>
-            <param name="provider"></param>
-            <param name="listBox"></param>
-            <param name="value"></param>
-        </member>
         <member name="T:NDoc3.Core.Namespaces">
             <summary>
             Summary description for Namespaces.
             </summary>
         </member>
-        <member name="M:NDoc3.Core.Namespaces.op_Implicit(NDoc3.Core.Namespaces)~System.Collections.SortedList">
+        <member name="M:NDoc3.Core.Namespaces.CopyTo(System.Collections.Generic.IDictionary{System.String,System.String})">
             <summary>
-            Allows a Namespaces collection to be treated as a SortedList
+            Copy the list of namespaces to the given list.
             </summary>
-            <param name="namespaces">The Namespaces object to convert.</param>
-            <returns></returns>
+            <param name="list"></param>
         </member>
         <member name="M:NDoc3.Core.Namespaces.#ctor">
             <summary>
@@ -2610,6 +3031,30 @@
             <param name="basePath">The base directory path</param>
             <param name="relativePath">A path to the base directory path</param>
             <returns>An absolute path</returns>
+        </member>
+        <member name="M:NDoc3.Core.PathUtilities.NormalizePath(System.String)">
+            <summary>
+             Normalize the given path, so that paths pointing to the same location can be compared using == operator.
+            </summary>
+             <remarks>
+             Handles only local paths (e.g. no UNC paths!)
+             </remarks>
+        </member>
+        <member name="M:NDoc3.Core.PathUtilities.NormalizePath(System.String,System.Char)">
+            <summary>
+             Normalize the given path, so that paths pointing to the same location can be compared using == operator.
+            </summary>
+             <remarks>
+             Handles only local paths (e.g. no UNC paths!)
+             </remarks>
+        </member>
+        <member name="M:NDoc3.Core.PathUtilities.ReducePath(System.String,System.Char)">
+            <summary>
+            Removes "." and ".." parts in the path
+            </summary>
+            <remarks>
+            Handles only local paths (e.g. no UNC paths!)
+            </remarks>
         </member>
         <member name="T:NDoc3.Core.Project">
             <summary>Represents an NDoc3 project.</summary>
@@ -2762,23 +3207,6 @@
         <member name="M:NDoc3.Core.DocumenterPropertyFormatException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
             <summary/>
         </member>
-        <member name="T:NDoc3.Core.PropertyGridUI.PropertyOrderAttribute">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:NDoc3.Core.PropertyGridUI.PropertyOrderAttribute.#ctor(System.Int32)">
-            <summary>
-            Creates a new <see cref="T:NDoc3.Core.PropertyGridUI.PropertyOrderAttribute"/> instance.
-            </summary>
-            <param name="order">Order.</param>
-        </member>
-        <member name="P:NDoc3.Core.PropertyGridUI.PropertyOrderAttribute.Order">
-            <summary>
-            Gets the order.
-            </summary>
-            <value></value>
-        </member>
         <member name="T:NDoc3.Core.ReferencePath">
             <summary>
             A path to search for referenced assemblies.
@@ -2856,6 +3284,9 @@
             if <see langword="true"/>, the assembly loader will search subdirectories; otherwise, it will only search given path.
             </value>
         </member>
+        <member name="P:NDoc3.Core.ReferencePath.Exists">
+            <inheritDoc/>
+        </member>
         <member name="T:NDoc3.Core.ReferencePath.TypeConverter">
             <summary>
             <see cref="T:NDoc3.Core.ReferencePath.TypeConverter"/> to convert a string to an instance of <see cref="T:NDoc3.Core.ReferencePath"/>.
@@ -2888,6 +3319,11 @@
             <para>Extends the base class <see cref="T:System.Collections.CollectionBase"/> to inherit base collection functionality.</para>
             <para>Implementation of <see cref="T:System.ComponentModel.ICustomTypeDescriptor"/> to provide customized type description.</para>
             </remarks>
+        </member>
+        <member name="M:NDoc3.Core.ReferencePathCollection.#ctor(NDoc3.Core.ReferencePath[])">
+            <summary>
+            Creates a collection, filled with an initial list of reference paths
+            </summary>
         </member>
         <member name="M:NDoc3.Core.ReferencePathCollection.Add(NDoc3.Core.ReferencePath)">
             <summary>
@@ -3032,48 +3468,25 @@
             <param name="context">Context.</param>
             <returns></returns>
         </member>
-        <member name="T:NDoc3.Core.ReferencePathCollectionEditorForm">
+        <member name="T:NDoc3.Core.ReferenceTypeDictionary`2">
             <summary>
-            Summary description for ReferencePathCollectionEditorForm.
+             An <see cref="T:System.Collections.Generic.IDictionary`2"/> implementation for reference type values. 
+             Avoids the need for calling <see cref="M:System.Collections.Generic.IDictionary`2.TryGetValue(`0,`1@)"/> and the impact of semantics change
+             of calling <see cref="P:System.Collections.Generic.Dictionary`2.Item(`0)"/> by throwing an exception if the
+             key doesn't exist.
+            </summary>
+            <typeparam name="TKey">the type of the key - no restrictions</typeparam>
+            <typeparam name="TVal">the type of the value - must be a reference type</typeparam>
+        </member>
+        <member name="M:NDoc3.Core.ReferenceTypeDictionary`2.#ctor">
+            <summary>
+            Creates a default instance, using <see cref="T:System.Collections.Generic.Dictionary`2"/> as underlying dictionary.
             </summary>
         </member>
-        <member name="M:NDoc3.Core.ReferencePathCollectionEditorForm.#ctor">
+        <member name="M:NDoc3.Core.ReferenceTypeDictionary`2.#ctor(System.Collections.Generic.IDictionary{`0,`1})">
             <summary>
-            Creates a new <see cref="T:NDoc3.Core.ReferencePathCollectionEditorForm"/> instance.
+            Creates a default instance, wrapping <paramref name="inner"/> as underlying dictionary.
             </summary>
-        </member>
-        <member name="M:NDoc3.Core.ReferencePathCollectionEditorForm.Dispose(System.Boolean)">
-            <summary>
-            Clean up any resources being used.
-            </summary>
-        </member>
-        <member name="M:NDoc3.Core.ReferencePathCollectionEditorForm.InitializeComponent">
-            <summary>
-            Required method for Designer support - do not modify
-            the contents of this method with the code editor.
-            </summary>
-        </member>
-        <member name="P:NDoc3.Core.ReferencePathCollectionEditorForm.ReferencePaths">
-            <summary>
-            Gets or sets the reference paths collection to edit.
-            </summary>
-            <value></value>
-        </member>
-        <member name="T:NDoc3.Core.PropertyGridUI.RuntimePropertyGrid">
-            <summary>
-            A PropertyGrid with context menu to <b>Reset</b> values and show/hide the <b>Description</b> pane.
-            </summary>
-        </member>
-        <member name="M:NDoc3.Core.PropertyGridUI.RuntimePropertyGrid.#ctor">
-            <summary>
-            Creates a new instance of the RuntimePropertyGrid class
-            </summary>
-        </member>
-        <member name="P:NDoc3.Core.PropertyGridUI.RuntimePropertyGrid.LabelWidth">
-            <summary>
-            Gets or sets the width of the label.
-            </summary>
-            <value></value>
         </member>
         <member name="T:NDoc3.Core.Settings">
             <summary>
@@ -3220,50 +3633,15 @@
             xml prolog or doctype declarations
             </summary>
         </member>
-        <member name="T:NDoc3.Core.PropertyGridUI.SimpleEdit">
+        <member name="T:NDoc3.Core.SortedStringDictionary">
             <summary>
-            This is a dialog box to prompt for a name.
             </summary>
         </member>
-        <member name="F:NDoc3.Core.PropertyGridUI.SimpleEdit.components">
+        <member name="M:NDoc3.Core.SortedStringDictionary.#ctor">
             <summary>
-            Required designer variable.
+             Creates a new instance, using <see cref="T:System.Collections.Generic.SortedList`2"/> 
+             for storing items.
             </summary>
-        </member>
-        <member name="M:NDoc3.Core.PropertyGridUI.SimpleEdit.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:NDoc3.Core.PropertyGridUI.SimpleEdit"/> form.
-            </summary>
-        </member>
-        <member name="M:NDoc3.Core.PropertyGridUI.SimpleEdit.Dispose(System.Boolean)">
-            <summary>
-            Clean up any resources being used.
-            </summary>
-        </member>
-        <member name="M:NDoc3.Core.PropertyGridUI.SimpleEdit.InitializeComponent">
-            <summary>
-            Required method for Designer support - do not modify
-            the contents of this method with the code editor.
-            </summary>
-        </member>
-        <member name="F:NDoc3.Core.PropertyGridUI.SimpleEdit.Value">
-            <summary>
-            Contains the value of the text box.
-            </summary>
-        </member>
-        <member name="M:NDoc3.Core.PropertyGridUI.SimpleEdit.SimpleEdit_Load(System.Object,System.EventArgs)">
-            <summary>
-            Event handler called when the form is initialy loaded.
-            </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
-        </member>
-        <member name="M:NDoc3.Core.PropertyGridUI.SimpleEdit.buttonOK_Click(System.Object,System.EventArgs)">
-            <summary>
-            Event handler called when the user clicks the OK button.
-            </summary>
-            <param name="sender">Sender</param>
-            <param name="e">Event arguments</param>
         </member>
         <member name="T:NDoc3.Core.TemplateWriter">
             <summary>
@@ -3317,65 +3695,6 @@
             <param name="disposing"><b>true</b> to release both managed 
             and unmanaged resources; <b>false</b> to release only 
             unmanaged resources.</param>
-        </member>
-        <member name="T:NDoc3.Core.PropertyGridUI.TextEditor">
-            <summary>
-            Provides editing facilities for large blocks of text in the <see cref="T:System.Windows.Forms.PropertyGrid"/>.
-            </summary>
-        </member>
-        <member name="M:NDoc3.Core.PropertyGridUI.TextEditor.#ctor">
-            <summary>
-            Creates a new instance of the <see cref="T:NDoc3.Core.PropertyGridUI.TextEditor"/> class.
-            </summary>
-        </member>
-        <member name="M:NDoc3.Core.PropertyGridUI.TextEditor.EditValue(System.ComponentModel.ITypeDescriptorContext,System.IServiceProvider,System.Object)">
-            <summary>
-            Edits the specified object's value using the editor style indicated by <see cref="M:NDoc3.Core.PropertyGridUI.TextEditor.GetEditStyle(System.ComponentModel.ITypeDescriptorContext)"/>.
-            </summary>
-            <param name="context">An <see cref="T:System.ComponentModel.ITypeDescriptorContext"/> that can be used to gain additional context information.</param>
-            <param name="provider">An <see cref="T:System.IServiceProvider"/> that this editor can use to obtain services.</param>
-            <param name="value">The object to edit.</param>
-            <returns>The new value of the object.</returns>
-        </member>
-        <member name="M:NDoc3.Core.PropertyGridUI.TextEditor.GetEditStyle(System.ComponentModel.ITypeDescriptorContext)">
-            <summary>
-            Gets the editor style used by the <see cref="M:NDoc3.Core.PropertyGridUI.TextEditor.EditValue(System.ComponentModel.ITypeDescriptorContext,System.IServiceProvider,System.Object)"/> method.
-            </summary>
-            <param name="context">An <see cref="T:System.ComponentModel.ITypeDescriptorContext"/> that can be used to gain additional context information.</param>
-            <returns>A <see cref="T:System.Drawing.Design.UITypeEditorEditStyle"/> value that indicates the style of editor used by <see cref="M:NDoc3.Core.PropertyGridUI.TextEditor.EditValue(System.ComponentModel.ITypeDescriptorContext,System.IServiceProvider,System.Object)"/>.</returns>
-        </member>
-        <member name="T:NDoc3.Core.PropertyGridUI.TextEditorForm">
-            <summary>
-            Used in the conjunction with the <see cref="T:NDoc3.Core.PropertyGridUI.TextEditor"/>, this form
-            provides the user a larger interface with which to edit text.
-            </summary>
-        </member>
-        <member name="F:NDoc3.Core.PropertyGridUI.TextEditorForm.components">
-            <summary>
-            Required designer variable.
-            </summary>
-        </member>
-        <member name="M:NDoc3.Core.PropertyGridUI.TextEditorForm.#ctor">
-            <summary>
-            Creates a new instance of the <see cref="T:NDoc3.Core.PropertyGridUI.TextEditorForm"/> form.
-            </summary>
-        </member>
-        <member name="M:NDoc3.Core.PropertyGridUI.TextEditorForm.Dispose(System.Boolean)">
-            <summary>
-            Clean up any resources being used.
-            </summary>
-        </member>
-        <member name="M:NDoc3.Core.PropertyGridUI.TextEditorForm.InitializeComponent">
-            <summary>
-            Required method for Designer support - do not modify
-            the contents of this method with the code editor.
-            </summary>
-        </member>
-        <member name="P:NDoc3.Core.PropertyGridUI.TextEditorForm.Value">
-            <summary>
-            Gets or sets the text to edit.
-            </summary>
-            <value>The text to edit.</value>
         </member>
         <member name="T:NDoc3.Core.ContentEventHandler">
             <summary>
@@ -3453,7 +3772,7 @@
             <param name="sourceDirectory">The path to the resources</param>
             <param name="filter">File filter to use when selecting files to import</param>
         </member>
-        <member name="M:NDoc3.Core.Workspace.ImportContentDirectory(System.String)">
+        <member name="M:NDoc3.Core.Workspace.ImportContentDirectory(System.IO.DirectoryInfo)">
             <summary>
             Recursively copies the contents of sourceDirectory into the workspace content,
             maintainng the same directory structure
@@ -3556,11 +3875,12 @@
             This is especially useful  as it allows the stylesheets to be changed 
             and re-run without recompiling the assembly.</remarks>
         </member>
-        <member name="M:NDoc3.Core.XsltResourceResolver.#ctor(System.String)">
+        <member name="M:NDoc3.Core.XsltResourceResolver.#ctor(System.Type,System.String[])">
             <summary>
             Creates a new instance of the <see cref="T:NDoc3.Core.XsltResourceResolver"/> class.
             </summary>
-            <param name="resourceBase">Either, the namespace of the embedded resources, or a file URI to a disk directory where the recources may be found.</param>
+            <param name="resourceDirs">Either, the namespace of the embedded resources, or a file URI to a disk directory where the recources may be found.</param>
+            <param name="embeddedResourceBase">The type's assembly+namespace indicate the location embedded resources shall be probed from.</param>
         </member>
         <member name="M:NDoc3.Core.XsltResourceResolver.ResolveUri(System.Uri,System.String)">
             <summary>
@@ -3585,6 +3905,27 @@
             User-defined Extensibility Stylesheet
             </summary>
             <value>fully-qualified filename of exstensibility stylesheet</value>
+        </member>
+        <member name="T:NDoc3.Support.ArgUtils">
+            <summary>
+             Utility methods for checking method arguments.
+            </summary>
+        </member>
+        <member name="M:NDoc3.Support.ArgUtils.AssertNotNull``1(``0,System.String)">
+            <summary>
+             checks the argument against <c>null</c>.
+            </summary>
+            <exception cref="T:System.ArgumentNullException">in case the given argument was <c>null</c></exception>
+        </member>
+        <member name="M:NDoc3.Support.ArgUtils.Assert``1(System.Boolean,System.String,System.String)">
+            <summary>
+             checks the argument against <c>null</c>.
+            </summary>
+            <exception cref="T:System.ArgumentNullException">in case the given argument was <c>null</c></exception>
+        </member>
+        <member name="T:NDoc3.Xml.XmlUtils">
+            <summary>
+            </summary>
         </member>
     </members>
 </doc>

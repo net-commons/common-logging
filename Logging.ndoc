@@ -17,6 +17,8 @@
             <property name="OutputDirectory" value=".\doc\api\target\msdn\" />
             <property name="HtmlHelpName" value="Common Logging 2.0" />
             <property name="Title" value="Common Logging 2.0 API Reference" />
+            <property name="OutputTarget" value="HtmlHelp" />
+            <property name="MergeAssemblies" value="False" />
             <property name="RootPageTOCName" value="Introduction" />
             <property name="RootPageFileName" value="./doc/api/introduction.html" />
             <property name="ShowMissingSummaries" value="True" />

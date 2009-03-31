@@ -4,6 +4,51 @@
         <name>NDoc3.Documenter.Msdn</name>
     </assembly>
     <members>
+        <member name="T:NDoc3.Documenter.Msdn.onlinefiles.OnlineFilesLocationHint">
+            <summary>
+            Denotes the location of embedded 'onlinefiles' resources
+            </summary>
+        </member>
+        <member name="T:NDoc3.Documenter.Msdn.onlinetemplates.OnlineTemplatesLocationHint">
+            <summary>
+            Denotes the location of embedded 'onlinefiles' resources
+            </summary>
+        </member>
+        <member name="T:NDoc3.Documenter.Msdn.xslt.StyleSheetLocation">
+            <summary>
+            Denotes the location of embedded stylesheet resources
+            </summary>
+        </member>
+        <member name="M:NDoc3.Documenter.Msdn.BuildProjectContext.SelectNodes(System.String)">
+            <summary>
+            Selects nodes using the default <see cref="F:NDoc3.Documenter.Msdn.BuildProjectContext._xmlnsManager"/>
+            </summary>
+            <param name="xpath"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NDoc3.Documenter.Msdn.BuildProjectContext.SelectNodes(System.Xml.XmlNode,System.String)">
+            <summary>
+            Selects nodes using the default <see cref="F:NDoc3.Documenter.Msdn.BuildProjectContext._xmlnsManager"/>
+            </summary>
+            <param name="contextNode">TODO</param>
+            <param name="xpath"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NDoc3.Documenter.Msdn.BuildProjectContext.SelectSingleNode(System.String)">
+            <summary>
+            Selects single node using the default <see cref="F:NDoc3.Documenter.Msdn.BuildProjectContext._xmlnsManager"/>
+            </summary>
+            <param name="xpath"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NDoc3.Documenter.Msdn.BuildProjectContext.SelectSingleNode(System.Xml.XmlNode,System.String)">
+            <summary>
+            Selects single node using the default <see cref="F:NDoc3.Documenter.Msdn.BuildProjectContext._xmlnsManager"/>
+            </summary>
+            <param name="contextNode"></param>
+            <param name="xpath"></param>
+            <returns></returns>
+        </member>
         <member name="T:NDoc3.Documenter.Msdn.ExternalHtmlProvider">
             <summary>
             Used as an extension object to the xslt processor to allow
@@ -38,9 +83,9 @@
             <remarks>This class is used by the MsdnHelp documenter
             to create the files needed by the HTML Help compiler.</remarks>
         </member>
-        <member name="M:NDoc3.Documenter.Msdn.HtmlHelp.#ctor(System.String,System.String,System.String,System.Boolean)">
+        <member name="M:NDoc3.Documenter.Msdn.HtmlHelp.#ctor(System.IO.DirectoryInfo,System.String,System.String,System.Boolean)">
             <summary>Initializes a new instance of the HtmlHelp class.</summary>
-            <param name="directoryName">The directory to write the HTML Help files to.</param>
+            <param name="targetDirectory">The directory to write the HTML Help files to.</param>
             <param name="projectName">The name of the HTML Help project.</param>
             <param name="defaultTopic">The default topic for the compiled HTML Help file.</param>
             <param name="generateTocOnly">When true, HtmlHelp only outputs the HHC file and does not compile the CHM.</param>
@@ -256,13 +301,14 @@
         <member name="M:NDoc3.Documenter.Msdn.MsdnDocumenter.Build(NDoc3.Core.Project)">
             <summary>See <see cref="T:NDoc3.Core.IDocumenter"/>.</summary>
         </member>
-        <member name="M:NDoc3.Documenter.Msdn.MsdnDocumenter.MakeHtmlForNamespace(System.String,System.String,System.Boolean)">
+        <member name="M:NDoc3.Documenter.Msdn.MsdnDocumenter.MakeHtmlForNamespace(NDoc3.Documenter.Msdn.BuildAssemblyContext,System.String,System.String,System.Boolean)">
             <summary>
             Add the namespace elements to the output
             </summary>
             <remarks>
             The namespace 
             </remarks>
+            <param name="ctx"></param>
             <param name="namespacePart">If nested, the namespace part will be the current
             namespace element being documented</param>
             <param name="namespaceName">The full namespace name being documented</param>
@@ -271,12 +317,6 @@
         </member>
         <member name="P:NDoc3.Documenter.Msdn.MsdnDocumenter.MainOutputFile">
             <summary>See <see cref="T:NDoc3.Core.IDocumenter"/>.</summary>
-        </member>
-        <member name="T:NDoc3.Documenter.Msdn.MsdnDocumenter.FilteringXmlTextReader">
-            <summary>
-            This custom reader is used to load the XmlDocument. It removes elements that are not required *before* 
-            they are loaded into memory, and hence lowers memory requirements significantly.
-            </summary>
         </member>
         <member name="T:NDoc3.Documenter.Msdn.MsdnDocumenterConfig">
             <summary>The MsdnDocumenterConfig class.</summary>
@@ -327,6 +367,10 @@
             <summary>Gets or sets the SdkLinksOnWeb property.</summary>
             <remarks>
             </remarks>
+        </member>
+        <member name="P:NDoc3.Documenter.Msdn.MsdnDocumenterConfig.MergeAssemblies">
+            <summary>Gets or sets the IncludeFavorites property.</summary>
+            <remarks>Turning this flag on will include a Favorites tab in the HTML Help file.</remarks>
         </member>
         <member name="P:NDoc3.Documenter.Msdn.MsdnDocumenterConfig.IncludeFavorites">
             <summary>Gets or sets the IncludeFavorites property.</summary>
@@ -439,43 +483,41 @@
             Summary description for MsdnWorkspace.
             </summary>
         </member>
-        <member name="M:NDoc3.Documenter.Msdn.MsdnWorkspace.#ctor(System.String)">
+        <member name="M:NDoc3.Documenter.Msdn.MsdnWorkspace.#ctor(System.String,System.Boolean)">
             <summary>
             Contructs a new instance of the MsdnWorkspace class
             </summary>
             <param name="rootDir">The location to create the workspace</param>
+            <param name="cleanIntermediates">whether to clean intermediate files on dispose</param>
         </member>
         <member name="T:NDoc3.Documenter.Msdn.MsdnXsltUtilities">
             <summary>
             Provides an extension object for the xslt transformations.
             </summary>
         </member>
-        <member name="M:NDoc3.Documenter.Msdn.MsdnXsltUtilities.#ctor(System.Collections.Specialized.StringDictionary,System.Collections.Specialized.StringDictionary,System.String,System.String,System.Boolean,System.Text.Encoding)">
+        <member name="M:NDoc3.Documenter.Msdn.MsdnXsltUtilities.#ctor(NDoc3.Documenter.Msdn.NameResolver,System.String,System.String,System.String,System.Boolean,System.Text.Encoding)">
             <summary>
             Initializes a new instance of class MsdnXsltUtilities
             </summary>
-            <param name="fileNames">A StringDictionary holding id to file name mappings.</param>
-            <param name="elemNames">A StringDictionary holding id to element name mappings</param>
+            <param name="nameResolver">TODO</param>
+            <param name="assemblyName">TODO</param>
             <param name="linkToSdkDocVersion">Specifies the version of the SDK documentation.</param>
             <param name="linkToSdkDocLangauge">Specifies the version of the SDK documentation.</param>
             <param name="SdkLinksOnWeb">Specifies if links should be to ms online documentation.</param>
             <param name="fileEncoding">Specifies if links should be to ms online documentation.</param>
         </member>
-        <member name="M:NDoc3.Documenter.Msdn.MsdnXsltUtilities.Reset">
-            <summary>
-            Reset Overload method checking state.
-            </summary>
-        </member>
-        <member name="M:NDoc3.Documenter.Msdn.MsdnXsltUtilities.GetHRef(System.String)">
+        <member name="M:NDoc3.Documenter.Msdn.MsdnXsltUtilities.GetHRef(System.String,System.String)">
             <summary>
             Returns an HRef for a CRef.
             </summary>
+            <param name="assemblyName"></param>
             <param name="cref">CRef for which the HRef will be looked up.</param>
         </member>
-        <member name="M:NDoc3.Documenter.Msdn.MsdnXsltUtilities.GetName(System.String)">
+        <member name="M:NDoc3.Documenter.Msdn.MsdnXsltUtilities.GetName(System.String,System.String)">
             <summary>
             Returns a name for a CRef.
             </summary>
+            <param name="assemblyName"></param>
             <param name="cref">CRef for which the name will be looked up.</param>
         </member>
         <member name="M:NDoc3.Documenter.Msdn.MsdnXsltUtilities.HasSimilarOverloads(System.String)">
@@ -544,6 +586,11 @@
         <member name="P:NDoc3.Documenter.Msdn.MsdnXsltUtilities.SdkDocExt">
             <summary>
             Gets the page file extension for system types links.
+            </summary>
+        </member>
+        <member name="M:NDoc3.Documenter.Msdn.NameResolver.CalculateFilenameForId(System.String,System.String,System.String)">
+            <summary>
+            of the form "T:XXX", "F:XXX" etc
             </summary>
         </member>
         <member name="T:NDoc3.Documenter.Msdn.StyleSheetCollection">

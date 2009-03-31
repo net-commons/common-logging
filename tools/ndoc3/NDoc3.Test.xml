@@ -177,6 +177,41 @@
             Some adiitional comments
             </history>
         </member>
+        <member name="T:NDoc3.Test.Generics.SimpleItem`1">
+            <summary>
+            Very generic simple item
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:NDoc3.Test.Generics.SimpleItem`1.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:NDoc3.Test.Generics.SimpleItemList`1">
+            <summary>
+            Generic list of generic items
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:NDoc3.Test.Generics.SimpleItemList`1.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:NDoc3.Test.Generics.GenericInterface`1">
+            <summary>
+            Generic interface wiht a single generic parameter
+            </summary>
+            <typeparam name="T">T Type</typeparam>
+        </member>
+        <member name="T:NDoc3.Test.Generics.GenericInterfaceInherited`1">
+            <summary>
+            Generic interface with a single generic parameter which
+            implements another generic interface
+            </summary>
+            <typeparam name="T">T type</typeparam>
+        </member>
         <member name="T:NDoc3.Test.Generics.Generic_Multiple`3">
             <summary>
             Tests a basic generic class with three generic parameters
@@ -275,6 +310,65 @@
         <member name="T:NDoc3.Test.InternalStuff.NamespaceDoc">
             <summary>
             Items marked internal
+            </summary>
+        </member>
+        <member name="T:NDoc3.Test.NewStuff.ExtensionMethod">
+            <summary>
+            Contains extension method for <see cref="T:NDoc3.Test.NewStuff.ClassToExtend"/>
+            </summary>
+        </member>
+        <member name="M:NDoc3.Test.NewStuff.ExtensionMethod.ClassExtension(NDoc3.Test.NewStuff.ClassToExtend)">
+            <summary>
+            Extension method
+            </summary>
+            <param name="x"></param>
+        </member>
+        <member name="T:NDoc3.Test.NewStuff.ClassToExtend">
+            <summary>
+            Class to be extended by <see cref="T:NDoc3.Test.NewStuff.ExtensionMethod"/>
+            </summary>
+        </member>
+        <member name="T:NDoc3.Test.NewStuff.StaticClass">
+            <summary>
+            Static class
+            </summary>
+        </member>
+        <member name="T:NDoc3.Test.NewStuff.AssymmetricAccessor">
+            <summary>
+            Test class for assymmetric accessor properties
+            </summary>
+        </member>
+        <member name="P:NDoc3.Test.NewStuff.AssymmetricAccessor.PrivateSet">
+            <summary>
+            Assymmetric accessor property with private set
+            </summary>
+        </member>
+        <member name="P:NDoc3.Test.NewStuff.AssymmetricAccessor.ProtectedInternalSet">
+            <summary>
+            Assymmetric accessor property with protected internal set
+            </summary>
+        </member>
+        <member name="P:NDoc3.Test.NewStuff.AssymmetricAccessor.InternalGet">
+            <summary>
+            Assymmetric accessor property with internal get
+            </summary>
+        </member>
+        <member name="P:NDoc3.Test.NewStuff.AssymmetricAccessor.ProtectedGet">
+            <summary>
+            Assymmetric accessor property with protected get
+            </summary>
+        </member>
+        <member name="T:NDoc3.Test.NewStuff.PartialClass">
+            <summary>
+            Partial class
+            </summary>
+            <summary>
+            Other partial class
+            </summary>
+        </member>
+        <member name="M:NDoc3.Test.NewStuff.PartialClass.PartialMethod">
+            <summary>
+            Partial method
             </summary>
         </member>
         <member name="T:NDoc3.Test.NewStuff.NamespaceDoc">
@@ -547,6 +641,38 @@
         <member name="M:NDoc3.Test.NewStuff.SomeClass.G">
             <summary>
             Works, so MoreDerived.F is there, but where?
+            </summary>
+        </member>
+        <member name="T:NDoc3.Test.NewStuff.NullableTypes">
+            <summary>
+            Class which contains test for nullable types
+            </summary>
+        </member>
+        <member name="F:NDoc3.Test.NewStuff.NullableTypes.nullableField">
+            <summary>
+            Nullable Int32 field
+            </summary>
+        </member>
+        <member name="M:NDoc3.Test.NewStuff.NullableTypes.NullableReturnType">
+            <summary>
+            Method which returns a nullable Int32
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NDoc3.Test.NewStuff.NullableTypes.NullableParameter(System.Nullable{System.Int32})">
+            <summary>
+            Method which has a nullable Int32 parameter
+            </summary>
+            <param name="no">Nullable Int32</param>
+        </member>
+        <member name="F:NDoc3.Test.NewStuff.NullableTypes.nullableGenericArgument">
+            <summary>
+            Nullable Int32 generic argument
+            </summary>
+        </member>
+        <member name="P:NDoc3.Test.NewStuff.NullableTypes.NullableProperty">
+            <summary>
+            Nullable Int32 property
             </summary>
         </member>
         <member name="T:NDoc3.Test.Obsolete.NamespaceDoc">
@@ -1513,7 +1639,7 @@
             <summary>A property in a struct.</summary>
         </member>
         <member name="T:NDoc3.Test.Struct2">
-            <summary>This is the second struct.</summary>
+            <summary>This is the second struct. Which implements an interface.</summary>
         </member>
         <member name="T:NDoc3.Test.Enum">
             <summary>This is an enumeration.</summary>
