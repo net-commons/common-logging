@@ -1,5 +1,6 @@
 <?xml version="1.0" ?>
-<project default="compile-all">
+<project xmlns="http://nant.sf.net/schemas/nant.xsd"
+		 name="Common.Logging.NLog" default="compile-all">
 
   <!-- global project settings -->
   <property name="project.name" value="Common.Logging.NLog"/>

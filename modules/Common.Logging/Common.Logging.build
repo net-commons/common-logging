@@ -1,9 +1,11 @@
 <?xml version="1.0" ?>
-<project default="package"> <!-- compile-all -->
+<project xmlns="http://nant.sf.net/schemas/nant.xsd"
+		 name="Common.Logging" default="package"> <!-- compile-all -->
 
   <!-- global project settings -->
   <property name="project.name" value="Common.Logging"/>
   <property name="logging.basedir" value="${project::get-base-directory()}"/>
+  <property name="tool.dir" value="${logging.basedir}/../../tools" />
 
   <!-- debug or release -->
   <property name="project.build.config" value="debug"/>

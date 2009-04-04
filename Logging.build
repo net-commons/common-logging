@@ -1,5 +1,6 @@
 <?xml version="1.0" ?>
-<project name="Common.Logging" default="build" basedir=".">
+<project xmlns="http://nant.sf.net/schemas/nant.xsd"
+		name="Common.Logging" default="build" basedir="." >
 
   <property name="project.version" value="2.0"/>
   <property name="project.basedir" value="${project::get-base-directory()}" />
@@ -16,7 +17,7 @@
     <!-- Common.Logging  -->
     <!-- ******* -->
     <!-- build base Common.Logging module -->
-    <exec workingdir=".\modules\Common.Logging" program="cmd.exe" commandline="/c nant -t:${framework::get-target-framework()}"/>
+    <exec workingdir=".\modules\Common.Logging" program="cmd.exe" commandline="/c nant -t:${framework::get-target-framework()} -v"/>
   </target>
 
   <target name="build-EntLib">

@@ -1,5 +1,9 @@
 <?xml version="1.0" ?>
-<project name="Common.Logging" default="build" xmlns="http://nant.sf.net/schemas/nant.xsd">
+<project xmlns="http://nant.sf.net/schemas/nant.xsd"
+	name="Common.Logging" default="build">
+
+	<echo message="Common.Logging Source" />
+
     <!--
   Required properties:
     * current.bin.dir           - (path) root level to build to

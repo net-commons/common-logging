@@ -1,10 +1,10 @@
 <?xml version="1.0" ?>
-<project>
+<project xmlns="http://nant.sf.net/schemas/nant.xsd">
 
+  <echo message="Logging.build" />
 
   <!-- make system environment variables available as NAnt properties -->
   <sysinfo/>
-
 
   <!-- Targets that are always executed -->
   <call target="set-build-configuration"/>
