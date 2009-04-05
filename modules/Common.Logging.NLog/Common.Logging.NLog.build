@@ -19,7 +19,7 @@
   <property name="package.version" value="1.0.0" unless="${property::exists('project.version')}"/>
 
   <property name="build-examples" value="false"/>
-  <property name="build-tests" value="false"/>
+  <property name="build-tests" value="true"/>
   <property name="build-integration-tests" value="true"/>
 
 
