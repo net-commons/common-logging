@@ -18,8 +18,12 @@
 
 #endregion
 
+using System.Collections.Specialized;
+using System.Diagnostics;
+using Common.Logging.Configuration;
 using Common.Logging.Simple;
 using NUnit.Framework;
+using Rhino.Mocks;
 
 namespace Common.Logging
 {
@@ -27,14 +31,13 @@ namespace Common.Logging
     /// Tests for LogManager that exercise the basic API and check for error conditions.
     /// </summary>
     /// <author>Mark Pollack</author>
-    /// <version>$Id:$</version>
     [TestFixture]
     public class LogManagerTests
     {
-        [TearDown]
-        public void ResetAdapter()
+        [SetUp]
+        public void SetUp()
         {
-            LogManager.Adapter = null;
+            LogManager.ResetDefaults();
         }
 
         [Test]
@@ -46,10 +49,36 @@ namespace Common.Logging
         }
 
         [Test]
-        public void ConfigureFromAppConfig()
+        public void ConfigureFromConfigurationReader()
         {
-            ILog log = LogManager.GetLogger(typeof (LogManagerTests));
-            Assert.IsAssignableFrom(typeof (ConsoleOutLogger), log);
+            MockRepository mocks = new MockRepository();
+            IConfigurationReader r = mocks.StrictMock<IConfigurationReader>();
+            using(mocks.Record())
+            {
+                Expect.Call(r.GetSection(LogManager.COMMON_LOGGING_SECTION)).Return(null);
+                Expect.Call(r.GetSection(LogManager.COMMON_LOGGING_SECTION)).Return(new TraceLoggerFactoryAdapter());
+                Expect.Call(r.GetSection(LogManager.COMMON_LOGGING_SECTION)).Return(new LogSetting(typeof(ConsoleOutLoggerFactoryAdapter), null));
+            }
+
+            using (mocks.Playback())
+            {
+                ILog log;
+
+                LogManager.ResetDefaults();
+                LogManager.ConfigurationReader = r;
+                log = LogManager.GetLogger(typeof (LogManagerTests));
+                Assert.AreEqual(typeof (NoOpLogger), log.GetType());
+                
+                LogManager.ResetDefaults();
+                LogManager.ConfigurationReader = r;
+                log = LogManager.GetLogger(typeof(LogManagerTests));
+                Assert.AreEqual(typeof (TraceLogger), log.GetType());
+
+                LogManager.ResetDefaults();
+                LogManager.ConfigurationReader = r;
+                log = LogManager.GetLogger(typeof(LogManagerTests));
+                Assert.AreEqual(typeof (ConsoleOutLogger), log.GetType());
+            }
         }
 
         [Test]

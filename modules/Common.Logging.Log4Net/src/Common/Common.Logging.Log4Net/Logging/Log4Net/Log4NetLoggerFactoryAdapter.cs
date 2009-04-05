@@ -21,6 +21,8 @@
 using System;
 using System.Collections.Specialized;
 using System.IO;
+using Common.Logging.Factory;
+using Common.Logging.Configuration;
 using log4net.Config;
 
 namespace Common.Logging.Log4Net

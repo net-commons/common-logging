@@ -24,6 +24,7 @@ using System.Collections.Specialized;
 using System.Configuration;
 using System.Xml;
 using Common.Logging.Simple;
+using Common.Logging.Configuration;
 
 namespace Common.Logging
 {
@@ -169,6 +170,34 @@ namespace Common.Logging
       return new LogSetting(factoryType, properties);
     }
 
+    /// <summary>
+    /// Verifies that the logFactoryAdapter element appears once in the configuration section.
+    /// </summary>
+    /// <param name="parent">settings of a parent section - atm this must always be null</param>
+    /// <param name="configContext">Additional information about the configuration process.</param>
+    /// <param name="section">The configuration section to apply an XPath query too.</param>
+    /// <returns>
+    /// A <see cref="LogSetting" /> object containing the specified logFactoryAdapter type
+    /// along with user supplied configuration properties.
+    /// </returns>
+    public LogSetting Create(LogSetting parent, object configContext, XmlNode section)
+    {
+        if (parent != null)
+        {
+            throw new ConfigurationException("parent configuration sections are not allowed");
+        }
+
+        int logFactoryElementsCount = section.SelectNodes(LOGFACTORYADAPTER_ELEMENT).Count;
+
+        if (logFactoryElementsCount > 1) {
+            throw new ConfigurationException("Only one <factoryAdapter> element allowed");
+        } else if (logFactoryElementsCount == 1) {
+            return ReadConfiguration(section);
+        } else {
+            return null;
+        }
+    }
+
     #region IConfigurationSectionHandler Members
 
     /// <summary>
@@ -181,22 +210,9 @@ namespace Common.Logging
     /// A <see cref="LogSetting" /> object containing the specified logFactoryAdapter type
     /// along with user supplied configuration properties.
     /// </returns>
-    public object Create(object parent, object configContext, XmlNode section)
+    object IConfigurationSectionHandler.Create(object parent, object configContext, XmlNode section)
     {
-      int logFactoryElementsCount = section.SelectNodes(LOGFACTORYADAPTER_ELEMENT).Count;
-
-      if (logFactoryElementsCount > 1)
-      {
-        throw new ConfigurationException("Only one <factoryAdapter> element allowed");
-      }
-      else if (logFactoryElementsCount == 1)
-      {
-        return ReadConfiguration(section);
-      }
-      else
-      {
-        return null;
-      }
+        return Create(parent as LogSetting, configContext, section);
     }
 
     #endregion

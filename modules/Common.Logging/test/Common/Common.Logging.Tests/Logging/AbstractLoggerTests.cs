@@ -2,9 +2,12 @@
 using System.Collections;
 using System.Globalization;
 using System.Reflection;
+using Common.Logging.Factory;
 using NUnit.Framework;
 using Rhino.Mocks;
+using Rhino.Mocks.Interfaces;
 using FormatMessageCallback = System.Action<Common.Logging.FormatMessageHandler>;
+using Is=Rhino.Mocks.Constraints.Is;
 
 namespace Common.Logging
 {
@@ -125,9 +128,9 @@ namespace Common.Logging
             MockRepository mocks = new MockRepository();
 
             AbstractTestLogger log = (AbstractTestLogger)mocks.PartialMock(typeof(AbstractTestLogger));
-            Exception ex = (Exception)mocks.CreateMock(typeof(Exception));
-            object messageObject = mocks.CreateMock(typeof(object));
-            object formatArg = mocks.CreateMock(typeof(object));
+            Exception ex = (Exception)mocks.StrictMock(typeof(Exception));
+            object messageObject = mocks.StrictMock(typeof(object));
+            object formatArg = mocks.StrictMock(typeof(object));
             FormatMessageCallback failCallback = TestFormatMessageCallback.FailCallback();
 
             MethodInfo[] logMethods = GetLogMethodSignatures(levelName);
@@ -193,10 +196,10 @@ namespace Common.Logging
         {
             MockRepository mocks = new MockRepository();
 
-            AbstractLogger log = (AbstractLogger)mocks.CreateMock(typeof(AbstractLogger));
-            Exception ex = (Exception) mocks.CreateMock(typeof (Exception));
-            object messageObject = mocks.CreateMock(typeof (object));
-            object formatArg = mocks.CreateMock(typeof (object));
+            AbstractLogger log = (AbstractLogger)mocks.StrictMock(typeof(AbstractLogger));
+            Exception ex = (Exception)mocks.StrictMock(typeof(Exception));
+            object messageObject = mocks.StrictMock(typeof(object));
+            object formatArg = mocks.StrictMock(typeof(object));
             FormatMessageCallback failCallback = TestFormatMessageCallback.FailCallback();
 
             MethodInfo[] logMethods = GetLogMethodSignatures(levelName);
@@ -204,34 +207,34 @@ namespace Common.Logging
             using (mocks.Ordered())
             {
                 Invoke(log, logMethods[0], messageObject);
-                LastCall.CallOriginalMethod();
+                LastCall.CallOriginalMethod(OriginalCallOptions.CreateExpectation);
                 Expect.Call(IsLevelEnabled(log, levelName)).Return(false);
                 Invoke(log, logMethods[1], messageObject, ex);
-                LastCall.CallOriginalMethod();
+                LastCall.CallOriginalMethod(OriginalCallOptions.CreateExpectation);
                 Expect.Call(IsLevelEnabled(log, levelName)).Return(false);
                 Invoke(log, logMethods[2], "format", new object[] { formatArg });
-                LastCall.CallOriginalMethod();
+                LastCall.CallOriginalMethod(OriginalCallOptions.CreateExpectation);
                 Expect.Call(IsLevelEnabled(log, levelName)).Return(false);
                 Invoke(log, logMethods[3], "format", ex, new object[] { formatArg });
-                LastCall.CallOriginalMethod();
+                LastCall.CallOriginalMethod(OriginalCallOptions.CreateExpectation);
                 Expect.Call(IsLevelEnabled(log, levelName)).Return(false);
                 Invoke(log, logMethods[4], CultureInfo.InvariantCulture, "format", new object[] { formatArg });
-                LastCall.CallOriginalMethod();
+                LastCall.CallOriginalMethod(OriginalCallOptions.CreateExpectation);
                 Expect.Call(IsLevelEnabled(log, levelName)).Return(false);
                 Invoke(log, logMethods[5], CultureInfo.InvariantCulture, "format", ex, new object[] { formatArg });
-                LastCall.CallOriginalMethod();
+                LastCall.CallOriginalMethod(OriginalCallOptions.CreateExpectation);
                 Expect.Call(IsLevelEnabled(log, levelName)).Return(false);
                 Invoke(log, logMethods[6], failCallback);
-                LastCall.CallOriginalMethod();
+                LastCall.CallOriginalMethod(OriginalCallOptions.CreateExpectation);
                 Expect.Call(IsLevelEnabled(log, levelName)).Return(false);
                 Invoke(log, logMethods[7], failCallback, ex);
-                LastCall.CallOriginalMethod();
+                LastCall.CallOriginalMethod(OriginalCallOptions.CreateExpectation);
                 Expect.Call(IsLevelEnabled(log, levelName)).Return(false);
                 Invoke(log, logMethods[8], CultureInfo.InvariantCulture, failCallback);
-                LastCall.CallOriginalMethod();
+                LastCall.CallOriginalMethod(OriginalCallOptions.CreateExpectation);
                 Expect.Call(IsLevelEnabled(log, levelName)).Return(false);
                 Invoke(log, logMethods[9], CultureInfo.InvariantCulture, failCallback, ex);
-                LastCall.CallOriginalMethod();
+                LastCall.CallOriginalMethod(OriginalCallOptions.CreateExpectation);
                 Expect.Call(IsLevelEnabled(log, levelName)).Return(false);
             }
             mocks.ReplayAll();

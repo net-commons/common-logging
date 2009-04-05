@@ -22,6 +22,7 @@
 
 using System;
 using System.Reflection;
+using Common.Logging.Factory;
 using NLog;
 using LogLevelNLog = NLog.LogLevel;
 using LoggerNLog = NLog.Logger;

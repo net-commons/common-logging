@@ -21,6 +21,7 @@
 using System;
 using System.Globalization;
 using System.Text;
+using Common.Logging.Factory;
 
 namespace Common.Logging.Simple
 {

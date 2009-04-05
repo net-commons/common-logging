@@ -53,7 +53,7 @@ namespace Common.Logging.Simple
         protected override void CheckLog(ILog log)
         {
             Assert.IsNotNull(log);
-            Assert.IsInstanceOfType(LoggerType, log);
+            Assert.IsInstanceOf<NoOpLogger>(log);
 
             // Can we call level checkers with no exceptions?
             // Note that everything is hard-coded to be disabled for NoOpLogger

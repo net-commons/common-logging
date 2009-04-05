@@ -51,7 +51,7 @@ namespace Common.Logging.EntLib
         {
 
             Assert.IsNotNull(log);
-            Assert.IsInstanceOfType(LoggerType, log);
+            Assert.IsInstanceOf<EntLibLogger>(log);
 
             // Can we call level checkers with no exceptions?
             // Note that everything is hard-coded to be disabled for NoOpLogger

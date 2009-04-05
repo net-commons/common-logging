@@ -19,8 +19,9 @@
 #endregion
 
 using Common.Logging;
+using Common.Logging.Factory;
 
-    /// <summary>
+/// <summary>
     /// <h1>Overview</h1>
     /// <para>
     /// There are a variety of logging implementations for .NET currently in use, log4net, Enterprise 

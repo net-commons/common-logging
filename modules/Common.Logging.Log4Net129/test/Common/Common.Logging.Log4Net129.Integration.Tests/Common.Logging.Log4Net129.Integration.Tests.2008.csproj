@@ -52,29 +52,25 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\lib\net\1.1\log4net.dll</HintPath>
     </Reference>
-    <Reference Include="nunit.framework, Version=2.2.8.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\lib\net\1.1\nunit.framework.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\Common.Logging\src\Common\Common.Logging\Common.Logging.2008.csproj">
       <Project>{440D903A-D409-48FC-A6C4-3EE69CCD663B}</Project>
       <Name>Common.Logging.2008</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\..\Common.Logging\test\Common\Common.Logging.Tests\Common.Logging.Tests.2008.csproj">
-      <Project>{94E4E1B4-D424-4EB9-BF34-2EE8CC3D7048}</Project>
-      <Name>Common.Logging.Tests.2008</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\src\Common\Common.Logging.Log4Net129\Common.Logging.Log4Net129.2008.csproj">
       <Project>{A6A7257A-D1AE-4A09-8C1C-F55E099C8A8A}</Project>
       <Name>Common.Logging.Log4Net129.2008</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Common.Logging.Log4Net129.Tests\Common.Logging.Log4Net129.Tests.2008.csproj">
+      <Project>{EDA14ED0-E442-4FBD-9FD6-E6F9732500A0}</Project>
+      <Name>Common.Logging.Log4Net129.Tests.2008</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -103,6 +99,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Common.Logging.Log4Net129.Integration.Tests.build" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

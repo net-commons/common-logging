@@ -18,6 +18,7 @@
 
 #endregion
 
+using System.Configuration;
 using System.Xml;
 
 namespace Common.Logging
@@ -27,7 +28,6 @@ namespace Common.Logging
     /// supplied XML string.
     /// </summary>
     /// <author>Mark Pollack</author>
-    /// <version>$Id:$</version>
     public class StandaloneConfigurationReader : IConfigurationReader
     {
         private string xmlString;
@@ -86,7 +86,7 @@ namespace Common.Logging
         /// <returns>The XmlNode of the document corresponding to the string.</returns>
         private static XmlNode BuildConfigurationSection(string xml)
         {
-            XmlDocument doc = new XmlDocument();
+            ConfigXmlDocument doc = new ConfigXmlDocument();
             doc.LoadXml(xml);
             return doc.DocumentElement;
         }

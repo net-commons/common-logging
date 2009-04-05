@@ -6,7 +6,9 @@
             * build.debug               - (true|false) debug build?
             * current.build.defines.csc - framework-specific build defines
     -->
-	<target name="build">
+    <include buildfile="${logging.basedir}/../../shared/common-project.include" verbose="true" />
+
+    <target name="build">
 
 		<csc target="library" define="${current.build.defines.csc}" 
 		     warnaserror="true"
@@ -38,24 +40,10 @@
 			</fileset>
 		</copy>
 	</target>
-	<target name="test" depends="build">
-		<nunit2>
-			<formatter type="Plain" />
-			<formatter type="Xml" usefile="true" extension=".xml" 
-			           outputdir="${current.bin.dir}/results" />
-			<test assemblyname="${current.bin.dir}/${project::get-name()}.dll" 
-			      appconfig="${current.bin.dir}/${project::get-name()}.dll.config" />
-		</nunit2>
-	</target>
 
-	<target name="test-mono-1.0" >
-		<nunit2>
-			<formatter type="Plain" />
-			<formatter type="Xml" usefile="true" extension=".xml" 
-			           outputdir="${current.bin.dir}/results" />
-			<test assemblyname="${bin.dir}/net/1.1/${current.build.config}/${project::get-name()}.dll" 
-			      appconfig="${bin.dir}/net/1.1/${current.build.config}/${project::get-name()}.dll.config" />
-		</nunit2>
-	</target>
+    <target name="test" depends="build">
+        <property name="project.name" value="${project::get-name()}" overwrite="true" />
+        <call target="common.run-tests" />
+    </target>
 
 </project>

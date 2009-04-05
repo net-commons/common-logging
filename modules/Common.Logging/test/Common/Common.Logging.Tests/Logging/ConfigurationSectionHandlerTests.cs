@@ -18,6 +18,7 @@
 
 #endregion
 
+using Common.Logging.Configuration;
 using Common.Logging.Simple;
 using NUnit.Framework;
 
@@ -27,7 +28,18 @@ namespace Common.Logging
     public class ConfigurationSectionHandlerTests
     {
         [Test]
-        [ExpectedException(typeof(ConfigurationException))]
+        public void NoParentSectionsAllowed()
+        {
+            ConfigurationSectionHandler handler = new ConfigurationSectionHandler();
+            Assert.Throws(Is.TypeOf<ConfigurationException>().And.Message.EqualTo("parent configuration sections are not allowed")
+                         , delegate {
+                                  handler.Create(new LogSetting(typeof (ConsoleOutLoggerFactoryAdapter), null), 
+                                                 null,
+                                                 null);
+                          });
+        }
+
+        [Test]
         public void TooManyAdapterElements()
         {
             const string xml =
@@ -39,7 +51,11 @@ namespace Common.Logging
       </factoryAdapter>
     </logging>";
             StandaloneConfigurationReader reader = new StandaloneConfigurationReader(xml);
-            reader.GetSection(null);
+            Assert.Throws( Is.TypeOf<ConfigurationException>()
+                            .And.Message.EqualTo("Only one <factoryAdapter> element allowed")
+                            , delegate {
+                            reader.GetSection(null);
+                        });
         }
 
         [Test]
@@ -83,8 +99,7 @@ namespace Common.Logging
             StandaloneConfigurationReader reader = new StandaloneConfigurationReader(xml);
             LogSetting setting = reader.GetSection(null) as LogSetting;
             Assert.IsNotNull(setting);
-            Assert.AreEqual(
-                "ConsoleOutLoggerFactoryAdapter", setting.FactoryAdapterType.Name);
+            Assert.AreEqual(typeof(ConsoleOutLoggerFactoryAdapter), setting.FactoryAdapterType);
 
         }
 
@@ -99,8 +114,7 @@ namespace Common.Logging
             StandaloneConfigurationReader reader = new StandaloneConfigurationReader(xml);
             LogSetting setting = reader.GetSection(null) as LogSetting;
             Assert.IsNotNull(setting);
-            Assert.AreEqual(
-                "TraceLoggerFactoryAdapter", setting.FactoryAdapterType.Name);
+            Assert.AreEqual(typeof(TraceLoggerFactoryAdapter), setting.FactoryAdapterType);
 
         }
 
@@ -115,8 +129,7 @@ namespace Common.Logging
             StandaloneConfigurationReader reader = new StandaloneConfigurationReader(xml);
             LogSetting setting = reader.GetSection(null) as LogSetting;
             Assert.IsNotNull(setting);
-            Assert.AreEqual(
-                "NoOpLoggerFactoryAdapter", setting.FactoryAdapterType.Name);
+            Assert.AreEqual(typeof(NoOpLoggerFactoryAdapter), setting.FactoryAdapterType);
 
         }
 

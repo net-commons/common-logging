@@ -19,6 +19,8 @@
 #endregion
 
 using System.Collections.Specialized;
+using Common.Logging.Factory;
+using Common.Logging.Configuration;
 
 namespace Common.Logging.Simple
 {

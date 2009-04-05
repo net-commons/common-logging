@@ -22,7 +22,7 @@ using System;
 using System.Collections.Specialized;
 using System.Diagnostics;
 
-namespace Common.Logging
+namespace Common.Logging.Configuration
 {
     /// <summary>
     /// Various utility methods for using during factory and logger instance configuration

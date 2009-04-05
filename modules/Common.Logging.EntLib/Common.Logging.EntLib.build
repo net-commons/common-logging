@@ -5,6 +5,7 @@
   <!-- global project settings -->
   <property name="project.name" value="Common.Logging.EntLib"/>
   <property name="logging.basedir" value="${project::get-base-directory()}"/>
+  <property name="tool.dir" value="${logging.basedir}/../../tools" />
 
   <!-- debug or release -->
   <property name="project.build.config" value="debug"/>

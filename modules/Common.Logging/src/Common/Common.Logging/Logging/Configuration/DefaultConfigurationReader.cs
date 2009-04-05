@@ -20,14 +20,14 @@
 
 using System.Configuration;
 
-namespace Common.Logging
+namespace Common.Logging.Configuration
 {
     /// <summary>
     /// Implementation of <see cref="IConfigurationReader"/> that uses the standard .NET 
     /// configuration APIs, ConfigurationSettings in 1.x and ConfigurationManager in 2.0
     /// </summary>
     /// <author>Mark Pollack</author>
-    public class ConfigurationReader : IConfigurationReader
+    public class DefaultConfigurationReader : IConfigurationReader
     {
         /// <summary>
         /// Parses the configuration section and returns the resulting object.

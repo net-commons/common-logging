@@ -156,6 +156,32 @@ ${current.bin.dir}: the binary directory to pick the assembly + app.config from
 ${project.name}   : (optional), the name of the assembly
 ${tool.dir}       : dir for tools
     -->
+    <target name="common.run-tests.nunit">
+
+        <property name="project.name" value="${project::get-name()}" overwrite="false" />
+        <echo message="Unit Testing ${project.name}" />
+
+        <exec program="${tool.dir}\nunit\nunit-console-x86.exe" workingdir="${current.bin.dir}" verbose="true">
+            <arg path="${current.bin.dir}/${project.name}.dll" />
+            <arg value="/xml:${project.name}.dll-testresults.xml" />
+            <arg value="/noshadow" />
+            <arg value="/nothread" />
+            <arg value="/domain=Multiple" />
+            <arg value="/process=Single" />
+            <arg value="/framework=${nant.settings.currentframework}" />
+        </exec>
+
+    </target>
+
+    <!--
+*******************************************************************************
+Runs coverage unit test configuration of the current ${project::get-name()}.dll
+
+Arguments:
+${current.bin.dir}: the binary directory to pick the assembly + app.config from
+${project.name}   : (optional), the name of the assembly
+${tool.dir}       : dir for tools
+    -->
     <target name="common.run-tests" description="Run NUnit tests">
 
 		<property name="project.name" value="${project::get-name()}" overwrite="false" />
@@ -167,13 +193,13 @@ ${tool.dir}       : dir for tools
 			<arg value="//w" />
 			<arg path="${current.bin.dir}" />
 			<arg value="//x" />
-			<arg path="${current.bin.dir}/${project.name}.dll-Coverage.xml" />
+			<arg path="${current.bin.dir}/${project.name}.dll-TestCoverage.xml" />
 			<arg value="//a" />
 			<arg value="${string::substring(project.name,0,string::last-index-of(project.name, '.Tests') )}" />
 			<arg value="//q" />
 			<arg path="${tool.dir}/nunit/nunit-console-x86.exe" />
 			<arg path="${current.bin.dir}/${project.name}.dll" />
-			<arg value="/xml:&quot;${current.bin.dir}/${project.name}.dll-testresults.xml&quot;" />
+			<arg value="/xml:&quot;${current.bin.dir}/${project.name}.dll-TestResults.xml&quot;" />
 			<arg value="/nologo" />
 		</exec>
 

@@ -26,18 +26,11 @@
 				<exclude name="${project::get-name()}.dll" />
 			</references>
 		</csc>
-		<copy todir="${current.bin.dir}">
-			<fileset basedir="${project::get-name()}/Data">
-				<include name="**/*.xml" />
-			        <include name="**/*.test" />
-			</fileset>
-		</copy>
-		<copy todir="${current.bin.dir}" verbose="true">
-			<fileset basedir=".">
-				<include name="*.dll.config" />
-			</fileset>
-		</copy>
-	</target>
+
+        <!-- deploy app.config -->
+        <copy file="${project::get-base-directory()}/app.config"
+		      tofile="${current.bin.dir}/${project::get-name()}.dll.config"/>
+    </target>
 	<target name="test" depends="build">
 		<nunit2>
 			<formatter type="Plain" />

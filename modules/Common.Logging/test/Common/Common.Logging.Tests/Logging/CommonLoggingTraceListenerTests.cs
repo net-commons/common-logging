@@ -8,47 +8,44 @@ namespace Common.Logging
     [TestFixture]
     public class CommonLoggingTraceListenerTests
     {
+        [SetUp]
+        public void SetUp()
+        {
+            LogManager.ResetDefaults();
+        }
+
         [Test]
         public void LogsUsingCommonLogging()
         {
-            ILoggerFactoryAdapter oldAdapter = LogManager.Adapter;
+            TestLoggerFactoryAdapter factoryAdapter = new TestLoggerFactoryAdapter();
+            LogManager.Adapter = factoryAdapter;
 
-            try
-            {
-                TestLoggerFactoryAdapter factoryAdapter = new TestLoggerFactoryAdapter();
-                LogManager.Adapter = factoryAdapter;
+            CommonLoggingTraceListener l = new CommonLoggingTraceListener();
+            l.DefaultTraceEventType = (TraceEventType)0xFFFF;
 
-                CommonLoggingTraceListener l = new CommonLoggingTraceListener();                
-                l.DefaultTraceEventType = (TraceEventType) 0xFFFF;
+            AssertExpectedLogLevel(l, TraceEventType.Start, LogLevel.Trace);
+            AssertExpectedLogLevel(l, TraceEventType.Stop, LogLevel.Trace);
+            AssertExpectedLogLevel(l, TraceEventType.Suspend, LogLevel.Trace);
+            AssertExpectedLogLevel(l, TraceEventType.Resume, LogLevel.Trace);
+            AssertExpectedLogLevel(l, TraceEventType.Transfer, LogLevel.Trace);
+            AssertExpectedLogLevel(l, TraceEventType.Verbose, LogLevel.Debug);
+            AssertExpectedLogLevel(l, TraceEventType.Information, LogLevel.Info);
+            AssertExpectedLogLevel(l, TraceEventType.Warning, LogLevel.Warn);
+            AssertExpectedLogLevel(l, TraceEventType.Error, LogLevel.Error);
+            AssertExpectedLogLevel(l, TraceEventType.Critical, LogLevel.Fatal);
 
-                AssertExpectedLogLevel(l, TraceEventType.Start, LogLevel.Trace);
-                AssertExpectedLogLevel(l, TraceEventType.Stop, LogLevel.Trace);
-                AssertExpectedLogLevel(l, TraceEventType.Suspend, LogLevel.Trace);
-                AssertExpectedLogLevel(l, TraceEventType.Resume, LogLevel.Trace);
-                AssertExpectedLogLevel(l, TraceEventType.Transfer, LogLevel.Trace);
-                AssertExpectedLogLevel(l, TraceEventType.Verbose, LogLevel.Debug);
-                AssertExpectedLogLevel(l, TraceEventType.Information, LogLevel.Info);
-                AssertExpectedLogLevel(l, TraceEventType.Warning, LogLevel.Warn);
-                AssertExpectedLogLevel(l, TraceEventType.Error, LogLevel.Error);
-                AssertExpectedLogLevel(l, TraceEventType.Critical, LogLevel.Fatal);
-
-                factoryAdapter.LastEvent = null;
-                l.DefaultTraceEventType = TraceEventType.Warning;
-                l.Write("some message", "some category");
-                Assert.AreEqual(string.Format(l.LoggerNameFormat, l.Name, "some category"), factoryAdapter.LastEvent.Source.Name);
-                Assert.AreEqual(LogLevel.Warn, factoryAdapter.LastEvent.Level);
-                Assert.AreEqual("some message", factoryAdapter.LastEvent.RenderedMessage);
-                Assert.AreEqual(null, factoryAdapter.LastEvent.Exception);
-            }
-            finally
-            {
-                LogManager.Adapter = oldAdapter;
-            }
+            factoryAdapter.LastEvent = null;
+            l.DefaultTraceEventType = TraceEventType.Warning;
+            l.Write("some message", "some category");
+            Assert.AreEqual(string.Format(l.LoggerNameFormat, l.Name, "some category"), factoryAdapter.LastEvent.Source.Name);
+            Assert.AreEqual(LogLevel.Warn, factoryAdapter.LastEvent.Level);
+            Assert.AreEqual("some message", factoryAdapter.LastEvent.RenderedMessage);
+            Assert.AreEqual(null, factoryAdapter.LastEvent.Exception);
         }
 
         private void AssertExpectedLogLevel(CommonLoggingTraceListener l, TraceEventType eventType, LogLevel expectedLogLevel)
         {
-            TestLoggerFactoryAdapter factoryAdapter = (TestLoggerFactoryAdapter) LogManager.Adapter;
+            TestLoggerFactoryAdapter factoryAdapter = (TestLoggerFactoryAdapter)LogManager.Adapter;
             factoryAdapter.LastEvent = null;
             l.TraceEvent(null, "sourceName " + eventType, eventType, -1, "format {0}", eventType);
             Assert.AreEqual(string.Format(l.LoggerNameFormat, l.Name, "sourceName " + eventType), factoryAdapter.LastEvent.Source.Name);
@@ -60,26 +57,17 @@ namespace Common.Logging
         [Test]
         public void DoesNotLogBelowFilterLevel()
         {
-            ILoggerFactoryAdapter oldAdapter = LogManager.Adapter;
+            TestLoggerFactoryAdapter factoryAdapter = new TestLoggerFactoryAdapter();
+            LogManager.Adapter = factoryAdapter;
 
-            try
-            {
-                TestLoggerFactoryAdapter factoryAdapter = new TestLoggerFactoryAdapter();
-                LogManager.Adapter = factoryAdapter;
+            CommonLoggingTraceListener l = new CommonLoggingTraceListener();
+            l.Filter = new EventTypeFilter(SourceLevels.Warning);
+            factoryAdapter.LastEvent = null;
+            l.TraceEvent(null, "sourceName", TraceEventType.Information, -1, "format {0}", "Information");
+            Assert.AreEqual(null, factoryAdapter.LastEvent);
 
-                CommonLoggingTraceListener l = new CommonLoggingTraceListener();
-                l.Filter = new EventTypeFilter(SourceLevels.Warning);
-                factoryAdapter.LastEvent = null;
-                l.TraceEvent(null, "sourceName", TraceEventType.Information, -1, "format {0}", "Information");
-                Assert.AreEqual(null, factoryAdapter.LastEvent);
-
-                AssertExpectedLogLevel(l, TraceEventType.Warning, LogLevel.Warn);
-                AssertExpectedLogLevel(l, TraceEventType.Error, LogLevel.Error);
-            }
-            finally
-            {
-                LogManager.Adapter = oldAdapter;
-            }            
+            AssertExpectedLogLevel(l, TraceEventType.Warning, LogLevel.Warn);
+            AssertExpectedLogLevel(l, TraceEventType.Error, LogLevel.Error);
         }
 
         [Test]

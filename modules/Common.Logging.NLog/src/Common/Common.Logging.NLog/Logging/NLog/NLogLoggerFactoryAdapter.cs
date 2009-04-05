@@ -21,6 +21,7 @@
 using System;
 using System.IO;
 using System.Collections.Specialized;
+using Common.Logging.Factory;
 
 namespace Common.Logging.NLog
 {

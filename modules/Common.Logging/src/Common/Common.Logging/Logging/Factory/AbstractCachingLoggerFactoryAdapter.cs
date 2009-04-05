@@ -22,7 +22,7 @@ using System;
 using System.Collections;
 using System.Collections.Specialized;
 
-namespace Common.Logging
+namespace Common.Logging.Factory
 {
     /// <summary>
     /// An implementation of <see cref="ILoggerFactoryAdapter"/> that caches loggers handed out by this factory.
@@ -42,8 +42,8 @@ namespace Common.Logging
         protected AbstractCachingLoggerFactoryAdapter(bool caseSensitiveLoggerCache)
         {
             _cachedLoggers = (caseSensitiveLoggerCache) 
-                ? new Hashtable()
-                : CollectionsUtil.CreateCaseInsensitiveHashtable();
+                                 ? new Hashtable()
+                                 : CollectionsUtil.CreateCaseInsensitiveHashtable();
         }
 
         /// <summary>

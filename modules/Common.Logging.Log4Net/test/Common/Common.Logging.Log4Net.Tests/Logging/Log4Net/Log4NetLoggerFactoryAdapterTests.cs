@@ -56,7 +56,7 @@ namespace Common.Logging.Log4Net
         public void InitWithProperties()
         {
             MockRepository mocks = new MockRepository();
-            Log4NetLoggerFactoryAdapter.ILog4NetRuntime rt = (Log4NetLoggerFactoryAdapter.ILog4NetRuntime) mocks.CreateMock(typeof (Log4NetLoggerFactoryAdapter.ILog4NetRuntime));
+            Log4NetLoggerFactoryAdapter.ILog4NetRuntime rt = mocks.StrictMock<Log4NetLoggerFactoryAdapter.ILog4NetRuntime>();
 
             string configFileName = new Uri(Assembly.GetExecutingAssembly().CodeBase).AbsolutePath;
 
@@ -66,7 +66,7 @@ namespace Common.Logging.Log4Net
                 rt.XmlConfiguratorConfigure(configFileName);
                 rt.XmlConfiguratorConfigureAndWatch(configFileName);
                 rt.BasicConfiguratorConfigure();
-                Expect.Call(rt.GetLogger("testLogger")).Return(mocks.DynamicMock(typeof(log4net.ILog)));
+                Expect.Call(rt.GetLogger("testLogger")).Return(mocks.DynamicMock<log4net.ILog>());
             }
             mocks.ReplayAll();
 

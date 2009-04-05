@@ -19,6 +19,7 @@
 #endregion
 
 using System;
+using Common.Logging.Factory;
 using log4net.Core;
 
 namespace Common.Logging.Log4Net

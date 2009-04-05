@@ -65,13 +65,13 @@
     </Compile>
     <Compile Include="AssemblyDoc.cs" />
     <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="Logging\AbstractLogger.cs" />
-    <Compile Include="Logging\AbstractCachingLoggerFactoryAdapter.cs" />
+    <Compile Include="Logging\Factory\AbstractLogger.cs" />
+    <Compile Include="Logging\Factory\AbstractCachingLoggerFactoryAdapter.cs" />
     <Compile Include="Logging\CommonLoggingTraceListener.cs" />
     <Compile Include="Logging\ConfigurationException.cs" />
-    <Compile Include="Logging\ConfigurationReader.cs" />
-    <Compile Include="Logging\ConfigurationHelper.cs" />
-    <Compile Include="Logging\FormatMessageCallback.cs" />
+    <Compile Include="Logging\Configuration\DefaultConfigurationReader.cs" />
+    <Compile Include="Logging\Factory\NamespaceDoc.cs" />
+    <Compile Include="Logging\Configuration\ConfigurationHelper.cs" />
     <Compile Include="Logging\FormatMessageHandler.cs" />
     <Compile Include="Logging\IConfigurationReader.cs" />
     <Compile Include="Logging\ConfigurationSectionHandler.cs" />
@@ -79,11 +79,12 @@
     <Compile Include="Logging\ILoggerFactoryAdapter.cs" />
     <Compile Include="Logging\LogLevel.cs" />
     <Compile Include="Logging\LogManager.cs" />
-    <Compile Include="Logging\LogSetting.cs" />
+    <Compile Include="Logging\Configuration\LogSetting.cs" />
     <Compile Include="Logging\NamespaceDoc.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Logging\Simple\NamespaceDoc.cs" />
+    <Compile Include="Logging\Configuration\NamespaceDoc.cs" />
     <Compile Include="NamespaceDoc_Introduction.cs" />
     <Compile Include="Logging\Simple\AbstractSimpleLogger.cs" />
     <Compile Include="Logging\Simple\AbstractSimpleLoggerFactoryAdapter.cs" />

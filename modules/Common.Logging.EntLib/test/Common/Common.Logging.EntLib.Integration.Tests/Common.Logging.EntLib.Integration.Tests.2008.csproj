@@ -82,7 +82,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Common.Logging.EntLib.Integration.Tests.build" />
-    <None Include="Common.Logging.EntLib.Integration.Tests.dll.config">
+    <None Include="app.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

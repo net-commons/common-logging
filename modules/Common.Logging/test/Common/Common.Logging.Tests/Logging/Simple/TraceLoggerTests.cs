@@ -20,6 +20,7 @@
 
 using System;
 using System.Collections.Specialized;
+using System.Configuration;
 using System.Diagnostics;
 using Common.TestUtil;
 using NUnit.Framework;
@@ -55,7 +56,7 @@ namespace Common.Logging.Simple
         protected override void CheckLog(ILog log)
         {
             Assert.IsNotNull(log);
-            Assert.IsInstanceOfType(LoggerType, log);
+            Assert.IsInstanceOf<TraceLogger>(log);
 
             // Can we call level checkers with no exceptions?
             Assert.IsTrue(log.IsTraceEnabled);
@@ -69,8 +70,16 @@ namespace Common.Logging.Simple
         [Test]
         public void UsesTraceSource()
         {
+            Console.WriteLine("Config:"+ AppDomain.CurrentDomain.SetupInformation.ConfigurationFile);
+
+            Assert.AreEqual("FromAppConfig", ConfigurationManager.AppSettings["appConfigCheck"]);
+
             // just ensure, that <system.diagnostics> is configured for our test
+            Trace.Refresh();
             TraceSource ts = new TraceSource("TraceLoggerTests", SourceLevels.All);
+            Assert.AreEqual(1, ts.Listeners.Count);
+            Assert.AreEqual(typeof(CapturingTraceListener), ts.Listeners[0].GetType());
+
             CapturingTraceListener.Events.Clear();
             ts.TraceEvent(TraceEventType.Information, 0, "message");
             Assert.AreEqual(TraceEventType.Information, CapturingTraceListener.Events[0].EventType);

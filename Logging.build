@@ -2,16 +2,30 @@
 <project xmlns="http://nant.sf.net/schemas/nant.xsd"
 		name="Common.Logging" default="build" basedir="." >
 
-  <property name="project.version" value="2.0"/>
+  <!-- Global project settings -->
+  <!-- 0 for initial or custom release, label value if built by ccnet -->
+  <property name="project.patchversion" value="${CCNetLabel}" overwrite="true" if="${property::exists('CCNetLabel')}"/>
+  <property name="project.patchversion" value="0" overwrite="false" />
+  <property name="project.version" value="2.0.${project.patchversion}" />
+  <property name="project.buildnumber" value="${math::abs(math::floor(timespan::get-total-days(datetime::now() - datetime::parse('01/01/2000'))))}" />
+  <!-- dev / alpha / beta# / rc# / release -->
+  <property name="project.releasetype" value="dev" />
+
   <property name="project.basedir" value="${project::get-base-directory()}" />
   <!-- path to Common.Logging build output shared by all plugin modules-->
   <property name="common.logging.base-version.dir" value="${project.basedir}/modules/Common.Logging/build/net/2.0/release" />
+  <!--target build dir -->
+  <property name="build.dir" value="${project::get-base-directory()}/build" />
   <!--target dir for packaging dist -->
   <property name="package.dir" value="${project::get-base-directory()}/package" />
+  <!-- directory containing build support tools -->
+  <property name="tool.dir" value="${project::get-base-directory()}/tools" />
 
-<!-- force net-2.0 -->
+  <!-- force net-2.0 -->
   <property name="nant.settings.currentframework" value="net-2.0"/>
 
+  <call target="create-common-assemblyinfo" />
+  
   <target name="build-common">
     <!-- ******* -->
     <!-- Common.Logging  -->
@@ -115,11 +129,36 @@
   </target>
 
   <target name="build" depends="build-common" description="compiles and tests all modules">
+
     <call target="build-EntLib" cascade="false" />
     <call target="build-EntLib41" cascade="false" />
     <call target="build-Log4Net" cascade="false" />
     <call target="build-Log4Net129" cascade="false" />
     <call target="build-NLog" cascade="false" />
+
+    <!-- clean build dir if exists -->
+    <delete dir="${build.dir}" failonerror="false" />
+
+    <copy todir="${build.dir}/net/2.0/debug" flatten="true">
+      <fileset>
+        <include name="**/build/net/2.0/debug/Common.Logging.*"/>
+      </fileset>
+    </copy>
+    <copy todir="${build.dir}/net/2.0/release" flatten="true">
+      <fileset>
+        <include name="**/build/net/2.0/release/Common.Logging.*"/>
+      </fileset>
+    </copy>
+
+    <!-- build coverage summary -->
+    <exec program="${tool.dir}/ncoverexplorer/ncoverexplorer.console.exe" workingdir="${build.dir}/net/2.0/debug">
+      <arg value="/xml:CoverageSummary.xml" />
+      <arg value="/report:ModuleClassFunctionSummary" />
+      <arg value="/sort:4" />
+      <arg value="/minCoverage:80" />
+      <arg path="${build.dir}/net/2.0/debug/*-TestCoverage.xml" />
+    </exec>
+    
   </target>
 
   <target name="package.sources">
@@ -167,7 +206,7 @@
 
   </target>
 
-  <target name="package.binaries" depends="build-common">
+  <target name="package.binaries" depends="build">
 
     <foreach item="String" in="debug,release" delim="," property="release-mode">
 
@@ -180,9 +219,6 @@
             file="${common.logging.base-version.dir}/Common.Logging.xml"/>
 
       <foreach item="String" in="EntLib,EntLib41,Log4Net,Log4Net129,NLog" delim="," property="modulename">
-        <!-- ensure module was built -->
-        <call target="build-${modulename}" cascade="false" />
-
         <!-- Copy Common.Logging.{modulename} dll -->
         <copy todir="${package.dir}/bin/net/2.0/${release-mode}"
               file="modules\Common.Logging.${modulename}\build\net\2.0\${release-mode}\Common.Logging.${modulename}.dll"/>
@@ -190,6 +226,12 @@
               file="modules\Common.Logging.${modulename}\build\net\2.0\${release-mode}\Common.Logging.${modulename}.pdb"/>
         <copy todir="${package.dir}/bin/net/2.0/${release-mode}"
               file="modules\Common.Logging.${modulename}\build\net\2.0\${release-mode}\Common.Logging.${modulename}.xml"/>
+        <!-- copy over test artifacts -->
+        <copy todir="${package.dir}/bin/net/2.0/${release-mode}">
+          <fileset>
+            <include name="modules\Common.Logging.${modulename}\build\net\2.0\${release-mode}\Common.Logging.${modulename}.dll-Test*.xml"/>
+          </fileset>
+        </copy>
         <!-- Copy {modulename} redistributables -->
         <!--<mkdir dir="${package.dir}/redist/${modulename}"/>-->
         <copy todir="${package.dir}/redist/${modulename}">
@@ -202,8 +244,8 @@
     </foreach>
 
   </target>
-
-	<target name="package.doc">
+  
+  <target name="package.doc">
     <!-- copy reference docs -->
     <call target="doc" cascade="false"/>
     <copy todir="${package.dir}/doc/reference/">
@@ -229,12 +271,12 @@
         <include name="*.chm"/>
       </fileset>
     </copy>
-	</target>
+  </target>
 
   <target name="package" description="Builds all modules and documentation">
 
     <!-- clean package dir -->
-    <delete dir="package"/>
+    <delete dir="package" failonerror="false" />
 
     <!-- build and copy binaries -->
     <call target="package.binaries" cascade="false" />
@@ -276,6 +318,31 @@
         <exclude name="*.zip"/>
       </fileset>
     </zip>
+  </target>
+
+  <target name="create-common-assemblyinfo">
+
+    <!-- ensure src/CommonAssemblyInfo.cs is writable if it already exists -->
+    <attrib file="${project.basedir}/modules/CommonAssemblyInfo.cs" readonly="false" if="${file::exists('src/CommonAssemblyInfo.cs')}" />
+    <!-- generate the source file holding the common assembly-level attributes -->
+    <asminfo output="${project.basedir}/modules/CommonAssemblyInfo.cs" language="CSharp">
+      <imports>
+        <import namespace="System" />
+        <import namespace="System.Reflection" />
+        <import namespace="System.Runtime.InteropServices" />
+      </imports>
+      <attributes>
+        <attribute type="CLSCompliantAttribute" value="true" />
+        <attribute type="ComVisibleAttribute" value="false" />
+        <attribute type="AssemblyCompanyAttribute" value="http://netcommon.sourceforge.net/" />
+        <attribute type="AssemblyCopyrightAttribute" value="Copyright 2006-2009 the Common Infrastructure Libraries Team." />
+        <attribute type="AssemblyTrademarkAttribute" value="Apache License, Version 2.0" />
+        <attribute type="AssemblyCultureAttribute" value="" />
+        <attribute type="AssemblyVersionAttribute" value="${project.version}.${project.buildnumber}" />
+        <attribute type="AssemblyConfigurationAttribute" value="${framework::get-target-framework()}.${platform::get-name()}; ${project.releasetype}" />
+        <attribute type="AssemblyInformationalVersionAttribute" value="${project.version}; ${framework::get-target-framework()}.${platform::get-name()}; ${project.releasetype}" />
+      </attributes>
+    </asminfo>
   </target>
 
 </project>

@@ -20,6 +20,7 @@
 
 using System;
 using System.Diagnostics;
+using Common.Logging.Factory;
 using Microsoft.Practices.EnterpriseLibrary.Logging;
 
 namespace Common.Logging.EntLib
