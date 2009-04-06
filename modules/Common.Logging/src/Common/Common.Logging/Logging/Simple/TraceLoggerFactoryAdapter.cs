@@ -24,10 +24,10 @@ using Common.Logging.Configuration;
 
 namespace Common.Logging.Simple
 {
-	/// <summary>
+    /// <summary>
     /// Factory for creating <see cref="ILog" /> instances that send 
     /// everything to the <see cref="System.Diagnostics.Trace"/> output stream.
-	/// </summary>
+    /// </summary>
     /// <remarks>
     /// Beware not to use <see cref="CommonLoggingTraceListener"/> in combination with this logger factory
     /// as this would result in an endless loop for obvious reasons!
@@ -38,26 +38,28 @@ namespace Common.Logging.Simple
     /// <author>Gilles Bayon</author>
     /// <author>Mark Pollack</author>
     /// <author>Erich Eichinger</author>
-	public class TraceLoggerFactoryAdapter: AbstractSimpleLoggerFactoryAdapter 
-	{
-	    private bool _useTraceSource = false;
+    public class TraceLoggerFactoryAdapter : AbstractSimpleLoggerFactoryAdapter
+    {
+        private bool _useTraceSource = false;
 
         /// <summary>
         /// Whether to use <see cref="Trace"/>.<c>TraceXXXX(string,object[])</c> methods for logging
         /// or <see cref="TraceSource"/>.
         /// </summary>
-	    public bool UseTraceSource
-	    {
-	        get { return _useTraceSource; }
-	        set { _useTraceSource = value; }
-	    }
+        [CoverageExclude]
+        public bool UseTraceSource
+        {
+            get { return _useTraceSource; }
+            set { _useTraceSource = value; }
+        }
 
 
-	    /// <summary>
+        /// <summary>
         /// Initializes a new instance of the <see cref="TraceLoggerFactoryAdapter"/> class using default settings.
         /// </summary>
-	    public TraceLoggerFactoryAdapter():base(null)
-	    {}
+        public TraceLoggerFactoryAdapter()
+            : base(null)
+        { }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TraceLoggerFactoryAdapter"/> class.
@@ -71,18 +73,19 @@ namespace Common.Logging.Simple
         /// </remarks>
         /// <param name="properties">The name value collection, typically specified by the user in 
         /// a configuration section named common/logging.</param>
-		public TraceLoggerFactoryAdapter(NameValueCollection properties):base(properties)
+        public TraceLoggerFactoryAdapter(NameValueCollection properties)
+            : base(properties)
         {
-            _useTraceSource = ConfigurationHelper.TryParseBoolean(false, properties["useTraceSource"]);
+            _useTraceSource = ArgUtils.TryParse(false, properties["useTraceSource"]);
         }
 
-	    /// <summary>
-	    /// Creates a new <see cref="TraceLogger"/> instance.
-	    /// </summary>
-	    protected override ILog CreateLogger(string name, LogLevel level, bool showLevel, bool showDateTime, bool showLogName, string dateTimeFormat)
-	    {
+        /// <summary>
+        /// Creates a new <see cref="TraceLogger"/> instance.
+        /// </summary>
+        protected override ILog CreateLogger(string name, LogLevel level, bool showLevel, bool showDateTime, bool showLogName, string dateTimeFormat)
+        {
             ILog log = new TraceLogger(_useTraceSource, name, level, showLevel, showDateTime, showLogName, dateTimeFormat);
-            return log;	        	        
-	    }
-	}
+            return log;
+        }
+    }
 }

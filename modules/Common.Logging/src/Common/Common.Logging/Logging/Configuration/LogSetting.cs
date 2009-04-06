@@ -49,14 +49,10 @@ namespace Common.Logging.Configuration
         /// </param>
         public LogSetting(Type factoryAdapterType, NameValueCollection properties)
         {
-            if (factoryAdapterType == null)
-            {
-                throw new ArgumentNullException("factoryAdapterType");
-            }
-            if (!typeof(ILoggerFactoryAdapter).IsAssignableFrom(factoryAdapterType))
-            {
-                throw new ArgumentException(string.Format("Type {0} does not implement {1}", factoryAdapterType.AssemblyQualifiedName, typeof(ILoggerFactoryAdapter).FullName), "factoryAdapterType");
-            }
+            ArgUtils.AssertNotNull("factoryAdapterType", factoryAdapterType);
+            ArgUtils.AssertIsAssignable<ILoggerFactoryAdapter>("factoryAdapterType", factoryAdapterType
+                , "Type {0} does not implement {1}", factoryAdapterType.AssemblyQualifiedName, typeof(ILoggerFactoryAdapter).FullName);
+
             _factoryAdapterType = factoryAdapterType;
             _properties = properties;
         }

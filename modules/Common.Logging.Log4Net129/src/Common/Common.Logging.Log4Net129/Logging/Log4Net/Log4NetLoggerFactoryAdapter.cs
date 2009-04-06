@@ -134,8 +134,8 @@ namespace Common.Logging.Log4Net
             _runtime = runtime;
 
             // parse config properties
-            string configType = ConfigurationHelper.GetValue(properties, "configType", string.Empty).ToUpper();
-            string configFile = ConfigurationHelper.GetValue(properties, "configFile", string.Empty);
+            string configType = ArgUtils.GetValue(properties, "configType", string.Empty).ToUpper();
+            string configFile = ArgUtils.GetValue(properties, "configFile", string.Empty);
 
             // app-relative path?
             if (configFile.StartsWith("~/") || configFile.StartsWith("~\\"))

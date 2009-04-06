@@ -10,6 +10,9 @@ IMPORTANT NOTE:
 starting with version 2.0 we dropped support for .NET versions 1.0 and 1.1. - if you need support
 for those platforms please download Common.Logging 1.2
 
+Breaking Changes
+*) LogManager.ConfigurationReader is readonly now -> use LogManager.Reset() instead
+
 Feature Requests
 
 [2485203] - Add support for EntLib 4.1 logging

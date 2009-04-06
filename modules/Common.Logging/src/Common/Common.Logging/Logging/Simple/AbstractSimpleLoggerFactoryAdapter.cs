@@ -43,15 +43,16 @@ namespace Common.Logging.Simple
     /// <author>Erich Eichinger</author>
     public abstract class AbstractSimpleLoggerFactoryAdapter : AbstractCachingLoggerFactoryAdapter
     {
-        private LogLevel _level = LogLevel.All;
-        private bool _showLevel = true;
-        private bool _showDateTime = true;
-        private bool _showLogName = true;
-        private string _dateTimeFormat = string.Empty;
+        private LogLevel _level;
+        private bool _showLevel;
+        private bool _showDateTime;
+        private bool _showLogName;
+        private string _dateTimeFormat;
 
         /// <summary>
         /// The default <see cref="LogLevel"/> to use when creating new <see cref="ILog"/> instances.
         /// </summary>
+        [CoverageExclude]
         public LogLevel Level
         {
             get { return _level; }
@@ -61,6 +62,7 @@ namespace Common.Logging.Simple
         /// <summary>
         /// The default setting to use when creating new <see cref="ILog"/> instances.
         /// </summary>
+        [CoverageExclude]
         public bool ShowLevel
         {
             get { return _showLevel; }
@@ -70,6 +72,7 @@ namespace Common.Logging.Simple
         /// <summary>
         /// The default setting to use when creating new <see cref="ILog"/> instances.
         /// </summary>
+        [CoverageExclude]
         public bool ShowDateTime
         {
             get { return _showDateTime; }
@@ -79,6 +82,7 @@ namespace Common.Logging.Simple
         /// <summary>
         /// The default setting to use when creating new <see cref="ILog"/> instances.
         /// </summary>
+        [CoverageExclude]
         public bool ShowLogName
         {
             get { return _showLogName; }
@@ -88,6 +92,7 @@ namespace Common.Logging.Simple
         /// <summary>
         /// The default setting to use when creating new <see cref="ILog"/> instances.
         /// </summary>
+        [CoverageExclude]
         public string DateTimeFormat
         {
             get { return _dateTimeFormat; }
@@ -109,13 +114,11 @@ namespace Common.Logging.Simple
         protected AbstractSimpleLoggerFactoryAdapter(NameValueCollection properties)
             : base(true)
         {
-            if (properties != null)
-            {
-                _level = (LogLevel)ConfigurationHelper.TryParseEnum(_level, properties["level"]);
-                _showDateTime = ConfigurationHelper.TryParseBoolean(_showDateTime, properties["showDateTime"]);
-                _showLogName = ConfigurationHelper.TryParseBoolean(_showLogName, properties["showLogName"]);
-                _dateTimeFormat = properties["dateTimeFormat"];
-            }
+            _level = ArgUtils.TryParseEnum(LogLevel.All, ArgUtils.GetValue(properties, "level"));
+            _showDateTime = ArgUtils.TryParse(true, ArgUtils.GetValue(properties, "showDateTime"));
+            _showLogName = ArgUtils.TryParse(true, ArgUtils.GetValue(properties, "showLogName"));
+            _showLevel = ArgUtils.TryParse(true, ArgUtils.GetValue(properties, "showLevel"));
+            _dateTimeFormat = ArgUtils.GetValue(properties, "dateTimeFormat", string.Empty);
         }
 
         /// <summary>

@@ -46,11 +46,7 @@ namespace Common.Logging.Configuration
         /// <see cref="ConfigurationSectionHandler"/>
         public object GetSection(string sectionName)
         {
-#if !NET_2_0
-            return ConfigurationSettings.GetConfig(sectionName);
-#else
             return ConfigurationManager.GetSection(sectionName);
-#endif
         }
     }
 }

@@ -70,7 +70,7 @@ namespace Common.Logging
     /// <seealso cref="ILoggerFactoryAdapter"/>
     /// <seealso cref="ConfigurationSectionHandler"/>
     /// <author>Gilles Bayon</author>
-    public sealed class LogManager
+    public static class LogManager
     {
         /// <summary>
         /// The name of the default configuration section to read settings from.
@@ -86,18 +86,12 @@ namespace Common.Logging
         private static readonly object _loadLock = new object();
 
         /// <summary>
-        /// Performs static 1-time init of LogManager by calling <see cref="ResetDefaults()"/>
+        /// Performs static 1-time init of LogManager by calling <see cref="Reset()"/>
         /// </summary>
         static LogManager()
         {
-            ResetDefaults();
+            Reset();
         }
-
-        /// <summary>
-        /// Uses a private access modifier to prevent instantiation of this class.
-        /// </summary>
-        private LogManager()
-        { }
 
         /// <summary>
         /// Reset the <see cref="Common.Logging" /> infrastructure to its default settings. This means, that configuration settings
@@ -108,17 +102,39 @@ namespace Common.Logging
         /// <b>Note:</b><see cref="ILog"/> instances already handed out from this LogManager are not(!) affected. 
         /// Resetting LogManager only affects new instances being handed out.
         /// </remarks>
-        public static void ResetDefaults()
+        public static void Reset()
+        {
+            Reset(new DefaultConfigurationReader());
+        }
+
+        /// <summary>
+        /// Reset the <see cref="Common.Logging" /> infrastructure to its default settings. This means, that configuration settings
+        /// will be re-read from section <c>&lt;common/logging&gt;</c> of your <c>app.config</c>.
+        /// </summary>
+        /// <remarks>
+        /// This is mainly used for unit testing, you wouldn't normally use this in your applications.<br/>
+        /// <b>Note:</b><see cref="ILog"/> instances already handed out from this LogManager are not(!) affected. 
+        /// Resetting LogManager only affects new instances being handed out.
+        /// </remarks>
+        /// <param name="reader">
+        /// the <see cref="IConfigurationReader"/> instance to obtain settings for 
+        /// re-initializing the LogManager.
+        /// </param>
+        public static void Reset(IConfigurationReader reader)
         {
             lock (_loadLock)
             {
-                _configurationReader = new DefaultConfigurationReader();
+                if (reader == null)
+                {
+                    throw new ArgumentNullException("reader");
+                }
+                _configurationReader = reader;
                 _adapter = null;
             }
         }
 
         /// <summary>
-        /// Gets or sets the configuration reader.
+        /// Gets the configuration reader used to initialize the LogManager.
         /// </summary>
         /// <remarks>Primarily used for testing purposes but maybe useful to obtain configuration
         /// information from some place other than the .NET application configuration file.</remarks>
@@ -128,14 +144,6 @@ namespace Common.Logging
             get
             {
                 return _configurationReader;
-            }
-            set
-            {
-                if (value == null)
-                {
-                    throw new ArgumentNullException("ConfigurationReader");
-                }
-                _configurationReader = value;
             }
         }
 
@@ -233,7 +241,7 @@ namespace Common.Logging
         {
             object sectionResult = null;
 
-            Guard(delegate
+            ArgUtils.Guard(delegate
                       {
                           sectionResult = ConfigurationReader.GetSection(COMMON_LOGGING_SECTION);
                       }
@@ -258,19 +266,17 @@ namespace Common.Logging
             }
 
             // ensure what's left is a LogSetting instance
-            if (!(sectionResult is LogSetting))
-            {
-                throw new ConfigurationException(string.Format("ConfigurationReader {0} returned unknown settings instance of type {1}", ConfigurationReader.GetType().FullName, sectionResult.GetType().FullName));
-            }
+            ArgUtils.Guard(delegate
+                               {
+                                   ArgUtils.AssertIsAssignable<LogSetting>("sectionResult", sectionResult.GetType());
+                               }
+                           , "ConfigurationReader {0} returned unknown settings instance of type {1}"
+                           , ConfigurationReader.GetType().FullName, sectionResult.GetType().FullName);
 
             ILoggerFactoryAdapter adapter = null;
-            Guard(delegate
+            ArgUtils.Guard(delegate
                     {
                         adapter = BuildLoggerFactoryAdapterFromLogSettings((LogSetting)sectionResult);
-                        if (adapter == null)
-                        {   // huh???
-                            throw new ConfigurationException("settings resulted in a <null> factory instance - this is a bug, please report it to the Common.Logging team");
-                        }
                     }
                 , "Failed creating LoggerFactoryAdapter from settings");
 
@@ -278,59 +284,43 @@ namespace Common.Logging
         }
 
         /// <summary>
-        /// Builds a <see cref="ILoggerFactoryAdapter"/> instance from the given <see cref="LogSetting"/>.
+        /// Builds a <see cref="ILoggerFactoryAdapter"/> instance from the given <see cref="LogSetting"/>
+        /// using <see cref="Activator"/>.
         /// </summary>
         /// <param name="setting"></param>
-        /// <returns></returns>
+        /// <returns>the <see cref="ILoggerFactoryAdapter"/> instance. Is never <c>null</c></returns>
         private static ILoggerFactoryAdapter BuildLoggerFactoryAdapterFromLogSettings(LogSetting setting)
         {
-            if (!typeof(ILoggerFactoryAdapter).IsAssignableFrom(setting.FactoryAdapterType))
-            {
-                throw new ConfigurationException(
-                    string.Format("Specified FactoryAdapter does not implement {0}.  Check implementation of class {1}"
-                    , typeof(ILoggerFactoryAdapter).FullName
-                    , setting.FactoryAdapterType.AssemblyQualifiedName));
-            }
+            ArgUtils.AssertNotNull("setting", setting);
+            // already ensured by LogSetting
+            //            AssertArgIsAssignable<ILoggerFactoryAdapter>("setting.FactoryAdapterType", setting.FactoryAdapterType
+            //                                , "Specified FactoryAdapter does not implement {0}.  Check implementation of class {1}"
+            //                                , typeof(ILoggerFactoryAdapter).FullName
+            //                                , setting.FactoryAdapterType.AssemblyQualifiedName);
 
-            ILoggerFactoryAdapter instance = null;
+            ILoggerFactoryAdapter adapter = null;
 
-            Guard(delegate
+            ArgUtils.Guard(delegate
+                    {
+                        if (setting.Properties != null
+                            && setting.Properties.Count > 0)
                         {
-                            if (setting.Properties != null 
-                                && setting.Properties.Count > 0)
-                            {
-                                object[] args = { setting.Properties };
+                            object[] args = { setting.Properties };
 
-                                instance = (ILoggerFactoryAdapter)Activator.CreateInstance(setting.FactoryAdapterType, args);
-                            }
-                            else
-                            {
-                                instance = (ILoggerFactoryAdapter)Activator.CreateInstance(setting.FactoryAdapterType);
-                            }
+                            adapter = (ILoggerFactoryAdapter)Activator.CreateInstance(setting.FactoryAdapterType, args);
                         }
+                        else
+                        {
+                            adapter = (ILoggerFactoryAdapter)Activator.CreateInstance(setting.FactoryAdapterType);
+                        }
+                    }
                     , "Unable to create instance of type {0}. Possible explanation is lack of zero arg and single arg NameValueCollection constructors"
                     , setting.FactoryAdapterType.FullName
             );
 
-            return instance;
-        }
-
-        private delegate void VoidAction();
-
-        private static void Guard(VoidAction action, string messageFormat, params object[] args)
-        {
-            try
-            {
-                action();
-            }
-            catch (ConfigurationException)
-            {
-                throw;
-            }
-            catch (Exception ex)
-            {
-                throw new ConfigurationException(string.Format(messageFormat, args), ex);
-            }
+            // make sure
+            ArgUtils.AssertNotNull("adapter", adapter, "Activator.CreateInstance() returned <null>");
+            return adapter;
         }
     }
 }

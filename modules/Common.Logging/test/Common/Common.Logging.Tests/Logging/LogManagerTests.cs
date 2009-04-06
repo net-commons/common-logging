@@ -18,7 +18,7 @@
 
 #endregion
 
-using System.Collections.Specialized;
+using System;
 using System.Diagnostics;
 using Common.Logging.Configuration;
 using Common.Logging.Simple;
@@ -34,10 +34,13 @@ namespace Common.Logging
     [TestFixture]
     public class LogManagerTests
     {
+        public MockRepository mocks;
+
         [SetUp]
         public void SetUp()
         {
-            LogManager.ResetDefaults();
+            LogManager.Reset();
+            mocks = new MockRepository();
         }
 
         [Test]
@@ -46,38 +49,70 @@ namespace Common.Logging
             ILoggerFactoryAdapter adapter = new NoOpLoggerFactoryAdapter();
             LogManager.Adapter = adapter;
             Assert.AreSame(adapter, LogManager.Adapter);
+
+            Assert.Throws<ArgumentNullException>(delegate { LogManager.Adapter = null; });
+        }
+
+        [Test]
+        public void Reset()
+        {
+            LogManager.Reset();
+            Assert.IsInstanceOf<DefaultConfigurationReader>(LogManager.ConfigurationReader);
+
+            Assert.Throws<ArgumentNullException>(delegate { LogManager.Reset(null); });
+
+            IConfigurationReader r = mocks.StrictMock<IConfigurationReader>();
+            using (mocks.Record())
+            {
+                Expect.Call(r.GetSection(LogManager.COMMON_LOGGING_SECTION)).Return(new TraceLoggerFactoryAdapter());
+            }
+            using(mocks.Playback())
+            {
+                LogManager.Reset(r);
+                Assert.IsInstanceOf<TraceLoggerFactoryAdapter>(LogManager.Adapter);
+            }
         }
 
         [Test]
         public void ConfigureFromConfigurationReader()
         {
-            MockRepository mocks = new MockRepository();
             IConfigurationReader r = mocks.StrictMock<IConfigurationReader>();
-            using(mocks.Record())
+            using (mocks.Record())
             {
                 Expect.Call(r.GetSection(LogManager.COMMON_LOGGING_SECTION)).Return(null);
                 Expect.Call(r.GetSection(LogManager.COMMON_LOGGING_SECTION)).Return(new TraceLoggerFactoryAdapter());
                 Expect.Call(r.GetSection(LogManager.COMMON_LOGGING_SECTION)).Return(new LogSetting(typeof(ConsoleOutLoggerFactoryAdapter), null));
+                Expect.Call(r.GetSection(LogManager.COMMON_LOGGING_SECTION)).Return(new object());
             }
 
             using (mocks.Playback())
             {
                 ILog log;
 
-                LogManager.ResetDefaults();
-                LogManager.ConfigurationReader = r;
-                log = LogManager.GetLogger(typeof (LogManagerTests));
-                Assert.AreEqual(typeof (NoOpLogger), log.GetType());
-                
-                LogManager.ResetDefaults();
-                LogManager.ConfigurationReader = r;
-                log = LogManager.GetLogger(typeof(LogManagerTests));
-                Assert.AreEqual(typeof (TraceLogger), log.GetType());
+                // accepts null sectionhandler return
+                LogManager.Reset(r);
+                log = LogManager.GetLogger<LogManagerTests>();
+                Assert.AreEqual(typeof(NoOpLogger), log.GetType());
 
-                LogManager.ResetDefaults();
-                LogManager.ConfigurationReader = r;
+                // accepts ILoggerFactoryAdapter sectionhandler returns
+                LogManager.Reset(r);
                 log = LogManager.GetLogger(typeof(LogManagerTests));
-                Assert.AreEqual(typeof (ConsoleOutLogger), log.GetType());
+                Assert.AreEqual(typeof(TraceLogger), log.GetType());
+
+                // accepts LogSetting sectionhandler returns
+                LogManager.Reset(r);
+                log = LogManager.GetLogger(typeof(LogManagerTests));
+                Assert.AreEqual(typeof(ConsoleOutLogger), log.GetType());
+
+                // every other return type throws ConfigurationException
+                LogManager.Reset(r);
+                Assert.Throws(Is.TypeOf<ConfigurationException>()
+                                .And.Message.EqualTo(string.Format("ConfigurationReader {0} returned unknown settings instance of type System.Object", r.GetType().Name))
+                                , delegate
+                                      {
+                                          log = LogManager.GetLogger(typeof(LogManagerTests));
+                                      }
+                  );
             }
         }
 
@@ -91,12 +126,12 @@ namespace Common.Logging
       </factoryAdapter>
     </logging>";
             ILog log = GetLog(xml);
-            Assert.IsAssignableFrom(typeof (ConsoleOutLogger), log);
+            Assert.IsAssignableFrom(typeof(ConsoleOutLogger), log);
         }
 
 
         [Test]
-        [ExpectedException(typeof (ConfigurationException))]
+        [ExpectedException(typeof(ConfigurationException))]
         public void InvalidAdapterType()
         {
             const string xml =
@@ -105,11 +140,11 @@ namespace Common.Logging
       <factoryAdapter type='Common.Logging.Simple.NonExistentAdapter, Common.Logging'>
       </factoryAdapter>
     </logging>";
-            ILog log = GetLog(xml);
+            GetLog(xml);
         }
 
         [Test]
-        [ExpectedException(typeof (ConfigurationException))]
+        [ExpectedException(typeof(ConfigurationException))]
         public void AdapterDoesNotImplementInterface()
         {
             const string xml =
@@ -118,11 +153,11 @@ namespace Common.Logging
       <factoryAdapter type='Common.Logging.StandaloneConfigurationReader, Common.Logging.Tests'>
       </factoryAdapter>
     </logging>";
-            ILog log = GetLog(xml);
+            GetLog(xml);
         }
 
         [Test]
-        [ExpectedException(typeof (ConfigurationException))]
+        [ExpectedException(typeof(ConfigurationException))]
         public void AdapterDoesNotHaveCorrectCtors()
         {
             const string xml =
@@ -131,11 +166,11 @@ namespace Common.Logging
       <factoryAdapter type='Common.Logging.MissingCtorFactoryAdapter, Common.Logging.Tests'>
       </factoryAdapter>
     </logging>";
-            ILog log = GetLog(xml);
+            GetLog(xml);
         }
 
         [Test]
-        [ExpectedException(typeof (ConfigurationException))]
+        [ExpectedException(typeof(ConfigurationException))]
         public void AdapterDoesNotHaveCorrectCtorsWithArgs()
         {
             const string xml =
@@ -145,7 +180,7 @@ namespace Common.Logging
             <arg key='level' value='DEBUG' />
       </factoryAdapter>
     </logging>";
-            ILog log = GetLog(xml);
+            GetLog(xml);
         }
 
         [Test]
@@ -169,15 +204,15 @@ namespace Common.Logging
         private static ILog GetLog(string xml)
         {
             StandaloneConfigurationReader configReader = new StandaloneConfigurationReader(xml);
-            LogManager.ConfigurationReader = configReader;
-            return LogManager.GetLogger(typeof (LogManagerTests));
+            LogManager.Reset(configReader);
+            return LogManager.GetLogger(typeof(LogManagerTests));
         }
 
         [Test]
         public void GetCurrentClassLoggerUsesCorrectType()
         {
             LogManager.Adapter = new ConsoleOutLoggerFactoryAdapter();
-            ConsoleOutLogger log = (ConsoleOutLogger) LogManager.GetCurrentClassLogger();
+            ConsoleOutLogger log = (ConsoleOutLogger)LogManager.GetCurrentClassLogger();
             Assert.AreEqual(this.GetType().FullName, log.Name);
         }
 

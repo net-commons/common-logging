@@ -18,6 +18,7 @@
 
 #endregion
 
+using System.Configuration;
 using Common.Logging.Configuration;
 using Common.Logging.Simple;
 using NUnit.Framework;
@@ -30,7 +31,7 @@ namespace Common.Logging
         [Test]
         public void NoParentSectionsAllowed()
         {
-            ConfigurationSectionHandler handler = new ConfigurationSectionHandler();
+            IConfigurationSectionHandler handler = new ConfigurationSectionHandler();
             Assert.Throws(Is.TypeOf<ConfigurationException>().And.Message.EqualTo("parent configuration sections are not allowed")
                          , delegate {
                                   handler.Create(new LogSetting(typeof (ConsoleOutLoggerFactoryAdapter), null), 

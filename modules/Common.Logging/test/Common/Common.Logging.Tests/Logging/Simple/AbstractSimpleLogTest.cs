@@ -29,7 +29,6 @@ namespace Common.Logging.Simple
     /// Base class that exercises the basic api of the simple loggers
     /// </summary>
     /// <author>Mark Pollack</author>
-    /// <version>$Id:$</version>    
     public abstract class AbstractSimpleLogTest : AbstractLogTest
     {
         protected ILog defaultLogInstance;

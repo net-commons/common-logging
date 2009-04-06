@@ -23,11 +23,9 @@ namespace Common.Logging
     /// <summary>
     /// This namespace contains all core classes making up the Common.Logging framework.
     /// </summary>
-    internal sealed class NamespaceDoc
+    [CoverageExclude]
+    internal static class NamespaceDoc
     {
         // serves as namespace summary for NDoc3 (http://ndoc3.sourceforge.net)
-        private NamespaceDoc()
-        {
-        }
     }
 }

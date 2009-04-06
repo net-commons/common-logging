@@ -1,4 +1,4 @@
-﻿#region License
+#region License
 
 /*
  * Copyright 2002-2009 the original author or authors.
@@ -18,14 +18,21 @@
 
 #endregion
 
-using Common.Logging;
+using System.Collections.Specialized;
+using NUnit.Framework;
 
-/// <summary>
-/// This assembly contains the core functionality of the Common.Logging framework.
-/// In particular, checkout <see cref="ILog.Debug(System.Action{Common.Logging.FormatMessageHandler})"/>
-/// </summary>
-[CoverageExclude]
-internal static class AssemblyDoc
+namespace Common.Logging.Configuration
 {
-    // serves as assembly summary for NDoc3 (http://ndoc3.sourceforge.net)
+    /// <summary>
+    /// </summary>
+    /// <author>Erich Eichinger</author>
+    [TestFixture]
+    public class DefaultConfigurationReaderTests
+    {
+        [Test]
+        public void ReadsAppConfig()
+        {
+            Assert.AreEqual("FromAppConfig", ((NameValueCollection)new DefaultConfigurationReader().GetSection("appSettings"))["appConfigCheck"]);
+        }
+    }
 }

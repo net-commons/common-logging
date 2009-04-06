@@ -11,7 +11,7 @@ namespace Common.Logging
         [SetUp]
         public void SetUp()
         {
-            LogManager.ResetDefaults();
+            LogManager.Reset();
         }
 
         [Test]

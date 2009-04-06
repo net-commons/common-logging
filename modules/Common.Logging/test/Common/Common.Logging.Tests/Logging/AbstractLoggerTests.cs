@@ -11,7 +11,7 @@ using Is=Rhino.Mocks.Constraints.Is;
 
 namespace Common.Logging
 {
-    [TestFixture]
+//    [TestFixture]
     public class AbstractLoggerTests
     {
         [Test]

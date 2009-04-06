@@ -18,14 +18,15 @@
 
 #endregion
 
-namespace Common.Logging.Factory
-{
-    /// <summary>
-    /// This namespace contains convenience base classes for implementing your own <see cref="ILoggerFactoryAdapter"/>s.
-    /// </summary>
-    [CoverageExclude]
-    internal static class NamespaceDoc
-    {
-        // serves as namespace summary for NDoc3 (http://ndoc3.sourceforge.net)
-    }
-}
+using System;
+
+/// <summary>
+/// Indicates classes or members to be ignored by NCover
+/// </summary>
+/// <remarks>
+/// Note, the name is chosen, because TestDriven.NET uses it as //ea argument to "Test With... Coverage"
+/// </remarks>
+/// <author>Erich Eichinger</author>
+[AttributeUsage(AttributeTargets.All)]
+internal class CoverageExcludeAttribute : Attribute
+{}

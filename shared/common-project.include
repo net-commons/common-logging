@@ -196,6 +196,8 @@ ${tool.dir}       : dir for tools
 			<arg path="${current.bin.dir}/${project.name}.dll-TestCoverage.xml" />
 			<arg value="//a" />
 			<arg value="${string::substring(project.name,0,string::last-index-of(project.name, '.Tests') )}" />
+            <arg value="//ea" />
+            <arg value="CoverageExcludeAttribute" />
 			<arg value="//q" />
 			<arg path="${tool.dir}/nunit/nunit-console-x86.exe" />
 			<arg path="${current.bin.dir}/${project.name}.dll" />

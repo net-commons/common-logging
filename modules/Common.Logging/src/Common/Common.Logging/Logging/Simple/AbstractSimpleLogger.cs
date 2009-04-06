@@ -32,19 +32,20 @@ namespace Common.Logging.Simple
     [Serializable]
     public abstract class AbstractSimpleLogger : AbstractLogger
     {
-        private readonly string _name = string.Empty;
-        private readonly bool _showLevel = false;
-        private readonly bool _showDateTime = false;
-        private readonly bool _showLogName = false;
-        private LogLevel _currentLogLevel = LogLevel.All;
-        private readonly string _dateTimeFormat = string.Empty;
-        private readonly bool _hasDateTimeFormat = false;
+        private readonly string _name;
+        private readonly bool _showLevel;
+        private readonly bool _showDateTime;
+        private readonly bool _showLogName;
+        private LogLevel _currentLogLevel;
+        private readonly string _dateTimeFormat;
+        private readonly bool _hasDateTimeFormat;
 
         #region Properties
 
         /// <summary>
         /// The name of the logger.
         /// </summary>
+        [CoverageExclude]
         public string Name
         {
             get { return _name; }
@@ -53,6 +54,7 @@ namespace Common.Logging.Simple
         /// <summary>
         /// Include the current log level in the log message.
         /// </summary>
+        [CoverageExclude]
         public bool ShowLevel
         {
             get { return _showLevel; }
@@ -61,6 +63,7 @@ namespace Common.Logging.Simple
         /// <summary>
         /// Include the current time in the log message.
         /// </summary>
+        [CoverageExclude]
         public bool ShowDateTime
         {
             get { return _showDateTime; }
@@ -69,6 +72,7 @@ namespace Common.Logging.Simple
         /// <summary>
         /// Include the instance name in the log message.
         /// </summary>
+        [CoverageExclude]
         public bool ShowLogName
         {
             get { return _showLogName; }
@@ -77,6 +81,7 @@ namespace Common.Logging.Simple
         /// <summary>
         /// The current logging threshold. Messages recieved that are beneath this threshold will not be logged.
         /// </summary>
+        [CoverageExclude]
         public LogLevel CurrentLogLevel
         {
             get { return _currentLogLevel; }
@@ -86,6 +91,7 @@ namespace Common.Logging.Simple
         /// <summary>
         /// The date and time format to use in the log message.
         /// </summary>
+        [CoverageExclude]
         public string DateTimeFormat
         {
             get { return _dateTimeFormat; }
@@ -94,6 +100,7 @@ namespace Common.Logging.Simple
         /// <summary>
         /// Determines Whether <see cref="DateTimeFormat"/> is set.
         /// </summary>
+        [CoverageExclude]
         public bool HasDateTimeFormat
         {
             get { return _hasDateTimeFormat; }
@@ -120,11 +127,7 @@ namespace Common.Logging.Simple
             _showDateTime = showDateTime;
             _showLogName = showLogName;
             _dateTimeFormat = dateTimeFormat;
-
-            if (_dateTimeFormat != null && _dateTimeFormat.Length > 0)
-            {
-                _hasDateTimeFormat = true;
-            }
+            _hasDateTimeFormat = (!string.IsNullOrEmpty(_dateTimeFormat));
         }
 
         /// <summary>

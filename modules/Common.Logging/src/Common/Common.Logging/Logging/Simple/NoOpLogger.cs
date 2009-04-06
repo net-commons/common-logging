@@ -29,6 +29,7 @@ namespace Common.Logging.Simple
     /// <author>Gilles Bayon</author>
     /// <author>Erich Eichinger</author>
     [Serializable]
+    [CoverageExclude]
     public sealed class NoOpLogger : ILog
     {
         #region IsXXXEnabled

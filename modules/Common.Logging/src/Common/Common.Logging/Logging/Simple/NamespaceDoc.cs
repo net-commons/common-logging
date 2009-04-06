@@ -24,10 +24,9 @@ namespace Common.Logging.Simple
     /// This namespace contains out-of-the-box adapters to intrinsic systems, namely
     /// <see cref="ConsoleOutLoggerFactoryAdapter"/> and <see cref="TraceLoggerFactoryAdapter"/>.
     /// </summary>
-    internal sealed class NamespaceDoc
+    [CoverageExclude]
+    internal static class NamespaceDoc
     {
         // serves as namespace summary for NDoc3 (http://ndoc3.sourceforge.net)
-        private NamespaceDoc()
-        { }
     }
 }

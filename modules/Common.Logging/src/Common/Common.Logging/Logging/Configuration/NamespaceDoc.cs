@@ -23,9 +23,9 @@ namespace Common.Logging.Configuration
     /// <summary>
     /// This namespace contains various utility classes.
     /// </summary>
-    public sealed class NamespaceDoc
+    [CoverageExclude]
+    internal static class NamespaceDoc
     {
-        private NamespaceDoc()
-        { }
+        // serves as namespace summary for NDoc3 (http://ndoc3.sourceforge.net)
     }
 }

@@ -38,7 +38,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>..\..\..\build\VS.NET.2008\Common.Logging.Tests\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;NET_3_0</DefineConstants>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>x86</PlatformTarget>
@@ -72,15 +72,19 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AssemblyInfo.cs" />
     <Compile Include="Logging\AbstractLoggerTests.cs" />
     <Compile Include="ExceptionsTest.cs" />
     <Compile Include="Logging\AbstractLogTest.cs" />
     <Compile Include="Logging\CommonLoggingTraceListenerTests.cs" />
     <Compile Include="Logging\ConfigurationSectionHandlerTests.cs" />
+    <Compile Include="Logging\Configuration\ArgUtilsTests.cs" />
+    <Compile Include="Logging\Configuration\DefaultConfigurationReaderTests.cs" />
     <Compile Include="Logging\LoggingExceptionTests.cs" />
     <Compile Include="Logging\LogManagerTests.cs" />
     <Compile Include="Logging\MissingCtorFactoryAdapter.cs" />
     <Compile Include="Logging\SerializationTestUtils.cs" />
+    <Compile Include="Logging\Simple\AbstractSimpleLoggerTests.cs" />
     <Compile Include="Logging\Simple\ConsoleOutLoggerTests.cs" />
     <Compile Include="Logging\Simple\TraceLoggerTests.cs" />
     <Compile Include="Logging\Simple\NoOpLoggerTests.cs" />
