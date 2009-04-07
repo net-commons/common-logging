@@ -53,7 +53,7 @@ log.DebugFormat("Hi {0}", "dude");
 &lt;/configuration&gt;
 </pre>
             <h1 xmlns="urn:ndoc-schema">Customizing</h1>
-            <p> In the case you want to integrate your own logging system that is not supported by Common.Logging yet, it is easily possible to implement your own plugin by implementing <a href="Common.Logging~Common.Logging.ILoggerFactoryAdapter.html">ILoggerFactoryAdapter</a>. For convenience there is a base <a href="Common.Logging~Common.Logging.AbstractCachingLoggerFactoryAdapter.html">AbstractCachingLoggerFactoryAdapter</a> implementation available that usually makes implementing your own adapter a breeze. </p>
+            <p> In the case you want to integrate your own logging system that is not supported by Common.Logging yet, it is easily possible to implement your own plugin by implementing <a href="Common.Logging~Common.Logging.ILoggerFactoryAdapter.html">ILoggerFactoryAdapter</a>. For convenience there is a base <a href="Common.Logging~Common.Logging.Factory.AbstractCachingLoggerFactoryAdapter.html">AbstractCachingLoggerFactoryAdapter</a> implementation available that usually makes implementing your own adapter a breeze. </p>
             <h1 xmlns="urn:ndoc-schema">&lt;system.diagnostics&gt; Integration</h1>
             <p> If your code already uses the .NET framework's built-in <a href="http://msdn.microsoft.com/library/system.diagnostics.trace.aspx" xmlns="urn:ndoc-schema">System.Diagnostics.Trace</a> system, you can use <a href="Common.Logging~Common.Logging.CommonLoggingTraceListener.html">CommonLoggingTraceListener</a> to redirect all trace output to the Common.Logging infrastructure. </p>
 	<hr />
