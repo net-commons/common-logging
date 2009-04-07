@@ -284,7 +284,7 @@ namespace Common.Logging.Configuration
         /// <summary>
         /// An anonymous action delegate with no arguments and no return value.
         /// </summary>
-        /// <seealso cref="Guard"/>
+        /// <seealso cref="Guard{T}"/>
         public delegate T Function<T>();
 
         /// <summary>
