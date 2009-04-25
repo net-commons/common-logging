@@ -33,6 +33,7 @@ namespace Common.TestUtil
         {
             get
             {
+                string msg = null;
                 if (Format ==  null && Data != null)
                 {
                     StringBuilder sb = new StringBuilder();
@@ -40,9 +41,17 @@ namespace Common.TestUtil
                     {
                         sb.Append(d);
                     }
-                    Format = sb.ToString();
+                    msg = sb.ToString();
                 }
-                return string.Format(""+Format, Args);
+                else
+                {
+                    msg = "" + Format;
+                }
+                if (Args != null)
+                {
+                    return string.Format(msg, Args);
+                }
+                return msg;
             }
         }
     }

@@ -7,7 +7,7 @@
     <ProjectGuid>{EDA14ED0-E442-4FBD-9FD6-E6F9732500A0}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Spring</RootNamespace>
+    <RootNamespace>Common</RootNamespace>
     <AssemblyName>Common.Logging.Log4Net129.Tests</AssemblyName>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
@@ -67,6 +67,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="Logging\Log4Net\CommonLoggingAppenderTests.cs" />
     <Compile Include="Logging\Log4Net\Log4NetLoggerFactoryAdapterTests.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -81,6 +82,9 @@
       <Project>{A6A7257A-D1AE-4A09-8C1C-F55E099C8A8A}</Project>
       <Name>Common.Logging.Log4Net129.2008</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Logging\Log4Net\CommonLoggingAppenderTests_log4net.config.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

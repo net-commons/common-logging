@@ -1,18 +1,19 @@
 <?xml version="1.0" ?>
 <project name="Common.Logging.Log4Net" default="build" xmlns="http://nant.sf.net/schemas/nant.xsd">
-<!--
+  <!--
     Required properties:
       * current.bin.dir           - (path) root level to build to
       * current.build.debug       - (true|false) debug build?
       * current.build.defines.csc - framework-specific build defines for C# compiler
  -->
   <target name="build">
+
     <csc target="library" define="${current.build.defines.csc}"
-      warnaserror="true"
-      optimize="${build.optimize}"
-      debug="${current.build.debug}"
-      output="${current.bin.dir}/${project::get-name()}.dll"
-      doc="${current.bin.dir}/${project::get-name()}.xml"
+          warnaserror="true"
+          optimize="${build.optimize}"
+          debug="${current.build.debug}"
+          output="${current.bin.dir}/${project::get-name()}.dll"
+          doc="${current.bin.dir}/${project::get-name()}.xml"
       >
       <arg line="${compiler.args}"/>
       <nowarn>
@@ -28,6 +29,5 @@
       </references>
     </csc>
   </target>
-
 
 </project>

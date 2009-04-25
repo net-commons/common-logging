@@ -28,17 +28,9 @@
                 <exclude name="${project::get-name()}.dll" />
             </references>
         </csc>
-        <copy todir="${current.bin.dir}">
-            <fileset basedir="${project::get-name()}/Data">
-                <include name="**/*.xml" />
-                <include name="**/*.test" />
-            </fileset>
-        </copy>
-        <copy todir="${current.bin.dir}">
-            <fileset basedir="${project::get-name()}">
-                <include name="**/*.config" />
-            </fileset>
-        </copy>
+        <!-- deploy app.config -->
+        <!--<copy file="${project::get-base-directory()}/app.config"
+              tofile="${current.bin.dir}/${project::get-name()}.dll.config"/>-->
     </target>
 
     <target name="test" depends="build">

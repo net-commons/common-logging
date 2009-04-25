@@ -21,8 +21,7 @@
 namespace Common.Logging.EntLib
 {
     /// <summary>
-    /// This namespace contains the <see cref="ILoggerFactoryAdapter"/> implementation 
-    /// <see cref="EntLibLoggerFactoryAdapter"/> to plug EntLib 3.1 into Common.Logging.
+    /// This namespace contains the implementations to plug EntLib 3.1 into Common.Logging.
     /// <list>
     /// <item>For an example how to configure Common.Logging to render its output to Entlib, see <see cref="EntLibLoggerFactoryAdapter"/>.</item>
     /// <item>To configure Entlib to render its output to Common.Logging use <see cref="CommonLoggingEntlibTraceListener"/>.</item>

@@ -62,10 +62,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="Logging\Log4Net\CommonLoggingAppenderTests.cs" />
     <Compile Include="Logging\Log4Net\Log4NetLoggerFactoryAdapterTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Common.Logging.Log4Net.Tests.build" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Logging\Log4Net\CommonLoggingAppenderTests_log4net.config.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

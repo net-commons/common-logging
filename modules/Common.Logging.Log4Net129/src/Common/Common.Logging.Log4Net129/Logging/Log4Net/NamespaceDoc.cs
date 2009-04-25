@@ -21,13 +21,18 @@
 namespace Common.Logging.Log4Net
 {
     /// <summary>
-    /// This namespace contains the <see cref="ILoggerFactoryAdapter"/> implementation 
-    /// <see cref="Log4NetLoggerFactoryAdapter"/> to plug log4net 1.2.9 into Common.Logging.
+    /// <para>
+    /// This namespace contains the implementations to plug log4net 1.2.9 into Common.Logging.
+    /// </para>
+    /// <para>For an example on how to configure
+    /// <list>
+    /// <item>Common.Logging to render its output to log4net, see <see cref="Log4NetLoggerFactoryAdapter"/>.</item>
+    /// <item>log4net to render its output to Common.Logging use <see cref="CommonLoggingAppender"/>.</item>
+    /// </list>
+    /// </para>
     /// </summary>
-    internal sealed class NamespaceDoc
+    internal static class NamespaceDoc
     {
         // serves as namespace summary for NDoc3 (http://ndoc3.sourceforge.net)
-        private NamespaceDoc()
-        { }
     }
 }
