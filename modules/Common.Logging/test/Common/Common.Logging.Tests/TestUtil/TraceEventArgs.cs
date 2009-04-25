@@ -1,33 +1,48 @@
+using System;
 using System.Diagnostics;
+using System.Text;
 
 namespace Common.TestUtil
 {
     public class TraceEventArgs
     {
+        public TraceEventCache EventCache;
         public string Source;
-        public TraceEventType EventType;
-        public int Id;
-        public string Format;
+        public TraceEventType? EventType;
+        public string Category;
+        public int? Id;
+        public object[] Data;
+        public object Format;
         public object[] Args;
+        public Guid? RelatedActivityId;
 
-        public TraceEventArgs(string source, TraceEventType eventType, int id, string format, object[] args)
+        public TraceEventArgs(TraceEventCache eventCache, string source, TraceEventType? eventType, string category, int? id, object message, object[] args, object[] data, Guid? relatedActivityId)
         {
+            EventCache = eventCache;
             Source = source;
             EventType = eventType;
+            Category = category;
             Id = id;
-            Format = format;
+            Format = message;
             Args = args;
+            Data = data;
+            RelatedActivityId = relatedActivityId;
         }
 
         public string FormattedMessage
         {
             get
             {
-                if (Args ==  null)
+                if (Format ==  null && Data != null)
                 {
-                    return Format;
+                    StringBuilder sb = new StringBuilder();
+                    foreach(object d in Data)
+                    {
+                        sb.Append(d);
+                    }
+                    Format = sb.ToString();
                 }
-                return string.Format(Format, Args);
+                return string.Format(""+Format, Args);
             }
         }
     }

@@ -70,7 +70,7 @@ namespace Common.Logging.EntLib
 
         protected override void Log(TraceEventType eventType, string source, int id, string format, params object[] args)
         {
-            Events.Add(new TraceEventArgs(source, eventType, id, null, null));
+            Events.Add(new TraceEventArgs(null, source, eventType, null, id, null, null, null, null));
             if (logEnabled)
             {
                 base.Log(eventType, source, id, format, args);

@@ -19,7 +19,7 @@
 #endregion
 
 using System.Diagnostics;
-using Common.TestUtil;
+using Common.Logging.Simple;
 using Microsoft.Practices.EnterpriseLibrary.Logging;
 using Microsoft.Practices.EnterpriseLibrary.Logging.Formatters;
 using NUnit.Framework;
@@ -35,7 +35,7 @@ namespace Common.Logging.EntLib
         [Test]
         public void RedirectsToCommonLogging()
         {
-            TestLoggerFactoryAdapter testLoggerFactoryAdapter = new TestLoggerFactoryAdapter();
+            CapturingLoggerFactoryAdapter testLoggerFactoryAdapter = new CapturingLoggerFactoryAdapter();
             LogManager.Adapter = testLoggerFactoryAdapter;
 
             // force entlib logging init

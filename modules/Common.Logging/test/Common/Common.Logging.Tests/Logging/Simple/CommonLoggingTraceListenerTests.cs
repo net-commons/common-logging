@@ -1,6 +1,5 @@
 ﻿using System.Collections.Specialized;
 using System.Diagnostics;
-using Common.TestUtil;
 using NUnit.Framework;
 
 namespace Common.Logging.Simple
@@ -17,7 +16,7 @@ namespace Common.Logging.Simple
         [Test]
         public void LogsUsingCommonLogging()
         {
-            TestLoggerFactoryAdapter factoryAdapter = new TestLoggerFactoryAdapter();
+            CapturingLoggerFactoryAdapter factoryAdapter = new CapturingLoggerFactoryAdapter();
             LogManager.Adapter = factoryAdapter;
 
             CommonLoggingTraceListener l = new CommonLoggingTraceListener();
@@ -34,7 +33,7 @@ namespace Common.Logging.Simple
             AssertExpectedLogLevel(l, TraceEventType.Error, LogLevel.Error);
             AssertExpectedLogLevel(l, TraceEventType.Critical, LogLevel.Fatal);
 
-            factoryAdapter.LastEvent = null;
+            factoryAdapter.ClearLastEvent();
             l.DefaultTraceEventType = TraceEventType.Warning;
             l.Write("some message", "some category");
             Assert.AreEqual(string.Format("{0}.{1}", l.Name, "some category"), factoryAdapter.LastEvent.Source.Name);
@@ -45,8 +44,8 @@ namespace Common.Logging.Simple
 
         private void AssertExpectedLogLevel(CommonLoggingTraceListener l, TraceEventType eventType, LogLevel expectedLogLevel)
         {
-            TestLoggerFactoryAdapter factoryAdapter = (TestLoggerFactoryAdapter)LogManager.Adapter;
-            factoryAdapter.LastEvent = null;
+            CapturingLoggerFactoryAdapter factoryAdapter = (CapturingLoggerFactoryAdapter)LogManager.Adapter;
+            factoryAdapter.Clear();
             l.TraceEvent(null, "sourceName " + eventType, eventType, -1, "format {0}", eventType);
             Assert.AreEqual(string.Format("{0}.{1}", l.Name, "sourceName " + eventType), factoryAdapter.LastEvent.Source.Name);
             Assert.AreEqual(expectedLogLevel, factoryAdapter.LastEvent.Level);
@@ -57,12 +56,12 @@ namespace Common.Logging.Simple
         [Test]
         public void DoesNotLogBelowFilterLevel()
         {
-            TestLoggerFactoryAdapter factoryAdapter = new TestLoggerFactoryAdapter();
+            CapturingLoggerFactoryAdapter factoryAdapter = new CapturingLoggerFactoryAdapter();
             LogManager.Adapter = factoryAdapter;
 
             CommonLoggingTraceListener l = new CommonLoggingTraceListener();
             l.Filter = new EventTypeFilter(SourceLevels.Warning);
-            factoryAdapter.LastEvent = null;
+            factoryAdapter.ClearLastEvent();
             l.TraceEvent(null, "sourceName", TraceEventType.Information, -1, "format {0}", "Information");
             Assert.AreEqual(null, factoryAdapter.LastEvent);
 

@@ -94,9 +94,6 @@
     <Compile Include="PerformanceTests.cs" />
     <Compile Include="StopWatch.cs" />
     <Compile Include="TestUtil\CapturingTraceListener.cs" />
-    <Compile Include="TestUtil\TestLogger.cs" />
-    <Compile Include="TestUtil\TestLoggerEvent.cs" />
-    <Compile Include="TestUtil\TestLoggerFactoryAdapter.cs" />
     <Compile Include="StandardsComplianceTest.cs" />
     <Compile Include="TestUtil\TraceEventArgs.cs" />
   </ItemGroup>
