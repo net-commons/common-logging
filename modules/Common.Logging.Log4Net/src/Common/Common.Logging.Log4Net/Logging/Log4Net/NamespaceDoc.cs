@@ -25,7 +25,7 @@ namespace Common.Logging.Log4Net
     /// This namespace contains the implementations to plug log4net 1.2.10 into Common.Logging.
     /// </para>
     /// <para>For an example on how to configure
-    /// <list>
+    /// <list type="bullet">
     /// <item>Common.Logging to render its output to log4net, see <see cref="Log4NetLoggerFactoryAdapter"/>.</item>
     /// <item>log4net to render its output to Common.Logging use <see cref="CommonLoggingAppender"/>.</item>
     /// </list>

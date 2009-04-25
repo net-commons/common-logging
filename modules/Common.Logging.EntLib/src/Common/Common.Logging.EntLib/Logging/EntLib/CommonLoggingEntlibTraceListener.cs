@@ -135,7 +135,7 @@ namespace Common.Logging.EntLib
         /// </summary>
         /// <remarks>
         /// Available placeholders are:
-        /// <list>
+        /// <list type="bullet">
         /// <item>{listenerName}: the configured name of this listener instance.</item>
         /// <item>{sourceName}: the trace source name an event originates from (see e.g. <see cref="TraceListener.TraceEvent(System.Diagnostics.TraceEventCache,string,System.Diagnostics.TraceEventType,int,string,object[])"/>.</item>
         /// </list>

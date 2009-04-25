@@ -27,7 +27,7 @@ using Common.Logging.Simple;
 /// to plug Microsoft Enterprise Logging Library 4.1. into the Common.Logging infrastructure.
 /// </para>
 /// <para>For an example on how to configure
-/// <list>
+/// <list type="bullet">
 /// <item>Common.Logging to render its output to Entlib, see <see cref="EntLibLoggerFactoryAdapter"/>.</item>
 /// <item>Entlib to render its output to Common.Logging use <see cref="CommonLoggingTraceListener"/>.</item>
 /// </list>
