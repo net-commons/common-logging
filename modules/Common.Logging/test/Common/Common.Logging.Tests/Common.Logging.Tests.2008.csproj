@@ -76,7 +76,7 @@
     <Compile Include="Logging\AbstractLoggerTests.cs" />
     <Compile Include="ExceptionsTest.cs" />
     <Compile Include="Logging\AbstractLogTest.cs" />
-    <Compile Include="Logging\CommonLoggingTraceListenerTests.cs" />
+    <Compile Include="Logging\Simple\CommonLoggingTraceListenerTests.cs" />
     <Compile Include="Logging\ConfigurationSectionHandlerTests.cs" />
     <Compile Include="Logging\Configuration\ArgUtilsTests.cs" />
     <Compile Include="Logging\Configuration\DefaultConfigurationReaderTests.cs" />

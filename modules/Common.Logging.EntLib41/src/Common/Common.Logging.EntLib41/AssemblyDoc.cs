@@ -18,13 +18,22 @@
 
 #endregion
 
+using Common.Logging.EntLib;
+using Common.Logging.Simple;
+
 /// <summary>
-/// This assembly contains the adapter to the 
-/// Microsoft Enterprise Logging Library 4.1
+/// <para>
+/// This assembly contains the <see cref="EntLibLoggerFactoryAdapter"/> adapter 
+/// to plug Microsoft Enterprise Logging Library 4.1. into the Common.Logging infrastructure.
+/// </para>
+/// <para>For an example on how to configure
+/// <ul>
+/// <li>Common.Logging to render its output to Entlib, see <see cref="EntLibLoggerFactoryAdapter"/>.</li>
+/// <li>Entlib to render its output to Common.Logging use <see cref="CommonLoggingTraceListener"/>.</li>
+/// </ul>
+/// </para>
 /// </summary>
-internal sealed class AssemblyDoc
+internal static class AssemblyDoc
 {
     // serves as assembly summary for NDoc3 (http://ndoc3.sourceforge.net)
-    private AssemblyDoc()
-    { }
 }

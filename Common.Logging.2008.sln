@@ -41,6 +41,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		changelog.txt = changelog.txt
 		shared\common-project.include = shared\common-project.include
+		doc\api\introduction.html = doc\api\introduction.html
 		shared\Logging.build = shared\Logging.build
 		Logging.build = Logging.build
 		shared\Logging.include = shared\Logging.include

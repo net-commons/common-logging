@@ -65,6 +65,7 @@
       <HintPath>..\..\..\lib\net\2.0\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\Common.Logging\src\Common\Common.Logging\Common.Logging.2008.csproj">
@@ -87,6 +88,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Logging\EntLib\TestCommonLoggingEntlibTraceListener.cs" />
+    <Compile Include="Logging\EntLib\CommonLoggingEntlibTraceListenerTests.cs" />
     <Compile Include="Logging\EntLib\EntLibTests.cs" />
   </ItemGroup>
   <ItemGroup>

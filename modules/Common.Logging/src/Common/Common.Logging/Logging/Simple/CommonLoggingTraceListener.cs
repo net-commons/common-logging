@@ -23,10 +23,11 @@ using System.Collections.Specialized;
 using System.Diagnostics;
 using System.Text;
 
-namespace Common.Logging
+namespace Common.Logging.Simple
 {
     /// <summary>
-    /// A TraceListener implementation sending all trace output to Common.Logging infrastructure.
+    /// A <see cref="TraceListener"/> implementation sending all <see cref="Trace">System.Diagnostics.Trace</see> output to 
+    /// the Common.Logging infrastructure.
     /// </summary>
     /// <remarks>
     /// This listener captures all output sent by calls to <see cref="System.Diagnostics.Trace">System.Diagnostics.Trace</see> and
@@ -42,8 +43,8 @@ namespace Common.Logging
     /// &lt;system.diagnostics&gt;
     ///   &lt;sharedListeners&gt;
     ///     &lt;add name=&quot;Diagnostics&quot;
-    ///          type=&quot;Common.Logging.CommonLoggingTraceListener, Common.Logging&quot;
-    ///          initializeData=&quot;DefaultTraceEventType=Information; LoggerNameFormat={0}.{1}&quot;&gt;
+    ///          type=&quot;Common.Logging.Simple.CommonLoggingTraceListener, Common.Logging&quot;
+    ///          initializeData=&quot;DefaultTraceEventType=Information; LoggerNameFormat={listenerName}.{sourceName}&quot;&gt;
     ///       &lt;filter type=&quot;System.Diagnostics.EventTypeFilter&quot; initializeData=&quot;Information&quot;/&gt;
     ///     &lt;/add&gt;
     ///   &lt;/sharedListeners&gt;
@@ -59,7 +60,7 @@ namespace Common.Logging
     public class CommonLoggingTraceListener : TraceListener
     {
         private TraceEventType _defaultTraceEventType = TraceEventType.Verbose;
-        private string _loggerNameFormat = "{0}.{1}";
+        private string _loggerNameFormat = "{listenerName}.{sourceName}";
 
         #region Properties
 
@@ -80,9 +81,15 @@ namespace Common.Logging
         }
 
         /// <summary>
-        /// Format to use for creating the logger name. Defaults to "{0}.{1}".
+        /// Format to use for creating the logger name. Defaults to "{listenerName}.{sourceName}".
         /// </summary>
-        /// <seealso cref="string.Format(string,object[])"/>
+        /// <remarks>
+        /// Available placeholders are:
+        /// <list>
+        /// <item>{listenerName}: the configured name of this listener instance.</item>
+        /// <item>{sourceName}: the trace source name an event originates from (see e.g. <see cref="TraceListener.TraceEvent(System.Diagnostics.TraceEventCache,string,System.Diagnostics.TraceEventType,int,string,object[])"/>.</item>
+        /// </list>
+        /// </remarks>
         public string LoggerNameFormat
         {
             get { return _loggerNameFormat; }
@@ -154,7 +161,7 @@ namespace Common.Logging
             }
             else
             {
-                this.LoggerNameFormat = "{0}.{1}";
+                this.LoggerNameFormat = "{listenerName}.{sourceName}";
             }
         }
 
@@ -163,13 +170,14 @@ namespace Common.Logging
         /// </summary>
         /// <param name="eventType">the eventType</param>
         /// <param name="source">the <see cref="TraceSource"/> name or category name passed into e.g. <see cref="Trace.Write(object,string)"/>.</param>
+        /// <param name="id">the id of this event</param>
         /// <param name="format">the message format</param>
         /// <param name="args">the message arguments</param>
-        protected void Log(TraceEventType eventType, string source, string format, params object[] args)
+        protected virtual void Log(TraceEventType eventType, string source, int id, string format, params object[] args)
         {
             if (!string.IsNullOrEmpty(source))
             {
-                source = string.Format(_loggerNameFormat, this.Name, source);
+                source = this.LoggerNameFormat.Replace("{listenerName}", this.Name).Replace("{sourceName}", source);
             }
             ILog log = LogManager.GetLogger(source);
             LogLevel logLevel = MapLogLevel(eventType);
@@ -177,17 +185,23 @@ namespace Common.Logging
             switch (logLevel)
             {
                 case LogLevel.Trace:
-                    log.TraceFormat(format, args); break;
+                    log.TraceFormat(format, args);
+                    break;
                 case LogLevel.Debug:
-                    log.DebugFormat(format, args); break;
+                    log.DebugFormat(format, args);
+                    break;
                 case LogLevel.Info:
-                    log.InfoFormat(format, args); break;
+                    log.InfoFormat(format, args);
+                    break;
                 case LogLevel.Warn:
-                    log.WarnFormat(format, args); break;
+                    log.WarnFormat(format, args);
+                    break;
                 case LogLevel.Error:
-                    log.ErrorFormat(format, args); break;
+                    log.ErrorFormat(format, args);
+                    break;
                 case LogLevel.Fatal:
-                    log.FatalFormat(format, args); break;
+                    log.FatalFormat(format, args);
+                    break;
                 case LogLevel.Off:
                     break;
                 default:
@@ -208,7 +222,8 @@ namespace Common.Logging
             foreach (string s in parts)
             {
                 string part = s.Trim();
-                if (part.Length == 0) continue;
+                if (part.Length == 0)
+                    continue;
 
                 int ixEquals = part.IndexOf('=');
                 if (ixEquals > -1)
@@ -234,7 +249,7 @@ namespace Common.Logging
         {
             if (((this.Filter == null) || this.Filter.ShouldTrace(null, this.Name, this.DefaultTraceEventType, 0, null, null, o, null)))
             {
-                Log(this.DefaultTraceEventType, null, "{0}", o);
+                Log(this.DefaultTraceEventType, null, 0, "{0}", o);
             }
         }
 
@@ -245,7 +260,7 @@ namespace Common.Logging
         {
             if (((this.Filter == null) || this.Filter.ShouldTrace(null, this.Name, this.DefaultTraceEventType, 0, null, null, o, null)))
             {
-                Log(this.DefaultTraceEventType, category, "{0}", o);
+                Log(this.DefaultTraceEventType, category, 0, "{0}", o);
             }
         }
 
@@ -256,7 +271,7 @@ namespace Common.Logging
         {
             if (((this.Filter == null) || this.Filter.ShouldTrace(null, this.Name, this.DefaultTraceEventType, 0, null, null, null, null)))
             {
-                Log(this.DefaultTraceEventType, null, message);
+                Log(this.DefaultTraceEventType, null, 0, message);
             }
         }
 
@@ -267,7 +282,7 @@ namespace Common.Logging
         {
             if (((this.Filter == null) || this.Filter.ShouldTrace(null, this.Name, this.DefaultTraceEventType, 0, null, null, null, null)))
             {
-                Log(this.DefaultTraceEventType, category, message);
+                Log(this.DefaultTraceEventType, category, 0, message);
             }
         }
 
@@ -278,7 +293,7 @@ namespace Common.Logging
         {
             if (((this.Filter == null) || this.Filter.ShouldTrace(null, this.Name, this.DefaultTraceEventType, 0, null, null, o, null)))
             {
-                Log(this.DefaultTraceEventType, null, "{0}", o);
+                Log(this.DefaultTraceEventType, null, 0, "{0}", o);
             }
         }
 
@@ -289,7 +304,7 @@ namespace Common.Logging
         {
             if (((this.Filter == null) || this.Filter.ShouldTrace(null, this.Name, this.DefaultTraceEventType, 0, null, null, o, null)))
             {
-                Log(this.DefaultTraceEventType, category, "{0}", o);
+                Log(this.DefaultTraceEventType, category, 0, "{0}", o);
             }
         }
 
@@ -300,7 +315,7 @@ namespace Common.Logging
         {
             if (((this.Filter == null) || this.Filter.ShouldTrace(null, this.Name, this.DefaultTraceEventType, 0, null, null, null, null)))
             {
-                Log(this.DefaultTraceEventType, null, message);
+                Log(this.DefaultTraceEventType, null, 0, message);
             }
         }
 
@@ -311,7 +326,7 @@ namespace Common.Logging
         {
             if (((this.Filter == null) || this.Filter.ShouldTrace(null, this.Name, this.DefaultTraceEventType, 0, null, null, null, null)))
             {
-                Log(this.DefaultTraceEventType, category, message);
+                Log(this.DefaultTraceEventType, category, 0, message);
             }
         }
 
@@ -322,7 +337,7 @@ namespace Common.Logging
         {
             if ((this.Filter == null) || this.Filter.ShouldTrace(eventCache, source, eventType, id, null, null, null, null))
             {
-                Log(eventType, source, "Event Id {0}", id);
+                Log(eventType, source, id, "Event Id {0}", id);
             }
         }
 
@@ -333,7 +348,7 @@ namespace Common.Logging
         {
             if ((this.Filter == null) || this.Filter.ShouldTrace(eventCache, source, eventType, id, message, null, null, null))
             {
-                Log(eventType, source, message);
+                Log(eventType, source, id, message);
             }
         }
 
@@ -344,7 +359,7 @@ namespace Common.Logging
         {
             if ((this.Filter == null) || this.Filter.ShouldTrace(eventCache, source, eventType, id, message, args, null, null))
             {
-                Log(eventType, source, message, args);
+                Log(eventType, source, id, message, args);
             }
         }
 
@@ -356,7 +371,7 @@ namespace Common.Logging
             if ((this.Filter == null) || this.Filter.ShouldTrace(eventCache, source, eventType, id, null, null, null, data))
             {
                 string fmt = GetFormat((object[])data);
-                Log(eventType, source, fmt, data);
+                Log(eventType, source, id, fmt, data);
             }
         }
 
@@ -368,18 +383,20 @@ namespace Common.Logging
             if ((this.Filter == null) || this.Filter.ShouldTrace(eventCache, source, eventType, id, null, null, data, null))
             {
                 string fmt = GetFormat((object)data);
-                Log(eventType, source, fmt, data);
+                Log(eventType, source, id, fmt, data);
             }
         }
 
         private string GetFormat(params object[] data)
         {
-            if (data == null || data.Length==0) return null;
+            if (data == null || data.Length == 0)
+                return null;
             StringBuilder fmt = new StringBuilder();
-            for(int i=0;i<data.Length;i++)
+            for (int i = 0; i < data.Length; i++)
             {
                 fmt.Append('{').Append(i).Append('}');
-                if (i<data.Length-1) fmt.Append(',');
+                if (i < data.Length - 1)
+                    fmt.Append(',');
             }
             return fmt.ToString();
         }
@@ -406,7 +423,7 @@ namespace Common.Logging
                     return LogLevel.Fatal;
                 default:
                     return LogLevel.Trace;
-            }           
+            }
         }
     }
 }

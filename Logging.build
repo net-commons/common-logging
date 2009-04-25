@@ -2,6 +2,24 @@
 <project xmlns="http://nant.sf.net/schemas/nant.xsd"
 		name="Common.Logging" default="build" basedir="." >
 
+<!--
+The main build file for Common.Logging
+
+Targets:
+
+"build": 
+    builds and tests all Common.Logging modules
+
+"doc-reference":
+    builds the reference documentation
+    
+"doc-sdk":
+    builds the SDK documentation
+    
+"package-zip":
+    builds the distribution package
+
+-->
   <!-- Global project settings -->
   <!-- 0 for initial or custom release, label value if built by ccnet -->
   <property name="project.patchversion" value="${CCNetLabel}" overwrite="true" if="${property::exists('CCNetLabel')}"/>
@@ -34,7 +52,7 @@
     <exec workingdir=".\modules\Common.Logging" program="cmd.exe" commandline="/c nant -t:${framework::get-target-framework()} -v"/>
   </target>
 
-  <target name="build-EntLib">
+  <target name="build-EntLib" depends="build-common">
     <!-- ******* -->
     <!-- EntLib  -->
     <!-- ******* -->
@@ -119,7 +137,7 @@
     <nant buildfile="doc/reference/docbook.build" target="all" />
   </target>
 
-  <target name="doc-sdk">
+  <target name="doc-sdk" depends="build">
     <echo message="Creating SDK Documentation for Common.Logging." />
     <exec workingdir="." program="./tools/ndoc3/NDoc3Console.exe" verbose="true">
       <!-- arg value="-verbose" /-->

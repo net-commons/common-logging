@@ -67,7 +67,7 @@
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="Logging\Factory\AbstractLogger.cs" />
     <Compile Include="Logging\Factory\AbstractCachingLoggerFactoryAdapter.cs" />
-    <Compile Include="Logging\CommonLoggingTraceListener.cs" />
+    <Compile Include="Logging\Simple\CommonLoggingTraceListener.cs" />
     <Compile Include="Logging\ConfigurationException.cs" />
     <Compile Include="Logging\Configuration\DefaultConfigurationReader.cs" />
     <Compile Include="Logging\Factory\NamespaceDoc.cs" />

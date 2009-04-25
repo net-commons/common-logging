@@ -3,7 +3,7 @@ using System.Diagnostics;
 using Common.TestUtil;
 using NUnit.Framework;
 
-namespace Common.Logging
+namespace Common.Logging.Simple
 {
     [TestFixture]
     public class CommonLoggingTraceListenerTests
@@ -37,7 +37,7 @@ namespace Common.Logging
             factoryAdapter.LastEvent = null;
             l.DefaultTraceEventType = TraceEventType.Warning;
             l.Write("some message", "some category");
-            Assert.AreEqual(string.Format(l.LoggerNameFormat, l.Name, "some category"), factoryAdapter.LastEvent.Source.Name);
+            Assert.AreEqual(string.Format("{0}.{1}", l.Name, "some category"), factoryAdapter.LastEvent.Source.Name);
             Assert.AreEqual(LogLevel.Warn, factoryAdapter.LastEvent.Level);
             Assert.AreEqual("some message", factoryAdapter.LastEvent.RenderedMessage);
             Assert.AreEqual(null, factoryAdapter.LastEvent.Exception);
@@ -48,7 +48,7 @@ namespace Common.Logging
             TestLoggerFactoryAdapter factoryAdapter = (TestLoggerFactoryAdapter)LogManager.Adapter;
             factoryAdapter.LastEvent = null;
             l.TraceEvent(null, "sourceName " + eventType, eventType, -1, "format {0}", eventType);
-            Assert.AreEqual(string.Format(l.LoggerNameFormat, l.Name, "sourceName " + eventType), factoryAdapter.LastEvent.Source.Name);
+            Assert.AreEqual(string.Format("{0}.{1}", l.Name, "sourceName " + eventType), factoryAdapter.LastEvent.Source.Name);
             Assert.AreEqual(expectedLogLevel, factoryAdapter.LastEvent.Level);
             Assert.AreEqual("format " + eventType, factoryAdapter.LastEvent.RenderedMessage);
             Assert.AreEqual(null, factoryAdapter.LastEvent.Exception);
@@ -108,17 +108,17 @@ namespace Common.Logging
             AssertDefaultSettings(l);
 
             // values are trimmed and case-insensitive, empty values ignored
-            l = new CommonLoggingTraceListener("; DefaultTraceeventtype   =warninG; loggernameFORMAT= {0}-{1}\t; Name =  TestName\t; ");
+            l = new CommonLoggingTraceListener("; DefaultTraceeventtype   =warninG; loggernameFORMAT= {listenerName}-{sourceName}\t; Name =  TestName\t; ");
             Assert.AreEqual("TestName", l.Name);
             Assert.AreEqual(TraceEventType.Warning, l.DefaultTraceEventType);
-            Assert.AreEqual("{0}-{1}", l.LoggerNameFormat);
+            Assert.AreEqual("{listenerName}-{sourceName}", l.LoggerNameFormat);
         }
 
         private void AssertDefaultSettings(CommonLoggingTraceListener l)
         {
             Assert.AreEqual("Diagnostics", l.Name);
             Assert.AreEqual(TraceEventType.Verbose, l.DefaultTraceEventType);
-            Assert.AreEqual("{0}.{1}", l.LoggerNameFormat);
+            Assert.AreEqual("{listenerName}.{sourceName}", l.LoggerNameFormat);
         }
     }
 }

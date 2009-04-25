@@ -20,6 +20,7 @@
 
 using Common.Logging;
 using Common.Logging.Factory;
+using Common.Logging.Simple;
 
 /// <summary>
     /// <h1>Overview</h1>

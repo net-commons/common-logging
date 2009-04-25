@@ -39,7 +39,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>..\..\..\build\VS.NET.2008\Common.Logging.EntLib41\Debug\Common.Logging.EntLib41.xml</DocumentationFile>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
     <NoWarn>1607</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -61,6 +61,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\lib\net\2.0\Microsoft.Practices.EnterpriseLibrary.Logging.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Practices.ObjectBuilder2, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\lib\net\2.0\Microsoft.Practices.ObjectBuilder2.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
@@ -72,6 +76,9 @@
     </Compile>
     <Compile Include="AssemblyDoc.cs" />
     <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="Logging\EntLib\CommonLoggingEntlibTraceListener.cs" />
+    <Compile Include="Logging\EntLib\CommonLoggingEntlibTraceListenerAssembler.cs" />
+    <Compile Include="Logging\EntLib\CommonLoggingEntlibTraceListenerData.cs" />
     <Compile Include="Logging\EntLib\EntLibLogger.cs" />
     <Compile Include="Logging\EntLib\EntLibLoggerFactoryAdapter.cs" />
     <Compile Include="Logging\EntLib\EntLibLoggerSettings.cs" />

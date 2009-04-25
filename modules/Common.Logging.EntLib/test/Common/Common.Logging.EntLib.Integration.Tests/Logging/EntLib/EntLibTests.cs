@@ -34,7 +34,6 @@ namespace Common.Logging.EntLib
     /// Test for the EntLib implementation of ILog 
     /// </summary>
     /// <author>Mark Pollack</author>
-    /// <version>$Id:$</version>
     [TestFixture]
     public class EntLibTests : AbstractSimpleLogTest
     {
