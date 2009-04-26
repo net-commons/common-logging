@@ -7,27 +7,28 @@ The main build file for Common.Logging
 
 Targets:
 
-"build": 
+"build":
     builds and tests all Common.Logging modules
 
 "doc-reference":
     builds the reference documentation
-    
+
 "doc-sdk":
     builds the SDK documentation
-    
+
 "package-zip":
     builds the distribution package
 
 -->
   <!-- Global project settings -->
   <!-- 0 for initial or custom release, label value if built by ccnet -->
+  <property name="project.majorversion" value="2.0" />
   <property name="project.patchversion" value="${CCNetLabel}" overwrite="true" if="${property::exists('CCNetLabel')}"/>
   <property name="project.patchversion" value="0" overwrite="false" />
-  <property name="project.version" value="2.0.${project.patchversion}" />
   <property name="project.buildnumber" value="${math::abs(math::floor(timespan::get-total-days(datetime::now() - datetime::parse('01/01/2000'))))}" />
+  <property name="project.version" value="${project.majorversion}.${project.patchversion}.${project.buildnumber}" overwrite="false" />
   <!-- dev / alpha / beta# / rc# / release -->
-  <property name="project.releasetype" value="dev" />
+  <property name="project.releasetype" value="dev" overwrite="false" />
 
   <property name="project.basedir" value="${project::get-base-directory()}" />
   <!-- path to Common.Logging build output shared by all plugin modules-->
@@ -43,7 +44,7 @@ Targets:
   <property name="nant.settings.currentframework" value="net-2.0"/>
 
   <call target="create-common-assemblyinfo" />
-  
+
   <target name="build-common">
     <!-- ******* -->
     <!-- Common.Logging  -->
@@ -176,7 +177,7 @@ Targets:
       <arg value="/minCoverage:80" />
       <arg path="${build.dir}/net/2.0/debug/*-TestCoverage.xml" />
     </exec>
-    
+
   </target>
 
   <target name="package.sources">
@@ -262,7 +263,7 @@ Targets:
     </foreach>
 
   </target>
-  
+
   <target name="package.doc">
     <!-- copy reference docs -->
     <call target="doc" cascade="false"/>
@@ -356,7 +357,7 @@ Targets:
         <attribute type="AssemblyCopyrightAttribute" value="Copyright 2006-2009 the Common Infrastructure Libraries Team." />
         <attribute type="AssemblyTrademarkAttribute" value="Apache License, Version 2.0" />
         <attribute type="AssemblyCultureAttribute" value="" />
-        <attribute type="AssemblyVersionAttribute" value="${project.version}.${project.buildnumber}" />
+        <attribute type="AssemblyVersionAttribute" value="${project.version}" />
         <attribute type="AssemblyConfigurationAttribute" value="${framework::get-target-framework()}.${platform::get-name()}; ${project.releasetype}" />
         <attribute type="AssemblyInformationalVersionAttribute" value="${project.version}; ${framework::get-target-framework()}.${platform::get-name()}; ${project.releasetype}" />
       </attributes>
