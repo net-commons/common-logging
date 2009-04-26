@@ -26,7 +26,7 @@
     <para>The base logging library, Common.Logging, provides the base logging
     interfaces that appear in your code and also include simple console and
     trace based logger implementations. The libraries are located under
-    bin/net/&lt;framework-version&gt;/debug or release. </para>
+    bin/net/&lt;framework-version&gt;/debug or release.</para>
 
     <para>The following logging systems are supported out of the box:</para>
 
@@ -88,7 +88,7 @@
            &lt;assemblyIdentity name="Common.Logging" publicKeyToken="af08829b84f0328e" culture=""/&gt;
            &lt;bindingRedirect oldVersion="0.0.0.0-65535.65535.65535.65535" newVersion="2.0.0.0"/&gt;
            &lt;!-- reference specific file: --&gt;
-           &lt;!-- codeBase version="2.0.0.0" href="../../../build/net/1.0/release/Common.Logging.dll"/ --&gt;
+           &lt;!-- codeBase version="2.0.0.0" href="../../../build/net/2.0/release/Common.Logging.dll"/ --&gt;
         &lt;/dependentAssembly&gt;
      &lt;/assemblyBinding&gt;
   &lt;/runtime&gt;
@@ -99,7 +99,7 @@
       For convenience Common.Logging comes with a couple of support classes,
       making this task as easy as possible as described in <link
       linkend="logging-advanced-customfactoryadapter">Implementing a custom
-      FactoryAdapter</link> </para>
+      FactoryAdapter</link></para>
     </section>
   </section>
 
@@ -110,7 +110,7 @@
     a logger from the LogManager and call the appropriate logging method:
     <programlisting language="csharp">using Common.Logging;
 ...
-ILog log = LogManager.GetLogger(this.GetType());
+ILog log = LogManager.GetCurrentClassLogger();
 log.Debug("hello world");</programlisting></para>
 
     <para>It is also possible to obtain a logger by name: <programlisting
@@ -337,9 +337,12 @@ Common.Logging.LogManager.Adapter = new Common.Logging.Simple.ConsoleOutLoggerFa
         <title>Configuration Properties</title>
 
         <tgroup cols="3">
-        	<colspec colnum="1" colname="key" colwidth="1*"/>
-					<colspec colnum="2" colname="val" colwidth="1*"/>
-					<colspec colnum="3" colname="desc" colwidth="2*"/>
+          <colspec colname="key" colnum="1" colwidth="1*" />
+
+          <colspec colname="val" colnum="2" colwidth="1*" />
+
+          <colspec colname="desc" colnum="3" colwidth="2*" />
+
           <thead>
             <row>
               <entry>Key</entry>
@@ -403,9 +406,12 @@ Common.Logging.LogManager.Adapter = new Common.Logging.Simple.ConsoleOutLoggerFa
         <title>Configuration Properties</title>
 
         <tgroup cols="3">
-        	<colspec colnum="1" colname="key" colwidth="1*"/>
-					<colspec colnum="2" colname="val" colwidth="1*"/>
-					<colspec colnum="3" colname="desc" colwidth="2*"/>
+          <colspec colname="key" colnum="1" colwidth="1*" />
+
+          <colspec colname="val" colnum="2" colwidth="1*" />
+
+          <colspec colname="desc" colnum="3" colwidth="2*" />
+
           <thead>
             <row>
               <entry>Key</entry>
@@ -482,9 +488,11 @@ Common.Logging.LogManager.Adapter = new Common.Logging.Simple.ConsoleOutLoggerFa
         <title>Configuration Properties</title>
 
         <tgroup cols="3">
-        	<colspec colnum="1" colname="key" colwidth="1*"/>
-					<colspec colnum="2" colname="val" colwidth="1*"/>
-					<colspec colnum="3" colname="desc" colwidth="2*"/>
+          <colspec colname="key" colnum="1" colwidth="1*" />
+
+          <colspec colname="val" colnum="2" colwidth="1*" />
+
+          <colspec colname="desc" colnum="3" colwidth="2*" />
 
           <thead>
             <row>
@@ -620,9 +628,12 @@ Common.Logging.LogManager.Adapter = new Common.Logging.Simple.ConsoleOutLoggerFa
         <title>Configuration Properties</title>
 
         <tgroup cols="3">
-        	<colspec colnum="1" colname="key" colwidth="1*"/>
-					<colspec colnum="2" colname="val" colwidth="1*"/>
-					<colspec colnum="3" colname="desc" colwidth="2*"/>
+          <colspec colname="key" colnum="1" colwidth="1*" />
+
+          <colspec colname="val" colnum="2" colwidth="1*" />
+
+          <colspec colname="desc" colnum="3" colwidth="2*" />
+
           <thead>
             <row>
               <entry>Key</entry>
@@ -649,7 +660,8 @@ Common.Logging.LogManager.Adapter = new Common.Logging.Simple.ConsoleOutLoggerFa
               <entry>&lt;path to your NLog.config file&gt;</entry>
 
               <entry><para>if configType is FILE, the value of "configFile" is
-              passed to XmlLoggingConfiguration(string) constructor.</para></entry>
+              passed to XmlLoggingConfiguration(string)
+              constructor.</para></entry>
             </row>
           </tbody>
         </tgroup>
@@ -732,8 +744,10 @@ Common.Logging.LogManager.Adapter = new Common.Logging.Simple.ConsoleOutLoggerFa
           <title>EntLib 3.1 to Common.Logging log level mapping</title>
 
           <tgroup cols="2">
-	        	<colspec colnum="1" colname="key" colwidth="1*"/>
-						<colspec colnum="2" colname="val" colwidth="1*"/>
+            <colspec colname="key" colnum="1" colwidth="1*" />
+
+            <colspec colname="val" colnum="2" colwidth="1*" />
+
             <thead>
               <row>
                 <entry>Common.Logging.LogLevel</entry>
@@ -813,8 +827,10 @@ Common.Logging.LogManager.Adapter = new Common.Logging.Simple.ConsoleOutLoggerFa
           <title>EntLib 4,1 to Common.Logging log level mapping</title>
 
           <tgroup cols="2">
-	        	<colspec colnum="1" colname="key" colwidth="1*"/>
-						<colspec colnum="2" colname="val" colwidth="1*"/>
+            <colspec colname="key" colnum="1" colwidth="1*" />
+
+            <colspec colname="val" colnum="2" colwidth="1*" />
+
             <thead>
               <row>
                 <entry>Common.Logging.LogLevel</entry>
@@ -928,10 +944,89 @@ Common.Logging.LogManager.Adapter = new Common.Logging.Simple.ConsoleOutLoggerFa
 
       <para>For convenience, <classname>Common.Logging</classname> comes with
       an abstract base class
-      <classname>Common.Logging.AbstractCachingLoggerFactoryAdapter</classname>
+      <classname>Common.Logging.Factory.AbstractCachingLoggerFactoryAdapter</classname>
       for easier implemention of factory adapters and
-      <classname>Common.Logging.AbstractLogger</classname> for implementing
-      loggers.</para>
+      <classname>Common.Logging.Factory.AbstractLogger</classname> for
+      implementing loggers.</para>
+
+      <para></para>
+    </section>
+
+    <section>
+      <title>Bridging logging systems</title>
+
+      <para>In the case your application uses frameworks that are tied to
+      different logging systems, one usually had to find a workaround
+      yourself. Using Common.Logging removes this problem: All integration
+      modules come with plugs to route log messages in 2 directions - either
+      send messages from Common.Logging to the 3rd party logging system, or
+      you can feed messages from that other logging system into
+      Common.Logging.</para>
+
+      <para>Let's assume, one of your frameworks uses log4net, another one
+      System.Diagnostics.Trace. You prefer the small but powerful NLog system.
+      First you need to configure log4net to send all log events to
+      Common.Logging:</para>
+
+      <para><example>
+          <title>Route log4net messages to Common.Logging</title>
+
+          <para><programlisting language="myxml">&lt;log4net&gt;
+    &lt;appender name="CommonLoggingAppender"
+              type="Common.Logging.Log4Net.CommonLoggingAppender, Common.Logging.Log4Net"&gt;
+        &lt;layout type="log4net.Layout.PatternLayout, log4net"&gt;
+            &lt;param name="ConversionPattern" value="%level - %class.%method: %message" /&gt;
+        &lt;/layout&gt;
+    &lt;/appender&gt;
+
+    &lt;root&gt;
+        &lt;level value="ALL" /&gt;
+        &lt;appender-ref ref="CommonLoggingAppender" /&gt;
+    &lt;/root&gt;
+&lt;/log4net&gt;
+</programlisting>To get System.Diagnostics.Trace messages routed to
+          Common.Logging, you need to configure the corresponding
+          CommonLoggingTraceListener:</para>
+
+          <para><example>
+              <title>Route System.Diagnostics.Trace messages to
+              Common.Logging</title>
+
+              <para><programlisting language="myxml">&lt;system.diagnostics&gt;
+  &lt;sharedListeners&gt;
+    &lt;add name="Diagnostics"
+         type="Common.Logging.Simple.CommonLoggingTraceListener, Common.Logging"
+         initializeData="DefaultTraceEventType=Information; LoggerNameFormat={listenerName}.{sourceName}"&gt;
+      &lt;filter type="System.Diagnostics.EventTypeFilter" initializeData="Information"/&gt;
+    &lt;/add&gt;
+  &lt;/sharedListeners&gt;
+  &lt;trace&gt;
+    &lt;listeners&gt;
+      &lt;add name="Diagnostics" /&gt;
+    &lt;/listeners&gt;
+  &lt;/trace&gt;
+&lt;/system.diagnostics&gt;
+</programlisting>Finally you want Common.Logging to output all events to
+              NLog:</para>
+            </example><example>
+              <title>Route Common.Logging messages to NLog</title>
+
+              <para><programlisting language="myxml">&lt;nlog autoReload="true" throwExceptions="true"&gt;
+ &lt;targets&gt;
+  &lt;target name="common.logging"
+          type="Common.Logging.NLog.CommonLoggingTarget, Common.Logging.NLog"
+          layout="${longdate}|${level:uppercase=true}|${message}"
+          filename="C:\temp\${date:format=yyyy-MM-dd}_logA.txt"/&gt;
+ &lt;/targets&gt;
+ &lt;rules&gt;
+  &lt;logger name="*" minlevel="Info" writeTo="common.logging" /&gt;
+ &lt;/rules&gt;
+&lt;/nlog&gt;
+</programlisting></para>
+            </example></para>
+        </example></para>
+
+      <para></para>
     </section>
   </section>
 </chapter>

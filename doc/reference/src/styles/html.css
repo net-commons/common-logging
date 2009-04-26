@@ -1,4 +1,4 @@
-body {
+fbody {
    text-align: justify;
    margin-right: 2em;
    margin-left: 2em;
@@ -109,6 +109,20 @@ h2.subtitle {
 .firstname, .surname {
 	font-size: 12px;
     font-family: Verdana, Arial, helvetica, sans-serif;
+}
+
+div.example {
+    padding: 0px;
+    margin-top: 1em;
+}
+
+div.example .title {
+  font-size: 80%;
+}
+
+div.example-content {
+    padding: 0px;
+    margin: 0px;
 }
 
 table {

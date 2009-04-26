@@ -2,7 +2,7 @@ Common.Logging CHANGELOG
 =====================================
 http://netcommon.sf.net
 
-Release 2.0.0, March 20 2009
+Release 2.0.0, April 26 2009
 
 Summary: New Features and Bug Fix release
 

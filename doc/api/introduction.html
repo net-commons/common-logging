@@ -1,4 +1,4 @@
-<html dir="LTR">
+﻿<html dir="LTR">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="vs_targetSchema" content="http://schemas.microsoft.com/intellisense/ie5" />
@@ -27,6 +27,7 @@
             <h1>Overview</h1>
             <p> There are a variety of logging implementations for .NET currently in use, log4net, Enterprise Library Logging, NLog, to name the most popular. The downside of having differerent implementation is that they do not share a common interface and therefore impose a particular logging implementation on the users of your library. To solve this dependency problem the Common.Logging library introduces a simple abstraction to allow you to select a specific logging implementation at runtime. </p>
             <p> The library is based on work done by the developers of IBatis.NET and it's usage is inspired by log4net. Many thanks to the developers of those projects! </p>
+            <p>&nbsp;</p>
             <h1>Usage</h1>
             <p> The core logging library Common.Logging provides the base logging <a href="Common.Logging~Common.Logging.ILog.html">ILog</a> interface as well as the global <a href="Common.Logging~Common.Logging.LogManager.html">LogManager</a> that you use to instrument your code: </p>
             <pre class="code"><span class="lang">[C#]
@@ -35,9 +36,9 @@
 log.DebugFormat("Hi {0}", "dude");
 </pre>
             <p>
-            To output the information logged, you need to tell Common.Logging, what underlying logging system to use. 
-            Common.Logging already includes console and trace based logger implementations usable out of the box. Adding 
-            the following configuration snippet to  your app.config causes Common.Logging to output all information to the console: 
+            To output the information logged, you need to tell Common.Logging, what underlying logging system to use.
+            Common.Logging already includes console and trace based logger implementations usable out of the box. Adding
+            the following configuration snippet to  your app.config causes Common.Logging to output all information to the console:
             </p>
             <pre class="code"><span class="lang">[XML]
 </span>&lt;configuration&gt;
@@ -56,6 +57,7 @@ log.DebugFormat("Hi {0}", "dude");
     &lt;/common&gt;
 &lt;/configuration&gt;
 </pre>
+            <p>&nbsp;</p>
             <p><b>Hint: </b>When using NET 3.5, you can leverage lambda syntax for logging to avoid any performance penalties:</p>
             <pre class="code"><span class="lang">[C#]</span>
 log.Debug( m=>m("value= {0}", obj.ExpensiveToCalculateValue) );
@@ -68,20 +70,51 @@ if (log.IsDebugEnabled)
     log.Debug("value={0}", obj.ExpensiveToCalculateValue);
 }
             </pre>
-            <p />
+            <p>&nbsp;</p>
+            <h1>Bridging between logging systems</h1>
+<p>
+Ever had the problem you used frameworks that were tied to different logging systems? Each Common.Logging integration module
+comes with to plugs: One to route log messages to the 3rd party logging system and one to capture log messages from one
+logging system and feed it into the Common.Logging infrastructure. So if one of your frameworks uses log4net, another NLog and
+you want to log everything to System.Diagnostics.Trace, Common.Logging is for you.
+
+            <p>&nbsp;</p>
+            <h1>Upgrading from a previous version</h1>
+      <p>The new version of Common.Logging assembly is 100% binary backwards compatible to previous versions of LogManager and ILog interfaces.
+        To upgrade, either you rebuild your project against the new version or you configure an assembly version redirect in your app.config:</p>
+
+      <pre class="programlisting"><span style="color: #A31515">&lt;configuration&gt;</span>
+  <span style="color: #A31515">&lt;runtime&gt;</span>
+     <span style="color: #A31515">&lt;assemblyBinding</span> <span style="color: #FF0000">xmlns</span>=<span style="color: #0000FF">"urn:schemas-microsoft-com:asm.v1"</span><span style="color: #A31515">&gt;</span>
+        <span style="color: #A31515">&lt;dependentAssembly&gt;</span>
+           <span style="color: #A31515">&lt;assemblyIdentity</span> <span style="color: #FF0000">name</span>=<span style="color: #0000FF">"Common.Logging"</span> <span style="color: #FF0000">publicKeyToken</span>=<span style="color: #0000FF">"af08829b84f0328e"</span> <span style="color: #FF0000">culture</span>=<span style="color: #0000FF">""</span><span style="color: #A31515">/&gt;</span>
+           <span style="color: #A31515">&lt;bindingRedirect</span> <span style="color: #FF0000">oldVersion</span>=<span style="color: #0000FF">"0.0.0.0-65535.65535.65535.65535"</span> <span style="color: #FF0000">newVersion</span>=<span style="color: #0000FF">"2.0.0.0"</span><span style="color: #A31515">/&gt;</span>
+        <span style="color: #A31515">&lt;/dependentAssembly&gt;</span>
+     <span style="color: #A31515">&lt;/assemblyBinding&gt;</span>
+  <span style="color: #A31515">&lt;/runtime&gt;</span>
+<span style="color: #A31515">&lt;/configuration&gt;</span>
+</pre>
+      <p>Those who implemented their own
+      <span style="color: #2B91AF">Common.Logging.ILoggerFactoryAdapter</span> and
+      <span style="color: #2B91AF">Common.Logging.ILog</span> interfaces, need to
+      update their code to the extended interfaces coming with version 2.0.
+      For convenience Common.Logging comes with a couple of support classes,
+      making this task as easy as possible as described in the reference documentation
+      </p>
+            <p>&nbsp;</p>
             <h1>Customizing</h1>
-            <p> 
-            In the case you want to integrate your own logging system that is not supported by Common.Logging yet, 
+            <p>
+            In the case you want to integrate your own logging system that is not supported by Common.Logging yet,
             it is easily possible to implement your own plugin by implementing <a href="Common.Logging~Common.Logging.ILoggerFactoryAdapter.html">ILoggerFactoryAdapter</a>.
-            For convenience there is a base <a href="Common.Logging~Common.Logging.Factory.AbstractCachingLoggerFactoryAdapter.html">AbstractCachingLoggerFactoryAdapter</a> 
+            For convenience there is a base <a href="Common.Logging~Common.Logging.Factory.AbstractCachingLoggerFactoryAdapter.html">AbstractCachingLoggerFactoryAdapter</a>
             implementation available that usually makes implementing your own adapter a breeze.
             </p>
-            
+            <p>&nbsp;</p>
             <h1>&lt;system.diagnostics&gt; Integration</h1>
             <p>
-            If your code or a framework you are using (like Microsoft Enterprise Library's Logging Block) already uses the .NET framework's 
-            built-in <a href="http://msdn.microsoft.com/library/system.diagnostics.trace.aspx">System.Diagnostics.Trace</a> system, 
-            you can use <a href="Common.Logging~Common.Logging.Simple.CommonLoggingTraceListener.html">CommonLoggingTraceListener</a> 
+            If your code or a framework you are using (like Microsoft Enterprise Library's Logging Block) already uses the .NET framework's
+            built-in <a href="http://msdn.microsoft.com/library/system.diagnostics.trace.aspx">System.Diagnostics.Trace</a> system,
+            you can use <a href="Common.Logging~Common.Logging.Simple.CommonLoggingTraceListener.html">CommonLoggingTraceListener</a>
             to redirect all trace output to the Common.Logging infrastructure. </p>
 	<hr />
 	<div id="footer"><p><a href="mailto:netcommon-developer@lists.sourceforge.net?subject=Common%20Logging%202.0%20API%20Reference%20Documentation%20Feedback:%20Introduction">Send comments on this topic.</a></p><p><a>© The Common Infrastructure Libraries for .NET Team 2009 All Rights Reserved.</a></p><p></p></div></div>

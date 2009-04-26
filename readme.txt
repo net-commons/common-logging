@@ -1,4 +1,4 @@
-﻿Common.Logging 2.0 (March 20 2009)
+﻿Common.Logging 2.0 (April 26 2009)
 ---------------------------------------------------------
 http://netcommon.sf.net/
 
