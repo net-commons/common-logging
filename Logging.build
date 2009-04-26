@@ -189,11 +189,8 @@ Targets:
     </copy>
 
     <!-- Copy shared module files -->
-    <copy todir="${package.dir}/modules">
-      <fileset basedir="${project.basedir}/modules">
-        <include name="*.cs"/>
-      </fileset>
-    </copy>
+    <copy tofile="${package.dir}/modules/CommonAssemblyInfo.cs"
+          file="${project.basedir}/modules/CommonAssemblyInfo.cs.template"/>
 
     <!-- Copy Common.Logging sources -->
     <mkdir dir="${package.dir}/modules/Common.Logging"/>
@@ -219,6 +216,8 @@ Targets:
           <include name="lib/**"/>
           <!-- but exclude non-redists -->
           <exclude name="**/Microsoft.Practices.*" />
+          <exclude name="lib/**/Common.Logging.*" />
+          <exclude name="lib/**/Common.Logging.Tests.*" />
         </fileset>
       </copy>
     </foreach>
@@ -252,7 +251,6 @@ Targets:
           </fileset>
         </copy>
         <!-- Copy {modulename} redistributables -->
-        <!--<mkdir dir="${package.dir}/redist/${modulename}"/>-->
         <copy todir="${package.dir}/redist/${modulename}">
           <fileset basedir="modules\Common.Logging.${modulename}\redist">
             <include name="**/*"/>
@@ -261,6 +259,13 @@ Targets:
       </foreach>
 
     </foreach>
+
+    <!-- Copy build tools -->
+    <copy todir="${package.dir}/tools">
+      <fileset basedir="tools">
+        <include name="**/*"/>
+      </fileset>
+    </copy>
 
   </target>
 
