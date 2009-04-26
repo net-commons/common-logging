@@ -32,6 +32,7 @@ namespace Common.Logging.Log4Net
     /// Routes log events to Common.Logging infrastructure.
     /// </summary>
     /// <example>
+    /// To route all events logged using log4net to Common.Logging, you need to configure this appender as shown below:
     /// <code>
     /// &lt;log4net&gt;
     ///     &lt;appender name=&quot;CommonLoggingAppender&quot; 

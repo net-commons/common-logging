@@ -7,6 +7,7 @@ namespace Common.Logging.Simple
     /// A logger created by <see cref="CapturingLoggerFactoryAdapter"/> that 
     /// sends all log events to the owning adapter's <see cref="CapturingLoggerFactoryAdapter.AddEvent"/>
     /// </summary>
+    /// <author>Erich Eichinger</author>
     public class CapturingLogger : AbstractSimpleLogger
     {
         /// <summary>

@@ -18,13 +18,18 @@
 
 #endregion
 
+using Common.Logging.NLog;
+
 /// <summary>
-/// This assembly contains the adapter to the 
-/// NLog 1.0.0.505 library
+/// <para>This assembly contains the implementations to plug NLog 1.0.0.505 into Common.Logging.</para>
+/// <para>For an example on how to configure
+/// <list type="bullet">
+/// <item>Common.Logging to render its output to Entlib, see <see cref="NLogLoggerFactoryAdapter"/>.</item>
+/// <item>NLog to render its output to Common.Logging use <see cref="CommonLoggingTarget"/>.</item>
+/// </list>
+/// </para>
 /// </summary>
-internal sealed class AssemblyDoc
+internal static class AssemblyDoc
 {
     // serves as assembly summary for NDoc3 (http://ndoc3.sourceforge.net)
-    private AssemblyDoc()
-    { }
 }

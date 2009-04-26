@@ -5,6 +5,7 @@ namespace Common.Logging.Simple
     /// <summary>
     /// A logging event captured by <see cref="CapturingLogger"/>
     /// </summary>
+    /// <author>Erich Eichinger</author>
     public class CapturingLoggerEvent
     {
         /// <summary>

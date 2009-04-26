@@ -29,6 +29,7 @@ namespace Common.Logging.EntLib
     /// <summary>
     /// Use this <see cref="TraceListener"/> implementation to route all Entlib logging events to the
     /// Common.Logging infrastructure.
+    /// </summary>
     /// <remarks>
     /// See <see cref="CommonLoggingEntlibTraceListenerData"/> for a list of properties to configure.
     /// </remarks>
@@ -77,7 +78,6 @@ namespace Common.Logging.EntLib
     /// &lt;/configuration&gt;
     /// </code>
     /// </example>
-    /// </summary>
     /// <author>Erich Eichinger</author>
     public class CommonLoggingEntlibTraceListener : FormattedTraceListenerBase
     {

@@ -11,7 +11,26 @@ namespace Common.Logging.Simple
     /// </summary>
     /// <remarks>
     /// This logger factory is mainly for debugging and test purposes.
+    /// <example>
+    /// This is an example how you might use this adapter for testing:
+    /// <code>
+    /// // configure for capturing
+    /// CapturingLoggerFactoryAdapter adapter = new CapturingLoggerFactoryAdapter();
+    /// LogManager.Adapter = adapter;
+    /// 
+    /// // reset capture state
+    /// adapter.Clear();
+    /// // log something
+    /// ILog log = LogManager.GetCurrentClassLogger();
+    /// log.DebugFormat(&quot;Current Time:{0}&quot;, DateTime.Now);
+    /// 
+    /// // check logged data
+    /// Assert.AreEqual(1, adapter.LoggerEvents.Count);
+    /// Assert.AreEqual(LogLevel.Debug, adapter.LastEvent.Level);
+    /// </code>
+    /// </example>
     /// </remarks>
+    /// <author>Erich Eichinger</author>
     public class CapturingLoggerFactoryAdapter : ILoggerFactoryAdapter
     {
         private readonly Hashtable _cachedLoggers = CollectionsUtil.CreateCaseInsensitiveHashtable();

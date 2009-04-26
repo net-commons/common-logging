@@ -75,6 +75,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="Logger\NLog\CommonLoggingTargetTests.cs" />
     <Compile Include="Logger\NLog\NLogLoggerFactoryAdapterTests.cs" />
   </ItemGroup>
   <ItemGroup>

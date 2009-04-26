@@ -22,7 +22,7 @@ using Common.Logging;
 
 /// <summary>
 /// This assembly contains the core functionality of the Common.Logging framework.
-/// In particular, checkout <see cref="ILog.Debug(System.Action{Common.Logging.FormatMessageHandler})"/>
+/// In particular, checkout <see cref="LogManager"/> and <see cref="ILog"/> for usage information.
 /// </summary>
 [CoverageExclude]
 internal static class AssemblyDoc

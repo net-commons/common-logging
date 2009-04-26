@@ -19,17 +19,15 @@
 #endregion
 
 using Common.Logging.EntLib;
-using Common.Logging.Simple;
 
 /// <summary>
 /// <para>
-/// This assembly contains the <see cref="EntLibLoggerFactoryAdapter"/> adapter 
-/// to plug Microsoft Enterprise Logging Library 4.1. into the Common.Logging infrastructure.
+/// This assembly contains the adapter to plug Microsoft Enterprise Logging Library 4.1. into the Common.Logging infrastructure.
 /// </para>
 /// <para>For an example on how to configure
 /// <list type="bullet">
 /// <item>Common.Logging to render its output to Entlib, see <see cref="EntLibLoggerFactoryAdapter"/>.</item>
-/// <item>Entlib to render its output to Common.Logging use <see cref="CommonLoggingTraceListener"/>.</item>
+/// <item>Entlib to render its output to Common.Logging use <see cref="CommonLoggingEntlibTraceListener"/>.</item>
 /// </list>
 /// </para>
 /// </summary>

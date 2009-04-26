@@ -21,13 +21,16 @@
 namespace Common.Logging.NLog
 {
     /// <summary>
-    /// This namespace contains the <see cref="ILoggerFactoryAdapter"/> implementation 
-    /// <see cref="NLogLoggerFactoryAdapter"/> to plug NLog 1.0.0.505 into Common.Logging.
+    /// <para>This namespace contains the implementations to plug NLog 1.0.0.505 into Common.Logging.</para>
+    /// <para>For an example on how to configure
+    /// <list type="bullet">
+    /// <item>Common.Logging to render its output to Entlib, see <see cref="NLogLoggerFactoryAdapter"/>.</item>
+    /// <item>NLog to render its output to Common.Logging use <see cref="CommonLoggingTarget"/>.</item>
+    /// </list>
+    /// </para>
     /// </summary>
-    internal sealed class NamespaceDoc
+    internal static class NamespaceDoc
     {
         // serves as namespace summary for NDoc3 (http://ndoc3.sourceforge.net)
-        private NamespaceDoc()
-        { }
     }
 }

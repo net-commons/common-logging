@@ -30,11 +30,15 @@
             <h1>Usage</h1>
             <p> The core logging library Common.Logging provides the base logging <a href="Common.Logging~Common.Logging.ILog.html">ILog</a> interface as well as the global <a href="Common.Logging~Common.Logging.LogManager.html">LogManager</a> that you use to instrument your code: </p>
             <pre class="code"><span class="lang">[C#]
-</span>ILog log = LogManager.GetLogger(this.GetType());
+</span>ILog log = LogManager.GetCurrentClassLogger();
 
 log.DebugFormat("Hi {0}", "dude");
 </pre>
-            <p> To output the information logged, you need to tell Common.Logging, what underlying logging system to use. Common.Logging already includes simple console and trace based logger implementations usable out of the box. Adding the following configuration snippet to your app.config causes Common.Logging to output all information to the console: </p>
+            <p>
+            To output the information logged, you need to tell Common.Logging, what underlying logging system to use. 
+            Common.Logging already includes console and trace based logger implementations usable out of the box. Adding 
+            the following configuration snippet to  your app.config causes Common.Logging to output all information to the console: 
+            </p>
             <pre class="code"><span class="lang">[XML]
 </span>&lt;configuration&gt;
     &lt;configSections&gt;
@@ -52,6 +56,19 @@ log.DebugFormat("Hi {0}", "dude");
     &lt;/common&gt;
 &lt;/configuration&gt;
 </pre>
+            <p><b>Hint: </b>When using NET 3.5, you can leverage lambda syntax for logging to avoid any performance penalties:</p>
+            <pre class="code"><span class="lang">[C#]</span>
+log.Debug( m=>m("value= {0}", obj.ExpensiveToCalculateValue) );
+            </pre>
+            <p>This ensures, that the whole expression is only evaluated when
+LogLevel.Debug is enabled and thus saves you from having to write</p>
+            <pre class="code"><span class="lang">[C#]</span>
+if (log.IsDebugEnabled)
+{
+    log.Debug("value={0}", obj.ExpensiveToCalculateValue);
+}
+            </pre>
+            <p />
             <h1>Customizing</h1>
             <p> 
             In the case you want to integrate your own logging system that is not supported by Common.Logging yet, 

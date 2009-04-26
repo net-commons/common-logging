@@ -21,11 +21,13 @@
 namespace Common.Logging.EntLib
 {
     /// <summary>
-    /// This namespace contains the implementations to plug EntLib 3.1 into Common.Logging.
+    /// <para>This namespace contains the implementations to plug EntLib 3.1 into Common.Logging.</para>
+    /// <para>For an example on how to configure
     /// <list type="bullet">
-    /// <item>For an example how to configure Common.Logging to render its output to Entlib, see <see cref="EntLibLoggerFactoryAdapter"/>.</item>
-    /// <item>To configure Entlib to render its output to Common.Logging use <see cref="CommonLoggingEntlibTraceListener"/>.</item>
+    /// <item>Common.Logging to render its output to Entlib, see <see cref="EntLibLoggerFactoryAdapter"/>.</item>
+    /// <item>Entlib to render its output to Common.Logging use <see cref="CommonLoggingEntlibTraceListener"/>.</item>
     /// </list>
+    /// </para>
     /// </summary>
     internal static class NamespaceDoc
     {
