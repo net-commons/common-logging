@@ -154,8 +154,10 @@
 
     <!-- make the release build, which requires Common.Net.snk, only if making an distributable release -->
     <if test="${property::exists('project.build.package') and project.build.package}">
-      <call target="set-release-build-configuration"/>
-      <call target="compile-build"/>
+      <if test="${file::exists(logging.basedir + '/../Common.Net.snk')}">
+        <call target="set-release-build-configuration"/>
+        <call target="compile-build"/>
+      </if>
     </if>
 
 
@@ -443,7 +445,7 @@
     <property name="target.dir" value="${path::combine(project::get-base-directory(),'build')}"/>
     <echo message="Deleting all builds from all configurations : '${target.dir}'"/>
     <delete
-            dir="${project::get-base-directory()}/build/net"
+            dir="${project::get-base-directory()}/build"
             if="${directory::exists(target.dir)}"
             failonerror="false"/>
 

@@ -31,8 +31,11 @@ Targets:
   <property name="project.releasetype" value="dev" overwrite="false" />
 
   <property name="project.basedir" value="${project::get-base-directory()}" />
-  <!-- path to Common.Logging build output shared by all plugin modules-->
-  <property name="common.logging.base-version.dir" value="${project.basedir}/modules/Common.Logging/build/net/2.0/release" />
+  <!-- path to Common.Logging build output shared by all plugin modules, link to signed if key available -->
+  <property name="common.logging.base-version.dir" value="${project.basedir}/modules/Common.Logging/build/net/2.0/debug" />
+  <if test="${file::exists(project.basedir + '/modules/Common.Net.snk')}">
+    <property name="common.logging.base-version.dir" value="${project.basedir}/modules/Common.Logging/build/net/2.0/release" />
+  </if>
   <!--target build dir -->
   <property name="build.dir" value="${project::get-base-directory()}/build" />
   <!--target dir for packaging dist -->
@@ -342,6 +345,22 @@ Targets:
         <exclude name="*.zip"/>
       </fileset>
     </zip>
+  </target>
+
+  <target name="clean">
+    <!-- clean package dir -->
+    <delete dir="build" failonerror="false" />
+
+    <!-- clean package dir -->
+    <delete dir="package" failonerror="false" />
+
+    <!-- clean log4net 1.2.10 module -->
+    <exec workingdir=".\modules\Common.Logging" program="cmd.exe" commandline="/c nant -t:${framework::get-target-framework()} clean"/>
+    <exec workingdir=".\modules\Common.Logging.EntLib" program="cmd.exe" commandline="/c nant -t:${framework::get-target-framework()} clean"/>
+    <exec workingdir=".\modules\Common.Logging.EntLib41" program="cmd.exe" commandline="/c nant -t:${framework::get-target-framework()} clean"/>
+    <exec workingdir=".\modules\Common.Logging.Log4Net" program="cmd.exe" commandline="/c nant -t:${framework::get-target-framework()} clean"/>
+    <exec workingdir=".\modules\Common.Logging.Log4Net129" program="cmd.exe" commandline="/c nant -t:${framework::get-target-framework()} clean"/>
+    <exec workingdir=".\modules\Common.Logging.NLog" program="cmd.exe" commandline="/c nant -t:${framework::get-target-framework()} clean"/>
   </target>
 
   <target name="create-common-assemblyinfo">
