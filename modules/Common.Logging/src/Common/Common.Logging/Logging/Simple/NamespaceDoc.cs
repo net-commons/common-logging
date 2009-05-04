@@ -21,8 +21,13 @@
 namespace Common.Logging.Simple
 {
     /// <summary>
-    /// This namespace contains out-of-the-box adapters to intrinsic systems, namely
-    /// <see cref="ConsoleOutLoggerFactoryAdapter"/> and <see cref="TraceLoggerFactoryAdapter"/>.
+    /// <para>This namespace contains out-of-the-box adapters to intrinsic systems, namely
+    /// <see cref="ConsoleOutLoggerFactoryAdapter"/>, <see cref="TraceLoggerFactoryAdapter"/> and the 
+    /// all output suppressing <see cref="NoOpLoggerFactoryAdapter"/>.</para>
+    /// <para>For unit testing, you may also want to have a look at <see cref="CapturingLoggerFactoryAdapter"/> 
+    /// that allows to easily inspect logged messages.</para>
+    /// <para>To route messages logged through the <see cref="System.Diagnostics.Trace"/> infrastructure back into
+    /// Common.Logging, you can use <see cref="CommonLoggingTraceListener"/></para>
     /// </summary>
     [CoverageExclude]
     internal static class NamespaceDoc

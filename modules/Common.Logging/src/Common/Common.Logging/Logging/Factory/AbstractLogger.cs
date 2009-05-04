@@ -24,7 +24,7 @@ using FormatMessageCallback = System.Action<Common.Logging.FormatMessageHandler>
 namespace Common.Logging.Factory
 {
     /// <summary>
-    /// Provides base implementation common for most logger adapters
+    /// Provides base implementation suitable for almost all logger adapters
     /// </summary>
     /// <author>Erich Eichinger</author>
     [Serializable]

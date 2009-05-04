@@ -35,6 +35,44 @@ namespace Common.Logging.Simple
     ///     <item>showLogName</item>
     ///     <item>dateTimeFormat</item>
     /// </list>
+    /// <example>
+    /// Here is an example how to implement your own logging adapter:
+    /// <code>
+    /// public class ConsoleOutLogger : AbstractSimpleLogger
+    /// {
+    ///   public ConsoleOutLogger(string logName, LogLevel logLevel, bool showLevel, bool showDateTime, 
+    /// bool showLogName, string dateTimeFormat)
+    ///       : base(logName, logLevel, showLevel, showDateTime, showLogName, dateTimeFormat)
+    ///   {
+    ///   }
+    /// 
+    ///   protected override void WriteInternal(LogLevel level, object message, Exception e)
+    ///   {
+    ///       // Use a StringBuilder for better performance
+    ///       StringBuilder sb = new StringBuilder();
+    ///       FormatOutput(sb, level, message, e);
+    /// 
+    ///       // Print to the appropriate destination
+    ///       Console.Out.WriteLine(sb.ToString());
+    ///   }
+    /// }
+    /// 
+    /// public class ConsoleOutLoggerFactoryAdapter : AbstractSimpleLoggerFactoryAdapter
+    /// {
+    ///   public ConsoleOutLoggerFactoryAdapter(NameValueCollection properties)
+    ///       : base(properties)
+    ///   { }
+    /// 
+    ///   protected override ILog CreateLogger(string name, LogLevel level, bool showLevel, bool 
+    /// showDateTime, bool showLogName, string dateTimeFormat)
+    ///   {
+    ///       ILog log = new ConsoleOutLogger(name, level, showLevel, showDateTime, showLogName, 
+    /// dateTimeFormat);
+    ///       return log;
+    ///   }
+    /// }
+    /// </code>
+    /// </example>
     /// </remarks>
     /// <seealso cref="LogManager.Adapter"/>
     /// <seealso cref="ConfigurationSectionHandler"/>

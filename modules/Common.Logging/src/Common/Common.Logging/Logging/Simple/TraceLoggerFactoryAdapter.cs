@@ -31,6 +31,30 @@ namespace Common.Logging.Simple
     /// <remarks>
     /// Beware not to use <see cref="CommonLoggingTraceListener"/> in combination with this logger factory
     /// as this would result in an endless loop for obvious reasons!
+    /// <example>
+    /// Below is an example how to configure this adapter:
+    /// <code>
+    /// &lt;configuration&gt;
+    /// 
+    ///   &lt;configSections&gt;
+    ///     &lt;sectionGroup name=&quot;common&quot;&gt;
+    ///       &lt;section name=&quot;logging&quot;
+    ///                type=&quot;Common.Logging.ConfigurationSectionHandler, Common.Logging&quot;
+    ///                requirePermission=&quot;false&quot; /&gt;
+    ///     &lt;/sectionGroup&gt;
+    ///   &lt;/configSections&gt;
+    /// 
+    ///   &lt;common&gt;
+    ///     &lt;logging&gt;
+    ///       &lt;factoryAdapter type=&quot;Common.Logging.Simple.TraceLoggerFactoryAdapter, Common.Logging&quot;&gt;
+    ///         &lt;arg key=&quot;level&quot; value=&quot;ALL&quot; /&gt;
+    ///       &lt;/factoryAdapter&gt;
+    ///     &lt;/logging&gt;
+    ///   &lt;/common&gt;
+    /// 
+    /// &lt;/configuration&gt;
+    /// </code>
+    /// </example>
     /// </remarks>
     /// <seealso cref="AbstractSimpleLoggerFactoryAdapter"/>
     /// <seealso cref="LogManager.Adapter"/>
