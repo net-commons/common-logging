@@ -29,6 +29,19 @@ namespace Common.Logging.Simple
     public class CapturingLoggerTests : ILogTestsBase
     {
         [Test]
+        public void LoggerCanChangeLogLevel()
+        {
+            CapturingLoggerFactoryAdapter adapter = new CapturingLoggerFactoryAdapter();
+            CapturingLogger testLogger = (CapturingLogger) adapter.GetLogger("test");
+            Assert.AreEqual(LogLevel.All, testLogger.CurrentLogLevel);
+            testLogger.Trace("message1");
+            Assert.AreEqual(1, testLogger.LoggerEvents.Count);
+            testLogger.CurrentLogLevel = LogLevel.Debug;
+            testLogger.Trace("message2"); // not logged!
+            Assert.AreEqual("message1", testLogger.LastEvent.MessageObject);
+        }
+
+        [Test]
         public void LoggerClearsEvents()
         {
             CapturingLoggerFactoryAdapter adapter = new CapturingLoggerFactoryAdapter();
