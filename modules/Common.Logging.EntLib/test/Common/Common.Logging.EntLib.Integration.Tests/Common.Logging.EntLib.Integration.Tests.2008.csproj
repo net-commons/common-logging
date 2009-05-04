@@ -90,7 +90,6 @@
   <ItemGroup>
     <Compile Include="Logging\EntLib\TestCommonLoggingEntlibTraceListener.cs" />
     <Compile Include="Logging\EntLib\CommonLoggingEntlibTraceListenerTests.cs" />
-    <Compile Include="Logging\EntLib\EntLibTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

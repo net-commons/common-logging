@@ -87,7 +87,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Logging\EntLib\CommonLoggingEntlibTraceListenerTests.cs" />
-    <Compile Include="Logging\EntLib\EntLibTests.cs" />
     <Compile Include="Logging\EntLib\TestCommonLoggingEntlibTraceListener.cs" />
   </ItemGroup>
   <ItemGroup>

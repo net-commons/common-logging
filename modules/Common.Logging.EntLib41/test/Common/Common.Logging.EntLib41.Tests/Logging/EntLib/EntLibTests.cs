@@ -18,16 +18,7 @@
 
 #endregion
 
-#region Imports
-
-using System;
-using System.Diagnostics;
-using Common.Logging.Simple;
-using Common.TestUtil;
-using Microsoft.Practices.EnterpriseLibrary.Logging;
 using NUnit.Framework;
-
-#endregion
 
 namespace Common.Logging.EntLib
 {
@@ -36,19 +27,11 @@ namespace Common.Logging.EntLib
     /// </summary>
     /// <author>Mark Pollack</author>
     [TestFixture]
-    public class EntLibTests : AbstractSimpleLoggerTestsBase
+    public class EntLibTests : ILogTestsBase
     {
         protected override ILoggerFactoryAdapter GetLoggerFactoryAdapter()
         {
             return new EntLibLoggerFactoryAdapter();
-        }
-
-        protected override string CompliantTrustLevelName
-        {
-            get
-            {
-                return SecurityUtil.PERMISSIONSET_FULLTRUST;
-            }
         }
 
         [Test]
@@ -59,6 +42,7 @@ namespace Common.Logging.EntLib
             Assert.IsInstanceOf<EntLibLogger>(log);
 
             // Can we call level checkers with no exceptions?
+            Assert.IsTrue(log.IsTraceEnabled);
             Assert.IsTrue(log.IsDebugEnabled);
             Assert.IsTrue(log.IsInfoEnabled);
             Assert.IsTrue(log.IsWarnEnabled);
