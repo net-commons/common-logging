@@ -119,6 +119,9 @@ namespace Common.Logging.EntLib
         /// Initializes a new instance of the <see cref="EntLibLoggerFactoryAdapter"/> class
         /// with the specified configuration parameters.
         /// </summary>
+        /// <param name="defaultPriority">defaults to <see cref="EntLibLoggerSettings.DEFAULTPRIORITY"/></param>
+        /// <param name="exceptionFormat">defaults to <see cref="EntLibLoggerSettings.DEFAULTEXCEPTIONFORMAT"/></param>
+        /// <param name="logWriter">a <see cref="LogWriter"/> instance to use</param>
         public EntLibLoggerFactoryAdapter(int defaultPriority, string exceptionFormat, LogWriter logWriter)
             : base(true)
         {

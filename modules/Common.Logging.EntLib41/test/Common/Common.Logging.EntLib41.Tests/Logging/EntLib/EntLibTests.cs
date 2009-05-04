@@ -18,6 +18,9 @@
 
 #endregion
 
+using System.Collections.Generic;
+using Microsoft.Practices.EnterpriseLibrary.Logging;
+using Microsoft.Practices.EnterpriseLibrary.Logging.Filters;
 using NUnit.Framework;
 
 namespace Common.Logging.EntLib
@@ -31,7 +34,8 @@ namespace Common.Logging.EntLib
     {
         protected override ILoggerFactoryAdapter GetLoggerFactoryAdapter()
         {
-            return new EntLibLoggerFactoryAdapter();
+            LogWriter lw = new LogWriter(new List<ILogFilter>(), new List<LogSource>(), new LogSource("errorSource"), "default");
+            return new EntLibLoggerFactoryAdapter(EntLibLoggerSettings.DEFAULTPRIORITY, EntLibLoggerSettings.DEFAULTEXCEPTIONFORMAT, lw);
         }
 
         [Test]
