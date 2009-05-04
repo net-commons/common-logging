@@ -18,15 +18,8 @@
 
 #endregion
 
-#region Imports
-
-using System;
-using System.Diagnostics;
 using Common.Logging.Simple;
-using Microsoft.Practices.EnterpriseLibrary.Logging;
 using NUnit.Framework;
-
-#endregion
 
 namespace Common.Logging.EntLib
 {
@@ -34,38 +27,27 @@ namespace Common.Logging.EntLib
     /// Test for the EntLib implementation of ILog 
     /// </summary>
     /// <author>Mark Pollack</author>
-    /// <version>$Id:$</version>
     [TestFixture]
-    public class EntLibTests : AbstractSimpleLogTest
+    public class EntLibTests : AbstractSimpleLoggerTestsBase
     {
-        [SetUp]
-        public void Setup()
-        {           
-            // set Adapter
-            LogManager.Adapter = new EntLibLoggerFactoryAdapter();
-            defaultLogInstance = LogManager.GetLogger(GetType().FullName);
+        protected override ILoggerFactoryAdapter GetLoggerFactoryAdapter()
+        {
+            return new EntLibLoggerFactoryAdapter();
         }
 
-
-        protected override void CheckLog(ILog log)
+        [Test]
+        public void AssertDefaultSettings()
         {
-
+            ILog log = LogManager.GetCurrentClassLogger();
             Assert.IsNotNull(log);
             Assert.IsInstanceOf<EntLibLogger>(log);
 
             // Can we call level checkers with no exceptions?
-            // Note that everything is hard-coded to be disabled for NoOpLogger
             Assert.IsTrue(log.IsDebugEnabled);
             Assert.IsTrue(log.IsInfoEnabled);
             Assert.IsTrue(log.IsWarnEnabled);
             Assert.IsTrue(log.IsErrorEnabled);
             Assert.IsTrue(log.IsFatalEnabled);
         }
-
-        public override Type LoggerType
-        {
-            get { return typeof(EntLibLogger); }
-        }
-        
     }
 }

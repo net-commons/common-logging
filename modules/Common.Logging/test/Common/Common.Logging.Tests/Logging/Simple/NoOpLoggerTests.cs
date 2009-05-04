@@ -18,8 +18,6 @@
 
 #endregion
 
-using System;
-using System.Collections.Specialized;
 using NUnit.Framework;
 
 namespace Common.Logging.Simple
@@ -28,30 +26,21 @@ namespace Common.Logging.Simple
     /// Exercises the NoOpLogger implementation.
     /// </summary>
     /// <author>Mark Pollack</author>
-    /// <version>$Id:$</version>
-    public class NoOpLoggerTests : AbstractSimpleLogTest
+    [TestFixture]
+    public class NoOpLoggerTests : AbstractSimpleLoggerTestsBase
     {
-        [SetUp]
-        public void Setup()
+        protected override ILoggerFactoryAdapter GetLoggerFactoryAdapter()
         {
-            NameValueCollection properties = GetProperties();
-
-            // set Adapter
-            LogManager.Adapter = new NoOpLoggerFactoryAdapter(properties);
-            defaultLogInstance = LogManager.GetLogger(LoggerType.FullName);
-        }
-
-        public override Type LoggerType
-        {
-            get { return typeof (NoOpLogger); }
+            return new NoOpLoggerFactoryAdapter(CreateProperties());
         }
 
         /// <summary>
         /// Basic checks specific to NoOpLogger
         /// </summary>
-        /// <param name="log">The log.</param>
-        protected override void CheckLog(ILog log)
+        [Test]
+        public void AssertDefaultSettings()
         {
+            ILog log = LogManager.GetCurrentClassLogger();
             Assert.IsNotNull(log);
             Assert.IsInstanceOf<NoOpLogger>(log);
 

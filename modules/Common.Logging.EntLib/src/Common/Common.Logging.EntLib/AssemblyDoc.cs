@@ -31,6 +31,7 @@ using Common.Logging.EntLib;
 /// <item>Entlib to render its output to Common.Logging use <see cref="CommonLoggingEntlibTraceListener"/>.</item>
 /// </list>
 /// </para>
+/// <para>Note, that you cannot use Enterprise Logging 3.1 in medium trust environments</para>
 /// </summary>
 internal static class AssemblyDoc
 {

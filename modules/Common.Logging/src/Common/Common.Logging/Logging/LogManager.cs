@@ -19,8 +19,12 @@
 #endregion
 
 using System;
+using System.Configuration;
 using System.Diagnostics;
+using System.Reflection;
 using System.Runtime.CompilerServices;
+using System.Security;
+using System.Security.Permissions;
 using Common.Logging.Simple;
 using Common.Logging.Configuration;
 
@@ -196,7 +200,10 @@ namespace Common.Logging
         public static ILog GetCurrentClassLogger()
         {
             StackFrame frame = new StackFrame(1, false);
-            return Adapter.GetLogger(frame.GetMethod().DeclaringType);
+            ILoggerFactoryAdapter adapter = Adapter;
+            MethodBase method = frame.GetMethod();
+            Type declaringType = method.DeclaringType;
+            return adapter.GetLogger(declaringType);
         }
 
         /// <summary>

@@ -46,20 +46,58 @@ namespace Common.Logging.Log4Net
     /// </list>
     /// </remarks>
     /// <example>
-    /// The following snippet shows how to configure EntLib logging for Common.Logging:
+    /// The following snippet shows an example of how to configure log4net with Common.Logging:
     /// <code>
     /// &lt;configuration&gt;
     ///   &lt;configSections&gt;
-    ///       &lt;section name=&quot;logging&quot; type=&quot;Common.Logging.ConfigurationSectionHandler, Common.Logging&quot; /&gt;
+    ///     &lt;sectionGroup name=&quot;common&quot;&gt;
+    ///       &lt;section name=&quot;logging&quot;
+    ///                type=&quot;Common.Logging.ConfigurationSectionHandler, Common.Logging&quot;
+    ///                requirePermission=&quot;false&quot; /&gt;
+    ///     &lt;/sectionGroup&gt;
+    ///     &lt;section name=&quot;log4net&quot;
+    ///              type=&quot;log4net.Config.Log4NetConfigurationSectionHandler&quot;
+    ///              requirePermission=&quot;false&quot; /&gt;
     ///   &lt;/configSections&gt;
+    /// 
     ///   &lt;common&gt;
     ///     &lt;logging&gt;
     ///       &lt;factoryAdapter type=&quot;Common.Logging.Log4Net.Log4NetLoggerFactoryAdapter, Common.Logging.Log4Net129&quot;&gt;
-    ///         &lt;arg key=&quot;configType&quot; value=&quot;FILE&quot; /&gt;
-    ///         &lt;arg key=&quot;configFile&quot; value=&quot;~/log4net.config&quot; /&gt;
+    ///         &lt;arg key=&quot;level&quot; value=&quot;ALL&quot; /&gt;
+    ///         &lt;arg key=&quot;configType&quot; value=&quot;INLINE&quot; /&gt;
     ///       &lt;/factoryAdapter&gt;
     ///     &lt;/logging&gt;
     ///   &lt;/common&gt;
+    /// 
+    ///   &lt;log4net debug=&quot;false&quot;&gt;
+    /// 
+    ///     &lt;appender name=&quot;RollingLogFileAppender&quot; type=&quot;log4net.Appender.RollingFileAppender, log4net&quot;&gt;
+    ///       &lt;param name=&quot;File&quot; value=&quot;./Web.log&quot; /&gt;
+    ///       &lt;param name=&quot;AppendToFile&quot; value=&quot;true&quot; /&gt;
+    ///       &lt;param name=&quot;MaxSizeRollBackups&quot; value=&quot;1&quot; /&gt;
+    ///       &lt;param name=&quot;MaximumFileSize&quot; value=&quot;1GB&quot; /&gt;
+    ///       &lt;param name=&quot;RollingStyle&quot; value=&quot;Date&quot; /&gt;
+    ///       &lt;param name=&quot;StaticLogFileName&quot; value=&quot;false&quot; /&gt;
+    /// 
+    ///       &lt;layout type=&quot;log4net.Layout.PatternLayout, log4net&quot;&gt;
+    ///         &lt;param name=&quot;ConversionPattern&quot; value=&quot;%d [%t] %-5p %c - %m%n&quot; /&gt;
+    ///       &lt;/layout&gt;
+    /// 
+    ///     &lt;/appender&gt;
+    /// 
+    ///     &lt;appender name=&quot;TraceAppender&quot; type=&quot;log4net.Appender.TraceAppender&quot;&gt;
+    ///       &lt;layout type=&quot;log4net.Layout.PatternLayout&quot;&gt;
+    ///         &lt;param name=&quot;ConversionPattern&quot; value=&quot;%-5p: %m&quot; /&gt;
+    ///       &lt;/layout&gt;
+    ///     &lt;/appender&gt;
+    /// 
+    ///     &lt;root&gt;
+    ///       &lt;level value=&quot;ALL&quot; /&gt;
+    ///       &lt;appender-ref ref=&quot;TraceAppender&quot; /&gt;
+    ///       &lt;appender-ref ref=&quot;RollingLogFileAppender&quot; /&gt;
+    ///     &lt;/root&gt;
+    /// 
+    ///   &lt;/log4net&gt;
     /// &lt;/configuration&gt;
     /// </code>
     /// </example>

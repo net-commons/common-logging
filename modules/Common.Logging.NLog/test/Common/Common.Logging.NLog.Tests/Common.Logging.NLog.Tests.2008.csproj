@@ -68,6 +68,10 @@
       <Project>{440D903A-D409-48FC-A6C4-3EE69CCD663B}</Project>
       <Name>Common.Logging.2008</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Common.Logging\test\Common\Common.Logging.Tests\Common.Logging.Tests.2008.csproj">
+      <Project>{94E4E1B4-D424-4EB9-BF34-2EE8CC3D7048}</Project>
+      <Name>Common.Logging.Tests.2008</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\src\Common\Common.Logging.NLog\Common.Logging.NLog.2008.csproj">
       <Project>{C3FAAF50-CA05-42A5-9616-B48C21643D03}</Project>
       <Name>Common.Logging.NLog.2008</Name>

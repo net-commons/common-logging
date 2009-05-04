@@ -19,7 +19,6 @@
 #endregion
 
 using System;
-using Common.Logging;
 using Common.Logging.NLog;
 using Common.Logging.Simple;
 using NLog.Config;

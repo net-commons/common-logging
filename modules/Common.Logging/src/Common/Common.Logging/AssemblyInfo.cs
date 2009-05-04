@@ -1,4 +1,5 @@
 using System.Reflection;
+using System.Security;
 
 [assembly: AssemblyProduct("Common Logging Framework")]
-//[assembly: InternalsVisibleTo("Common.Logging.Tests")]
+[assembly: SecurityTransparent]

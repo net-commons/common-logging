@@ -25,6 +25,7 @@ using NUnit.Framework;
 namespace Common.Logging.Simple
 {
     /// <summary>
+    /// Tests the <see cref="AbstractSimpleLogger"/> class.
     /// </summary>
     /// <author>Erich Eichinger</author>
     [TestFixture]
@@ -54,10 +55,16 @@ namespace Common.Logging.Simple
         }
 
         [Test]
+        public void IsSerializable()
+        {
+            Assert.IsTrue(SerializationTestUtils.IsSerializable<AbstractSimpleLogger>());
+        }
+
+        [Test]
         public void DefaultValues()
         {
-            ConcreteLogger logger;
-            logger = (ConcreteLogger) new ConcreteLoggerFactory(null).GetLogger("x");
+            AbstractSimpleLogger logger;
+            logger = (AbstractSimpleLogger)new ConcreteLoggerFactory(null).GetLogger("x");
             Assert.AreEqual("x", logger.Name);
             Assert.AreEqual(true, logger.ShowLogName);
             Assert.AreEqual(true, logger.ShowDateTime);
@@ -77,8 +84,8 @@ namespace Common.Logging.Simple
             props["dateTimeFormat"] = "MM";
             props["level"] = "Info";
 
-            ConcreteLogger logger;
-            logger = (ConcreteLogger) new ConcreteLoggerFactory(props).GetLogger("x");
+            AbstractSimpleLogger logger;
+            logger = (AbstractSimpleLogger)new ConcreteLoggerFactory(props).GetLogger("x");
             Assert.AreEqual("x", logger.Name);
             Assert.AreEqual(false, logger.ShowLogName);
             Assert.AreEqual(false, logger.ShowDateTime);

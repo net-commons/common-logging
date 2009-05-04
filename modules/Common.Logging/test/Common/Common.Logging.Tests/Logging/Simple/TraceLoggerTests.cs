@@ -32,29 +32,20 @@ namespace Common.Logging.Simple
     /// </summary>
     /// <author>Mark Pollack</author>
     [TestFixture]
-    public class TraceLoggerTests : AbstractSimpleLogTest
+    public class TraceLoggerTests : AbstractSimpleLoggerTestsBase
     {
-        [SetUp]
-        public void Setup()
+        protected override ILoggerFactoryAdapter GetLoggerFactoryAdapter()
         {
-            NameValueCollection properties = GetProperties();
-
-            // set Adapter
-            LogManager.Adapter = new TraceLoggerFactoryAdapter(properties);
-            defaultLogInstance = LogManager.GetLogger(LoggerType.FullName);
-        }
-
-        public override Type LoggerType
-        {
-            get { return typeof (TraceLogger); }
+            return new TraceLoggerFactoryAdapter(CreateProperties());
         }
 
         /// <summary>
         /// Basic checks specific to ConsoleOutLogger
         /// </summary>
-        /// <param name="log">The log.</param>
-        protected override void CheckLog(ILog log)
+        [Test]
+        public void AssertDefaultSettings()
         {
+            ILog log = LogManager.GetCurrentClassLogger();
             Assert.IsNotNull(log);
             Assert.IsInstanceOf<TraceLogger>(log);
 

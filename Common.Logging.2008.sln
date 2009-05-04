@@ -41,11 +41,35 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		changelog.txt = changelog.txt
 		shared\common-project.include = shared\common-project.include
+		modules\CommonAssemblyInfo.cs.template = modules\CommonAssemblyInfo.cs.template
 		doc\api\introduction.html = doc\api\introduction.html
 		shared\Logging.build = shared\Logging.build
 		Logging.build = Logging.build
 		shared\Logging.include = shared\Logging.include
 		Logging.ndoc = Logging.ndoc
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{233DC5FA-FFB8-43A7-BDFD-B6AD5DC35264}"
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "SimpleWebApplication", "examples\SimpleWebApplication\", "{BFE997BA-52EB-424C-A356-DEAB85880012}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFramework = "2.0"
+		ProjectReferences = "{440D903A-D409-48FC-A6C4-3EE69CCD663B}|Common.Logging.dll;{0FEA262C-4EAF-49DB-8D32-8E90DDEF23B6}|Common.Logging.Log4Net.dll;"
+		Debug.AspNetCompiler.VirtualPath = "/SimpleWebApplication"
+		Debug.AspNetCompiler.PhysicalPath = "examples\SimpleWebApplication\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\SimpleWebApplication\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/SimpleWebApplication"
+		Release.AspNetCompiler.PhysicalPath = "examples\SimpleWebApplication\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\SimpleWebApplication\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "7520"
 	EndProjectSection
 EndProject
 Global
@@ -126,9 +150,15 @@ Global
 		{E641F51F-1B51-4B94-B419-F902EABCE4D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E641F51F-1B51-4B94-B419-F902EABCE4D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E641F51F-1B51-4B94-B419-F902EABCE4D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BFE997BA-52EB-424C-A356-DEAB85880012}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BFE997BA-52EB-424C-A356-DEAB85880012}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{BFE997BA-52EB-424C-A356-DEAB85880012}.Release|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BFE997BA-52EB-424C-A356-DEAB85880012} = {233DC5FA-FFB8-43A7-BDFD-B6AD5DC35264}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		NAntAddinLastFileName = Common.Logging.build

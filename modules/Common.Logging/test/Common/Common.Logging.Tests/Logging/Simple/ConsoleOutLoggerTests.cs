@@ -18,8 +18,6 @@
 
 #endregion
 
-using System;
-using System.Collections.Specialized;
 using NUnit.Framework;
 
 namespace Common.Logging.Simple
@@ -28,36 +26,26 @@ namespace Common.Logging.Simple
     /// Exercises the ConsoleOutLogger implementation.
     /// </summary>
     /// <author>Mark Pollack</author>
-    /// <version>$Id:$</version>
     [TestFixture]
-    public class ConsoleOutLoggerTests : AbstractSimpleLogTest
+    public class ConsoleOutLoggerTests : AbstractSimpleLoggerTestsBase
     {
-        [SetUp]
-        public void Setup()
+        protected override ILoggerFactoryAdapter GetLoggerFactoryAdapter()
         {
-            NameValueCollection properties = GetProperties();
-
-            // set Adapter
-            LogManager.Adapter = new ConsoleOutLoggerFactoryAdapter(properties);
-            defaultLogInstance = LogManager.GetLogger(LoggerType.FullName);
-        }
-
-        public override Type LoggerType
-        {
-            get { return typeof (ConsoleOutLogger); }
+            return new ConsoleOutLoggerFactoryAdapter(CreateProperties());
         }
 
         /// <summary>
         /// Basic checks specific to ConsoleOutLogger
         /// </summary>
-        /// <param name="log">The log.</param>
-        protected override void CheckLog(ILog log)
+        [Test]
+        public void AssertDefaultSettings()
         {
+            ILog log = LogManager.GetCurrentClassLogger();
+
             Assert.IsNotNull(log);
             Assert.IsInstanceOf<ConsoleOutLogger>(log);
 
             // Can we call level checkers with no exceptions?
-            // Note that everything is hard-coded to be disabled for NoOpLogger
             Assert.IsTrue(log.IsDebugEnabled);
             Assert.IsTrue(log.IsInfoEnabled);
             Assert.IsTrue(log.IsWarnEnabled);

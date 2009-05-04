@@ -29,6 +29,7 @@ namespace Common.Logging.NLog
     /// Concrete subclass of ILoggerFactoryAdapter specific to NLog 1.0.0.505.
     /// </summary>
     /// <remarks>
+    /// <para>Note, that you cannot use NLog in medium trust environments unless you use an unsigned build</para>
     /// The following configuration property values may be configured:
     /// <list type="bullet">
     ///     <item><c>configType</c>: <c>INLINE|FILE</c></item>

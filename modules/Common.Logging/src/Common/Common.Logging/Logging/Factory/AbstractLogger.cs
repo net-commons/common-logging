@@ -87,7 +87,7 @@ namespace Common.Logging.Factory
 
             public override string ToString()
             {
-                if (cachedMessage == null)
+                if (cachedMessage == null && Message != null)
                 {
                     cachedMessage = string.Format(FormatProvider, Message, Args);
                 }

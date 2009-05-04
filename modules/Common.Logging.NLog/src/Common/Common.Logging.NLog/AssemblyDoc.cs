@@ -28,6 +28,7 @@ using Common.Logging.NLog;
 /// <item>NLog to render its output to Common.Logging use <see cref="CommonLoggingTarget"/>.</item>
 /// </list>
 /// </para>
+/// <para>Note, that you cannot use NLog in medium trust environments unless you use an unsigned build</para>
 /// </summary>
 internal static class AssemblyDoc
 {

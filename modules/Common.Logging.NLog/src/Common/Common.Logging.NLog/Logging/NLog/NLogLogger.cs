@@ -18,46 +18,41 @@
 
 #endregion
 
-#region Imports
-
 using System;
-using System.Reflection;
+using System.Diagnostics;
 using Common.Logging.Factory;
 using NLog;
 using LogLevelNLog = NLog.LogLevel;
 using LoggerNLog = NLog.Logger;
 
-
-#endregion
-
 namespace Common.Logging.NLog
 {
     /// <summary>
-	/// Concrete implementation of <see cref="ILog"/> interface specific to NLog 1.0.0.505.
+    /// Concrete implementation of <see cref="ILog"/> interface specific to NLog 1.0.0.505.
     /// </summary>
-	/// <remarks>
+    /// <remarks>
     /// NLog is a .NET logging library designed with simplicity and flexibility in mind.
     /// http://www.nlog-project.org/
-	/// </remarks>
+    /// </remarks>
     /// <author>Bruno Baia</author>
-	public class NLogLogger : AbstractLogger
-	{
-		#region Fields
+    public class NLogLogger : AbstractLogger
+    {
+        #region Fields
 
         private readonly LoggerNLog _logger;
         private readonly static Type declaringType = typeof(AbstractLogger);
 
-		#endregion 
+        #endregion
 
-		/// <summary>
-		/// Constructor
-		/// </summary>
+        /// <summary>
+        /// Constructor
+        /// </summary>
         protected internal NLogLogger(LoggerNLog logger)
-		{
-			_logger = logger;
-		}
+        {
+            _logger = logger;
+        }
 
-		#region ILog Members
+        #region ILog Members
 
         /// <summary>
         /// Gets a value indicating whether this instance is trace enabled.
@@ -88,9 +83,9 @@ namespace Common.Logging.NLog
         /// 	<c>true</c> if this instance is info enabled; otherwise, <c>false</c>.
         /// </value>
         public override bool IsInfoEnabled
-		{
-			get { return _logger.IsInfoEnabled; }
-		}
+        {
+            get { return _logger.IsInfoEnabled; }
+        }
 
 
         /// <summary>
@@ -100,9 +95,9 @@ namespace Common.Logging.NLog
         /// 	<c>true</c> if this instance is warn enabled; otherwise, <c>false</c>.
         /// </value>
         public override bool IsWarnEnabled
-		{
-			get { return _logger.IsWarnEnabled; }
-		}
+        {
+            get { return _logger.IsWarnEnabled; }
+        }
 
         /// <summary>
         /// Gets a value indicating whether this instance is error enabled.
@@ -111,9 +106,9 @@ namespace Common.Logging.NLog
         /// 	<c>true</c> if this instance is error enabled; otherwise, <c>false</c>.
         /// </value>
         public override bool IsErrorEnabled
-		{
+        {
             get { return _logger.IsErrorEnabled; }
-		}
+        }
 
         /// <summary>
         /// Gets a value indicating whether this instance is fatal enabled.
@@ -122,11 +117,11 @@ namespace Common.Logging.NLog
         /// 	<c>true</c> if this instance is fatal enabled; otherwise, <c>false</c>.
         /// </value>
         public override bool IsFatalEnabled
-		{
+        {
             get { return _logger.IsFatalEnabled; }
-		}
+        }
 
-		#endregion
+        #endregion
 
         /// <summary>
         /// Actually sends the message to the underlying log system.

@@ -20,6 +20,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using Common.Logging.Configuration;
 using NLog;
 
@@ -84,6 +85,11 @@ namespace Common.Logging.NLog
         /// </summary>
         protected override void Write(LogEventInfo logEvent)
         {
+            if (LogManager.Adapter is NLogLoggerFactoryAdapter)
+            {
+                throw new ConfigurationErrorsException("routing NLog events to Common.Logging configured with NLogLoggerFactoryAdapter results in an endless recursion");
+            }
+
             ILog logger = LogManager.GetLogger(logEvent.LoggerName);
             LogMethod log = logMethods[logEvent.Level];
             log(logger, delegate { return this.CompiledLayout.GetFormattedMessage(logEvent); }, logEvent.Exception);

@@ -29,6 +29,7 @@ namespace Common.Logging.EntLib
     /// Adapts the EnterpriseLibrary 3.1 logging system to Common.Logging.
     /// </summary>
     /// <remarks>
+    /// <para>Note, that you cannot use Enterprise Logging 3.1 in medium trust environments</para>
     /// The following configuration property values may be configured:
     /// <list type="bullet">
     ///     <item>DefaultPriority (see <see cref="DefaultPriority"/>)</item>

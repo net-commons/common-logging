@@ -63,6 +63,8 @@
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
@@ -73,9 +75,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="Logging\AbstractLoggerTests.cs" />
+    <Compile Include="Logging\Factory\AbstractLoggerTests.cs" />
     <Compile Include="ExceptionsTest.cs" />
-    <Compile Include="Logging\AbstractLogTest.cs" />
+    <Compile Include="Logging\ILogTestsBase.cs" />
     <Compile Include="Logging\Simple\CommonLoggingTraceListenerTests.cs" />
     <Compile Include="Logging\ConfigurationSectionHandlerTests.cs" />
     <Compile Include="Logging\Configuration\ArgUtilsTests.cs" />
@@ -83,18 +85,19 @@
     <Compile Include="Logging\LoggingExceptionTests.cs" />
     <Compile Include="Logging\LogManagerTests.cs" />
     <Compile Include="Logging\MissingCtorFactoryAdapter.cs" />
-    <Compile Include="Logging\SerializationTestUtils.cs" />
+    <Compile Include="TestUtil\SerializationTestUtils.cs" />
     <Compile Include="Logging\Simple\AbstractSimpleLoggerTests.cs" />
     <Compile Include="Logging\Simple\ConsoleOutLoggerTests.cs" />
     <Compile Include="Logging\Simple\TraceLoggerTests.cs" />
     <Compile Include="Logging\Simple\NoOpLoggerTests.cs" />
-    <Compile Include="Logging\Simple\AbstractSimpleLogTest.cs" />
+    <Compile Include="Logging\Simple\AbstractSimpleLoggerTestsBase.cs" />
     <Compile Include="Logging\StandaloneConfigurationReader.cs" />
     <Compile Include="MethodInvokePerformanceTests.cs" />
     <Compile Include="PerformanceTests.cs" />
     <Compile Include="StopWatch.cs" />
     <Compile Include="TestUtil\CapturingTraceListener.cs" />
     <Compile Include="StandardsComplianceTest.cs" />
+    <Compile Include="TestUtil\SecurityUtil.cs" />
     <Compile Include="TestUtil\TraceEventArgs.cs" />
   </ItemGroup>
   <ItemGroup>
