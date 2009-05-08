@@ -85,7 +85,7 @@
   &lt;runtime&gt;
      &lt;assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1"&gt;
         &lt;dependentAssembly&gt;
-           &lt;assemblyIdentity name="Common.Logging" publicKeyToken="af08829b84f0328e" culture=""/&gt;
+           &lt;assemblyIdentity name="Common.Logging" publicKeyToken="af08829b84f0328e" /&gt;
            &lt;bindingRedirect oldVersion="0.0.0.0-65535.65535.65535.65535" newVersion="2.0.0.0"/&gt;
            &lt;!-- reference specific file: --&gt;
            &lt;!-- codeBase version="2.0.0.0" href="../../../build/net/2.0/release/Common.Logging.dll"/ --&gt;
