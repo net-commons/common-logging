@@ -75,7 +75,7 @@ namespace Common.Logger.NLog
         {
             get
             {
-                return SecurityUtil.PERMISSIONSET_FULLTRUST;
+                return SecurityTemplate.PERMISSIONSET_FULLTRUST;
             }
         }
 

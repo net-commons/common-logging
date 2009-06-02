@@ -53,7 +53,7 @@ namespace Common.TestUtil
     /// </para>
     /// </remarks>
     /// <author>Erich Eichinger</author>
-    public class SecurityUtil
+    public class SecurityTemplate
     {
         /// <summary>
         /// The default full trust permission set name ("FullTrust")
@@ -81,7 +81,7 @@ namespace Common.TestUtil
         private bool throwOnUnknownPermissionSet = true;
 
         /// <summary>
-        /// Access the domain <see cref="PolicyLevel"/> of this <see cref="SecurityUtil"/> instance.
+        /// Access the domain <see cref="PolicyLevel"/> of this <see cref="SecurityTemplate"/> instance.
         /// </summary>
         public PolicyLevel DomainPolicy
         {
@@ -107,7 +107,7 @@ namespace Common.TestUtil
         /// Creates a new instance providing default "FullTrust", "Nothing", "MediumTrust" and "LowTrust" permissionsets
         /// </summary>
         /// <param name="allowUnmanagedCode">NCover requires unmangaged code permissions, set this flag <c>true</c> in this case.</param>
-        public SecurityUtil(bool allowUnmanagedCode)
+        public SecurityTemplate(bool allowUnmanagedCode)
         {
             PolicyLevel pLevel = PolicyLevel.CreateAppDomainLevel();
 
@@ -178,7 +178,7 @@ namespace Common.TestUtil
         /// Loads domain policy from specified file
         /// </summary>
         /// <param name="securityConfigurationFile"></param>
-        public SecurityUtil(FileInfo securityConfigurationFile)
+        public SecurityTemplate(FileInfo securityConfigurationFile)
         {
             string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
             _domainPolicy = LoadDomainPolicyFromUri(new Uri(securityConfigurationFile.FullName), appDirectory, string.Empty);
@@ -187,7 +187,7 @@ namespace Common.TestUtil
         /// <summary>
         /// Create a security tool from the specified domainPolicy
         /// </summary>
-        public SecurityUtil(PolicyLevel domainPolicy)
+        public SecurityTemplate(PolicyLevel domainPolicy)
         {
             this._domainPolicy = domainPolicy;
         }

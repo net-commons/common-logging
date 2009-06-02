@@ -39,14 +39,14 @@ namespace Common.Logging
     //    [TestFixture]
     public abstract class ILogTestsBase
     {
-        protected SecurityUtil Security;
+        protected SecurityTemplate Security;
 
-        protected virtual string CompliantTrustLevelName { get { return SecurityUtil.PERMISSIONSET_LOWTRUST; } }
+        protected virtual string CompliantTrustLevelName { get { return SecurityTemplate.PERMISSIONSET_LOWTRUST; } }
 
         [SetUp]
         public virtual void SetUp()
         {
-            Security = new SecurityUtil(true);
+            Security = new SecurityTemplate(true);
             LogManager.Reset();
             LogManager.Adapter = GetLoggerFactoryAdapter();
         }
@@ -57,7 +57,7 @@ namespace Common.Logging
         public void SecurityPolicyIsInPlace()
         {
             if (CompliantTrustLevelName != null 
-                && CompliantTrustLevelName != SecurityUtil.PERMISSIONSET_FULLTRUST)
+                && CompliantTrustLevelName != SecurityTemplate.PERMISSIONSET_FULLTRUST)
             Assert.Throws<SecurityException>(delegate
             {
                 Security.PartialTrustInvoke(CompliantTrustLevelName, delegate

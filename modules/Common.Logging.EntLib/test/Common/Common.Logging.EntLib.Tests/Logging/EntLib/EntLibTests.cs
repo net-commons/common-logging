@@ -43,7 +43,7 @@ namespace Common.Logging.EntLib
         {
             get
             {
-                return SecurityUtil.PERMISSIONSET_FULLTRUST;
+                return SecurityTemplate.PERMISSIONSET_FULLTRUST;
             }
         }
 
