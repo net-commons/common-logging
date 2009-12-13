@@ -20,6 +20,7 @@
 
 using System;
 using System.Collections.Specialized;
+using System.Diagnostics;
 using System.Reflection;
 using log4net.Appender;
 using log4net.Config;
@@ -45,9 +46,12 @@ namespace Common.Logging.Log4Net
         public class TestAppender : AppenderSkeleton
         {
             public LoggingEvent LastLoggingEvent;
+            public StackTrace Stack;
 
             protected override void Append(LoggingEvent loggingEvent)
             {
+                Stack = new StackTrace(true);
+                loggingEvent.Fix = FixFlags.LocationInfo;
                 LastLoggingEvent = loggingEvent;
             }
         }
@@ -110,6 +114,8 @@ namespace Common.Logging.Log4Net
             a.GetLogger(this.GetType()).Debug("TestMessage");
 
             Assert.AreEqual(this.GetType().FullName, testAppender.LastLoggingEvent.GetLoggingEventData().LoggerName);
+            Assert.AreEqual(this.GetType().FullName, testAppender.LastLoggingEvent.LocationInformation.ClassName);
+            Assert.AreEqual(MethodBase.GetCurrentMethod().Name, testAppender.LastLoggingEvent.LocationInformation.MethodName);
             Assert.AreEqual("TestMessage", testAppender.LastLoggingEvent.MessageObject);
         }
 

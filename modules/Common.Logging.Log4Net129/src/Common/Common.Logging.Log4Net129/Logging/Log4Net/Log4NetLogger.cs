@@ -46,7 +46,7 @@ namespace Common.Logging.Log4Net
         #region Fields
 
         private readonly ILogger _logger = null;
-        private readonly static Type declaringType = MethodBase.GetCurrentMethod().DeclaringType;
+        private readonly static Type declaringType = typeof(AbstractLogger);
 
         #endregion
 
@@ -121,7 +121,11 @@ namespace Common.Logging.Log4Net
             _logger.Log(declaringType, level, message, exception);
         }
 
-        private static Level GetLevel(LogLevel logLevel)
+        /// <summary>
+        /// Maps <see cref="LogLevel"/> to log4net's <see cref="Level"/>
+        /// </summary>
+        /// <param name="logLevel"></param>
+        public static Level GetLevel(LogLevel logLevel)
         {
             switch (logLevel)
             {

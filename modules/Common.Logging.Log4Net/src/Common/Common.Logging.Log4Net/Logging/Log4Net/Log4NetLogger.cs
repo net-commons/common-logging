@@ -44,7 +44,7 @@ namespace Common.Logging.Log4Net
         #region Fields
 
         private readonly ILogger _logger = null;
-        private readonly static Type declaringType = typeof(Log4NetLogger);
+        private readonly static Type callerStackBoundaryType = typeof(AbstractLogger);
 
         #endregion
 
@@ -116,10 +116,14 @@ namespace Common.Logging.Log4Net
         protected override void WriteInternal(LogLevel logLevel, object message, Exception exception)
         {
             Level level = GetLevel(logLevel);
-            _logger.Log(declaringType, level, message, exception);
+            _logger.Log(callerStackBoundaryType, level, message, exception);
         }
 
-        private static Level GetLevel(LogLevel logLevel)
+        /// <summary>
+        /// Maps <see cref="LogLevel"/> to log4net's <see cref="Level"/>
+        /// </summary>
+        /// <param name="logLevel"></param>
+        public static Level GetLevel(LogLevel logLevel)
         {
             switch (logLevel)
             {

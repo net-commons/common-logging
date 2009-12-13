@@ -48,6 +48,7 @@ namespace Common.Logging.Log4Net
 
             protected override void Append(LoggingEvent loggingEvent)
             {
+                loggingEvent.Fix = FixFlags.LocationInfo;
                 LastLoggingEvent = loggingEvent;
             }
         }
@@ -110,6 +111,8 @@ namespace Common.Logging.Log4Net
             a.GetLogger(this.GetType()).Debug("TestMessage");
 
             Assert.AreEqual(this.GetType().FullName, testAppender.LastLoggingEvent.GetLoggingEventData().LoggerName);
+            Assert.AreEqual(this.GetType().FullName, testAppender.LastLoggingEvent.LocationInformation.ClassName);
+            Assert.AreEqual(MethodBase.GetCurrentMethod().Name, testAppender.LastLoggingEvent.LocationInformation.MethodName);
             Assert.AreEqual("TestMessage", testAppender.LastLoggingEvent.MessageObject);
         }
 
