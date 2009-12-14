@@ -19,6 +19,7 @@
 #endregion
 
 using System;
+using System.Diagnostics;
 using System.Reflection;
 using Common.Logging.Factory;
 using log4net.Core;
@@ -46,7 +47,7 @@ namespace Common.Logging.Log4Net
         #region Fields
 
         private readonly ILogger _logger = null;
-        private readonly static Type declaringType = typeof(AbstractLogger);
+        private static Type callerStackBoundaryType = null;
 
         #endregion
 
@@ -117,8 +118,40 @@ namespace Common.Logging.Log4Net
         /// <param name="exception">the exception to log (may be null)</param>
         protected override void WriteInternal(LogLevel logLevel, object message, Exception exception)
         {
+            // determine correct caller - this might change due to jit optimizations with method inlining
+            if (callerStackBoundaryType == null)
+            {
+                lock (this.GetType())
+                {
+                    StackTrace stack = new StackTrace();
+                    Type thisType = this.GetType();
+                    callerStackBoundaryType = typeof(AbstractLogger);
+                    for (int i = 1; i < stack.FrameCount; i++)
+                    {
+                        if (!IsInTypeHierarchy(thisType, stack.GetFrame(i).GetMethod().DeclaringType))
+                        {
+                            callerStackBoundaryType = stack.GetFrame(i - 1).GetMethod().DeclaringType;
+                            break;
+                        }
+                    }
+                }
+            }
+
             Level level = GetLevel(logLevel);
-            _logger.Log(declaringType, level, message, exception);
+            _logger.Log(callerStackBoundaryType, level, message, exception);
+        }
+
+        private bool IsInTypeHierarchy(Type currentType, Type checkType)
+        {
+            while (currentType != null && currentType != typeof(object))
+            {
+                if (currentType == checkType)
+                {
+                    return true;
+                }
+                currentType = currentType.BaseType;
+            }
+            return false;
         }
 
         /// <summary>
