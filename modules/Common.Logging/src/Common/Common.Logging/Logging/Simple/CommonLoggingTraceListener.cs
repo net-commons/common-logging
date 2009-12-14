@@ -175,10 +175,7 @@ namespace Common.Logging.Simple
         /// <param name="args">the message arguments</param>
         protected virtual void Log(TraceEventType eventType, string source, int id, string format, params object[] args)
         {
-            if (!string.IsNullOrEmpty(source))
-            {
-                source = this.LoggerNameFormat.Replace("{listenerName}", this.Name).Replace("{sourceName}", source);
-            }
+            source = this.LoggerNameFormat.Replace("{listenerName}", this.Name).Replace("{sourceName}", ""+source);
             ILog log = LogManager.GetLogger(source);
             LogLevel logLevel = MapLogLevel(eventType);
 

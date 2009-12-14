@@ -62,6 +62,35 @@ namespace Common.Logging.Simple
             Assert.AreEqual(null, factoryAdapter.LastEvent.Exception);
         }
 
+        [Test]
+        public void AcceptsNullCategory()
+        {
+            CapturingLoggerFactoryAdapter factoryAdapter = new CapturingLoggerFactoryAdapter();
+            LogManager.Adapter = factoryAdapter;
+
+            CommonLoggingTraceListener l = new CommonLoggingTraceListener();
+            l.DefaultTraceEventType = (TraceEventType)0xFFFF;
+
+            AssertExpectedLogLevel(l, TraceEventType.Start, LogLevel.Trace);
+            AssertExpectedLogLevel(l, TraceEventType.Stop, LogLevel.Trace);
+            AssertExpectedLogLevel(l, TraceEventType.Suspend, LogLevel.Trace);
+            AssertExpectedLogLevel(l, TraceEventType.Resume, LogLevel.Trace);
+            AssertExpectedLogLevel(l, TraceEventType.Transfer, LogLevel.Trace);
+            AssertExpectedLogLevel(l, TraceEventType.Verbose, LogLevel.Debug);
+            AssertExpectedLogLevel(l, TraceEventType.Information, LogLevel.Info);
+            AssertExpectedLogLevel(l, TraceEventType.Warning, LogLevel.Warn);
+            AssertExpectedLogLevel(l, TraceEventType.Error, LogLevel.Error);
+            AssertExpectedLogLevel(l, TraceEventType.Critical, LogLevel.Fatal);
+
+            factoryAdapter.ClearLastEvent();
+            l.DefaultTraceEventType = TraceEventType.Warning;
+            l.Write("some message", null);
+            Assert.AreEqual(string.Format("{0}.{1}", l.Name, ""), factoryAdapter.LastEvent.Source.Name);
+            Assert.AreEqual(LogLevel.Warn, factoryAdapter.LastEvent.Level);
+            Assert.AreEqual("some message", factoryAdapter.LastEvent.RenderedMessage);
+            Assert.AreEqual(null, factoryAdapter.LastEvent.Exception);
+        }
+
         private void AssertExpectedLogLevel(CommonLoggingTraceListener l, TraceEventType eventType, LogLevel expectedLogLevel)
         {
             CapturingLoggerFactoryAdapter factoryAdapter = (CapturingLoggerFactoryAdapter)LogManager.Adapter;
