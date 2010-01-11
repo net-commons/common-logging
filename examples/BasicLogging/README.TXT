@@ -1,0 +1,1 @@
+﻿this example demonstrates how to programmatically configure Common.Logging to log to the console

@@ -150,13 +150,27 @@ namespace Common.Logging.Simple
         /// <param name="properties">The name value collection, typically specified by the user in 
         /// a configuration section named common/logging.</param>
         protected AbstractSimpleLoggerFactoryAdapter(NameValueCollection properties)
-            : base(true)
+            :this(
+                    ArgUtils.TryParseEnum(LogLevel.All, ArgUtils.GetValue(properties, "level")),
+                    ArgUtils.TryParse(true, ArgUtils.GetValue(properties, "showDateTime")),
+                    ArgUtils.TryParse(true, ArgUtils.GetValue(properties, "showLogName")),
+                    ArgUtils.TryParse(true, ArgUtils.GetValue(properties, "showLevel")),
+                    ArgUtils.GetValue(properties, "dateTimeFormat", string.Empty)
+                )
+        {}
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AbstractSimpleLoggerFactoryAdapter"/> class with 
+        /// default settings for the loggers created by this factory.
+        /// </summary>
+        protected AbstractSimpleLoggerFactoryAdapter(LogLevel level, bool showDateTime, bool showLogName, bool showLevel, string dateTimeFormat)
+            :base(true)
         {
-            _level = ArgUtils.TryParseEnum(LogLevel.All, ArgUtils.GetValue(properties, "level"));
-            _showDateTime = ArgUtils.TryParse(true, ArgUtils.GetValue(properties, "showDateTime"));
-            _showLogName = ArgUtils.TryParse(true, ArgUtils.GetValue(properties, "showLogName"));
-            _showLevel = ArgUtils.TryParse(true, ArgUtils.GetValue(properties, "showLevel"));
-            _dateTimeFormat = ArgUtils.GetValue(properties, "dateTimeFormat", string.Empty);
+            _level = level;
+            _showDateTime = showDateTime;
+            _showLogName = showLogName;
+            _showLevel = showLevel;
+            _dateTimeFormat = dateTimeFormat ?? string.Empty;            
         }
 
         /// <summary>

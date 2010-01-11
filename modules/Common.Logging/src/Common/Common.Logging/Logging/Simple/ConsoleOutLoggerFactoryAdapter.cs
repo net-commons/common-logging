@@ -85,6 +85,14 @@ namespace Common.Logging.Simple
         { }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="AbstractSimpleLoggerFactoryAdapter"/> class with 
+        /// default settings for the loggers created by this factory.
+        /// </summary>
+        public ConsoleOutLoggerFactoryAdapter(LogLevel level, bool showDateTime, bool showLogName, bool showLevel, string dateTimeFormat) 
+            : base(level, showDateTime, showLogName, showLevel, dateTimeFormat)
+        { }
+
+        /// <summary>
         /// Creates a new <see cref="ConsoleOutLogger"/> instance.
         /// </summary>
         protected override ILog CreateLogger(string name, LogLevel level, bool showLevel, bool showDateTime, bool showLogName, string dateTimeFormat)

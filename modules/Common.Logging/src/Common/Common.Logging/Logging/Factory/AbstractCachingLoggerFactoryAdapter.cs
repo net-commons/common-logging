@@ -36,7 +36,13 @@ namespace Common.Logging.Factory
         private readonly Hashtable _cachedLoggers;
 
         /// <summary>
-        /// Creates a new 
+        /// Creates a new instance, the logger cache being case-sensitive.
+        /// </summary>
+        protected AbstractCachingLoggerFactoryAdapter():this(true)
+        {}
+
+        /// <summary>
+        /// Creates a new instance, the logger cache being <paramref name="caseSensitiveLoggerCache"/>.
         /// </summary>
         /// <param name="caseSensitiveLoggerCache"></param>
         protected AbstractCachingLoggerFactoryAdapter(bool caseSensitiveLoggerCache)
