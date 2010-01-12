@@ -1,18 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
+using System.Collections.Specialized;
 using Common.Logging;
 using Common.Logging.Simple;
 
 namespace LambdaCallbackEvaluation
 {
-    class CommonLoggingBinaryCompatibilityTest
+    public class CommonLoggingBinaryCompatibilityTest
     {
         public static void Main()
         {
-            Common.Logging.LogManager.Adapter = new TraceLoggerFactoryAdapter();
+            NameValueCollection args = new NameValueCollection();
+            args["showDateTime"] = "false";
+            ConsoleOutLoggerFactoryAdapter adapter = new ConsoleOutLoggerFactoryAdapter(args);
+            LogManager.Adapter = adapter;
 
             CommonLoggingBinaryCompatibilityTest tests = new CommonLoggingBinaryCompatibilityTest();
             tests.Run();
