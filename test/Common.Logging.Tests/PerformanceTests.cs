@@ -18,8 +18,6 @@
 
 #endregion
 
-#if NET_3_0
-
 using System;
 using System.Collections;
 using System.Collections.Specialized;
@@ -30,6 +28,91 @@ using NUnit.Framework;
 
 namespace Common
 {
+    [TestFixture, Explicit]
+    public class PerformanceTests
+    {
+        [Test]
+        public void JustForTestingLoggingConfiguration()
+        {
+            TraceSource traceSource = new TraceSource("DiagnosticsTracePerformanceTest");
+            traceSource.TraceEvent(TraceEventType.Verbose, -1, "test trace info {0}", new MyTestObjectUnderTrace());
+            //            Trace.TraceInformation("traced info");
+            Trace.WriteLine("some message", "myCategory");
+            Console.WriteLine("from console");
+        }
+
+        [Test]
+        public void DiagnosticsTracePerformanceTest()
+        {
+            MyTestObjectUnderTrace myObj = new MyTestObjectUnderTrace();
+            int runs = 100000000;
+            StopWatch sw;
+            MyTestTraceListener listener;
+
+            // use NoOp logging
+            LogManager.Adapter = new NoOpLoggerFactoryAdapter();
+            ILog log = LogManager.GetLogger(this.GetType());
+
+            sw = new StopWatch();
+            using (sw.Start("Time:{0} - log.InfoFormat + NoOpLogger"))
+            {
+                for (int i = 0; i < runs; i++)
+                {
+                    log.Info( m=>m("some logger info {0}", (object)myObj) );
+                }
+            }
+
+            // Use unconfigured TraceSource
+            TraceSource traceSource = new TraceSource("bla");
+            sw = new StopWatch();
+            using (sw.Start("Time:{0} - traceSource.TraceEvent + unconfigured TraceSource"))
+            {
+                for (int i = 0; i < runs; i++)
+                {
+                    if (traceSource.Switch.ShouldTrace(TraceEventType.Information))
+                    {
+                        traceSource.TraceEvent(TraceEventType.Information, -1, "some tracesource info {0}", (object)myObj);
+                    }
+                }
+            }
+
+            // use Common.Logging
+            MyTestLoggerFactoryAdapter adapter = new MyTestLoggerFactoryAdapter(null);
+            adapter.ShowLogName = true;
+            adapter.ShowDateTime = true;
+            adapter.Level = LogLevel.Warn;
+            LogManager.Adapter = adapter;
+            log = LogManager.GetLogger(this.GetType());
+
+            sw = new StopWatch();
+            using (sw.Start("Time:{0} - log.InfoFormat"))
+            {
+                for (int i = 0; i < runs; i++)
+                {
+                    log.Info(m => m("some logger info {0}", (object)myObj));
+                }
+            }
+            Assert.AreEqual(0, adapter.Messages.Count);
+
+            // Use configured TraceSource
+            traceSource = new TraceSource("DiagnosticsTracePerformanceTest");
+            listener = (MyTestTraceListener) traceSource.Listeners[0];
+            sw = new StopWatch();
+            using (sw.Start("Time:{0} - traceSource.TraceEvent"))
+            {
+                for (int i = 0; i < runs; i++)
+                {
+                    if (traceSource.Switch.ShouldTrace(TraceEventType.Information))
+                    {
+                        traceSource.TraceEvent(TraceEventType.Information, -1, "some tracesource info {0}", (object)myObj);
+                    }
+                }
+            }
+            Assert.AreEqual(0, listener.Messages.Count);
+        }
+    }
+
+    #region Utility Classes
     public class MyClass
     {
         private readonly TraceSource trace = new TraceSource(typeof(MyClass).Name);
@@ -119,89 +202,5 @@ namespace Common
         }
     }
 
-    [TestFixture, Explicit]
-    public class PerformanceTests
-    {
-        [Test]
-        public void JustForTestingLoggingConfiguration()
-        {
-            TraceSource traceSource = new TraceSource("DiagnosticsTracePerformanceTest");
-            traceSource.TraceEvent(TraceEventType.Verbose, -1, "test trace info {0}", new MyTestObjectUnderTrace());
-            //            Trace.TraceInformation("traced info");
-            Trace.WriteLine("some message", "myCategory");
-            Console.WriteLine("from console");
-        }
-
-        [Test]
-        public void DiagnosticsTracePerformanceTest()
-        {
-            MyTestObjectUnderTrace myObj = new MyTestObjectUnderTrace();
-            int runs = 100000000;
-            StopWatch sw;
-            MyTestTraceListener listener;
-
-            // use NoOp logging
-            LogManager.Adapter = new NoOpLoggerFactoryAdapter();
-            ILog log = LogManager.GetLogger(this.GetType());
-
-            sw = new StopWatch();
-            using (sw.Start("Time:{0} - log.InfoFormat + NoOpLogger"))
-            {
-                for (int i = 0; i < runs; i++)
-                {
-                    log.Info( m=>m("some logger info {0}", (object)myObj) );
-                }
-            }
-
-            // Use unconfigured TraceSource
-            TraceSource traceSource = new TraceSource("bla");
-            sw = new StopWatch();
-            using (sw.Start("Time:{0} - traceSource.TraceEvent + unconfigured TraceSource"))
-            {
-                for (int i = 0; i < runs; i++)
-                {
-                    if (traceSource.Switch.ShouldTrace(TraceEventType.Information))
-                    {
-                        traceSource.TraceEvent(TraceEventType.Information, -1, "some tracesource info {0}", (object)myObj);
-                    }
-                }
-            }
-
-            // use Common.Logging
-            MyTestLoggerFactoryAdapter adapter = new MyTestLoggerFactoryAdapter(null);
-            adapter.ShowLogName = true;
-            adapter.ShowDateTime = true;
-            adapter.Level = LogLevel.Warn;
-            LogManager.Adapter = adapter;
-            log = LogManager.GetLogger(this.GetType());
-
-            sw = new StopWatch();
-            using (sw.Start("Time:{0} - log.InfoFormat"))
-            {
-                for (int i = 0; i < runs; i++)
-                {
-                    log.Info(m => m("some logger info {0}", (object)myObj));
-                }
-            }
-            Assert.AreEqual(0, adapter.Messages.Count);
-
-            // Use configured TraceSource
-            traceSource = new TraceSource("DiagnosticsTracePerformanceTest");
-            listener = (MyTestTraceListener) traceSource.Listeners[0];
-            sw = new StopWatch();
-            using (sw.Start("Time:{0} - traceSource.TraceEvent"))
-            {
-                for (int i = 0; i < runs; i++)
-                {
-                    if (traceSource.Switch.ShouldTrace(TraceEventType.Information))
-                    {
-                        traceSource.TraceEvent(TraceEventType.Information, -1, "some tracesource info {0}", (object)myObj);
-                    }
-                }
-            }
-            Assert.AreEqual(0, listener.Messages.Count);
-        }
-    }
+    #endregion
 }
-
-#endif

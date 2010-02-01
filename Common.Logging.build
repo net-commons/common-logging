@@ -1,0 +1,424 @@
+<?xml version="1.0" ?>
+<project name="Common.Logging" default="test" xmlns="http://nant.sf.net/schemas/nant.xsd">
+
+    <!-- Global project settings -->
+    <!-- 0 for initial or custom release, label value if built by ccnet -->
+    <property name="project.majorversion" value="2.0" />
+    <property name="project.patchversion" value="${CCNetLabel}" overwrite="true" if="${property::exists('CCNetLabel')}"/>
+    <property name="project.patchversion" value="0" overwrite="false" />
+    <property name="project.buildnumber" value="${math::abs(math::floor(timespan::get-total-days(datetime::now() - datetime::parse('01/01/2000'))))}" />
+    <property name="project.version" value="${project.majorversion}.${project.patchversion}.${project.buildnumber}" overwrite="false" />
+    <!-- dev / alpha / beta# / rc# / release -->
+    <property name="project.releasetype" value="dev" overwrite="false" />
+    <property name="project.sign" value="false" overwrite="false" />
+
+    <property name="root.dir" value="${project::get-base-directory()}" overwrite="false" />
+    <property name="package.dir" value="${root.dir}/package" />
+    <property name="build.dir" value="${root.dir}/build" />
+    <property name="doc.dir" value="${root.dir}/doc" />
+    <property name="tool.dir" value="${root.dir}/tools" />
+    <property name="lib.dir" value="${root.dir}/lib" />
+
+    <if test="${project.sign and not(file::exists(root.dir + '/Common.Net.snk'))}">
+      <fail message="project.sign='true' but keyfile ${root.dir+'/Common.Net.snk'} is missing" />
+    </if>
+
+    <readregistry property="net35.install.dir" key="SOFTWARE\Microsoft\NET Framework Setup\NDP\v3.5\InstallPath" hive="LocalMachine" failonerror="true"/>
+    <property name="msbuild.exe" value="${net35.install.dir}\msbuild.exe"/>
+
+    <!-- force net-2.0 -->
+    <property name="nant.settings.currentframework" value="net-2.0"/>
+
+    <target name="init" depends="clean, update-dependencies" />
+
+    <target name="build" depends="init">
+      <call target="update-common-assemblyinfo" />
+
+      <property name="buildconfiguration" value="Debug" />
+      <call target="RebuildAllSolutions" />
+
+      <property name="buildconfiguration" value="Release" />
+      <call target="RebuildAllSolutions" />
+
+    </target>
+
+    <target name="test" depends="build">
+        <call target="TestAllAssemblies" />
+    </target>
+
+    <target name="test-integration" depends="test">
+<!--
+        <delete>
+            <fileset basedir="${build.dir}">
+                <include name="*.dll-TestCoverage.xml" />
+            </fileset>
+        </delete>
+-->
+        <call target="IntegrationTestAllAssemblies" />
+    </target>
+
+  <target name="doc">
+    <call target="doc-reference" cascade="false" />
+    <call target="doc-sdk" cascade="false" />
+  </target>
+
+  <target name="doc-reference">
+    <nant buildfile="${doc.dir}/reference/docbook.build" target="all" />
+  </target>
+
+  <target name="doc-sdk">
+    <echo message="Creating SDK Documentation for Common.Logging." />
+    <exec workingdir="." program="${tool.dir}/ndoc3/NDoc3Console.exe" verbose="true">
+      <!-- arg value="-verbose" /-->
+      <!-- arg value="-documenter=MSDN" /-->
+      <arg value="-project=${root.dir}/Logging.ndoc" />
+    </exec>
+  </target>
+
+    <target name="deploy" depends="test-integration">
+        <delete dir="${deploy.dir}" failonerror="true" />
+
+        <copy todir="${deploy.dir}">
+            <fileset basedir="src/Viz.Invoicing.Front">
+                <include name="**/*.*"/>
+                <exclude name="Properties/**"/>
+                <exclude name="obj/**"/>
+                <exclude name="*.csproj*"/>
+                <exclude name="**/WebDev.WebHost.dll" />
+            </fileset>
+        </copy>
+        <copy todir="${deploy.dir}/bin">
+            <fileset basedir="${build.dir}">
+                <include name="*.dll"/>
+                <include name="*.pdb"/>
+                <exclude name="*.Tests.???" />
+                <exclude name="*.Tests.Integration.???" />
+                <exclude name="WebDev.WebHost.dll" />
+            </fileset>
+        </copy>
+
+        <xmlpoke
+            file="${deploy.dir}/Web.config"
+            xpath="/configuration/appSettings/add[@key = 'InvoicingManager.DeploymentProfile']/@value"
+            value="Viz.Invoicing.Configuration.LiveProfile" failonerror="true" />
+        <xmlpoke
+            file="${build.dir}/Viz.Invoicing.Deployment.dll.config"
+            xpath="/configuration/appSettings/add[@key = 'InvoicingManager.DeploymentProfile']/@value"
+            value="Viz.Invoicing.Configuration.LiveProfile" failonerror="true" />
+
+        <property name="test.assemblyname" value="${build.dir}/Viz.Invoicing.Deployment" />
+        <exec program="${tool.dir}/nunit/bin/net-2.0/nunit-console-x86.exe" workingdir="${build.dir}" verbose="true">
+            <arg line="${build.dir}/Viz.Invoicing.Deployment.dll" />
+            <arg value="/nologo" />
+            <arg value="/noshadow" />
+            <arg value="/framework:${nant.settings.currentframework}" />
+            <arg value="/run:Viz.Invoicing.Deployment.DeploymentFixture" />
+        </exec>
+
+    </target>
+
+  <target name="package" description="Builds all modules and documentation">
+
+    <!-- clean package dir -->
+    <delete dir="${package.dir}" failonerror="true" />
+
+    <!-- build and copy binaries -->
+    <call target="package.binaries" cascade="false" />
+
+    <!-- copy sources -->
+    <call target="package.sources" cascade="false" />
+
+    <!-- copy reference docs -->
+    <call target="package.doc" cascade="false"/>
+
+    <!-- build scripts -->
+    <copy todir="${package.dir}/shared/">
+      <fileset basedir="${root.dir}/shared">
+        <include name="**/*"/>
+      </fileset>
+    </copy>
+    <copy todir="${root.dir}" file="${root.dir}/Common.Logging.build"/>
+
+    <!-- copy over readme etc. -->
+    <copy todir="${package.dir}" file="${root.dir}/readme.txt"/>
+    <copy todir="${package.dir}" file="${root.dir}/license.txt"/>
+    <copy todir="${package.dir}" file="${root.dir}/changelog.txt"/>
+
+    <!-- TODO: JUST FOR TESTING! -->
+    <!-- copy todir="${package.dir}\modules" file="${project.basedir}/modules/Common.Net.snk"/ -->
+    <!-- copy todir="${package.dir}\modules">
+      <fileset basedir="${project.basedir}\modules">
+        <include name="**/lib/**/Microsoft.*"/>
+      </fileset>
+    </copy -->
+
+  </target>
+
+  <target name="package.binaries" depends="build">
+      <copy todir="${package.dir}/bin/net/2.0/debug" flatten="true">
+        <fileset>
+          <include name="**/build/Common.Logging.*/Debug/Common.Logging*.???"/>
+          <exclude name="**/*Test*"/>
+        </fileset>
+      </copy>
+      <copy todir="${package.dir}/bin/net/2.0/release" flatten="true">
+        <fileset>
+          <include name="**/build/Common.Logging.*/Debug/Common.Logging*.???"/>
+          <exclude name="**/*Test*"/>
+        </fileset>
+      </copy>
+  </target>
+
+  <target name="package.sources">
+    <echo message="TODO: package.sources" />
+  </target>
+
+  <target name="package.doc">
+    <!-- copy reference docs -->
+    <call target="doc" cascade="false"/>
+    <copy todir="${package.dir}/doc/reference/">
+      <fileset basedir="${doc.dir}/reference/target/">
+        <include name="**/*"/>
+      </fileset>
+    </copy>
+
+    <!-- copy sdk docs -->
+    <copy todir="${package.dir}/doc/api/html">
+      <fileset basedir="${doc.dir}/api/target/msdn/">
+        <include name="**/*"/>
+        <exclude name="*.chw" />
+        <exclude name="*.hhc" />
+        <exclude name="*.hhk" />
+        <exclude name="*.hhp" />
+        <exclude name="*.chm" />
+        <exclude name="ndoc3_msdn_temp" />
+      </fileset>
+    </copy>
+    <copy todir="${package.dir}/doc/api/htmlhelp">
+      <fileset basedir="${doc.dir}/api/target/msdn/">
+        <include name="*.chm"/>
+      </fileset>
+    </copy>
+  </target>
+
+    <target name="daily" depends="deploy">
+    </target>
+
+    <target name="clean">
+        <delete dir="${build.dir}" failonerror="false" />
+        <foreach item="Folder" property="dirname">
+            <in>
+                <items basedir="${root.dir}">
+                    <exclude name="tools/**" />
+                    <include name="src/**/bin" />
+                    <include name="test/**/bin" />
+                    <include name="**/obj" />
+                    <include name="**/PreCompiledWeb" />
+                </items>
+            </in>
+            <do>
+                <delete dir="${dirname}" failonerror="false" />
+            </do>
+        </foreach>
+    </target>
+
+    <target name="common.run-tests">
+        <!-- call target="common.run-tests.nunit" / -->
+	      <call target="common.run-tests.nunit" />
+    </target>
+
+    <!--
+*******************************************************************************
+Runs NUnit unit test configuration of the current ${project::get-name()}.dll
+
+Arguments:
+${build.dir}: the binary directory to pick the assembly + app.config from
+${test.assemblyname}   : (optional), the name of the assembly, if not specified uses "project:get-name()"
+${tool.dir}       : dir for tools
+    -->
+    <target name="common.run-tests.nunit">
+
+        <!-- property name="test.assemblyfile" value="${project::get-name()}.dll" overwrite="false" / -->
+        <property name="test.assemblyname" value="${path::get-file-name-without-extension(test.assemblyfile)}" overwrite="true" />
+        <property name="test.bin.dir" value="${directory::get-parent-directory(test.assemblyfile + '/')}" overwrite="true" />
+
+        <echo message="Unit Testing ${test.assemblyname}, File='${test.assemblyfile}', WorkingDir='${test.bin.dir}'" />
+
+        <exec program="${tool.dir}/nunit/nunit-console-x86.exe" workingdir="${test.bin.dir}" verbose="true">
+            <arg value="/xml:${test.assemblyname}.dll-TestResults.xml" />
+            <arg value="/nologo" />
+            <arg value="/noshadow" />
+            <arg value="/framework:${nant.settings.currentframework}" />
+            <arg line="${test.assemblyfile}" />
+        </exec>
+
+    </target>
+
+    <!--
+*******************************************************************************
+Runs coverage unit test configuration of the current ${project::get-name()}.dll
+
+Arguments:
+${current.bin.dir}: the binary directory to pick the assembly + app.config from
+${project.name}   : (optional), the name of the assembly
+${tool.dir}       : dir for tools
+    -->
+    <target name="common.run-tests.ncover" description="Run NUnit tests">
+
+        <!-- property name="test.assemblyname" value="${project::get-name()}" overwrite="false" /-->
+        <property name="test.assemblyfile" value="${project::get-name()}.dll" overwrite="false" />
+        <property name="test.assemblyname" value="${path::get-file-name-without-extension(test.assemblyfile)}" overwrite="true" />
+        <property name="test.bin.dir" value="${directory::get-parent-directory(test.assemblyfile + '/')}" overwrite="true" />
+
+        <echo message="Coverage Testing ${test.assemblyname}, File='${test.assemblyfile}', WorkingDir='${test.bin.dir}'" />
+
+        <property name="test.assemblyname.tocover" value="${string::substring(test.assemblyname,0,string::last-index-of(test.assemblyname, '.Tests') )}" overwrite="false" />
+
+        <exec program="${tool.dir}/ncover/ncover.console.exe" workingdir="${test.bin.dir}" verbose="true">
+            <arg value="//q" />
+            <arg value="//reg" />
+            <arg value="//w" />
+            <arg path="${test.bin.dir}" />
+            <arg value="//x" />
+            <arg path="${test.bin.dir}/${test.assemblyname}.dll-TestCoverage.xml" />
+            <arg value="//a" />
+            <arg value="${test.assemblyname.tocover}" />
+            <arg value="//ea" />
+            <arg value="CoverageExcludeAttribute" />
+            <arg value="//q" />
+            <arg path="${tool.dir}/nunit/nunit-console-x86.exe" />
+            <arg line="${test.assemblyfile}" />
+            <arg value="/xml:${test.assemblyname}.dll-TestResults.xml" />
+            <arg value="/nologo" />
+            <arg value="/noshadow" />
+            <arg value="/framework:${nant.settings.currentframework}" />
+        </exec>
+
+    </target>
+
+    <target name="TestAllAssemblies">
+        <foreach item="File" property="filename">
+            <in>
+                <items basedir="${build.dir}">
+                    <exclude name="net/**" />
+                    <include name="**/*.Tests.dll" />
+                </items>
+            </in>
+            <do>
+                <property name="test.assemblyfile" value="${filename}" overwrite="true" />
+                <call target="common.run-tests" />
+            </do>
+        </foreach>
+
+        <!-- build coverage summary -->
+        <exec program="${tool.dir}/ncoverexplorer/ncoverexplorer.console.exe" workingdir="${build.dir}" failonerror="false">
+            <arg value="/xml:&quot;${build.dir}/TestCoverageSummary.xml&quot;" />
+            <arg value="/report:ModuleClassFunctionSummary" />
+            <arg value="/sort:4" />
+            <arg value="/minCoverage:80" />
+            <arg value="/q" />
+            <arg path="${build.dir}/*-TestCoverage.xml" />
+        </exec>
+    </target>
+
+    <target name="IntegrationTestAllAssemblies">
+        <foreach item="File" property="filename">
+            <in>
+                <items basedir="${build.dir}">
+                    <exclude name="net/**" />
+                    <include name="**/*.Tests.Integration.dll" />
+                    <include name="**/*.Tests.Integration.*.dll" />
+                </items>
+            </in>
+            <do>
+                <property name="test.assemblyfile" value="${filename}" overwrite="true" />
+                <call target="common.run-tests" />
+            </do>
+        </foreach>
+
+        <!-- build coverage summary -->
+        <exec program="${tool.dir}/ncoverexplorer/ncoverexplorer.console.exe" workingdir="${build.dir}" failonerror="false">
+            <arg value="/xml:&quot;${build.dir}/TestCoverageSummary.xml&quot;" />
+            <arg value="/html:&quot;${build.dir}/TestCoverageSummary.html&quot;" />
+            <arg value="/report:ModuleClassFunctionSummary" />
+            <arg value="/sort:4" />
+            <arg value="/minCoverage:80" />
+            <arg value="/q" />
+            <arg path="${build.dir}/*-TestCoverage.xml" />
+        </exec>
+    </target>
+
+    <target name="RebuildAllSolutions">
+        <foreach item="File" property="filename">
+            <in>
+                <items basedir="${root.dir}">
+                    <exclude name="tools/**" />
+                    <exclude name="modules/**" />
+                    <include name="**/*.sln" />
+                </items>
+            </in>
+            <do>
+                <property name="solutionfile" value="${filename}" />
+                <property name="solutionconfiguration" value="${buildconfiguration}" />
+                <call target="RebuildSolution" />
+            </do>
+        </foreach>
+    </target>
+
+    <target name="RebuildSolution" description="rebuilds a given solution file">
+        <echo message="Rebuilding Solution ${solutionfile}" />
+        <exec program="${msbuild.exe}">
+            <!--
+      <arg value="/property:OutDir=${output.dir}/"/>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>Common.Net.snk</AssemblyOriginatorKeyFile>
+-->
+            <arg value="${solutionfile}"/>
+            <arg line="/property:SignAssembly=${project.sign},AssemblyOriginatorKeyFile=${root.dir}/Common.Net.snk" />
+            <arg line="/nologo" />
+            <arg line="/verbosity:minimal" />
+            <arg line="/property:Configuration=${solutionconfiguration}"/>
+        </exec>
+    </target>
+
+    <target name="update-dependencies">
+        <copy todir="${root.dir}" failonerror="false">
+            <fileset basedir="${root.dir}/../nonredist">
+                <include name="**/*.*"/>
+            </fileset>
+        </copy>
+    </target>
+
+    <target name="update-common-assemblyinfo">
+
+      <!-- ensure src/CommonAssemblyInfo.cs is writable if it already exists -->
+      <attrib file="${root.dir}/src/CommonAssemblyInfo.cs" readonly="false" if="${file::exists('${root.dir}/src/CommonAssemblyInfo.cs')}" />
+      <!-- generate the source file holding the common assembly-level attributes -->
+      <asminfo output="${root.dir}/src/CommonAssemblyInfo.cs" language="CSharp">
+        <imports>
+          <import namespace="System" />
+          <import namespace="System.Reflection" />
+          <import namespace="System.Runtime.InteropServices" />
+          <import namespace="System.Security" />
+          <import namespace="System.Security.Permissions" />
+        </imports>
+        <attributes>
+          <attribute type="CLSCompliantAttribute" value="true" />
+          <attribute type="ComVisibleAttribute" value="false" />
+          <attribute type="AllowPartiallyTrustedCallersAttribute" asis="true"/>
+          <!-- attribute type="SecurityTransparentAttribute" asis="true"/ -->
+          <attribute type="SecurityPermissionAttribute" value="SecurityAction.RequestMinimum" asis="true"/>
+          <attribute type="AssemblyCompanyAttribute" value="http://netcommon.sourceforge.net/" />
+          <attribute type="AssemblyCopyrightAttribute" value="Copyright 2006-20010 the Common Infrastructure Libraries Team." />
+          <attribute type="AssemblyTrademarkAttribute" value="Apache License, Version 2.0" />
+          <attribute type="AssemblyCultureAttribute" value="" />
+          <attribute type="AssemblyVersionAttribute" value="${project.version}" />
+          <attribute type="AssemblyConfigurationAttribute" value="${framework::get-target-framework()}.${platform::get-name()}; ${project.releasetype}" />
+          <attribute type="AssemblyInformationalVersionAttribute" value="${project.version}; ${framework::get-target-framework()}.${platform::get-name()}; ${project.releasetype}" />
+          <attribute type="AssemblyDelaySignAttribute" value="false" />
+        </attributes>
+      </asminfo>
+    </target>
+
+
+</project>

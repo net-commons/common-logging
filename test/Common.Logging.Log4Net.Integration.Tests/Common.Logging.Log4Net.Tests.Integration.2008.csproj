@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Spring</RootNamespace>
-    <AssemblyName>Common.Logging.Log4Net.Integration.Tests</AssemblyName>
+    <AssemblyName>Common.Logging.Log4Net.Tests.Integration</AssemblyName>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <OldToolsVersion>2.0</OldToolsVersion>
@@ -34,18 +34,21 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\..\build\VS.NET.2008\Common.Logging.Log4Net.Integration.Tests\Debug\</OutputPath>
+    <OutputPath>..\..\build\Common.Logging.Log4Net.Tests.Integration\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\..\build\VS.NET.2008\Common.Logging.Log4Net.Integration.Tests\Release\</OutputPath>
+    <OutputPath>..\..\build\Common.Logging.Log4Net.Tests.Integration\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <NoWarn>
+    </NoWarn>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
@@ -68,10 +71,6 @@
     <ProjectReference Include="..\..\src\Common.Logging\Common.Logging.2008.csproj">
       <Project>{440D903A-D409-48FC-A6C4-3EE69CCD663B}</Project>
       <Name>Common.Logging.2008</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Common.Logging.Tests\Common.Logging.Tests.2008.csproj">
-      <Project>{94E4E1B4-D424-4EB9-BF34-2EE8CC3D7048}</Project>
-      <Name>Common.Logging.Tests.2008</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\src\Common.Logging.Log4Net\Common.Logging.Log4Net.2008.csproj">
       <Project>{0FEA262C-4EAF-49DB-8D32-8E90DDEF23B6}</Project>
@@ -106,7 +105,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Common.Logging.Log4Net.Integration.Tests.build" />
+    <Compile Include="AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Logging\Log4Net\" />

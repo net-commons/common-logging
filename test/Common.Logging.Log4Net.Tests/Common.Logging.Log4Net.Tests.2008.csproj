@@ -19,11 +19,12 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\..\build\VS.NET.2008\Common.Logging.Log4Net.Tests\Debug\</OutputPath>
+    <OutputPath>..\..\build\Common.Logging.Log4Net.Tests\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE;NET_2_0</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -61,12 +62,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AssemblyInfo.cs" />
     <Compile Include="Logging\Log4Net\CommonLoggingAppenderTests.cs" />
     <Compile Include="Logging\Log4Net\Log4NetLoggerFactoryAdapterTests.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Common.Logging.Log4Net.Tests.build" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Logging\Log4Net\CommonLoggingAppenderTests_log4net.config.xml" />

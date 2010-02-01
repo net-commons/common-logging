@@ -47,7 +47,7 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>..\..\build\Common.Logging.NLog\Release\</OutputPath>
-    <DefineConstants>TRACE;NET_2_0</DefineConstants>
+    <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>Common.Logging.NLog.xml</DocumentationFile>
@@ -80,9 +80,6 @@
       <Project>{440D903A-D409-48FC-A6C4-3EE69CCD663B}</Project>
       <Name>Common.Logging.2008</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Common.Logging.NLog.build" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

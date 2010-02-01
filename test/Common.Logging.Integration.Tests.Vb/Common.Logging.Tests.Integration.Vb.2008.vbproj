@@ -8,7 +8,7 @@
     <ProjectGuid>{3DFB4EAE-A2DD-43F1-ABA6-E28EB1C7DC67}</ProjectGuid>
     <OutputType>Library</OutputType>
     <RootNamespace>Common</RootNamespace>
-    <AssemblyName>Common.Logging.Integration.Tests.Vb</AssemblyName>
+    <AssemblyName>Common.Logging.Tests.Integration.Vb</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>Windows</MyType>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
@@ -22,19 +22,20 @@
     <DebugType>full</DebugType>
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
-    <OutputPath>..\..\build\Common.Logging.Integration.Tests.Vb\Debug\</OutputPath>
-    <DocumentationFile>Common.Logging.Integration.Tests.Vb.xml</DocumentationFile>
+    <OutputPath>..\..\build\Common.Logging.Tests.Integration.Vb\Debug\</OutputPath>
+    <DocumentationFile>Common.Logging.Tests.Integration.Vb.xml</DocumentationFile>
     <NoWarn>
     </NoWarn>
     <WarningsAsErrors>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</WarningsAsErrors>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <DefineDebug>false</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DocumentationFile>Common.Logging.Integration.Tests.Vb.xml</DocumentationFile>
+    <OutputPath>..\..\build\Common.Logging.Tests.Integration.Vb\Release\</OutputPath>
+    <DocumentationFile>Common.Logging.Tests.Integration.Vb.xml</DocumentationFile>
     <NoWarn>
     </NoWarn>
     <WarningsAsErrors>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</WarningsAsErrors>

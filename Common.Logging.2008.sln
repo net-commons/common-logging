@@ -4,12 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 10.00
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{EC54316A-A3B9-4EF5-A74C-1EC2344D0EA4}"
 	ProjectSection(SolutionItems) = preProject
 		changelog.txt = changelog.txt
-		shared\common-project.include = shared\common-project.include
+		Common.Logging.build = Common.Logging.build
 		modules\CommonAssemblyInfo.cs.template = modules\CommonAssemblyInfo.cs.template
 		doc\api\introduction.html = doc\api\introduction.html
-		shared\Logging.build = shared\Logging.build
-		Logging.build = Logging.build
-		shared\Logging.include = shared\Logging.include
 		Logging.ndoc = Logging.ndoc
 	EndProjectSection
 EndProject
@@ -81,6 +78,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.NLog.Tests.Integration.2008", "test\Common.Logging.NLog.Integration.Tests\Common.Logging.NLog.Tests.Integration.2008.csproj", "{EE5CA38F-3F29-43E1-B385-03798EDDC765}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.Tests.BinaryCompatibility.2008", "test\Common.Logging.BinaryCompatibility.Tests\Common.Logging.Tests.BinaryCompatibility.2008.csproj", "{E641F51F-1B51-4B94-B419-A902EABCE4D4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.TestUtils", "test\Common.Logging.TestUtils\Common.Logging.TestUtils.csproj", "{F5193CD8-B431-48ED-B101-D8DBEF766140}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -183,6 +182,10 @@ Global
 		{E641F51F-1B51-4B94-B419-A902EABCE4D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E641F51F-1B51-4B94-B419-A902EABCE4D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E641F51F-1B51-4B94-B419-A902EABCE4D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5193CD8-B431-48ED-B101-D8DBEF766140}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5193CD8-B431-48ED-B101-D8DBEF766140}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5193CD8-B431-48ED-B101-D8DBEF766140}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5193CD8-B431-48ED-B101-D8DBEF766140}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

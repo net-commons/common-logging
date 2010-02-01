@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Common</RootNamespace>
-    <AssemblyName>Common.Logging.Integration.Tests</AssemblyName>
+    <AssemblyName>Common.Logging.Tests.Integration</AssemblyName>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <OldToolsVersion>2.0</OldToolsVersion>
@@ -20,16 +20,17 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\..\build\VS.NET.2008\Common.Logging.Integration.Tests\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;NET_2_0, NET_3_0</DefineConstants>
+    <OutputPath>..\..\build\Common.Logging.Tests.Integration\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\..\build\VS.NET.2008\Common.Logging.Integration.Tests\Release\</OutputPath>
-    <DefineConstants>TRACE;NET_2_0</DefineConstants>
+    <OutputPath>..\..\build\Common.Logging.Tests.Integration\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>

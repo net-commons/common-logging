@@ -34,17 +34,19 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\..\build\VS.NET.2008\Common.Logging.EntLib.Tests\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;NET_2_0</DefineConstants>
+    <OutputPath>..\..\build\Common.Logging.EntLib.Tests\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>AnyCPU</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\..\build\VS.NET.2008\Common.Logging.EntLib.Tests\Release\</OutputPath>
-    <DefineConstants>TRACE;NET_2_0</DefineConstants>
+    <OutputPath>..\..\build\Common.Logging.EntLib.Tests\Release\</OutputPath>
+    <DefineConstants>
+    </DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -74,13 +76,13 @@
       <Project>{440D903A-D409-48FC-A6C4-3EE69CCD663B}</Project>
       <Name>Common.Logging.2008</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Common.Logging.Tests\Common.Logging.Tests.2008.csproj">
-      <Project>{94E4E1B4-D424-4EB9-BF34-2EE8CC3D7048}</Project>
-      <Name>Common.Logging.Tests.2008</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\src\Common.Logging.EntLib\Common.Logging.EntLib.2008.csproj">
       <Project>{C493B9F9-EB13-4D07-BBBD-A333DCF15164}</Project>
       <Name>Common.Logging.EntLib.2008</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Common.Logging.TestUtils\Common.Logging.TestUtils.csproj">
+      <Project>{F5193CD8-B431-48ED-B101-D8DBEF766140}</Project>
+      <Name>Common.Logging.TestUtils</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -114,9 +116,6 @@
     <Compile Include="Logging\EntLib\EntLibLoggerFactoryAdapterTests.cs" />
     <Compile Include="Logging\EntLib\EntLibTests.cs" />
     <Compile Include="Logging\EntLib\SeverityFilterTests.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Common.Logging.EntLib.Tests.build" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

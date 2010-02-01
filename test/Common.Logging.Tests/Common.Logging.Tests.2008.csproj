@@ -71,7 +71,6 @@
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="Logging\Factory\AbstractLoggerTests.cs" />
     <Compile Include="ExceptionsTest.cs" />
-    <Compile Include="Logging\ILogTestsBase.cs" />
     <Compile Include="Logging\Simple\CapturingLoggerTests.cs" />
     <Compile Include="Logging\Simple\CommonLoggingTraceListenerTests.cs" />
     <Compile Include="Logging\ConfigurationSectionHandlerTests.cs" />
@@ -80,7 +79,6 @@
     <Compile Include="Logging\LoggingExceptionTests.cs" />
     <Compile Include="Logging\LogManagerTests.cs" />
     <Compile Include="Logging\MissingCtorFactoryAdapter.cs" />
-    <Compile Include="TestUtil\SerializationTestUtils.cs" />
     <Compile Include="Logging\Simple\AbstractSimpleLoggerTests.cs" />
     <Compile Include="Logging\Simple\ConsoleOutLoggerTests.cs" />
     <Compile Include="Logging\Simple\TraceLoggerTests.cs" />
@@ -90,16 +88,12 @@
     <Compile Include="MethodInvokePerformanceTests.cs" />
     <Compile Include="PerformanceTests.cs" />
     <Compile Include="StopWatch.cs" />
-    <Compile Include="TestUtil\CapturingTraceListener.cs" />
     <Compile Include="StandardsComplianceTest.cs" />
-    <Compile Include="TestUtil\SecurityTemplate.cs" />
-    <Compile Include="TestUtil\TraceEventArgs.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config">
+    <None Include="App.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Common.Logging.Tests.build" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -132,6 +126,10 @@
     <ProjectReference Include="..\..\src\Common.Logging\Common.Logging.2008.csproj">
       <Project>{440D903A-D409-48FC-A6C4-3EE69CCD663B}</Project>
       <Name>Common.Logging.2008</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Common.Logging.TestUtils\Common.Logging.TestUtils.csproj">
+      <Project>{F5193CD8-B431-48ED-B101-D8DBEF766140}</Project>
+      <Name>Common.Logging.TestUtils</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
