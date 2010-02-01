@@ -6,4 +6,4 @@ REM 'test-integration'
 @ECHO OFF
 cls
 
-tools\nant\bin\nant.exe -f:Common.Logging.build test-integration
+tools\nant\bin\nant.exe -f:Common.Logging.build package-zip
