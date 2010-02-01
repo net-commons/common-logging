@@ -71,7 +71,7 @@
     <exec workingdir="." program="${tool.dir}/ndoc3/NDoc3Console.exe" verbose="true">
       <!-- arg value="-verbose" /-->
       <!-- arg value="-documenter=MSDN" /-->
-      <arg value="-project=${root.dir}/Logging.ndoc" />
+      <arg value="-project=${root.dir}/Common.Logging.ndoc" />
     </exec>
   </target>
 
@@ -117,6 +117,16 @@
 
     </target>
 
+  <target name="package-zip" depends="package" description="Build Package distribution as .zip file">
+    <property name="project.zip-path" value="${package.dir}/Common.Logging-${project.version}.zip"/>
+    <zip zipfile="${project.zip-path}">
+      <fileset basedir="${package.dir}">
+        <include name="**/*"/>
+        <exclude name="*.zip"/>
+      </fileset>
+    </zip>
+  </target>
+
   <target name="package" description="Builds all modules and documentation">
 
     <!-- clean package dir -->
@@ -131,13 +141,12 @@
     <!-- copy reference docs -->
     <call target="package.doc" cascade="false"/>
 
-    <!-- build scripts -->
-    <copy todir="${package.dir}/shared/">
-      <fileset basedir="${root.dir}/shared">
+    <!-- build tools -->
+    <copy todir="${package.dir}/tools">
+      <fileset basedir="${root.dir}/tools">
         <include name="**/*"/>
       </fileset>
     </copy>
-    <copy todir="${root.dir}" file="${root.dir}/Common.Logging.build"/>
 
     <!-- copy over readme etc. -->
     <copy todir="${package.dir}" file="${root.dir}/readme.txt"/>
@@ -154,7 +163,7 @@
 
   </target>
 
-  <target name="package.binaries" depends="build">
+  <target name="package.binaries" depends1="build">
       <copy todir="${package.dir}/bin/net/2.0/debug" flatten="true">
         <fileset>
           <include name="**/build/Common.Logging.*/Debug/Common.Logging*.???"/>
@@ -170,7 +179,29 @@
   </target>
 
   <target name="package.sources">
-    <echo message="TODO: package.sources" />
+    <!-- Copy global solution + build files -->
+    <copy todir="${package.dir}">
+      <fileset basedir="${root.dir}">
+        <include name="Common.Logging.*"/>
+        <exclude name="*.snk"/>
+        <exclude name="*.suo"/>
+        <exclude name="*.user"/>
+        <exclude name="*.cache"/>
+      </fileset>
+    </copy>
+
+    <!-- Copy shared module files -->
+    <copy tofile="${package.dir}/src/CommonAssemblyInfo.cs"
+          file="${root.dir}/src/CommonAssemblyInfo.cs.template"/>
+
+    <!-- Copy Common.Logging sources -->
+    <copy todir="${package.dir}" failonerror="true" >
+      <fileset basedir="${root.dir}">
+        <include name="src/**/*.*"/>
+        <include name="test/**/*.*"/>
+        <exclude name="**/*.user"/>
+      </fileset>
+    </copy>
   </target>
 
   <target name="package.doc">
@@ -205,7 +236,8 @@
     </target>
 
     <target name="clean">
-        <delete dir="${build.dir}" failonerror="false" />
+        <delete dir="${root.dir}/PreCompiledWeb" failonerror="true" />
+        <delete dir="${build.dir}" failonerror="true" />
         <foreach item="Folder" property="dirname">
             <in>
                 <items basedir="${root.dir}">
