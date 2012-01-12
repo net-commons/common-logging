@@ -62,9 +62,9 @@
     <Content Include="README.TXT" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Common.Logging\Common.Logging.2008.csproj">
+    <ProjectReference Include="..\..\src\Common.Logging\Common.Logging.2010.csproj">
       <Project>{440D903A-D409-48FC-A6C4-3EE69CCD663B}</Project>
-      <Name>Common.Logging.2008</Name>
+      <Name>Common.Logging.2010</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
