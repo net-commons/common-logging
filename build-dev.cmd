@@ -6,4 +6,7 @@ REM 'test-integration'
 @ECHO OFF
 cls
 
-tools\nant\bin\nant.exe -f:Common.Logging.build test-integration
+tools\nant\bin\nant.exe -f:Common.Logging.build test-integration > buildlog.txt
+
+@echo Launching text file viewer to display buildlog.txt contents...
+start "ignored but required placeholder window title argument" buildlog.txt
