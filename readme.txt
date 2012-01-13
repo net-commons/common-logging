@@ -52,7 +52,7 @@ Copy the above 3 files into C:\netcommon\lib\Entlib\net\3.5\
 
 From the commandline execute
 
-  c:\netcommon>nant build
+  c:\netcommon>nant build-package
 
 
 5. CONFIGURING
