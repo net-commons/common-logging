@@ -40,7 +40,7 @@ Files required from c:\program files\Microsoft Enterprise Library 3.1 - May 2007
   * Microsoft.Practices.EnterpriseLibrary.Logging.dll
   * Microsoft.Practices.ObjectBuilder.dll
 
-Copy the above 3 files into C:\netcommon\lib\Entlib\net\2.0\
+Copy the above 3 files into C:\netcommon\lib\Entlib\net\2.0\ (assumes root of source repo is c:\netcommon\).
 
 Enterprise Library 4.1
 Files required from c:\program files\Microsoft Enterprise Library 4.1 - October 2008\bin\ (assumes default installation location of Enterprise Library 4.1):
@@ -48,11 +48,11 @@ Files required from c:\program files\Microsoft Enterprise Library 4.1 - October 
   * Microsoft.Practices.EnterpriseLibrary.Logging.dll
   * Microsoft.Practices.ObjectBuilder2.dll
 
-Copy the above 3 files into C:\netcommon\lib\Entlib\net\3.5\
+Copy the above 3 files into C:\netcommon\lib\Entlib\net\3.5\ (assumes root of source repo is c:\netcommon\).
 
 From the commandline execute
 
-  c:\netcommon>nant build-package
+  c:\netcommon>build-package.cmd
 
 
 5. CONFIGURING
