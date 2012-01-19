@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!--This file represents the results of running a test suite-->
+<test-results name="C:\_prj\common-logging\build\net40\Common.Logging.Log4Net.Tests.Integration\Debug\Common.Logging.Log4Net.Tests.Integration.dll" total="0" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2012-01-19" time="08:51:42">
+  <environment nunit-version="2.5.10.11092" clr-version="2.0.50727.5448" os-version="Microsoft Windows NT 6.1.7601 Service Pack 1" platform="Win32NT" cwd="C:\_prj\common-logging\build\net40\Common.Logging.Log4Net.Tests.Integration\Debug" machine-name="RAVEN" user="sbohlen" user-domain="Raven" />
+  <culture-info current-culture="en-US" current-uiculture="en-US" />
+  <test-suite type="Assembly" name="C:\_prj\common-logging\build\net40\Common.Logging.Log4Net.Tests.Integration\Debug\Common.Logging.Log4Net.Tests.Integration.dll" executed="True" result="Inconclusive" success="False" time="0.004" asserts="0" />
+</test-results>

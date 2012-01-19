@@ -1,0 +1,32 @@
+----------------------------------------
+General Information: 1 : Timestamp: 1/19/2012 1:51:35 PM
+Message: init
+Category: General
+Priority: -1
+EventId: 1
+Severity: Information
+Title:
+Machine: RAVEN
+App Domain: test-domain-Common.Logging.EntLib.Tests.Integration.dll
+ProcessId: 6376
+Process Name: C:\_prj\common-logging\tools\nunit\nunit-agent-x86.exe
+Thread Name: TestRunnerThread
+Win32 ThreadId:6412
+Extended Properties: 
+----------------------------------------
+----------------------------------------
+General Information: 1 : Timestamp: 1/19/2012 1:51:36 PM
+Message: message1
+Category: General
+Priority: -1
+EventId: 1
+Severity: Information
+Title:
+Machine: RAVEN
+App Domain: test-domain-Common.Logging.EntLib.Tests.Integration.dll
+ProcessId: 6376
+Process Name: C:\_prj\common-logging\tools\nunit\nunit-agent-x86.exe
+Thread Name: TestRunnerThread
+Win32 ThreadId:6412
+Extended Properties: 
+----------------------------------------

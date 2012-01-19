@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <metadata xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <id>Common.Logging.NLog</id>
+    <version>0.0.0</version> <!-- placeholder value replaced by build script -->
+    <authors>Aleksandar Seovic, Mark Pollack, Erich Eichinger, Stephen Bohlen</authors>
+    <owners>Aleksandar Seovic, Mark Pollack, Erich Eichinger, Stephen Bohlen</owners>
+    <projectUrl>http://netcommon.sourceforge.net/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Common.Logging library bindings for NLog logging framework.</description>
+    <language>en-US</language>
+    <dependencies>
+      <dependency id="Common.Logging" version="2.0.0" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="..\..\build\net20\Common.Logging.NLog\Release\Common.Logging.NLog.dll" target="lib\net20" />
+    <file src="..\..\build\net40\Common.Logging.NLog\Release\Common.Logging.NLog.dll" target="lib\net40" />
+  </files>     
+</package>

@@ -8,6 +8,7 @@
   <property name="project.patchversion" value="0" overwrite="false" />
   <property name="project.buildnumber" value="${math::abs(math::floor(timespan::get-total-days(datetime::now() - datetime::parse('01/01/2000'))))}" />
   <property name="project.version" value="${project.majorversion}.${project.patchversion}.${project.buildnumber}" overwrite="false" />
+  <property name="package.version" value="${project.majorversion}.${project.patchversion}" overwrite="false" />
   <!-- dev / alpha / beta# / rc# / release -->
   <property name="project.releasetype" value="dev" overwrite="false" />
   <property name="project.sign" value="false" overwrite="false" />
@@ -135,7 +136,7 @@
   </target>
 
   <target name="package-zip" depends="package" description="Build Package distribution as .zip file">
-    <property name="project.zip-path" value="${package.dir}/Common.Logging-${project.version}.zip"/>
+	<property name="project.zip-path" value="${package.dir}/Common.Logging-${project.version}.zip"/>
     <zip zipfile="${project.zip-path}">
       <fileset basedir="${package.dir}">
         <include name="**/*"/>
@@ -154,7 +155,10 @@
 
     <!-- copy sources -->
     <call target="package.sources" cascade="false" />
-
+	
+	<!-- create nuget packages -->
+    <call target="package-nuget" />
+	
     <!-- copy reference docs -->
     <call target="package.doc" cascade="false"/>
 
@@ -490,6 +494,73 @@ ${tool.dir}       : dir for tools
       </attributes>
     </asminfo>
   </target>
+  
+    <target name="check-nuget-package-dir">
+    <fail message="The NuGet package directory has not been specified."
+          if="${not property::exists('nuget.package.dir')}"/>
+    </target>
+  
+  
+<target name="clean-nuget-package-dir" depends="check-nuget-package-dir" description="Cleans the NuGet package directory">
+    <echo message="Cleaning the ${nuget.package.dir} NuGet package directory."/>
+    <delete dir="${nuget.package.dir}" if="${directory::exists(nuget.package.dir)}"/>
+    <mkdir dir="${nuget.package.dir}"/>
+  </target>
+  
+<target name="package-nuget" depends="update-nuspec-metadata">
+
+	<property name="nuget.package.dir" value="${root.dir}/package-nuget" />
+	
+	<call target="clean-nuget-package-dir" />
+	
+	<foreach item="File" property="filename">
+		<in>
+			<items basedir="${root.dir}/src/">
+				<include name="**/*.nuspec" />
+			</items>
+		</in>
+		<do>
+			<echo message="Generating NuGet Package from nuspec file: ${filename}" />  
+
+		
+    
+    <exec program="${tool.dir}\NuGet\NuGet.exe" workingdir="${root.dir}" verbose="true">
+      <arg value="pack" />
+      <arg value="${filename}" />
+	  <arg value="-Version" />
+	  <arg value="${package.version}" />
+	  <arg value="-OutputDirectory" />
+	  <arg value="${nuget.package.dir}" />
+    </exec>
+		</do>
+	</foreach>
+</target>
+
+<target name="update-nuspec-metadata">  
+<!--
+	INFO: this task assumes that all Common.Logging components are versioned coincident with each other and
+			updates all version dependencies betw. Common.Logging components at once
+-->
+	<foreach item="File" property="filename">
+		<in>
+			<items basedir="${root.dir}/src/">
+				<include name="**/*.nuspec" />
+				<!--
+				NOTE: must exclude Common.Logging.nuspec b/c it has no Common.Logging.* deps and so the XPATH expr. won't find a match in that case and so would fail the XMLPOKE operation otherwise
+				-->
+				<exclude name="**/Common.Logging.nuspec" />
+			</items>
+		</in>
+		<do>
+			<echo message="Processing nuspec file: ${filename}" />
+			<xmlpoke file="${filename}" xpath="/n:package/n:metadata/n:dependencies/n:dependency[starts-with(@id, 'Common.Logging.')]/@version" value="${package.version}">
+				<namespaces>
+					<namespace prefix="n" uri="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd" />
+				</namespaces>
+			</xmlpoke>
+		</do>
+	</foreach>
+</target>
 
 
 

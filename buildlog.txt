@@ -1,0 +1,155 @@
+NAnt 0.91 (Build 0.91.3881.0; alpha2; 8/17/2010)
+Copyright (C) 2001-2010 Gerry Shaw
+http://nant.sourceforge.net
+
+Buildfile: file:///C:/_prj/common-logging/Common.Logging.build
+Target framework: Microsoft .NET Framework 4.0
+Target(s) specified: package-zip 
+
+
+package:
+
+
+package.binaries:
+
+     [copy] Copying 18 files to 'C:\_prj\common-logging\package\bin\net\2.0\debug'.
+     [copy] Copying 18 files to 'C:\_prj\common-logging\package\bin\net\2.0\release'.
+     [copy] Copying 18 files to 'C:\_prj\common-logging\package\bin\net\4.0\debug'.
+     [copy] Copying 18 files to 'C:\_prj\common-logging\package\bin\net\4.0\release'.
+
+package.sources:
+
+     [copy] Copying 4 files to 'C:\_prj\common-logging\package'.
+     [copy] Copying 1 file to 'C:\_prj\common-logging\package\src\CommonAssemblyInfo.cs'.
+     [copy] Copying 488 files to 'C:\_prj\common-logging\package'.
+
+update-nuspec-metadata:
+
+     [echo] Processing nuspec file: C:\_prj\common-logging\src\Common.Logging.EntLib\Common.Logging.EntLib.nuspec
+  [xmlpoke] No matching nodes were found with XPath expression '/n:package/n:metadata/n:dependencies/n:dependency[starts-with(@id, 'Common.Logging.')]/@version'.
+     [echo] Processing nuspec file: C:\_prj\common-logging\src\Common.Logging.EntLib41\Common.Logging.EntLib41.nuspec
+  [xmlpoke] No matching nodes were found with XPath expression '/n:package/n:metadata/n:dependencies/n:dependency[starts-with(@id, 'Common.Logging.')]/@version'.
+     [echo] Processing nuspec file: C:\_prj\common-logging\src\Common.Logging.Log4Net\Common.Logging.Log4Net.nuspec
+  [xmlpoke] No matching nodes were found with XPath expression '/n:package/n:metadata/n:dependencies/n:dependency[starts-with(@id, 'Common.Logging.')]/@version'.
+     [echo] Processing nuspec file: C:\_prj\common-logging\src\Common.Logging.Log4Net129\Common.Logging.Log4Net129.nuspec
+  [xmlpoke] No matching nodes were found with XPath expression '/n:package/n:metadata/n:dependencies/n:dependency[starts-with(@id, 'Common.Logging.')]/@version'.
+     [echo] Processing nuspec file: C:\_prj\common-logging\src\Common.Logging.NLog\Common.Logging.NLog.nuspec
+  [xmlpoke] No matching nodes were found with XPath expression '/n:package/n:metadata/n:dependencies/n:dependency[starts-with(@id, 'Common.Logging.')]/@version'.
+
+package-nuget:
+
+
+check-nuget-package-dir:
+
+
+clean-nuget-package-dir:
+
+     [echo] Cleaning the C:\_prj\common-logging/package-nuget NuGet package directory.
+    [mkdir] Creating directory 'C:\_prj\common-logging\package-nuget'.
+     [echo] Generating NuGet Package from nuspec file: C:\_prj\common-logging\src\Common.Logging\Common.Logging.nuspec
+     [exec] Starting 'C:\_prj\common-logging/tools\NuGet\NuGet.exe (pack C:\_prj\common-logging\src\Common.Logging\Common.Logging.nuspec -Version 2.0.0 -OutputDirectory C:\_prj\common-logging/package-nuget)' in 'C:\_prj\common-logging'
+     [exec] Attempting to build package from 'Common.Logging.nuspec'.
+     [exec] Successfully created package 'C:\_prj\common-logging/package-nuget\Common.Logging.2.0.0.nupkg'.
+     [echo] Generating NuGet Package from nuspec file: C:\_prj\common-logging\src\Common.Logging.EntLib\Common.Logging.EntLib.nuspec
+     [exec] Starting 'C:\_prj\common-logging/tools\NuGet\NuGet.exe (pack C:\_prj\common-logging\src\Common.Logging.EntLib\Common.Logging.EntLib.nuspec -Version 2.0.0 -OutputDirectory C:\_prj\common-logging/package-nuget)' in 'C:\_prj\common-logging'
+     [exec] Attempting to build package from 'Common.Logging.EntLib.nuspec'.
+     [exec] Successfully created package 'C:\_prj\common-logging/package-nuget\Common.Logging.EntLib.2.0.0.nupkg'.
+     [echo] Generating NuGet Package from nuspec file: C:\_prj\common-logging\src\Common.Logging.EntLib41\Common.Logging.EntLib41.nuspec
+     [exec] Starting 'C:\_prj\common-logging/tools\NuGet\NuGet.exe (pack C:\_prj\common-logging\src\Common.Logging.EntLib41\Common.Logging.EntLib41.nuspec -Version 2.0.0 -OutputDirectory C:\_prj\common-logging/package-nuget)' in 'C:\_prj\common-logging'
+     [exec] Attempting to build package from 'Common.Logging.EntLib41.nuspec'.
+     [exec] Successfully created package 'C:\_prj\common-logging/package-nuget\Common.Logging.EntLib41.2.0.0.nupkg'.
+     [echo] Generating NuGet Package from nuspec file: C:\_prj\common-logging\src\Common.Logging.Log4Net\Common.Logging.Log4Net.nuspec
+     [exec] Starting 'C:\_prj\common-logging/tools\NuGet\NuGet.exe (pack C:\_prj\common-logging\src\Common.Logging.Log4Net\Common.Logging.Log4Net.nuspec -Version 2.0.0 -OutputDirectory C:\_prj\common-logging/package-nuget)' in 'C:\_prj\common-logging'
+     [exec] Attempting to build package from 'Common.Logging.Log4Net.nuspec'.
+     [exec] Successfully created package 'C:\_prj\common-logging/package-nuget\Common.Logging.Log4Net.2.0.0.nupkg'.
+     [echo] Generating NuGet Package from nuspec file: C:\_prj\common-logging\src\Common.Logging.Log4Net129\Common.Logging.Log4Net129.nuspec
+     [exec] Starting 'C:\_prj\common-logging/tools\NuGet\NuGet.exe (pack C:\_prj\common-logging\src\Common.Logging.Log4Net129\Common.Logging.Log4Net129.nuspec -Version 2.0.0 -OutputDirectory C:\_prj\common-logging/package-nuget)' in 'C:\_prj\common-logging'
+     [exec] Attempting to build package from 'Common.Logging.Log4Net129.nuspec'.
+     [exec] Successfully created package 'C:\_prj\common-logging/package-nuget\Common.Logging.Log4Net129.2.0.0.nupkg'.
+     [echo] Generating NuGet Package from nuspec file: C:\_prj\common-logging\src\Common.Logging.NLog\Common.Logging.NLog.nuspec
+     [exec] Starting 'C:\_prj\common-logging/tools\NuGet\NuGet.exe (pack C:\_prj\common-logging\src\Common.Logging.NLog\Common.Logging.NLog.nuspec -Version 2.0.0 -OutputDirectory C:\_prj\common-logging/package-nuget)' in 'C:\_prj\common-logging'
+     [exec] Attempting to build package from 'Common.Logging.NLog.nuspec'.
+     [exec] Successfully created package 'C:\_prj\common-logging/package-nuget\Common.Logging.NLog.2.0.0.nupkg'.
+
+package.doc:
+
+
+doc:
+
+
+doc-reference:
+
+     [nant] C:\_prj\common-logging\doc\reference\docbook.build all
+            Buildfile: file:///C:/_prj/common-logging/doc/reference/docbook.build
+            Target framework: Microsoft .NET Framework 4.0
+            Target(s) specified: all 
+            
+            
+            html:
+            
+                 [echo] Generating HTML format...
+                 [exec] Note: namesp. cut : stripped namespace before processing           Common Infrastructure Libraries for .NET
+                 [exec] Note: namesp. cut : processing stripped document                   Common Infrastructure Libraries for .NET
+                 [exec] Loading Xslthl configuration from file:///C:\_prj\common-logging\doc\reference/lib/docbook-xsl-snapshot/highlighting/xslthl-config.xml...
+                 [exec] Writing html/ch01.html for chapter
+                 [exec] Writing html/index.html for book
+            
+            html-help:
+            
+                 [echo] Generating HTML Help format...
+                 [copy] Copying 1 file to 'C:\_prj\common-logging\doc\reference\target\htmlhelp\styles'.
+                 [copy] Copying 3 files to 'C:\_prj\common-logging\doc\reference\target\htmlhelp\images'.
+                 [copy] Copying 102 files to 'C:\_prj\common-logging\doc\reference\target\htmlhelp\images'.
+                 [exec] Note: namesp. cut : stripped namespace before processing           Common Infrastructure Libraries for .NET
+                 [exec] Note: namesp. cut : processing stripped document                   Common Infrastructure Libraries for .NET
+                 [exec] Loading Xslthl configuration from file:///C:\_prj\common-logging\doc\reference/lib/docbook-xsl-snapshot/highlighting/xslthl-config.xml...
+                 [exec] Writing htmlhelp/ch01.html for chapter
+                 [exec] Writing htmlhelp/index.html for book
+                 [exec] Writing htmlhelp/htmlhelp.hhp
+                 [exec] Writing htmlhelp/toc.hhc
+                 [exec] C:\_prj\common-logging\doc\reference\docbook.build(77,6):
+                 [exec] 'C:\Program Files\HTML Help Workshop\hhc.exe' failed to start.
+               [delete] Deleting 110 files.
+               [delete] Deleted 5 directories.
+            
+            pdf:
+            
+                 [echo] Generating PDF format...
+                 [exec] Note: namesp. cut : stripped namespace before processing           Common Infrastructure Libraries for .NET
+                 [exec] Note: namesp. cut : processing stripped document                   Common Infrastructure Libraries for .NET
+                 [exec] Making portrait pages on A4 paper (210mmx297mm)
+                 [exec] Loading Xslthl configuration from file:///C:\_prj\common-logging\doc\reference/lib/docbook-xsl-snapshot/highlighting/xslthl-config.xml...
+                 [exec] unprocessed xslthl style: html
+                 [exec] unprocessed xslthl style: html
+                 [exec] Jan 19, 2012 12:59:54 PM org.apache.fop.fonts.FontInfo notifyFontReplacement
+                 [exec] WARNING: Font 'Symbol,normal,700' not found. Substituting with 'Symbol,normal,400'.
+                 [exec] Jan 19, 2012 12:59:54 PM org.apache.fop.fonts.FontInfo notifyFontReplacement
+                 [exec] WARNING: Font 'ZapfDingbats,normal,700' not found. Substituting with 'ZapfDingbats,normal,400'.
+                 [exec] Jan 19, 2012 12:59:54 PM org.apache.fop.layoutmgr.inline.LineLayoutManager$LineBreakingAlgorithm updateData2
+                 [exec] WARNING: Line 1 of a paragraph overflows the available area by 891mpt. (fo:block, location: 282/603)
+                 [exec] Jan 19, 2012 12:59:54 PM org.apache.fop.fonts.FontInfo notifyFontReplacement
+                 [exec] WARNING: Font 'ZapfDingbats,italic,400' not found. Substituting with 'ZapfDingbats,normal,400'.
+               [delete] Deleting file C:\_prj\common-logging\doc\reference\target\pdf\netcommon-reference.fo.
+            
+            all:
+            
+            
+            BUILD SUCCEEDED - 1 non-fatal error(s), 23 warning(s)
+            
+            Total time: 18.1 seconds.
+            
+     [copy] Copying 109 files to 'C:\_prj\common-logging\package\doc\reference\'.
+     [copy] Copying 790 files to 'C:\_prj\common-logging\package\doc\api\html'.
+     [copy] Copying 231 files to 'C:\_prj\common-logging\package\tools'.
+     [copy] Copying 1 file to 'C:\_prj\common-logging\package'.
+     [copy] Copying 1 file to 'C:\_prj\common-logging\package'.
+     [copy] Copying 1 file to 'C:\_prj\common-logging\package'.
+
+package-zip:
+
+      [zip] Zipping 1697 files to 'C:\_prj\common-logging\package\Common.Logging-2.0.0.4401.zip'.
+
+BUILD SUCCEEDED - 0 non-fatal error(s), 5 warning(s)
+
+Total time: 66.8 seconds.
+

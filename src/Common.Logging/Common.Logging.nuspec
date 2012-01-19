@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <metadata xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <id>Common.Logging</id>
+    <version>0.0.0</version> <!-- placeholder value replaced by build script -->
+    <authors>Aleksandar Seovic, Mark Pollack, Erich Eichinger, Stephen Bohlen</authors>
+    <owners>Aleksandar Seovic, Mark Pollack, Erich Eichinger, Stephen Bohlen</owners>
+    <projectUrl>http://netcommon.sourceforge.net/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Common.Logging library introduces a simple abstraction to allow you to select a specific logging implementation at runtime.</description>
+    <language>en-US</language>
+  </metadata>
+  <files>
+    <file src="..\..\build\net20\Common.Logging\Release\Common.Logging.dll" target="lib\net20" />
+    <file src="..\..\build\net40\Common.Logging\Release\Common.Logging.dll" target="lib\net40" />
+  </files>  
+</package>

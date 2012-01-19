@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!--This file represents the results of running a test suite-->
+<test-results name="C:\_prj\common-logging\build\net40\Common.Logging.Log4Net129.Tests.Integration\Release\Common.Logging.Log4Net129.Tests.dll" total="4" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2012-01-19" time="08:51:24">
+  <environment nunit-version="2.5.10.11092" clr-version="2.0.50727.5448" os-version="Microsoft Windows NT 6.1.7601 Service Pack 1" platform="Win32NT" cwd="C:\_prj\common-logging\build\net40\Common.Logging.Log4Net129.Tests.Integration\Release" machine-name="RAVEN" user="sbohlen" user-domain="Raven" />
+  <culture-info current-culture="en-US" current-uiculture="en-US" />
+  <test-suite type="Assembly" name="C:\_prj\common-logging\build\net40\Common.Logging.Log4Net129.Tests.Integration\Release\Common.Logging.Log4Net129.Tests.dll" executed="True" result="Success" success="True" time="0.400" asserts="0">
+    <results>
+      <test-suite type="Namespace" name="Common" executed="True" result="Success" success="True" time="0.393" asserts="0">
+        <results>
+          <test-suite type="Namespace" name="Logging" executed="True" result="Success" success="True" time="0.392" asserts="0">
+            <results>
+              <test-suite type="Namespace" name="Log4Net" executed="True" result="Success" success="True" time="0.392" asserts="0">
+                <results>
+                  <test-suite type="TestFixture" name="CommonLoggingAppenderTests" executed="True" result="Success" success="True" time="0.109" asserts="0">
+                    <results>
+                      <test-case name="Common.Logging.Log4Net.CommonLoggingAppenderTests.RoutesToCommonLogging" executed="True" result="Success" success="True" time="0.102" asserts="6" />
+                    </results>
+                  </test-suite>
+                  <test-suite type="TestFixture" name="Log4NetLoggerFactoryAdapterTests" executed="True" result="Success" success="True" time="0.277" asserts="0">
+                    <results>
+                      <test-case name="Common.Logging.Log4Net.Log4NetLoggerFactoryAdapterTests.CachesLoggers" executed="True" result="Success" success="True" time="0.005" asserts="1" />
+                      <test-case name="Common.Logging.Log4Net.Log4NetLoggerFactoryAdapterTests.InitWithProperties" executed="True" result="Success" success="True" time="0.250" asserts="0" />
+                      <test-case name="Common.Logging.Log4Net.Log4NetLoggerFactoryAdapterTests.LogsCorrectLoggerName" executed="True" result="Success" success="True" time="0.020" asserts="4" />
+                    </results>
+                  </test-suite>
+                </results>
+              </test-suite>
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+    </results>
+  </test-suite>
+</test-results>
