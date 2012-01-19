@@ -73,7 +73,10 @@
 
   <target name="doc">
     <call target="doc-reference" cascade="false" />
-    <call target="doc-sdk" cascade="false" />
+    <!--	 disabled since NDOC3 fails on x64 systems b/c of HtmlHelpCompiler being in c:\program files (x86)
+			instead of c:\program files\.  Custom NDoc3 build will be needed :(
+	<call target="doc-sdk" cascade="false" />
+	-->
   </target>
 
   <target name="doc-reference">

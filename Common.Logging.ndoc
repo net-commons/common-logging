@@ -1,11 +1,11 @@
 ﻿<project SchemaVersion="1.3">
 	<assemblies>
-		<assembly location=".\build\Common.Logging\Debug\Common.Logging.dll" documentation=".\build\Common.Logging\Debug\Common.Logging.xml" />
-		<assembly location=".\build\Common.Logging.EntLib\Debug\Common.Logging.EntLib.dll" documentation=".\build\Common.Logging.EntLib\Debug\Common.Logging.EntLib.xml" />
-		<assembly location=".\build\Common.Logging.EntLib41\Debug\Common.Logging.EntLib41.dll" documentation=".\build\Common.Logging.EntLib41\Debug\Common.Logging.EntLib41.xml" />
-		<assembly location=".\build\Common.Logging.Log4Net129\Debug\Common.Logging.Log4Net129.dll" documentation=".\build\Common.Logging.Log4Net129\Debug\Common.Logging.Log4Net129.xml" />
-		<assembly location=".\build\Common.Logging.Log4Net\Debug\Common.Logging.Log4Net.dll" documentation=".\build\Common.Logging.Log4Net\Debug\Common.Logging.Log4Net.xml" />
-		<assembly location=".\build\Common.Logging.NLog\Debug\Common.Logging.NLog.dll" documentation=".\build\Common.Logging.NLog\Debug\Common.Logging.NLog.xml" />
+		<assembly location=".\build\net20\Common.Logging\Debug\Common.Logging.dll" documentation=".\build\net20\Common.Logging\Debug\Common.Logging.xml" />
+		<assembly location=".\build\net20\Common.Logging.EntLib\Debug\Common.Logging.EntLib.dll" documentation=".\build\net20\Common.Logging.EntLib\Debug\Common.Logging.EntLib.xml" />
+		<assembly location=".\build\net20\Common.Logging.EntLib41\Debug\Common.Logging.EntLib41.dll" documentation=".\build\net20\Common.Logging.EntLib41\Debug\Common.Logging.EntLib41.xml" />
+		<assembly location=".\build\net20\Common.Logging.Log4Net129\Debug\Common.Logging.Log4Net129.dll" documentation=".\build\net20\Common.Logging.Log4Net129\Debug\Common.Logging.Log4Net129.xml" />
+		<assembly location=".\build\net20\Common.Logging.Log4Net\Debug\Common.Logging.Log4Net.dll" documentation=".\build\net20\Common.Logging.Log4Net\Debug\Common.Logging.Log4Net.xml" />
+		<assembly location=".\build\net20\Common.Logging.NLog\Debug\Common.Logging.NLog.dll" documentation=".\build\net20\Common.Logging.NLog\Debug\Common.Logging.NLog.xml" />
 	</assemblies>
 	<documenters>
 		<documenter name="MSDN">
@@ -20,7 +20,7 @@
 			<property name="ShowMissingSummaries" value="True" />
 			<property name="DocumentSealedProtected" value="True" />
 			<property name="AssemblyVersionInfo" value="AssemblyVersion" />
-			<property name="CopyrightText" value="© The Common Infrastructure Libraries for .NET Team 2006-2010. All Rights Reserved." />
+			<property name="CopyrightText" value="© The Common Infrastructure Libraries for .NET Team 2006-2012. All Rights Reserved." />
 			<property name="FeedbackEmailAddress" value="netcommon-developer@lists.sourceforge.net" />
 			<property name="UseNamespaceDocSummaries" value="True" />
 			<property name="SdkDocVersionString" value="VS.80" />
