@@ -1,61 +1,75 @@
 <?xml version="1.0" ?>
 <project name="Common.Logging" default="test" xmlns="http://nant.sf.net/schemas/nant.xsd">
 
-    <!-- Global project settings -->
-    <!-- 0 for initial or custom release, label value if built by ccnet -->
-    <property name="project.majorversion" value="2.0" />
-    <property name="project.patchversion" value="${CCNetLabel}" overwrite="true" if="${property::exists('CCNetLabel')}"/>
-    <property name="project.patchversion" value="0" overwrite="false" />
-    <property name="project.buildnumber" value="${math::abs(math::floor(timespan::get-total-days(datetime::now() - datetime::parse('01/01/2000'))))}" />
-    <property name="project.version" value="${project.majorversion}.${project.patchversion}.${project.buildnumber}" overwrite="false" />
-    <!-- dev / alpha / beta# / rc# / release -->
-    <property name="project.releasetype" value="dev" overwrite="false" />
-    <property name="project.sign" value="false" overwrite="false" />
+  <!-- Global project settings -->
+  <!-- 0 for initial or custom release, label value if built by ccnet -->
+  <property name="project.majorversion" value="2.0" />
+  <property name="project.patchversion" value="${CCNetLabel}" overwrite="true" if="${property::exists('CCNetLabel')}"/>
+  <property name="project.patchversion" value="0" overwrite="false" />
+  <property name="project.buildnumber" value="${math::abs(math::floor(timespan::get-total-days(datetime::now() - datetime::parse('01/01/2000'))))}" />
+  <property name="project.version" value="${project.majorversion}.${project.patchversion}.${project.buildnumber}" overwrite="false" />
+  <!-- dev / alpha / beta# / rc# / release -->
+  <property name="project.releasetype" value="dev" overwrite="false" />
+  <property name="project.sign" value="false" overwrite="false" />
 
-    <property name="root.dir" value="${project::get-base-directory()}" overwrite="false" />
-    <property name="package.dir" value="${root.dir}/package" />
-    <property name="build.dir" value="${root.dir}/build" />
-    <property name="doc.dir" value="${root.dir}/doc" />
-    <property name="tool.dir" value="${root.dir}/tools" />
-    <property name="lib.dir" value="${root.dir}/lib" />
+  <property name="root.dir" value="${project::get-base-directory()}" overwrite="false" />
+  <property name="package.dir" value="${root.dir}/package" />
+  <property name="build.dir" value="${root.dir}/build" />
+  <property name="doc.dir" value="${root.dir}/doc" />
+  <property name="tool.dir" value="${root.dir}/tools" />
+  <property name="lib.dir" value="${root.dir}/lib" />
 
-    <if test="${project.sign and not(file::exists(root.dir + '/Common.Net.snk'))}">
-      <fail message="project.sign='true' but keyfile ${root.dir+'/Common.Net.snk'} is missing" />
-    </if>
+  <if test="${project.sign and not(file::exists(root.dir + '/Common.Net.snk'))}">
+    <fail message="project.sign='true' but keyfile ${root.dir+'/Common.Net.snk'} is missing" />
+  </if>
 
-    <readregistry property="net35.install.dir" key="SOFTWARE\Microsoft\NET Framework Setup\NDP\v3.5\InstallPath" hive="LocalMachine" failonerror="true"/>
-    <property name="msbuild.exe" value="${net35.install.dir}\msbuild.exe"/>
+  <readregistry property="net40.install.dir" key="SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full\InstallPath" hive="LocalMachine" failonerror="true" />
+  <property name="msbuild.exe" value="${net40.install.dir}\msbuild.exe" />
+
+
+
+  <target name="init" depends="clean, update-dependencies" />
+
+  <target name="build" depends="init">
 
     <!-- force net-2.0 -->
     <property name="nant.settings.currentframework" value="net-2.0"/>
+	<property name="solution-file-filter" value="*.2010.sln" />
+	<property name="build.dir" value="${root.dir}/build/net20" />
+    <call target="build-all" />
 
-    <target name="init" depends="clean, update-dependencies" />
+	<!-- force net-4.0 -->
+	<property name="nant.settings.currentframework" value="net-4.0"/>
+	<property name="solution-file-filter" value="*.2010-net40.sln" />
+	<property name="build.dir" value="${root.dir}/build/net40" />
+    <call target="build-all" />
 
-    <target name="build" depends="init">
-      <call target="update-common-assemblyinfo" />
+  </target>
 
-      <property name="buildconfiguration" value="Debug" />
-      <call target="RebuildAllSolutions" />
+  <target name="build-all">
+    <call target="update-common-assemblyinfo" />
 
-      <property name="buildconfiguration" value="Release" />
-      <call target="RebuildAllSolutions" />
+    <property name="buildconfiguration" value="Debug" />
+    <call target="RebuildAllSolutions" />
 
-    </target>
+    <property name="buildconfiguration" value="Release" />
+    <call target="RebuildAllSolutions" />
+  </target>
 
-    <target name="test" depends="build">
-        <call target="TestAllAssemblies" />
-    </target>
+  <target name="test" depends="build">
+    <call target="TestAllAssemblies" />
+  </target>
 
-    <target name="test-integration" depends="test">
-<!--
+  <target name="test-integration" depends="test">
+    <!--
         <delete>
             <fileset basedir="${build.dir}">
                 <include name="*.dll-TestCoverage.xml" />
             </fileset>
         </delete>
 -->
-        <call target="IntegrationTestAllAssemblies" />
-    </target>
+    <call target="IntegrationTestAllAssemblies" />
+  </target>
 
   <target name="doc">
     <call target="doc-reference" cascade="false" />
@@ -75,47 +89,47 @@
     </exec>
   </target>
 
-    <target name="deploy" depends="test-integration">
-        <delete dir="${deploy.dir}" failonerror="true" />
+  <target name="deploy" depends="test-integration">
+    <delete dir="${deploy.dir}" failonerror="true" />
 
-        <copy todir="${deploy.dir}">
-            <fileset basedir="src/Viz.Invoicing.Front">
-                <include name="**/*.*"/>
-                <exclude name="Properties/**"/>
-                <exclude name="obj/**"/>
-                <exclude name="*.csproj*"/>
-                <exclude name="**/WebDev.WebHost.dll" />
-            </fileset>
-        </copy>
-        <copy todir="${deploy.dir}/bin">
-            <fileset basedir="${build.dir}">
-                <include name="*.dll"/>
-                <include name="*.pdb"/>
-                <exclude name="*.Tests.???" />
-                <exclude name="*.Tests.Integration.???" />
-                <exclude name="WebDev.WebHost.dll" />
-            </fileset>
-        </copy>
+    <copy todir="${deploy.dir}">
+      <fileset basedir="src/Viz.Invoicing.Front">
+        <include name="**/*.*"/>
+        <exclude name="Properties/**"/>
+        <exclude name="obj/**"/>
+        <exclude name="*.csproj*"/>
+        <exclude name="**/WebDev.WebHost.dll" />
+      </fileset>
+    </copy>
+    <copy todir="${deploy.dir}/bin">
+      <fileset basedir="${build.dir}">
+        <include name="*.dll"/>
+        <include name="*.pdb"/>
+        <exclude name="*.Tests.???" />
+        <exclude name="*.Tests.Integration.???" />
+        <exclude name="WebDev.WebHost.dll" />
+      </fileset>
+    </copy>
 
-        <xmlpoke
-            file="${deploy.dir}/Web.config"
-            xpath="/configuration/appSettings/add[@key = 'InvoicingManager.DeploymentProfile']/@value"
-            value="Viz.Invoicing.Configuration.LiveProfile" failonerror="true" />
-        <xmlpoke
-            file="${build.dir}/Viz.Invoicing.Deployment.dll.config"
-            xpath="/configuration/appSettings/add[@key = 'InvoicingManager.DeploymentProfile']/@value"
-            value="Viz.Invoicing.Configuration.LiveProfile" failonerror="true" />
+    <xmlpoke
+        file="${deploy.dir}/Web.config"
+        xpath="/configuration/appSettings/add[@key = 'InvoicingManager.DeploymentProfile']/@value"
+        value="Viz.Invoicing.Configuration.LiveProfile" failonerror="true" />
+    <xmlpoke
+        file="${build.dir}/Viz.Invoicing.Deployment.dll.config"
+        xpath="/configuration/appSettings/add[@key = 'InvoicingManager.DeploymentProfile']/@value"
+        value="Viz.Invoicing.Configuration.LiveProfile" failonerror="true" />
 
-        <property name="test.assemblyname" value="${build.dir}/Viz.Invoicing.Deployment" />
-        <exec program="${tool.dir}/nunit/bin/net-2.0/nunit-console-x86.exe" workingdir="${build.dir}" verbose="true">
-            <arg line="${build.dir}/Viz.Invoicing.Deployment.dll" />
-            <arg value="/nologo" />
-            <arg value="/noshadow" />
-            <arg value="/framework:${nant.settings.currentframework}" />
-            <arg value="/run:Viz.Invoicing.Deployment.DeploymentFixture" />
-        </exec>
+    <property name="test.assemblyname" value="${build.dir}/Viz.Invoicing.Deployment" />
+    <exec program="${tool.dir}/nunit/bin/net-2.0/nunit-console-x86.exe" workingdir="${build.dir}" verbose="true">
+      <arg line="${build.dir}/Viz.Invoicing.Deployment.dll" />
+      <arg value="/nologo" />
+      <arg value="/noshadow" />
+      <arg value="/framework:${nant.settings.currentframework}" />
+      <arg value="/run:Viz.Invoicing.Deployment.DeploymentFixture" />
+    </exec>
 
-    </target>
+  </target>
 
   <target name="package-zip" depends="package" description="Build Package distribution as .zip file">
     <property name="project.zip-path" value="${package.dir}/Common.Logging-${project.version}.zip"/>
@@ -164,18 +178,18 @@
   </target>
 
   <target name="package.binaries" depends1="build">
-      <copy todir="${package.dir}/bin/net/2.0/debug" flatten="true">
-        <fileset>
-          <include name="**/build/Common.Logging.*/Debug/Common.Logging*.???"/>
-          <exclude name="**/*Test*"/>
-        </fileset>
-      </copy>
-      <copy todir="${package.dir}/bin/net/2.0/release" flatten="true">
-        <fileset>
-          <include name="**/build/Common.Logging.*/Debug/Common.Logging*.???"/>
-          <exclude name="**/*Test*"/>
-        </fileset>
-      </copy>
+    <copy todir="${package.dir}/bin/net/2.0/debug" flatten="true">
+      <fileset>
+        <include name="**/build/Common.Logging.*/Debug/Common.Logging*.???"/>
+        <exclude name="**/*Test*"/>
+      </fileset>
+    </copy>
+    <copy todir="${package.dir}/bin/net/2.0/release" flatten="true">
+      <fileset>
+        <include name="**/build/Common.Logging.*/Debug/Common.Logging*.???"/>
+        <exclude name="**/*Test*"/>
+      </fileset>
+    </copy>
   </target>
 
   <target name="package.sources">
@@ -233,34 +247,34 @@
     </copy>
   </target>
 
-    <target name="daily" depends="deploy">
-    </target>
+  <target name="daily" depends="deploy">
+  </target>
 
-    <target name="clean">
-        <delete dir="${root.dir}/PreCompiledWeb" failonerror="true" />
-        <delete dir="${build.dir}" failonerror="true" />
-        <foreach item="Folder" property="dirname">
-            <in>
-                <items basedir="${root.dir}">
-                    <exclude name="tools/**" />
-                    <include name="src/**/bin" />
-                    <include name="test/**/bin" />
-                    <include name="**/obj" />
-                    <include name="**/PreCompiledWeb" />
-                </items>
-            </in>
-            <do>
-                <delete dir="${dirname}" failonerror="false" />
-            </do>
-        </foreach>
-    </target>
+  <target name="clean">
+    <delete dir="${root.dir}/PreCompiledWeb" failonerror="true" />
+    <delete dir="${build.dir}" failonerror="true" />
+    <foreach item="Folder" property="dirname">
+      <in>
+        <items basedir="${root.dir}">
+          <exclude name="tools/**" />
+          <include name="src/**/bin" />
+          <include name="test/**/bin" />
+          <include name="**/obj" />
+          <include name="**/PreCompiledWeb" />
+        </items>
+      </in>
+      <do>
+        <delete dir="${dirname}" failonerror="false" />
+      </do>
+    </foreach>
+  </target>
 
-    <target name="common.run-tests">
-        <!-- call target="common.run-tests.nunit" / -->
-	      <call target="common.run-tests.ncover" />
-    </target>
+  <target name="common.run-tests">
+    <!-- call target="common.run-tests.nunit" / -->
+    <call target="common.run-tests.ncover" />
+  </target>
 
-    <!--
+  <!--
 *******************************************************************************
 Runs NUnit unit test configuration of the current ${project::get-name()}.dll
 
@@ -269,25 +283,25 @@ ${build.dir}: the binary directory to pick the assembly + app.config from
 ${test.assemblyname}   : (optional), the name of the assembly, if not specified uses "project:get-name()"
 ${tool.dir}       : dir for tools
     -->
-    <target name="common.run-tests.nunit">
+  <target name="common.run-tests.nunit">
 
-        <!-- property name="test.assemblyfile" value="${project::get-name()}.dll" overwrite="false" / -->
-        <property name="test.assemblyname" value="${path::get-file-name-without-extension(test.assemblyfile)}" overwrite="true" />
-        <property name="test.bin.dir" value="${directory::get-parent-directory(test.assemblyfile + '/')}" overwrite="true" />
+    <!-- property name="test.assemblyfile" value="${project::get-name()}.dll" overwrite="false" / -->
+    <property name="test.assemblyname" value="${path::get-file-name-without-extension(test.assemblyfile)}" overwrite="true" />
+    <property name="test.bin.dir" value="${directory::get-parent-directory(test.assemblyfile + '/')}" overwrite="true" />
 
-        <echo message="Unit Testing ${test.assemblyname}, File='${test.assemblyfile}', WorkingDir='${test.bin.dir}'" />
+    <echo message="Unit Testing ${test.assemblyname}, File='${test.assemblyfile}', WorkingDir='${test.bin.dir}'" />
 
-        <exec program="${tool.dir}/nunit/nunit-console.exe" workingdir="${test.bin.dir}" verbose="true">
-            <arg value="/xml:${test.assemblyname}.dll-TestResults.xml" />
-            <arg value="/nologo" />
-            <arg value="/noshadow" />
-            <arg value="/framework:${nant.settings.currentframework}" />
-            <arg line="${test.assemblyfile}" />
-        </exec>
+    <exec program="${tool.dir}/nunit/nunit-console.exe" workingdir="${test.bin.dir}" verbose="true">
+      <arg value="/xml:${test.assemblyname}.dll-TestResults.xml" />
+      <arg value="/nologo" />
+      <arg value="/noshadow" />
+      <arg value="/framework:${nant.settings.currentframework}" />
+      <arg line="${test.assemblyfile}" />
+    </exec>
 
-    </target>
+  </target>
 
-    <!--
+  <!--
 *******************************************************************************
 Runs coverage unit test configuration of the current ${project::get-name()}.dll
 
@@ -296,162 +310,172 @@ ${current.bin.dir}: the binary directory to pick the assembly + app.config from
 ${project.name}   : (optional), the name of the assembly
 ${tool.dir}       : dir for tools
     -->
-    <target name="common.run-tests.ncover" description="Run NUnit tests">
+  <target name="common.run-tests.ncover" description="Run NUnit tests">
 
-        <!-- property name="test.assemblyname" value="${project::get-name()}" overwrite="false" /-->
-        <property name="test.assemblyfile" value="${project::get-name()}.dll" overwrite="false" />
-        <property name="test.assemblyname" value="${path::get-file-name-without-extension(test.assemblyfile)}" overwrite="true" />
-        <property name="test.bin.dir" value="${directory::get-parent-directory(test.assemblyfile + '/')}" overwrite="true" />
+    <!-- property name="test.assemblyname" value="${project::get-name()}" overwrite="false" /-->
+    <property name="test.assemblyfile" value="${project::get-name()}.dll" overwrite="false" />
+    <property name="test.assemblyname" value="${path::get-file-name-without-extension(test.assemblyfile)}" overwrite="true" />
+    <property name="test.bin.dir" value="${directory::get-parent-directory(test.assemblyfile + '/')}" overwrite="true" />
 
-        <echo message="Coverage Testing ${test.assemblyname}, File='${test.assemblyfile}', WorkingDir='${test.bin.dir}'" />
+    <echo message="Coverage Testing ${test.assemblyname}, File='${test.assemblyfile}', WorkingDir='${test.bin.dir}'" />
 
-        <property name="test.assemblyname.tocover" value="${string::substring(test.assemblyname,0,string::last-index-of(test.assemblyname, '.Tests') )}" overwrite="false" />
+    <property name="test.assemblyname.tocover" value="${string::substring(test.assemblyname,0,string::last-index-of(test.assemblyname, '.Tests') )}" overwrite="false" />
 
-        <exec program="${tool.dir}/ncover/ncover.console.exe" workingdir="${test.bin.dir}" verbose="true">
-            <arg value="//q" />
-            <arg value="//reg" />
-            <arg value="//w" />
-            <arg path="${test.bin.dir}" />
-            <arg value="//x" />
-            <arg path="${test.bin.dir}/${test.assemblyname}.dll-TestCoverage.xml" />
-            <arg value="//a" />
-            <arg value="${test.assemblyname.tocover}" />
-            <arg value="//ea" />
-            <arg value="CoverageExcludeAttribute" />
-            <arg value="//q" />
-            <arg path="${tool.dir}/nunit/nunit-console-x86.exe" />
-            <arg line="${test.assemblyfile}" />
-            <arg value="/xml:${test.assemblyname}.dll-TestResults.xml" />
-            <arg value="/nologo" />
-            <arg value="/noshadow" />
-            <arg value="/framework:${nant.settings.currentframework}" />
-        </exec>
+    <exec program="${tool.dir}/ncover/ncover.console.exe" workingdir="${test.bin.dir}" verbose="true">
+      <arg value="//q" />
+      <arg value="//reg" />
+      <arg value="//w" />
+      <arg path="${test.bin.dir}" />
+      <arg value="//x" />
+      <arg path="${test.bin.dir}/${test.assemblyname}.dll-TestCoverage.xml" />
+      <arg value="//a" />
+      <arg value="${test.assemblyname.tocover}" />
+      <arg value="//ea" />
+      <arg value="CoverageExcludeAttribute" />
+      <arg value="//q" />
+      <arg path="${tool.dir}/nunit/nunit-console-x86.exe" />
+      <arg line="${test.assemblyfile}" />
+      <arg value="/xml:${test.assemblyname}.dll-TestResults.xml" />
+      <arg value="/nologo" />
+      <arg value="/noshadow" />
+      <arg value="/framework:${nant.settings.currentframework}" />
+    </exec>
 
-    </target>
+  </target>
 
-    <target name="TestAllAssemblies">
-        <foreach item="File" property="filename">
-            <in>
-                <items basedir="${build.dir}">
-                    <exclude name="net/**" />
-                    <include name="**/*.Tests.dll" />
-                </items>
-            </in>
-            <do>
-                <property name="test.assemblyfile" value="${filename}" overwrite="true" />
-                <call target="common.run-tests" />
-            </do>
-        </foreach>
+  <target name="TestAllAssemblies">
+    <foreach item="File" property="filename">
+      <in>
+        <items basedir="${build.dir}">
+          <exclude name="net/**" />
+          <include name="**/*.Tests.dll" />
+        </items>
+      </in>
+      <do>
+        <property name="test.assemblyfile" value="${filename}" overwrite="true" />
+        <call target="common.run-tests" />
+      </do>
+    </foreach>
 
-        <!-- build coverage summary -->
-        <exec program="${tool.dir}/ncoverexplorer/ncoverexplorer.console.exe" workingdir="${build.dir}" failonerror="false">
-            <arg value="/xml:&quot;${build.dir}/TestCoverageSummary.xml&quot;" />
-            <arg value="/report:ModuleClassFunctionSummary" />
-            <arg value="/sort:4" />
-            <arg value="/minCoverage:80" />
-            <arg value="/q" />
-            <arg path="${build.dir}/*-TestCoverage.xml" />
-        </exec>
-    </target>
+    <!-- build coverage summary -->
+    <exec program="${tool.dir}/ncoverexplorer/ncoverexplorer.console.exe" workingdir="${build.dir}" failonerror="false">
+      <arg value="/xml:&quot;${build.dir}/TestCoverageSummary.xml&quot;" />
+      <arg value="/report:ModuleClassFunctionSummary" />
+      <arg value="/sort:4" />
+      <arg value="/minCoverage:80" />
+      <arg value="/q" />
+      <arg path="${build.dir}/*-TestCoverage.xml" />
+    </exec>
+  </target>
 
-    <target name="IntegrationTestAllAssemblies">
-        <foreach item="File" property="filename">
-            <in>
-                <items basedir="${build.dir}">
-                    <exclude name="net/**" />
-                    <include name="**/*.Tests.Integration.dll" />
-                    <include name="**/*.Tests.Integration.*.dll" />
-                </items>
-            </in>
-            <do>
-                <property name="test.assemblyfile" value="${filename}" overwrite="true" />
-                <call target="common.run-tests" />
-            </do>
-        </foreach>
+  <target name="IntegrationTestAllAssemblies">
+    <foreach item="File" property="filename">
+      <in>
+        <items basedir="${build.dir}">
+          <exclude name="net/**" />
+          <include name="**/*.Tests.Integration.dll" />
+          <include name="**/*.Tests.Integration.*.dll" />
+        </items>
+      </in>
+      <do>
+        <property name="test.assemblyfile" value="${filename}" overwrite="true" />
+        <call target="common.run-tests" />
+      </do>
+    </foreach>
 
-        <!-- build coverage summary -->
-        <exec program="${tool.dir}/ncoverexplorer/ncoverexplorer.console.exe" workingdir="${build.dir}" failonerror="false">
-            <arg value="/xml:&quot;${build.dir}/TestCoverageSummary.xml&quot;" />
-            <arg value="/html:&quot;${build.dir}/TestCoverageSummary.html&quot;" />
-            <arg value="/report:ModuleClassFunctionSummary" />
-            <arg value="/sort:4" />
-            <arg value="/minCoverage:80" />
-            <arg value="/q" />
-            <arg path="${build.dir}/*-TestCoverage.xml" />
-        </exec>
-    </target>
+    <!-- build coverage summary -->
+    <exec program="${tool.dir}/ncoverexplorer/ncoverexplorer.console.exe" workingdir="${build.dir}" failonerror="false">
+      <arg value="/xml:&quot;${build.dir}/TestCoverageSummary.xml&quot;" />
+      <arg value="/html:&quot;${build.dir}/TestCoverageSummary.html&quot;" />
+      <arg value="/report:ModuleClassFunctionSummary" />
+      <arg value="/sort:4" />
+      <arg value="/minCoverage:80" />
+      <arg value="/q" />
+      <arg path="${build.dir}/*-TestCoverage.xml" />
+    </exec>
+  </target>
 
-    <target name="RebuildAllSolutions">
-        <foreach item="File" property="filename">
-            <in>
-                <items basedir="${root.dir}">
-                    <exclude name="tools/**" />
-                    <exclude name="package/**" />
-                    <include name="**/*.sln" />
-                </items>
-            </in>
-            <do>
-                <property name="solutionfile" value="${filename}" />
-                <property name="solutionconfiguration" value="${buildconfiguration}" />
-                <call target="RebuildSolution" />
-            </do>
-        </foreach>
-    </target>
+  <target name="RebuildAllSolutions">
+  
+  <echo message="Building All Solutions with the following settings..." />
+  <echo message="nant.settings.currentframework = ${nant.settings.currentframework}" />
+  <echo message="build.dir = ${build.dir}" />
+  <echo message="solution-file-filter = ${solution-file-filter}" />
+  <echo message="buildconfiguration = ${buildconfiguration}" />
+  
+    <foreach item="File" property="filename">
+      <in>
+        <items basedir="${root.dir}">
+          <exclude name="tools/**" />
+          <exclude name="package/**" />
+          <include name="**/${solution-file-filter}" />
+        </items>
+      </in>
+      <do>
+        <property name="solutionfile" value="${filename}" />
+        <property name="solutionconfiguration" value="${buildconfiguration}" />
+        <call target="RebuildSolution" />
+      </do>
+    </foreach>
+  </target>
 
-    <target name="RebuildSolution" description="rebuilds a given solution file">
-        <echo message="Rebuilding Solution ${solutionfile}" />
-        <exec program="${msbuild.exe}">
-            <!--
+  <target name="RebuildSolution" description="rebuilds a given solution file">
+    <echo message="Rebuilding Solution ${solutionfile}" />
+    <exec program="${msbuild.exe}">
+      <!--
       <arg value="/property:OutDir=${output.dir}/"/>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>Common.Net.snk</AssemblyOriginatorKeyFile>
 -->
-            <arg value="${solutionfile}"/>
-            <arg line="/property:SignAssembly=${project.sign},AssemblyOriginatorKeyFile=${root.dir}/Common.Net.snk" />
-            <arg line="/nologo" />
-            <arg line="/verbosity:minimal" />
-            <arg line="/property:Configuration=${solutionconfiguration}"/>
-        </exec>
-    </target>
+      <arg value="${solutionfile}"/>
+      <arg line="/property:SignAssembly=${project.sign},AssemblyOriginatorKeyFile=${root.dir}/Common.Net.snk" />
+      <arg line="/nologo" />
+      <arg line="/verbosity:minimal" />
+      <arg line="/property:Configuration=${solutionconfiguration}"/>
+    </exec>
+  </target>
 
-    <target name="update-dependencies">
-        <copy todir="${root.dir}" failonerror="false">
-            <fileset basedir="${root.dir}/../nonredist">
-                <include name="**/*.*"/>
-            </fileset>
-        </copy>
-    </target>
+  <target name="update-dependencies">
+    <copy todir="${root.dir}" failonerror="false">
+      <fileset basedir="${root.dir}/../nonredist">
+        <include name="**/*.*"/>
+      </fileset>
+    </copy>
+  </target>
 
-    <target name="update-common-assemblyinfo">
+  <target name="update-common-assemblyinfo">
 
-      <!-- ensure src/CommonAssemblyInfo.cs is writable if it already exists -->
-      <attrib file="${root.dir}/src/CommonAssemblyInfo.cs" readonly="false" if="${file::exists('${root.dir}/src/CommonAssemblyInfo.cs')}" />
-      <!-- generate the source file holding the common assembly-level attributes -->
-      <asminfo output="${root.dir}/src/CommonAssemblyInfo.cs" language="CSharp">
-        <imports>
-          <import namespace="System" />
-          <import namespace="System.Reflection" />
-          <import namespace="System.Runtime.InteropServices" />
-          <import namespace="System.Security" />
-          <import namespace="System.Security.Permissions" />
-        </imports>
-        <attributes>
-          <attribute type="CLSCompliantAttribute" value="true" />
-          <attribute type="ComVisibleAttribute" value="false" />
-          <attribute type="AllowPartiallyTrustedCallersAttribute" asis="true"/>
-          <!-- attribute type="SecurityTransparentAttribute" asis="true"/ -->
-          <attribute type="SecurityPermissionAttribute" value="SecurityAction.RequestMinimum" asis="true"/>
-          <attribute type="AssemblyCompanyAttribute" value="http://netcommon.sourceforge.net/" />
-          <attribute type="AssemblyCopyrightAttribute" value="Copyright 2006-20010 the Common Infrastructure Libraries Team." />
-          <attribute type="AssemblyTrademarkAttribute" value="Apache License, Version 2.0" />
-          <attribute type="AssemblyCultureAttribute" value="" />
-          <attribute type="AssemblyVersionAttribute" value="${project.version}" />
-          <attribute type="AssemblyConfigurationAttribute" value="${framework::get-target-framework()}.${platform::get-name()}; ${project.releasetype}" />
-          <attribute type="AssemblyInformationalVersionAttribute" value="${project.version}; ${framework::get-target-framework()}.${platform::get-name()}; ${project.releasetype}" />
-          <attribute type="AssemblyDelaySignAttribute" value="false" />
-        </attributes>
-      </asminfo>
-    </target>
+    <!-- ensure src/CommonAssemblyInfo.cs is writable if it already exists -->
+    <attrib file="${root.dir}/src/CommonAssemblyInfo.cs" readonly="false" if="${file::exists('${root.dir}/src/CommonAssemblyInfo.cs')}" />
+    <!-- generate the source file holding the common assembly-level attributes -->
+    <asminfo output="${root.dir}/src/CommonAssemblyInfo.cs" language="CSharp">
+      <imports>
+        <import namespace="System" />
+        <import namespace="System.Reflection" />
+        <import namespace="System.Runtime.InteropServices" />
+        <import namespace="System.Security" />
+        <import namespace="System.Security.Permissions" />
+      </imports>
+      <attributes>
+        <attribute type="CLSCompliantAttribute" value="true" />
+        <attribute type="ComVisibleAttribute" value="false" />
+        <attribute type="AllowPartiallyTrustedCallersAttribute" asis="true"/>
+        <!-- attribute type="SecurityTransparentAttribute" asis="true"/ -->
+        <if test="${nant.settings.currentframwork} != 'net-2.0'" >
+			<attribute type="SecurityPermissionAttribute" value="SecurityAction.RequestMinimum" asis="true"/>
+        </if>
+		<attribute type="AssemblyCompanyAttribute" value="http://netcommon.sourceforge.net/" />
+        <attribute type="AssemblyCopyrightAttribute" value="Copyright 2006-20010 the Common Infrastructure Libraries Team." />
+        <attribute type="AssemblyTrademarkAttribute" value="Apache License, Version 2.0" />
+        <attribute type="AssemblyCultureAttribute" value="" />
+        <attribute type="AssemblyVersionAttribute" value="${project.version}" />
+        <attribute type="AssemblyConfigurationAttribute" value="${framework::get-target-framework()}.${platform::get-name()}; ${project.releasetype}" />
+        <attribute type="AssemblyInformationalVersionAttribute" value="${project.version}; ${framework::get-target-framework()}.${platform::get-name()}; ${project.releasetype}" />
+        <attribute type="AssemblyDelaySignAttribute" value="false" />
+      </attributes>
+    </asminfo>
+  </target>
+
 
 
 </project>

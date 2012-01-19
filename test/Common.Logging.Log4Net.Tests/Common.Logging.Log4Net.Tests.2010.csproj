@@ -37,7 +37,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\build\Common.Logging.Log4Net.Tests\Debug\</OutputPath>
+    <OutputPath>..\..\build\net20\Common.Logging.Log4Net.Tests\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE;NET_2_0</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>

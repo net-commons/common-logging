@@ -5,7 +5,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		changelog.txt = changelog.txt
 		Common.Logging.build = Common.Logging.build
-		modules\CommonAssemblyInfo.cs.template = modules\CommonAssemblyInfo.cs.template
+		src\CommonAssemblyInfo.cs.template = src\CommonAssemblyInfo.cs.template
 		doc\api\introduction.html = doc\api\introduction.html
 		Logging.ndoc = Logging.ndoc
 	EndProjectSection

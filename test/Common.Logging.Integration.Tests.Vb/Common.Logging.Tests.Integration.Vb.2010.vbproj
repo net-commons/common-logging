@@ -41,7 +41,7 @@
     <DebugType>full</DebugType>
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
-    <OutputPath>..\..\build\Common.Logging.Tests.Integration.Vb\Debug\</OutputPath>
+    <OutputPath>..\..\build\net20\Common.Logging.Tests.Integration.Vb\Debug\</OutputPath>
     <DocumentationFile>Common.Logging.Tests.Integration.Vb.xml</DocumentationFile>
     <WarningsAsErrors>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</WarningsAsErrors>
     <UseVSHostingProcess>false</UseVSHostingProcess>
@@ -52,7 +52,7 @@
     <DefineDebug>false</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\build\Common.Logging.Tests.Integration.Vb\Release\</OutputPath>
+    <OutputPath>..\..\build\net20\Common.Logging.Tests.Integration.Vb\Release\</OutputPath>
     <DocumentationFile>Common.Logging.Tests.Integration.Vb.xml</DocumentationFile>
     <WarningsAsErrors>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</WarningsAsErrors>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
