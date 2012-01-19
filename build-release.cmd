@@ -4,4 +4,19 @@ REM 'test'
 REM 'test-integration'
 
 @ECHO OFF
-call build package-zip -D:project.sign=true -D:project.version=2.0.0.0 -D:project.releasetype=release
+cls
+
+@echo Building from script Common.Logging.build...
+@echo .
+@echo .
+@echo .
+
+tools\nant\bin\nant.exe -f:Common.Logging.build package-zip -D:project.sign=true -D:project.version=2.0.0.0 -D:project.releasetype=release > buildlog.txt
+
+@echo ...complete!
+@echo .
+@echo .
+@echo .
+
+@echo Launching text file viewer to display buildlog.txt contents...
+start "ignored but required placeholder window title argument" buildlog.txt
