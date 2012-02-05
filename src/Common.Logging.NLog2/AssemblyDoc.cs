@@ -21,7 +21,7 @@
 using Common.Logging.NLog;
 
 /// <summary>
-/// <para>This assembly contains the implementations to plug NLog 1.0.0.505 into Common.Logging.</para>
+/// <para>This assembly contains the implementations to plug NLog 2.0 into Common.Logging.</para>
 /// <para>For an example on how to configure
 /// <list type="bullet">
 /// <item>Common.Logging to render its output to Entlib, see <see cref="NLogLoggerFactoryAdapter"/>.</item>
