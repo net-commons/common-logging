@@ -59,9 +59,8 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821">
-      <SpecificVersion>True</SpecificVersion>
-      <HintPath>..\..\lib\log4net\net\2.0\log4net.dll</HintPath>
+    <Reference Include="log4net">
+      <HintPath>..\..\lib\Log4Net\net\4.0\log4net.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />

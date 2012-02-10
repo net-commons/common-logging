@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{F7D4B5FA-16FC-4C8A-97B4-FCD391ADE0AF}</ProjectGuid>
+    <ProjectGuid>{5C77006C-5F87-4D61-9872-5913BE51B4E5}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Spring</RootNamespace>
-    <AssemblyName>Common.Logging.Log4Net.Tests.Integration</AssemblyName>
+    <AssemblyName>Common.Logging.Log4Net1210.Tests.Integration</AssemblyName>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <OldToolsVersion>3.5</OldToolsVersion>
@@ -37,7 +37,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\build\net40\Common.Logging.Log4Net.Tests.Integration\Debug\</OutputPath>
+    <OutputPath>..\..\build\net40\Common.Logging.Log4Net1210.Tests.Integration\Debug\</OutputPath>
     <DefineConstants>TRACE;DEBUG;NET_4_0</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -47,7 +47,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\build\net40\Common.Logging.Log4Net.Tests.Integration\Release\</OutputPath>
+    <OutputPath>..\..\build\net40\Common.Logging.Log4Net1210.Tests.Integration\Release\</OutputPath>
     <DefineConstants>TRACE;NET_4_0</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -69,17 +69,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\src\Common.Logging.Log4Net1210\Common.Logging.Log4Net1210.2010-net40.csproj">
+      <Project>{193582BD-3AF5-4A92-A050-1421F67C0C4C}</Project>
+      <Name>Common.Logging.Log4Net1210.2010-net40</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\Common.Logging\Common.Logging.2010-net40.csproj">
       <Project>{440D903A-D409-48FC-A6C4-3EE69CCD663B}</Project>
       <Name>Common.Logging.2010-net40</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\Common.Logging.Log4Net\Common.Logging.Log4Net.2010-net40.csproj">
-      <Project>{0FEA262C-4EAF-49DB-8D32-8E90DDEF23B6}</Project>
-      <Name>Common.Logging.Log4Net.2010-net40</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Common.Logging.Log4Net.Tests\Common.Logging.Log4Net.Tests.2010-net40.csproj">
-      <Project>{8FBECEDA-78A0-4429-B791-B9219ED49B36}</Project>
-      <Name>Common.Logging.Log4Net.Tests.2010-net40</Name>
+    <ProjectReference Include="..\Common.Logging.Log4Net1210.Tests\Common.Logging.Log4Net1210.Tests.2010-net40.csproj">
+      <Project>{6F9D816B-5217-47A8-9E26-78F52EA20B16}</Project>
+      <Name>Common.Logging.Log4Net1210.Tests.2010-net40</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
