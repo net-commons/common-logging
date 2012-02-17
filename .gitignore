@@ -36,3 +36,5 @@ package-nuget/
 PrecompiledWeb/
 AssemblyInfo.cs
 *.snk
+*.swp
+src/**/*.xml
