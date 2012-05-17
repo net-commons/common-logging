@@ -25,6 +25,11 @@ using Common.Logging.NLog;
 using Common.TestUtil;
 using NLog;
 using NLog.Config;
+
+#if NLOG2
+using NLog.Targets;
+#endif
+
 using NUnit.Framework;
 using LogLevel=NLog.LogLevel;
 using LogManager=NLog.LogManager;
@@ -45,7 +50,7 @@ namespace Common.Logger.NLog
             }
         }
 
-        private class TestTarget : Target
+        private class TestTarget : TargetWithLayout
         {
             public LogEventInfo LastLogEvent;
             protected override void Write(LogEventInfo logEvent)
@@ -53,10 +58,19 @@ namespace Common.Logger.NLog
                 LastLogEvent = logEvent;
             }
 
+#if NLOG1
             protected override int NeedsStackTrace()
             {
                 return 1;
             }
+#endif
+#if NLOG2
+            // NLog2 does not have NeedsStackTrace anymore, it looks for stacktrace token in log message layout.
+            public TestTarget()
+            {
+                Layout = "${message}|${stacktrace}";
+            }
+#endif
         }
 
         [SetUp]
@@ -90,8 +104,8 @@ namespace Common.Logger.NLog
             TestLoggingConfiguration cfg = new TestLoggingConfiguration();
             LogManager.Configuration = cfg;
 
-            Common.Logging.LogManager.Adapter = new NLogLoggerFactoryAdapter(null);
-            Common.Logging.LogManager.GetLogger("myLogger").Debug("TestMessage");
+            Logging.LogManager.Adapter = new NLogLoggerFactoryAdapter(null);
+            Logging.LogManager.GetLogger("myLogger").Debug("TestMessage");
 
             Assert.IsNotNull(cfg.Target.LastLogEvent);
             string stackTrace = cfg.Target.LastLogEvent.StackTrace.ToString();

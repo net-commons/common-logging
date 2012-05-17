@@ -37,7 +37,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>..\..\build\net20\Common.Logging.NLog\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;NET_2_0;NLOG1</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>Common.Logging.NLog.xml</DocumentationFile>
@@ -50,7 +50,7 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>..\..\build\net20\Common.Logging.NLog\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <DefineConstants>TRACE;NET_2_0;NLOG1</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>Common.Logging.NLog.xml</DocumentationFile>
@@ -74,16 +74,18 @@
     </Compile>
     <Compile Include="AssemblyDoc.cs" />
     <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="Logging\NLog\CommonLoggingTarget.cs" />
-    <Compile Include="Logging\NLog\NamespaceDoc.cs" />
-    <Compile Include="Logging\NLog\NLogLogger.cs" />
-    <Compile Include="Logging\NLog\NLogLoggerFactoryAdapter.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Common.Logging\Common.Logging.2010.csproj">
-      <Project>{440D903A-D409-48FC-A6C4-3EE69CCD663B}</Project>
-      <Name>Common.Logging.2010</Name>
-    </ProjectReference>
+    <Compile Include="Logging\NLog\CommonLoggingTarget.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Logging\NLog\NamespaceDoc.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Logging\NLog\NLogLogger.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Logging\NLog\NLogLoggerFactoryAdapter.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -101,6 +103,12 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common.Logging\Common.Logging.2010.csproj">
+      <Project>{440D903A-D409-48FC-A6C4-3EE69CCD663B}</Project>
+      <Name>Common.Logging.2010</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

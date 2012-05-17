@@ -32,29 +32,45 @@ namespace Common.Logging.Factory
     {
         #region FormatMessageCallbackFormattedMessage
 
-        private class FormatMessageCallbackFormattedMessage
+        /// <summary>
+        /// Format message on demand.
+        /// </summary>
+        protected class FormatMessageCallbackFormattedMessage
         {
             private volatile string cachedMessage;
 
             private readonly IFormatProvider formatProvider;
             private readonly FormatMessageCallback formatMessageCallback;
 
+            /// <summary>
+            /// Initializes a new instance of the <see cref="FormatMessageCallbackFormattedMessage"/> class.
+            /// </summary>
+            /// <param name="formatMessageCallback">The format message callback.</param>
             public FormatMessageCallbackFormattedMessage(FormatMessageCallback formatMessageCallback)
             {
                 this.formatMessageCallback = formatMessageCallback;
             }
 
+            /// <summary>
+            /// Initializes a new instance of the <see cref="FormatMessageCallbackFormattedMessage"/> class.
+            /// </summary>
+            /// <param name="formatProvider">The format provider.</param>
+            /// <param name="formatMessageCallback">The format message callback.</param>
             public FormatMessageCallbackFormattedMessage(IFormatProvider formatProvider, FormatMessageCallback formatMessageCallback)
             {
                 this.formatProvider = formatProvider;
                 this.formatMessageCallback = formatMessageCallback;
             }
 
+            /// <summary>
+            /// Calls <see cref="formatMessageCallback"/> and returns result.
+            /// </summary>
+            /// <returns></returns>
             public override string ToString()
             {
                 if (cachedMessage == null && formatMessageCallback != null)
                 {
-                    formatMessageCallback(new FormatMessageHandler(FormatMessage));
+                    formatMessageCallback(FormatMessage);
                 }
                 return cachedMessage;
             }
@@ -70,7 +86,10 @@ namespace Common.Logging.Factory
 
         #region StringFormatFormattedMessage
 
-        private class StringFormatFormattedMessage
+        /// <summary>
+        /// Format string on demand.
+        /// </summary>
+        protected class StringFormatFormattedMessage
         {
             private volatile string cachedMessage;
 
@@ -78,6 +97,12 @@ namespace Common.Logging.Factory
             private readonly string Message;
             private readonly object[] Args;
 
+            /// <summary>
+            /// Initializes a new instance of the <see cref="StringFormatFormattedMessage"/> class.
+            /// </summary>
+            /// <param name="formatProvider">The format provider.</param>
+            /// <param name="message">The message.</param>
+            /// <param name="args">The args.</param>
             public StringFormatFormattedMessage(IFormatProvider formatProvider, string message, params object[] args)
             {
                 FormatProvider = formatProvider;
@@ -85,6 +110,10 @@ namespace Common.Logging.Factory
                 Args = args;
             }
 
+            /// <summary>
+            /// Runs <see cref="string.Format(System.IFormatProvider,string,object[])"/> on supplied arguemnts.
+            /// </summary>
+            /// <returns>string</returns>
             public override string ToString()
             {
                 if (cachedMessage == null && Message != null)
