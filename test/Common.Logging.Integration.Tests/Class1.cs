@@ -1,4 +1,4 @@
-#if NET_3_0
+#if NET_3_0 || NET_4_0
 
 using System;
 using System.Globalization;

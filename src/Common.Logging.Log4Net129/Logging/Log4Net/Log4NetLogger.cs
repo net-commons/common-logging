@@ -27,7 +27,7 @@ using log4net.Core;
 namespace Common.Logging.Log4Net
 {
     /// <summary>
-    /// Concrete implementation of <see cref="ILog"/> interface specific to log4net 1.2.9.
+    /// Concrete implementation of <see cref="ILog"/> interface specific to log4net 1.2.9-1.2.11.
     /// </summary>
     /// <remarks>
     /// Log4net is capable of outputting extended debug information about where the current 

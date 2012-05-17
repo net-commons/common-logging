@@ -28,7 +28,7 @@ using log4net.Config;
 namespace Common.Logging.Log4Net
 {
     /// <summary>
-    /// Concrete subclass of ILoggerFactoryAdapter specific to log4net 1.2.9.
+    /// Concrete subclass of ILoggerFactoryAdapter specific to log4net 1.2.9-1.2.11.
     /// </summary>
     /// <remarks>
     /// The following configuration property values may be configured:

@@ -23,6 +23,10 @@ using System.Collections.Generic;
 using System.Configuration;
 using Common.Logging.Configuration;
 using NLog;
+#if NLOG2
+using NLog.Layouts;
+using NLog.Targets;
+#endif
 
 namespace Common.Logging.NLog
 {
@@ -92,7 +96,11 @@ namespace Common.Logging.NLog
 
             ILog logger = LogManager.GetLogger(logEvent.LoggerName);
             LogMethod log = logMethods[logEvent.Level];
+#if NLOG2
+            log(logger, () => Layout.Render(logEvent), logEvent.Exception);
+#else
             log(logger, delegate { return this.CompiledLayout.GetFormattedMessage(logEvent); }, logEvent.Exception);
+#endif
         }
     }
 }
