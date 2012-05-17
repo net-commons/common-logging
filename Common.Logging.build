@@ -6,7 +6,8 @@
   <property name="project.majorversion" value="2.0" />
   <property name="project.patchversion" value="${CCNetLabel}" overwrite="true" if="${property::exists('CCNetLabel')}"/>
   <property name="project.patchversion" value="0" overwrite="false" />
-  <property name="project.buildnumber" value="${math::abs(math::floor(timespan::get-total-days(datetime::now() - datetime::parse('01/01/2000'))))}" />
+  <!--<property name="project.buildnumber" value="${math::abs(math::floor(timespan::get-total-days(datetime::now() - datetime::parse('01/01/2000'))))}" />-->
+  <property name="project.buildnumber" value="0" />
   <property name="project.version" value="${project.majorversion}.${project.patchversion}.${project.buildnumber}" overwrite="false" />
   <property name="package.version" value="${project.majorversion}.${project.patchversion}" overwrite="false" />
   <!-- dev / alpha / beta# / rc# / release -->

@@ -21,7 +21,7 @@
 using Common.Logging.Log4Net;
 
 /// <summary>
-/// <para>This assembly contains the adapter to the log4net 1.2.10 library</para>
+/// <para>This assembly contains the adapter to the log4net 1.2.11 library</para>
 /// <para>For an example on how to configure
 /// <list type="bullet">
 /// <item>Common.Logging to render its output to log4net, see <see cref="Log4NetLoggerFactoryAdapter"/>.</item>
