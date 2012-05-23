@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
-<package xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <metadata xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
     <id>Common.Logging</id>
     <version>0.0.0</version> <!-- placeholder value replaced by build script -->
     <authors>Aleksandar Seovic, Mark Pollack, Erich Eichinger, Stephen Bohlen</authors>
