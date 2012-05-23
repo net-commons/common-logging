@@ -36,3 +36,11 @@ package-nuget/
 PrecompiledWeb/
 AssemblyInfo.cs
 *.snk
+src/Common.Logging.EntLib/Common.Logging.EntLib.xml
+src/Common.Logging.EntLib41/Common.Logging.EntLib41.xml
+src/Common.Logging.Log4Net/Common.Logging.Log4Net.xml
+src/Common.Logging.Log4Net129/Common.Logging.Log4Net129.xml
+src/Common.Logging.Log4Net1211/Common.Logging.Log4Net1211.xml
+src/Common.Logging.NLog/Common.Logging.NLog.xml
+src/Common.Logging.NLog2/Common.Logging.NLog2.xml
+src/Common.Logging/Common.Logging.xml
