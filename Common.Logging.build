@@ -484,7 +484,7 @@ ${tool.dir}       : dir for tools
 			<attribute type="SecurityPermissionAttribute" value="SecurityAction.RequestMinimum" asis="true"/>
         </if>
 		<attribute type="AssemblyCompanyAttribute" value="http://netcommon.sourceforge.net/" />
-        <attribute type="AssemblyCopyrightAttribute" value="Copyright 2006-20010 the Common Infrastructure Libraries Team." />
+        <attribute type="AssemblyCopyrightAttribute" value="Copyright 2006-2011 the Common Infrastructure Libraries Team." />
         <attribute type="AssemblyTrademarkAttribute" value="Apache License, Version 2.0" />
         <attribute type="AssemblyCultureAttribute" value="" />
         <attribute type="AssemblyVersionAttribute" value="${project.version}" />
@@ -553,7 +553,7 @@ ${tool.dir}       : dir for tools
 		</in>
 		<do>
 			<echo message="Processing nuspec file: ${filename}" />
-			<xmlpoke file="${filename}" xpath="/n:package/n:metadata/n:dependencies/n:dependency[starts-with(@id, 'Common.Logging.')]/@version" value="${package.version}">
+			<xmlpoke file="${filename}" xpath="/n:package/n:metadata/n:dependencies/n:dependency[@id='Common.Logging']/@version" value="${package.version}">
 				<namespaces>
 					<namespace prefix="n" uri="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd" />
 				</namespaces>
