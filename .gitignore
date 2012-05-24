@@ -34,7 +34,6 @@ package/
 target/
 package-nuget/
 PrecompiledWeb/
-src/CommonAssemblyInfo.cs
 *.snk
 buildlog.txt
 
