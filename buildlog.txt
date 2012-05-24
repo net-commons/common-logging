@@ -1,198 +1,145 @@
-NAnt 0.91 (Build 0.91.3881.0; alpha2; 17.08.2010)
+NAnt 0.91 (Build 0.91.3881.0; alpha2; 8/17/2010)
 Copyright (C) 2001-2010 Gerry Shaw
 http://nant.sourceforge.net
 
-Buildfile: file:///D:/Work/vk/Projects/common-logging/Common.Logging.build
+Buildfile: file:///C:/_prj/common-logging/Common.Logging.build
 Target framework: Microsoft .NET Framework 4.0
-Target(s) specified: package-zip 
+Target(s) specified: test 
 
 
-package:
+clean:
 
-   [delete] Deleting directory 'D:\Work\vk\Projects\common-logging\package'.
+   [delete] Deleting directory 'C:\_prj\common-logging\build'.
+   [delete] Deleting directory 'C:\_prj\common-logging\src\Common.Logging\obj'.
+   [delete] Deleting directory 'C:\_prj\common-logging\src\Common.Logging.EntLib31\obj'.
+   [delete] Deleting directory 'C:\_prj\common-logging\src\Common.Logging.EntLib41\obj'.
+   [delete] Deleting directory 'C:\_prj\common-logging\src\Common.Logging.Log4Net1210\Common.Logging.Log4Net\obj'.
+   [delete] Deleting directory 'C:\_prj\common-logging\src\Common.Logging.Log4Net1211\obj'.
+   [delete] Deleting directory 'C:\_prj\common-logging\src\Common.Logging.Log4Net129\obj'.
+   [delete] Deleting directory 'C:\_prj\common-logging\src\Common.Logging.NLog\obj'.
+   [delete] Deleting directory 'C:\_prj\common-logging\src\Common.Logging.NLog2\obj'.
+   [delete] Deleting directory 'C:\_prj\common-logging\test\Common.Logging.BinaryCompatibility.Tests\obj'.
+   [delete] Deleting directory 'C:\_prj\common-logging\test\Common.Logging.EntLib31.Integration.Tests\obj'.
+   [delete] Deleting directory 'C:\_prj\common-logging\test\Common.Logging.EntLib31.Tests\obj'.
+   [delete] Deleting directory 'C:\_prj\common-logging\test\Common.Logging.EntLib41.Integration.Tests\obj'.
+   [delete] Deleting directory 'C:\_prj\common-logging\test\Common.Logging.EntLib41.Tests\obj'.
+   [delete] Deleting directory 'C:\_prj\common-logging\test\Common.Logging.Integration.Tests\obj'.
+   [delete] Deleting directory 'C:\_prj\common-logging\test\Common.Logging.Integration.Tests.Vb\obj'.
+   [delete] Deleting directory 'C:\_prj\common-logging\test\Common.Logging.Log4Net1210.Integration.Tests\obj'.
+   [delete] Deleting directory 'C:\_prj\common-logging\test\Common.Logging.Log4Net1210.Tests\obj'.
+   [delete] Deleting directory 'C:\_prj\common-logging\test\Common.Logging.Log4Net1211.Integration.Tests\obj'.
+   [delete] Deleting directory 'C:\_prj\common-logging\test\Common.Logging.Log4Net1211.Tests\obj'.
+   [delete] Deleting directory 'C:\_prj\common-logging\test\Common.Logging.Log4Net129.Integration.Tests\obj'.
+   [delete] Deleting directory 'C:\_prj\common-logging\test\Common.Logging.Log4Net129.Tests\obj'.
+   [delete] Deleting directory 'C:\_prj\common-logging\test\Common.Logging.NLog.Integration.Tests\obj'.
+   [delete] Deleting directory 'C:\_prj\common-logging\test\Common.Logging.NLog.Tests\obj'.
+   [delete] Deleting directory 'C:\_prj\common-logging\test\Common.Logging.NLog2.Integration.Tests\obj'.
+   [delete] Deleting directory 'C:\_prj\common-logging\test\Common.Logging.NLog2.Tests\obj'.
+   [delete] Deleting directory 'C:\_prj\common-logging\test\Common.Logging.Tests\obj'.
+   [delete] Deleting directory 'C:\_prj\common-logging\test\Common.Logging.TestUtils\bin'.
+   [delete] Deleting directory 'C:\_prj\common-logging\test\Common.Logging.TestUtils\obj'.
+   [delete] Deleting directory 'C:\_prj\common-logging\examples\BasicLogging\obj'.
+   [delete] Deleting directory 'C:\_prj\common-logging\examples\CustomLogger\obj'.
+   [delete] Deleting directory 'C:\_prj\common-logging\examples\XmlConfiguredLogging\obj'.
+   [delete] Deleting directory 'C:\_prj\common-logging\package\examples\BasicLogging\obj'.
+   [delete] Deleting directory 'C:\_prj\common-logging\package\examples\CustomLogger\obj'.
+   [delete] Deleting directory 'C:\_prj\common-logging\package\examples\XmlConfiguredLogging\obj'.
+   [delete] Deleting directory 'C:\_prj\common-logging\package\src\Common.Logging\obj'.
+   [delete] Deleting directory 'C:\_prj\common-logging\package\src\Common.Logging.EntLib\obj'.
+   [delete] Deleting directory 'C:\_prj\common-logging\package\src\Common.Logging.EntLib41\obj'.
+   [delete] Deleting directory 'C:\_prj\common-logging\package\src\Common.Logging.Log4Net\obj'.
+   [delete] Deleting directory 'C:\_prj\common-logging\package\src\Common.Logging.Log4Net1211\obj'.
+   [delete] Deleting directory 'C:\_prj\common-logging\package\src\Common.Logging.Log4Net129\obj'.
+   [delete] Deleting directory 'C:\_prj\common-logging\package\src\Common.Logging.NLog\obj'.
+   [delete] Deleting directory 'C:\_prj\common-logging\package\src\Common.Logging.NLog2\obj'.
+   [delete] Deleting directory 'C:\_prj\common-logging\package\test\Common.Logging.BinaryCompatibility.Tests\obj'.
+   [delete] Deleting directory 'C:\_prj\common-logging\package\test\Common.Logging.EntLib.Integration.Tests\obj'.
+   [delete] Deleting directory 'C:\_prj\common-logging\package\test\Common.Logging.EntLib.Tests\obj'.
+   [delete] Deleting directory 'C:\_prj\common-logging\package\test\Common.Logging.EntLib41.Integration.Tests\obj'.
+   [delete] Deleting directory 'C:\_prj\common-logging\package\test\Common.Logging.EntLib41.Tests\obj'.
+   [delete] Deleting directory 'C:\_prj\common-logging\package\test\Common.Logging.Integration.Tests\obj'.
+   [delete] Deleting directory 'C:\_prj\common-logging\package\test\Common.Logging.Integration.Tests.Vb\obj'.
+   [delete] Deleting directory 'C:\_prj\common-logging\package\test\Common.Logging.Log4Net.Integration.Tests\obj'.
+   [delete] Deleting directory 'C:\_prj\common-logging\package\test\Common.Logging.Log4Net.Tests\obj'.
+   [delete] Deleting directory 'C:\_prj\common-logging\package\test\Common.Logging.Log4Net1211.Integration.Tests\obj'.
+   [delete] Deleting directory 'C:\_prj\common-logging\package\test\Common.Logging.Log4Net1211.Tests\obj'.
+   [delete] Deleting directory 'C:\_prj\common-logging\package\test\Common.Logging.Log4Net129.Integration.Tests\obj'.
+   [delete] Deleting directory 'C:\_prj\common-logging\package\test\Common.Logging.Log4Net129.Tests\obj'.
+   [delete] Deleting directory 'C:\_prj\common-logging\package\test\Common.Logging.NLog.Integration.Tests\obj'.
+   [delete] Deleting directory 'C:\_prj\common-logging\package\test\Common.Logging.NLog.Tests\obj'.
+   [delete] Deleting directory 'C:\_prj\common-logging\package\test\Common.Logging.NLog2.Integration.Tests\obj'.
+   [delete] Deleting directory 'C:\_prj\common-logging\package\test\Common.Logging.NLog2.Tests\obj'.
+   [delete] Deleting directory 'C:\_prj\common-logging\package\test\Common.Logging.Tests\obj'.
+   [delete] Deleting directory 'C:\_prj\common-logging\package\test\Common.Logging.TestUtils\obj'.
 
-package.binaries:
-
-     [copy] Copying 18 files to 'D:\Work\vk\Projects\common-logging\package\bin\net\2.0\debug'.
-     [copy] Copying 18 files to 'D:\Work\vk\Projects\common-logging\package\bin\net\2.0\release'.
-     [copy] Copying 18 files to 'D:\Work\vk\Projects\common-logging\package\bin\net\4.0\debug'.
-     [copy] Copying 18 files to 'D:\Work\vk\Projects\common-logging\package\bin\net\4.0\release'.
-
-package.sources:
-
-     [copy] Copying 4 files to 'D:\Work\vk\Projects\common-logging\package'.
-     [copy] Copying 1 file to 'D:\Work\vk\Projects\common-logging\package\src\CommonAssemblyInfo.cs'.
-     [copy] Copying 484 files to 'D:\Work\vk\Projects\common-logging\package'.
-
-update-nuspec-metadata:
-
-     [echo] Processing nuspec file: D:\Work\vk\Projects\common-logging\src\Common.Logging.EntLib\Common.Logging.EntLib.nuspec
-  [xmlpoke] No matching nodes were found with XPath expression '/n:package/n:metadata/n:dependencies/n:dependency[starts-with(@id, 'Common.Logging.')]/@version'.
-     [echo] Processing nuspec file: D:\Work\vk\Projects\common-logging\src\Common.Logging.EntLib41\Common.Logging.EntLib41.nuspec
-  [xmlpoke] No matching nodes were found with XPath expression '/n:package/n:metadata/n:dependencies/n:dependency[starts-with(@id, 'Common.Logging.')]/@version'.
-     [echo] Processing nuspec file: D:\Work\vk\Projects\common-logging\src\Common.Logging.Log4Net\Common.Logging.Log4Net.nuspec
-  [xmlpoke] No matching nodes were found with XPath expression '/n:package/n:metadata/n:dependencies/n:dependency[starts-with(@id, 'Common.Logging.')]/@version'.
-     [echo] Processing nuspec file: D:\Work\vk\Projects\common-logging\src\Common.Logging.Log4Net129\Common.Logging.Log4Net129.nuspec
-  [xmlpoke] No matching nodes were found with XPath expression '/n:package/n:metadata/n:dependencies/n:dependency[starts-with(@id, 'Common.Logging.')]/@version'.
-     [echo] Processing nuspec file: D:\Work\vk\Projects\common-logging\src\Common.Logging.NLog\Common.Logging.NLog.nuspec
-  [xmlpoke] No matching nodes were found with XPath expression '/n:package/n:metadata/n:dependencies/n:dependency[starts-with(@id, 'Common.Logging.')]/@version'.
-
-package-nuget:
-
-
-check-nuget-package-dir:
-
-
-clean-nuget-package-dir:
-
-     [echo] Cleaning the D:\Work\vk\Projects\common-logging/package-nuget NuGet package directory.
-   [delete] Deleting directory 'D:\Work\vk\Projects\common-logging\package-nuget'.
-    [mkdir] Creating directory 'D:\Work\vk\Projects\common-logging\package-nuget'.
-     [echo] Generating NuGet Package from nuspec file: D:\Work\vk\Projects\common-logging\src\Common.Logging\Common.Logging.nuspec
-     [exec] Starting 'D:\Work\vk\Projects\common-logging/tools\NuGet\NuGet.exe (pack D:\Work\vk\Projects\common-logging\src\Common.Logging\Common.Logging.nuspec -Version 2.0.0 -OutputDirectory D:\Work\vk\Projects\common-logging/package-nuget)' in 'D:\Work\vk\Projects\common-logging'
-     [exec] Attempting to build package from 'Common.Logging.nuspec'.
-     [exec] Successfully created package 'D:\Work\vk\Projects\common-logging/package-nuget\Common.Logging.2.0.0.nupkg'.
-     [echo] Generating NuGet Package from nuspec file: D:\Work\vk\Projects\common-logging\src\Common.Logging.EntLib\Common.Logging.EntLib.nuspec
-     [exec] Starting 'D:\Work\vk\Projects\common-logging/tools\NuGet\NuGet.exe (pack D:\Work\vk\Projects\common-logging\src\Common.Logging.EntLib\Common.Logging.EntLib.nuspec -Version 2.0.0 -OutputDirectory D:\Work\vk\Projects\common-logging/package-nuget)' in 'D:\Work\vk\Projects\common-logging'
-     [exec] Attempting to build package from 'Common.Logging.EntLib.nuspec'.
-     [exec] Successfully created package 'D:\Work\vk\Projects\common-logging/package-nuget\Common.Logging.EntLib.2.0.0.nupkg'.
-     [echo] Generating NuGet Package from nuspec file: D:\Work\vk\Projects\common-logging\src\Common.Logging.EntLib41\Common.Logging.EntLib41.nuspec
-     [exec] Starting 'D:\Work\vk\Projects\common-logging/tools\NuGet\NuGet.exe (pack D:\Work\vk\Projects\common-logging\src\Common.Logging.EntLib41\Common.Logging.EntLib41.nuspec -Version 2.0.0 -OutputDirectory D:\Work\vk\Projects\common-logging/package-nuget)' in 'D:\Work\vk\Projects\common-logging'
-     [exec] Attempting to build package from 'Common.Logging.EntLib41.nuspec'.
-     [exec] Successfully created package 'D:\Work\vk\Projects\common-logging/package-nuget\Common.Logging.EntLib41.2.0.0.nupkg'.
-     [echo] Generating NuGet Package from nuspec file: D:\Work\vk\Projects\common-logging\src\Common.Logging.Log4Net\Common.Logging.Log4Net.nuspec
-     [exec] Starting 'D:\Work\vk\Projects\common-logging/tools\NuGet\NuGet.exe (pack D:\Work\vk\Projects\common-logging\src\Common.Logging.Log4Net\Common.Logging.Log4Net.nuspec -Version 2.0.0 -OutputDirectory D:\Work\vk\Projects\common-logging/package-nuget)' in 'D:\Work\vk\Projects\common-logging'
-     [exec] Attempting to build package from 'Common.Logging.Log4Net.nuspec'.
-     [exec] Successfully created package 'D:\Work\vk\Projects\common-logging/package-nuget\Common.Logging.Log4Net.2.0.0.nupkg'.
-     [echo] Generating NuGet Package from nuspec file: D:\Work\vk\Projects\common-logging\src\Common.Logging.Log4Net129\Common.Logging.Log4Net129.nuspec
-     [exec] Starting 'D:\Work\vk\Projects\common-logging/tools\NuGet\NuGet.exe (pack D:\Work\vk\Projects\common-logging\src\Common.Logging.Log4Net129\Common.Logging.Log4Net129.nuspec -Version 2.0.0 -OutputDirectory D:\Work\vk\Projects\common-logging/package-nuget)' in 'D:\Work\vk\Projects\common-logging'
-     [exec] Attempting to build package from 'Common.Logging.Log4Net129.nuspec'.
-     [exec] Successfully created package 'D:\Work\vk\Projects\common-logging/package-nuget\Common.Logging.Log4Net129.2.0.0.nupkg'.
-     [echo] Generating NuGet Package from nuspec file: D:\Work\vk\Projects\common-logging\src\Common.Logging.NLog\Common.Logging.NLog.nuspec
-     [exec] Starting 'D:\Work\vk\Projects\common-logging/tools\NuGet\NuGet.exe (pack D:\Work\vk\Projects\common-logging\src\Common.Logging.NLog\Common.Logging.NLog.nuspec -Version 2.0.0 -OutputDirectory D:\Work\vk\Projects\common-logging/package-nuget)' in 'D:\Work\vk\Projects\common-logging'
-     [exec] Attempting to build package from 'Common.Logging.NLog.nuspec'.
-     [exec] Successfully created package 'D:\Work\vk\Projects\common-logging/package-nuget\Common.Logging.NLog.2.0.0.nupkg'.
-
-package.doc:
-
-
-doc:
+update-dependencies:
 
 
-doc-reference:
+init:
 
-     [nant] D:\Work\vk\Projects\common-logging\doc\reference\docbook.build all
-            Buildfile: file:///D:/Work/vk/Projects/common-logging/doc/reference/docbook.build
-            Target framework: Microsoft .NET Framework 4.0
-            Target(s) specified: all 
-            
-            
-            html:
-            
-                 [echo] Generating HTML format...
-                 [exec] Note: namesp. cut : stripped namespace before processing           Common Infrastructure Libraries for .NET
-                 [exec] Note: namesp. cut : processing stripped document                   Common Infrastructure Libraries for .NET
-                 [exec] Loading Xslthl configuration from file:///D:\Work\vk\Projects\common-logging\doc\reference/lib/docbook-xsl-snapshot/highlighting/xslthl-config.xml...
-                 [exec] Writing html/ch01.html for chapter
-                 [exec] Writing html/index.html for book
-            
-            html-help:
-            
-                 [echo] Generating HTML Help format...
-                 [copy] Copying 1 file to 'D:\Work\vk\Projects\common-logging\doc\reference\target\htmlhelp\styles'.
-                 [copy] Copying 3 files to 'D:\Work\vk\Projects\common-logging\doc\reference\target\htmlhelp\images'.
-                 [copy] Copying 102 files to 'D:\Work\vk\Projects\common-logging\doc\reference\target\htmlhelp\images'.
-                 [exec] Note: namesp. cut : stripped namespace before processing           Common Infrastructure Libraries for .NET
-                 [exec] Note: namesp. cut : processing stripped document                   Common Infrastructure Libraries for .NET
-                 [exec] Loading Xslthl configuration from file:///D:\Work\vk\Projects\common-logging\doc\reference/lib/docbook-xsl-snapshot/highlighting/xslthl-config.xml...
-                 [exec] Writing htmlhelp/ch01.html for chapter
-                 [exec] Writing htmlhelp/index.html for book
-                 [exec] Writing htmlhelp/htmlhelp.hhp
-                 [exec] Writing htmlhelp/toc.hhc
-                 [exec] Microsoft HTML Help Compiler 4.74.8702
-                 [exec] 
-                 [exec] 
-                 [exec] 
-                 [exec] Compiling d:\Work\vk\Projects\common-logging\doc\reference\target\htmlhelp\netcommon-reference.chm
-                 [exec] 
-                 [exec] 
-                 [exec] 
-                 [exec] index.html
-                 [exec] 
-                 [exec] ch01.html
-                 [exec] 
-                 [exec] toc.hhc
-                 [exec] 
-                 [exec] images\netcommon-logo.gif
-                 [exec] 
-                 [exec] images\bubble-big.jpg
-                 [exec] 
-                 [exec] images\admons\note.png
-                 [exec] 
-                 [exec] styles\html.css
-                 [exec] 
-                 [exec] 
-                 [exec] 
-                 [exec] Compile time: 0 minutes, 2 seconds
-                 [exec] 
-                 [exec] 22 Topics
-                 [exec] 
-                 [exec] 69 Local links
-                 [exec] 
-                 [exec] 4 Internet links
-                 [exec] 
-                 [exec] 3 Graphics
-                 [exec] 
-                 [exec] 
-                 [exec] 
-                 [exec] 
-                 [exec] 
-                 [exec] Created d:\Work\vk\Projects\common-logging\doc\reference\target\htmlhelp\netcommon-reference.chm, 44,159 bytes
-                 [exec] 
-                 [exec] Compression decreased file by 46,776 bytes.
-                 [exec] 
-                 [exec] D:\Work\vk\Projects\common-logging\doc\reference\docbook.build(77,6):
-                 [exec] External Program Failed: C:\Program Files\HTML Help Workshop\hhc.exe (return code was 1)
-               [delete] Deleting 110 files.
-               [delete] Deleted 4 directories.
-            
-            pdf:
-            
-                 [echo] Generating PDF format...
-                 [exec] Note: namesp. cut : stripped namespace before processing           Common Infrastructure Libraries for .NET
-                 [exec] Note: namesp. cut : processing stripped document                   Common Infrastructure Libraries for .NET
-                 [exec] Making portrait pages on A4 paper (210mmx297mm)
-                 [exec] Loading Xslthl configuration from file:///D:\Work\vk\Projects\common-logging\doc\reference/lib/docbook-xsl-snapshot/highlighting/xslthl-config.xml...
-                 [exec] unprocessed xslthl style: html
-                 [exec] unprocessed xslthl style: html
-                 [exec] 21.01.2012 11:11:19 org.apache.fop.fonts.FontInfo notifyFontReplacement
-                 [exec] WARNING: Font 'Symbol,normal,700' not found. Substituting with 'Symbol,normal,400'.
-                 [exec] 21.01.2012 11:11:19 org.apache.fop.fonts.FontInfo notifyFontReplacement
-                 [exec] WARNING: Font 'ZapfDingbats,normal,700' not found. Substituting with 'ZapfDingbats,normal,400'.
-                 [exec] 21.01.2012 11:11:19 org.apache.fop.layoutmgr.inline.LineLayoutManager$LineBreakingAlgorithm updateData2
-                 [exec] WARNING: Line 1 of a paragraph overflows the available area by 891mpt. (fo:block, location: 282/603)
-                 [exec] 21.01.2012 11:11:19 org.apache.fop.fonts.FontInfo notifyFontReplacement
-                 [exec] WARNING: Font 'ZapfDingbats,italic,400' not found. Substituting with 'ZapfDingbats,normal,400'.
-               [delete] Deleting file D:\Work\vk\Projects\common-logging\doc\reference\target\pdf\netcommon-reference.fo.
-            
-            all:
-            
-            
-            BUILD SUCCEEDED - 1 non-fatal error(s), 23 warning(s)
-            
-            Total time: 22.1 seconds.
-            
-     [copy] Copying 110 files to 'D:\Work\vk\Projects\common-logging\package\doc\reference\'.
-     [copy] Copying 195 files to 'D:\Work\vk\Projects\common-logging\package\tools'.
-     [copy] Copying 1 file to 'D:\Work\vk\Projects\common-logging\package'.
-     [copy] Copying 1 file to 'D:\Work\vk\Projects\common-logging\package'.
-     [copy] Copying 1 file to 'D:\Work\vk\Projects\common-logging\package'.
 
-package-zip:
+build:
 
-      [zip] Zipping 868 files to 'D:\Work\vk\Projects\common-logging\package\Common.Logging-2.0.0.4403.zip'.
+ [property] Target framework changed to "Microsoft .NET Framework 2.0".
 
-BUILD SUCCEEDED - 0 non-fatal error(s), 5 warning(s)
+build-all:
 
-Total time: 57.2 seconds.
+
+update-common-assemblyinfo:
+
+  [asminfo] Generated file 'C:\_prj\common-logging\src\CommonAssemblyInfo.cs'.
+
+RebuildAllSolutions:
+
+     [echo] Building All Solutions with the following settings...
+     [echo] nant.settings.currentframework = net-2.0
+     [echo] build.dir = C:\_prj\common-logging/build/net20
+     [echo] solution-file-filter = *.2010.sln
+     [echo] buildconfiguration = Debug
+
+RebuildSolution:
+
+     [echo] Rebuilding Solution C:\_prj\common-logging\Common.Logging.2010.sln
+     [exec]   Common.Logging.2010 -> C:\_prj\common-logging\build\net20\Common.Logging\Debug\Common.Logging.dll
+     [exec]   CustomLogger -> C:\_prj\common-logging\examples\CustomLogger\bin\Debug\CustomLogger.exe
+     [exec]   BasicLogging -> C:\_prj\common-logging\examples\BasicLogging\bin\Debug\BasicLogging.exe
+     [exec]   XmlConfiguredLogging -> C:\_prj\common-logging\examples\XmlConfiguredLogging\bin\Debug\XmlConfiguredLogging.exe
+     [exec]   Common.Logging.EntLib41.2010 -> C:\_prj\common-logging\build\net20\Common.Logging.EntLib41\Debug\Common.Logging.EntLib41.dll
+     [exec]   Common.Logging.Log4Net129.2010 -> C:\_prj\common-logging\build\net20\Common.Logging.Log4Net129\Debug\Common.Logging.Log4Net129.dll
+     [exec]   Common.Logging.NLog.2010 -> C:\_prj\common-logging\build\net20\Common.Logging.NLog\Debug\Common.Logging.NLog.dll
+     [exec]   Common.Logging.TestUtils -> C:\_prj\common-logging\build\net20\Common.Logging.TestUtils\Debug\Common.Logging.TestUtils.dll
+     [exec]   Common.Logging.Tests.2010 -> C:\_prj\common-logging\build\net20\Common.Logging.Tests\Debug\Common.Logging.Tests.dll
+     [exec]   Common.Logging.Tests.Integration.Vb.2010 -> C:\_prj\common-logging\build\net20\Common.Logging.Tests.Integration.Vb\Debug\Common.Logging.Tests.Integration.Vb.dll
+     [exec]   Common.Logging.EntLib41.Tests.2010 -> C:\_prj\common-logging\build\net20\Common.Logging.EntLib41.Tests\Debug\Common.Logging.EntLib41.Tests.dll
+     [exec]   Common.Logging.EntLib41.Tests.Integration.2010 -> C:\_prj\common-logging\build\net20\Common.Logging.EntLib41.Integration.Tests\Debug\Common.Logging.EntLib41.Tests.Integration.dll
+     [exec]   Common.Logging.Tests.Integration.2010 -> C:\_prj\common-logging\build\net20\Common.Logging.Tests.Integration\Debug\Common.Logging.Tests.Integration.dll
+     [exec]   Common.Logging.Log4Net129.Tests.2010 -> C:\_prj\common-logging\build\net20\Common.Logging.Log4Net129.Tests\Debug\Common.Logging.Log4Net129.Tests.dll
+     [exec]   Common.Logging.Log4Net129.Tests.Integration.2010 -> C:\_prj\common-logging\build\net20\Common.Logging.Log4Net129.Tests.Integration\Debug\Common.Logging.Log4Net129.Tests.Integration.dll
+     [exec]   Common.Logging.NLog.Tests.2010 -> C:\_prj\common-logging\build\net20\Common.Logging.NLog.Tests\Debug\Common.Logging.NLog.Tests.dll
+     [exec]   Common.Logging.NLog.Tests.Integration.2010 -> C:\_prj\common-logging\build\net20\Common.Logging.NLog.Tests.Integration\Debug\Common.Logging.NLog.Tests.Integration.dll
+     [exec]   Common.Logging.Tests.BinaryCompatibility.2010 -> C:\_prj\common-logging\build\net20\Common.Logging.Tests.BinaryCompatibility\Debug\Common.Logging.Tests.BinaryCompatibility.dll
+     [exec]   Common.Logging.Log4Net1211.2010 -> C:\_prj\common-logging\build\net20\Common.Logging.Log4Net1211\Debug\Common.Logging.Log4Net1211.dll
+     [exec]   Common.Logging.Log4Net1211.Tests.2010 -> C:\_prj\common-logging\build\net20\Common.Logging.Log4Net1211.Tests\Debug\Common.Logging.Log4Net1211.Tests.dll
+     [exec]   Common.Logging.Log4Net1211.Tests.Integration.2010 -> C:\_prj\common-logging\build\net20\Common.Logging.Log4Net1211.Tests.Integration\Debug\Common.Logging.Log4Net1211.Tests.Integration.dll
+     [exec]   Common.Logging.NLog2.2010 -> C:\_prj\common-logging\build\net20\Common.Logging.NLog2\Debug\Common.Logging.NLog2.dll
+     [exec] CSC : warning CS1685: The predefined type 'System.Runtime.CompilerServices.ExtensionAttribute' is defined in multiple assemblies in the global alias; using definition from 'c:\_prj\common-logging\lib\NLog2\net\2.0\NLog.dll' [C:\_prj\common-logging\test\Common.Logging.NLog2.Tests\Common.Logging.NLog2.Tests.2010.csproj]
+     [exec]   Common.Logging.NLog2.Tests.2010 -> C:\_prj\common-logging\build\net20\Common.Logging.NLog2.Tests\Debug\Common.Logging.NLog2.Tests.dll
+     [exec] CSC : warning CS1685: The predefined type 'System.Runtime.CompilerServices.ExtensionAttribute' is defined in multiple assemblies in the global alias; using definition from 'c:\_prj\common-logging\lib\NLog2\net\2.0\NLog.dll' [C:\_prj\common-logging\test\Common.Logging.NLog2.Integration.Tests\Common.Logging.NLog2.Tests.Integration.2010.csproj]
+     [exec]   Common.Logging.NLog2.Tests.Integration.2010 -> C:\_prj\common-logging\build\net20\Common.Logging.NLog2.Tests.Integration\Debug\Common.Logging.NLog2.Tests.Integration.dll
+     [exec]   Common.Logging.EntLib31.2010 -> C:\_prj\common-logging\build\net20\Common.Logging.EntLib\Debug\Common.Logging.EntLib.dll
+     [exec]   Common.Logging.EntLib31.Tests.2010 -> C:\_prj\common-logging\build\net20\Common.Logging.EntLib.Tests\Debug\Common.Logging.EntLib.Tests.dll
+     [exec]   Common.Logging.EntLib31.Tests.Integration.2010 -> C:\_prj\common-logging\build\net20\Common.Logging.EntLib.Tests.Integration\Debug\Common.Logging.EntLib.Tests.Integration.dll
+     [exec] Logging\Log4Net\Log4NetLoggerFactoryAdapterTests.cs(73,17): error CS0012: The type 'log4net.ILog' is defined in an assembly that is not referenced. You must add a reference to assembly 'log4net, Version=1.2.11.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a'. [C:\_prj\common-logging\test\Common.Logging.Log4Net1210.Tests\Common.Logging.Log4Net1210.Tests.2010.csproj]
+     [exec] Logging\Log4Net\Log4NetLoggerFactoryAdapterTests.cs(73,17): error CS1502: The best overloaded method match for 'Rhino.Mocks.Interfaces.IMethodOptions<log4net.ILog>.Return(log4net.ILog)' has some invalid arguments [C:\_prj\common-logging\test\Common.Logging.Log4Net1210.Tests\Common.Logging.Log4Net1210.Tests.2010.csproj]
+     [exec] Logging\Log4Net\Log4NetLoggerFactoryAdapterTests.cs(73,64): error CS1503: Argument 1: cannot convert from 'log4net.ILog [c:\_prj\common-logging\lib\Log4Net\net\2.0\log4net.dll]' to 'log4net.ILog' [C:\_prj\common-logging\test\Common.Logging.Log4Net1210.Tests\Common.Logging.Log4Net1210.Tests.2010.csproj]
+     [exec]   Common.Logging.2010-net40 -> C:\_prj\common-logging\build\net40\Common.Logging\Debug\Common.Logging.dll
+     [exec]   Common.Logging.Log4Net1210.Tests.Integraaton.2010-net40 -> C:\_prj\common-logging\build\net40\Common.Logging.Log4Net.Tests.Integration\Debug\Common.Logging.Log4Net.Tests.Integration.dll
+     [exec] CSC : error CS2001: Source file '..\CommonAssemblyInfo.cs' could not be found [C:\_prj\common-logging\src\Common.Logging.Log4Net1210\Common.Logging.Log4Net\Common.Logging.Log4Net1210.2010.csproj]
+
+BUILD FAILED
+
+C:\_prj\common-logging\Common.Logging.build(443,6):
+External Program Failed: c:\Windows\Microsoft.NET\Framework\v4.0.30319\\msbuild.exe (return code was 1)
+
+Total time: 18.1 seconds.
 

@@ -1,22 +1,21 @@
 <?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
-    <id>Common.Logging.Log4Net</id>
+    <id>Common.Logging.EntLib31</id>
     <version>0.0.0</version>
     <!-- placeholder value replaced by build script -->
     <authors>Aleksandar Seovic, Mark Pollack, Erich Eichinger, Stephen Bohlen</authors>
     <owners>Aleksandar Seovic, Mark Pollack, Erich Eichinger, Stephen Bohlen</owners>
     <projectUrl>http://netcommon.sourceforge.net/</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Common.Logging library bindings for Log4Net logging framework.</description>
+    <description>Common.Logging library bindings for Enterprise Library logging framework.</description>
     <language>en-US</language>
     <dependencies>
       <dependency id="Common.Logging" version="2.0.0" />
-      <dependency id="log4net" version="[1.2.10]" />
     </dependencies>
   </metadata>
   <files>
-    <file src="..\..\build\net20\Common.Logging.Log4Net\Release\Common.Logging.Log4Net.dll" target="lib\net20" />
-    <file src="..\..\build\net40\Common.Logging.Log4Net\Release\Common.Logging.Log4Net.dll" target="lib\net40" />
+    <file src="..\..\build\net20\Common.Logging.EntLib\Release\Common.Logging.Entlib.dll" target="lib\net20" />
+    <file src="..\..\build\net40\Common.Logging.EntLib\Release\Common.Logging.Entlib.dll" target="lib\net40" />
   </files>
 </package>

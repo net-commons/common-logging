@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{74434B76-0465-45E6-8262-1745638E19D8}</ProjectGuid>
+    <ProjectGuid>{63F2C13B-4377-4BAA-9104-5BEA389A4621}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Common</RootNamespace>
-    <AssemblyName>Common.Logging.EntLib.Tests</AssemblyName>
+    <AssemblyName>Common.Logging.EntLib.Tests.Integration</AssemblyName>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <OldToolsVersion>3.5</OldToolsVersion>
@@ -36,20 +36,18 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\build\net20\Common.Logging.EntLib.Tests\Debug\</OutputPath>
+    <OutputPath>..\..\build\net20\Common.Logging.EntLib.Tests.Integration\Debug\</OutputPath>
     <DefineConstants>TRACE;DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\build\net20\Common.Logging.EntLib.Tests\Release\</OutputPath>
-    <DefineConstants>
-    </DefineConstants>
+    <OutputPath>..\..\build\net20\Common.Logging.EntLib.Tests.Integration\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
@@ -69,15 +67,14 @@
       <HintPath>..\..\lib\net\2.0\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
+    <Reference Include="System.configuration" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\Common.Logging\Common.Logging.2010.csproj">
       <Project>{440D903A-D409-48FC-A6C4-3EE69CCD663B}</Project>
       <Name>Common.Logging.2010</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\Common.Logging.EntLib\Common.Logging.EntLib.2010.csproj">
+    <ProjectReference Include="..\..\src\Common.Logging.EntLib31\Common.Logging.EntLib31.2010.csproj">
       <Project>{C493B9F9-EB13-4D07-BBBD-A333DCF15164}</Project>
       <Name>Common.Logging.EntLib.2010</Name>
     </ProjectReference>
@@ -85,6 +82,15 @@
       <Project>{F5193CD8-B431-48ED-B101-D8DBEF766140}</Project>
       <Name>Common.Logging.TestUtils</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Logging\EntLib\TestCommonLoggingEntlibTraceListener.cs" />
+    <Compile Include="Logging\EntLib\CommonLoggingEntlibTraceListenerTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -112,11 +118,6 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Logging\EntLib\EntLibLoggerFactoryAdapterTests.cs" />
-    <Compile Include="Logging\EntLib\EntLibTests.cs" />
-    <Compile Include="Logging\EntLib\SeverityFilterTests.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

@@ -12,11 +12,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.2010-net40", "src\Common.Logging\Common.Logging.2010-net40.csproj", "{440D903A-D409-48FC-A6C4-3EE69CCD663B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.EntLib.2010-net40", "src\Common.Logging.EntLib\Common.Logging.EntLib.2010-net40.csproj", "{C493B9F9-EB13-4D07-BBBD-A333DCF15164}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.EntLib31.2010-net40", "src\Common.Logging.EntLib31\Common.Logging.EntLib31.2010-net40.csproj", "{C493B9F9-EB13-4D07-BBBD-A333DCF15164}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.EntLib41.2010-net40", "src\Common.Logging.EntLib41\Common.Logging.EntLib41.2010-net40.csproj", "{F2C864F8-4BD9-431F-9810-70E377F95027}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.Log4Net.2010-net40", "src\Common.Logging.Log4Net\Common.Logging.Log4Net.2010-net40.csproj", "{0FEA262C-4EAF-49DB-8D32-8E90DDEF23B6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.Log4Net1210.2010-net40", "src\Common.Logging.Log4Net1210\Common.Logging.Log4Net1210.2010-net40.csproj", "{0FEA262C-4EAF-49DB-8D32-8E90DDEF23B6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.Log4Net129.2010-net40", "src\Common.Logging.Log4Net129\Common.Logging.Log4Net129.2010-net40.csproj", "{A6A7257A-D1AE-4A09-8C1C-F55E099C8A8A}"
 EndProject
@@ -26,9 +26,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.Tests.2010-n
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Common.Logging.Tests.Integration.Vb.2010-net40", "test\Common.Logging.Integration.Tests.Vb\Common.Logging.Tests.Integration.Vb.2010-net40.vbproj", "{3DFB4EAE-A2DD-43F1-ABA6-E28EB1C7DC67}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.EntLib.Tests.2010-net40", "test\Common.Logging.EntLib.Tests\Common.Logging.EntLib.Tests.2010-net40.csproj", "{74434B76-0465-45E6-8262-1745638E19D8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.EntLib31.Tests.2010-net40", "test\Common.Logging.EntLib31.Tests\Common.Logging.EntLib31.Tests.2010-net40.csproj", "{74434B76-0465-45E6-8262-1745638E19D8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.EntLib.Tests.Integration.2010-net40", "test\Common.Logging.EntLib.Integration.Tests\Common.Logging.EntLib.Tests.Integration.2010-net40.csproj", "{63F2C13B-4377-4BAA-9104-5BEA389A4621}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.EntLib31.Tests.Integration.2010-net40", "test\Common.Logging.EntLib31.Integration.Tests\Common.Logging.EntLib31.Tests.Integration.2010-net40.csproj", "{63F2C13B-4377-4BAA-9104-5BEA389A4621}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.EntLib41.Tests.2010-net40", "test\Common.Logging.EntLib41.Tests\Common.Logging.EntLib41.Tests.2010-net40.csproj", "{B7DF833E-8260-40CC-9384-7CF747E30B12}"
 EndProject
@@ -36,9 +36,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.EntLib41.Tes
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.Tests.Integration.2010-net40", "test\Common.Logging.Integration.Tests\Common.Logging.Tests.Integration.2010-net40.csproj", "{E641F51F-1B51-4B94-B419-F902EABCE4D4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.Log4Net.Tests.2010-net40", "test\Common.Logging.Log4Net.Tests\Common.Logging.Log4Net.Tests.2010-net40.csproj", "{8FBECEDA-78A0-4429-B791-B9219ED49B36}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.Log4Net1210.Tests.2010-net40", "test\Common.Logging.Log4Net1210.Tests\Common.Logging.Log4Net1210.Tests.2010-net40.csproj", "{8FBECEDA-78A0-4429-B791-B9219ED49B36}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.Log4Net.Tests.Integration.2010-net40", "test\Common.Logging.Log4Net.Integration.Tests\Common.Logging.Log4Net.Tests.Integration.2010-net40.csproj", "{F7D4B5FA-16FC-4C8A-97B4-FCD391ADE0AF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.Log4Net1210.Tests.Integration.2010-net40", "test\Common.Logging.Log4Net1210.Integration.Tests\Common.Logging.Log4Net1210.Tests.Integration.2010-net40.csproj", "{F7D4B5FA-16FC-4C8A-97B4-FCD391ADE0AF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.Log4Net129.Tests.2010-net40", "test\Common.Logging.Log4Net129.Tests\Common.Logging.Log4Net129.Tests.2010-net40.csproj", "{EDA14ED0-E442-4FBD-9FD6-E6F9732500A0}"
 EndProject

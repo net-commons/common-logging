@@ -16,7 +16,7 @@
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -31,13 +31,14 @@
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\build\net20\Common.Logging.EntLib.Tests.Integration\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <OutputPath>..\..\build\net40\Common.Logging.EntLib.Tests.Integration\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;NET_4_0</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <UseVSHostingProcess>false</UseVSHostingProcess>
@@ -46,8 +47,8 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\build\net20\Common.Logging.EntLib.Tests.Integration\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <OutputPath>..\..\build\net40\Common.Logging.EntLib.Tests.Integration\Release\</OutputPath>
+    <DefineConstants>TRACE;NET_4_0</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
@@ -70,17 +71,17 @@
     <Reference Include="System.configuration" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Common.Logging\Common.Logging.2010.csproj">
+    <ProjectReference Include="..\..\src\Common.Logging\Common.Logging.2010-net40.csproj">
       <Project>{440D903A-D409-48FC-A6C4-3EE69CCD663B}</Project>
-      <Name>Common.Logging.2010</Name>
+      <Name>Common.Logging.2010-net40</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\Common.Logging.EntLib\Common.Logging.EntLib.2010.csproj">
+    <ProjectReference Include="..\..\src\Common.Logging.EntLib31\Common.Logging.EntLib31.2010-net40.csproj">
       <Project>{C493B9F9-EB13-4D07-BBBD-A333DCF15164}</Project>
-      <Name>Common.Logging.EntLib.2010</Name>
+      <Name>Common.Logging.EntLib.2010-net40</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Common.Logging.TestUtils\Common.Logging.TestUtils.csproj">
+    <ProjectReference Include="..\Common.Logging.TestUtils\Common.Logging.TestUtils-net40.csproj">
       <Project>{F5193CD8-B431-48ED-B101-D8DBEF766140}</Project>
-      <Name>Common.Logging.TestUtils</Name>
+      <Name>Common.Logging.TestUtils-net40</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
