@@ -21,8 +21,8 @@ using System.Security.Permissions;
 [assembly: AssemblyCopyrightAttribute("Copyright 2006-2011 the Common Infrastructure Libraries Team.")]
 [assembly: AssemblyTrademarkAttribute("Apache License, Version 2.0")]
 [assembly: AssemblyCultureAttribute("")]
-[assembly: AssemblyVersionAttribute("2.0.0.4527")]
-[assembly: AssemblyConfigurationAttribute("net-4.0.win32; dev")]
-[assembly: AssemblyInformationalVersionAttribute("2.0.0.4527; net-4.0.win32; dev")]
+[assembly: AssemblyVersionAttribute("2.1.0")]
+[assembly: AssemblyConfigurationAttribute("net-4.0.win32; release")]
+[assembly: AssemblyInformationalVersionAttribute("2.1.0-M1; net-4.0.win32; release")]
 [assembly: AssemblyDelaySignAttribute(false)]
 
