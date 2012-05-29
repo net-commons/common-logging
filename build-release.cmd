@@ -11,7 +11,7 @@ cls
 @echo .
 @echo .
 
-tools\nant\bin\nant.exe -f:Common.Logging.build package-zip -D:project.sign=true -D:project.version=2.0.0.0 -D:project.releasetype=release > buildlog.txt
+tools\nant\bin\nant.exe -f:Common.Logging.build package-zip -D:project.sign=true -D:package.version=2.1.0 -D:project.releasetype=release > buildlog.txt
 
 @echo ...complete!
 @echo .
