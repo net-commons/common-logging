@@ -466,6 +466,10 @@ ${tool.dir}       : dir for tools
 
     <!-- ensure src/CommonAssemblyInfo.cs is writable if it already exists -->
     <attrib file="${root.dir}/src/CommonAssemblyInfo.cs" readonly="false" if="${file::exists('${root.dir}/src/CommonAssemblyInfo.cs')}" />
+	
+	<property name="informational.version" value="${package.version}" />
+	<property name="informational.version" value="${package.version + '-' + nuget.version.suffix}" if="${property::exists('nuget.version.suffix')}"/>
+
     <!-- generate the source file holding the common assembly-level attributes -->
     <asminfo output="${root.dir}/src/CommonAssemblyInfo.cs" language="CSharp">
       <imports>
@@ -487,9 +491,9 @@ ${tool.dir}       : dir for tools
         <attribute type="AssemblyCopyrightAttribute" value="Copyright 2006-2011 the Common Infrastructure Libraries Team." />
         <attribute type="AssemblyTrademarkAttribute" value="Apache License, Version 2.0" />
         <attribute type="AssemblyCultureAttribute" value="" />
-        <attribute type="AssemblyVersionAttribute" value="${project.version}" />
+        <attribute type="AssemblyVersionAttribute" value="${package.version}" />
         <attribute type="AssemblyConfigurationAttribute" value="${framework::get-target-framework()}.${platform::get-name()}; ${project.releasetype}" />
-        <attribute type="AssemblyInformationalVersionAttribute" value="${project.version}; ${framework::get-target-framework()}.${platform::get-name()}; ${project.releasetype}" />
+        <attribute type="AssemblyInformationalVersionAttribute" value="${informational.version}; ${framework::get-target-framework()}.${platform::get-name()}; ${project.releasetype}" />
         <attribute type="AssemblyDelaySignAttribute" value="false" />
       </attributes>
     </asminfo>
@@ -503,8 +507,16 @@ ${tool.dir}       : dir for tools
   
 <target name="clean-nuget-package-dir" depends="check-nuget-package-dir" description="Cleans the NuGet package directory">
     <echo message="Cleaning the ${nuget.package.dir} NuGet package directory."/>
-    <delete dir="${nuget.package.dir}" if="${directory::exists(nuget.package.dir)}"/>
+	<delete>
+		<fileset>
+			<include name="${nuget.package.dir}/*.nupkg" />
+		</fileset>
+	</delete>    
+	
+	<!--
+	<delete dir="${nuget.package.dir}" if="${directory::exists(nuget.package.dir)}"/>
     <mkdir dir="${nuget.package.dir}"/>
+	-->
   </target>
   
 <target name="set-nuget-package-version" >
