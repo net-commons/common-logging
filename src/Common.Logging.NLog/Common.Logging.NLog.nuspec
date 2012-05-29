@@ -8,10 +8,11 @@
     <owners>Aleksandar Seovic, Mark Pollack, Erich Eichinger, Stephen Bohlen</owners>
     <projectUrl>http://netcommon.sourceforge.net/</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Common.Logging library bindings for NLog logging framework.</description>
+    <description>Common.Logging library bindings for NLog 1.0 logging framework.</description>
     <language>en-US</language>
     <dependencies>
-      <dependency id="Common.Logging" version="2.0.0" />
+      <dependency id="Common.Logging" version="2.1.0-M1" />
+      <dependency id="NLog" version="[1.0.0]" />
     </dependencies>
   </metadata>
   <files>

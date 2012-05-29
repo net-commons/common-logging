@@ -8,15 +8,15 @@
     <owners>Aleksandar Seovic, Mark Pollack, Erich Eichinger, Stephen Bohlen</owners>
     <projectUrl>http://netcommon.sourceforge.net/</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Common.Logging library bindings for Log4Net logging framework.</description>
+    <description>Common.Logging library bindings for Log4Net 1.2.10 logging framework.</description>
     <language>en-US</language>
     <dependencies>
-      <dependency id="Common.Logging" version="2.0.0" />
+      <dependency id="Common.Logging" version="2.1.0-M1" />
       <dependency id="log4net" version="[1.2.10]" />
     </dependencies>
   </metadata>
   <files>
-    <file src="..\..\build\net20\Common.Logging.Log4Net\Release\Common.Logging.Log4Net.dll" target="lib\net20" />
-    <file src="..\..\build\net40\Common.Logging.Log4Net\Release\Common.Logging.Log4Net.dll" target="lib\net40" />
+    <file src="..\..\build\net20\Common.Logging.Log4Net1210\Release\Common.Logging.Log4Net1210.dll" target="lib\net20" />
+    <file src="..\..\build\net40\Common.Logging.Log4Net1210\Release\Common.Logging.Log4Net1210.dll" target="lib\net40" />
   </files>
 </package>

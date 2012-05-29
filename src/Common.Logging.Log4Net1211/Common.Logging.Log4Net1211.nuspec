@@ -8,11 +8,11 @@
     <owners>Aleksandar Seovic, Mark Pollack, Erich Eichinger, Stephen Bohlen</owners>
     <projectUrl>http://netcommon.sourceforge.net/</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Common Logging</description>
+    <description>Common.Logging library bindings for Log4Net 1.2.11 logging framework.</description>
     <language>en-US</language>
     <dependencies>
-      <dependency id="Common.Logging" version="2.0.0" />
-	  <dependency id="Log4Net" version="[1.2.11]" />
+      <dependency id="Common.Logging" version="2.1.0-M1" />
+      <dependency id="Log4Net" version="1.2.11" />
     </dependencies>
   </metadata>
   <files>

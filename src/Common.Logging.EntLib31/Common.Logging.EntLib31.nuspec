@@ -8,14 +8,14 @@
     <owners>Aleksandar Seovic, Mark Pollack, Erich Eichinger, Stephen Bohlen</owners>
     <projectUrl>http://netcommon.sourceforge.net/</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Common.Logging library bindings for Enterprise Library logging framework.</description>
+    <description>Common.Logging library bindings for Enterprise Library 3.1 logging framework.</description>
     <language>en-US</language>
     <dependencies>
-      <dependency id="Common.Logging" version="2.0.0" />
+      <dependency id="Common.Logging" version="2.1.0-M1" />
     </dependencies>
   </metadata>
   <files>
-    <file src="..\..\build\net20\Common.Logging.EntLib\Release\Common.Logging.Entlib.dll" target="lib\net20" />
-    <file src="..\..\build\net40\Common.Logging.EntLib\Release\Common.Logging.Entlib.dll" target="lib\net40" />
+    <file src="..\..\build\net20\Common.Logging.EntLib31\Release\Common.Logging.Entlib31.dll" target="lib\net20" />
+    <file src="..\..\build\net40\Common.Logging.EntLib31\Release\Common.Logging.Entlib31.dll" target="lib\net40" />
   </files>
 </package>

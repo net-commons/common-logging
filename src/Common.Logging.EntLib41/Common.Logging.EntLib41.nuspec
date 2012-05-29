@@ -11,7 +11,7 @@
     <description>Common.Logging library bindings for Enterprise Library 4.1 logging framework.</description>
     <language>en-US</language>
     <dependencies>
-      <dependency id="Common.Logging" version="2.0.0" />
+      <dependency id="Common.Logging" version="2.1.0-M1" />
     </dependencies>
   </metadata>
   <files>
