@@ -9,7 +9,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Common</RootNamespace>
-    <AssemblyName>Common.Logging.EntLib.Tests</AssemblyName>
+    <AssemblyName>Common.Logging.EntLib31.Tests</AssemblyName>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <OldToolsVersion>3.5</OldToolsVersion>
@@ -37,7 +37,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\build\net40\Common.Logging.EntLib.Tests\Debug\</OutputPath>
+    <OutputPath>..\..\build\net40\Common.Logging.EntLib31.Tests\Debug\</OutputPath>
     <DefineConstants>TRACE;DEBUG;NET_4_0</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -48,7 +48,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\build\net40\Common.Logging.EntLib.Tests\Release\</OutputPath>
+    <OutputPath>..\..\build\net40\Common.Logging.EntLib31.Tests\Release\</OutputPath>
     <DefineConstants>NET_4_0</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -79,7 +79,7 @@
     </ProjectReference>
     <ProjectReference Include="..\..\src\Common.Logging.EntLib31\Common.Logging.EntLib31.2010-net40.csproj">
       <Project>{C493B9F9-EB13-4D07-BBBD-A333DCF15164}</Project>
-      <Name>Common.Logging.EntLib.2010-net40</Name>
+      <Name>Common.Logging.EntLib31.2010-net40</Name>
     </ProjectReference>
     <ProjectReference Include="..\Common.Logging.TestUtils\Common.Logging.TestUtils-net40.csproj">
       <Project>{F5193CD8-B431-48ED-B101-D8DBEF766140}</Project>
