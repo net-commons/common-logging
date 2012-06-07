@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
-    <id>Common.Logging.EntLib41</id>
+    <id>Common.Logging.EntLib50</id>
     <version>0.0.0</version>
     <!-- placeholder value replaced by build script -->
     <authors>Aleksandar Seovic, Mark Pollack, Erich Eichinger, Stephen Bohlen</authors>
