@@ -2,6 +2,49 @@ Common.Logging CHANGELOG
 =====================================
 http://netcommon.sf.net
 
+Release 2.1.0, June 8 2012
+
+Summary: New Features and Bug Fix release
+
+IMPORTANT NOTE:
+Starting with version 2.1.0, support for .NET versions 2.0 and 3.0 has been deprecated - if you need support
+for those platforms please download Common.Logging 2.0.  Common.Logging 2.1 now supports .NET 3.5 and .NET 4.
+
+Breaking Changes
+*) Beginning with Common.Logging 2.1, there are no longer any "unversioned-named" logging framework assemblies provided.
+Instead, the names of all adapter assemblies now include the explicit logging framework version which they target.
+As an example, the following assemblies are no longer provided:
+ * Common.Logging.Log4Net.dll
+ * Common.Logging.NLog.dll
+ * Common.Logging.EntLib.dll
+ 
+In their place, _all_ assemblies now have specific version suffixes as in the following examples:
+ * Common.Logging.Log4Net1210.dll
+ * Common.Logging.Log4Net1211.dll
+ * Common.Logging.NLog10.dll
+ * Common.Logging.NLog20.dll
+ * Common.Logging.EntLib41.dll
+ * Common.Logging.EntLib50.dll
+ * etc.
+
+The 'suffix' on the assembly name denotes the exact version of the logging framework which each adapter is targeting.
+This is intended to assist developers in selecting the proper assembly for the correct version of the logging
+framework which they are using.  Note however that this means that 'upgrading' from past versions of Common.Logging
+may now result in the need to reference an adapter assembly with a (slightly) different filename.
+
+Feature Requests
+
+- Add support for EntLib 5.0 logging
+- Add support for Log4Net 1.2.11
+- Add explicit compilation targets for .NET 4 binaries
+- Automate creating and bundling of NuGet packages to ease release process
+
+Bug Fixes
+[Issue 7] workaround for a bug in ConfigurationManager accessing .config files on network shares under .NET 4
+
+
+---------------------------
+
 Release 2.0.0, April 26 2009
 
 Summary: New Features and Bug Fix release
@@ -34,6 +77,8 @@ Bug Fixes
 [1683774] - Add unit tests for Common.Logging
 [1846258] - ConfigurationSectionHandler not case-insensitive in NET 2.0
 
+---------------------------
+
 Release 1.2.0, October 10 2007
 
 Summary: New Features and Bug Fix release
@@ -62,6 +107,7 @@ Bug
 
 [1718812]  - Simple adapters fail to initialize if no arguments are specifed in XML configuration.
 
+---------------------------
 
 Release 1.0.2, March 15 2007
 

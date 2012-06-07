@@ -1,4 +1,4 @@
-﻿Common.Logging 2.0 (April 26 2009)
+﻿Common.Logging 2.1 (June 8 2012)
 ---------------------------------------------------------
 http://netcommon.sf.net/
 
@@ -6,8 +6,9 @@ http://netcommon.sf.net/
 1. INTRODUCTION
 
 Provides a simple logging abstraction to switch between different logging implementations.
-There is current support for log4net (1.2.10 and 1.2.9), NLog, Enterprise Library logging 3.1
-and Enterprise Library logging 4.1.
+There is current support for log4net (1.2.11, 1.2.10 and 1.2.9), NLog (1.0, 2.0), Enterprise Library logging 3.1,
+Enterprise Library logging 4.1, and Enterprise Library 5.0
+
 Additionally Common.Logging comes with a set of base classes making integration of any log
 system a breeze.
 
@@ -30,29 +31,14 @@ The Common Infrastructure Libraries for .NET are released under the terms of the
 
 4. BUILDING
 
-For building Common.Logging library, you need to Enterprise Library 3.1 and Enterprise Library 4.1 installed.
-
-After installation of the Enterprise Library packages from Microsoft but before you build you must copy the necessary binary references from their installed location(s) into the required location within the source tree so that the required references are properly resolved during the build:
-
-Enterprise Library 3.1
-Files required from c:\program files\Microsoft Enterprise Library 3.1 - May 2007\bin\ (assumes default installation location of Enterprise Library 3.1):
-  * Microsoft.Practices.EnterpriseLibrary.Common.dll
-  * Microsoft.Practices.EnterpriseLibrary.Logging.dll
-  * Microsoft.Practices.ObjectBuilder.dll
-
-Copy the above 3 files into C:\netcommon\lib\Entlib\net\2.0\ (assumes root of source repo is c:\netcommon\).
-
-Enterprise Library 4.1
-Files required from c:\program files\Microsoft Enterprise Library 4.1 - October 2008\bin\ (assumes default installation location of Enterprise Library 4.1):
-  * Microsoft.Practices.EnterpriseLibrary.Common.dll
-  * Microsoft.Practices.EnterpriseLibrary.Logging.dll
-  * Microsoft.Practices.ObjectBuilder2.dll
-
-Copy the above 3 files into C:\netcommon\lib\Entlib\net\3.5\ (assumes root of source repo is c:\netcommon\).
+Clone the github repository found at https://github.com/net-commons/common-logging using your choice of connection protocol:
+  * git://github.com/net-commons/common-logging.git
+  * https://github.com/net-commons/common-logging.git
+  * git@github.com:net-commons/common-logging.git
 
 From the commandline execute
 
-  c:\netcommon>build-package.cmd
+  c:\netcommon>build-release.cmd
 
 
 5. CONFIGURING
