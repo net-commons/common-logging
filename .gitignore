@@ -41,6 +41,7 @@ buildlog.txt
 # xml api docs output files
 src/Common.Logging.EntLib31/Common.Logging.EntLib31.xml
 src/Common.Logging.EntLib41/Common.Logging.EntLib41.xml
+src/Common.Logging.EntLib50/Common.Logging.EntLib50.xml
 src/Common.Logging.Log4Net1210/Common.Logging.Log4Net1210.xml
 src/Common.Logging.Log4Net129/Common.Logging.Log4Net129.xml
 src/Common.Logging.Log4Net1211/Common.Logging.Log4Net1211.xml
