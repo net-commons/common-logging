@@ -80,6 +80,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.NLog2.Tests.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.NLog2.Tests.2010-net40", "test\Common.Logging.NLog2.Tests\Common.Logging.NLog2.Tests.2010-net40.csproj", "{45AFA285-AB51-450E-8C56-C1D41B17FD00}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EntLib-5.0", "EntLib-5.0", "{7E15F131-2DB4-4E83-9DF0-3A3A272B4FAD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.EntLib50.2010-net40", "src\Common.Logging.EntLib50\Common.Logging.EntLib50.2010-net40.csproj", "{8E5D50C8-85AC-41EA-AA26-2667494D4FAF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.EntLib50.Tests.2010-net40", "test\Common.Logging.EntLib50.Tests\Common.Logging.EntLib50.Tests.2010-net40.csproj", "{9FD3F78B-90B7-47DC-B4B5-05EBF2267227}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.EntLib50.Tests.Integration.2010-net40", "test\Common.Logging.EntLib50.Tests.Integration\Common.Logging.EntLib50.Tests.Integration.2010-net40.csproj", "{4520C7E5-2532-4AC5-9CE8-0CDDADF006CB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -194,6 +202,18 @@ Global
 		{45AFA285-AB51-450E-8C56-C1D41B17FD00}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{45AFA285-AB51-450E-8C56-C1D41B17FD00}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{45AFA285-AB51-450E-8C56-C1D41B17FD00}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E5D50C8-85AC-41EA-AA26-2667494D4FAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E5D50C8-85AC-41EA-AA26-2667494D4FAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E5D50C8-85AC-41EA-AA26-2667494D4FAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E5D50C8-85AC-41EA-AA26-2667494D4FAF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9FD3F78B-90B7-47DC-B4B5-05EBF2267227}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9FD3F78B-90B7-47DC-B4B5-05EBF2267227}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9FD3F78B-90B7-47DC-B4B5-05EBF2267227}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9FD3F78B-90B7-47DC-B4B5-05EBF2267227}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4520C7E5-2532-4AC5-9CE8-0CDDADF006CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4520C7E5-2532-4AC5-9CE8-0CDDADF006CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4520C7E5-2532-4AC5-9CE8-0CDDADF006CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4520C7E5-2532-4AC5-9CE8-0CDDADF006CB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -226,6 +246,9 @@ Global
 		{AC34A9CF-F893-4D1F-99C3-9B703CE6A035} = {B325DB50-238B-4B85-A03F-DA92E611C73D}
 		{21CAAB7F-6775-4277-AEFB-6A1A3799C0E6} = {B325DB50-238B-4B85-A03F-DA92E611C73D}
 		{45AFA285-AB51-450E-8C56-C1D41B17FD00} = {B325DB50-238B-4B85-A03F-DA92E611C73D}
+		{8E5D50C8-85AC-41EA-AA26-2667494D4FAF} = {7E15F131-2DB4-4E83-9DF0-3A3A272B4FAD}
+		{9FD3F78B-90B7-47DC-B4B5-05EBF2267227} = {7E15F131-2DB4-4E83-9DF0-3A3A272B4FAD}
+		{4520C7E5-2532-4AC5-9CE8-0CDDADF006CB} = {7E15F131-2DB4-4E83-9DF0-3A3A272B4FAD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		NAntAddinLastFileName = Common.Logging.build
