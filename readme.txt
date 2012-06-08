@@ -3,7 +3,7 @@
 http://github.com/net-commons/common-logging
 http://netcommon.sf.net/
 
-Note: Common.Logging is also available via NuGet; visit http://nuget.org and search using "Common.Logging" for details.
+Note: Common.Logging is also available via NuGet; visit http://nuget.org and search using "Common.Logging" for details and packages.
 
 1. INTRODUCTION
 
