@@ -9,7 +9,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Common</RootNamespace>
-    <AssemblyName>Common.Logging.NLog.Tests</AssemblyName>
+    <AssemblyName>Common.Logging.NLog10.Tests</AssemblyName>
     <StartupObject>
     </StartupObject>
     <FileUpgradeFlags>
@@ -39,7 +39,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\build\net40\Common.Logging.NLog.Tests\Debug\</OutputPath>
+    <OutputPath>..\..\build\net40\Common.Logging.NLog10.Tests\Debug\</OutputPath>
     <DefineConstants>TRACE;DEBUG;NET_4_0;NLOG1</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -50,7 +50,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\..\build\VS.NET.2010-net40\Common.Logging.NLog.Tests\Release\</OutputPath>
+    <OutputPath>..\..\..\build\VS.NET.2010-net40\Common.Logging.NLog10.Tests\Release\</OutputPath>
     <DefineConstants>TRACE;NET_4_0;NLOG1</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -74,13 +74,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\src\Common.Logging.NLog10\Common.Logging.NLog10.2010-net40.csproj">
+      <Project>{C3FAAF50-CA05-42A5-9616-B48C21643D03}</Project>
+      <Name>Common.Logging.NLog10.2010-net40</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\Common.Logging\Common.Logging.2010-net40.csproj">
       <Project>{440D903A-D409-48FC-A6C4-3EE69CCD663B}</Project>
       <Name>Common.Logging.2010-net40</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\src\Common.Logging.NLog\Common.Logging.NLog.2010-net40.csproj">
-      <Project>{C3FAAF50-CA05-42A5-9616-B48C21643D03}</Project>
-      <Name>Common.Logging.NLog.2010-net40</Name>
     </ProjectReference>
     <ProjectReference Include="..\Common.Logging.TestUtils\Common.Logging.TestUtils-net40.csproj">
       <Project>{F5193CD8-B431-48ED-B101-D8DBEF766140}</Project>

@@ -11,7 +11,7 @@
     <description>Common.Logging library bindings for Log4Net 1.2.10 logging framework.</description>
     <language>en-US</language>
     <dependencies>
-      <dependency id="Common.Logging" version="2.1.0-M1" />
+      <dependency id="Common.Logging" version="2.1.0" />
       <dependency id="log4net" version="[1.2.10]" />
     </dependencies>
   </metadata>

@@ -9,7 +9,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Common</RootNamespace>
-    <AssemblyName>Common.Logging.NLog2.Tests</AssemblyName>
+    <AssemblyName>Common.Logging.NLog20.Tests</AssemblyName>
     <StartupObject>
     </StartupObject>
     <FileUpgradeFlags>
@@ -39,7 +39,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\build\net40\Common.Logging.NLog2.Tests\Debug\</OutputPath>
+    <OutputPath>..\..\build\net40\Common.Logging.NLog20.Tests\Debug\</OutputPath>
     <DefineConstants>TRACE;DEBUG;NET_4_0;NLOG2</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -50,7 +50,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\build\net40\Common.Logging.NLog2.Tests\Release\</OutputPath>
+    <OutputPath>..\..\build\net40\Common.Logging.NLog20.Tests\Release\</OutputPath>
     <DefineConstants>TRACE;NET_4_0;NLOG2</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -74,10 +74,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\Common.Logging.NLog.Tests\Logger\NLog\CommonLoggingTargetTests.cs">
+    <Compile Include="..\Common.Logging.NLog10.Tests\Logger\NLog\CommonLoggingTargetTests.cs">
       <Link>Logger\NLog\CommonLoggingTargetTests.cs</Link>
     </Compile>
-    <Compile Include="..\Common.Logging.NLog.Tests\Logger\NLog\NLogLoggerFactoryAdapterTests.cs">
+    <Compile Include="..\Common.Logging.NLog10.Tests\Logger\NLog\NLogLoggerFactoryAdapterTests.cs">
       <Link>Logger\NLog\NLogLoggerFactoryAdapterTests.cs</Link>
     </Compile>
     <Compile Include="AssemblyInfo.cs" />
@@ -101,9 +101,9 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Common.Logging.NLog2\Common.Logging.NLog2.2010-net40.csproj">
+    <ProjectReference Include="..\..\src\Common.Logging.NLog20\Common.Logging.NLog20.2010-net40.csproj">
       <Project>{AC34A9CF-F893-4D1F-99C3-9B703CE6A035}</Project>
-      <Name>Common.Logging.NLog2.2010-net40</Name>
+      <Name>Common.Logging.NLog20.2010-net40</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\src\Common.Logging\Common.Logging.2010-net40.csproj">
       <Project>{440D903A-D409-48FC-A6C4-3EE69CCD663B}</Project>
@@ -117,7 +117,7 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties ProjectLinkReference="b4bb1353-924a-40f0-9aa5-a7c28ab68f69" ProjectLinkerExcludeFilter="\\?desktop(\\.*)?$;\\?silverlight(\\.*)?$;\.desktop;\.silverlight;\.xaml;^service references(\\.*)?$;\.clientconfig;^web references(\\.*)?$" />
+      <UserProperties ProjectLinkerExcludeFilter="\\?desktop(\\.*)?$;\\?silverlight(\\.*)?$;\.desktop;\.silverlight;\.xaml;^service references(\\.*)?$;\.clientconfig;^web references(\\.*)?$" ProjectLinkReference="b4bb1353-924a-40f0-9aa5-a7c28ab68f69" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

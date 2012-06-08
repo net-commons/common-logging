@@ -5,19 +5,17 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{8531DA29-41AD-465B-9817-2702A903C11D}</ProjectGuid>
+    <ProjectGuid>{EE5CA38F-3F29-43E1-B385-03798EDDC765}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Common</RootNamespace>
-    <AssemblyName>Common.Logging.NLog2.Tests</AssemblyName>
-    <StartupObject>
-    </StartupObject>
+    <AssemblyName>Common.Logging.NLog10.Tests.Integration</AssemblyName>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <OldToolsVersion>3.5</OldToolsVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
@@ -39,26 +37,26 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\build\net20\Common.Logging.NLog2.Tests\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;NET_2_0;NLOG2</DefineConstants>
+    <OutputPath>..\..\build\net20\Common.Logging.NLog10.Tests.Integration\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;NET_2_0;NLOG1</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <PlatformTarget>x86</PlatformTarget>
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\build\net20\Common.Logging.NLog2.Tests\Release\</OutputPath>
-    <DefineConstants>TRACE;NET_2_0;NLOG2</DefineConstants>
+    <OutputPath>..\..\..\build\VS.NET.2010\Common.Logging.NLog.Integration.Tests\Release\</OutputPath>
+    <DefineConstants>TRACE;NET_2_0;NLOG1</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="NLog">
-      <HintPath>..\..\lib\NLog2\net\2.0\NLog.dll</HintPath>
+    <Reference Include="NLog, Version=1.0.0.505, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\NLog\net\2.0\NLog.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework, Version=2.5.0.9015, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -69,17 +67,20 @@
       <HintPath>..\..\lib\net\2.0\Rhino.Mocks.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\Common.Logging.NLog.Tests\Logger\NLog\CommonLoggingTargetTests.cs">
-      <Link>Logger\NLog\CommonLoggingTargetTests.cs</Link>
-    </Compile>
-    <Compile Include="..\Common.Logging.NLog.Tests\Logger\NLog\NLogLoggerFactoryAdapterTests.cs">
-      <Link>Logger\NLog\NLogLoggerFactoryAdapterTests.cs</Link>
-    </Compile>
-    <Compile Include="AssemblyInfo.cs" />
+    <ProjectReference Include="..\..\src\Common.Logging.NLog10\Common.Logging.NLog10.2010.csproj">
+      <Project>{C3FAAF50-CA05-42A5-9616-B48C21643D03}</Project>
+      <Name>Common.Logging.NLog10.2010</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Common.Logging\Common.Logging.2010.csproj">
+      <Project>{440D903A-D409-48FC-A6C4-3EE69CCD663B}</Project>
+      <Name>Common.Logging.2010</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Common.Logging.NLog10.Tests\Common.Logging.NLog10.Tests.2010.csproj">
+      <Project>{B4BB1353-924A-40F0-9AA5-A7C28AB68F69}</Project>
+      <Name>Common.Logging.NLog10.Tests.2010</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -87,37 +88,34 @@
       <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
       <Visible>False</Visible>
       <ProductName>.NET Framework 3.5 SP1</ProductName>
-      <Install>true</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
-      <Visible>False</Visible>
-      <ProductName>Windows Installer 3.1</ProductName>
-      <Install>true</Install>
+      <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Common.Logging.NLog2\Common.Logging.NLog2.2010.csproj">
-      <Project>{4080ED68-81A9-45C1-8F22-B6015E42756B}</Project>
-      <Name>Common.Logging.NLog2.2010</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\src\Common.Logging\Common.Logging.2010.csproj">
-      <Project>{440D903A-D409-48FC-A6C4-3EE69CCD663B}</Project>
-      <Name>Common.Logging.2010</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Common.Logging.TestUtils\Common.Logging.TestUtils.csproj">
-      <Project>{F5193CD8-B431-48ED-B101-D8DBEF766140}</Project>
-      <Name>Common.Logging.TestUtils</Name>
-    </ProjectReference>
+    <Compile Include="AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Logging\NLog\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <ProjectExtensions>
-    <VisualStudio>
-      <UserProperties ProjectLinkReference="b4bb1353-924a-40f0-9aa5-a7c28ab68f69" ProjectLinkerExcludeFilter="\\?desktop(\\.*)?$;\\?silverlight(\\.*)?$;\.desktop;\.silverlight;\.xaml;^service references(\\.*)?$;\.clientconfig;^web references(\\.*)?$" />
-    </VisualStudio>
-  </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
-    <id>Common.Logging.NLog2</id>
+    <id>Common.Logging.NLog20</id>
     <version>0.0.0</version>
     <!-- placeholder value replaced by build script -->
     <authors>Aleksandar Seovic, Mark Pollack, Erich Eichinger, Stephen Bohlen</authors>
@@ -11,12 +11,12 @@
     <description>Common.Logging library bindings for NLog 2.0 logging framework.</description>
     <language>en-US</language>
     <dependencies>
-      <dependency id="Common.Logging" version="2.1.0-M1" />
+      <dependency id="Common.Logging" version="2.1.0" />
       <dependency id="NLog" version="2.0.0" />
     </dependencies>
   </metadata>
   <files>
-    <file src="..\..\build\net20\Common.Logging.NLog2\Release\Common.Logging.NLog2.dll" target="lib\net20" />
-    <file src="..\..\build\net40\Common.Logging.NLog2\Release\Common.Logging.NLog2.dll" target="lib\net40" />
+    <file src="..\..\build\net20\Common.Logging.NLog20\Release\Common.Logging.NLog20.dll" target="lib\net20" />
+    <file src="..\..\build\net40\Common.Logging.NLog20\Release\Common.Logging.NLog20.dll" target="lib\net40" />
   </files>
 </package>

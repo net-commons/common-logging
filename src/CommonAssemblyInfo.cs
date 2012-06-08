@@ -23,6 +23,6 @@ using System.Security.Permissions;
 [assembly: AssemblyCultureAttribute("")]
 [assembly: AssemblyVersionAttribute("2.1.0")]
 [assembly: AssemblyConfigurationAttribute("net-4.0.win32; release")]
-[assembly: AssemblyInformationalVersionAttribute("2.1.0-M1; net-4.0.win32; release")]
+[assembly: AssemblyInformationalVersionAttribute("2.1.0; net-4.0.win32; release")]
 [assembly: AssemblyDelaySignAttribute(false)]
 

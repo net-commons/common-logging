@@ -1,5 +1,6 @@
-﻿Common.Logging 2.1 (June 8 2012)
+﻿Common.Logging 2.1.0 (June 8 2012)
 ---------------------------------------------------------
+http://github.com/net-commons/common-logging
 http://netcommon.sf.net/
 
 

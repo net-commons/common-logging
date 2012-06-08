@@ -9,7 +9,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Common</RootNamespace>
-    <AssemblyName>Common.Logging.NLog2.Tests.Integration</AssemblyName>
+    <AssemblyName>Common.Logging.NLog20.Tests.Integration</AssemblyName>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <OldToolsVersion>3.5</OldToolsVersion>
@@ -37,7 +37,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\build\net40\Common.Logging.NLog2.Tests.Integration\Debug\</OutputPath>
+    <OutputPath>..\..\build\net40\Common.Logging.NLog20.Tests.Integration\Debug\</OutputPath>
     <DefineConstants>TRACE;DEBUG;NET_4_0;NLOG2</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -98,17 +98,17 @@
     <Folder Include="Logging\NLog\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Common.Logging.NLog2\Common.Logging.NLog2.2010-net40.csproj">
+    <ProjectReference Include="..\..\src\Common.Logging.NLog20\Common.Logging.NLog20.2010-net40.csproj">
       <Project>{AC34A9CF-F893-4D1F-99C3-9B703CE6A035}</Project>
-      <Name>Common.Logging.NLog2.2010-net40</Name>
+      <Name>Common.Logging.NLog20.2010-net40</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\src\Common.Logging\Common.Logging.2010-net40.csproj">
       <Project>{440D903A-D409-48FC-A6C4-3EE69CCD663B}</Project>
       <Name>Common.Logging.2010-net40</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Common.Logging.NLog2.Tests\Common.Logging.NLog2.Tests.2010-net40.csproj">
+    <ProjectReference Include="..\Common.Logging.NLog20.Tests\Common.Logging.NLog20.Tests.2010-net40.csproj">
       <Project>{45AFA285-AB51-450E-8C56-C1D41B17FD00}</Project>
-      <Name>Common.Logging.NLog2.Tests.2010-net40</Name>
+      <Name>Common.Logging.NLog20.Tests.2010-net40</Name>
     </ProjectReference>
     <ProjectReference Include="..\Common.Logging.TestUtils\Common.Logging.TestUtils-net40.csproj">
       <Project>{F5193CD8-B431-48ED-B101-D8DBEF766140}</Project>
@@ -118,7 +118,7 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties ProjectLinkReference="ee5ca38f-3f29-43e1-b385-03798eddc765" ProjectLinkerExcludeFilter="\\?desktop(\\.*)?$;\\?silverlight(\\.*)?$;\.desktop;\.silverlight;\.xaml;^service references(\\.*)?$;\.clientconfig;^web references(\\.*)?$" />
+      <UserProperties ProjectLinkerExcludeFilter="\\?desktop(\\.*)?$;\\?silverlight(\\.*)?$;\.desktop;\.silverlight;\.xaml;^service references(\\.*)?$;\.clientconfig;^web references(\\.*)?$" ProjectLinkReference="ee5ca38f-3f29-43e1-b385-03798eddc765" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
