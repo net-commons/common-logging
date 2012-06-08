@@ -851,7 +851,7 @@ Common.Logging.LogManager.Adapter = new Common.Logging.Simple.ConsoleOutLoggerFa
       System.Diagnostics.TraceEventType is used.</para>
 
       <para><table xml:id="entlib41-level-mapping">
-          <title>EntLib 4,1 to Common.Logging log level mapping</title>
+          <title>EntLib 4.1 to Common.Logging log level mapping</title>
 
           <tgroup cols="2">
             <colspec colname="key" colnum="1" colwidth="1*" />
@@ -933,8 +933,8 @@ Common.Logging.LogManager.Adapter = new Common.Logging.Simple.ConsoleOutLoggerFa
       <para>Note that the following mapping of Common.Logging LogLevel to
       System.Diagnostics.TraceEventType is used.</para>
 
-      <para><table xml:id="entlib41-level-mapping">
-          <title>EntLib 4,1 to Common.Logging log level mapping</title>
+      <para><table xml:id="entlib50-level-mapping">
+          <title>EntLib 5.0 to Common.Logging log level mapping</title>
 
           <tgroup cols="2">
             <colspec colname="key" colnum="1" colwidth="1*" />
