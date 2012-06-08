@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <chapter version="5" xmlns="http://docbook.org/ns/docbook"
          xmlns:xlink="http://www.w3.org/1999/xlink"
          xmlns:ns5="http://www.w3.org/1998/Math/MathML"
@@ -20,8 +20,8 @@
 
     <para>The library is based on work done by the developers of IBatis.NET
     and it's usage is inspired by log4net. Many thanks to the developers of
-    those projects! The library is available for .NET 3.5 and 4.0 with
-    both debug and strongly signed release assemblies.</para>
+    those projects! The library is available for .NET 3.5 and 4.0 with both
+    debug and strongly signed release assemblies.</para>
 
     <para>The base logging library, Common.Logging, provides the base logging
     interfaces that appear in your code and also include simple console and
@@ -46,19 +46,19 @@
         <listitem>
           <para>Log4Net 1.2.10</para>
         </listitem>
-		
-		<listitem>
+
+        <listitem>
           <para>Log4Net 1.2.11</para>
         </listitem>
 
         <listitem>
           <para>NLog 1.0</para>
         </listitem>
-		
-		<listitem>
+
+        <listitem>
           <para>NLog 2.0</para>
         </listitem>
-		
+
         <listitem>
           <para>Enterprise Library 3.1 Logging</para>
         </listitem>
@@ -66,14 +66,16 @@
         <listitem>
           <para>Enterprise Library 4.1 Logging</para>
         </listitem>
-		
+
         <listitem>
           <para>Enterprise Library 5.0 Logging</para>
-        </listitem>		
-      </itemizedlist>There are three enterprise log4net implementations, one for
-    log4net 1.2.9, another for log4net 1.2.10, and still another for log4net 1.2.11.
-	The need for three log4net versions is due to the fact that each is signed with a different strong
-    key, making assembly redirection impossible and that there are breaking changes between 1.2.10 and 1.2.11.</para>
+        </listitem>
+      </itemizedlist>There are three enterprise log4net implementations, one
+    for log4net 1.2.9, another for log4net 1.2.10, and still another for
+    log4net 1.2.11. The need for three log4net versions is due to the fact
+    that some of these are signed with a different strong key (making assembly
+    redirection impossible) and that there are breaking changes between 1.2.10
+    and 1.2.11.</para>
 
     <para>Note that it is not the intention of this library to be a
     replacement for the many fine logging libraries that are out there. The
@@ -99,18 +101,19 @@
            &lt;assemblyIdentity name="Common.Logging" publicKeyToken="af08829b84f0328e" /&gt;
            &lt;bindingRedirect oldVersion="0.0.0.0-65535.65535.65535.65535" newVersion="2.0.0.0"/&gt;
            &lt;!-- reference specific file: --&gt;
-           &lt;!-- codeBase version="2.0.0.0" href="../../../build/net/2.0/release/Common.Logging.dll"/ --&gt;
+           &lt;!-- codeBase version="2.1.0.0" href="../../../build/net/2.0/release/Common.Logging.dll"/ --&gt;
         &lt;/dependentAssembly&gt;
      &lt;/assemblyBinding&gt;
   &lt;/runtime&gt;
-&lt;/configuration&gt;</programlisting>If you are updating from pre-2.0, and have implemented your own
+&lt;/configuration&gt;</programlisting>If you are updating from pre-2.0, and
+      have implemented your own
       <interfacename>Common.Logging.ILoggerFactoryAdapter</interfacename> and
-      <interfacename>Common.Logging.ILog</interfacename> interfaces, you will need to
-      update your code to the extended interfaces that came with version 2.0.
-      For convenience Common.Logging comes with a couple of support classes,
-      making this task as easy as possible as described in <link
-      linkend="logging-advanced-customfactoryadapter">Implementing a custom
-      FactoryAdapter</link></para>
+      <interfacename>Common.Logging.ILog</interfacename> interfaces, you will
+      need to update your code to the extended interfaces that came with
+      version 2.0. For convenience Common.Logging comes with a couple of
+      support classes, making this task as easy as possible as described in
+      <link linkend="logging-advanced-customfactoryadapter">Implementing a
+      custom FactoryAdapter</link></para>
     </section>
   </section>
 
@@ -136,13 +139,14 @@ log.Debug("hello world");</programlisting></para>
     <para><programlisting language="csharp">if (log.IsDebugEnabled)
 {
   log.Debug( "my expensive to calculate argument is: {0}", CalculateMessageInfo() );
-}</programlisting>Since Common.Logging 2.0 and later there is a shortcut notation
-    available that allows you to write:</para>
+}</programlisting>Since Common.Logging 2.0 and later there is a shortcut
+    notation available that allows you to write:</para>
 
-    <para><programlisting>log.Debug( m=&gt;m("my expensive to calculate argument is: {0}", CalculateMessageInfo()) );</programlisting>This
-    form is equivalent to the example above and guarantees, that
-    <methodname>CalculateMessageInfo()</methodname> is only called, when the
-    message really gets logged!</para>
+    <para><programlisting>log.Debug( m =&gt; m("my expensive to calculate argument is: {0}", CalculateMessageInfo()) );</programlisting>This
+    form is equivalent to the example above and the deferred-execution of the
+    lambda syntax guarantees that
+    <methodname>CalculateMessageInfo()</methodname> is only called when the
+    message actually gets logged.</para>
 
     <para>Finally here is the complete interface offered by a logger instance:
     <programlisting language="csharp">public interface ILog
@@ -236,8 +240,8 @@ log.Debug("hello world");</programlisting></para>
 }</programlisting></para>
 
     <para>Since the ILog interface mimics that of the interface used in
-    log4net, migration from log4net is just a matter of changing the 'using'
-    statement.</para>
+    log4net, migration from log4net is often just a matter of changing the
+    'using' statement.</para>
 
     <para>You can get a reference to an instance of an ILog using the
     LoggingManager class. Its API is shown below:</para>
@@ -318,16 +322,16 @@ Common.Logging.LogManager.Adapter = new Common.Logging.Simple.ConsoleOutLoggerFa
   <section xml:id="logging-adapters">
     <title>Logging Adapters</title>
 
-    <para>There are simple out-of-the-box implementations coming with
+    <para>There are simple out-of-the-box implementations provided with
     Common.Logging itself. For connecting to log4net, separate adapters do
     exist.</para>
 
     <note>
       <para>Be sure to correctly specify the type of the FactoryAdapter in the
       common logging configuration section and to copy the logging
-      implementation .dlls to your runtime directory. At the moment, if the
-      specified FactoryAdapter type is not found or its dependent libraries,
-      the NoOpLoggerFactoryAdaptor is used by default and you will not see any
+      implementation .dlls to your runtime directory. If the specified
+      FactoryAdapter type is not found or its dependent libraries, the
+      NoOpLoggerFactoryAdaptor is used by default and you will not see any
       logging output.</para>
     </note>
 
@@ -335,7 +339,7 @@ Common.Logging.LogManager.Adapter = new Common.Logging.Simple.ConsoleOutLoggerFa
       <title>NoOpLoggerFactoryAdapter</title>
 
       <para>This is the default FactoryAdapter if logging is not configured.
-      It simply does nothing.</para>
+      It simply does nothing ("no-op").</para>
     </section>
 
     <section xml:id="logging-console">
@@ -475,11 +479,17 @@ Common.Logging.LogManager.Adapter = new Common.Logging.Simple.ConsoleOutLoggerFa
     <section xml:id="logging-adapters-log4net">
       <title>Log4NetLoggerFactoryAdapter</title>
 
-      <para>There are two implementations, both configured similarly.</para>
+      <para>There are three implementations, each configured similarly.</para>
 
       <itemizedlist>
         <listitem>
-          <para><package>Common.Logging.Log4Net</package></para>
+          <para><package>Common.Logging.Log4Net1211</package></para>
+
+          <para>is linked against log4net 1.2.11.0</para>
+        </listitem>
+
+        <listitem>
+          <para><package>Common.Logging.Log4Net1210</package></para>
 
           <para>is linked against log4net 1.2.10.0</para>
         </listitem>
@@ -492,7 +502,7 @@ Common.Logging.LogManager.Adapter = new Common.Logging.Simple.ConsoleOutLoggerFa
       </itemizedlist>
 
       <para>The only difference is in the type specified to the factory
-      adapter. Both Adapters accept the following configuration
+      adapter. Each of the adapters accept the following configuration
       properties:</para>
 
       <table xml:id="logging-log4net-config-props">
@@ -550,7 +560,7 @@ Common.Logging.LogManager.Adapter = new Common.Logging.Simple.ConsoleOutLoggerFa
       <programlisting language="xml">&lt;configuration&gt;
   &lt;common&gt;
     &lt;logging&gt;
-      &lt;factoryAdapter type="Common.Logging.Log4Net.Log4NetLoggerFactoryAdapter, Common.Logging.Log4net"&gt;
+      &lt;factoryAdapter type="Common.Logging.Log4Net.Log4NetLoggerFactoryAdapter, Common.Logging.Log4net1210"&gt;
         &lt;arg key="configType" value="FILE-WATCH" /&gt;
         &lt;arg key="configFile" value="~/log4net.config" /&gt;
       &lt;/factoryAdapter&gt;
@@ -559,7 +569,7 @@ Common.Logging.LogManager.Adapter = new Common.Logging.Simple.ConsoleOutLoggerFa
 &lt;/configuration&gt; </programlisting>
 
       <para>For log4net 1.2.9, change the assembly name
-      <package>Common.Logging.Log4Net129.</package></para>
+      <package>Common.Logging.Log4Net129</package> and so on.</para>
 
       <para>Another example that shows the log4net configuration 'inline' with
       the standard application configuration file is shown below.</para>
@@ -575,7 +585,7 @@ Common.Logging.LogManager.Adapter = new Common.Logging.Simple.ConsoleOutLoggerFa
 
   &lt;common&gt;
     &lt;logging&gt;
-      &lt;factoryAdapter type="Common.Logging.Log4Net.Log4NetLoggerFactoryAdapter, Common.Logging.Log4Net"&gt;
+      &lt;factoryAdapter type="Common.Logging.Log4Net.Log4NetLoggerFactoryAdapter, Common.Logging.Log4Net1210"&gt;
         &lt;arg key="configType" value="INLINE" /&gt;
       &lt;/factoryAdapter&gt;
     &lt;/logging&gt;
@@ -613,8 +623,8 @@ Common.Logging.LogManager.Adapter = new Common.Logging.Simple.ConsoleOutLoggerFa
 &lt;/configSections&gt;
 &lt;common&gt;
  &lt;logging&gt;
-   &lt;factoryAdapter type="Common.Logging.Log4Net.Log4NetLoggerFactoryAdapter, Common.Logging.Log4Net,
-                         Version=2.0.2.2, Culture=neutral, PublicKeyToken=AF08829B84F0328E"&gt;
+   &lt;factoryAdapter type="Common.Logging.Log4Net.Log4NetLoggerFactoryAdapter, Common.Logging.Log4Net1210,
+                         Version=2.1.0.0, Culture=neutral, PublicKeyToken=AF08829B84F0328E"&gt;
      &lt;arg key="configType" value="FILE-WATCH"/&gt;
      &lt;arg key="configFile" value="~/log4net.config"/&gt;
    &lt;/factoryAdapter&gt;
@@ -625,11 +635,17 @@ Common.Logging.LogManager.Adapter = new Common.Logging.Simple.ConsoleOutLoggerFa
     <section xml:id="logging-adapters-nlog">
       <title>NLogLoggerFactoryAdapter</title>
 
-      <para>There is one implementation.</para>
+      <para>There are two implementations:</para>
 
       <itemizedlist>
         <listitem>
-          <para><package>Common.Logging.NLog</package></para>
+          <para><package>Common.Logging.NLog20</package></para>
+
+          <para>is linked against NLog 2.0.0.2</para>
+        </listitem>
+
+        <listitem>
+          <para><package>Common.Logging.NLog10</package></para>
 
           <para>is linked against NLog 1.0.0.505</para>
         </listitem>
@@ -685,7 +701,7 @@ Common.Logging.LogManager.Adapter = new Common.Logging.Simple.ConsoleOutLoggerFa
       <programlisting language="xml">&lt;configuration&gt;
   &lt;common&gt;
     &lt;logging&gt;
-      &lt;factoryAdapter type="Common.Logging.NLog.NLogLoggerFactoryAdapter, Common.Logging.NLog"&gt;
+      &lt;factoryAdapter type="Common.Logging.NLog.NLogLoggerFactoryAdapter, Common.Logging.NLog10"&gt;
         &lt;arg key="configType" value="FILE" /&gt;
         &lt;arg key="configFile" value="~/NLog.config" /&gt;
       &lt;/factoryAdapter&gt;
@@ -707,7 +723,7 @@ Common.Logging.LogManager.Adapter = new Common.Logging.Simple.ConsoleOutLoggerFa
 
   &lt;common&gt;
     &lt;logging&gt;
-      &lt;factoryAdapter type="Common.Logging.NLog.NLogLoggerFactoryAdapter, Common.Logging.NLog"&gt;
+      &lt;factoryAdapter type="Common.Logging.NLog.NLogLoggerFactoryAdapter, Common.Logging.NLog10"&gt;
         &lt;arg key="configType" value="INLINE" /&gt;
       &lt;/factoryAdapter&gt;
     &lt;/logging&gt;
@@ -729,7 +745,7 @@ Common.Logging.LogManager.Adapter = new Common.Logging.Simple.ConsoleOutLoggerFa
       <title>Enterprise Library 3.1 Logging Adapter</title>
 
       <para>There is one implementation located in the assembly
-      <classname>Common.Logging.EntLib</classname> and is linked against the
+      <classname>Common.Logging.EntLib31</classname> and is linked against the
       Microsoft Enterprise Library v 3.1, aka EntLib 3.1. The .dlls for EntLib
       can not be redistributed so you will need to download EntLib
       separately.</para>
@@ -740,7 +756,7 @@ Common.Logging.LogManager.Adapter = new Common.Logging.Simple.ConsoleOutLoggerFa
 
       <programlisting language="xml">&lt;common&gt;
   &lt;logging&gt;
-    &lt;factoryAdapter type="Common.Logging.EntLib.EntLibLoggerFactoryAdapter, Common.Logging.EntLib"/&gt;
+    &lt;factoryAdapter type="Common.Logging.EntLib.EntLibLoggerFactoryAdapter, Common.Logging.EntLib31"/&gt;
   &lt;/logging&gt;
 &lt;/common&gt;</programlisting>
 
@@ -812,7 +828,7 @@ Common.Logging.LogManager.Adapter = new Common.Logging.Simple.ConsoleOutLoggerFa
       <title>Enterprise Library 4.1 Logging Adapter</title>
 
       <para>There is one implementation located in the assembly
-      <classname>Common.Logging.EntLib</classname>41 and is linked against the
+      <classname>Common.Logging.EntLib41</classname> and is linked against the
       Microsoft Enterprise Library v4.1, aka EntLib 4.1. The .dlls for EntLib
       can not be redistributed so you will need to download EntLib
       separately.</para>
@@ -824,6 +840,89 @@ Common.Logging.LogManager.Adapter = new Common.Logging.Simple.ConsoleOutLoggerFa
       <programlisting language="xml">&lt;common&gt;
   &lt;logging&gt;
     &lt;factoryAdapter type="Common.Logging.EntLib.EntLibLoggerFactoryAdapter, Common.Logging.EntLib41"/&gt;
+  &lt;/logging&gt;
+&lt;/common&gt;</programlisting>
+
+      <para>Future releases may include configuration of the priority and also
+      the format in which information about an exception is logged. The
+      current priority used is -1, the default.</para>
+
+      <para>Note that the following mapping of Common.Logging LogLevel to
+      System.Diagnostics.TraceEventType is used.</para>
+
+      <para><table xml:id="entlib41-level-mapping">
+          <title>EntLib 4,1 to Common.Logging log level mapping</title>
+
+          <tgroup cols="2">
+            <colspec colname="key" colnum="1" colwidth="1*" />
+
+            <colspec colname="val" colnum="2" colwidth="1*" />
+
+            <thead>
+              <row>
+                <entry>Common.Logging.LogLevel</entry>
+
+                <entry>System.Diagnostics.TraceEventType</entry>
+              </row>
+            </thead>
+
+            <tbody>
+              <row>
+                <entry>Trace</entry>
+
+                <entry>Verbose</entry>
+              </row>
+
+              <row>
+                <entry>Debug</entry>
+
+                <entry>Verbose</entry>
+              </row>
+
+              <row>
+                <entry>Error</entry>
+
+                <entry>Error</entry>
+              </row>
+
+              <row>
+                <entry>Fatal</entry>
+
+                <entry>Critical</entry>
+              </row>
+
+              <row>
+                <entry>Info</entry>
+
+                <entry>Information</entry>
+              </row>
+
+              <row>
+                <entry>Warn</entry>
+
+                <entry>Warning</entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </table></para>
+    </section>
+
+    <section>
+      <title>Enterprise Library 5.0 Logging Adapter</title>
+
+      <para>There is one implementation located in the assembly
+      <classname>Common.Logging.EntLib50</classname> and is linked against the
+      Microsoft Enterprise Library v5.0, aka EntLib 5.0. The .dlls for EntLib
+      can not be redistributed so you will need to download EntLib
+      separately.</para>
+
+      <para>There are no configuration options for the adapter. Configuration
+      of EntLib logging is done entirely though App.config. The example below
+      shows the basic configuration of the EntLibLoggingAdapter</para>
+
+      <programlisting language="xml">&lt;common&gt;
+  &lt;logging&gt;
+    &lt;factoryAdapter type="Common.Logging.EntLib.EntLibLoggerFactoryAdapter, Common.Logging.EntLib50"/&gt;
   &lt;/logging&gt;
 &lt;/common&gt;</programlisting>
 
@@ -984,7 +1083,7 @@ Common.Logging.LogManager.Adapter = new Common.Logging.Simple.ConsoleOutLoggerFa
 
           <para><programlisting language="myxml">&lt;log4net&gt;
     &lt;appender name="CommonLoggingAppender"
-              type="Common.Logging.Log4Net.CommonLoggingAppender, Common.Logging.Log4Net"&gt;
+              type="Common.Logging.Log4Net.CommonLoggingAppender, Common.Logging.Log4Net1210"&gt;
         &lt;layout type="log4net.Layout.PatternLayout, log4net"&gt;
             &lt;param name="ConversionPattern" value="%level - %class.%method: %message" /&gt;
         &lt;/layout&gt;
@@ -1025,7 +1124,7 @@ Common.Logging.LogManager.Adapter = new Common.Logging.Simple.ConsoleOutLoggerFa
               <para><programlisting language="myxml">&lt;nlog autoReload="true" throwExceptions="true"&gt;
  &lt;targets&gt;
   &lt;target name="common.logging"
-          type="Common.Logging.NLog.CommonLoggingTarget, Common.Logging.NLog"
+          type="Common.Logging.NLog.CommonLoggingTarget, Common.Logging.NLog10"
           layout="${longdate}|${level:uppercase=true}|${message}"
           filename="C:\temp\${date:format=yyyy-MM-dd}_logA.txt"/&gt;
  &lt;/targets&gt;
