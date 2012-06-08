@@ -11,7 +11,7 @@
     <language>en-US</language>
   </metadata>
   <files>
-    <file src="..\..\build\net20\Common.Logging\Release\Common.Logging.dll" target="lib\net20" />
+    <file src="..\..\build\net20\Common.Logging\Release\Common.Logging.dll" target="lib\net35" />
     <file src="..\..\build\net40\Common.Logging\Release\Common.Logging.dll" target="lib\net40" />
   </files>  
 </package>

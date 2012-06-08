@@ -11,12 +11,12 @@
     <description>Common.Logging library bindings for Log4Net 1.2.11 logging framework.</description>
     <language>en-US</language>
     <dependencies>
-      <dependency id="Common.Logging" version="2.1.0" />
+      <dependency id="Common.Logging" version="2.0.0" />
       <dependency id="Log4Net" version="1.2.11" />
     </dependencies>
   </metadata>
   <files>
-    <file src="..\..\build\net20\Common.Logging.Log4Net1211\Release\Common.Logging.Log4Net1211.dll" target="lib\net20" />
+    <file src="..\..\build\net20\Common.Logging.Log4Net1211\Release\Common.Logging.Log4Net1211.dll" target="lib\net35" />
     <file src="..\..\build\net40\Common.Logging.Log4Net1211\Release\Common.Logging.Log4Net1211.dll" target="lib\net40" />
   </files>
 </package>

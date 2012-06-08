@@ -11,12 +11,12 @@
     <description>Common.Logging library bindings for NLog 1.0 logging framework.</description>
     <language>en-US</language>
     <dependencies>
-      <dependency id="Common.Logging" version="2.1.0" />
+      <dependency id="Common.Logging" version="2.0.0" />
       <dependency id="NLog" version="[1.0.0]" />
     </dependencies>
   </metadata>
   <files>
-    <file src="..\..\build\net20\Common.Logging.NLog10\Release\Common.Logging.NLog10.dll" target="lib\net20" />
+    <file src="..\..\build\net20\Common.Logging.NLog10\Release\Common.Logging.NLog10.dll" target="lib\net35" />
     <file src="..\..\build\net40\Common.Logging.NLog10\Release\Common.Logging.NLog10.dll" target="lib\net40" />
   </files>
 </package>

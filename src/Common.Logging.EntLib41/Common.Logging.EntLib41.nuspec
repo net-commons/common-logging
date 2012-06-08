@@ -11,11 +11,11 @@
     <description>Common.Logging library bindings for Enterprise Library 4.1 logging framework.</description>
     <language>en-US</language>
     <dependencies>
-      <dependency id="Common.Logging" version="2.1.0" />
+      <dependency id="Common.Logging" version="2.0.0" />
     </dependencies>
   </metadata>
   <files>
-    <file src="..\..\build\net20\Common.Logging.EntLib41\Release\Common.Logging.Entlib41.dll" target="lib\net20" />
+    <file src="..\..\build\net20\Common.Logging.EntLib41\Release\Common.Logging.Entlib41.dll" target="lib\net35" />
     <file src="..\..\build\net40\Common.Logging.EntLib41\Release\Common.Logging.Entlib41.dll" target="lib\net40" />
   </files>
 </package>
