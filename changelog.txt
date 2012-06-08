@@ -1,5 +1,6 @@
 Common.Logging CHANGELOG
 =====================================
+http://github.com/net-commons/common-logging
 http://netcommon.sf.net
 
 Release 2.1.0, June 8 2012

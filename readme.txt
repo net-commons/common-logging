@@ -3,14 +3,15 @@
 http://github.com/net-commons/common-logging
 http://netcommon.sf.net/
 
+Note: Common.Logging is also available via NuGet; visit http://nuget.org and search using "Common.Logging" for details.
 
 1. INTRODUCTION
 
 Provides a simple logging abstraction to switch between different logging implementations.
-There is current support for log4net (1.2.11, 1.2.10 and 1.2.9), NLog (1.0, 2.0), Enterprise Library logging 3.1,
-Enterprise Library logging 4.1, and Enterprise Library 5.0
+There is current support for log4net (1.2.11, 1.2.10 and 1.2.9), NLog (1.0, 2.0), and
+Enterprise Library logging (3.1, 4.1, and 5.0)
 
-Additionally Common.Logging comes with a set of base classes making integration of any log
+Additionally Common.Logging comes with a set of base classes making the integration of any log
 system a breeze.
 
 2. KNOWN ISSUES

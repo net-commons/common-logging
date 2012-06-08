@@ -20,7 +20,7 @@
 
     <para>The library is based on work done by the developers of IBatis.NET
     and it's usage is inspired by log4net. Many thanks to the developers of
-    those projects! The library is available for .NET 1.0, 1.1, and 2.0 with
+    those projects! The library is available for .NET 3.5 and 4.0 with
     both debug and strongly signed release assemblies.</para>
 
     <para>The base logging library, Common.Logging, provides the base logging
@@ -44,14 +44,21 @@
         </listitem>
 
         <listitem>
-          <para>Log4Net 1.2.10 (higher version by assembly version
-          redirect)</para>
+          <para>Log4Net 1.2.10</para>
+        </listitem>
+		
+		<listitem>
+          <para>Log4Net 1.2.11</para>
         </listitem>
 
         <listitem>
-          <para>NLog</para>
+          <para>NLog 1.0</para>
         </listitem>
-
+		
+		<listitem>
+          <para>NLog 2.0</para>
+        </listitem>
+		
         <listitem>
           <para>Enterprise Library 3.1 Logging</para>
         </listitem>
@@ -59,10 +66,14 @@
         <listitem>
           <para>Enterprise Library 4.1 Logging</para>
         </listitem>
-      </itemizedlist>There are two enterprise log4net implementations, one for
-    log4net 1.2.9 and another for log4net 1.2.10. The need for two log4net
-    versions is due to the fact that each is signed with a different strong
-    key making assembly redirection impossible.</para>
+		
+        <listitem>
+          <para>Enterprise Library 5.0 Logging</para>
+        </listitem>		
+      </itemizedlist>There are three enterprise log4net implementations, one for
+    log4net 1.2.9, another for log4net 1.2.10, and still another for log4net 1.2.11.
+	The need for three log4net versions is due to the fact that each is signed with a different strong
+    key, making assembly redirection impossible and that there are breaking changes between 1.2.10 and 1.2.11.</para>
 
     <para>Note that it is not the intention of this library to be a
     replacement for the many fine logging libraries that are out there. The
@@ -74,7 +85,7 @@
     <title>Upgrading from previous versions</title>
 
     <section>
-      <title>Upgrading to 2.0</title>
+      <title>Upgrading to 2.1</title>
 
       <para>The new version of Common.Logging assembly is 100% binary
       backwards compatible to previous versions. Either you rebuild your
@@ -92,10 +103,10 @@
         &lt;/dependentAssembly&gt;
      &lt;/assemblyBinding&gt;
   &lt;/runtime&gt;
-&lt;/configuration&gt;</programlisting>Those who implemented their own
+&lt;/configuration&gt;</programlisting>If you are updating from pre-2.0, and have implemented your own
       <interfacename>Common.Logging.ILoggerFactoryAdapter</interfacename> and
-      <interfacename>Common.Logging.ILog</interfacename> interfaces, need to
-      update their code to the extended interfaces coming with version 2.0.
+      <interfacename>Common.Logging.ILog</interfacename> interfaces, you will need to
+      update your code to the extended interfaces that came with version 2.0.
       For convenience Common.Logging comes with a couple of support classes,
       making this task as easy as possible as described in <link
       linkend="logging-advanced-customfactoryadapter">Implementing a custom
@@ -125,7 +136,7 @@ log.Debug("hello world");</programlisting></para>
     <para><programlisting language="csharp">if (log.IsDebugEnabled)
 {
   log.Debug( "my expensive to calculate argument is: {0}", CalculateMessageInfo() );
-}</programlisting>Since Common.Logging 2.0 there is a shortcut notation
+}</programlisting>Since Common.Logging 2.0 and later there is a shortcut notation
     available that allows you to write:</para>
 
     <para><programlisting>log.Debug( m=&gt;m("my expensive to calculate argument is: {0}", CalculateMessageInfo()) );</programlisting>This
