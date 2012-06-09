@@ -47,21 +47,7 @@ namespace Common.Logging.Configuration
         /// <see cref="ConfigurationSectionHandler"/>
         public object GetSection(string sectionName)
         {
-            //cannot use ConfigurationManager.GetSection directly due to bug under .NET 4.0
-            //  see http://support.microsoft.com/kb/2580188 for more info
-            //return ConfigurationManager.GetSection(sectionName);
-
-            System.Configuration.Configuration configuration = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            KeyValueConfigurationCollection settings = ((AppSettingsSection)configuration.GetSection(sectionName)).Settings;
-
-            NameValueCollection collection = new NameValueCollection();
-
-            foreach (string setting in settings.AllKeys)
-            {
-                collection.Set(setting, settings[setting].Value);
-            }
-
-            return collection;
+            return ConfigurationManager.GetSection(sectionName);
         }
     }
 }
