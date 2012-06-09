@@ -101,7 +101,7 @@
            &lt;assemblyIdentity name="Common.Logging" publicKeyToken="af08829b84f0328e" /&gt;
            &lt;bindingRedirect oldVersion="0.0.0.0-65535.65535.65535.65535" newVersion="2.0.0.0"/&gt;
            &lt;!-- reference specific file: --&gt;
-           &lt;!-- codeBase version="2.1.0.0" href="../../../build/net/2.0/release/Common.Logging.dll"/ --&gt;
+           &lt;!-- codeBase version="2.1.1.0" href="../../../build/net/2.0/release/Common.Logging.dll"/ --&gt;
         &lt;/dependentAssembly&gt;
      &lt;/assemblyBinding&gt;
   &lt;/runtime&gt;
@@ -624,7 +624,7 @@ Common.Logging.LogManager.Adapter = new Common.Logging.Simple.ConsoleOutLoggerFa
 &lt;common&gt;
  &lt;logging&gt;
    &lt;factoryAdapter type="Common.Logging.Log4Net.Log4NetLoggerFactoryAdapter, Common.Logging.Log4Net1210,
-                         Version=2.1.0.0, Culture=neutral, PublicKeyToken=AF08829B84F0328E"&gt;
+                         Version=2.1.1.0, Culture=neutral, PublicKeyToken=AF08829B84F0328E"&gt;
      &lt;arg key="configType" value="FILE-WATCH"/&gt;
      &lt;arg key="configFile" value="~/log4net.config"/&gt;
    &lt;/factoryAdapter&gt;
