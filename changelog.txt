@@ -3,6 +3,19 @@ Common.Logging CHANGELOG
 http://github.com/net-commons/common-logging
 http://netcommon.sf.net
 
+Release 2.1.1, June 9 2012
+
+Summary: New Features and Bug Fix release
+
+Bug Fixes
+[Issue 7] revert workaround introduced in 2.1.0 for a bug in ConfigurationManager accessing .config files on network shares under .NET 4;
+ the workaround introduced in Common.Logging 2.1.0 inadvertently prevents use of Common.Logging under IIS applications. If you have the
+ usage scenario mentioned in the KB article here http://support.microsoft.com/kb/2580188 you must apply the hotfix for .NET 4 as outlined
+ in the KB article.
+
+
+---------------------------
+
 Release 2.1.0, June 8 2012
 
 Summary: New Features and Bug Fix release
@@ -42,7 +55,6 @@ Feature Requests
 
 Bug Fixes
 [Issue 7] workaround for a bug in ConfigurationManager accessing .config files on network shares under .NET 4
-
 
 ---------------------------
 
