@@ -17,6 +17,10 @@
   </metadata>
   <files>
     <file src="..\..\build\net20\Common.Logging.Log4Net1211\Release\Common.Logging.Log4Net1211.dll" target="lib\net35" />
+    <file src="..\..\build\net20\Common.Logging.Log4Net1211\Release\Common.Logging.Log4Net1211.pdb" target="lib\net35" />
+    <file src="..\..\build\net20\Common.Logging.Log4Net1211\Release\Common.Logging.Log4Net1211.xml" target="lib\net35" />
     <file src="..\..\build\net40\Common.Logging.Log4Net1211\Release\Common.Logging.Log4Net1211.dll" target="lib\net40" />
+    <file src="..\..\build\net40\Common.Logging.Log4Net1211\Release\Common.Logging.Log4Net1211.pdb" target="lib\net40" />
+    <file src="..\..\build\net40\Common.Logging.Log4Net1211\Release\Common.Logging.Log4Net1211.xml" target="lib\net40" />
   </files>
 </package>

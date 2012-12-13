@@ -12,6 +12,10 @@
   </metadata>
   <files>
     <file src="..\..\build\net20\Common.Logging\Release\Common.Logging.dll" target="lib\net35" />
+	<file src="..\..\build\net20\Common.Logging\Release\Common.Logging.pdb" target="lib\net35" />
+	<file src="..\..\build\net20\Common.Logging\Release\Common.Logging.xml" target="lib\net35" />
     <file src="..\..\build\net40\Common.Logging\Release\Common.Logging.dll" target="lib\net40" />
+	<file src="..\..\build\net40\Common.Logging\Release\Common.Logging.pdb" target="lib\net40" />
+	<file src="..\..\build\net40\Common.Logging\Release\Common.Logging.xml" target="lib\net40" />
   </files>  
 </package>

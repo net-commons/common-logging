@@ -16,6 +16,10 @@
   </metadata>
   <files>
     <file src="..\..\build\net20\Common.Logging.EntLib41\Release\Common.Logging.Entlib41.dll" target="lib\net35" />
+    <file src="..\..\build\net20\Common.Logging.EntLib41\Release\Common.Logging.Entlib41.pdb" target="lib\net35" />
+    <file src="..\..\build\net20\Common.Logging.EntLib41\Release\Common.Logging.Entlib41.xml" target="lib\net35" />
     <file src="..\..\build\net40\Common.Logging.EntLib41\Release\Common.Logging.Entlib41.dll" target="lib\net40" />
+    <file src="..\..\build\net40\Common.Logging.EntLib41\Release\Common.Logging.Entlib41.pdb" target="lib\net40" />
+    <file src="..\..\build\net40\Common.Logging.EntLib41\Release\Common.Logging.Entlib41.xml" target="lib\net40" />
   </files>
 </package>
