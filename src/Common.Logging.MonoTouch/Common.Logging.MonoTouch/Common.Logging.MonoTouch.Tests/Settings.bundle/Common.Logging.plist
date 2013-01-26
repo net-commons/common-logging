@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>dateTimeFormat</key>
+	<string></string>
+	<key>logLevel</key>
+	<string>LogLevel.Debug</string>
+	<key>logName</key>
+	<string>log4net for monotouch tests</string>
+	<key>showDateTime</key>
+	<string>true</string>
+	<key>showLevel</key>
+	<string>true</string>
+	<key>showLogName</key>
+	<string>true</string>
+</dict>
+</plist>
