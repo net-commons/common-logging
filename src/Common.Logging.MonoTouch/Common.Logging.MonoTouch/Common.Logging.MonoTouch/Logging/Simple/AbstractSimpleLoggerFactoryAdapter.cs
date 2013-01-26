@@ -20,6 +20,7 @@
 
 using System.Collections.Specialized;
 using Common.Logging.Factory;
+using Common.Logging.Configuration;
 
 namespace Common.Logging.Simple
 {
@@ -135,6 +136,28 @@ namespace Common.Logging.Simple
             get { return _dateTimeFormat; }
             set { _dateTimeFormat = value; }
         }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AbstractSimpleLoggerFactoryAdapter"/> class.
+        /// </summary>
+        /// <remarks>
+        /// Looks for level, showDateTime, showLogName, dateTimeFormat items from 
+        /// <paramref name="properties" /> for use when the GetLogger methods are called.
+        /// <see cref="ConfigurationSectionHandler"/> for more information on how to use the 
+        /// standard .NET application configuraiton file (App.config/Web.config) 
+        /// to configure this adapter.
+        /// </remarks>
+        /// <param name="properties">The name value collection, typically specified by the user in 
+        /// a configuration section named common/logging.</param>
+        protected AbstractSimpleLoggerFactoryAdapter(NameValueCollection properties)
+            :this(
+                    ArgUtils.TryParseEnum(LogLevel.All, ArgUtils.GetValue(properties, "level")),
+                    ArgUtils.TryParse(true, ArgUtils.GetValue(properties, "showDateTime")),
+                    ArgUtils.TryParse(true, ArgUtils.GetValue(properties, "showLogName")),
+                    ArgUtils.TryParse(true, ArgUtils.GetValue(properties, "showLevel")),
+                    ArgUtils.GetValue(properties, "dateTimeFormat", string.Empty)
+                )
+        {}
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AbstractSimpleLoggerFactoryAdapter"/> class with 

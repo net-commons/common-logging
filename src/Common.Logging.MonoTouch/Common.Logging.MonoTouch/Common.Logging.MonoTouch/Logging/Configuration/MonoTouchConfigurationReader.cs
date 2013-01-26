@@ -18,6 +18,8 @@
 
 #endregion
 using MonoTouch.Foundation;
+using Common.Logging.Simple;
+using System.Collections.Specialized;
 
 namespace Common.Logging.Configuration
 {
@@ -40,9 +42,16 @@ namespace Common.Logging.Configuration
         /// </p>
         /// </remarks>
         /// <see cref="ConfigurationSectionHandler"/>
-        public object GetSection(string sectionName)
-        {
-			return new NSDictionary (NSBundle.MainBundle.PathForResource (sectionName, null));
+        public object GetSection (string sectionName)
+		{	
+			NameValueCollection properties = new NameValueCollection();
+			var nsDict = new NSDictionary (NSBundle.MainBundle.PathForResource (sectionName, null));
+			foreach (var key in nsDict.Keys) 
+			{
+				properties.Add(key.ToString(), nsDict[key].ToString());
+			}
+
+			return new LogSetting(typeof(ConsoleOutLoggerFactoryAdapter), properties);
         }
     }
 }

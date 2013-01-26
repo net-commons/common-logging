@@ -1,0 +1,20 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Common.Logging.MonoTouch/Logging/LogManager.cs">
+    <Files>
+      <File FileName="Common.Logging.MonoTouch/Logging/IConfigurationReader.cs" Line="47" Column="19" />
+      <File FileName="Common.Logging.MonoTouch/Logging/Configuration/MonoTouchConfigurationReader.cs" Line="48" Column="2" />
+      <File FileName="../../Common.Logging/Logging/Configuration/DefaultConfigurationReader.cs" Line="22" Column="7" />
+      <File FileName="../../../../basespace-csharp-sdk/BaseSpace.SDK/src/BaseSpace.SDK.MonoTouch/BaseSpace.SDK.MonoTouch.Tests/BaseSpaceSDKClientTests.cs" Line="9" Column="53" />
+      <File FileName="../../../../basespace-csharp-sdk/BaseSpace.SDK/src/BaseSpace.SDK.MonoTouch/BaseSpace.SDK.MonoTouch.Tests/Integration/BaseIntegrationTest.cs" Line="26" Column="137" />
+      <File FileName="../../Common.Logging/Logging/IConfigurationReader.cs" Line="19" Column="11" />
+      <File FileName="Common.Logging.MonoTouch/Logging/Configuration/LogSetting.cs" Line="21" Column="14" />
+      <File FileName="Common.Logging.MonoTouch/Logging/LogManager.cs" Line="206" Column="33" />
+      <File FileName="Common.Logging.MonoTouch/Logging/Configuration/ArgUtils.cs" Line="192" Column="46" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

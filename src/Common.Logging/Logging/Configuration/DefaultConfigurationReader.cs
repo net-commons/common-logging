@@ -19,7 +19,7 @@
 #endregion
 
 using System.Collections.Specialized;
-using 
+using System.Configuration;
 
 namespace Common.Logging.Configuration
 {
