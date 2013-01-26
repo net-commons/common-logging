@@ -22,7 +22,7 @@ using System.Security.Permissions;
 [assembly: AssemblyTrademarkAttribute("Apache License, Version 2.0")]
 [assembly: AssemblyCultureAttribute("")]
 [assembly: AssemblyVersionAttribute("2.1.2")]
-[assembly: AssemblyConfigurationAttribute("net-4.0.win32; release")]
-[assembly: AssemblyInformationalVersionAttribute("2.1.2; net-4.0.win32; release")]
+[assembly: AssemblyConfigurationAttribute("monotouch; release")]
+[assembly: AssemblyInformationalVersionAttribute("2.1.2; monotouch; release")]
 [assembly: AssemblyDelaySignAttribute(false)]
 
