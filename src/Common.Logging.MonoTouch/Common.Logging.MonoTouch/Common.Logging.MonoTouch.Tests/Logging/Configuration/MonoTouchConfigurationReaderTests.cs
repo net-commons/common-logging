@@ -20,7 +20,7 @@
 
 using System.Collections.Specialized;
 using NUnit.Framework;
-
+using Common.Logging.Simple;
 namespace Common.Logging.Configuration
 {
     /// <summary>
@@ -32,7 +32,7 @@ namespace Common.Logging.Configuration
         [Test]
         public void ReadsAppConfig()
         {
-			Assert.AreEqual("FromAppConfig", ((NameValueCollection)new MonoTouchConfigurationReader().GetSection("Settings.bundle/Common.Logging.plist"))["appConfigCheck"]);
+			Assert.IsNotNull(((ConsoleOutLoggerFactoryAdapter)new MonoTouchConfigurationReader().GetSection("Settings.bundle/Common.Logging.plist")));
         }
     }
 }

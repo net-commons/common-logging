@@ -2,12 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>appConfigCheck</key>
-	<string>FromAppConfig</string>
 	<key>dateTimeFormat</key>
-	<string></string>
+	<string>yyyy-MM-dd HH:MI:SS</string>
 	<key>logLevel</key>
-	<string>LogLevel.Debug</string>
+	<string>Debug</string>
 	<key>logName</key>
 	<string>log4net for monotouch tests</string>
 	<key>showDateTime</key>
