@@ -51,7 +51,7 @@ namespace Common.Logging.Configuration
 				properties.Add(key.ToString(), nsDict[key].ToString());
 			}
 
-			return new LogSetting(typeof(ConsoleOutLoggerFactoryAdapter), properties);
+			return properties;
         }
     }
 }

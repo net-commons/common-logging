@@ -91,7 +91,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
-    <None Include="Settings.bundle\Common.Logging.plist" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
@@ -99,10 +98,14 @@
     <Compile Include="Logging\SImple\ConsoleOutLoggerTests.cs" />
     <Compile Include="Logging\SImple\AbstractSimpleLoggerTests.cs" />
     <Compile Include="Logging\SImple\AbstractSimpleLoggerTestsBase.cs" />
+    <Compile Include="Logging\Configuration\ArgUtilsTests.cs" />
+    <Compile Include="Logging\Factory\AbstractLoggerTests.cs" />
+    <Compile Include="Logging\Configuration\MonoTouchConfigurationReaderTests.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <BundleResource Include="Settings.bundle\Root.plist" />
+    <BundleResource Include="Settings.bundle\Common.Logging.plist" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common.Logging.MonoTouch\Common.Logging.MonoTouch.csproj">
