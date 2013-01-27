@@ -101,6 +101,14 @@
     <Compile Include="Logging\Configuration\ArgUtilsTests.cs" />
     <Compile Include="Logging\Factory\AbstractLoggerTests.cs" />
     <Compile Include="Logging\Configuration\MonoTouchConfigurationReaderTests.cs" />
+    <Compile Include="Logging\LoggingExceptionTests.cs" />
+    <Compile Include="Logging\LogManagerTests.cs" />
+    <Compile Include="Logging\MissingCtorFactoryAdapter.cs" />
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="ExceptionsTest.cs" />
+    <Compile Include="MethodInvokePerformanceTests.cs" />
+    <Compile Include="StandardsComplianceTest.cs" />
+    <Compile Include="StopWatch.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
