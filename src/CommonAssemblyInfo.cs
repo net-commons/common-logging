@@ -16,7 +16,10 @@ using System.Security.Permissions;
 
 [assembly: CLSCompliantAttribute(true)]
 [assembly: ComVisibleAttribute(false)]
+#if SILVERLIGHT
+#else
 [assembly: AllowPartiallyTrustedCallersAttribute()]
+#endif
 [assembly: AssemblyCompanyAttribute("http://netcommon.sourceforge.net/")]
 [assembly: AssemblyCopyrightAttribute("Copyright 2006-2011 the Common Infrastructure Libraries Team.")]
 [assembly: AssemblyTrademarkAttribute("Apache License, Version 2.0")]

@@ -19,8 +19,7 @@
 #endregion
 
 using System;
-using System.Collections;
-using System.Collections.Specialized;
+using System.Collections.Generic;
 
 namespace Common.Logging.Factory
 {
@@ -33,7 +32,7 @@ namespace Common.Logging.Factory
     /// <author>Erich Eichinger</author>
     public abstract class AbstractCachingLoggerFactoryAdapter : ILoggerFactoryAdapter
     {
-        private readonly Hashtable _cachedLoggers;
+        private readonly Dictionary<string, ILog> _cachedLoggers;
 
         /// <summary>
         /// Creates a new instance, the logger cache being case-sensitive.
@@ -47,9 +46,9 @@ namespace Common.Logging.Factory
         /// <param name="caseSensitiveLoggerCache"></param>
         protected AbstractCachingLoggerFactoryAdapter(bool caseSensitiveLoggerCache)
         {
-            _cachedLoggers = (caseSensitiveLoggerCache) 
-                                 ? new Hashtable()
-                                 : CollectionsUtil.CreateCaseInsensitiveHashtable();
+            _cachedLoggers = (caseSensitiveLoggerCache)
+                                 ? new Dictionary<string, ILog>()
+                                 : new Dictionary<string, ILog>(StringComparer.OrdinalIgnoreCase);
         }
 
         /// <summary>
@@ -107,13 +106,12 @@ namespace Common.Logging.Factory
         /// </returns>
         private ILog GetLoggerInternal(string name)
         {
-            ILog log = _cachedLoggers[name] as ILog;
-            if (log == null)
+            ILog log;
+            if (!_cachedLoggers.TryGetValue(name, out log))
             {
                 lock (_cachedLoggers)
                 {
-                    log = _cachedLoggers[name] as ILog;
-                    if (log == null)
+                    if (!_cachedLoggers.TryGetValue(name, out log))
                     {
                         log = CreateLogger(name);
                         if (log == null)

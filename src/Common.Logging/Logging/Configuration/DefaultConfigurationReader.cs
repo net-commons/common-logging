@@ -47,7 +47,11 @@ namespace Common.Logging.Configuration
         /// <see cref="ConfigurationSectionHandler"/>
         public object GetSection(string sectionName)
         {
+#if SILVERLIGHT
+            return null;
+#else
             return ConfigurationManager.GetSection(sectionName);
+#endif
         }
     }
 }

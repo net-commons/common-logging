@@ -20,6 +20,7 @@
 
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Diagnostics;
 
@@ -36,21 +37,21 @@ namespace Common.Logging.Configuration
         /// </summary>
         public delegate T ParseHandler<T>(string strValue);
 
-        private static readonly Hashtable s_parsers;
+        private static readonly Dictionary<Type, object> s_parsers;
 
         /// <summary>
         /// Initialize all members before any of this class' methods can be accessed (avoids beforeFieldInit)
         /// </summary>
         static ArgUtils()
         {
-            s_parsers = new Hashtable();
-            RegisterTypeParser<bool>(delegate(string s) { return Convert.ToBoolean(s); });
-            RegisterTypeParser<short>(delegate(string s) { return Convert.ToInt16(s); });
-            RegisterTypeParser<int>(delegate(string s) { return Convert.ToInt32(s); });
-            RegisterTypeParser<long>(delegate(string s) { return Convert.ToInt64(s); });
-            RegisterTypeParser<float>(delegate(string s) { return Convert.ToSingle(s); });
-            RegisterTypeParser<double>(delegate(string s) { return Convert.ToDouble(s); });
-            RegisterTypeParser<decimal>(delegate(string s) { return Convert.ToDecimal(s); });
+            s_parsers = new Dictionary<Type, object>();
+            RegisterTypeParser(Convert.ToBoolean);
+            RegisterTypeParser(Convert.ToInt16);
+            RegisterTypeParser(Convert.ToInt32);
+            RegisterTypeParser(Convert.ToInt64);
+            RegisterTypeParser(Convert.ToSingle);
+            RegisterTypeParser(Convert.ToDouble);
+            RegisterTypeParser(Convert.ToDecimal);
         }
 
         /// <summary>
@@ -86,9 +87,9 @@ namespace Common.Logging.Configuration
         {
             if (values != null)
             {
-                foreach (string key in values.AllKeys)
+                foreach (string key in values.Keys)
                 {
-                    if (string.Compare(name, key, true) == 0)
+                    if (string.Compare(name, key, StringComparison.OrdinalIgnoreCase) == 0)
                     {
                         return values[name];
                     }
@@ -162,7 +163,11 @@ namespace Common.Logging.Configuration
             }
             catch
             {
+#if SILVERLIGHT
+                Debug.WriteLine(string.Format("WARN: failed converting value '{0}' to enum type '{1}'", stringValue, defaultValue.GetType().FullName));
+#else
                 Trace.WriteLine(string.Format("WARN: failed converting value '{0}' to enum type '{1}'", stringValue, defaultValue.GetType().FullName));
+#endif
             }
             return result;
         }
@@ -181,19 +186,24 @@ namespace Common.Logging.Configuration
                 return defaultValue;
             }
 
-            ParseHandler<T> parser = s_parsers[typeof(T)] as ParseHandler<T>;
-            if (parser == null)
+            object untypedParser;
+            if (!s_parsers.TryGetValue(typeof(T), out untypedParser) || !(untypedParser is ParseHandler<T>))
             {
                 throw new ArgumentException(string.Format("There is no parser registered for type {0}", typeof(T).FullName));
             }
 
+            var parser = (ParseHandler<T>)untypedParser;
             try
             {
                 result = parser(stringValue);
             }
             catch
             {
+#if SILVERLIGHT
+                Debug.WriteLine(string.Format("WARN: failed converting value '{0}' to type '{1}' - returning default '{2}'", stringValue, typeof(T).FullName, result));
+#else
                 Trace.WriteLine(string.Format("WARN: failed converting value '{0}' to type '{1}' - returning default '{2}'", stringValue, typeof(T).FullName, result));
+#endif
             }
             return result;
         }
@@ -250,7 +260,11 @@ namespace Common.Logging.Configuration
 
             if (!typeof(T).IsAssignableFrom(valType))
             {
+#if SILVERLIGHT
+                throw new ArgumentOutOfRangeException(paramName, string.Format(messageFormat, args));
+#else
                 throw new ArgumentOutOfRangeException(paramName, valType, string.Format(messageFormat, args));
+#endif
             }
             return valType;
         }

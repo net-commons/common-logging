@@ -27,8 +27,12 @@ namespace Common.Logging
     /// The exception that is thrown when a configuration system error has occurred with Common.Logging
     /// </summary>
     /// <author>Mark Pollack</author>
+#if SILVERLIGHT
+    public class ConfigurationException : Exception
+#else
     [Serializable]
     public class ConfigurationException : ApplicationException
+#endif
     {
         #region Constructor (s) / Destructor
 
@@ -62,7 +66,9 @@ namespace Common.Logging
         {
         }
 
-        /// <summary>
+#if SILVERLIGHT
+#else
+       /// <summary>
         /// Creates a new instance of the ConfigurationException class.
         /// </summary>
         /// <param name="info">
@@ -78,6 +84,7 @@ namespace Common.Logging
             : base(info, context)
         {
         }
+#endif
 
         #endregion
     }

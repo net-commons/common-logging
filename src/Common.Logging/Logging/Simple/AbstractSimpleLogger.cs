@@ -29,7 +29,10 @@ namespace Common.Logging.Simple
     /// Abstract class providing a standard implementation of simple loggers.
     /// </summary>
     /// <author>Erich Eichinger</author>
+#if SILVERLIGHT
+#else
     [Serializable]
+#endif
     public abstract class AbstractSimpleLogger : AbstractLogger
     {
         private readonly string _name;

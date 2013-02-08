@@ -260,7 +260,11 @@ namespace Common.Logging
                 string message = (ConfigurationReader.GetType() == typeof(DefaultConfigurationReader))
                                      ? string.Format("no configuration section <{0}> found - suppressing logging output", COMMON_LOGGING_SECTION)
                                      : string.Format("Custom ConfigurationReader '{0}' returned <null> - suppressing logging output", ConfigurationReader.GetType().FullName);
+#if SILVERLIGHT
+                Debug.WriteLine(message);
+#else
                 Trace.WriteLine(message);
+#endif
                 ILoggerFactoryAdapter defaultFactory = new NoOpLoggerFactoryAdapter();
                 return defaultFactory;
             }
@@ -268,7 +272,11 @@ namespace Common.Logging
             // ready to use ILoggerFactoryAdapter?
             if (sectionResult is ILoggerFactoryAdapter)
             {
+#if SILVERLIGHT
+                Debug.WriteLine(string.Format("Using ILoggerFactoryAdapter returned from custom ConfigurationReader '{0}'", ConfigurationReader.GetType().FullName));
+#else
                 Trace.WriteLine(string.Format("Using ILoggerFactoryAdapter returned from custom ConfigurationReader '{0}'", ConfigurationReader.GetType().FullName));
+#endif
                 return (ILoggerFactoryAdapter)sectionResult;
             }
 

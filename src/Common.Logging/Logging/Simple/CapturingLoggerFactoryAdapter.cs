@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Collections.Specialized;
 
 namespace Common.Logging.Simple
 {
@@ -33,7 +32,7 @@ namespace Common.Logging.Simple
     /// <author>Erich Eichinger</author>
     public class CapturingLoggerFactoryAdapter : ILoggerFactoryAdapter
     {
-        private readonly Hashtable _cachedLoggers = CollectionsUtil.CreateCaseInsensitiveHashtable();
+        private readonly Dictionary<string, ILog> _cachedLoggers = new Dictionary<string, ILog>(StringComparer.OrdinalIgnoreCase);
 
         private volatile CapturingLoggerEvent _lastEvent;
 
@@ -98,13 +97,12 @@ namespace Common.Logging.Simple
         /// </summary>
         public ILog GetLogger(string name)
         {
-            ILog logger = (ILog)_cachedLoggers[name];
-            if (logger == null)
+            ILog logger;
+            if(!_cachedLoggers.TryGetValue(name, out logger))
             {
-                lock (_cachedLoggers.SyncRoot)
+                lock (((ICollection)_cachedLoggers).SyncRoot)
                 {
-                    logger = (ILog)_cachedLoggers[name];
-                    if (logger == null)
+                    if (!_cachedLoggers.TryGetValue(name, out logger))
                     {
                         logger = new CapturingLogger(this, name);
                         _cachedLoggers[name] = logger;
