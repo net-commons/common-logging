@@ -20,5 +20,8 @@
     <file src="..\..\build\sl40\Common.Logging\Release\Common.Logging.dll" target="lib\sl40" />
 	<file src="..\..\build\sl40\Common.Logging\Release\Common.Logging.pdb" target="lib\sl40" />
 	<file src="..\..\build\sl40\Common.Logging\Release\Common.Logging.xml" target="lib\sl40" />
+    <file src="..\..\build\portable\Common.Logging\Release\Common.Logging.dll" target="lib\portable-win+net40+sl40+wp+xbox" />
+	<file src="..\..\build\portable\Common.Logging\Release\Common.Logging.pdb" target="lib\portable-win+net40+sl40+wp+xbox" />
+	<file src="..\..\build\portable\Common.Logging\Release\Common.Logging.xml" target="lib\portable-win+net40+sl40+wp+xbox" />
   </files>  
 </package>
