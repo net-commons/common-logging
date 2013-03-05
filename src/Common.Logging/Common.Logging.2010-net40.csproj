@@ -55,7 +55,7 @@
     <OutputPath>..\..\build\net40\Common.Logging\Release\</OutputPath>
     <DefineConstants>TRACE;NET_4_0</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <WarningLevel>3</WarningLevel>
     <DocumentationFile>Common.Logging.xml</DocumentationFile>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <NoWarn>1607</NoWarn>

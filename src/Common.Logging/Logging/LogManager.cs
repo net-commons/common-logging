@@ -19,14 +19,18 @@
 #endregion
 
 using System;
-using System.Configuration;
 using System.Diagnostics;
 using System.Reflection;
 using System.Runtime.CompilerServices;
-using System.Security;
-using System.Security.Permissions;
 using Common.Logging.Simple;
 using Common.Logging.Configuration;
+
+#if PORTABLE
+#else
+using System.Configuration;
+using System.Security;
+using System.Security.Permissions;
+#endif
 
 namespace Common.Logging
 {
@@ -185,6 +189,8 @@ namespace Common.Logging
             }
         }
 
+#if PORTABLE && !SILVERLIGHT
+#else
         /// <summary>
         /// Gets the logger by calling <see cref="ILoggerFactoryAdapter.GetLogger(Type)"/>
         /// on the currently configured <see cref="Adapter"/> using the type of the calling class.
@@ -199,12 +205,14 @@ namespace Common.Logging
         [MethodImpl(MethodImplOptions.NoInlining)]
         public static ILog GetCurrentClassLogger()
         {
-            StackFrame frame = new StackFrame(1, false);
-            ILoggerFactoryAdapter adapter = Adapter;
-            MethodBase method = frame.GetMethod();
-            Type declaringType = method.DeclaringType;
+            var frame = new StackFrame(1, false);
+            var adapter = Adapter;
+            var method = frame.GetMethod();
+            var declaringType = method.DeclaringType;
             return adapter.GetLogger(declaringType);
         }
+
+#endif
 
         /// <summary>
         /// Gets the logger by calling <see cref="ILoggerFactoryAdapter.GetLogger(Type)"/>
@@ -260,7 +268,7 @@ namespace Common.Logging
                 string message = (ConfigurationReader.GetType() == typeof(DefaultConfigurationReader))
                                      ? string.Format("no configuration section <{0}> found - suppressing logging output", COMMON_LOGGING_SECTION)
                                      : string.Format("Custom ConfigurationReader '{0}' returned <null> - suppressing logging output", ConfigurationReader.GetType().FullName);
-#if SILVERLIGHT
+#if PORTABLE
                 Debug.WriteLine(message);
 #else
                 Trace.WriteLine(message);
@@ -272,7 +280,7 @@ namespace Common.Logging
             // ready to use ILoggerFactoryAdapter?
             if (sectionResult is ILoggerFactoryAdapter)
             {
-#if SILVERLIGHT
+#if PORTABLE
                 Debug.WriteLine(string.Format("Using ILoggerFactoryAdapter returned from custom ConfigurationReader '{0}'", ConfigurationReader.GetType().FullName));
 #else
                 Trace.WriteLine(string.Format("Using ILoggerFactoryAdapter returned from custom ConfigurationReader '{0}'", ConfigurationReader.GetType().FullName));

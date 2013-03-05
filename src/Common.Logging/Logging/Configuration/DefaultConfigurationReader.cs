@@ -18,8 +18,11 @@
 
 #endregion
 
+#if PORTABLE
+#else
 using System.Collections.Specialized;
 using System.Configuration;
+#endif
 
 namespace Common.Logging.Configuration
 {
@@ -47,7 +50,7 @@ namespace Common.Logging.Configuration
         /// <see cref="ConfigurationSectionHandler"/>
         public object GetSection(string sectionName)
         {
-#if SILVERLIGHT
+#if PORTABLE
             return null;
 #else
             return ConfigurationManager.GetSection(sectionName);

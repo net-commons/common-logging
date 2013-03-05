@@ -18,7 +18,10 @@
 
 #endregion
 
+#if PORTABLE
+#else
 using System.Configuration;
+#endif
 
 namespace Common.Logging
 {

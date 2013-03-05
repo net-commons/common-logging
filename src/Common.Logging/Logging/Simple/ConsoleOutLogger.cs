@@ -27,7 +27,7 @@ namespace Common.Logging.Simple
     /// Sends log messages to <see cref="Console.Out" />.
     /// </summary>
     /// <author>Gilles Bayon</author>
-#if SILVERLIGHT
+#if PORTABLE
 #else
     [Serializable]
 #endif

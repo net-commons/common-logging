@@ -18,7 +18,11 @@
 
 #endregion
 
+#if PORTABLE
+#else
 using System.Collections.Specialized;
+#endif
+
 using Common.Logging.Factory;
 using Common.Logging.Configuration;
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Common.Logging
 {
-#if SILVERLIGHT
+#if PORTABLE
 
     /// <summary>
     /// Substitute NameValueCollection in System.Collections.Specialized.
