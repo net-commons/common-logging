@@ -24,6 +24,7 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using Common.Logging.Simple;
 using Common.Logging.Configuration;
+using System.Linq.Expressions;
 
 #if PORTABLE
 #else
@@ -190,6 +191,96 @@ namespace Common.Logging
         }
 
 #if PORTABLE && !SILVERLIGHT
+
+        /// <summary>
+        /// Gets the logger by calling <see cref="ILoggerFactoryAdapter.GetLogger(Type)"/>
+        /// on the currently configured <see cref="Adapter"/> using the type of the calling class.
+        /// </summary>
+        /// <remarks>
+        /// This method needs to inspect the <see cref="StackTrace"/> in order to determine the calling 
+        /// class. This of course comes with a performance penalty, thus you shouldn't call it too
+        /// often in your application.
+        /// </remarks>
+        /// <seealso cref="GetLogger(Type)"/>
+        /// <returns>the logger instance obtained from the current <see cref="Adapter"/></returns>
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        public static ILog GetCurrentClassLogger()
+        {
+            var method = GetCallingMethod();
+            var declaringType = method.DeclaringType;
+            return Adapter.GetLogger(declaringType);
+        }
+
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        private static MethodBase GetCallingMethod()
+        {
+            Func<MethodBase> getCallingMethod = _getCallingMethod;
+            if (getCallingMethod == null)
+            {
+                lock (_loadLock)
+                {
+                    if (_getCallingMethod == null)
+                        _getCallingMethod = CreateGetClassNameFunction();
+
+                    getCallingMethod = _getCallingMethod;
+                }
+            }
+            return getCallingMethod();
+        }
+
+        /// <summary>
+        /// Cache the function returned from CreateGetClassNameFunction
+        /// </summary>
+        private static Func<MethodBase> _getCallingMethod;
+
+        /// <summary>
+        /// Creates a function which creates a new StackFrame and get the Method 3 (2 from the callee's perspective)
+        /// steps up in the callstack
+        /// </summary>
+        /// <returns>A function, returning the calling the Method invoking the function</returns>
+        /// <exception cref="System.PlatformNotSupportedException">
+        /// System.Diagnostics.StackFrame does not exist on the platform (ex. windows phone)
+        /// or
+        /// StackFrame(int skipFrames,	bool fNeedFileInfo) constructor not present
+        /// or
+        /// StackFrame.GetMethod() not present
+        /// </exception>
+        private static Func<MethodBase> CreateGetClassNameFunction()
+        {            
+            // Create and compile code similar to the following
+            //var frame = new StackFrame(1, false);
+            //var method = frame.GetMethod();
+            //var declaringType = method.DeclaringType;
+            var stackFrameType = Type.GetType("System.Diagnostics.StackFrame");
+            if (stackFrameType == null)
+                throw new PlatformNotSupportedException("CreateGetClassNameFunction is only supported on platforms where System.Diagnostics.StackFrame exist");
+
+            var constructor = stackFrameType.GetConstructor(new[] { typeof(int), typeof(bool) });
+            var getMethodMethod = stackFrameType.GetMethod("GetMethod");
+
+            if (constructor == null)
+                throw new PlatformNotSupportedException("StackFrame(int skipFrames,	bool fNeedFileInfo) constructor not present");
+            if (getMethodMethod == null)
+                throw new PlatformNotSupportedException("StackFrame.GetMethod() not present");
+
+            //var frame = new StackFrame(3, false);
+            var stackFrame = Expression.New(constructor,
+                                                Expression.Constant(3),
+                                                Expression.Constant(false));
+            //var method = frame.GetMethod();
+            var method = Expression.Call(stackFrame, getMethodMethod);
+
+            //var declaringType = method.DeclaringType;
+            var lambda = Expression.Lambda<Func<MethodBase>>(method);
+
+            // Expression<TDelegate>.Compile  is missing in portable libraries targeting silverlight
+            // but it is present on silverlight so we can just call it 
+            //var function = lambda.Compile();
+            var compileFunction = lambda.GetType().GetMethod("Compile", new Type[0]);
+            var function = (Func<MethodBase>)compileFunction.Invoke(lambda, null);
+                        
+            return function;
+        }
 #else
         /// <summary>
         /// Gets the logger by calling <see cref="ILoggerFactoryAdapter.GetLogger(Type)"/>
@@ -211,7 +302,6 @@ namespace Common.Logging
             var declaringType = method.DeclaringType;
             return adapter.GetLogger(declaringType);
         }
-
 #endif
 
         /// <summary>

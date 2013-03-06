@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2010
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{EC54316A-A3B9-4EF5-A74C-1EC2344D0EA4}"
 	ProjectSection(SolutionItems) = preProject
 		changelog.txt = changelog.txt
@@ -91,6 +91,12 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.2010-portable", "src\Common.Logging.Portable\Common.Logging.2010-portable.csproj", "{34E2A46F-8D61-4AA8-9094-DF0D5035427E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.2010-sl40", "src\Common.Logging.Silverlight\Common.Logging.2010-sl40.csproj", "{C185F156-BEFC-44A0-8F25-065558AEDB6A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BasicLogging-portable", "examples\BasicLogging\BasicLogging-portable.csproj", "{70DE6A01-B05D-4BDE-A519-C71C7CE9FCBA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{36A2CC79-DAA5-4959-A054-FCD9CDD1B078}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomLogger-portable", "examples\CustomLogger\CustomLogger-portable.csproj", "{70DE6A01-B05D-4BDE-A519-C71C7CE9FCBE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -226,6 +232,14 @@ Global
 		{C185F156-BEFC-44A0-8F25-065558AEDB6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C185F156-BEFC-44A0-8F25-065558AEDB6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C185F156-BEFC-44A0-8F25-065558AEDB6A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70DE6A01-B05D-4BDE-A519-C71C7CE9FCBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70DE6A01-B05D-4BDE-A519-C71C7CE9FCBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70DE6A01-B05D-4BDE-A519-C71C7CE9FCBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70DE6A01-B05D-4BDE-A519-C71C7CE9FCBA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70DE6A01-B05D-4BDE-A519-C71C7CE9FCBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70DE6A01-B05D-4BDE-A519-C71C7CE9FCBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70DE6A01-B05D-4BDE-A519-C71C7CE9FCBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70DE6A01-B05D-4BDE-A519-C71C7CE9FCBE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -262,6 +276,8 @@ Global
 		{8E5D50C8-85AC-41EA-AA26-2667494D4FAF} = {7E15F131-2DB4-4E83-9DF0-3A3A272B4FAD}
 		{9FD3F78B-90B7-47DC-B4B5-05EBF2267227} = {7E15F131-2DB4-4E83-9DF0-3A3A272B4FAD}
 		{4520C7E5-2532-4AC5-9CE8-0CDDADF006CB} = {7E15F131-2DB4-4E83-9DF0-3A3A272B4FAD}
+		{70DE6A01-B05D-4BDE-A519-C71C7CE9FCBA} = {36A2CC79-DAA5-4959-A054-FCD9CDD1B078}
+		{70DE6A01-B05D-4BDE-A519-C71C7CE9FCBE} = {36A2CC79-DAA5-4959-A054-FCD9CDD1B078}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		NAntAddinLastFileName = Common.Logging.build
