@@ -241,7 +241,7 @@ namespace Common.Logging
         /// <exception cref="System.PlatformNotSupportedException">
         /// System.Diagnostics.StackFrame does not exist on the platform (ex. windows phone)
         /// or
-        /// StackFrame(int skipFrames,	bool fNeedFileInfo) constructor not present
+        /// StackFrame(int skipFrames) constructor not present
         /// or
         /// StackFrame.GetMethod() not present
         /// </exception>
@@ -255,18 +255,17 @@ namespace Common.Logging
             if (stackFrameType == null)
                 throw new PlatformNotSupportedException("CreateGetClassNameFunction is only supported on platforms where System.Diagnostics.StackFrame exist");
 
-            var constructor = stackFrameType.GetConstructor(new[] { typeof(int), typeof(bool) });
+            var constructor = stackFrameType.GetConstructor(new[] { typeof(int) });
             var getMethodMethod = stackFrameType.GetMethod("GetMethod");
 
             if (constructor == null)
-                throw new PlatformNotSupportedException("StackFrame(int skipFrames,	bool fNeedFileInfo) constructor not present");
+                throw new PlatformNotSupportedException("StackFrame(int skipFrames) constructor not present");
             if (getMethodMethod == null)
                 throw new PlatformNotSupportedException("StackFrame.GetMethod() not present");
 
             //var frame = new StackFrame(3, false);
             var stackFrame = Expression.New(constructor,
-                                                Expression.Constant(3),
-                                                Expression.Constant(false));
+                                                Expression.Constant(3));
             //var method = frame.GetMethod();
             var method = Expression.Call(stackFrame, getMethodMethod);
 
