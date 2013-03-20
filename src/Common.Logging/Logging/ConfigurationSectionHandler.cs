@@ -20,12 +20,15 @@
 
 using System;
 using System.Collections;
-using System.Collections.Specialized;
 using System.Configuration;
 using System.Runtime.CompilerServices;
 using System.Xml;
 using Common.Logging.Simple;
+#if PORTABLE
 using Common.Logging.Configuration;
+#else
+using System.Collections.Specialized;
+#endif
 
 namespace Common.Logging
 {
