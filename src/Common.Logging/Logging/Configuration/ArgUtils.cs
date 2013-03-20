@@ -146,25 +146,25 @@ namespace Common.Logging.Configuration
         /// <returns>the successfully parsed value, <paramref name="defaultValue"/> otherwise.</returns>
         public static T TryParseEnum<T>(T defaultValue, string stringValue) where T : struct
         {
-            if (!typeof(T).IsEnum)
+            Type enumType = typeof(T);
+            if (!enumType.IsEnum)
             {
                 throw new ArgumentException(string.Format("Type '{0}' is not an enum type", typeof(T).FullName));
             }
-
-            T result = defaultValue;
-            if (string.IsNullOrEmpty(stringValue))
-            {
-                return defaultValue;
-            }
+            
             try
             {
-                result = (T)Enum.Parse(typeof(T), stringValue, true);
+                // If a string is specified then try to parse and return it
+                if (!string.IsNullOrEmpty(stringValue))
+                {
+                    return (T)Enum.Parse(enumType, stringValue, true);
+                }
             }
             catch
             {
                 Trace.WriteLine(string.Format("WARN: failed converting value '{0}' to enum type '{1}'", stringValue, defaultValue.GetType().FullName));
             }
-            return result;
+            return defaultValue;
         }
 
         /// <summary>
