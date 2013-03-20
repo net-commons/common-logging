@@ -51,7 +51,20 @@ namespace Common.Logging.Configuration
         public object GetSection(string sectionName)
         {
 #if PORTABLE
-            return null;
+            // We should instead look for something implementing 
+            // IConfigurationReader in (platform specific) Common.Logging dll and use that
+            const string configManager40 = "System.Configuration.ConfigurationManager, System.Configuration, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a";
+            var configurationManager = Type.GetType(configManager40);
+            if(configurationManager == null)
+            {
+                // Silverlight, and maybe if System.Configuration is not loaded?
+                return null;
+            }
+            var getSection = configurationManager.GetMethod("GetSection", new[] { typeof(string) });
+            if (getSection == null)
+                throw new PlatformNotSupportedException("Could not find System.Configuration.ConfigurationManager.GetSection method");
+
+            return getSection.Invoke(null, new[] {sectionName}); ;
 #else
             return ConfigurationManager.GetSection(sectionName);
 #endif
