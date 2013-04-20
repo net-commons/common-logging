@@ -13,7 +13,7 @@ namespace CustomLogger
         }
 
         protected override ILog CreateLogger(string name)
-        {
+        {            
             return new MyLogger(name, _useLogLevel);
         }
     }

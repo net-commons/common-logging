@@ -19,7 +19,6 @@
 #endregion
 
 using System;
-using System.Collections.Specialized;
 using System.IO;
 using Common.Logging.Factory;
 using Common.Logging.Configuration;

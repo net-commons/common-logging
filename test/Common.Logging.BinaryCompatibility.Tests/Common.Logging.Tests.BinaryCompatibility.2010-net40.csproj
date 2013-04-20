@@ -82,6 +82,10 @@
     <Compile Include="TestRunner.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\src\Common.Logging.Core\Common.Logging.Core.2010.csproj">
+      <Project>{A777809C-DB8B-4399-B6D4-8B1A4877A0AF}</Project>
+      <Name>Common.Logging.Core.2010</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\Common.Logging\Common.Logging.2010-net40.csproj">
       <Project>{440D903A-D409-48FC-A6C4-3EE69CCD663B}</Project>
       <Name>Common.Logging.2010-net40</Name>
@@ -103,6 +107,12 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="CommonLoggingBinaryCompatibilityTest2.csharp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="CommonLoggingBinaryCompatibilityTest2.exe.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

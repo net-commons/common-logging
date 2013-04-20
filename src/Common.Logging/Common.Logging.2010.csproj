@@ -71,39 +71,19 @@
     </Compile>
     <Compile Include="AssemblyDoc.cs" />
     <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="Logging\Factory\AbstractLogger.cs" />
-    <Compile Include="Logging\Factory\AbstractCachingLoggerFactoryAdapter.cs" />
-    <Compile Include="Logging\Simple\CapturingLogger.cs" />
-    <Compile Include="Logging\Simple\CapturingLoggerEvent.cs" />
-    <Compile Include="Logging\Simple\CapturingLoggerFactoryAdapter.cs" />
+    <Compile Include="Logging\Configuration\NameValueCollectionHelper.cs" />
     <Compile Include="Logging\Simple\CommonLoggingTraceListener.cs" />
-    <Compile Include="Logging\ConfigurationException.cs" />
-    <Compile Include="Logging\Configuration\DefaultConfigurationReader.cs" />
-    <Compile Include="Logging\Factory\NamespaceDoc.cs" />
-    <Compile Include="Logging\Configuration\ArgUtils.cs" />
-    <Compile Include="Logging\FormatMessageHandler.cs" />
-    <Compile Include="Logging\IConfigurationReader.cs" />
     <Compile Include="Logging\ConfigurationSectionHandler.cs" />
-    <Compile Include="Logging\ILog.cs" />
-    <Compile Include="Logging\ILoggerFactoryAdapter.cs" />
-    <Compile Include="Logging\LogLevel.cs" />
-    <Compile Include="Logging\LogManager.cs" />
-    <Compile Include="Logging\Configuration\LogSetting.cs" />
     <Compile Include="Logging\NamespaceDoc.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Logging\Simple\NamespaceDoc.cs" />
-    <Compile Include="Logging\Configuration\NamespaceDoc.cs" />
     <Compile Include="NamespaceDoc_Introduction.cs" />
-    <Compile Include="Logging\Simple\AbstractSimpleLogger.cs" />
-    <Compile Include="Logging\Simple\AbstractSimpleLoggerFactoryAdapter.cs" />
     <Compile Include="Logging\Simple\ConsoleOutLogger.cs" />
     <Compile Include="Logging\Simple\ConsoleOutLoggerFactoryAdapter.cs" />
-    <Compile Include="Logging\Simple\NoOpLogger.cs" />
-    <Compile Include="Logging\Simple\NoOpLoggerFactoryAdapter.cs" />
     <Compile Include="Logging\Simple\TraceLogger.cs" />
     <Compile Include="Logging\Simple\TraceLoggerFactoryAdapter.cs" />
     <Compile Include="CoverageExcludeAttribute.cs" />
+    <Compile Include="TypeForwardings.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -134,6 +114,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Common.Net.snk" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common.Logging.Core\Common.Logging.Core.2010-net20.csproj">
+      <Project>{A777809C-DB8B-4399-B6D4-8B1A4877A0AF}</Project>
+      <Name>Common.Logging.Core.2010-net20</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

@@ -27,8 +27,11 @@ namespace Common.Logging.Simple
     /// Sends log messages to <see cref="Console.Out" />.
     /// </summary>
     /// <author>Gilles Bayon</author>
+#if PORTABLE    
+#else
     [Serializable]
-    public class ConsoleOutLogger : AbstractSimpleLogger
+#endif
+    public class ConsoleOutLogger : Simple.AbstractSimpleLogger
     {
         /// <summary>
         /// Creates and initializes a logger that writes messages to <see cref="Console.Out" />.

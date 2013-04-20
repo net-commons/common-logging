@@ -19,7 +19,6 @@
 #endregion
 
 using System;
-using System.Collections.Specialized;
 using System.IO;
 using Common.Logging.Factory;
 using Common.Logging.Configuration;
@@ -148,12 +147,23 @@ namespace Common.Logging.Log4Net
 
         private readonly ILog4NetRuntime _runtime;
 
+
+
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="properties">configuration properties, see <see cref="Log4NetLoggerFactoryAdapter"/> for more.</param>
         public Log4NetLoggerFactoryAdapter(NameValueCollection properties)
             : this(properties, new Log4NetRuntime())
+        { }
+
+        /// <summary>
+        /// Constructor for binary backwards compatibility with non-portableversions
+        /// </summary>
+        /// <param name="properties">The properties.</param>
+        [Obsolete("Use Constructor taking Common.Logging.Configuration.NameValueCollection instead")]
+        public Log4NetLoggerFactoryAdapter(System.Collections.Specialized.NameValueCollection properties)
+            : this(NameValueCollectionHelper.ToCommonLoggingCollection(properties))
         { }
 
         /// <summary>

@@ -19,7 +19,7 @@
 #endregion
 
 using System;
-using System.Collections.Specialized;
+using Common.Logging.Configuration;
 using NUnit.Framework;
 
 namespace Common.Logging.Simple
@@ -57,7 +57,9 @@ namespace Common.Logging.Simple
         [Test]
         public void IsSerializable()
         {
+#if !PORTABLE
             Assert.IsTrue(SerializationTestUtils.IsSerializable<AbstractSimpleLogger>());
+#endif
         }
 
         [Test]

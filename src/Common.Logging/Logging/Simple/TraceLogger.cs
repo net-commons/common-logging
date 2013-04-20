@@ -37,7 +37,7 @@ namespace Common.Logging.Simple
     /// <author>Gilles Bayon</author>
 	/// <author>Erich Eichinger</author>
     [Serializable]
-    public class TraceLogger: AbstractSimpleLogger, IDeserializationCallback
+    public class TraceLogger : Simple.AbstractSimpleLogger, IDeserializationCallback
 	{
 	    private readonly bool _useTraceSource;
         [NonSerialized]

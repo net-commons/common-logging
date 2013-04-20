@@ -1,0 +1,37 @@
+﻿using System;
+using System.Reflection;
+using Common.Logging;
+using Common.Logging.Simple;
+
+namespace LambdaCallbackEvaluation
+{
+    public class CommonLoggingBinaryCompatibilityTest
+    {
+        public static void Main()
+        {
+            CommonLoggingBinaryCompatibilityTest tests = new CommonLoggingBinaryCompatibilityTest();
+            tests.Run();
+        }
+
+        private ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+
+        private object message = "ObjectMessage";
+        private Exception exception = new Exception();
+
+        public void Run()
+        {
+            log.Trace(message);
+            log.Trace(message, exception);
+            log.Debug(message);
+            log.Debug(message, exception);
+            log.Info(message);
+            log.Info(message, exception);
+            log.Warn(message);
+            log.Warn(message, exception);
+            log.Error(message);
+            log.Error(message, exception);
+            log.Fatal(message);
+            log.Fatal(message, exception);            
+        }
+    }
+}
