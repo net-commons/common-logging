@@ -18,7 +18,6 @@
 
 #endregion
 
-using System.Collections.Specialized;
 using NUnit.Framework;
 
 namespace Common.Logging.Configuration
@@ -31,8 +30,8 @@ namespace Common.Logging.Configuration
     {
         [Test]
         public void ReadsAppConfig()
-        {
-            Assert.AreEqual("FromAppConfig", ((NameValueCollection)new DefaultConfigurationReader().GetSection("appSettings"))["appConfigCheck"]);
+        {            
+            Assert.AreEqual("FromAppConfig", ((System.Collections.Specialized.NameValueCollection)new DefaultConfigurationReader().GetSection("appSettings"))["appConfigCheck"]);
         }
     }
 }

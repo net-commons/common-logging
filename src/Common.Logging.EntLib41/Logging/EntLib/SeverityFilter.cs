@@ -19,7 +19,6 @@
 #endregion
 
 using System;
-using System.Collections.Specialized;
 using System.Diagnostics;
 using Common.Logging.Configuration;
 using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;

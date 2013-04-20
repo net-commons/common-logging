@@ -19,10 +19,10 @@
 #endregion
 
 using System;
-using System.Collections.Specialized;
 using System.Configuration;
 using System.Diagnostics;
 using Common.TestUtil;
+using Common.Logging.Configuration;
 using NUnit.Framework;
 
 namespace Common.Logging.Simple

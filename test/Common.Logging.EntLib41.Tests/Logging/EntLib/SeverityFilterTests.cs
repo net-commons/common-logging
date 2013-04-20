@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Specialized;
+using Common.Logging.Configuration;
 using System.Diagnostics;
 using NUnit.Framework;
 

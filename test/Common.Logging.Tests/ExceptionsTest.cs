@@ -84,6 +84,7 @@ namespace Common
             // Constructor with a string and an inner exception
             CheckPublicConstructor(t, "(string message, Exception inner)",
                                    typeof (String), typeof (Exception));
+#if !PORTABLE
             // check to see if the serialization constructor is present
             // if exception is sealed, constructor should be private
             // if exception is not sealed, constructor should be protected
@@ -103,6 +104,7 @@ namespace Common
             }
             // check to see if the type is marked as serializable
             Assert.IsTrue(t.IsSerializable, t.Name + " is not serializable, missing [Serializable]?");
+#endif
             // check to see if there are any public fields. These should be properties instead...
             FieldInfo[] publicFields =
                 t.GetFields(BindingFlags.DeclaredOnly | BindingFlags.Public | BindingFlags.Instance);
@@ -114,6 +116,8 @@ namespace Common
                                 " is a public field, should be exposed through property instead.");
                 }
             }
+
+#if !PORTABLE
             // If this exception has any fields, check to make sure it has a 
             // version of GetObjectData. If not, it does't serialize those fields.
             FieldInfo[] fields =
@@ -132,6 +136,7 @@ namespace Common
             {
                 CheckInstantiation(t);
             }
+#endif
         }
 
         /// <summary>

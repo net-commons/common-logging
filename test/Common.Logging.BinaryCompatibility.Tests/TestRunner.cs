@@ -27,11 +27,22 @@ namespace Common
         [Test]
         public void CanUpgradeFromVersion12()
         {
-            CompileAppAgainstVersion12();
-            AdjustAppConfigAssemblyRedirect();
+            CompileAppAgainstVersion12("CommonLoggingBinaryCompatibilityTest.csharp");
+            AdjustAppConfigAssemblyRedirect("CommonLoggingBinaryCompatibilityTest.exe.config");
+            Run();
+        }
 
+        [Test]
+        public void CanUpgradeXmlConfigurationFromVersion12()
+        {
+            CompileAppAgainstVersion12("CommonLoggingBinaryCompatibilityTest2.csharp");
+            AdjustAppConfigAssemblyRedirect("CommonLoggingBinaryCompatibilityTest2.exe.config");
+            Run();
+        }
+
+        private void Run()
+        {          
             Process process = new Process();
-
             List<string> logLines = new List<string>();
 
             using (process)
@@ -42,21 +53,21 @@ namespace Common
                 process.StartInfo.RedirectStandardError = true;
                 process.StartInfo.CreateNoWindow = true;
                 process.ErrorDataReceived += (sender, evt) =>
-                                                 {
-                                                     if (!string.IsNullOrEmpty(evt.Data))
-                                                     {
-                                                         Log.Error(evt.Data);
-                                                     }
-                                                 };
+                {
+                    if (!string.IsNullOrEmpty(evt.Data))
+                    {
+                        Log.Error(evt.Data);
+                    }
+                };
                 process.OutputDataReceived += (sender, evt) =>
-                                                 {
-                                                     if (!string.IsNullOrEmpty(evt.Data))
-                                                     {
-                                                         logLines.Add(evt.Data);
-                                                         Log.Info(evt.Data);
-                                                     }
-                                                 };
-                
+                {
+                    if (!string.IsNullOrEmpty(evt.Data))
+                    {
+                        logLines.Add(evt.Data);
+                        Log.Info(evt.Data);
+                    }
+                };
+
                 process.Start();
                 process.BeginOutputReadLine();
                 process.BeginErrorReadLine();
@@ -68,13 +79,15 @@ namespace Common
             }
         }
 
-        private void CompileAppAgainstVersion12()
+
+        private void CompileAppAgainstVersion12(string codeFile)
         {
             var codeDomProvider = CodeDomProvider.CreateProvider("C#");
             var parameters = new CompilerParameters();
             parameters.GenerateExecutable = true;
             parameters.OutputAssembly = TestExecutableFileName;
             parameters.ReferencedAssemblies.Add("System.dll");
+            parameters.IncludeDebugInformation = true;
             if (string.IsNullOrEmpty(publicKeyToken))
             {
                 parameters.ReferencedAssemblies.Add("./1.2/Common.Logging-unsigned.dll");
@@ -84,7 +97,7 @@ namespace Common
                 parameters.ReferencedAssemblies.Add("./1.2/Common.Logging-signed.dll");
             }
 
-            string code = GetManifestResourceText(this.GetType(), "CommonLoggingBinaryCompatibilityTest.csharp");
+            string code = GetManifestResourceText(this.GetType(), codeFile);
             var results = codeDomProvider.CompileAssemblyFromSource(parameters, code);
             if (results.Errors.Count > 0)
             {
@@ -98,9 +111,8 @@ namespace Common
             }
         }
 
-        private void AdjustAppConfigAssemblyRedirect()
+        private void AdjustAppConfigAssemblyRedirect(string appConfigFileName)
         {
-            string appConfigFileName = "CommonLoggingBinaryCompatibilityTest.exe.config";
             string appConfigXml = GetManifestResourceText(this.GetType(), appConfigFileName);
             appConfigXml = appConfigXml
                 .Replace(
