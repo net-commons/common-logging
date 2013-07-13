@@ -50,7 +50,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\..\build\VS.NET.2010\Common.Logging.NLog10.Tests\Release\</OutputPath>
+    <OutputPath>..\..\build\VS.NET.2010\Common.Logging.NLog10.Tests\Release\</OutputPath>
     <DefineConstants>TRACE;NET_2_0;NLOG1</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
