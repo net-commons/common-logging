@@ -36,7 +36,7 @@ package-nuget/
 PrecompiledWeb/
 *.snk
 buildlog.txt
-
+*.DotSettings
 
 # xml api docs output files
 src/Common.Logging.EntLib31/Common.Logging.EntLib31.xml
