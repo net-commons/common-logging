@@ -1,4 +1,22 @@
-﻿// Copyright © Anton Paar GmbH, 2004-2013
+﻿#region License
+
+/*
+ * Copyright © 2002-2013 the original author or authors.
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+#endregion
 
 using System;
 using System.Collections;
@@ -14,9 +32,9 @@ namespace Common.Logging.Simple
     internal static class ExceptionFormatter
     {
         // constants
-        private const String DELIMITER_LINE =
+        private const String STANDARD_DELIMETER =
             "================================================================================\r\n";
-        private const String INNERMOST_DELIMITER_LINE =
+        private const String INNERMOST_DELIMETER =
             "=======================================================(inner most exception)===\r\n";
 
         internal static String Format(Exception exception)
@@ -43,26 +61,26 @@ namespace Common.Logging.Simple
             for (Int32 i = 1; exceptionStack.Count > 0; i++)
             {
                 currentException = (Exception)exceptionStack.Pop();
-                _FormatSingleException(formatProvider, sb, currentException, i);
+                FormatSingleException(formatProvider, sb, currentException, i);
             }
 
             // that's it; return result
             return sb.ToString();
         }
 
-        private static void _FormatSingleException(IFormatProvider formatProvider, StringBuilder sb, Exception exception,
+        private static void FormatSingleException(IFormatProvider formatProvider, StringBuilder sb, Exception exception,
             Int32 exceptionIndex)
         {
-            _OutputHeader(formatProvider, sb, exception, exceptionIndex);
-            _OutputDetails(formatProvider, sb, exception);
-            _OutputMessage(formatProvider, sb, exception);
-            _OutputProperties(formatProvider, sb, exception);
-            _OutputData(formatProvider, sb, exception);
-            _OutputStackTrace(formatProvider, sb, exception);
-            sb.Append(DELIMITER_LINE);
+            OutputHeader(formatProvider, sb, exception, exceptionIndex);
+            OutputDetails(formatProvider, sb, exception);
+            OutputMessage(formatProvider, sb, exception);
+            OutputProperties(formatProvider, sb, exception);
+            OutputData(formatProvider, sb, exception);
+            OutputStackTrace(formatProvider, sb, exception);
+            sb.Append(STANDARD_DELIMETER);
         }
 
-        private static void _OutputHeader(IFormatProvider formatProvider, StringBuilder sb, Exception exception,
+        private static void OutputHeader(IFormatProvider formatProvider, StringBuilder sb, Exception exception,
             Int32 exceptionIndex)
         {
             // output header:
@@ -71,13 +89,13 @@ namespace Common.Logging.Simple
             //	 (index) exception-type-name
             //  ================================================================================
             //
-            sb.Append(exceptionIndex == 1 ? INNERMOST_DELIMITER_LINE : DELIMITER_LINE);
+            sb.Append(exceptionIndex == 1 ? INNERMOST_DELIMETER : STANDARD_DELIMETER);
             sb.AppendFormat(formatProvider, " ({0}) {1}\r\n",
                 exceptionIndex, exception.GetType().FullName);
-            sb.Append(DELIMITER_LINE);
+            sb.Append(STANDARD_DELIMETER);
         }
 
-        private static void _OutputDetails(IFormatProvider formatProvider, StringBuilder sb, Exception exception)
+        private static void OutputDetails(IFormatProvider formatProvider, StringBuilder sb, Exception exception)
         {
             // output exception details:
             //
@@ -92,8 +110,8 @@ namespace Common.Logging.Simple
             String assemblyName, assemblyModuleName, typeName, methodName;
             String source, helplink;
 
-            _SafeGetTargetSiteInfo(exception, out assemblyName, out assemblyModuleName, out typeName, out methodName);
-            _SafeGetSourceAndHelplink(exception, out source, out helplink);
+            SafeGetTargetSiteInfo(exception, out assemblyName, out assemblyModuleName, out typeName, out methodName);
+            SafeGetSourceAndHelplink(exception, out source, out helplink);
 
             sb.AppendFormat(formatProvider,
                 "Method        :  {0}\r\n" +
@@ -109,7 +127,7 @@ namespace Common.Logging.Simple
                 helplink);
         }
 
-        private static void _OutputMessage(IFormatProvider formatProvider, StringBuilder sb, Exception exception)
+        private static void OutputMessage(IFormatProvider formatProvider, StringBuilder sb, Exception exception)
         {
             // output exception message:
             //
@@ -120,7 +138,7 @@ namespace Common.Logging.Simple
                 exception.Message);
         }
 
-        private static void _OutputProperties(IFormatProvider formatProvider, StringBuilder sb, Exception exception)
+        private static void OutputProperties(IFormatProvider formatProvider, StringBuilder sb, Exception exception)
         {
             // output exception properties:
             //
@@ -168,7 +186,7 @@ namespace Common.Logging.Simple
             }
         }
 
-        private static void _OutputData(IFormatProvider formatProvider, StringBuilder sb, Exception exception)
+        private static void OutputData(IFormatProvider formatProvider, StringBuilder sb, Exception exception)
         {
             // output exception properties:
             //
@@ -187,7 +205,7 @@ namespace Common.Logging.Simple
             }
         }
 
-        private static void _OutputStackTrace(IFormatProvider formatProvider, StringBuilder sb, Exception exception)
+        private static void OutputStackTrace(IFormatProvider formatProvider, StringBuilder sb, Exception exception)
         {
             // output stack trace:
             //
@@ -200,7 +218,7 @@ namespace Common.Logging.Simple
                 exception.StackTrace);
         }
 
-        private static void _SafeGetTargetSiteInfo(Exception exception, out String assemblyName, out String assemblyModulePath,
+        private static void SafeGetTargetSiteInfo(Exception exception, out String assemblyName, out String assemblyModulePath,
             out String typeName, out String methodName)
         {
             assemblyName = "<unavailable>";
@@ -225,7 +243,7 @@ namespace Common.Logging.Simple
             }
         }
 
-        private static void _SafeGetSourceAndHelplink(Exception exception, out String source, out String helplink)
+        private static void SafeGetSourceAndHelplink(Exception exception, out String source, out String helplink)
         {
             source = exception.Source;
             helplink = exception.HelpLink;
