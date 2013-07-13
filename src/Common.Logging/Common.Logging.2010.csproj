@@ -92,6 +92,7 @@
     <Compile Include="Logging\NamespaceDoc.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Logging\Simple\ExceptionFormatter.cs" />
     <Compile Include="Logging\Simple\NamespaceDoc.cs" />
     <Compile Include="Logging\Configuration\NamespaceDoc.cs" />
     <Compile Include="NamespaceDoc_Introduction.cs" />

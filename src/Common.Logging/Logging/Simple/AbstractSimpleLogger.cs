@@ -177,7 +177,7 @@ namespace Common.Logging.Simple
             // Append stack trace if not null
             if (e != null)
             {
-                stringBuilder.Append(Environment.NewLine).Append(e.ToString());
+                stringBuilder.Append(Environment.NewLine).Append(ExceptionFormatter.Format(e));
             }
         }
 
