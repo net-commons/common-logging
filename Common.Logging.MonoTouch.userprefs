@@ -1,0 +1,18 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneDeviceTarget" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="src/Common.Logging/Logging/LogManager.cs">
+    <Files>
+      <File FileName="../common-logging copy/src/Common.Logging.MonoTouch/Common.Logging.MonoTouch/Common.Logging.MonoTouch/Logging/Configuration/MonoTouchConfigurationReader.cs" Line="1" Column="1" />
+      <File FileName="src/Common.Logging/Logging/LogManager.cs" Line="83" Column="85" />
+      <File FileName="src/Common.Logging.MonoTouch/Logging/Configuration/DefaultConfigurationReader.cs" Line="19" Column="11" />
+      <File FileName="src/Common.Logging/Logging/Factory/AbstractCachingLoggerFactoryAdapter.cs" Line="52" Column="36" />
+      <File FileName="src/Common.Logging.MonoTouch/Common.Logging.MonoTouch.Tests/Logging/Configuration/MonoTouchConfigurationReaderTests.cs" Line="35" Column="99" />
+      <File FileName="src/Common.Logging.MonoTouch/Common.Logging.MonoTouch.Tests/Logging/LogManagerTests.cs" Line="58" Column="4" />
+      <File FileName="../common-logging copy/src/Common.Logging.MonoTouch/Common.Logging.MonoTouch/Common.Logging.MonoTouch/Logging/LogManager.cs" Line="86" Column="97" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

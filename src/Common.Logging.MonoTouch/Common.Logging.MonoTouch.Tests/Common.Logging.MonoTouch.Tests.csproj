@@ -116,13 +116,13 @@
     <BundleResource Include="Settings.bundle\Common.Logging.plist" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Common.Logging.MonoTouch\Common.Logging.MonoTouch.csproj">
-      <Project>{DD9F81C2-BA9A-4212-9249-2300C62AFF6F}</Project>
+    <ProjectReference Include="..\Common.Logging.MonoTouch.csproj">
+      <Project>{C5FED159-541C-4245-95CA-661C4E29A2DD}</Project>
       <Name>Common.Logging.MonoTouch</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Common.Logging.TestUtlis.MonoTouch\Common.Logging.TestUtlis.MonoTouch.csproj">
+    <ProjectReference Include="..\Common.Logging.TestUtils.MonoTouch\Common.Logging.TestUtils.MonoTouch.csproj">
       <Project>{B928FD65-4E80-4F9D-96D0-830EDB3092DB}</Project>
-      <Name>Common.Logging.TestUtlis.MonoTouch</Name>
+      <Name>Common.Logging.TestUtils.MonoTouch</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>

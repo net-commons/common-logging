@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C5FED159-541C-4245-95CA-661C4E29A2DD}</ProjectGuid>
+    <ProjectTypeGuids>{6BC8ED88-2882-458C-8E55-DFD12B67127B};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Common.Logging.MonoTouch</RootNamespace>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+    <AssemblyName>Common.Logging.MonoTouch</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;MONOTOUCH;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="monotouch" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+    <Folder Include="Logging\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Compile Include="..\Common.Logging\AssemblyDoc.cs">
+      <Link>AssemblyDoc.cs</Link>
+    </Compile>
+    <Compile Include="..\Common.Logging\AssemblyInfo.cs">
+      <Link>AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\Common.Logging\CoverageExcludeAttribute.cs">
+      <Link>CoverageExcludeAttribute.cs</Link>
+    </Compile>
+    <Compile Include="..\Common.Logging\NamespaceDoc_Introduction.cs">
+      <Link>NamespaceDoc_Introduction.cs</Link>
+    </Compile>
+    <Compile Include="..\Common.Logging\Logging\ConfigurationException.cs">
+      <Link>Logging\ConfigurationException.cs</Link>
+    </Compile>
+    <Compile Include="..\Common.Logging\Logging\FormatMessageHandler.cs">
+      <Link>Logging\FormatMessageHandler.cs</Link>
+    </Compile>
+    <Compile Include="..\Common.Logging\Logging\IConfigurationReader.cs">
+      <Link>Logging\IConfigurationReader.cs</Link>
+    </Compile>
+    <Compile Include="..\Common.Logging\Logging\ILog.cs">
+      <Link>Logging\ILog.cs</Link>
+    </Compile>
+    <Compile Include="..\Common.Logging\Logging\ILoggerFactoryAdapter.cs">
+      <Link>Logging\ILoggerFactoryAdapter.cs</Link>
+    </Compile>
+    <Compile Include="..\Common.Logging\Logging\LogLevel.cs">
+      <Link>Logging\LogLevel.cs</Link>
+    </Compile>
+    <Compile Include="..\Common.Logging\Logging\LogManager.cs">
+      <Link>Logging\LogManager.cs</Link>
+    </Compile>
+    <Compile Include="..\Common.Logging\Logging\NamespaceDoc.cs">
+      <Link>Logging\NamespaceDoc.cs</Link>
+    </Compile>
+    <Compile Include="..\Common.Logging\Logging\Configuration\ArgUtils.cs">
+      <Link>Logging\Configuration\ArgUtils.cs</Link>
+    </Compile>
+    <Compile Include="..\Common.Logging\Logging\Configuration\LogSetting.cs">
+      <Link>Logging\Configuration\LogSetting.cs</Link>
+    </Compile>
+    <Compile Include="..\Common.Logging\Logging\Configuration\NamespaceDoc.cs">
+      <Link>Logging\Configuration\NamespaceDoc.cs</Link>
+    </Compile>
+    <Compile Include="..\Common.Logging\Logging\Factory\AbstractCachingLoggerFactoryAdapter.cs">
+      <Link>Logging\Factory\AbstractCachingLoggerFactoryAdapter.cs</Link>
+    </Compile>
+    <Compile Include="..\Common.Logging\Logging\Factory\AbstractLogger.cs">
+      <Link>Logging\Factory\AbstractLogger.cs</Link>
+    </Compile>
+    <Compile Include="..\Common.Logging\Logging\Factory\NamespaceDoc.cs">
+      <Link>Logging\Factory\NamespaceDoc.cs</Link>
+    </Compile>
+    <Compile Include="..\Common.Logging\Logging\Simple\AbstractSimpleLogger.cs">
+      <Link>Logging\Simple\AbstractSimpleLogger.cs</Link>
+    </Compile>
+    <Compile Include="..\Common.Logging\Logging\Simple\AbstractSimpleLoggerFactoryAdapter.cs">
+      <Link>Logging\Simple\AbstractSimpleLoggerFactoryAdapter.cs</Link>
+    </Compile>
+    <Compile Include="..\Common.Logging\Logging\Simple\CapturingLogger.cs">
+      <Link>Logging\Simple\CapturingLogger.cs</Link>
+    </Compile>
+    <Compile Include="..\Common.Logging\Logging\Simple\CapturingLoggerEvent.cs">
+      <Link>Logging\Simple\CapturingLoggerEvent.cs</Link>
+    </Compile>
+    <Compile Include="..\Common.Logging\Logging\Simple\CapturingLoggerFactoryAdapter.cs">
+      <Link>Logging\Simple\CapturingLoggerFactoryAdapter.cs</Link>
+    </Compile>
+    <Compile Include="..\Common.Logging\Logging\Simple\ConsoleOutLogger.cs">
+      <Link>Logging\Simple\ConsoleOutLogger.cs</Link>
+    </Compile>
+    <Compile Include="..\Common.Logging\Logging\Simple\ConsoleOutLoggerFactoryAdapter.cs">
+      <Link>Logging\Simple\ConsoleOutLoggerFactoryAdapter.cs</Link>
+    </Compile>
+    <Compile Include="..\Common.Logging\Logging\Simple\ExceptionFormatter.cs">
+      <Link>Logging\Simple\ExceptionFormatter.cs</Link>
+    </Compile>
+    <Compile Include="..\Common.Logging\Logging\Simple\NamespaceDoc.cs">
+      <Link>Logging\Simple\NamespaceDoc.cs</Link>
+    </Compile>
+    <Compile Include="..\Common.Logging\Logging\Simple\NoOpLogger.cs">
+      <Link>Logging\Simple\NoOpLogger.cs</Link>
+    </Compile>
+    <Compile Include="..\Common.Logging\Logging\Simple\NoOpLoggerFactoryAdapter.cs">
+      <Link>Logging\Simple\NoOpLoggerFactoryAdapter.cs</Link>
+    </Compile>
+    <Compile Include="Logging\Configuration\DefaultConfigurationReader.cs" />
+    <Compile Include="Logging\MonoNet\CollectionsUtil.cs" />
+  </ItemGroup>
+</Project>

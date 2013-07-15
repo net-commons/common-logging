@@ -1,4 +1,4 @@
-﻿#region License
+#region License
 
 /*
  * Copyright 2002-2009 the original author or authors.
@@ -18,14 +18,21 @@
 
 #endregion
 
-using Common.Logging;
-
-/// <summary>
-/// This assembly contains the core functionality of the Common.Logging framework.
-/// In particular, checkout <see cref="LogManager"/> and <see cref="ILog"/> for usage information.
-/// </summary>
-[CoverageExclude]
-internal static class AssemblyDoc
+using System.Collections.Specialized;
+using NUnit.Framework;
+using Common.Logging.Simple;
+namespace Common.Logging.Configuration
 {
-    // serves as assembly summary for NDoc3 (http://ndoc3.sourceforge.net)
+    /// <summary>
+    /// </summary>
+    /// <author>Erich Eichinger</author>
+    [TestFixture]
+    public class MonoTouchConfigurationReaderTests
+    {
+        [Test]
+        public void ReadsAppConfig()
+        {
+			Assert.IsNotNull(((ConsoleOutLoggerFactoryAdapter)new DefaultConfigurationReader().GetSection("Settings.bundle/Common.Logging.plist")));
+        }
+    }
 }

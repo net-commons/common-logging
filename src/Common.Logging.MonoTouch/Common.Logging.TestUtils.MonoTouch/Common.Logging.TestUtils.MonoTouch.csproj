@@ -47,8 +47,8 @@
     <Compile Include="TestUtil\TraceEventArgs.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Common.Logging.MonoTouch\Common.Logging.MonoTouch.csproj">
-      <Project>{DD9F81C2-BA9A-4212-9249-2300C62AFF6F}</Project>
+    <ProjectReference Include="..\Common.Logging.MonoTouch.csproj">
+      <Project>{C5FED159-541C-4245-95CA-661C4E29A2DD}</Project>
       <Name>Common.Logging.MonoTouch</Name>
     </ProjectReference>
   </ItemGroup>

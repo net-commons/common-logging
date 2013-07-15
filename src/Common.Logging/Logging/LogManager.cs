@@ -83,8 +83,11 @@ namespace Common.Logging
         /// You can always change the source of your configuration settings by setting another <see cref="IConfigurationReader"/> instance
         /// on <see cref="ConfigurationReader"/>.
         /// </remarks>
+#if MONOTOUCH
+		public static readonly string COMMON_LOGGING_SECTION = "Settings.bundle/Common.Logging.plist";
+#else
         public static readonly string COMMON_LOGGING_SECTION = "common/logging";
-
+#endif
         private static IConfigurationReader _configurationReader;
         private static ILoggerFactoryAdapter _adapter;
         private static readonly object _loadLock = new object();
