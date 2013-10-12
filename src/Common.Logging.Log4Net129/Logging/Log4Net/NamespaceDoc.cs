@@ -22,7 +22,7 @@ namespace Common.Logging.Log4Net
 {
     /// <summary>
     /// <para>
-    /// This namespace contains the implementations to plug log4net 1.2.9-1.2.11 into Common.Logging.
+    /// This namespace contains the implementations to plug log4net 1.2.9-1.2.12 into Common.Logging.
     /// </para>
     /// <para>For an example on how to configure
     /// <list type="bullet">
