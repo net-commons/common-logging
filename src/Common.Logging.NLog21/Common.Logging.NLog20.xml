@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <doc>
     <assembly>
-        <name>Common.Logging.NLog20</name>
+        <name>Common.Logging.NLog21</name>
     </assembly>
     <members>
         <member name="T:Common.Logging.NLog.CommonLoggingTarget">
