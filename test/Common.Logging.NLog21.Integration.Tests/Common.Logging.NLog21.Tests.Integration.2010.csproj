@@ -37,7 +37,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\build\net20\Common.Logging.NLog20.Tests.Integration\Debug\</OutputPath>
+    <OutputPath>..\..\build\net20\Common.Logging.NLog21.Tests.Integration\Debug\</OutputPath>
     <DefineConstants>TRACE;DEBUG;NET_2_0;NLOG2</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
