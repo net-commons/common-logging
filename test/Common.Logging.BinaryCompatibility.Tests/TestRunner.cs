@@ -63,8 +63,7 @@ namespace Common
                 process.WaitForExit();
 
                 Assert.AreEqual(0, process.ExitCode);
-                // 6 levels, 3 entries per level
-                Assert.AreEqual(18, logLines.Count);
+                Assert.AreEqual(96, logLines.Count);
             }
         }
 
