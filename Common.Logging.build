@@ -35,13 +35,13 @@
 
     <!-- force net-2.0 -->
     <property name="nant.settings.currentframework" value="net-2.0"/>
-	<property name="solution-file-filter" value="*.2010.sln" />
+	<property name="solution-file-filter" value="*.2010-net20.sln" />
 	<property name="build.dir" value="${root.dir}/build/net20" />
     <call target="build-all" />
 
 	<!-- force net-4.0 -->
 	<property name="nant.settings.currentframework" value="net-4.0"/>
-	<property name="solution-file-filter" value="*.2010-net40.sln" />
+	<property name="solution-file-filter" value="*.2010.sln" />
 	<property name="build.dir" value="${root.dir}/build/net40" />
     <call target="build-all" />
 

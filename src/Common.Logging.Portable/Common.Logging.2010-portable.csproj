@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{34E2A46F-8D61-4AA8-9094-DF0D5035427E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Common</RootNamespace>
+    <AssemblyName>Common.Logging</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Profile2</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\build\portable\Common.Logging\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;PORTABLE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\build\portable\Common.Logging\Release\</OutputPath>
+    <DefineConstants>TRACE;PORTABLE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- A reference to the entire .NET Framework is automatically included -->
+    <Compile Include="..\CommonAssemblyInfo.cs">
+      <Link>CommonAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\Common.Logging\AssemblyDoc.cs" />
+    <Compile Include="..\Common.Logging\AssemblyInfo.cs" />
+    <Compile Include="..\Common.Logging\Collections\NameValueCollection.cs" />
+    <Compile Include="..\Common.Logging\CoverageExcludeAttribute.cs" />
+    <Compile Include="..\Common.Logging\Logging\ConfigurationException.cs" />
+    <Compile Include="..\Common.Logging\Logging\Configuration\ArgUtils.cs" />
+    <Compile Include="..\Common.Logging\Logging\Configuration\DefaultConfigurationReader.cs" />
+    <Compile Include="..\Common.Logging\Logging\Configuration\LogSetting.cs" />
+    <Compile Include="..\Common.Logging\Logging\Configuration\NamespaceDoc.cs" />
+    <Compile Include="..\Common.Logging\Logging\Factory\AbstractCachingLoggerFactoryAdapter.cs" />
+    <Compile Include="..\Common.Logging\Logging\Factory\AbstractLogger.cs" />
+    <Compile Include="..\Common.Logging\Logging\Factory\NamespaceDoc.cs" />
+    <Compile Include="..\Common.Logging\Logging\FormatMessageHandler.cs" />
+    <Compile Include="..\Common.Logging\Logging\IConfigurationReader.cs" />
+    <Compile Include="..\Common.Logging\Logging\ILog.cs" />
+    <Compile Include="..\Common.Logging\Logging\ILoggerFactoryAdapter.cs" />
+    <Compile Include="..\Common.Logging\Logging\LogLevel.cs" />
+    <Compile Include="..\Common.Logging\Logging\LogManager.cs" />
+    <Compile Include="..\Common.Logging\Logging\NamespaceDoc.cs" />
+    <Compile Include="..\Common.Logging\Logging\Simple\AbstractSimpleLogger.cs" />
+    <Compile Include="..\Common.Logging\Logging\Simple\AbstractSimpleLoggerFactoryAdapter.cs" />
+    <Compile Include="..\Common.Logging\Logging\Simple\CapturingLogger.cs" />
+    <Compile Include="..\Common.Logging\Logging\Simple\CapturingLoggerEvent.cs" />
+    <Compile Include="..\Common.Logging\Logging\Simple\CapturingLoggerFactoryAdapter.cs" />
+    <Compile Include="..\Common.Logging\Logging\Simple\NamespaceDoc.cs" />
+    <Compile Include="..\Common.Logging\Logging\Simple\NoOpLogger.cs" />
+    <Compile Include="..\Common.Logging\Logging\Simple\NoOpLoggerFactoryAdapter.cs" />
+    <Compile Include="..\Common.Logging\NamespaceDoc_Introduction.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

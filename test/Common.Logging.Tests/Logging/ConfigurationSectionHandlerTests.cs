@@ -141,16 +141,23 @@ namespace Common.Logging
     @"<?xml version='1.0' encoding='UTF-8' ?>
     <logging>
       <factoryAdapter type='CONSOLE'>
-        <arg key='LeVel' value='DEBUG' />
-        <arg key='LEVEL' value='DEBUG' />
-        <arg key='level' value='DEBUG' />
+        <arg key='LeVel1' value='DEBUG' />
+        <arg key='LEVEL2' value='DEBUG' />
+        <arg key='level3' value='DEBUG' />
       </factoryAdapter>
     </logging>";
             StandaloneConfigurationReader reader = new StandaloneConfigurationReader( xml );
             LogSetting setting = reader.GetSection( null ) as LogSetting;
             Assert.IsNotNull( setting );
-            Assert.AreEqual( 1, setting.Properties.Count );
-            Assert.AreEqual( 3, setting.Properties.GetValues("LeVeL").Length );
+
+            Assert.AreEqual(3, setting.Properties.Count);
+            var expectedValue = new[] { "DEBUG" };
+            CollectionAssert.AreEqual(expectedValue, setting.Properties.GetValues("level1"));
+            CollectionAssert.AreEqual(expectedValue, setting.Properties.GetValues("level2"));
+            CollectionAssert.AreEqual(expectedValue, setting.Properties.GetValues("LEVEL3"));
+            
+            //Assert.AreEqual( 1, setting.Properties.Count );
+            //Assert.AreEqual( 3, setting.Properties.GetValues("LeVeL").Length );
         }
     }
 }

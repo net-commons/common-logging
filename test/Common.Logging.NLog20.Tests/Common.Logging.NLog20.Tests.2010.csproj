@@ -99,6 +99,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\src\Common.Logging.Core\Common.Logging.Core.2010-net20.csproj">
+      <Project>{A777809C-DB8B-4399-B6D4-8B1A4877A0AF}</Project>
+      <Name>Common.Logging.Core.2010-net20</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\Common.Logging.NLog20\Common.Logging.NLog20.2010.csproj">
       <Project>{4080ED68-81A9-45C1-8F22-B6015E42756B}</Project>
       <Name>Common.Logging.NLog20.2010</Name>
@@ -115,7 +119,7 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties ProjectLinkerExcludeFilter="\\?desktop(\\.*)?$;\\?silverlight(\\.*)?$;\.desktop;\.silverlight;\.xaml;^service references(\\.*)?$;\.clientconfig;^web references(\\.*)?$" ProjectLinkReference="b4bb1353-924a-40f0-9aa5-a7c28ab68f69" />
+      <UserProperties ProjectLinkReference="b4bb1353-924a-40f0-9aa5-a7c28ab68f69" ProjectLinkerExcludeFilter="\\?desktop(\\.*)?$;\\?silverlight(\\.*)?$;\.desktop;\.silverlight;\.xaml;^service references(\\.*)?$;\.clientconfig;^web references(\\.*)?$" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

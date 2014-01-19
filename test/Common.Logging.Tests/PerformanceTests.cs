@@ -20,10 +20,10 @@
 
 using System;
 using System.Collections;
-using System.Collections.Specialized;
 using System.Diagnostics;
 using Common.Logging;
 using Common.Logging.Simple;
+using Common.Logging.Configuration;
 using NUnit.Framework;
 
 namespace Common

@@ -19,7 +19,7 @@
 #endregion
 
 using System;
-using System.Collections.Specialized;
+using Common.Logging.Configuration;
 
 namespace Common.Logging.Simple
 {
@@ -58,7 +58,7 @@ namespace Common.Logging.Simple
     /// <author>Gilles Bayon</author>
     /// <author>Mark Pollack</author>
     /// <author>Erich Eichinger</author>
-    public class ConsoleOutLoggerFactoryAdapter : AbstractSimpleLoggerFactoryAdapter
+    public class ConsoleOutLoggerFactoryAdapter : Simple.AbstractSimpleLoggerFactoryAdapter
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ConsoleOutLoggerFactoryAdapter"/> class using default 
@@ -83,6 +83,17 @@ namespace Common.Logging.Simple
         public ConsoleOutLoggerFactoryAdapter(NameValueCollection properties)
             : base(properties)
         { }
+
+#if !SILVERLIGHT
+        /// <summary>
+        /// Constructor for binary backwards compatibility with non-portableversions
+        /// </summary>
+        /// <param name="properties">The properties.</param>
+        [Obsolete("Use Constructor taking Common.Logging.Configuration.NameValueCollection instead")]
+        public ConsoleOutLoggerFactoryAdapter(System.Collections.Specialized.NameValueCollection properties)
+            : this(NameValueCollectionHelper.ToCommonLoggingCollection(properties))
+        { }
+#endif
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AbstractSimpleLoggerFactoryAdapter"/> class with 

@@ -20,7 +20,7 @@
 
 using System;
 using System.IO;
-using System.Collections.Specialized;
+using Common.Logging.Configuration;
 using Common.Logging.Factory;
 
 namespace Common.Logging.NLog
@@ -63,6 +63,15 @@ namespace Common.Logging.NLog
     /// <author>Erich Eichinger</author>
     public class NLogLoggerFactoryAdapter : AbstractCachingLoggerFactoryAdapter
     {
+         /// <summary>
+        /// Constructor for binary backwards compatibility with non-portableversions
+        /// </summary>
+        /// <param name="properties">The properties.</param>
+        [Obsolete("Use Constructor taking Common.Logging.Configuration.NameValueCollection instead")]
+        public NLogLoggerFactoryAdapter(System.Collections.Specialized.NameValueCollection properties)
+            : this(NameValueCollectionHelper.ToCommonLoggingCollection(properties))
+        { }
+
         /// <summary>
         /// Constructor
         /// </summary>

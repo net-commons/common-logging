@@ -95,7 +95,7 @@ namespace Common.Logger.NLog
 
         protected override ILoggerFactoryAdapter GetLoggerFactoryAdapter()
         {
-            return new NLogLoggerFactoryAdapter(null);
+            return new NLogLoggerFactoryAdapter((Common.Logging.Configuration.NameValueCollection)null);
         }
 
         [Test]
@@ -104,7 +104,7 @@ namespace Common.Logger.NLog
             TestLoggingConfiguration cfg = new TestLoggingConfiguration();
             LogManager.Configuration = cfg;
 
-            Logging.LogManager.Adapter = new NLogLoggerFactoryAdapter(null);
+            Logging.LogManager.Adapter = new NLogLoggerFactoryAdapter((Common.Logging.Configuration.NameValueCollection)null);
             Logging.LogManager.GetLogger("myLogger").Debug("TestMessage");
 
             Assert.IsNotNull(cfg.Target.LastLogEvent);

@@ -106,6 +106,7 @@ namespace Common.Logging.Configuration
                     }
                 );
 
+#if !PORTABLE
             Assert.Throws(
                 Is.TypeOf<ArgumentOutOfRangeException>()
                     .And.Message.EqualTo(new ArgumentOutOfRangeException("this", this.GetType(),string.Format("Type '{0}' of parameter '{1}' is not assignable to target type '{2}'"
@@ -117,6 +118,7 @@ namespace Common.Logging.Configuration
                         ArgUtils.AssertIsAssignable<ISerializable>("this", this.GetType());
                     }
                 );
+#endif
 
             Type type = typeof(Int32);
             Assert.AreSame(type, ArgUtils.AssertIsAssignable<IConvertible>("arg", type));

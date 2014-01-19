@@ -18,7 +18,7 @@
 
 #endregion
 
-using System.Collections.Specialized;
+//using System.Collections.Specialized;
 using System.Diagnostics;
 using Common.Logging.Configuration;
 
@@ -62,7 +62,7 @@ namespace Common.Logging.Simple
     /// <author>Gilles Bayon</author>
     /// <author>Mark Pollack</author>
     /// <author>Erich Eichinger</author>
-    public class TraceLoggerFactoryAdapter : AbstractSimpleLoggerFactoryAdapter
+    public class TraceLoggerFactoryAdapter : Simple.AbstractSimpleLoggerFactoryAdapter
     {
         private bool _useTraceSource = false;
 

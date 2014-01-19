@@ -20,7 +20,6 @@
 
 using System;
 using System.Collections;
-using System.Collections.Specialized;
 using System.Configuration;
 using System.Runtime.CompilerServices;
 using System.Xml;

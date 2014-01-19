@@ -19,7 +19,7 @@
 #endregion
 
 using System;
-using System.Collections.Specialized;
+using Common.Logging.Configuration;
 using System.Reflection;
 using log4net.Appender;
 using log4net.Config;

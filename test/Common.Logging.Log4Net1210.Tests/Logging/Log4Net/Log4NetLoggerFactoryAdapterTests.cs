@@ -19,7 +19,6 @@
 #endregion
 
 using System;
-using System.Collections.Specialized;
 using System.Diagnostics;
 using System.Reflection;
 using log4net.Appender;
@@ -27,6 +26,7 @@ using log4net.Config;
 using log4net.Core;
 using NUnit.Framework;
 using Rhino.Mocks;
+using Common.Logging.Configuration;
 
 namespace Common.Logging.Log4Net
 {
