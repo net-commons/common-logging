@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C185F156-BEFC-44A0-8F25-065558AEDB6A}</ProjectGuid>
+    <ProjectTypeGuids>{A1591282-1198-4647-A2B1-27E5FF5F6F3B};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Common</RootNamespace>
+    <AssemblyName>Common.Logging</AssemblyName>
+    <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
+    <SilverlightApplication>false</SilverlightApplication>
+    <ValidateXaml>true</ValidateXaml>
+    <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
+  </PropertyGroup>
+  <!-- This property group is only here to support building this project using the 
+       MSBuild 3.5 toolset. In order to work correctly with this older toolset, it needs 
+       to set the TargetFrameworkVersion to v3.5 -->
+  <PropertyGroup Condition="'$(MSBuildToolsVersion)' == '3.5'">
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\build\sl40\Common.Logging\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;SILVERLIGHT PORTABLE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>..\..\build\sl40\Common.Logging\Debug\Common.Logging.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\build\sl40\Common.Logging\Release\</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT PORTABLE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>..\..\build\sl40\Common.Logging\Release\Common.Logging.XML</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="mscorlib" />
+    <Reference Include="System.Windows" />
+    <Reference Include="system" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Windows.Browser" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\CommonAssemblyInfo.cs">
+      <Link>CommonAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\Common.Logging\AssemblyDoc.cs" />
+    <Compile Include="..\Common.Logging\AssemblyInfo.cs" />
+    <Compile Include="..\Common.Logging\Collections\NameValueCollection.cs" />
+    <Compile Include="..\Common.Logging\CoverageExcludeAttribute.cs" />
+    <Compile Include="..\Common.Logging\Logging\ConfigurationException.cs" />
+    <Compile Include="..\Common.Logging\Logging\Configuration\ArgUtils.cs" />
+    <Compile Include="..\Common.Logging\Logging\Configuration\DefaultConfigurationReader.cs" />
+    <Compile Include="..\Common.Logging\Logging\Configuration\LogSetting.cs" />
+    <Compile Include="..\Common.Logging\Logging\Configuration\NamespaceDoc.cs" />
+    <Compile Include="..\Common.Logging\Logging\Factory\AbstractCachingLoggerFactoryAdapter.cs" />
+    <Compile Include="..\Common.Logging\Logging\Factory\AbstractLogger.cs" />
+    <Compile Include="..\Common.Logging\Logging\Factory\NamespaceDoc.cs" />
+    <Compile Include="..\Common.Logging\Logging\FormatMessageHandler.cs" />
+    <Compile Include="..\Common.Logging\Logging\IConfigurationReader.cs" />
+    <Compile Include="..\Common.Logging\Logging\ILog.cs" />
+    <Compile Include="..\Common.Logging\Logging\ILoggerFactoryAdapter.cs" />
+    <Compile Include="..\Common.Logging\Logging\LogLevel.cs" />
+    <Compile Include="..\Common.Logging\Logging\LogManager.cs" />
+    <Compile Include="..\Common.Logging\Logging\NamespaceDoc.cs" />
+    <Compile Include="..\Common.Logging\Logging\Simple\AbstractSimpleLogger.cs" />
+    <Compile Include="..\Common.Logging\Logging\Simple\AbstractSimpleLoggerFactoryAdapter.cs" />
+    <Compile Include="..\Common.Logging\Logging\Simple\CapturingLogger.cs" />
+    <Compile Include="..\Common.Logging\Logging\Simple\CapturingLoggerEvent.cs" />
+    <Compile Include="..\Common.Logging\Logging\Simple\CapturingLoggerFactoryAdapter.cs" />
+    <Compile Include="..\Common.Logging\Logging\Simple\ConsoleOutLogger.cs" />
+    <Compile Include="..\Common.Logging\Logging\Simple\ConsoleOutLoggerFactoryAdapter.cs" />
+    <Compile Include="..\Common.Logging\Logging\Simple\NamespaceDoc.cs" />
+    <Compile Include="..\Common.Logging\Logging\Simple\NoOpLogger.cs" />
+    <Compile Include="..\Common.Logging\Logging\Simple\NoOpLoggerFactoryAdapter.cs" />
+    <Compile Include="..\Common.Logging\NamespaceDoc_Introduction.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{A1591282-1198-4647-A2B1-27E5FF5F6F3B}">
+        <SilverlightProjectProperties />
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

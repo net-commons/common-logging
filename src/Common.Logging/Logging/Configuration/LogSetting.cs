@@ -19,7 +19,10 @@
 #endregion
 
 using System;
+#if PORTABLE
+#else
 using System.Collections.Specialized;
+#endif
 
 namespace Common.Logging.Configuration
 {

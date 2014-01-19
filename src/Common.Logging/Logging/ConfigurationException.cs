@@ -19,7 +19,10 @@
 #endregion
 
 using System;
+#if PORTABLE
+#else
 using System.Runtime.Serialization;
+#endif
 
 namespace Common.Logging
 {
@@ -27,8 +30,12 @@ namespace Common.Logging
     /// The exception that is thrown when a configuration system error has occurred with Common.Logging
     /// </summary>
     /// <author>Mark Pollack</author>
+#if PORTABLE
+    public class ConfigurationException : Exception
+#else
     [Serializable]
     public class ConfigurationException : ApplicationException
+#endif
     {
         #region Constructor (s) / Destructor
 
@@ -62,7 +69,9 @@ namespace Common.Logging
         {
         }
 
-        /// <summary>
+#if PORTABLE
+#else
+       /// <summary>
         /// Creates a new instance of the ConfigurationException class.
         /// </summary>
         /// <param name="info">
@@ -78,6 +87,7 @@ namespace Common.Logging
             : base(info, context)
         {
         }
+#endif
 
         #endregion
     }

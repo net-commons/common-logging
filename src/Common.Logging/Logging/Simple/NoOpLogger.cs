@@ -28,7 +28,10 @@ namespace Common.Logging.Simple
     /// </summary>
     /// <author>Gilles Bayon</author>
     /// <author>Erich Eichinger</author>
+#if PORTABLE
+#else
     [Serializable]
+#endif
     [CoverageExclude]
     public sealed class NoOpLogger : ILog
     {
