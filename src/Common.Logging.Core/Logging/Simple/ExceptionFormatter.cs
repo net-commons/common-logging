@@ -98,34 +98,7 @@ namespace Common.Logging.Simple
 
         private static void OutputDetails(IFormatProvider formatProvider, StringBuilder sb, Exception exception)
         {
-            // output exception details:
-            //
-            //	Method        :  set_Attributes
-            //	Type          :  System.IO.FileSystemInfo
-            //	Assembly      :  mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
-            //	Assembly Path :  C:\WINDOWS\Microsoft.NET\Framework\v2.0.50727\mscorlib.dll
-            //	Source        :  mscorlib
-            //	Thread        :  123 'TestRunnerThread'
-            //  Helplink      :  <unavailable>
-            //
-            String assemblyName, assemblyModuleName, typeName, methodName;
-            String source, helplink;
-
-            SafeGetTargetSiteInfo(exception, out assemblyName, out assemblyModuleName, out typeName, out methodName);
-            SafeGetSourceAndHelplink(exception, out source, out helplink);
-
-            sb.AppendFormat(formatProvider,
-                "Method        :  {0}\r\n" +
-                "Type          :  {1}\r\n" +
-                "Assembly      :  {2}\r\n" +
-                "Assembly Path :  {3}\r\n" +
-                "Source        :  {4}\r\n" +
-                "Thread        :  {5}\r\n" +
-                "Helplink      :  {6}\r\n",
-                methodName, typeName, assemblyName, assemblyModuleName,
-                source,
-                Thread.CurrentThread.ManagedThreadId,
-                helplink);
+            sb.AppendFormat(formatProvider,"Thread ID : {0}\r\n",Thread.CurrentThread.ManagedThreadId);
         }
 
         private static void OutputMessage(IFormatProvider formatProvider, StringBuilder sb, Exception exception)
@@ -218,38 +191,6 @@ namespace Common.Logging.Simple
             sb.AppendFormat(formatProvider, "\r\nStack Trace:\r\n{0}\r\n",
                 exception.StackTrace);
         }
-
-        private static void SafeGetTargetSiteInfo(Exception exception, out String assemblyName, out String assemblyModulePath,
-            out String typeName, out String methodName)
-        {
-            assemblyName = "<unavailable>";
-            assemblyModulePath = "<unavailable>";
-            typeName = "<unavailable>";
-            methodName = "<unavailable>";
-
-            MethodBase targetSite = null;
-
-            if (targetSite != null)
-            {
-                methodName = targetSite.Name;
-                Type type = targetSite.ReflectedType;
-
-                typeName = type.FullName;
-                Assembly assembly = type.Assembly;
-
-                assemblyName = assembly.FullName;
-                Module assemblyModule = assembly.ManifestModule;
-
-                assemblyModulePath = assemblyModule.Name;
-            }
-        }
-
-        private static void SafeGetSourceAndHelplink(Exception exception, out String source, out String helplink)
-        {
-            source = string.Empty;
-            helplink = string.Empty;
-            //source = exception.Source;
-            //helplink = exception.HelpLink;
-        }
+   
     }
 }

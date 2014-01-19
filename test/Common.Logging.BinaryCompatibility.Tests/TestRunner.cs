@@ -74,7 +74,7 @@ namespace Common
                 process.WaitForExit();
 
                 Assert.AreEqual(0, process.ExitCode);
-                Assert.AreEqual(96, logLines.Count);
+                Assert.AreEqual(60, logLines.Count);
             }
         }
 
