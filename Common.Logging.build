@@ -47,9 +47,8 @@
 
   </target>
 
-  <target name="build-all">
-    <call target="update-common-assemblyinfo" />
-
+  <target name="build-all" depends="update-common-assemblyinfo">
+    
     <property name="buildconfiguration" value="Debug" />
     <call target="RebuildAllSolutions" />
 
@@ -211,7 +210,7 @@
     </copy>
   </target>
 
-  <target name="package.sources">
+  <target name="package.sources" depends="update-common-assemblyinfo">
     <!-- Copy global solution + build files -->
     <copy todir="${package.dir}">
       <fileset basedir="${root.dir}">
@@ -222,10 +221,6 @@
         <exclude name="*.cache"/>
       </fileset>
     </copy>
-
-    <!-- Copy shared module files -->
-    <copy tofile="${package.dir}/src/CommonAssemblyInfo.cs"
-          file="${root.dir}/src/CommonAssemblyInfo.cs.template"/>
 
     <!-- Copy Common.Logging sources -->
     <copy todir="${package.dir}" failonerror="true" >
@@ -463,6 +458,31 @@ ${tool.dir}       : dir for tools
   </target>
 
   <target name="update-common-assemblyinfo">
+	<!-- ensure src/CommonAssemblyInfo.cs is writable if it already exists -->
+    <attrib file="${root.dir}/src/CommonAssemblyInfo.cs" readonly="false" if="${file::exists('${root.dir}/src/CommonAssemblyInfo.cs')}" />
+	
+	<property name="informational.version" value="${package.version}" />
+	<property name="informational.version" value="${package.version + '-' + nuget.version.suffix}" if="${property::exists('nuget.version.suffix')}"/>
+	
+	
+	<loadfile file="${root.dir}/src/CommonAssemblyInfo.cs.template" property="AssemblyInfoTemplateContents">
+		<filterchain>
+			<replacetokens>
+				<token key="ASSEMBLY_CONFIGURATION_ATTRIBUTE" value="${framework::get-target-framework()}.${platform::get-name()}; ${project.releasetype}" />
+				<token key="ASSEMBLY_INFORMATIONAL_VERSION_ATTRIBUTE" value="${informational.version}; ${framework::get-target-framework()}.${platform::get-name()}; ${project.releasetype}" />
+				<token key="INFORMATIONAL_VERSION" value="${informational.version}" />
+				<token key="ASSEMBLY_VERSION_ATTRIBUTE" value="${package.version}" />
+			</replacetokens>
+		</filterchain>
+	</loadfile>
+	
+	<echo file="${root.dir}/src/CommonAssemblyInfo.cs" message="${AssemblyInfoTemplateContents}" />
+	
+  </target>
+  
+  
+  
+  
 
     <!-- ensure src/CommonAssemblyInfo.cs is writable if it already exists -->
     <attrib file="${root.dir}/src/CommonAssemblyInfo.cs" readonly="false" if="${file::exists('${root.dir}/src/CommonAssemblyInfo.cs')}" />
