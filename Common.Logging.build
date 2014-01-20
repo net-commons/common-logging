@@ -480,45 +480,6 @@ ${tool.dir}       : dir for tools
 	
   </target>
   
-  
-  
-  
-
-    <!-- ensure src/CommonAssemblyInfo.cs is writable if it already exists -->
-    <attrib file="${root.dir}/src/CommonAssemblyInfo.cs" readonly="false" if="${file::exists('${root.dir}/src/CommonAssemblyInfo.cs')}" />
-	
-	<property name="informational.version" value="${package.version}" />
-	<property name="informational.version" value="${package.version + '-' + nuget.version.suffix}" if="${property::exists('nuget.version.suffix')}"/>
-
-    <!-- generate the source file holding the common assembly-level attributes -->
-    <asminfo output="${root.dir}/src/CommonAssemblyInfo.cs" language="CSharp">
-      <imports>
-        <import namespace="System" />
-        <import namespace="System.Reflection" />
-        <import namespace="System.Runtime.InteropServices" />
-        <import namespace="System.Security" />
-        <import namespace="System.Security.Permissions" />
-      </imports>
-      <attributes>
-        <attribute type="CLSCompliantAttribute" value="true" />
-        <attribute type="ComVisibleAttribute" value="false" />
-        <attribute type="AllowPartiallyTrustedCallersAttribute" asis="true"/>
-        <!-- attribute type="SecurityTransparentAttribute" asis="true"/ -->
-        <if test="${nant.settings.currentframwork} != 'net-2.0'" >
-			<attribute type="SecurityPermissionAttribute" value="SecurityAction.RequestMinimum" asis="true"/>
-        </if>
-		<attribute type="AssemblyCompanyAttribute" value="http://netcommon.sourceforge.net/" />
-        <attribute type="AssemblyCopyrightAttribute" value="Copyright 2006-2011 the Common Infrastructure Libraries Team." />
-        <attribute type="AssemblyTrademarkAttribute" value="Apache License, Version 2.0" />
-        <attribute type="AssemblyCultureAttribute" value="" />
-        <attribute type="AssemblyVersionAttribute" value="${package.version}" />
-        <attribute type="AssemblyConfigurationAttribute" value="${framework::get-target-framework()}.${platform::get-name()}; ${project.releasetype}" />
-        <attribute type="AssemblyInformationalVersionAttribute" value="${informational.version}; ${framework::get-target-framework()}.${platform::get-name()}; ${project.releasetype}" />
-        <attribute type="AssemblyDelaySignAttribute" value="false" />
-      </attributes>
-    </asminfo>
-  </target>
-  
     <target name="check-nuget-package-dir">
     <fail message="The NuGet package directory has not been specified."
           if="${not property::exists('nuget.package.dir')}"/>
