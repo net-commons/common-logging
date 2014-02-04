@@ -48,3 +48,5 @@ src/Common.Logging.Log4Net1211/Common.Logging.Log4Net1211.xml
 src/Common.Logging.NLog10/Common.Logging.NLog10.xml
 src/Common.Logging.NLog20/Common.Logging.NLog20.xml
 src/Common.Logging/Common.Logging.xml
+
+test/Common.Logging.Tests/test-results/Common.Logging.Tests.2010.csproj-Debug-2013-07-14.xml

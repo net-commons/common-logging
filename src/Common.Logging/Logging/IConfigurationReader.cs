@@ -18,8 +18,6 @@
 
 #endregion
 
-using System.Configuration;
-
 namespace Common.Logging
 {
 
