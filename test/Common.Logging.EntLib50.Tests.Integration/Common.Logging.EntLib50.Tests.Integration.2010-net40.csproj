@@ -74,7 +74,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\src\Common.Logging.EntLib50\Common.Logging.EntLib50.2010-net40.csproj">
       <Project>{8E5D50C8-85AC-41EA-AA26-2667494D4FAF}</Project>
-      <Name>Common.Logging.EntLib50-net40</Name>
+      <Name>Common.Logging.EntLib50.2010-net40</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\src\Common.Logging\Common.Logging.2010-net40.csproj">
       <Project>{440D903A-D409-48FC-A6C4-3EE69CCD663B}</Project>
