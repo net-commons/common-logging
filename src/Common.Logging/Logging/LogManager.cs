@@ -202,6 +202,16 @@ namespace Common.Logging
             StackFrame frame = new StackFrame(1, false);
             ILoggerFactoryAdapter adapter = Adapter;
             MethodBase method = frame.GetMethod();
+            MethodBase upperMethod = method;
+            for(var offset = 2; ; offset++)
+            {
+                if((upperMethod == null) || !upperMethod.IsConstructor)
+                {
+                    break;
+                }
+                method = upperMethod;
+                upperMethod = new StackFrame(offset, false).GetMethod();
+            }
             Type declaringType = method.DeclaringType;
             return adapter.GetLogger(declaringType);
         }
