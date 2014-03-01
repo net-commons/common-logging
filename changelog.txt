@@ -3,6 +3,15 @@ Common.Logging CHANGELOG
 http://github.com/net-commons/common-logging
 http://netcommon.sf.net
 
+Release 2.2.0, March 1 2014
+
+Summary: New Features and Bug Fix release
+
+Bug Fixes
+
+
+---------------------------
+
 Release 2.1.1, June 9 2012
 
 Summary: New Features and Bug Fix release
