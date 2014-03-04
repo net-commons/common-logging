@@ -97,11 +97,10 @@ namespace Common.Logging.Simple
 
             // Print to the appropriate destination
 #if !SILVERLIGHT
-            if (this.useColor)
+            ConsoleColor color;
+            if (this.useColor && colors.TryGetValue(level, out color))
             {
                 var originalColor = Console.ForegroundColor;
-                ConsoleColor color = originalColor;
-                colors.TryGetValue(level, out color);
                 try
                 {
                     Console.ForegroundColor = color;
