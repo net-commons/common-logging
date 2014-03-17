@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Common.Logging.EntLib60</id>
+    <version>0.0.0</version>
+    <!-- placeholder value replaced by build script -->
+    <authors>Adrian Hope-Bailie, Aleksandar Seovic, Mark Pollack, Erich Eichinger, Stephen Bohlen</authors>
+    <owners>Aleksandar Seovic, Mark Pollack, Erich Eichinger, Stephen Bohlen</owners>
+    <projectUrl>http://netcommon.sourceforge.net/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Common.Logging library bindings for Enterprise Library 6.0 logging framework.</description>
+    <language>en-US</language>
+    <dependencies>
+      <dependency id="Common.Logging" version="2.0.0" />
+      <dependency id="EnterpriseLibrary.Common" version="6.0.1304" />
+      <dependency id="EnterpriseLibrary.Logging" version="6.0.1304" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="..\..\build\net45\Common.Logging.EntLib60\Release\Common.Logging.Entlib60.dll" target="lib\net45" />
+    <file src="..\..\build\net45\Common.Logging.EntLib60\Release\Common.Logging.Entlib60.pdb" target="lib\net45" />
+    <file src="..\..\build\net45\Common.Logging.EntLib60\Release\Common.Logging.Entlib60.xml" target="lib\net45" />
+  </files>
+</package>
