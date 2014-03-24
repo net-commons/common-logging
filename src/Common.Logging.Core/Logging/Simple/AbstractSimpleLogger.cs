@@ -23,7 +23,11 @@ using System.Globalization;
 using System.Text;
 using Common.Logging.Factory;
 
+#if !PORTABLE
 namespace Common.Logging.Simple
+#else
+namespace Common.Logging.Simple.Core
+#endif
 {
     /// <summary>
     /// Abstract class providing a standard implementation of simple loggers.
@@ -31,8 +35,10 @@ namespace Common.Logging.Simple
     /// <author>Erich Eichinger</author>
 #if !PORTABLE
     [Serializable]
-#endif
     public abstract class AbstractSimpleLogger : AbstractLogger
+#else
+    public abstract class AbstractSimpleLogger : Common.Logging.Factory.Core.AbstractLogger
+#endif
     {
         private readonly string _name;
         private readonly bool _showLevel;
@@ -110,7 +116,7 @@ namespace Common.Logging.Simple
 
 
         #endregion
-        
+
         /// <summary>
         /// Creates and initializes a the simple logger.
         /// </summary>

@@ -70,6 +70,10 @@
       <Project>{A777809C-DB8B-4399-B6D4-8B1A4877A0AF}</Project>
       <Name>Common.Logging.Core.2010</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Common.Logging\Common.Logging.2010-net40.csproj">
+      <Project>{440d903a-d409-48fc-a6c4-3ee69ccd663b}</Project>
+      <Name>Common.Logging.2010-net40</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />

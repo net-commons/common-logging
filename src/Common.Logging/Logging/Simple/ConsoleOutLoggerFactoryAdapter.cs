@@ -58,7 +58,7 @@ namespace Common.Logging.Simple
     /// <author>Gilles Bayon</author>
     /// <author>Mark Pollack</author>
     /// <author>Erich Eichinger</author>
-    public class ConsoleOutLoggerFactoryAdapter : Simple.AbstractSimpleLoggerFactoryAdapter
+    public class ConsoleOutLoggerFactoryAdapter : Core.AbstractSimpleLoggerFactoryAdapter
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ConsoleOutLoggerFactoryAdapter"/> class using default 
@@ -99,7 +99,7 @@ namespace Common.Logging.Simple
         /// Initializes a new instance of the <see cref="AbstractSimpleLoggerFactoryAdapter"/> class with 
         /// default settings for the loggers created by this factory.
         /// </summary>
-        public ConsoleOutLoggerFactoryAdapter(LogLevel level, bool showDateTime, bool showLogName, bool showLevel, string dateTimeFormat) 
+        public ConsoleOutLoggerFactoryAdapter(LogLevel level, bool showDateTime, bool showLogName, bool showLevel, string dateTimeFormat)
             : base(level, showDateTime, showLogName, showLevel, dateTimeFormat)
         { }
 

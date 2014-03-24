@@ -22,7 +22,11 @@ using Common.Logging.Factory;
 using Common.Logging.Configuration;
 using System;
 
+#if !PORTABLE
 namespace Common.Logging.Simple
+#else
+namespace Common.Logging.Simple.Core
+#endif
 {
     /// <summary>
     /// Base factory implementation for creating simple <see cref="ILog" /> instances.

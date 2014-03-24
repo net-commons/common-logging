@@ -21,15 +21,18 @@
 using System;
 using FormatMessageCallback = System.Action<Common.Logging.FormatMessageHandler>;
 
+#if !PORTABLE
 namespace Common.Logging.Simple
+#else
+namespace Common.Logging.Simple.Core
+#endif
 {
     /// <summary>
     /// Silently ignores all log messages.
     /// </summary>
     /// <author>Gilles Bayon</author>
     /// <author>Erich Eichinger</author>
-#if PORTABLE
-#else
+#if !PORTABLE
     [Serializable]
 #endif
     [CoverageExclude]

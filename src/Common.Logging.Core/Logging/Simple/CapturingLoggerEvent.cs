@@ -1,6 +1,10 @@
 using System;
 
+#if !PORTABLE
 namespace Common.Logging.Simple
+#else
+namespace Common.Logging.Simple.Core
+#endif
 {
     /// <summary>
     /// A logging event captured by <see cref="CapturingLogger"/>

@@ -2,14 +2,24 @@ using System;
 using System.Collections.Generic;
 using Common.Logging.Configuration;
 
+
+#if !PORTABLE
 namespace Common.Logging.Simple
+#else
+namespace Common.Logging.Simple.Core
+#endif
+
 {
     /// <summary>
     /// A logger created by <see cref="CapturingLoggerFactoryAdapter"/> that 
     /// sends all log events to the owning adapter's <see cref="CapturingLoggerFactoryAdapter.AddEvent"/>
     /// </summary>
     /// <author>Erich Eichinger</author>
-    public class CapturingLogger : AbstractSimpleLogger
+#if !PORTABLE
+    public class CapturingLogger : Common.Logging.Simple.AbstractSimpleLogger
+#else
+    public class CapturingLogger : Common.Logging.Simple.Core.AbstractSimpleLogger
+#endif
     {
         /// <summary>
         /// The adapter that created this logger instance.

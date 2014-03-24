@@ -21,7 +21,11 @@
 using System;
 using Common.Logging.Configuration;
 
+#if !PORTABLE
 namespace Common.Logging.Simple
+#else
+namespace Common.Logging.Simple.Core
+#endif
 {
     /// <summary>
     /// Factory for creating <see cref="ILog" /> instances that silently ignores

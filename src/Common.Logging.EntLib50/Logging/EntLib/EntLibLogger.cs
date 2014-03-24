@@ -37,6 +37,7 @@ namespace Common.Logging.EntLib
     /// <seealso cref="EntLibLoggerFactoryAdapter"/>
     /// <author>Mark Pollack</author>
     /// <author>Erich Eichinger</author>
+    [Serializable]
     public class EntLibLogger  : AbstractLogger
     {
         private class TraceLevelLogEntry : LogEntry

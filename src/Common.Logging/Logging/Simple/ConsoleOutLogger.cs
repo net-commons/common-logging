@@ -31,7 +31,7 @@ namespace Common.Logging.Simple
 #else
     [Serializable]
 #endif
-    public class ConsoleOutLogger : Simple.AbstractSimpleLogger
+    public class ConsoleOutLogger : Core.AbstractSimpleLogger
     {
         /// <summary>
         /// Creates and initializes a logger that writes messages to <see cref="Console.Out" />.

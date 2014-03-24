@@ -65,6 +65,10 @@
       <Project>{8E5D50C8-85AC-41EA-AA26-2667494D4FAF}</Project>
       <Name>Common.Logging.EntLib50.2010-net40</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\src\Common.Logging\Common.Logging.2010-net40.csproj">
+      <Project>{440d903a-d409-48fc-a6c4-3ee69ccd663b}</Project>
+      <Name>Common.Logging.2010-net40</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Common.Logging.TestUtils\Common.Logging.TestUtils-net40.csproj">
       <Project>{F5193CD8-B431-48ED-B101-D8DBEF766140}</Project>
       <Name>Common.Logging.TestUtils-net40</Name>

@@ -21,7 +21,11 @@
 using System;
 using Common.Logging.Configuration;
 
+#if !PORTABLE
 namespace Common.Logging.Simple
+#else
+namespace Common.Logging.Simple.Core
+#endif
 {
     /// <summary>
     /// Factory for creating <see cref="ILog" /> instances that write data using <see cref="System.Diagnostics.Debug.WriteLine(string)" />.
@@ -57,7 +61,11 @@ namespace Common.Logging.Simple
     /// <author>Gilles Bayon</author>
     /// <author>Mark Pollack</author>
     /// <author>Erich Eichinger</author>
+#if !PORTABLE
     public class DebugLoggerFactoryAdapter : AbstractSimpleLoggerFactoryAdapter
+#else
+    public class DebugLoggerFactoryAdapter : Common.Logging.Simple.Core.AbstractSimpleLoggerFactoryAdapter
+#endif
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="DebugLoggerFactoryAdapter"/> class using default 

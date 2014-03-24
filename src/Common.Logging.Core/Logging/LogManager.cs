@@ -37,7 +37,11 @@ using System.Security;
 using System.Security.Permissions;
 #endif
 
+#if PORTABLE
+namespace Common.Logging.Core
+#else
 namespace Common.Logging
+#endif
 {
     /// <summary>
     /// Use the LogManager's <see cref="GetLogger(string)"/> or <see cref="GetLogger(System.Type)"/> 
@@ -365,7 +369,13 @@ namespace Common.Logging
 #else
                 Trace.WriteLine(message);
 #endif
+
+#if PORTABLE
+                ILoggerFactoryAdapter defaultFactory = new Simple.Core.NoOpLoggerFactoryAdapter();
+#else
                 ILoggerFactoryAdapter defaultFactory = new NoOpLoggerFactoryAdapter();
+#endif
+                
                 return defaultFactory;
             }
 

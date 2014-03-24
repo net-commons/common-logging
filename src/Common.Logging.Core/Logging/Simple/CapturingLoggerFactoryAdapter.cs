@@ -2,7 +2,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
+#if !PORTABLE
 namespace Common.Logging.Simple
+#else
+namespace Common.Logging.Simple.Core
+#endif
 {
     /// <summary>
     /// An adapter, who's loggers capture all log events and send them to <see cref="AddEvent"/>. 

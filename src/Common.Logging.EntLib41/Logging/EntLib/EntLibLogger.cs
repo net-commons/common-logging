@@ -37,14 +37,15 @@ namespace Common.Logging.EntLib
     /// <seealso cref="EntLibLoggerFactoryAdapter"/>
     /// <author>Mark Pollack</author>
     /// <author>Erich Eichinger</author>
-    public class EntLibLogger  : AbstractLogger
+    [Serializable]
+    public class EntLibLogger : AbstractLogger
     {
         private class TraceLevelLogEntry : LogEntry
         {
             public TraceLevelLogEntry(string category, TraceEventType severity)
             {
                 Categories.Add(category);
-                Severity = severity;               
+                Severity = severity;
             }
         }
 
@@ -153,7 +154,7 @@ namespace Common.Logging.EntLib
 
 
         #endregion
-        
+
         /// <summary>
         /// Actually sends the message to the EnterpriseLogging log system.
         /// </summary>
@@ -260,7 +261,7 @@ namespace Common.Logging.EntLib
                 string errorMessage = settings.exceptionFormat
                     .Replace("$(exception.message)", exception.Message)
                     .Replace("$(exception.source)", exception.Source)
-                    .Replace("$(exception.targetsite)", (exception.TargetSite==null)?string.Empty:exception.TargetSite.ToString())
+                    .Replace("$(exception.targetsite)", (exception.TargetSite == null) ? string.Empty : exception.TargetSite.ToString())
                     .Replace("$(exception.stacktrace)", exception.StackTrace)
                     ;
                 //                StringBuilder sb = new StringBuilder(128);
