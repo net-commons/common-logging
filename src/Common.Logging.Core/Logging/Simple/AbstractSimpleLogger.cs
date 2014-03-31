@@ -23,7 +23,7 @@ using System.Globalization;
 using System.Text;
 using Common.Logging.Factory;
 
-#if !PORTABLE
+#if !PORTABLE && !LOGGING_CORE
 namespace Common.Logging.Simple
 #else
 namespace Common.Logging.Simple.Core
@@ -35,6 +35,9 @@ namespace Common.Logging.Simple.Core
     /// <author>Erich Eichinger</author>
 #if !PORTABLE
     [Serializable]
+#endif
+
+#if !PORTABLE && !LOGGING_CORE
     public abstract class AbstractSimpleLogger : AbstractLogger
 #else
     public abstract class AbstractSimpleLogger : Common.Logging.Factory.Core.AbstractLogger

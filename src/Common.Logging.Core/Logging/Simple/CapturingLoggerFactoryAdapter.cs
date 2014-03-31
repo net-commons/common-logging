@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-#if !PORTABLE
+#if !PORTABLE && !LOGGING_CORE
 namespace Common.Logging.Simple
 #else
 namespace Common.Logging.Simple.Core

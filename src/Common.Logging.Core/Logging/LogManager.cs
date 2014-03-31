@@ -37,7 +37,7 @@ using System.Security;
 using System.Security.Permissions;
 #endif
 
-#if PORTABLE
+#if PORTABLE || LOGGING_CORE
 namespace Common.Logging.Core
 #else
 namespace Common.Logging
@@ -370,7 +370,7 @@ namespace Common.Logging
                 Trace.WriteLine(message);
 #endif
 
-#if PORTABLE
+#if PORTABLE || LOGGING_CORE
                 ILoggerFactoryAdapter defaultFactory = new Simple.Core.NoOpLoggerFactoryAdapter();
 #else
                 ILoggerFactoryAdapter defaultFactory = new NoOpLoggerFactoryAdapter();

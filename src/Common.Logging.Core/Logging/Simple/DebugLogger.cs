@@ -22,7 +22,7 @@ using System;
 using System.Text;
 using System.Diagnostics;
 
-#if !PORTABLE
+#if !PORTABLE && !LOGGING_CORE
 namespace Common.Logging.Simple
 #else
 namespace Common.Logging.Simple.Core
@@ -34,6 +34,9 @@ namespace Common.Logging.Simple.Core
     /// <author>Gilles Bayon</author>
 #if !PORTABLE
     [Serializable]
+#endif
+
+#if !PORTABLE && !LOGGING_CORE
     public class DebugOutLogger : AbstractSimpleLogger
 #else
     public class DebugOutLogger : Common.Logging.Simple.Core.AbstractSimpleLogger

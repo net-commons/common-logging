@@ -22,7 +22,7 @@ using Common.Logging.Factory;
 using Common.Logging.Configuration;
 using System;
 
-#if !PORTABLE
+#if !PORTABLE && !LOGGING_CORE
 namespace Common.Logging.Simple
 #else
 namespace Common.Logging.Simple.Core

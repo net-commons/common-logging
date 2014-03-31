@@ -21,7 +21,7 @@
 using System;
 using FormatMessageCallback = System.Action<Common.Logging.FormatMessageHandler>;
 
-#if !PORTABLE
+#if !PORTABLE && !LOGGING_CORE
 namespace Common.Logging.Simple
 #else
 namespace Common.Logging.Simple.Core

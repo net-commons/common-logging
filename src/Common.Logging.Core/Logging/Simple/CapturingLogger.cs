@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Common.Logging.Configuration;
 
 
-#if !PORTABLE
+#if !PORTABLE&& !LOGGING_CORE
 namespace Common.Logging.Simple
 #else
 namespace Common.Logging.Simple.Core
@@ -15,7 +15,7 @@ namespace Common.Logging.Simple.Core
     /// sends all log events to the owning adapter's <see cref="CapturingLoggerFactoryAdapter.AddEvent"/>
     /// </summary>
     /// <author>Erich Eichinger</author>
-#if !PORTABLE
+#if !PORTABLE && !LOGGING_CORE
     public class CapturingLogger : Common.Logging.Simple.AbstractSimpleLogger
 #else
     public class CapturingLogger : Common.Logging.Simple.Core.AbstractSimpleLogger
