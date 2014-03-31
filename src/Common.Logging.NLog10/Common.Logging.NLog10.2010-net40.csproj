@@ -73,10 +73,8 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>CommonAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="AssemblyDoc.cs" />
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="Logging\NLog\CommonLoggingTarget.cs" />
-    <Compile Include="Logging\NLog\NamespaceDoc.cs" />
     <Compile Include="Logging\NLog\NLogLogger.cs" />
     <Compile Include="Logging\NLog\NLogLoggerFactoryAdapter.cs" />
   </ItemGroup>

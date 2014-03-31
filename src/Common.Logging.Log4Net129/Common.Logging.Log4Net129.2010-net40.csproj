@@ -71,12 +71,10 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>CommonAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="AssemblyDoc.cs" />
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="Logging\Log4Net\CommonLoggingAppender.cs" />
     <Compile Include="Logging\Log4Net\Log4NetLogger.cs" />
     <Compile Include="Logging\Log4Net\Log4NetLoggerFactoryAdapter.cs" />
-    <Compile Include="Logging\Log4Net\NamespaceDoc.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common.Logging.Core\Common.Logging.Core.2010.csproj">

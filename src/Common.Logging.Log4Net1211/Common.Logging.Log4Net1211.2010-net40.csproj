@@ -45,9 +45,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\Common.Logging.Log4Net129\AssemblyDoc.cs">
-      <Link>AssemblyDoc.cs</Link>
-    </Compile>
     <Compile Include="..\Common.Logging.Log4Net129\Logging\Log4Net\CommonLoggingAppender.cs">
       <Link>Logging\Log4Net\CommonLoggingAppender.cs</Link>
     </Compile>
@@ -56,9 +53,6 @@
     </Compile>
     <Compile Include="..\Common.Logging.Log4Net129\Logging\Log4Net\Log4NetLoggerFactoryAdapter.cs">
       <Link>Logging\Log4Net\Log4NetLoggerFactoryAdapter.cs</Link>
-    </Compile>
-    <Compile Include="..\Common.Logging.Log4Net129\Logging\Log4Net\NamespaceDoc.cs">
-      <Link>Logging\Log4Net\NamespaceDoc.cs</Link>
     </Compile>
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>CommonAssemblyInfo.cs</Link>
