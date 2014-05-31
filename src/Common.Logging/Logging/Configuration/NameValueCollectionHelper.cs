@@ -7,7 +7,7 @@ namespace Common.Logging.Configuration
     /// <summary>
     /// Helper class for working with NameValueCollection
     /// </summary>
-#if LOGGING_CORE && !PORTABLE // Also make it availible in net20 common.logging.core build 
+#if LOGGING_CORE && !PORTABLE // Also make it availible in net20 Common.Logging.Portable build 
     static class NameValueCollectionHelper 
 #else
     public static class NameValueCollectionHelper

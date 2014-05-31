@@ -93,9 +93,9 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Common.Logging.Core\Common.Logging.Core.2010.csproj">
+    <ProjectReference Include="..\..\src\Common.Logging.Portable\Common.Logging.Portable.2010.csproj">
       <Project>{A777809C-DB8B-4399-B6D4-8B1A4877A0AF}</Project>
-      <Name>Common.Logging.Core.2010-portable</Name>
+      <Name>Common.Logging.Portable.2010-portable</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\src\Common.Logging\Common.Logging.2010-sl40.csproj">
       <Project>{C185F156-BEFC-44A0-8F25-065558AEDB6A}</Project>

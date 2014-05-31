@@ -74,9 +74,9 @@
     <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Common.Logging.Core\Common.Logging.Core.2010.csproj">
+    <ProjectReference Include="..\Common.Logging.Portable\Common.Logging.Portable.2010.csproj">
       <Project>{A777809C-DB8B-4399-B6D4-8B1A4877A0AF}</Project>
-      <Name>Common.Logging.Core.2010</Name>
+      <Name>Common.Logging.Portable.2010</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />

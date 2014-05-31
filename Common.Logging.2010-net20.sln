@@ -15,7 +15,7 @@ EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "SimpleWebApplication", "examples\SimpleWebApplication\", "{BFE997BA-52EB-424C-A356-DEAB85880012}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv2.0"
-		ProjectReferences = "{440D903A-D409-48FC-A6C4-3EE69CCD663B}|Common.Logging.dll;{0FEA262C-4EAF-49DB-8D32-8E90DDEF23B6}|Common.Logging.Log4Net1210.dll;{A777809C-DB8B-4399-B6D4-8B1A4877A0AF}|Common.Logging.Core.dll;"
+		ProjectReferences = "{440D903A-D409-48FC-A6C4-3EE69CCD663B}|Common.Logging.dll;{0FEA262C-4EAF-49DB-8D32-8E90DDEF23B6}|Common.Logging.Log4Net1210.dll;{A777809C-DB8B-4399-B6D4-8B1A4877A0AF}|Common.Logging.Portable.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/SimpleWebApplication"
 		Debug.AspNetCompiler.PhysicalPath = "examples\SimpleWebApplication\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\SimpleWebApplication\"
@@ -117,7 +117,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.NLog20.Tests
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.NLog20.2010", "src\Common.Logging.NLog20\Common.Logging.NLog20.2010.csproj", "{4080ED68-81A9-45C1-8F22-B6015E42756B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.Core.2010-net20", "src\Common.Logging.Core\Common.Logging.Core.2010-net20.csproj", "{A777809C-DB8B-4399-B6D4-8B1A4877A0AF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.Portable.2010-net20", "src\Common.Logging.Portable\Common.Logging.Portable.2010-net20.csproj", "{A777809C-DB8B-4399-B6D4-8B1A4877A0AF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

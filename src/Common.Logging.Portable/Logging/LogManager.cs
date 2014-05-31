@@ -38,7 +38,7 @@ using System.Security.Permissions;
 #endif
 
 #if PORTABLE || LOGGING_CORE
-namespace Common.Logging.Core
+namespace Common.Logging.Portable
 #else
 namespace Common.Logging
 #endif

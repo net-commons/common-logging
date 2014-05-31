@@ -24,7 +24,7 @@ using System.Security.Permissions;
 [assembly: AssemblyInformationalVersionAttribute("2.0.0; portable; release")]
 #else
 // Note - if we decide to skip SL4+WP support and only Support SL5 then we should be able to specify AllowPartiallyTrustedCallersAttribute
-// even for Common.Logging.Core
+// even for Common.Logging.Portable
 [assembly: AllowPartiallyTrustedCallers()]
 [assembly: AssemblyConfigurationAttribute("net-2.0.win32; dev")]
 [assembly: AssemblyInformationalVersionAttribute("2.0.0; net-2.0.win32; dev")]

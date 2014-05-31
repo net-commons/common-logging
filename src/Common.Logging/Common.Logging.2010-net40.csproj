@@ -68,40 +68,40 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\Common.Logging.Core\Logging\Factory\AbstractLogger.cs">
+    <Compile Include="..\Common.Logging.Portable\Logging\Factory\AbstractLogger.cs">
       <Link>Logging\Factory\AbstractLogger.cs</Link>
     </Compile>
-    <Compile Include="..\Common.Logging.Core\Logging\LogManager.cs">
+    <Compile Include="..\Common.Logging.Portable\Logging\LogManager.cs">
       <Link>Logging\LogManager.cs</Link>
     </Compile>
-    <Compile Include="..\Common.Logging.Core\Logging\Simple\AbstractSimpleLogger.cs">
+    <Compile Include="..\Common.Logging.Portable\Logging\Simple\AbstractSimpleLogger.cs">
       <Link>Logging\Simple\AbstractSimpleLogger.cs</Link>
     </Compile>
-    <Compile Include="..\Common.Logging.Core\Logging\Simple\AbstractSimpleLoggerFactoryAdapter.cs">
+    <Compile Include="..\Common.Logging.Portable\Logging\Simple\AbstractSimpleLoggerFactoryAdapter.cs">
       <Link>Logging\Simple\AbstractSimpleLoggerFactoryAdapter.cs</Link>
     </Compile>
-    <Compile Include="..\Common.Logging.Core\Logging\Simple\CapturingLogger.cs">
+    <Compile Include="..\Common.Logging.Portable\Logging\Simple\CapturingLogger.cs">
       <Link>Logging\Simple\CapturingLogger.cs</Link>
     </Compile>
-    <Compile Include="..\Common.Logging.Core\Logging\Simple\CapturingLoggerEvent.cs">
+    <Compile Include="..\Common.Logging.Portable\Logging\Simple\CapturingLoggerEvent.cs">
       <Link>Logging\Simple\CapturingLoggerEvent.cs</Link>
     </Compile>
-    <Compile Include="..\Common.Logging.Core\Logging\Simple\CapturingLoggerFactoryAdapter.cs">
+    <Compile Include="..\Common.Logging.Portable\Logging\Simple\CapturingLoggerFactoryAdapter.cs">
       <Link>Logging\Simple\CapturingLoggerFactoryAdapter.cs</Link>
     </Compile>
-    <Compile Include="..\Common.Logging.Core\Logging\Simple\DebugLogger.cs">
+    <Compile Include="..\Common.Logging.Portable\Logging\Simple\DebugLogger.cs">
       <Link>Logging\Simple\DebugLogger.cs</Link>
     </Compile>
-    <Compile Include="..\Common.Logging.Core\Logging\Simple\DebugLoggerFactoryAdapter.cs">
+    <Compile Include="..\Common.Logging.Portable\Logging\Simple\DebugLoggerFactoryAdapter.cs">
       <Link>Logging\Simple\DebugLoggerFactoryAdapter.cs</Link>
     </Compile>
-    <Compile Include="..\Common.Logging.Core\Logging\Simple\ExceptionFormatter.cs">
+    <Compile Include="..\Common.Logging.Portable\Logging\Simple\ExceptionFormatter.cs">
       <Link>Logging\Simple\ExceptionFormatter.cs</Link>
     </Compile>
-    <Compile Include="..\Common.Logging.Core\Logging\Simple\NoOpLogger.cs">
+    <Compile Include="..\Common.Logging.Portable\Logging\Simple\NoOpLogger.cs">
       <Link>Logging\Simple\NoOpLogger.cs</Link>
     </Compile>
-    <Compile Include="..\Common.Logging.Core\Logging\Simple\NoOpLoggerFactoryAdapter.cs">
+    <Compile Include="..\Common.Logging.Portable\Logging\Simple\NoOpLoggerFactoryAdapter.cs">
       <Link>Logging\Simple\NoOpLoggerFactoryAdapter.cs</Link>
     </Compile>
     <Compile Include="..\CommonAssemblyInfo.cs">
@@ -146,9 +146,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Common.Logging.Core\Common.Logging.Core.2010.csproj">
+    <ProjectReference Include="..\Common.Logging.Portable\Common.Logging.Portable.2010.csproj">
       <Project>{A777809C-DB8B-4399-B6D4-8B1A4877A0AF}</Project>
-      <Name>Common.Logging.Core.2010</Name>
+      <Name>Common.Logging.Portable.2010</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

@@ -93,9 +93,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Common.Logging.Core\Common.Logging.Core.2010.csproj">
+    <ProjectReference Include="..\..\src\Common.Logging.Portable\Common.Logging.Portable.2010.csproj">
       <Project>{A777809C-DB8B-4399-B6D4-8B1A4877A0AF}</Project>
-      <Name>Common.Logging.Core.2010</Name>
+      <Name>Common.Logging.Portable.2010</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\src\Common.Logging.Log4Net1211\Common.Logging.Log4Net1211.2010-net40.csproj">
       <Project>{2756B5D0-B576-417F-A107-1695DF76D34A}</Project>
