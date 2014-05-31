@@ -34,7 +34,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>..\..\build\sl40\Common.Logging\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;SILVERLIGHT PORTABLE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;SILVERLIGHT;PORTABLE</DefineConstants>
     <NoStdLib>true</NoStdLib>
     <NoConfig>true</NoConfig>
     <ErrorReport>prompt</ErrorReport>

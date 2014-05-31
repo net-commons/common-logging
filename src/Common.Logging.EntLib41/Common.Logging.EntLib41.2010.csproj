@@ -77,7 +77,6 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>CommonAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="AssemblyDoc.cs" />
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="Logging\EntLib\CommonLoggingEntlibTraceListener.cs" />
     <Compile Include="Logging\EntLib\CommonLoggingEntlibTraceListenerAssembler.cs" />
@@ -85,7 +84,6 @@
     <Compile Include="Logging\EntLib\EntLibLogger.cs" />
     <Compile Include="Logging\EntLib\EntLibLoggerFactoryAdapter.cs" />
     <Compile Include="Logging\EntLib\EntLibLoggerSettings.cs" />
-    <Compile Include="Logging\EntLib\NamespaceDoc.cs" />
     <Compile Include="Logging\EntLib\SeverityFilter.cs" />
   </ItemGroup>
   <ItemGroup>

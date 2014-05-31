@@ -51,7 +51,7 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>..\..\build\net20\Common.Logging\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <DefineConstants>TRACE;NET20</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>Common.Logging.xml</DocumentationFile>
@@ -105,15 +105,10 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>CommonAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="AssemblyDoc.cs" />
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="Logging\Configuration\NameValueCollectionHelper.cs" />
     <Compile Include="Logging\Simple\CommonLoggingTraceListener.cs" />
     <Compile Include="Logging\ConfigurationSectionHandler.cs" />
-    <Compile Include="Logging\NamespaceDoc.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="NamespaceDoc_Introduction.cs" />
     <Compile Include="Logging\Simple\ConsoleOutLogger.cs" />
     <Compile Include="Logging\Simple\ConsoleOutLoggerFactoryAdapter.cs" />
     <Compile Include="Logging\Simple\TraceLogger.cs" />

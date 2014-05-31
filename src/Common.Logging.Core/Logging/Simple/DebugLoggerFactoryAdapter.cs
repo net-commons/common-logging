@@ -57,7 +57,6 @@ namespace Common.Logging.Simple.Core
     /// </example>
     /// </remarks>
     /// <seealso cref="AbstractSimpleLoggerFactoryAdapter"/>
-    /// <seealso cref="LogManager.Adapter"/>
     /// <author>Gilles Bayon</author>
     /// <author>Mark Pollack</author>
     /// <author>Erich Eichinger</author>

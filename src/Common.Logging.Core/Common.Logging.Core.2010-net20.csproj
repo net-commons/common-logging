@@ -72,7 +72,6 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>CommonAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="AssemblyDoc.cs" />
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="CoverageExcludeAttribute.cs">
       <SubType>Code</SubType>
@@ -85,7 +84,6 @@
     <Compile Include="Logging\Simple\CapturingLoggerFactoryAdapter.cs" />
     <Compile Include="Logging\ConfigurationException.cs" />
     <Compile Include="Logging\Configuration\DefaultConfigurationReader.cs" />
-    <Compile Include="Logging\Factory\NamespaceDoc.cs" />
     <Compile Include="Logging\Configuration\ArgUtils.cs" />
     <Compile Include="Logging\FormatMessageHandler.cs" />
     <Compile Include="Logging\IConfigurationReader.cs" />
@@ -94,14 +92,9 @@
     <Compile Include="Logging\LogLevel.cs" />
     <Compile Include="Logging\LogManager.cs" />
     <Compile Include="Logging\Configuration\LogSetting.cs" />
-    <Compile Include="Logging\NamespaceDoc.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Logging\Simple\ExceptionFormatter.cs" />
-    <Compile Include="Logging\Configuration\NamespaceDoc.cs" />
     <Compile Include="Logging\Simple\AbstractSimpleLogger.cs" />
     <Compile Include="Logging\Simple\AbstractSimpleLoggerFactoryAdapter.cs" />
-    <Compile Include="NamespaceDoc_Introduction.cs" />
     <Compile Include="Logging\Simple\DebugLogger.cs" />
     <Compile Include="Logging\Simple\DebugLoggerFactoryAdapter.cs" />
     <Compile Include="Logging\Simple\NoOpLogger.cs" />

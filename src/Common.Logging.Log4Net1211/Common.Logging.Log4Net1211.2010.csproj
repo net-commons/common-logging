@@ -75,9 +75,6 @@
     <Compile Include="..\Common.Logging.Log4Net129\Logging\Log4Net\Log4NetLoggerFactoryAdapter.cs">
       <Link>Logging\Log4Net\Log4NetLoggerFactoryAdapter.cs</Link>
     </Compile>
-    <Compile Include="..\Common.Logging.Log4Net129\Logging\Log4Net\NamespaceDoc.cs">
-      <Link>Logging\Log4Net\NamespaceDoc.cs</Link>
-    </Compile>
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>CommonAssemblyInfo.cs</Link>
     </Compile>

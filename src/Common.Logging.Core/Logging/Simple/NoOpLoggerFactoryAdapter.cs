@@ -59,7 +59,6 @@ namespace Common.Logging.Simple.Core
     /// </code>
     /// </example>
     /// </remarks>
-    /// <seealso cref="LogManager.Adapter"/>
     /// <author>Gilles Bayon</author>
     public sealed class NoOpLoggerFactoryAdapter : ILoggerFactoryAdapter
     {
