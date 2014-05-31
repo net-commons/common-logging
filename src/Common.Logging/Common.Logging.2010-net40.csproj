@@ -71,6 +71,9 @@
     <Compile Include="..\Common.Logging.Portable\AssemblyInfo.cs">
       <Link>AssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="..\Common.Logging.Portable\CoverageExcludeAttribute.cs">
+      <Link>CoverageExcludeAttribute.cs</Link>
+    </Compile>
     <Compile Include="..\Common.Logging.Portable\Logging\ConfigurationException.cs">
       <Link>Logging\ConfigurationException.cs</Link>
     </Compile>
@@ -143,7 +146,6 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>CommonAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="CoverageExcludeAttribute.cs" />
     <Compile Include="Logging\Configuration\NameValueCollectionHelper.cs" />
     <Compile Include="Logging\Simple\CommonLoggingTraceListener.cs" />
     <Compile Include="Logging\ConfigurationSectionHandler.cs" />

@@ -66,8 +66,47 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\Common.Logging.Portable\AssemblyInfo.cs">
+      <Link>AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\Common.Logging.Portable\CoverageExcludeAttribute.cs">
+      <Link>CoverageExcludeAttribute.cs</Link>
+    </Compile>
+    <Compile Include="..\Common.Logging.Portable\Logging\ConfigurationException.cs">
+      <Link>Logging\ConfigurationException.cs</Link>
+    </Compile>
+    <Compile Include="..\Common.Logging.Portable\Logging\Configuration\ArgUtils.cs">
+      <Link>Logging\Configuration\ArgUtils.cs</Link>
+    </Compile>
+    <Compile Include="..\Common.Logging.Portable\Logging\Configuration\DefaultConfigurationReader.cs">
+      <Link>Logging\Configuration\DefaultConfigurationReader.cs</Link>
+    </Compile>
+    <Compile Include="..\Common.Logging.Portable\Logging\Configuration\LogSetting.cs">
+      <Link>Logging\Configuration\LogSetting.cs</Link>
+    </Compile>
+    <Compile Include="..\Common.Logging.Portable\Logging\Configuration\NameValueCollection.cs">
+      <Link>Logging\Configuration\NameValueCollection.cs</Link>
+    </Compile>
+    <Compile Include="..\Common.Logging.Portable\Logging\Factory\AbstractCachingLoggerFactoryAdapter.cs">
+      <Link>Logging\Factory\AbstractCachingLoggerFactoryAdapter.cs</Link>
+    </Compile>
     <Compile Include="..\Common.Logging.Portable\Logging\Factory\AbstractLogger.cs">
       <Link>Logging\Factory\AbstractLogger.cs</Link>
+    </Compile>
+    <Compile Include="..\Common.Logging.Portable\Logging\FormatMessageHandler.cs">
+      <Link>Logging\FormatMessageHandler.cs</Link>
+    </Compile>
+    <Compile Include="..\Common.Logging.Portable\Logging\IConfigurationReader.cs">
+      <Link>Logging\IConfigurationReader.cs</Link>
+    </Compile>
+    <Compile Include="..\Common.Logging.Portable\Logging\ILog.cs">
+      <Link>Logging\ILog.cs</Link>
+    </Compile>
+    <Compile Include="..\Common.Logging.Portable\Logging\ILoggerFactoryAdapter.cs">
+      <Link>Logging\ILoggerFactoryAdapter.cs</Link>
+    </Compile>
+    <Compile Include="..\Common.Logging.Portable\Logging\LogLevel.cs">
+      <Link>Logging\LogLevel.cs</Link>
     </Compile>
     <Compile Include="..\Common.Logging.Portable\Logging\LogManager.cs">
       <Link>Logging\LogManager.cs</Link>
@@ -105,7 +144,6 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>CommonAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="AssemblyInfo.cs" />
     <Compile Include="Logging\Configuration\NameValueCollectionHelper.cs" />
     <Compile Include="Logging\Simple\CommonLoggingTraceListener.cs" />
     <Compile Include="Logging\ConfigurationSectionHandler.cs" />
@@ -113,8 +151,6 @@
     <Compile Include="Logging\Simple\ConsoleOutLoggerFactoryAdapter.cs" />
     <Compile Include="Logging\Simple\TraceLogger.cs" />
     <Compile Include="Logging\Simple\TraceLoggerFactoryAdapter.cs" />
-    <Compile Include="CoverageExcludeAttribute.cs" />
-    <Compile Include="TypeForwardings.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -145,12 +181,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Common.Net.snk" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Common.Logging.Portable\Common.Logging.Portable.2010-net20.csproj">
-      <Project>{A777809C-DB8B-4399-B6D4-8B1A4877A0AF}</Project>
-      <Name>Common.Logging.Portable.2010-net20</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

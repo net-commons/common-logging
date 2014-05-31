@@ -65,10 +65,12 @@
     <Compile Include="..\Common.Logging.Portable\AssemblyInfo.cs">
       <Link>AssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="..\Common.Logging.Portable\CoverageExcludeAttribute.cs">
+      <Link>CoverageExcludeAttribute.cs</Link>
+    </Compile>
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>CommonAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="CoverageExcludeAttribute.cs" />
     <Compile Include="Logging\Simple\ConsoleOutLogger.cs" />
     <Compile Include="Logging\Simple\ConsoleOutLoggerFactoryAdapter.cs" />
   </ItemGroup>
