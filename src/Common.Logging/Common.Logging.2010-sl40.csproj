@@ -62,10 +62,12 @@
     <Reference Include="System.Windows.Browser" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\Common.Logging.Portable\AssemblyInfo.cs">
+      <Link>AssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>CommonAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="AssemblyInfo.cs" />
     <Compile Include="CoverageExcludeAttribute.cs" />
     <Compile Include="Logging\Simple\ConsoleOutLogger.cs" />
     <Compile Include="Logging\Simple\ConsoleOutLoggerFactoryAdapter.cs" />

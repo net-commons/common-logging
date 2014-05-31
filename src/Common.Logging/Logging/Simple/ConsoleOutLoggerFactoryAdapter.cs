@@ -58,7 +58,7 @@ namespace Common.Logging.Simple
     /// <author>Gilles Bayon</author>
     /// <author>Mark Pollack</author>
     /// <author>Erich Eichinger</author>
-    public class ConsoleOutLoggerFactoryAdapter : Core.AbstractSimpleLoggerFactoryAdapter
+    public class ConsoleOutLoggerFactoryAdapter : AbstractSimpleLoggerFactoryAdapter
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ConsoleOutLoggerFactoryAdapter"/> class using default 
