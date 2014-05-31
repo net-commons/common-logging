@@ -22,11 +22,7 @@ using System;
 using System.Text;
 using System.Diagnostics;
 
-#if !PORTABLE && !LOGGING_CORE
 namespace Common.Logging.Simple
-#else
-namespace Common.Logging.Simple.Core
-#endif
 {
     /// <summary>
     /// Sends log messages to <see cref="System.Diagnostics.Debug" />.
@@ -36,11 +32,7 @@ namespace Common.Logging.Simple.Core
     [Serializable]
 #endif
 
-#if !PORTABLE && !LOGGING_CORE
     public class DebugOutLogger : AbstractSimpleLogger
-#else
-    public class DebugOutLogger : Common.Logging.Simple.Core.AbstractSimpleLogger
-#endif
     {
         /// <summary>
         /// Creates and initializes a logger that writes messages to <see cref="System.Diagnostics.Debug" />.

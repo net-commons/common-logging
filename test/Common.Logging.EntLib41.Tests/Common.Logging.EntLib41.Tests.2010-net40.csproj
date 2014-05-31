@@ -76,10 +76,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Common.Logging.Portable\Common.Logging.Portable.2010.csproj">
-      <Project>{A777809C-DB8B-4399-B6D4-8B1A4877A0AF}</Project>
-      <Name>Common.Logging.Portable.2010</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\src\Common.Logging.EntLib41\Common.Logging.EntLib41.2010-net40.csproj">
       <Project>{F2C864F8-4BD9-431F-9810-70E377F95027}</Project>
       <Name>Common.Logging.EntLib41.2010-net40</Name>

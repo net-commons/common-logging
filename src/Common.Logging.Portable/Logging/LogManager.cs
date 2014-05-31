@@ -23,25 +23,19 @@ using System.Diagnostics;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using Common.Logging.Configuration;
+using Common.Logging.Simple;
 
 #if !NET20
 using System.Linq.Expressions;
 #endif
 
-#if PORTABLE
-using Common.Logging.Simple;
-#else
-using Common.Logging.Simple;
+#if !PORTABLE
 using System.Configuration;
 using System.Security;
 using System.Security.Permissions;
 #endif
 
-#if PORTABLE || LOGGING_CORE
-namespace Common.Logging.Portable
-#else
 namespace Common.Logging
-#endif
 {
     /// <summary>
     /// Use the LogManager's <see cref="GetLogger(string)"/> or <see cref="GetLogger(System.Type)"/> 
@@ -370,12 +364,7 @@ namespace Common.Logging
                 Trace.WriteLine(message);
 #endif
 
-#if PORTABLE || LOGGING_CORE
-                ILoggerFactoryAdapter defaultFactory = new Simple.Core.NoOpLoggerFactoryAdapter();
-#else
                 ILoggerFactoryAdapter defaultFactory = new NoOpLoggerFactoryAdapter();
-#endif
-                
                 return defaultFactory;
             }
 

@@ -26,11 +26,7 @@ using System.Text;
 using System.Threading;
 using System.Globalization;
 
-#if !PORTABLE && !LOGGING_CORE
 namespace Common.Logging.Simple
-#else
-namespace Common.Logging.Simple.Core
-#endif
 {
     /// <summary>
     /// </summary>

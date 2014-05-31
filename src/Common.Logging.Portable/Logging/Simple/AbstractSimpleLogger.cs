@@ -23,11 +23,7 @@ using System.Globalization;
 using System.Text;
 using Common.Logging.Factory;
 
-#if !PORTABLE && !LOGGING_CORE
 namespace Common.Logging.Simple
-#else
-namespace Common.Logging.Simple.Core
-#endif
 {
     /// <summary>
     /// Abstract class providing a standard implementation of simple loggers.
@@ -37,11 +33,7 @@ namespace Common.Logging.Simple.Core
     [Serializable]
 #endif
 
-#if !PORTABLE && !LOGGING_CORE
     public abstract class AbstractSimpleLogger : AbstractLogger
-#else
-    public abstract class AbstractSimpleLogger : Common.Logging.Factory.Core.AbstractLogger
-#endif
     {
         private readonly string _name;
         private readonly bool _showLevel;

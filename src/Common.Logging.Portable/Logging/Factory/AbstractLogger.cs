@@ -21,11 +21,7 @@
 using System;
 using FormatMessageCallback = System.Action<Common.Logging.FormatMessageHandler>;
 
-#if !PORTABLE && !LOGGING_CORE
 namespace Common.Logging.Factory
-#else
-namespace Common.Logging.Factory.Core
-#endif
 {
     /// <summary>
     /// Provides base implementation suitable for almost all logger adapters

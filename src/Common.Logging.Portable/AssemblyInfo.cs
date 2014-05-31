@@ -1,7 +1,4 @@
-using System.Reflection;
-using System.Security;
-using System.Runtime.CompilerServices;
 
-[assembly: AssemblyProduct("Common Logging Framework")]
-[assembly: SecurityTransparent]
+[assembly: System.Reflection.AssemblyProduct("Common Logging Framework")]
+[assembly: System.Security.SecurityTransparent]
 
