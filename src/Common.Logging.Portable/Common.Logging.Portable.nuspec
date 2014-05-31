@@ -1,24 +1,24 @@
 <?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
-    <id>Common.Logging.Core</id>
+    <id>Common.Logging.Portable</id>
     <version>0.0.0</version> <!-- placeholder value replaced by build script -->
     <authors>Aleksandar Seovic, Mark Pollack, Erich Eichinger, Stephen Bohlen</authors>
     <owners>Aleksandar Seovic, Mark Pollack, Erich Eichinger, Stephen Bohlen</owners>
     <projectUrl>http://netcommon.sourceforge.net/</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Common.Logging.Core contains the portable core of the common.logging library which introduces a simple abstraction to allow you to select a specific logging implementation at runtime.</description>
+    <description>Common.Logging.Portable contains the portable (PCL) implementation of the common.logging library which introduces a simple abstraction to allow you to select a specific logging implementation at runtime.</description>
     <language>en-US</language>
   </metadata>
   <files>
-    <file src="..\..\build\portable\Common.Logging.Core\Release\Common.Logging.Core.dll" target="lib\portable-win+net40+sl40+wp7" />
-    <file src="..\..\build\portable\Common.Logging.Core\Release\Common.Logging.Core.pdb" target="lib\portable-win+net40+sl40+wp7" />
-    <file src="..\..\build\portable\Common.Logging.Core\Release\Common.Logging.Core.xml" target="lib\portable-win+net40+sl40+wp7" />
-    <file src="..\..\build\portable\Common.Logging.Core\Release\Common.Logging.Core.dll" target="lib\net40" />
-    <file src="..\..\build\portable\Common.Logging.Core\Release\Common.Logging.Core.pdb" target="lib\net40" />
-    <file src="..\..\build\portable\Common.Logging.Core\Release\Common.Logging.Core.xml" target="lib\net40" />
-    <file src="..\..\build\net20\Common.Logging.Core\Release\Common.Logging.Core.dll" target="lib\net35" />
-    <file src="..\..\build\net20\Common.Logging.Core\Release\Common.Logging.Core.pdb" target="lib\net35" />
-    <file src="..\..\build\net20\Common.Logging.Core\Release\Common.Logging.Core.xml" target="lib\net35" />
+    <file src="..\..\build\portable\Common.Logging.Portable\Release\Common.Logging.Portable.dll" target="lib\portable-win+net40+sl40+wp7" />
+    <file src="..\..\build\portable\Common.Logging.Portable\Release\Common.Logging.Portable.pdb" target="lib\portable-win+net40+sl40+wp7" />
+    <file src="..\..\build\portable\Common.Logging.Portable\Release\Common.Logging.Portable.xml" target="lib\portable-win+net40+sl40+wp7" />
+    <file src="..\..\build\portable\Common.Logging.Portable\Release\Common.Logging.Portable.dll" target="lib\net40" />
+    <file src="..\..\build\portable\Common.Logging.Portable\Release\Common.Logging.Portable.pdb" target="lib\net40" />
+    <file src="..\..\build\portable\Common.Logging.Portable\Release\Common.Logging.Portable.xml" target="lib\net40" />
+    <file src="..\..\build\net20\Common.Logging.Portable\Release\Common.Logging.Portable.dll" target="lib\net35" />
+    <file src="..\..\build\net20\Common.Logging.Portable\Release\Common.Logging.Portable.pdb" target="lib\net35" />
+    <file src="..\..\build\net20\Common.Logging.Portable\Release\Common.Logging.Portable.xml" target="lib\net35" />
   </files>  
 </package>

@@ -10,7 +10,6 @@
     <description>Common.Logging library introduces a simple abstraction to allow you to select a specific logging implementation at runtime.</description>
     <language>en-US</language>
     <dependencies>
-        <dependency id="Common.Logging.Core" />
     </dependencies>
   </metadata>
   <files>
@@ -20,8 +19,5 @@
     <file src="..\..\build\net40\Common.Logging\Release\Common.Logging.dll" target="lib\net40" />
     <file src="..\..\build\net40\Common.Logging\Release\Common.Logging.pdb" target="lib\net40" />
     <file src="..\..\build\net40\Common.Logging\Release\Common.Logging.xml" target="lib\net40" />
-    <file src="..\..\build\sl40\Common.Logging\Release\Common.Logging.dll" target="lib\sl40" />
-    <file src="..\..\build\sl40\Common.Logging\Release\Common.Logging.pdb" target="lib\sl40" />
-    <file src="..\..\build\sl40\Common.Logging\Release\Common.Logging.xml" target="lib\sl40" />
   </files>  
 </package>
