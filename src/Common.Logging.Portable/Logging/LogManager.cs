@@ -247,7 +247,7 @@ namespace Common.Logging
         /// StackFrame.GetMethod() not present
         /// </exception>
         private static Func<MethodBase> CreateGetClassNameFunction()
-        {            
+        {
             // Create and compile code similar to the following
             //var frame = new StackFrame(1, false);
             //var method = frame.GetMethod();
@@ -278,7 +278,7 @@ namespace Common.Logging
             //var function = lambda.Compile();
             var compileFunction = lambda.GetType().GetMethod("Compile", new Type[0]);
             var function = (Func<MethodBase>)compileFunction.Invoke(lambda, null);
-                        
+
             return function;
         }
 #else
@@ -299,6 +299,16 @@ namespace Common.Logging
             var frame = new StackFrame(1, false);
             var adapter = Adapter;
             var method = frame.GetMethod();
+            MethodBase upperMethod = method;
+            for(var offset = 2; ; offset++)
+            {
+                if((upperMethod == null) || !upperMethod.IsConstructor)
+                {
+                    break;
+                }
+                method = upperMethod;
+                upperMethod = new StackFrame(offset, false).GetMethod();
+            }
             var declaringType = method.DeclaringType;
             return adapter.GetLogger(declaringType);
         }
