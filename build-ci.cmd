@@ -3,4 +3,4 @@ REM 'build'
 REM 'test'
 REM 'test-integration'
 
-tools\nant\bin\nant.exe -f:Common.Logging.build build
+tools\nant\bin\nant.exe -f:Common.Logging.build test-integration
