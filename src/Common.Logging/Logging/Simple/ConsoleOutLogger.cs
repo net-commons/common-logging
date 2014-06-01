@@ -19,9 +19,7 @@
 #endregion
 
 using System;
-#if !SILVERLIGHT
 using System.Collections.Generic;
-#endif
 using System.Text;
 
 namespace Common.Logging.Simple
@@ -36,7 +34,6 @@ namespace Common.Logging.Simple
 #endif
     public class ConsoleOutLogger : AbstractSimpleLogger
     {
-#if !SILVERLIGHT
         private static readonly Dictionary<LogLevel, ConsoleColor> colors = new Dictionary<LogLevel, ConsoleColor>
         {
             { LogLevel.Fatal, ConsoleColor.Red },
@@ -49,7 +46,6 @@ namespace Common.Logging.Simple
 
         private readonly bool useColor;
 
-#endif
         /// <summary>
         /// Creates and initializes a logger that writes messages to <see cref="Console.Out" />.
         /// </summary>
@@ -64,7 +60,6 @@ namespace Common.Logging.Simple
         {
         }
 
-#if !SILVERLIGHT
         /// <summary>
         /// Creates and initializes a logger that writes messages to <see cref="Console.Out" />.
         /// </summary>
@@ -81,7 +76,6 @@ namespace Common.Logging.Simple
             this.useColor = useColor;
         }
 
-#endif
         /// <summary>
         /// Do the actual logging by constructing the log message using a <see cref="StringBuilder" /> then
         /// sending the output to <see cref="Console.Out" />.
@@ -96,7 +90,6 @@ namespace Common.Logging.Simple
             FormatOutput(sb, level, message, e);
 
             // Print to the appropriate destination
-#if !SILVERLIGHT
             ConsoleColor color;
             if (this.useColor && colors.TryGetValue(level, out color))
             {
@@ -113,7 +106,6 @@ namespace Common.Logging.Simple
                 }
             }
 
-#endif
             Console.Out.WriteLine(sb.ToString());
         }
     }
