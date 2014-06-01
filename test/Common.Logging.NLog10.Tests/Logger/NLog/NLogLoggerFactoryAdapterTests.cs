@@ -102,6 +102,8 @@ namespace Common.Logger.NLog
         [Test]
         public void LogsUserStackFrame()
         {
+
+            Assert.Fail("Force Fail to validate that CI server will fail the build if a test fails when run from within the build script itself.");
             TestLoggingConfiguration cfg = new TestLoggingConfiguration();
             LogManager.Configuration = cfg;
 
@@ -110,9 +112,6 @@ namespace Common.Logger.NLog
 
             Assert.IsNotNull(cfg.Target.LastLogEvent);
             string stackTrace = cfg.Target.LastLogEvent.StackTrace.ToString();
-
-            Debug.WriteLine(string.Format("currentMethod = {0}", MethodBase.GetCurrentMethod().Name));
-            Debug.WriteLine(string.Format("stackFrameMethod = {0}", cfg.Target.LastLogEvent.UserStackFrame.GetMethod().Name));
 
             Assert.AreSame(MethodBase.GetCurrentMethod(), cfg.Target.LastLogEvent.UserStackFrame.GetMethod());
         }
