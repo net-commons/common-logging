@@ -60,6 +60,8 @@ namespace Common.Logging.Simple
     /// <author>Erich Eichinger</author>
     public class ConsoleOutLoggerFactoryAdapter : AbstractSimpleLoggerFactoryAdapter
     {
+        private readonly bool useColor;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="ConsoleOutLoggerFactoryAdapter"/> class using default 
         /// settings.
@@ -84,7 +86,6 @@ namespace Common.Logging.Simple
             : base(properties)
         { }
 
-#if !SILVERLIGHT
         /// <summary>
         /// Constructor for binary backwards compatibility with non-portableversions
         /// </summary>
@@ -93,7 +94,6 @@ namespace Common.Logging.Simple
         public ConsoleOutLoggerFactoryAdapter(System.Collections.Specialized.NameValueCollection properties)
             : this(NameValueCollectionHelper.ToCommonLoggingCollection(properties))
         { }
-#endif
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AbstractSimpleLoggerFactoryAdapter"/> class with 
@@ -104,11 +104,21 @@ namespace Common.Logging.Simple
         { }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="AbstractSimpleLoggerFactoryAdapter"/> class with 
+        /// default settings for the loggers created by this factory.
+        /// </summary>
+        public ConsoleOutLoggerFactoryAdapter(LogLevel level, bool showDateTime, bool showLogName, bool showLevel, string dateTimeFormat, bool useColor)
+            : this(level, showDateTime, showLogName, showLevel, dateTimeFormat)
+        {
+            this.useColor = useColor;
+        }
+
+        /// <summary>
         /// Creates a new <see cref="ConsoleOutLogger"/> instance.
         /// </summary>
         protected override ILog CreateLogger(string name, LogLevel level, bool showLevel, bool showDateTime, bool showLogName, string dateTimeFormat)
         {
-            ILog log = new ConsoleOutLogger(name, level, showLevel, showDateTime, showLogName, dateTimeFormat);
+            ILog log = new ConsoleOutLogger(name, level, showLevel, showDateTime, showLogName, dateTimeFormat, this.useColor);
             return log;
         }
     }
