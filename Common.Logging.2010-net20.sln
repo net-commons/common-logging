@@ -1,6 +1,8 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30110.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{EC54316A-A3B9-4EF5-A74C-1EC2344D0EA4}"
 	ProjectSection(SolutionItems) = preProject
 		changelog.txt = changelog.txt
@@ -11,27 +13,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{233DC5FA-FFB8-43A7-BDFD-B6AD5DC35264}"
-EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "SimpleWebApplication", "examples\SimpleWebApplication\", "{BFE997BA-52EB-424C-A356-DEAB85880012}"
-	ProjectSection(WebsiteProperties) = preProject
-		TargetFrameworkMoniker = ".NETFramework,Version%3Dv2.0"
-		ProjectReferences = "{440D903A-D409-48FC-A6C4-3EE69CCD663B}|Common.Logging.dll;{0FEA262C-4EAF-49DB-8D32-8E90DDEF23B6}|Common.Logging.Log4Net1210.dll;{A777809C-DB8B-4399-B6D4-8B1A4877A0AF}|Common.Logging.Portable.dll;"
-		Debug.AspNetCompiler.VirtualPath = "/SimpleWebApplication"
-		Debug.AspNetCompiler.PhysicalPath = "examples\SimpleWebApplication\"
-		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\SimpleWebApplication\"
-		Debug.AspNetCompiler.Updateable = "true"
-		Debug.AspNetCompiler.ForceOverwrite = "true"
-		Debug.AspNetCompiler.FixedNames = "false"
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.VirtualPath = "/SimpleWebApplication"
-		Release.AspNetCompiler.PhysicalPath = "examples\SimpleWebApplication\"
-		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\SimpleWebApplication\"
-		Release.AspNetCompiler.Updateable = "true"
-		Release.AspNetCompiler.ForceOverwrite = "true"
-		Release.AspNetCompiler.FixedNames = "false"
-		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "7520"
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomLogger", "examples\CustomLogger\CustomLogger.csproj", "{70DE6A01-B05D-4BDE-A519-C71C7CE9FCBE}"
 EndProject
@@ -119,15 +100,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.NLog20.2010"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.Portable.2010-net20", "src\Common.Logging.Portable\Common.Logging.Portable.2010-net20.csproj", "{A777809C-DB8B-4399-B6D4-8B1A4877A0AF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleWebApplication", "examples\SimpleWebApplication\SimpleWebApplication.csproj", "{6BEA5C80-FC52-4FF9-A516-BD976CBFFCFC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{BFE997BA-52EB-424C-A356-DEAB85880012}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BFE997BA-52EB-424C-A356-DEAB85880012}.Release|Any CPU.ActiveCfg = Debug|Any CPU
-		{BFE997BA-52EB-424C-A356-DEAB85880012}.Release|Any CPU.Build.0 = Debug|Any CPU
 		{70DE6A01-B05D-4BDE-A519-C71C7CE9FCBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{70DE6A01-B05D-4BDE-A519-C71C7CE9FCBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{70DE6A01-B05D-4BDE-A519-C71C7CE9FCBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -264,15 +244,19 @@ Global
 		{A777809C-DB8B-4399-B6D4-8B1A4877A0AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A777809C-DB8B-4399-B6D4-8B1A4877A0AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A777809C-DB8B-4399-B6D4-8B1A4877A0AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6BEA5C80-FC52-4FF9-A516-BD976CBFFCFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6BEA5C80-FC52-4FF9-A516-BD976CBFFCFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6BEA5C80-FC52-4FF9-A516-BD976CBFFCFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6BEA5C80-FC52-4FF9-A516-BD976CBFFCFC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{BFE997BA-52EB-424C-A356-DEAB85880012} = {233DC5FA-FFB8-43A7-BDFD-B6AD5DC35264}
 		{70DE6A01-B05D-4BDE-A519-C71C7CE9FCBE} = {233DC5FA-FFB8-43A7-BDFD-B6AD5DC35264}
 		{70DE6A01-B05D-4BDE-A519-C71C7CE9FCBA} = {233DC5FA-FFB8-43A7-BDFD-B6AD5DC35264}
 		{70DE6A01-B05D-4BDE-A519-C71C7CE9FCBB} = {233DC5FA-FFB8-43A7-BDFD-B6AD5DC35264}
+		{6BEA5C80-FC52-4FF9-A516-BD976CBFFCFC} = {233DC5FA-FFB8-43A7-BDFD-B6AD5DC35264}
 		{94E4E1B4-D424-4EB9-BF34-2EE8CC3D7048} = {1B370368-837E-4E0B-9D1B-864D53815996}
 		{3DFB4EAE-A2DD-43F1-ABA6-E28EB1C7DC67} = {1B370368-837E-4E0B-9D1B-864D53815996}
 		{E641F51F-1B51-4B94-B419-F902EABCE4D4} = {1B370368-837E-4E0B-9D1B-864D53815996}

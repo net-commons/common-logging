@@ -1,1 +1,0 @@
-﻿this example demonstrates, how to configure Common.Logging to use the log4net logging library
