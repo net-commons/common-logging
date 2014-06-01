@@ -7,7 +7,7 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{6BEA5C80-FC52-4FF9-A516-BD976CBFFCFC}</ProjectGuid>
+    <ProjectGuid>{F815965A-089B-4F42-A901-38EBDB3152C2}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -108,4 +108,8 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <Target Name="BeforeBuild">
+    <Message Text="VSToolsPath = $(VSToolsPath)" />
+    <Message Text="MSBuildExtensionsPath32 = $(MSBuildExtensionsPath32)" />
+  </Target>
 </Project>
