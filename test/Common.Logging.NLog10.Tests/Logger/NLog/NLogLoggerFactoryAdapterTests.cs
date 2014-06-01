@@ -111,8 +111,8 @@ namespace Common.Logger.NLog
             Assert.IsNotNull(cfg.Target.LastLogEvent);
             string stackTrace = cfg.Target.LastLogEvent.StackTrace.ToString();
 
-            Debug.WriteLine(string.Format("currentMethod = {0}", MethodBase.GetCurrentMethod().GetType().Name));
-            Debug.WriteLine(string.Format("stackFrameMethod = {0}", cfg.Target.LastLogEvent.UserStackFrame.GetMethod().GetType().Name));
+            Debug.WriteLine(string.Format("currentMethod = {0}", MethodBase.GetCurrentMethod().Name));
+            Debug.WriteLine(string.Format("stackFrameMethod = {0}", cfg.Target.LastLogEvent.UserStackFrame.GetMethod().Name));
 
             Assert.AreSame(MethodBase.GetCurrentMethod(), cfg.Target.LastLogEvent.UserStackFrame.GetMethod());
         }
