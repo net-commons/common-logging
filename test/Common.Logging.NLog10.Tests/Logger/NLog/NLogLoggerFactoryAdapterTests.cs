@@ -102,8 +102,6 @@ namespace Common.Logger.NLog
         [Test]
         public void LogsUserStackFrame()
         {
-
-            Assert.Fail("Force Fail to validate that CI server will fail the build if a test fails when run from within the build script itself.");
             TestLoggingConfiguration cfg = new TestLoggingConfiguration();
             LogManager.Configuration = cfg;
 
