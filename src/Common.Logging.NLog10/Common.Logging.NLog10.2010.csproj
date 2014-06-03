@@ -73,15 +73,9 @@
       <Link>CommonAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="Logging\NLog\CommonLoggingTarget.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Logging\NLog\NLogLogger.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Logging\NLog\NLogLoggerFactoryAdapter.cs">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="Logging\NLog\CommonLoggingTarget.cs" />
+    <Compile Include="Logging\NLog\NLogLogger.cs" />
+    <Compile Include="Logging\NLog\NLogLoggerFactoryAdapter.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

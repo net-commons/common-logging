@@ -72,8 +72,10 @@
     </Compile>
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="Logging\Log4Net\CommonLoggingAppender.cs" />
+    <Compile Include="Logging\Log4Net\Log4NetGlobalVariablesContext.cs" />
     <Compile Include="Logging\Log4Net\Log4NetLogger.cs" />
     <Compile Include="Logging\Log4Net\Log4NetLoggerFactoryAdapter.cs" />
+    <Compile Include="Logging\Log4Net\Log4NetThreadVariablesContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common.Logging\Common.Logging.2010.csproj">
