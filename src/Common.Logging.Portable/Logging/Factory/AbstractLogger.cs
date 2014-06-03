@@ -1031,5 +1031,21 @@ namespace Common.Logging.Factory
         }
 
         #endregion
+
+        /// <summary>
+        /// Returns the global context for variables
+        /// </summary>
+        public virtual IVariablesContext GlobalVariablesContext
+        {
+            get { return new Simple.NoOpVariablesContext(); }
+        }
+
+        /// <summary>
+        /// Returns the thread-specific context for variables
+        /// </summary>
+        public virtual IVariablesContext ThreadVariablesContext
+        {
+            get { return new Simple.NoOpVariablesContext(); }
+        }
     }
 }
