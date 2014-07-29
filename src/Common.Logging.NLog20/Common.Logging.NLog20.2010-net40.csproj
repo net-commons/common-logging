@@ -82,6 +82,9 @@
       <Link>CommonAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="Logging\NLog\NLogGlobalVariablesContext.cs" />
+    <Compile Include="Logging\NLog\NLogLogger.VariablesContext.cs" />
+    <Compile Include="Logging\NLog\NLogThreadVariablesContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

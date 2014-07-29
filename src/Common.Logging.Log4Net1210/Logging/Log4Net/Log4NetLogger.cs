@@ -180,6 +180,20 @@ namespace Common.Logging.Log4Net
             }
         }
 
+        /// <summary>
+        /// Returns the global context for variables
+        /// </summary>
+        public override IVariablesContext GlobalVariablesContext {
+            get { return new Log4NetGlobalVariablesContext(); }
+        }
+
+        /// <summary>
+        /// Returns the thread-specific context for variables
+        /// </summary>
+        public override IVariablesContext ThreadVariablesContext {
+            get { return new Log4NetThreadVariablesContext(); }
+        }
+
         #endregion
     }
 }
