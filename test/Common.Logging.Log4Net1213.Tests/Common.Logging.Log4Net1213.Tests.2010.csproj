@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{F821829E-CE3A-4097-AFF1-858694AEEC6C}</ProjectGuid>
+    <ProjectGuid>{49B305A2-0D13-4F9D-BE78-0E47172496FE}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Common</RootNamespace>
@@ -99,13 +99,13 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Common.Logging.Log4Net1213\Common.Logging.Log4Net1213.2012.csproj">
+    <ProjectReference Include="..\..\src\Common.Logging.Log4Net1211\Common.Logging.Log4Net1211.2010.csproj">
       <Project>{9D009B2A-FA3C-444D-9159-F6A17B1D9042}</Project>
-      <Name>Common.Logging.Log4Net1213.2012</Name>
+      <Name>Common.Logging.Log4Net1211.2010</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\Common.Logging\Common.Logging.2012.csproj">
+    <ProjectReference Include="..\..\src\Common.Logging\Common.Logging.2010.csproj">
       <Project>{440D903A-D409-48FC-A6C4-3EE69CCD663B}</Project>
-      <Name>Common.Logging.2012</Name>
+      <Name>Common.Logging.2010</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{9D009B2A-FA3C-444D-9159-F6A17B1D9042}</ProjectGuid>
+    <ProjectGuid>{F389F980-1FD2-4290-9377-39831EC4E989}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Common</RootNamespace>
@@ -99,7 +99,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common.Logging\Common.Logging.2010.csproj">
-      <Project>{440D903A-D409-48FC-A6C4-3EE69CCD663B}</Project>
+      <Project>{440d903a-d409-48fc-a6c4-3ee69ccd663b}</Project>
       <Name>Common.Logging.2010</Name>
     </ProjectReference>
   </ItemGroup>
