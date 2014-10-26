@@ -79,7 +79,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common.Logging.Portable\Common.Logging.Portable.2010.csproj">
-      <Project>{A777809C-DB8B-4399-B6D4-8B1A4877A0AF}</Project>
+      <Project>{a777809c-db8b-4399-b6d4-8b1a4877a0af}</Project>
       <Name>Common.Logging.Portable.2010</Name>
     </ProjectReference>
   </ItemGroup>
