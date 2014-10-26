@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <doc>
     <assembly>
-        <name>Common.Logging.Log4Net1213</name>
+        <name>Common.Logging.Log4Net1212</name>
     </assembly>
     <members>
         <member name="T:Common.Logging.Log4Net.CommonLoggingAppender">
