@@ -61,13 +61,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Common.Logging.Core\Common.Logging.Core.2010.csproj">
-      <Project>{A777809C-DB8B-4399-B6D4-8B1A4877A0AF}</Project>
-      <Name>Common.Logging.Core.2010</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\src\Common.Logging.EntLib60\Common.Logging.EntLib60.2013-net45.csproj">
       <Project>{c6cc09ad-feb5-4ac3-829f-84c0e58c4ec6}</Project>
       <Name>Common.Logging.EntLib60.2013-net45</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Common.Logging\Common.Logging.2010-net40.csproj">
+      <Project>{440d903a-d409-48fc-a6c4-3ee69ccd663b}</Project>
+      <Name>Common.Logging.2010-net40</Name>
     </ProjectReference>
     <ProjectReference Include="..\Common.Logging.TestUtils\Common.Logging.TestUtils-net40.csproj">
       <Project>{F5193CD8-B431-48ED-B101-D8DBEF766140}</Project>
