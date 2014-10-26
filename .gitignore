@@ -38,6 +38,10 @@ PrecompiledWeb/
 buildlog.txt
 *.DotSettings
 
+# VS local history plugin
+.localhistory
+.localhistory/*
+
 # xml api docs output files
 src/Common.Logging.EntLib31/Common.Logging.EntLib31.xml
 src/Common.Logging.EntLib41/Common.Logging.EntLib41.xml

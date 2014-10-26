@@ -5,16 +5,17 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{8FBECEDA-78A0-4429-B791-B9219ED49B36}</ProjectGuid>
+    <ProjectGuid>{1C8E137B-EDE7-4E17-B00B-C1DEE166241A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Common</RootNamespace>
-    <AssemblyName>Common.Logging.Log4Net1210.Tests</AssemblyName>
+    <AssemblyName>Common.Logging.Log4Net1213.Tests</AssemblyName>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <OldToolsVersion>3.5</OldToolsVersion>
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
@@ -28,7 +29,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
     <TargetFrameworkProfile />
@@ -37,28 +37,27 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\build\net40\Common.Logging.Log4Net1210.Tests\Debug\</OutputPath>
+    <OutputPath>..\..\build\net40\Common.Logging.Log4Net1213.Tests\Debug\</OutputPath>
     <DefineConstants>TRACE;DEBUG;NET_4_0</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <PlatformTarget>x86</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\build\VS.NET.2010-net40\Common.Logging.Log4Net1210.Tests\Release\</OutputPath>
+    <OutputPath>..\..\build\net40\Common.Logging.Log4Net1211.Tests\Release\</OutputPath>
     <DefineConstants>TRACE;NET_4_0</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
+    <Reference Include="log4net, Version=1.2.13.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Log4Net1210\net\2.0\log4net.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework, Version=2.5.0.9015, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -73,18 +72,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Common.Logging.Log4Net1210\Common.Logging.Log4Net1210.2010-net40.csproj">
-      <Project>{0FEA262C-4EAF-49DB-8D32-8E90DDEF23B6}</Project>
-      <Name>Common.Logging.Log4Net1210.2010-net40</Name>
+    <ProjectReference Include="..\..\src\Common.Logging.Log4Net1213\Common.Logging.Log4Net1213.2010-net40.csproj">
+      <Project>{8813a12a-e271-4a9e-a46b-9a9a1d482d99}</Project>
+      <Name>Common.Logging.Log4Net1213.2010-net40</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\src\Common.Logging\Common.Logging.2010-net40.csproj">
       <Project>{440D903A-D409-48FC-A6C4-3EE69CCD663B}</Project>
       <Name>Common.Logging.2010-net40</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Logging\Log4Net\CommonLoggingAppenderTests.cs" />
-    <Compile Include="Logging\Log4Net\Log4NetLoggerFactoryAdapterTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Logging\Log4Net\CommonLoggingAppenderTests_log4net.config.xml" />
@@ -105,6 +100,17 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\Common.Logging.Log4Net129.Tests\Logging\Log4Net\CommonLoggingAppenderTests.cs">
+      <Link>Logging\Log4Net\CommonLoggingAppenderTests.cs</Link>
+    </Compile>
+    <Compile Include="..\Common.Logging.Log4Net129.Tests\Logging\Log4Net\Log4NetLoggerFactoryAdapterTests.cs">
+      <Link>Logging\Log4Net\Log4NetLoggerFactoryAdapterTests.cs</Link>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
