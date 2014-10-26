@@ -697,6 +697,12 @@
         </member>
         <member name="M:Common.Logging.NLog.NLogLoggerFactoryAdapter.#ctor(System.Collections.Specialized.NameValueCollection)">
             <summary>
+            Constructor for binary backwards compatibility with non-portableversions
+            </summary>
+            <param name="properties">The properties.</param>
+        </member>
+        <member name="M:Common.Logging.NLog.NLogLoggerFactoryAdapter.#ctor(Common.Logging.Configuration.NameValueCollection)">
+            <summary>
             Constructor
             </summary>
             <param name="properties"></param>
