@@ -35,14 +35,20 @@
 
     <!-- force net-2.0 -->
     <property name="nant.settings.currentframework" value="net-2.0"/>
-	<property name="solution-file-filter" value="*.2010-net20.sln" />
-	<property name="build.dir" value="${root.dir}/build/net20" />
+	  <property name="solution-file-filter" value="*.2010-net20.sln" />
+	  <property name="build.dir" value="${root.dir}/build/net20" />
     <call target="build-all" />
 
-	<!-- force net-4.0 -->
-	<property name="nant.settings.currentframework" value="net-4.0"/>
-	<property name="solution-file-filter" value="*.2010.sln" />
-	<property name="build.dir" value="${root.dir}/build/net40" />
+    <!-- force net-4.0 -->
+    <property name="nant.settings.currentframework" value="net-4.0"/>
+    <property name="solution-file-filter" value="*.2010.sln" />
+    <property name="build.dir" value="${root.dir}/build/net40" />
+    <call target="build-all" />
+
+    <!-- force net-4.5 -->
+    <property name="nant.settings.currentframework" value="net-4.5"/>
+    <property name="solution-file-filter" value="*.2013.sln" />
+    <property name="build.dir" value="${root.dir}/build/net45" />
     <call target="build-all" />
 
   </target>
@@ -208,6 +214,18 @@
         <exclude name="**/*Test*"/>
       </fileset>
     </copy>
+    <copy todir="${package.dir}/bin/net/4.5/debug" flatten="true">
+      <fileset>
+        <include name="**/build/net45/Common.Logging.*/Debug/Common.Logging*.???"/>
+        <exclude name="**/*Test*"/>
+      </fileset>
+    </copy>
+    <copy todir="${package.dir}/bin/net/4.5/release" flatten="true">
+      <fileset>
+        <include name="**/build/net45/Common.Logging.*/Debug/Common.Logging*.???"/>
+        <exclude name="**/*Test*"/>
+      </fileset>
+    </copy>
   </target>
 
   <target name="package.sources" depends="update-common-assemblyinfo">
@@ -352,7 +370,7 @@ ${tool.dir}       : dir for tools
       <arg value="/xml:${test.assemblyname}.dll-TestResults.xml" />
       <arg value="/nologo" />
       <arg value="/noshadow" />
-      <arg value="/framework:${nant.settings.currentframework}" />
+      <!--<arg value="/framework:${nant.settings.currentframework}" /> -->
     </exec>
 
   </target>
