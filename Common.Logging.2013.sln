@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30110.0
+VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{EC54316A-A3B9-4EF5-A74C-1EC2344D0EA4}"
 	ProjectSection(SolutionItems) = preProject
@@ -11,8 +11,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		doc\api\introduction.html = doc\api\introduction.html
 		Logging.ndoc = Logging.ndoc
 	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.Core.2010", "src\Common.Logging.Core\Common.Logging.Core.2010.csproj", "{A777809C-DB8B-4399-B6D4-8B1A4877A0AF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.2010-net40", "src\Common.Logging\Common.Logging.2010-net40.csproj", "{440D903A-D409-48FC-A6C4-3EE69CCD663B}"
 EndProject
@@ -38,16 +36,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.EntLib60.Tes
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.EntLib60.Tests.Integration.2013-net45", "test\Common.Logging.EntLib60.Tests.Integration\Common.Logging.EntLib60.Tests.Integration.2013-net45.csproj", "{616033E0-5451-4A4F-AC3D-8D925B6E27BD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.Portable.2010", "src\Common.Logging.Portable\Common.Logging.Portable.2010.csproj", "{A777809C-DB8B-4399-B6D4-8B1A4877A0AF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{A777809C-DB8B-4399-B6D4-8B1A4877A0AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A777809C-DB8B-4399-B6D4-8B1A4877A0AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A777809C-DB8B-4399-B6D4-8B1A4877A0AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A777809C-DB8B-4399-B6D4-8B1A4877A0AF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{440D903A-D409-48FC-A6C4-3EE69CCD663B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{440D903A-D409-48FC-A6C4-3EE69CCD663B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{440D903A-D409-48FC-A6C4-3EE69CCD663B}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -88,6 +84,10 @@ Global
 		{616033E0-5451-4A4F-AC3D-8D925B6E27BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{616033E0-5451-4A4F-AC3D-8D925B6E27BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{616033E0-5451-4A4F-AC3D-8D925B6E27BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A777809C-DB8B-4399-B6D4-8B1A4877A0AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A777809C-DB8B-4399-B6D4-8B1A4877A0AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A777809C-DB8B-4399-B6D4-8B1A4877A0AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A777809C-DB8B-4399-B6D4-8B1A4877A0AF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -99,11 +99,11 @@ Global
 		{E641F51F-1B51-4B94-B419-F902EABCE4D4} = {D26BC7B2-718C-4F97-AF36-4377E19ECE62}
 		{E641F51F-1B51-4B94-B419-A902EABCE4D4} = {D26BC7B2-718C-4F97-AF36-4377E19ECE62}
 		{F5193CD8-B431-48ED-B101-D8DBEF766140} = {D26BC7B2-718C-4F97-AF36-4377E19ECE62}
-		{A777809C-DB8B-4399-B6D4-8B1A4877A0AF} = {D26BC7B2-718C-4F97-AF36-4377E19ECE62}
 		{C185F156-BEFC-44A0-8F25-065558AEDB6A} = {D26BC7B2-718C-4F97-AF36-4377E19ECE62}
 		{C6CC09AD-FEB5-4AC3-829F-84C0E58C4EC6} = {AA297E2A-2F07-46C8-892C-FE1A148CA575}
 		{A0071391-0897-4A6B-9980-2FFD0BC232D5} = {AA297E2A-2F07-46C8-892C-FE1A148CA575}
 		{616033E0-5451-4A4F-AC3D-8D925B6E27BD} = {AA297E2A-2F07-46C8-892C-FE1A148CA575}
+		{A777809C-DB8B-4399-B6D4-8B1A4877A0AF} = {D26BC7B2-718C-4F97-AF36-4377E19ECE62}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		NAntAddinLastFileName = Common.Logging.build
