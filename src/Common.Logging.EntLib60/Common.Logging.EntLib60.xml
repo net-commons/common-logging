@@ -423,7 +423,7 @@
         <member name="T:Common.Logging.EntLib.NamespaceDoc">
             <summary>
             <para>
-            This namespace contains the implementations to plug Microsoft Enterprise Logging Library 5.0. into the Common.Logging infrastructure.
+            This namespace contains the implementations to plug Microsoft Enterprise Logging Library 6.0. into the Common.Logging infrastructure.
             </para>
             <para>For an example on how to configure
             <list type="bullet">
