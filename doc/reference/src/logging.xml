@@ -281,7 +281,7 @@ log.Debug("hello world");</programlisting></para>
       &lt;factoryAdapter type="Common.Logging.Simple.ConsoleOutLoggerFactoryAdapter, Common.Logging"&gt;
         &lt;arg key="level" value="DEBUG" /&gt;
         &lt;arg key="showLogName" value="true" /&gt;
-        &lt;arg key="showDataTime" value="true" /&gt;
+        &lt;arg key="showDateTime" value="true" /&gt;
         &lt;arg key="dateTimeFormat" value="yyyy/MM/dd HH:mm:ss:fff" /&gt;
       &lt;/factoryAdapter&gt;
     &lt;/logging&gt;
