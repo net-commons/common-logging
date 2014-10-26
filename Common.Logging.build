@@ -370,7 +370,7 @@ ${tool.dir}       : dir for tools
       <arg value="/xml:${test.assemblyname}.dll-TestResults.xml" />
       <arg value="/nologo" />
       <arg value="/noshadow" />
-      <arg value="/framework:${nant.settings.currentframework}" />
+      <!--<arg value="/framework:${nant.settings.currentframework}" /> -->
     </exec>
 
   </target>
