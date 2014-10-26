@@ -19,5 +19,6 @@
     <file src="..\..\build\net40\Common.Logging\Release\Common.Logging.dll" target="lib\net40" />
     <file src="..\..\build\net40\Common.Logging\Release\Common.Logging.pdb" target="lib\net40" />
     <file src="..\..\build\net40\Common.Logging\Release\Common.Logging.xml" target="lib\net40" />
+    <file src="readme.txt" target="readme.txt" />
   </files>  
 </package>
