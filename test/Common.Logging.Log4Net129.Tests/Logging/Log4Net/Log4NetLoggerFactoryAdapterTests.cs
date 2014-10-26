@@ -127,5 +127,35 @@ namespace Common.Logging.Log4Net
             ILog log = a.GetLogger(this.GetType());
             Assert.AreSame(log, a.GetLogger(this.GetType()));
         }
+
+        [Test]
+        public void CheckGlobalVariablesSet()
+        {
+            NameValueCollection props = new NameValueCollection();
+
+            props["configType"] = "external";
+            var a = new Log4NetLoggerFactoryAdapter(props);
+
+            a.GetLogger(this.GetType()).GlobalVariablesContext.Set("TestKey", "TestValue");
+
+            var actualValue = global::log4net.GlobalContext.Properties["TestKey"];
+
+            Assert.AreEqual("TestValue", actualValue);
+        }
+
+        [Test]
+        public void CheckThreadVariablesSet()
+        {
+            NameValueCollection props = new NameValueCollection();
+
+            props["configType"] = "external";
+            var a = new Log4NetLoggerFactoryAdapter(props);
+
+            a.GetLogger(this.GetType()).ThreadVariablesContext.Set("TestKey", "TestValue");
+
+            var actualValue = global::log4net.ThreadContext.Properties["TestKey"];
+
+            Assert.AreEqual("TestValue", actualValue);
+        }
     }
 }

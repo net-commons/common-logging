@@ -77,10 +77,8 @@
     <Compile Include="..\Common.Logging.NLog10.Tests\Logger\NLog\CommonLoggingTargetTests.cs">
       <Link>Logger\NLog\CommonLoggingTargetTests.cs</Link>
     </Compile>
-    <Compile Include="..\Common.Logging.NLog10.Tests\Logger\NLog\NLogLoggerFactoryAdapterTests.cs">
-      <Link>Logger\NLog\NLogLoggerFactoryAdapterTests.cs</Link>
-    </Compile>
     <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="Logger\NLog\NLogLoggerFactoryAdapterTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -99,7 +97,9 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\Common.Logging.NLog20\Common.Logging.NLog20.2010-net40.csproj">
       <Project>{AC34A9CF-F893-4D1F-99C3-9B703CE6A035}</Project>

@@ -24,8 +24,8 @@ using FormatMessageCallback = System.Action<Common.Logging.FormatMessageHandler>
 namespace Common.Logging
 {
     /// <summary>
-	/// A simple logging interface abstracting logging APIs. 
-	/// </summary>
+    /// A simple logging interface abstracting logging APIs. 
+    /// </summary>
     /// <remarks>
     /// <para>
     /// Implementations should defer calling a message's <see cref="object.ToString()"/> until the message really needs
@@ -51,7 +51,7 @@ namespace Common.Logging
     /// <author>Bruno Baia</author>
     /// <author>Erich Eichinger</author>
     public interface ILog
-	{
+    {
         /// <summary>
         /// Log a message object with the <see cref="LogLevel.Trace"/> level.
         /// </summary>
@@ -143,20 +143,20 @@ namespace Common.Logging
         /// <param key="exception">The exception to log, including its stack trace.</param>
         void Trace(IFormatProvider formatProvider, FormatMessageCallback formatMessageCallback, Exception exception);
 
-		/// <summary>
-		/// Log a message object with the <see cref="LogLevel.Debug"/> level.
-		/// </summary>
-		/// <param key="message">The message object to log.</param>
-		void Debug( object message );
+        /// <summary>
+        /// Log a message object with the <see cref="LogLevel.Debug"/> level.
+        /// </summary>
+        /// <param key="message">The message object to log.</param>
+        void Debug( object message );
 
-		/// <summary>
-		/// Log a message object with the <see cref="LogLevel.Debug"/> level including
-		/// the stack trace of the <see cref="Exception"/> passed
-		/// as a parameter.
-		/// </summary>
-		/// <param key="message">The message object to log.</param>
-		/// <param key="exception">The exception to log, including its stack trace.</param>
-		void Debug( object message, Exception exception );
+        /// <summary>
+        /// Log a message object with the <see cref="LogLevel.Debug"/> level including
+        /// the stack trace of the <see cref="Exception"/> passed
+        /// as a parameter.
+        /// </summary>
+        /// <param key="message">The message object to log.</param>
+        /// <param key="exception">The exception to log, including its stack trace.</param>
+        void Debug( object message, Exception exception );
 
         /// <summary>
         /// Log a message with the <see cref="LogLevel.Debug"/> level.
@@ -417,19 +417,19 @@ namespace Common.Logging
         void Warn(IFormatProvider formatProvider, FormatMessageCallback formatMessageCallback, Exception exception);
 
         /// <summary>
-		/// Log a message object with the <see cref="LogLevel.Error"/> level.
-		/// </summary>
-		/// <param key="message">The message object to log.</param>
-		void Error( object message );
+        /// Log a message object with the <see cref="LogLevel.Error"/> level.
+        /// </summary>
+        /// <param key="message">The message object to log.</param>
+        void Error(object message);
 
-		/// <summary>
-		/// Log a message object with the <see cref="LogLevel.Error"/> level including
-		/// the stack trace of the <see cref="Exception"/> passed
-		/// as a parameter.
-		/// </summary>
-		/// <param key="message">The message object to log.</param>
-		/// <param key="exception">The exception to log, including its stack trace.</param>
-		void Error( object message, Exception exception );
+        /// <summary>
+        /// Log a message object with the <see cref="LogLevel.Error"/> level including
+        /// the stack trace of the <see cref="Exception"/> passed
+        /// as a parameter.
+        /// </summary>
+        /// <param key="message">The message object to log.</param>
+        /// <param key="exception">The exception to log, including its stack trace.</param>
+        void Error(object message, Exception exception);
 
         /// <summary>
         /// Log a message with the <see cref="LogLevel.Error"/> level.
@@ -508,19 +508,19 @@ namespace Common.Logging
         void Error(IFormatProvider formatProvider, FormatMessageCallback formatMessageCallback, Exception exception);
 
         /// <summary>
-		/// Log a message object with the <see cref="LogLevel.Fatal"/> level.
-		/// </summary>
-		/// <param key="message">The message object to log.</param>
-		void Fatal( object message );
+        /// Log a message object with the <see cref="LogLevel.Fatal"/> level.
+        /// </summary>
+        /// <param key="message">The message object to log.</param>
+        void Fatal( object message );
 
-		/// <summary>
-		/// Log a message object with the <see cref="LogLevel.Fatal"/> level including
-		/// the stack trace of the <see cref="Exception"/> passed
-		/// as a parameter.
-		/// </summary>
-		/// <param key="message">The message object to log.</param>
-		/// <param key="exception">The exception to log, including its stack trace.</param>
-		void Fatal( object message, Exception exception );
+        /// <summary>
+        /// Log a message object with the <see cref="LogLevel.Fatal"/> level including
+        /// the stack trace of the <see cref="Exception"/> passed
+        /// as a parameter.
+        /// </summary>
+        /// <param key="message">The message object to log.</param>
+        /// <param key="exception">The exception to log, including its stack trace.</param>
+        void Fatal( object message, Exception exception );
 
         /// <summary>
         /// Log a message with the <see cref="LogLevel.Fatal"/> level.
@@ -606,44 +606,60 @@ namespace Common.Logging
             get;
         }
 
-		/// <summary>
-		/// Checks if this logger is enabled for the <see cref="LogLevel.Debug"/> level.
-		/// </summary>
-		bool IsDebugEnabled
-		{
-			get;
-		}
+        /// <summary>
+        /// Checks if this logger is enabled for the <see cref="LogLevel.Debug"/> level.
+        /// </summary>
+        bool IsDebugEnabled
+        {
+            get;
+        }
 
-		/// <summary>
-		/// Checks if this logger is enabled for the <see cref="LogLevel.Error"/> level.
-		/// </summary>
-		bool IsErrorEnabled
-		{
-			get;
-		}
+        /// <summary>
+        /// Checks if this logger is enabled for the <see cref="LogLevel.Error"/> level.
+        /// </summary>
+        bool IsErrorEnabled
+        {
+            get;
+        }
 
-		/// <summary>
-		/// Checks if this logger is enabled for the <see cref="LogLevel.Fatal"/> level.
-		/// </summary>
-		bool IsFatalEnabled
-		{
-			get;
-		}
+        /// <summary>
+        /// Checks if this logger is enabled for the <see cref="LogLevel.Fatal"/> level.
+        /// </summary>
+        bool IsFatalEnabled
+        {
+            get;
+        }
 
-		/// <summary>
-		/// Checks if this logger is enabled for the <see cref="LogLevel.Info"/> level.
-		/// </summary>
-		bool IsInfoEnabled
-		{
-			get;
-		}
+        /// <summary>
+        /// Checks if this logger is enabled for the <see cref="LogLevel.Info"/> level.
+        /// </summary>
+        bool IsInfoEnabled
+        {
+            get;
+        }
 
-		/// <summary>
-		/// Checks if this logger is enabled for the <see cref="LogLevel.Warn"/> level.
-		/// </summary>
-		bool IsWarnEnabled
-		{
-			get;
-		}
-	}
+        /// <summary>
+        /// Checks if this logger is enabled for the <see cref="LogLevel.Warn"/> level.
+        /// </summary>
+        bool IsWarnEnabled
+        {
+            get;
+        }
+
+        /// <summary>
+        /// Returns the global context for variables
+        /// </summary>
+        IVariablesContext GlobalVariablesContext
+        {
+            get;
+        }
+
+        /// <summary>
+        /// Returns the thread-specific context for variables
+        /// </summary>
+        IVariablesContext ThreadVariablesContext
+        {
+            get;
+        }
+    }
 }

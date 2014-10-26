@@ -121,7 +121,9 @@ namespace Common.Logger.NLog
 
             a.GetLogger(this.GetType()).GlobalVariablesContext.Set("TestKey", "TestValue");
 
-            // NLog10 doesn't support this. This test only makes sure that no exceptions are thrown
+            var actualValue = global::NLog.GlobalDiagnosticsContext.Get("TestKey");
+
+            Assert.AreEqual("TestValue", actualValue);
         }
 
         [Test]
@@ -131,7 +133,9 @@ namespace Common.Logger.NLog
 
             a.GetLogger(this.GetType()).ThreadVariablesContext.Set("TestKey", "TestValue");
 
-            // NLog10 doesn't support this. This test only makes sure that no exceptions are thrown
+            var actualValue = global::NLog.MappedDiagnosticsContext.Get("TestKey");
+
+            Assert.AreEqual("TestValue", actualValue);
         }
     }
 }

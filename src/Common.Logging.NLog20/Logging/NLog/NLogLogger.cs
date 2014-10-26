@@ -21,7 +21,6 @@
 using System;
 using System.Diagnostics;
 using Common.Logging.Factory;
-using Common.Logging.Simple;
 using NLog;
 using LogLevelNLog = NLog.LogLevel;
 using LoggerNLog = NLog.Logger;
@@ -981,7 +980,7 @@ namespace Common.Logging.NLog
         /// </summary>
         public override IVariablesContext GlobalVariablesContext
         {
-            get { return new NoOpVariablesContext(); }
+            get { return new NLogGlobalVariablesContext(); }
         }
 
         /// <summary>
@@ -989,7 +988,7 @@ namespace Common.Logging.NLog
         /// </summary>
         public override IVariablesContext ThreadVariablesContext
         {
-            get { return new NoOpVariablesContext(); }
+            get { return new NLogThreadVariablesContext(); }
         }
     }
 }

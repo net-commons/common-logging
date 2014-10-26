@@ -71,9 +71,6 @@
     <Compile Include="..\Common.Logging.NLog10\Logging\NLog\CommonLoggingTarget.cs">
       <Link>Logging\NLog\CommonLoggingTarget.cs</Link>
     </Compile>
-    <Compile Include="..\Common.Logging.NLog10\Logging\NLog\NLogLogger.cs">
-      <Link>Logging\NLog\NLogLogger.cs</Link>
-    </Compile>
     <Compile Include="..\Common.Logging.NLog10\Logging\NLog\NLogLoggerFactoryAdapter.cs">
       <Link>Logging\NLog\NLogLoggerFactoryAdapter.cs</Link>
     </Compile>
@@ -81,6 +78,9 @@
       <Link>CommonAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="Logging\NLog\NLogLogger.cs" />
+    <Compile Include="Logging\NLog\NLogThreadVariablesContext.cs" />
+    <Compile Include="Logging\NLog\NLogGlobalVariablesContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
