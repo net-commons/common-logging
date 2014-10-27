@@ -48,4 +48,5 @@ src/Common.Logging.Log4Net129/Common.Logging.Log4Net129.xml
 src/Common.Logging.Log4Net1211/Common.Logging.Log4Net1211.xml
 src/Common.Logging.NLog10/Common.Logging.NLog10.xml
 src/Common.Logging.NLog20/Common.Logging.NLog20.xml
+src/Common.Logging.NLog20/Common.Logging.NLog21.xml
 src/Common.Logging/Common.Logging.xml
