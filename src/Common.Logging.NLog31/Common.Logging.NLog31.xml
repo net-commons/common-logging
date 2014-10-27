@@ -1,0 +1,718 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Common.Logging.NLog31</name>
+    </assembly>
+    <members>
+        <member name="T:Common.Logging.NLog.CommonLoggingTarget">
+            <summary>
+            Routes all log events logged through NLog into the Common.Logging infrastructure.
+            </summary>
+            <remarks>
+            <example>
+            To route all NLog events to Common.Logging, you must add this target to your configuration:
+            <code>
+            LoggingConfiguration cfg = new LoggingConfiguration();
+            CommonLoggingTarget target = new CommonLoggingTarget(&quot;${level:uppercase=true}|${logger}|${message}&quot;);
+            cfg.LoggingRules.Add(new LoggingRule(&quot;*&quot;, LogLevel.Trace, target));
+            
+            LogManager.Configuration = cfg;
+            
+            Logger log = LogManager.GetLogger(&quot;mylogger&quot;);
+            log.Debug(&quot;some message&quot;);
+            </code>
+            </example>
+            </remarks>
+            <author>Erich Eichinger</author>
+        </member>
+        <member name="M:Common.Logging.NLog.CommonLoggingTarget.#ctor">
+            <summary>
+            Creates this target using the default layout.
+            </summary>
+        </member>
+        <member name="M:Common.Logging.NLog.CommonLoggingTarget.#ctor(System.String)">
+            <summary>
+            Creates this target using a custom layout.
+            </summary>
+        </member>
+        <member name="M:Common.Logging.NLog.CommonLoggingTarget.Write(NLog.LogEventInfo)">
+            <summary>
+            Writes the event to the Common.Logging infrastructure
+            </summary>
+        </member>
+        <member name="T:Common.Logging.NLog.NLogLogger">
+            <summary>
+            Concrete implementation of <see cref="T:Common.Logging.ILog"/> interface specific to NLog 1.0.0.505-2.0.
+            </summary>
+            <remarks>
+            NLog is a .NET logging library designed with simplicity and flexibility in mind.
+            http://www.nlog-project.org/
+            </remarks>
+            <author>Bruno Baia</author>
+        </member>
+        <member name="M:Common.Logging.NLog.NLogLogger.#ctor(NLog.Logger)">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:Common.Logging.NLog.NLogLogger.Trace(System.Object)">
+            <summary>
+            Log a message object with the <see cref="F:Common.Logging.LogLevel.Trace"/> level.
+            </summary>
+            <param name="message">The message object to log.</param>
+        </member>
+        <member name="M:Common.Logging.NLog.NLogLogger.Trace(System.Object,System.Exception)">
+            <summary>
+            Log a message object with the <see cref="F:Common.Logging.LogLevel.Trace"/> level including
+            the stack trace of the <see cref="T:System.Exception"/> passed
+            as a parameter.
+            </summary>
+            <param name="message">The message object to log.</param>
+            <param name="exception">The exception to log, including its stack trace.</param>
+        </member>
+        <member name="M:Common.Logging.NLog.NLogLogger.TraceFormat(System.IFormatProvider,System.String,System.Object[])">
+            <summary>
+            Log a message with the <see cref="F:Common.Logging.LogLevel.Trace"/> level.
+            </summary>
+            <param name="formatProvider">An <see cref="T:System.IFormatProvider"/> that supplies culture-specific formatting information.</param>
+            <param name="format">The format of the message object to log.<see cref="M:System.String.Format(System.String,System.Object[])"/> </param>
+            <param name="args"></param>
+        </member>
+        <member name="M:Common.Logging.NLog.NLogLogger.TraceFormat(System.IFormatProvider,System.String,System.Exception,System.Object[])">
+            <summary>
+            Log a message with the <see cref="F:Common.Logging.LogLevel.Trace"/> level.
+            </summary>
+            <param name="formatProvider">An <see cref="T:System.IFormatProvider"/> that supplies culture-specific formatting information.</param>
+            <param name="format">The format of the message object to log.<see cref="M:System.String.Format(System.String,System.Object[])"/> </param>
+            <param name="exception">The exception to log.</param>
+            <param name="args"></param>
+        </member>
+        <member name="M:Common.Logging.NLog.NLogLogger.TraceFormat(System.String,System.Object[])">
+            <summary>
+            Log a message with the <see cref="F:Common.Logging.LogLevel.Trace"/> level.
+            </summary>
+            <param name="format">The format of the message object to log.<see cref="M:System.String.Format(System.String,System.Object[])"/> </param>
+            <param name="args">the list of format arguments</param>
+        </member>
+        <member name="M:Common.Logging.NLog.NLogLogger.TraceFormat(System.String,System.Exception,System.Object[])">
+            <summary>
+            Log a message with the <see cref="F:Common.Logging.LogLevel.Trace"/> level.
+            </summary>
+            <param name="format">The format of the message object to log.<see cref="M:System.String.Format(System.String,System.Object[])"/> </param>
+            <param name="exception">The exception to log.</param>
+            <param name="args">the list of format arguments</param>
+        </member>
+        <member name="M:Common.Logging.NLog.NLogLogger.Trace(System.Action{Common.Logging.FormatMessageHandler})">
+            <summary>
+            Log a message with the <see cref="F:Common.Logging.LogLevel.Trace"/> level using a callback to obtain the message
+            </summary>
+            <remarks>
+            Using this method avoids the cost of creating a message and evaluating message arguments 
+            that probably won't be logged due to loglevel settings.
+            </remarks>
+            <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
+        </member>
+        <member name="M:Common.Logging.NLog.NLogLogger.Trace(System.Action{Common.Logging.FormatMessageHandler},System.Exception)">
+            <summary>
+            Log a message with the <see cref="F:Common.Logging.LogLevel.Trace"/> level using a callback to obtain the message
+            </summary>
+            <remarks>
+            Using this method avoids the cost of creating a message and evaluating message arguments 
+            that probably won't be logged due to loglevel settings.
+            </remarks>
+            <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
+            <param name="exception">The exception to log, including its stack trace.</param>
+        </member>
+        <member name="M:Common.Logging.NLog.NLogLogger.Trace(System.IFormatProvider,System.Action{Common.Logging.FormatMessageHandler})">
+            <summary>
+            Log a message with the <see cref="F:Common.Logging.LogLevel.Trace"/> level using a callback to obtain the message
+            </summary>
+            <remarks>
+            Using this method avoids the cost of creating a message and evaluating message arguments 
+            that probably won't be logged due to loglevel settings.
+            </remarks>
+            <param name="formatProvider">An <see cref="T:System.IFormatProvider"/> that supplies culture-specific formatting information.</param>
+            <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
+        </member>
+        <member name="M:Common.Logging.NLog.NLogLogger.Trace(System.IFormatProvider,System.Action{Common.Logging.FormatMessageHandler},System.Exception)">
+            <summary>
+            Log a message with the <see cref="F:Common.Logging.LogLevel.Trace"/> level using a callback to obtain the message
+            </summary>
+            <remarks>
+            Using this method avoids the cost of creating a message and evaluating message arguments 
+            that probably won't be logged due to loglevel settings.
+            </remarks>
+            <param name="formatProvider">An <see cref="T:System.IFormatProvider"/> that supplies culture-specific formatting information.</param>
+            <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
+            <param name="exception">The exception to log, including its stack trace.</param>
+        </member>
+        <member name="M:Common.Logging.NLog.NLogLogger.Debug(System.Object)">
+            <summary>
+            Log a message object with the <see cref="F:Common.Logging.LogLevel.Debug"/> level.
+            </summary>
+            <param name="message">The message object to log.</param>
+        </member>
+        <member name="M:Common.Logging.NLog.NLogLogger.Debug(System.Object,System.Exception)">
+            <summary>
+            Log a message object with the <see cref="F:Common.Logging.LogLevel.Debug"/> level including
+            the stack Debug of the <see cref="T:System.Exception"/> passed
+            as a parameter.
+            </summary>
+            <param name="message">The message object to log.</param>
+            <param name="exception">The exception to log, including its stack Debug.</param>
+        </member>
+        <member name="M:Common.Logging.NLog.NLogLogger.DebugFormat(System.IFormatProvider,System.String,System.Object[])">
+            <summary>
+            Log a message with the <see cref="F:Common.Logging.LogLevel.Debug"/> level.
+            </summary>
+            <param name="formatProvider">An <see cref="T:System.IFormatProvider"/> that supplies culture-specific formatting information.</param>
+            <param name="format">The format of the message object to log.<see cref="M:System.String.Format(System.String,System.Object[])"/> </param>
+            <param name="args"></param>
+        </member>
+        <member name="M:Common.Logging.NLog.NLogLogger.DebugFormat(System.IFormatProvider,System.String,System.Exception,System.Object[])">
+            <summary>
+            Log a message with the <see cref="F:Common.Logging.LogLevel.Debug"/> level.
+            </summary>
+            <param name="formatProvider">An <see cref="T:System.IFormatProvider"/> that supplies culture-specific formatting information.</param>
+            <param name="format">The format of the message object to log.<see cref="M:System.String.Format(System.String,System.Object[])"/> </param>
+            <param name="exception">The exception to log.</param>
+            <param name="args"></param>
+        </member>
+        <member name="M:Common.Logging.NLog.NLogLogger.DebugFormat(System.String,System.Object[])">
+            <summary>
+            Log a message with the <see cref="F:Common.Logging.LogLevel.Debug"/> level.
+            </summary>
+            <param name="format">The format of the message object to log.<see cref="M:System.String.Format(System.String,System.Object[])"/> </param>
+            <param name="args">the list of format arguments</param>
+        </member>
+        <member name="M:Common.Logging.NLog.NLogLogger.DebugFormat(System.String,System.Exception,System.Object[])">
+            <summary>
+            Log a message with the <see cref="F:Common.Logging.LogLevel.Debug"/> level.
+            </summary>
+            <param name="format">The format of the message object to log.<see cref="M:System.String.Format(System.String,System.Object[])"/> </param>
+            <param name="exception">The exception to log.</param>
+            <param name="args">the list of format arguments</param>
+        </member>
+        <member name="M:Common.Logging.NLog.NLogLogger.Debug(System.Action{Common.Logging.FormatMessageHandler})">
+            <summary>
+            Log a message with the <see cref="F:Common.Logging.LogLevel.Debug"/> level using a callback to obtain the message
+            </summary>
+            <remarks>
+            Using this method avoids the cost of creating a message and evaluating message arguments 
+            that probably won't be logged due to loglevel settings.
+            </remarks>
+            <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
+        </member>
+        <member name="M:Common.Logging.NLog.NLogLogger.Debug(System.Action{Common.Logging.FormatMessageHandler},System.Exception)">
+            <summary>
+            Log a message with the <see cref="F:Common.Logging.LogLevel.Debug"/> level using a callback to obtain the message
+            </summary>
+            <remarks>
+            Using this method avoids the cost of creating a message and evaluating message arguments 
+            that probably won't be logged due to loglevel settings.
+            </remarks>
+            <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
+            <param name="exception">The exception to log, including its stack Debug.</param>
+        </member>
+        <member name="M:Common.Logging.NLog.NLogLogger.Debug(System.IFormatProvider,System.Action{Common.Logging.FormatMessageHandler})">
+            <summary>
+            Log a message with the <see cref="F:Common.Logging.LogLevel.Debug"/> level using a callback to obtain the message
+            </summary>
+            <remarks>
+            Using this method avoids the cost of creating a message and evaluating message arguments 
+            that probably won't be logged due to loglevel settings.
+            </remarks>
+            <param name="formatProvider">An <see cref="T:System.IFormatProvider"/> that supplies culture-specific formatting information.</param>
+            <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
+        </member>
+        <member name="M:Common.Logging.NLog.NLogLogger.Debug(System.IFormatProvider,System.Action{Common.Logging.FormatMessageHandler},System.Exception)">
+            <summary>
+            Log a message with the <see cref="F:Common.Logging.LogLevel.Debug"/> level using a callback to obtain the message
+            </summary>
+            <remarks>
+            Using this method avoids the cost of creating a message and evaluating message arguments 
+            that probably won't be logged due to loglevel settings.
+            </remarks>
+            <param name="formatProvider">An <see cref="T:System.IFormatProvider"/> that supplies culture-specific formatting information.</param>
+            <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
+            <param name="exception">The exception to log, including its stack Debug.</param>
+        </member>
+        <member name="M:Common.Logging.NLog.NLogLogger.Info(System.Object)">
+            <summary>
+            Log a message object with the <see cref="F:Common.Logging.LogLevel.Info"/> level.
+            </summary>
+            <param name="message">The message object to log.</param>
+        </member>
+        <member name="M:Common.Logging.NLog.NLogLogger.Info(System.Object,System.Exception)">
+            <summary>
+            Log a message object with the <see cref="F:Common.Logging.LogLevel.Info"/> level including
+            the stack Info of the <see cref="T:System.Exception"/> passed
+            as a parameter.
+            </summary>
+            <param name="message">The message object to log.</param>
+            <param name="exception">The exception to log, including its stack Info.</param>
+        </member>
+        <member name="M:Common.Logging.NLog.NLogLogger.InfoFormat(System.IFormatProvider,System.String,System.Object[])">
+            <summary>
+            Log a message with the <see cref="F:Common.Logging.LogLevel.Info"/> level.
+            </summary>
+            <param name="formatProvider">An <see cref="T:System.IFormatProvider"/> that supplies culture-specific formatting information.</param>
+            <param name="format">The format of the message object to log.<see cref="M:System.String.Format(System.String,System.Object[])"/> </param>
+            <param name="args"></param>
+        </member>
+        <member name="M:Common.Logging.NLog.NLogLogger.InfoFormat(System.IFormatProvider,System.String,System.Exception,System.Object[])">
+            <summary>
+            Log a message with the <see cref="F:Common.Logging.LogLevel.Info"/> level.
+            </summary>
+            <param name="formatProvider">An <see cref="T:System.IFormatProvider"/> that supplies culture-specific formatting information.</param>
+            <param name="format">The format of the message object to log.<see cref="M:System.String.Format(System.String,System.Object[])"/> </param>
+            <param name="exception">The exception to log.</param>
+            <param name="args"></param>
+        </member>
+        <member name="M:Common.Logging.NLog.NLogLogger.InfoFormat(System.String,System.Object[])">
+            <summary>
+            Log a message with the <see cref="F:Common.Logging.LogLevel.Info"/> level.
+            </summary>
+            <param name="format">The format of the message object to log.<see cref="M:System.String.Format(System.String,System.Object[])"/> </param>
+            <param name="args">the list of format arguments</param>
+        </member>
+        <member name="M:Common.Logging.NLog.NLogLogger.InfoFormat(System.String,System.Exception,System.Object[])">
+            <summary>
+            Log a message with the <see cref="F:Common.Logging.LogLevel.Info"/> level.
+            </summary>
+            <param name="format">The format of the message object to log.<see cref="M:System.String.Format(System.String,System.Object[])"/> </param>
+            <param name="exception">The exception to log.</param>
+            <param name="args">the list of format arguments</param>
+        </member>
+        <member name="M:Common.Logging.NLog.NLogLogger.Info(System.Action{Common.Logging.FormatMessageHandler})">
+            <summary>
+            Log a message with the <see cref="F:Common.Logging.LogLevel.Info"/> level using a callback to obtain the message
+            </summary>
+            <remarks>
+            Using this method avoids the cost of creating a message and evaluating message arguments 
+            that probably won't be logged due to loglevel settings.
+            </remarks>
+            <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
+        </member>
+        <member name="M:Common.Logging.NLog.NLogLogger.Info(System.Action{Common.Logging.FormatMessageHandler},System.Exception)">
+            <summary>
+            Log a message with the <see cref="F:Common.Logging.LogLevel.Info"/> level using a callback to obtain the message
+            </summary>
+            <remarks>
+            Using this method avoids the cost of creating a message and evaluating message arguments 
+            that probably won't be logged due to loglevel settings.
+            </remarks>
+            <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
+            <param name="exception">The exception to log, including its stack Info.</param>
+        </member>
+        <member name="M:Common.Logging.NLog.NLogLogger.Info(System.IFormatProvider,System.Action{Common.Logging.FormatMessageHandler})">
+            <summary>
+            Log a message with the <see cref="F:Common.Logging.LogLevel.Info"/> level using a callback to obtain the message
+            </summary>
+            <remarks>
+            Using this method avoids the cost of creating a message and evaluating message arguments 
+            that probably won't be logged due to loglevel settings.
+            </remarks>
+            <param name="formatProvider">An <see cref="T:System.IFormatProvider"/> that supplies culture-specific formatting information.</param>
+            <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
+        </member>
+        <member name="M:Common.Logging.NLog.NLogLogger.Info(System.IFormatProvider,System.Action{Common.Logging.FormatMessageHandler},System.Exception)">
+            <summary>
+            Log a message with the <see cref="F:Common.Logging.LogLevel.Info"/> level using a callback to obtain the message
+            </summary>
+            <remarks>
+            Using this method avoids the cost of creating a message and evaluating message arguments 
+            that probably won't be logged due to loglevel settings.
+            </remarks>
+            <param name="formatProvider">An <see cref="T:System.IFormatProvider"/> that supplies culture-specific formatting information.</param>
+            <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
+            <param name="exception">The exception to log, including its stack Info.</param>
+        </member>
+        <member name="M:Common.Logging.NLog.NLogLogger.Warn(System.Object)">
+            <summary>
+            Log a message object with the <see cref="F:Common.Logging.LogLevel.Warn"/> level.
+            </summary>
+            <param name="message">The message object to log.</param>
+        </member>
+        <member name="M:Common.Logging.NLog.NLogLogger.Warn(System.Object,System.Exception)">
+            <summary>
+            Log a message object with the <see cref="F:Common.Logging.LogLevel.Warn"/> level including
+            the stack Warn of the <see cref="T:System.Exception"/> passed
+            as a parameter.
+            </summary>
+            <param name="message">The message object to log.</param>
+            <param name="exception">The exception to log, including its stack Warn.</param>
+        </member>
+        <member name="M:Common.Logging.NLog.NLogLogger.WarnFormat(System.IFormatProvider,System.String,System.Object[])">
+            <summary>
+            Log a message with the <see cref="F:Common.Logging.LogLevel.Warn"/> level.
+            </summary>
+            <param name="formatProvider">An <see cref="T:System.IFormatProvider"/> that supplies culture-specific formatting Warnrmation.</param>
+            <param name="format">The format of the message object to log.<see cref="M:System.String.Format(System.String,System.Object[])"/> </param>
+            <param name="args"></param>
+        </member>
+        <member name="M:Common.Logging.NLog.NLogLogger.WarnFormat(System.IFormatProvider,System.String,System.Exception,System.Object[])">
+            <summary>
+            Log a message with the <see cref="F:Common.Logging.LogLevel.Warn"/> level.
+            </summary>
+            <param name="formatProvider">An <see cref="T:System.IFormatProvider"/> that supplies culture-specific formatting Warnrmation.</param>
+            <param name="format">The format of the message object to log.<see cref="M:System.String.Format(System.String,System.Object[])"/> </param>
+            <param name="exception">The exception to log.</param>
+            <param name="args"></param>
+        </member>
+        <member name="M:Common.Logging.NLog.NLogLogger.WarnFormat(System.String,System.Object[])">
+            <summary>
+            Log a message with the <see cref="F:Common.Logging.LogLevel.Warn"/> level.
+            </summary>
+            <param name="format">The format of the message object to log.<see cref="M:System.String.Format(System.String,System.Object[])"/> </param>
+            <param name="args">the list of format arguments</param>
+        </member>
+        <member name="M:Common.Logging.NLog.NLogLogger.WarnFormat(System.String,System.Exception,System.Object[])">
+            <summary>
+            Log a message with the <see cref="F:Common.Logging.LogLevel.Warn"/> level.
+            </summary>
+            <param name="format">The format of the message object to log.<see cref="M:System.String.Format(System.String,System.Object[])"/> </param>
+            <param name="exception">The exception to log.</param>
+            <param name="args">the list of format arguments</param>
+        </member>
+        <member name="M:Common.Logging.NLog.NLogLogger.Warn(System.Action{Common.Logging.FormatMessageHandler})">
+            <summary>
+            Log a message with the <see cref="F:Common.Logging.LogLevel.Warn"/> level using a callback to obtain the message
+            </summary>
+            <remarks>
+            Using this method avoids the cost of creating a message and evaluating message arguments 
+            that probably won't be logged due to loglevel settings.
+            </remarks>
+            <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
+        </member>
+        <member name="M:Common.Logging.NLog.NLogLogger.Warn(System.Action{Common.Logging.FormatMessageHandler},System.Exception)">
+            <summary>
+            Log a message with the <see cref="F:Common.Logging.LogLevel.Warn"/> level using a callback to obtain the message
+            </summary>
+            <remarks>
+            Using this method avoids the cost of creating a message and evaluating message arguments 
+            that probably won't be logged due to loglevel settings.
+            </remarks>
+            <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
+            <param name="exception">The exception to log, including its stack Warn.</param>
+        </member>
+        <member name="M:Common.Logging.NLog.NLogLogger.Warn(System.IFormatProvider,System.Action{Common.Logging.FormatMessageHandler})">
+            <summary>
+            Log a message with the <see cref="F:Common.Logging.LogLevel.Warn"/> level using a callback to obtain the message
+            </summary>
+            <remarks>
+            Using this method avoids the cost of creating a message and evaluating message arguments 
+            that probably won't be logged due to loglevel settings.
+            </remarks>
+            <param name="formatProvider">An <see cref="T:System.IFormatProvider"/> that supplies culture-specific formatting information.</param>
+            <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
+        </member>
+        <member name="M:Common.Logging.NLog.NLogLogger.Warn(System.IFormatProvider,System.Action{Common.Logging.FormatMessageHandler},System.Exception)">
+            <summary>
+            Log a message with the <see cref="F:Common.Logging.LogLevel.Warn"/> level using a callback to obtain the message
+            </summary>
+            <remarks>
+            Using this method avoids the cost of creating a message and evaluating message arguments 
+            that probably won't be logged due to loglevel settings.
+            </remarks>
+            <param name="formatProvider">An <see cref="T:System.IFormatProvider"/> that supplies culture-specific formatting information.</param>
+            <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
+            <param name="exception">The exception to log, including its stack Warn.</param>
+        </member>
+        <member name="M:Common.Logging.NLog.NLogLogger.Error(System.Object)">
+            <summary>
+            Log a message object with the <see cref="F:Common.Logging.LogLevel.Error"/> level.
+            </summary>
+            <param name="message">The message object to log.</param>
+        </member>
+        <member name="M:Common.Logging.NLog.NLogLogger.Error(System.Object,System.Exception)">
+            <summary>
+            Log a message object with the <see cref="F:Common.Logging.LogLevel.Error"/> level including
+            the stack Error of the <see cref="T:System.Exception"/> passed
+            as a parameter.
+            </summary>
+            <param name="message">The message object to log.</param>
+            <param name="exception">The exception to log, including its stack Error.</param>
+        </member>
+        <member name="M:Common.Logging.NLog.NLogLogger.ErrorFormat(System.IFormatProvider,System.String,System.Object[])">
+            <summary>
+            Log a message with the <see cref="F:Common.Logging.LogLevel.Error"/> level.
+            </summary>
+            <param name="formatProvider">An <see cref="T:System.IFormatProvider"/> that supplies culture-specific formatting Errorrmation.</param>
+            <param name="format">The format of the message object to log.<see cref="M:System.String.Format(System.String,System.Object[])"/> </param>
+            <param name="args"></param>
+        </member>
+        <member name="M:Common.Logging.NLog.NLogLogger.ErrorFormat(System.IFormatProvider,System.String,System.Exception,System.Object[])">
+            <summary>
+            Log a message with the <see cref="F:Common.Logging.LogLevel.Error"/> level.
+            </summary>
+            <param name="formatProvider">An <see cref="T:System.IFormatProvider"/> that supplies culture-specific formatting Errorrmation.</param>
+            <param name="format">The format of the message object to log.<see cref="M:System.String.Format(System.String,System.Object[])"/> </param>
+            <param name="exception">The exception to log.</param>
+            <param name="args"></param>
+        </member>
+        <member name="M:Common.Logging.NLog.NLogLogger.ErrorFormat(System.String,System.Object[])">
+            <summary>
+            Log a message with the <see cref="F:Common.Logging.LogLevel.Error"/> level.
+            </summary>
+            <param name="format">The format of the message object to log.<see cref="M:System.String.Format(System.String,System.Object[])"/> </param>
+            <param name="args">the list of format arguments</param>
+        </member>
+        <member name="M:Common.Logging.NLog.NLogLogger.ErrorFormat(System.String,System.Exception,System.Object[])">
+            <summary>
+            Log a message with the <see cref="F:Common.Logging.LogLevel.Error"/> level.
+            </summary>
+            <param name="format">The format of the message object to log.<see cref="M:System.String.Format(System.String,System.Object[])"/> </param>
+            <param name="exception">The exception to log.</param>
+            <param name="args">the list of format arguments</param>
+        </member>
+        <member name="M:Common.Logging.NLog.NLogLogger.Error(System.Action{Common.Logging.FormatMessageHandler})">
+            <summary>
+            Log a message with the <see cref="F:Common.Logging.LogLevel.Error"/> level using a callback to obtain the message
+            </summary>
+            <remarks>
+            Using this method avoids the cost of creating a message and evaluating message arguments 
+            that probably won't be logged due to loglevel settings.
+            </remarks>
+            <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
+        </member>
+        <member name="M:Common.Logging.NLog.NLogLogger.Error(System.Action{Common.Logging.FormatMessageHandler},System.Exception)">
+            <summary>
+            Log a message with the <see cref="F:Common.Logging.LogLevel.Error"/> level using a callback to obtain the message
+            </summary>
+            <remarks>
+            Using this method avoids the cost of creating a message and evaluating message arguments 
+            that probably won't be logged due to loglevel settings.
+            </remarks>
+            <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
+            <param name="exception">The exception to log, including its stack Error.</param>
+        </member>
+        <member name="M:Common.Logging.NLog.NLogLogger.Error(System.IFormatProvider,System.Action{Common.Logging.FormatMessageHandler})">
+            <summary>
+            Log a message with the <see cref="F:Common.Logging.LogLevel.Error"/> level using a callback to obtain the message
+            </summary>
+            <remarks>
+            Using this method avoids the cost of creating a message and evaluating message arguments 
+            that probably won't be logged due to loglevel settings.
+            </remarks>
+            <param name="formatProvider">An <see cref="T:System.IFormatProvider"/> that supplies culture-specific formatting information.</param>
+            <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
+        </member>
+        <member name="M:Common.Logging.NLog.NLogLogger.Error(System.IFormatProvider,System.Action{Common.Logging.FormatMessageHandler},System.Exception)">
+            <summary>
+            Log a message with the <see cref="F:Common.Logging.LogLevel.Error"/> level using a callback to obtain the message
+            </summary>
+            <remarks>
+            Using this method avoids the cost of creating a message and evaluating message arguments 
+            that probably won't be logged due to loglevel settings.
+            </remarks>
+            <param name="formatProvider">An <see cref="T:System.IFormatProvider"/> that supplies culture-specific formatting information.</param>
+            <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
+            <param name="exception">The exception to log, including its stack Error.</param>
+        </member>
+        <member name="M:Common.Logging.NLog.NLogLogger.Fatal(System.Object)">
+            <summary>
+            Log a message object with the <see cref="F:Common.Logging.LogLevel.Fatal"/> level.
+            </summary>
+            <param name="message">The message object to log.</param>
+        </member>
+        <member name="M:Common.Logging.NLog.NLogLogger.Fatal(System.Object,System.Exception)">
+            <summary>
+            Log a message object with the <see cref="F:Common.Logging.LogLevel.Fatal"/> level including
+            the stack Fatal of the <see cref="T:System.Exception"/> passed
+            as a parameter.
+            </summary>
+            <param name="message">The message object to log.</param>
+            <param name="exception">The exception to log, including its stack Fatal.</param>
+        </member>
+        <member name="M:Common.Logging.NLog.NLogLogger.FatalFormat(System.IFormatProvider,System.String,System.Object[])">
+            <summary>
+            Log a message with the <see cref="F:Common.Logging.LogLevel.Fatal"/> level.
+            </summary>
+            <param name="formatProvider">An <see cref="T:System.IFormatProvider"/> that supplies culture-specific formatting Fatalrmation.</param>
+            <param name="format">The format of the message object to log.<see cref="M:System.String.Format(System.String,System.Object[])"/> </param>
+            <param name="args"></param>
+        </member>
+        <member name="M:Common.Logging.NLog.NLogLogger.FatalFormat(System.IFormatProvider,System.String,System.Exception,System.Object[])">
+            <summary>
+            Log a message with the <see cref="F:Common.Logging.LogLevel.Fatal"/> level.
+            </summary>
+            <param name="formatProvider">An <see cref="T:System.IFormatProvider"/> that supplies culture-specific formatting Fatalrmation.</param>
+            <param name="format">The format of the message object to log.<see cref="M:System.String.Format(System.String,System.Object[])"/> </param>
+            <param name="exception">The exception to log.</param>
+            <param name="args"></param>
+        </member>
+        <member name="M:Common.Logging.NLog.NLogLogger.FatalFormat(System.String,System.Object[])">
+            <summary>
+            Log a message with the <see cref="F:Common.Logging.LogLevel.Fatal"/> level.
+            </summary>
+            <param name="format">The format of the message object to log.<see cref="M:System.String.Format(System.String,System.Object[])"/> </param>
+            <param name="args">the list of format arguments</param>
+        </member>
+        <member name="M:Common.Logging.NLog.NLogLogger.FatalFormat(System.String,System.Exception,System.Object[])">
+            <summary>
+            Log a message with the <see cref="F:Common.Logging.LogLevel.Fatal"/> level.
+            </summary>
+            <param name="format">The format of the message object to log.<see cref="M:System.String.Format(System.String,System.Object[])"/> </param>
+            <param name="exception">The exception to log.</param>
+            <param name="args">the list of format arguments</param>
+        </member>
+        <member name="M:Common.Logging.NLog.NLogLogger.Fatal(System.Action{Common.Logging.FormatMessageHandler})">
+            <summary>
+            Log a message with the <see cref="F:Common.Logging.LogLevel.Fatal"/> level using a callback to obtain the message
+            </summary>
+            <remarks>
+            Using this method avoids the cost of creating a message and evaluating message arguments 
+            that probably won't be logged due to loglevel settings.
+            </remarks>
+            <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
+        </member>
+        <member name="M:Common.Logging.NLog.NLogLogger.Fatal(System.Action{Common.Logging.FormatMessageHandler},System.Exception)">
+            <summary>
+            Log a message with the <see cref="F:Common.Logging.LogLevel.Fatal"/> level using a callback to obtain the message
+            </summary>
+            <remarks>
+            Using this method avoids the cost of creating a message and evaluating message arguments 
+            that probably won't be logged due to loglevel settings.
+            </remarks>
+            <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
+            <param name="exception">The exception to log, including its stack Fatal.</param>
+        </member>
+        <member name="M:Common.Logging.NLog.NLogLogger.Fatal(System.IFormatProvider,System.Action{Common.Logging.FormatMessageHandler})">
+            <summary>
+            Log a message with the <see cref="F:Common.Logging.LogLevel.Fatal"/> level using a callback to obtain the message
+            </summary>
+            <remarks>
+            Using this method avoids the cost of creating a message and evaluating message arguments 
+            that probably won't be logged due to loglevel settings.
+            </remarks>
+            <param name="formatProvider">An <see cref="T:System.IFormatProvider"/> that supplies culture-specific formatting information.</param>
+            <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
+        </member>
+        <member name="M:Common.Logging.NLog.NLogLogger.Fatal(System.IFormatProvider,System.Action{Common.Logging.FormatMessageHandler},System.Exception)">
+            <summary>
+            Log a message with the <see cref="F:Common.Logging.LogLevel.Fatal"/> level using a callback to obtain the message
+            </summary>
+            <remarks>
+            Using this method avoids the cost of creating a message and evaluating message arguments 
+            that probably won't be logged due to loglevel settings.
+            </remarks>
+            <param name="formatProvider">An <see cref="T:System.IFormatProvider"/> that supplies culture-specific formatting information.</param>
+            <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
+            <param name="exception">The exception to log, including its stack Fatal.</param>
+        </member>
+        <member name="M:Common.Logging.NLog.NLogLogger.WriteInternal(Common.Logging.LogLevel,System.Object,System.Exception)">
+            <summary>
+            Actually sends the message to the underlying log system.
+            </summary>
+            <param name="logLevel">the level of this log event.</param>
+            <param name="message">the message to log</param>
+            <param name="exception">the exception to log (may be null)</param>
+        </member>
+        <member name="P:Common.Logging.NLog.NLogLogger.IsTraceEnabled">
+            <summary>
+            Gets a value indicating whether this instance is trace enabled.
+            </summary>
+            <value>
+            	<c>true</c> if this instance is trace enabled; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Common.Logging.NLog.NLogLogger.IsDebugEnabled">
+            <summary>
+            Gets a value indicating whether this instance is debug enabled.
+            </summary>
+            <value>
+            	<c>true</c> if this instance is debug enabled; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Common.Logging.NLog.NLogLogger.IsInfoEnabled">
+            <summary>
+            Gets a value indicating whether this instance is info enabled.
+            </summary>
+            <value>
+            	<c>true</c> if this instance is info enabled; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Common.Logging.NLog.NLogLogger.IsWarnEnabled">
+            <summary>
+            Gets a value indicating whether this instance is warn enabled.
+            </summary>
+            <value>
+            	<c>true</c> if this instance is warn enabled; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Common.Logging.NLog.NLogLogger.IsErrorEnabled">
+            <summary>
+            Gets a value indicating whether this instance is error enabled.
+            </summary>
+            <value>
+            	<c>true</c> if this instance is error enabled; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Common.Logging.NLog.NLogLogger.IsFatalEnabled">
+            <summary>
+            Gets a value indicating whether this instance is fatal enabled.
+            </summary>
+            <value>
+            	<c>true</c> if this instance is fatal enabled; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="T:Common.Logging.NLog.NLogLoggerFactoryAdapter">
+            <summary>
+            Concrete subclass of ILoggerFactoryAdapter specific to NLog 1.0.0.505.
+            </summary>
+            <remarks>
+            <para>Note, that you cannot use NLog in medium trust environments unless you use an unsigned build</para>
+            The following configuration property values may be configured:
+            <list type="bullet">
+                <item><c>configType</c>: <c>INLINE|FILE</c></item>
+                <item><c>configFile</c>: NLog XML configuration file path in case of FILE</item>
+            </list>
+            The configType values have the following implications:
+            <list type="bullet">
+                <item>FILE: calls <c>NLog.LogManager.Configuration = new NLog.Config.XmlLoggingConfiguration(configFile)</c>.</item>
+                <item>&lt;any other value&gt;: expects NLog to be configured externally</item>
+            </list>
+            </remarks>
+            <example>
+            The following snippet shows how to configure EntLib logging for Common.Logging:
+            <code>
+            &lt;configuration&gt;
+              &lt;configSections&gt;
+                  &lt;section name=&quot;logging&quot; type=&quot;Common.Logging.ConfigurationSectionHandler, Common.Logging&quot; /&gt;
+              &lt;/configSections&gt;
+              &lt;common&gt;
+                &lt;logging&gt;
+                  &lt;factoryAdapter type=&quot;Common.Logging.NLog.NLogLoggerFactoryAdapter, Common.Logging.NLog&quot;&gt;
+                    &lt;arg key=&quot;configType&quot; value=&quot;FILE&quot; /&gt;
+                    &lt;arg key=&quot;configFile&quot; value=&quot;~/nlog.config&quot; /&gt;
+                  &lt;/factoryAdapter&gt;
+                &lt;/logging&gt;
+              &lt;/common&gt;
+            &lt;/configuration&gt;
+            </code>
+            </example>
+            <author>Bruno Baia</author>
+            <author>Erich Eichinger</author>
+        </member>
+        <member name="M:Common.Logging.NLog.NLogLoggerFactoryAdapter.#ctor(System.Collections.Specialized.NameValueCollection)">
+            <summary>
+            Constructor for binary backwards compatibility with non-portableversions
+            </summary>
+            <param name="properties">The properties.</param>
+        </member>
+        <member name="M:Common.Logging.NLog.NLogLoggerFactoryAdapter.#ctor(Common.Logging.Configuration.NameValueCollection)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="properties"></param>
+        </member>
+        <member name="M:Common.Logging.NLog.NLogLoggerFactoryAdapter.CreateLogger(System.String)">
+            <summary>
+            Get a ILog instance by type name 
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

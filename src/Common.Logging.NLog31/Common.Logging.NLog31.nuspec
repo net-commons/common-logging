@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Common.Logging.NLog31</id>
+    <version>0.0.0</version>
+    <!-- placeholder value replaced by build script -->
+    <authors>Aleksandar Seovic, Mark Pollack, Erich Eichinger, Stephen Bohlen</authors>
+    <owners>Aleksandar Seovic, Mark Pollack, Erich Eichinger, Stephen Bohlen</owners>
+    <projectUrl>http://netcommon.sourceforge.net/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Common.Logging library bindings for NLog 3.1 logging framework.</description>
+    <language>en-US</language>
+    <dependencies>
+      <dependency id="Common.Logging" version="2.2.0" />
+      <dependency id="NLog" version="3.1.0" />
+    </dependencies>
+  </metadata>
+  <files>    
+    <file src="..\..\build\net40\Common.Logging.NLog31\Release\Common.Logging.NLog31.dll" target="lib\net40" />
+    <file src="..\..\build\net40\Common.Logging.NLog31\Release\Common.Logging.NLog31.pdb" target="lib\net40" />
+    <file src="..\..\build\net40\Common.Logging.NLog31\Release\Common.Logging.NLog31.xml" target="lib\net40" />
+  </files>
+</package>
