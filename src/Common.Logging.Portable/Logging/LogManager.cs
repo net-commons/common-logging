@@ -438,7 +438,7 @@ namespace Common.Logging
                             adapter = (ILoggerFactoryAdapter)Activator.CreateInstance(setting.FactoryAdapterType);
                         }
                     }
-                    , "Unable to create instance of type {0}. Possible explanation is lack of zero arg and single arg NameValueCollection constructors"
+                    , "Unable to create instance of type {0}. Possible explanation is lack of zero arg and single arg Common.Logging.Configuration.NameValueCollection constructors"
                     , setting.FactoryAdapterType.FullName
             );
 
