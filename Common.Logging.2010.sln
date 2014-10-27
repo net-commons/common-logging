@@ -126,6 +126,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.NLog30.Tests
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.NLog30.Tests.2010-net40", "test\Common.Logging.NLog30.Tests\Common.Logging.NLog30.Tests.2010-net40.csproj", "{1535CA93-2F78-4A31-BAE2-E12FE536C7D0}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NLog-3.1", "NLog-3.1", "{6D82D093-1822-4D32-8A22-9733F63A54C2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.NLog31.2010-net40", "src\Common.Logging.NLog31\Common.Logging.NLog31.2010-net40.csproj", "{5535B317-1EFA-4128-AAEB-235354E58299}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.NLog31.Tests.Integration.2010-net40", "test\Common.Logging.NLog31.Integration.Tests\Common.Logging.NLog31.Tests.Integration.2010-net40.csproj", "{ECEDA5D3-211D-4DCC-A7B4-AA2FB7569C68}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.NLog31.Tests.2010-net40", "test\Common.Logging.NLog31.Tests\Common.Logging.NLog31.Tests.2010-net40.csproj", "{2B33D4E2-1F60-4DA6-9B60-424E4359FF74}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -308,6 +316,18 @@ Global
 		{1535CA93-2F78-4A31-BAE2-E12FE536C7D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1535CA93-2F78-4A31-BAE2-E12FE536C7D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1535CA93-2F78-4A31-BAE2-E12FE536C7D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5535B317-1EFA-4128-AAEB-235354E58299}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5535B317-1EFA-4128-AAEB-235354E58299}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5535B317-1EFA-4128-AAEB-235354E58299}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5535B317-1EFA-4128-AAEB-235354E58299}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ECEDA5D3-211D-4DCC-A7B4-AA2FB7569C68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECEDA5D3-211D-4DCC-A7B4-AA2FB7569C68}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECEDA5D3-211D-4DCC-A7B4-AA2FB7569C68}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECEDA5D3-211D-4DCC-A7B4-AA2FB7569C68}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B33D4E2-1F60-4DA6-9B60-424E4359FF74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B33D4E2-1F60-4DA6-9B60-424E4359FF74}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B33D4E2-1F60-4DA6-9B60-424E4359FF74}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B33D4E2-1F60-4DA6-9B60-424E4359FF74}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -357,6 +377,9 @@ Global
 		{0C674706-2B0B-40E1-88D6-75ECE60A5712} = {E2A2F5A9-2F2A-429A-AFBD-D88663F16E1D}
 		{1BFC3F87-48AC-4422-8134-369021A04651} = {E2A2F5A9-2F2A-429A-AFBD-D88663F16E1D}
 		{1535CA93-2F78-4A31-BAE2-E12FE536C7D0} = {E2A2F5A9-2F2A-429A-AFBD-D88663F16E1D}
+		{5535B317-1EFA-4128-AAEB-235354E58299} = {6D82D093-1822-4D32-8A22-9733F63A54C2}
+		{ECEDA5D3-211D-4DCC-A7B4-AA2FB7569C68} = {6D82D093-1822-4D32-8A22-9733F63A54C2}
+		{2B33D4E2-1F60-4DA6-9B60-424E4359FF74} = {6D82D093-1822-4D32-8A22-9733F63A54C2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		NAntAddinLastFileName = Common.Logging.build

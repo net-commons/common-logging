@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{1BFC3F87-48AC-4422-8134-369021A04651}</ProjectGuid>
+    <ProjectGuid>{ECEDA5D3-211D-4DCC-A7B4-AA2FB7569C68}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Common</RootNamespace>
@@ -107,7 +107,7 @@
       <Name>Common.Logging.2010-net40</Name>
     </ProjectReference>
     <ProjectReference Include="..\Common.Logging.NLog31.Tests\Common.Logging.NLog31.Tests.2010-net40.csproj">
-      <Project>{1535ca93-2f78-4a31-bae2-e12fe536c7d0}</Project>
+      <Project>{2b33d4e2-1f60-4da6-9b60-424e4359ff74}</Project>
       <Name>Common.Logging.NLog31.Tests.2010-net40</Name>
     </ProjectReference>
     <ProjectReference Include="..\Common.Logging.TestUtils\Common.Logging.TestUtils-net40.csproj">
@@ -118,7 +118,7 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties ProjectLinkReference="ee5ca38f-3f29-43e1-b385-03798eddc765" ProjectLinkerExcludeFilter="\\?desktop(\\.*)?$;\\?silverlight(\\.*)?$;\.desktop;\.silverlight;\.xaml;^service references(\\.*)?$;\.clientconfig;^web references(\\.*)?$" />
+      <UserProperties ProjectLinkerExcludeFilter="\\?desktop(\\.*)?$;\\?silverlight(\\.*)?$;\.desktop;\.silverlight;\.xaml;^service references(\\.*)?$;\.clientconfig;^web references(\\.*)?$" ProjectLinkReference="ee5ca38f-3f29-43e1-b385-03798eddc765" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
