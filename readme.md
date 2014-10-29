@@ -76,7 +76,8 @@ The Common Infrastructure Libraries for .NET are released under the terms of the
 
 ## Building
 
-* Clone the [github repository](https://github.com/net-commons/common-logging)
-  
-* From the commandline execute
-  `c:\netcommon>build-release.cmd`
+* Clone the [github repository](https://github.com/net-commons/common-logging) 
+* Install Silverlight SDK 5
+* [Optional] Install Java for the documenation builder
+* Create a strong name key. `c:\netcommon>sn -k common.net.snk`
+* Build the the solution. `c:\netcommon>build-release.cmd`
