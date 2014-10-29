@@ -13,6 +13,7 @@
     <dependencies>
       <dependency id="Common.Logging" version="2.0.0" />
     </dependencies>
+	<tags>entlib common logging</tags>
   </metadata>
   <files>
     <file src="..\..\build\net20\Common.Logging.EntLib50\Release\Common.Logging.Entlib50.dll" target="lib\net35" />
