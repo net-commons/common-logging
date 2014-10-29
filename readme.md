@@ -13,7 +13,7 @@ See also
 * [Source Forge](http://netcommon.sf.net/)
 * [Nuget](https://www.nuget.org/packages/Common.Logging/): `Install-Package Common.Logging` 
 
-## Quickstart (built in logger)
+## Quickstart (built in console logger)
 Nuget:
 
 `PM> Install-Package Common.Logging` 
@@ -30,15 +30,17 @@ app.config or web.config:
 	  </configSections>
 	
 	  <common>
-	    <logging>
-	      <factoryAdapter type="Common.Logging.Simple.TraceLoggerFactoryAdapter, Common.Logging">
-	        <arg key="level" value="ALL" />
-	      </factoryAdapter>
-	    </logging>
+		<logging>
+		  <factoryAdapter type="Common.Logging.Simple.ConsoleOutLoggerFactoryAdapter, Common.Logging">
+			<arg key="level" value="INFO" />
+			<arg key="showLogName" value="true" />
+			<arg key="showDataTime" value="true" />
+			<arg key="dateTimeFormat" value="yyyy/MM/dd HH:mm:ss:fff" />
+		  </factoryAdapter>
+		</logging>
 	  </common>
 
-
-</configuration>
+	</configuration>
 
 ## NLog Quickstart
 Nuget:
