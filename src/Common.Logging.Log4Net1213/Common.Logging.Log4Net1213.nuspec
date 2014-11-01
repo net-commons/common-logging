@@ -7,6 +7,7 @@
     <authors>Aleksandar Seovic, Mark Pollack, Erich Eichinger, Stephen Bohlen, G. Stoynev</authors>
     <owners>Aleksandar Seovic, Mark Pollack, Erich Eichinger, Stephen Bohlen</owners>
     <projectUrl>http://netcommon.sourceforge.net/</projectUrl>
+	<iconUrl>https://raw.githubusercontent.com/net-commons/common-logging/master/nuget-graphics/common-logging-icon.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Common.Logging library bindings for Log4Net 1.2.13 logging framework.</description>
     <language>en-US</language>

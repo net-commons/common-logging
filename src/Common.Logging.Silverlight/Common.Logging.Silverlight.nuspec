@@ -7,8 +7,9 @@
     <authors>Aleksandar Seovic, Mark Pollack, Erich Eichinger, Stephen Bohlen</authors>
     <owners>Aleksandar Seovic, Mark Pollack, Erich Eichinger, Stephen Bohlen</owners>
     <projectUrl>http://netcommon.sourceforge.net/</projectUrl>
+	<iconUrl>https://raw.githubusercontent.com/net-commons/common-logging/master/nuget-graphics/common-logging-icon.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Common.Logging library bindings for NLog 2.0 logging framework.</description>
+    <description>Common.Logging.Portable contains the Silverlight 5 implementation of the common.logging library which introduces a simple abstraction to allow you to select a specific logging implementation at runtime.</description>
     <language>en-US</language>
     <dependencies>
       <dependency id="Common.Logging.Portable" version="2.0.0" />
