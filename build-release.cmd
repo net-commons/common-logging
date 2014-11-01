@@ -11,8 +11,8 @@ cls
 @echo .
 @echo .
 
-tools\nant\bin\nant.exe -f:Common.Logging.build build package-zip package-nuget -D:project.sign=true -D:package.version=2.3.0 -D:nuget.version.suffix=RC1 -D:project.releasetype=release > buildlog.txt
-rem tools\nant\bin\nant.exe -f:Common.Logging.build build package-zip package-nuget -D:project.sign=true -D:package.version=2.3.0 -D:project.releasetype=release > buildlog.txt
+rem tools\nant\bin\nant.exe -f:Common.Logging.build build package-zip package-nuget -D:project.sign=true -D:package.version=2.3.0 -D:nuget.version.suffix=RC1 -D:project.releasetype=release > buildlog.txt
+tools\nant\bin\nant.exe -f:Common.Logging.build build package-zip package-nuget -D:project.sign=true -D:package.version=2.3.0 -D:project.releasetype=release > buildlog.txt
 
 @echo ...complete!
 @echo .
