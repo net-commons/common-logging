@@ -1,4 +1,9 @@
 # Common.Logging .NET
+
+## Project Build Status
+[![Build status](https://ci.appveyor.com/api/projects/status/nyht5oguhan7gk2c/branch/master?svg=true)](https://ci.appveyor.com/project/sbohlen/common-logging/branch/master)
+
+
 ## Introduction
 
 Provides a simple logging abstraction to switch between different logging implementations.
