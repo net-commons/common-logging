@@ -10,6 +10,7 @@
 	<iconUrl>https://raw.githubusercontent.com/net-commons/common-logging/master/nuget-graphics/common-logging-icon.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Common.Logging.Portable contains the Silverlight 5 implementation of the common.logging library which introduces a simple abstraction to allow you to select a specific logging implementation at runtime.</description>
+	<tags>Silverlight Common.Logging.Silverlight logging log Common.Logging</tags>
     <language>en-US</language>
     <dependencies>
       <dependency id="Common.Logging.Portable" version="2.0.0" />
