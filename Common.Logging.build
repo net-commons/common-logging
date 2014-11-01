@@ -175,7 +175,7 @@
     </copy>
 
     <!-- copy over readme etc. -->
-    <copy todir="${package.dir}" file="${root.dir}/readme.txt"/>
+    <copy todir="${package.dir}" file="${root.dir}/readme.md"/>
     <copy todir="${package.dir}" file="${root.dir}/license.txt"/>
     <copy todir="${package.dir}" file="${root.dir}/changelog.txt"/>
 
@@ -572,7 +572,7 @@ ${tool.dir}       : dir for tools
 		</in>
 		<do>
 			<echo message="Processing nuspec file: ${filename}" />
-			<xmlpoke file="${filename}" xpath="/n:package/n:metadata/n:dependencies/n:dependency[@id='Common.Logging']/@version" value="${nuget.package.version}">
+			<xmlpoke file="${filename}" xpath="/n:package/n:metadata/n:dependencies/n:dependency[@id='Common.Logging' or @id='Common.Logging.Portable']/@version" value="${nuget.package.version}">
 				<namespaces>
 					<namespace prefix="n" uri="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd" />
 				</namespaces>
