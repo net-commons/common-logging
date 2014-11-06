@@ -7,7 +7,7 @@
 ## Introduction
 
 Provides a simple logging abstraction to switch between different logging implementations.
-There is current support for log4net, NLog, and Enterprise Library logging.
+There is current support for log4net, NLog and Enterprise Library logging.
 
 Additionally Common.Logging comes with a set of base classes making the integration of any log
 system a breeze.
@@ -18,12 +18,12 @@ See also
 * [Source Forge](http://netcommon.sf.net/)
 * [Nuget](https://www.nuget.org/packages/Common.Logging/): `Install-Package Common.Logging` 
 
-## Quickstart (built in console logger)
-Nuget:
+## Console Quickstart
+This demonstrates how to configure your app to log using the built in Common.Logging console adapter.
+ 
+Nuget: `PM> Install-Package Common.Logging` 
 
-`PM> Install-Package Common.Logging` 
-
-app.config or web.config:
+Then add the relevant sections to your app.config or web.config:
 
 	<?xml version="1.0" encoding="utf-8" ?>
 	<configuration>
@@ -48,11 +48,13 @@ app.config or web.config:
 	</configuration>
 
 ## NLog Quickstart
-Nuget:
+There are different packages for each major NLog version. Install the correct package for your referenced NLog version. This example installs the adapter for Nog 2.0:
 
-    PM> Install-Package Common.Logging.NLog20 
+    PM> Install-Package Common.Logging.NLog20
 
-app.config:
+If you are using NLog 3.0, you should install the `Common.Logging.NLog30` package and so on.  
+
+The app config should then have a common logging section like below. Be sure to match the `factoryAdapter type` with your installed `Common.Logging.NLogXX` version. 
 
     <common>
     	<logging>
@@ -67,7 +69,7 @@ app.config:
     </nlog>
 
 
-See module documentation and [Source Forge](http://netcommon.sf.net/) for other available factoryAdapters and their configuration values
+See module documentation and [Source Forge](http://netcommon.sf.net/) for other factoryAdapters and their configuration values
 
 
 ## Solution Layout
