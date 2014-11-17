@@ -21,6 +21,7 @@
 using System;
 using System.Diagnostics;
 using Common.Logging.Factory;
+using Common.Logging.Simple;
 using NLog;
 using LogLevelNLog = NLog.LogLevel;
 using LoggerNLog = NLog.Logger;
@@ -36,7 +37,7 @@ namespace Common.Logging.NLog
     /// http://www.nlog-project.org/
     /// </remarks>
     /// <author>Bruno Baia</author>
-    public class NLogLogger : AbstractLogger
+    public partial class NLogLogger : AbstractLogger
     {
         #region Fields
 

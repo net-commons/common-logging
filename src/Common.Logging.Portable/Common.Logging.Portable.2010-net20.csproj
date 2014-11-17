@@ -79,6 +79,7 @@
     <Compile Include="Logging\Configuration\NameValueCollection.cs" />
     <Compile Include="Logging\Factory\AbstractLogger.cs" />
     <Compile Include="Logging\Factory\AbstractCachingLoggerFactoryAdapter.cs" />
+    <Compile Include="Logging\IVariablesContext.cs" />
     <Compile Include="Logging\Simple\CapturingLogger.cs" />
     <Compile Include="Logging\Simple\CapturingLoggerEvent.cs" />
     <Compile Include="Logging\Simple\CapturingLoggerFactoryAdapter.cs" />
@@ -99,6 +100,7 @@
     <Compile Include="Logging\Simple\DebugLoggerFactoryAdapter.cs" />
     <Compile Include="Logging\Simple\NoOpLogger.cs" />
     <Compile Include="Logging\Simple\NoOpLoggerFactoryAdapter.cs" />
+    <Compile Include="Logging\Simple\NoOpVariablesContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

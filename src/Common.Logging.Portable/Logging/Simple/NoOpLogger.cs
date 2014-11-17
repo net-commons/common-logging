@@ -728,6 +728,21 @@ namespace Common.Logging.Simple
         }
 
         #endregion
+ 
+        /// <summary>
+        /// Returns the global context for variables
+        /// </summary>
+        public IVariablesContext GlobalVariablesContext
+        {
+            get { return new NoOpVariablesContext(); }
+        }
 
+        /// <summary>
+        /// Returns the thread-specific context for variables
+        /// </summary>
+        public IVariablesContext ThreadVariablesContext
+        {
+            get { return new NoOpVariablesContext(); }
+        }
     }
 }
