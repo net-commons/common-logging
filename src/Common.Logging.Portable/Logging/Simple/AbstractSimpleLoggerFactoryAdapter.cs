@@ -148,7 +148,7 @@ namespace Common.Logging.Simple
         /// standard .NET application configuraiton file (App.config/Web.config) 
         /// to configure this adapter.
         /// </remarks>
-        /// <param key="properties">The key value collection, typically specified by the user in 
+        /// <param name="properties">The key value collection, typically specified by the user in 
         /// a configuration section named common/logging.</param>
         protected AbstractSimpleLoggerFactoryAdapter(NameValueCollection properties)
             :this(

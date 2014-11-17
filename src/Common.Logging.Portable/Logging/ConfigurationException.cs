@@ -47,7 +47,7 @@ namespace Common.Logging
         /// <summary>
         /// Creates a new instance of the ConfigurationException class. with the specified message.
         /// </summary>
-        /// <param key="message">
+        /// <param name="message">
         /// A message about the exception.
         /// </param>
         public ConfigurationException(string message) : base(message)
@@ -58,10 +58,10 @@ namespace Common.Logging
         /// Creates a new instance of the ConfigurationException class with the specified message
         /// and root cause.
         /// </summary>
-        /// <param key="message">
+        /// <param name="message">
         /// A message about the exception.
         /// </param>
-        /// <param key="rootCause">
+        /// <param name="rootCause">
         /// The root exception that is being wrapped.
         /// </param>
         public ConfigurationException(string message, Exception rootCause)
@@ -74,11 +74,11 @@ namespace Common.Logging
        /// <summary>
         /// Creates a new instance of the ConfigurationException class.
         /// </summary>
-        /// <param key="info">
+        /// <param name="info">
         /// The <see cref="System.Runtime.Serialization.SerializationInfo"/>
         /// that holds the serialized object data about the exception being thrown.
         /// </param>
-        /// <param key="context">
+        /// <param name="context">
         /// The <see cref="System.Runtime.Serialization.StreamingContext"/>
         /// that contains contextual information about the source or destination.
         /// </param>

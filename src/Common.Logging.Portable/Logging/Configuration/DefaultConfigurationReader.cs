@@ -32,7 +32,7 @@ namespace Common.Logging.Configuration
         /// Parses the configuration section and returns the resulting object.
         /// Using the <c>System.Configuration.ConfigurationManager</c>
         /// </summary>
-        /// <param key="sectionName">Name of the configuration section.</param>
+        /// <param name="sectionName">Name of the configuration section.</param>
         /// <returns>
         /// Object created by a corresponding <c>IConfigurationSectionHandler"</c>
         /// </returns>

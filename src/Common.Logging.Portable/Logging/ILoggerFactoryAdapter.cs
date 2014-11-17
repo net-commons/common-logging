@@ -34,14 +34,14 @@ namespace Common.Logging
         /// <summary>
         /// Get a ILog instance by type.
         /// </summary>
-        /// <param key="type">The type to use for the logger</param>
+        /// <param name="type">The type to use for the logger</param>
         /// <returns></returns>
 		ILog GetLogger( Type type );
 
         /// <summary>
         /// Get a ILog instance by key.
         /// </summary>
-        /// <param key="key">The key of the logger</param>
+        /// <param name="key">The key of the logger</param>
         /// <returns></returns>
 		ILog GetLogger( string name );	
 

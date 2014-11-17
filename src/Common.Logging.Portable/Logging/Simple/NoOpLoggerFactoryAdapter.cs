@@ -88,7 +88,7 @@ namespace Common.Logging.Simple
         /// <summary>
         /// Get a ILog instance by type 
         /// </summary>
-        /// <param key="type"></param>
+        /// <param name="type"></param>
         /// <returns></returns>
         public ILog GetLogger(Type type)
         {
@@ -98,7 +98,7 @@ namespace Common.Logging.Simple
         /// <summary>
         /// Get a ILog instance by type key 
         /// </summary>
-        /// <param key="key"></param>
+        /// <param name="key"></param>
         /// <returns></returns>
         ILog ILoggerFactoryAdapter.GetLogger(string name)
         {

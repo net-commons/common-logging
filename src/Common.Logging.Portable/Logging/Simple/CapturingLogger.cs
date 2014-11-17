@@ -81,9 +81,9 @@ namespace Common.Logging.Simple
         /// <summary>
         /// Create a new <see cref="CapturingLoggerEvent"/> and send it to <see cref="CapturingLoggerFactoryAdapter.AddEvent"/>
         /// </summary>
-        /// <param key="level"></param>
-        /// <param key="message"></param>
-        /// <param key="exception"></param>
+        /// <param name="level"></param>
+        /// <param name="message"></param>
+        /// <param name="exception"></param>
         protected override void WriteInternal(LogLevel level, object message, Exception exception)
         {
             CapturingLoggerEvent ev = new CapturingLoggerEvent(this, level, message, exception);

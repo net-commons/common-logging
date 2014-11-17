@@ -20,7 +20,7 @@ namespace Common.Logging.Configuration
         /// <summary>
         /// Gets the values (only a single one) for the specified key (configuration name)
         /// </summary>
-        /// <param key="key">The key.</param>
+        /// <param name="key">The key.</param>
         /// <returns>an array with one value, or null if no value exist</returns>
         public string[] GetValues(string key)
         {
@@ -38,7 +38,7 @@ namespace Common.Logging.Configuration
         /// <value>
         /// The value corrsponding to the key, or null if no value exist
         /// </value>
-        /// <param key="key">The key.</param>
+        /// <param name="key">The key.</param>
         /// <returns>value store for the key</returns>
         public new string this[string key]
         {

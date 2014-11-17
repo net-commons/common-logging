@@ -38,11 +38,11 @@ namespace Common.Logging.Configuration
         /// <summary>
         /// 
         /// </summary>
-        /// <param key="factoryAdapterType">
+        /// <param name="factoryAdapterType">
         /// The <see cref="ILoggerFactoryAdapter" /> type 
         /// that will be used for creating <see cref="ILog" />
         /// </param>
-        /// <param key="properties">
+        /// <param name="properties">
         /// Additional user supplied properties that are passed to the 
         /// <paramref key="factoryAdapterType" />'s constructor.
         /// </param>

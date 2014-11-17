@@ -126,7 +126,7 @@ namespace Common.Logging
         /// <b>Note:</b><see cref="ILog"/> instances already handed out from this LogManager are not(!) affected. 
         /// Resetting LogManager only affects new instances being handed out.
         /// </remarks>
-        /// <param key="reader">
+        /// <param name="reader">
         /// the <see cref="IConfigurationReader"/> instance to obtain settings for 
         /// re-initializing the LogManager.
         /// </param>
@@ -328,7 +328,7 @@ namespace Common.Logging
         /// Gets the logger by calling <see cref="ILoggerFactoryAdapter.GetLogger(Type)"/>
         /// on the currently configured <see cref="Adapter"/> using the specified type.
         /// </summary>
-        /// <param key="type">The type.</param>
+        /// <param name="type">The type.</param>
         /// <returns>the logger instance obtained from the current <see cref="Adapter"/></returns>
         public static ILog GetLogger(Type type)
         {
@@ -340,7 +340,7 @@ namespace Common.Logging
         /// Gets the logger by calling <see cref="ILoggerFactoryAdapter.GetLogger(string)"/>
         /// on the currently configured <see cref="Adapter"/> using the specified key.
         /// </summary>
-        /// <param key="key">The key.</param>
+        /// <param name="key">The key.</param>
         /// <returns>the logger instance obtained from the current <see cref="Adapter"/></returns>
         public static ILog GetLogger(string name)
         {
@@ -411,7 +411,7 @@ namespace Common.Logging
         /// Builds a <see cref="ILoggerFactoryAdapter"/> instance from the given <see cref="LogSetting"/>
         /// using <see cref="Activator"/>.
         /// </summary>
-        /// <param key="setting"></param>
+        /// <param name="setting"></param>
         /// <returns>the <see cref="ILoggerFactoryAdapter"/> instance. Is never <c>null</c></returns>
         private static ILoggerFactoryAdapter BuildLoggerFactoryAdapterFromLogSettings(LogSetting setting)
         {

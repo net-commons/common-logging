@@ -43,7 +43,7 @@ namespace Common.Logging.Factory
         /// <summary>
         /// Creates a new instance, the logger cache being <paramref key="caseSensitiveLoggerCache"/>.
         /// </summary>
-        /// <param key="caseSensitiveLoggerCache"></param>
+        /// <param name="caseSensitiveLoggerCache"></param>
         protected AbstractCachingLoggerFactoryAdapter(bool caseSensitiveLoggerCache)
         {
             _cachedLoggers = (caseSensitiveLoggerCache)
@@ -76,7 +76,7 @@ namespace Common.Logging.Factory
         /// <summary>
         /// Get a ILog instance by <see cref="Type" />.
         /// </summary>
-        /// <param key="type">Usually the <see cref="Type" /> of the current class.</param>
+        /// <param name="type">Usually the <see cref="Type" /> of the current class.</param>
         /// <returns>
         /// An ILog instance either obtained from the internal cache or created by a call to <see cref="CreateLogger"/>.
         /// </returns>
@@ -88,7 +88,7 @@ namespace Common.Logging.Factory
         /// <summary>
         /// Get a ILog instance by key.
         /// </summary>
-        /// <param key="key">Usually a <see cref="Type" />'s Name or FullName property.</param>
+        /// <param name="key">Usually a <see cref="Type" />'s Name or FullName property.</param>
         /// <returns>
         /// An ILog instance either obtained from the internal cache or created by a call to <see cref="CreateLogger"/>.
         /// </returns>
@@ -100,7 +100,7 @@ namespace Common.Logging.Factory
         /// <summary>
         /// Get or create a ILog instance by key.
         /// </summary>
-        /// <param key="key">Usually a <see cref="Type" />'s Name or FullName property.</param>
+        /// <param name="key">Usually a <see cref="Type" />'s Name or FullName property.</param>
         /// <returns>
         /// An ILog instance either obtained from the internal cache or created by a call to <see cref="CreateLogger"/>.
         /// </returns>

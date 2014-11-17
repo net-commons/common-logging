@@ -37,12 +37,12 @@ namespace Common.Logging.Simple
         /// <summary>
         /// Creates and initializes a logger that writes messages to <see cref="System.Diagnostics.Debug" />.
         /// </summary>
-        /// <param key="logName">The key, usually type key of the calling class, of the logger.</param>
-        /// <param key="logLevel">The current logging threshold. Messages recieved that are beneath this threshold will not be logged.</param>
-        /// <param key="showLevel">Include the current log level in the log message.</param>
-        /// <param key="showDateTime">Include the current time in the log message.</param>
-        /// <param key="showLogName">Include the instance key in the log message.</param>
-        /// <param key="dateTimeFormat">The date and time format to use in the log message.</param>
+        /// <param name="logName">The key, usually type key of the calling class, of the logger.</param>
+        /// <param name="logLevel">The current logging threshold. Messages recieved that are beneath this threshold will not be logged.</param>
+        /// <param name="showLevel">Include the current log level in the log message.</param>
+        /// <param name="showDateTime">Include the current time in the log message.</param>
+        /// <param name="showLogName">Include the instance key in the log message.</param>
+        /// <param name="dateTimeFormat">The date and time format to use in the log message.</param>
         public DebugOutLogger(string logName, LogLevel logLevel, bool showLevel, bool showDateTime, bool showLogName, string dateTimeFormat)
             : base(logName, logLevel, showLevel, showDateTime, showLogName, dateTimeFormat)
         {
@@ -52,9 +52,9 @@ namespace Common.Logging.Simple
         /// Do the actual logging by constructing the log message using a <see cref="StringBuilder" /> then
         /// sending the output to <see cref="Console.Out" />.
         /// </summary>
-        /// <param key="level">The <see cref="LogLevel" /> of the message.</param>
-        /// <param key="message">The log message.</param>
-        /// <param key="e">An optional <see cref="Exception" /> associated with the message.</param>
+        /// <param name="level">The <see cref="LogLevel" /> of the message.</param>
+        /// <param name="message">The log message.</param>
+        /// <param name="e">An optional <see cref="Exception" /> associated with the message.</param>
         protected override void WriteInternal(LogLevel level, object message, Exception e)
         {
             // Use a StringBuilder for better performance

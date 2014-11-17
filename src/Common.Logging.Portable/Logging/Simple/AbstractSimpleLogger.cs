@@ -115,12 +115,12 @@ namespace Common.Logging.Simple
         /// <summary>
         /// Creates and initializes a the simple logger.
         /// </summary>
-        /// <param key="logName">The key, usually type key of the calling class, of the logger.</param>
-        /// <param key="logLevel">The current logging threshold. Messages recieved that are beneath this threshold will not be logged.</param>
-        /// <param key="showlevel">Include level in the log message.</param>
-        /// <param key="showDateTime">Include the current time in the log message.</param>
-        /// <param key="showLogName">Include the instance key in the log message.</param>
-        /// <param key="dateTimeFormat">The date and time format to use in the log message.</param>
+        /// <param name="logName">The key, usually type key of the calling class, of the logger.</param>
+        /// <param name="logLevel">The current logging threshold. Messages recieved that are beneath this threshold will not be logged.</param>
+        /// <param name="showlevel">Include level in the log message.</param>
+        /// <param name="showDateTime">Include the current time in the log message.</param>
+        /// <param name="showLogName">Include the instance key in the log message.</param>
+        /// <param name="dateTimeFormat">The date and time format to use in the log message.</param>
         public AbstractSimpleLogger(string logName, LogLevel logLevel, bool showlevel
                                  , bool showDateTime, bool showLogName, string dateTimeFormat)
         {
@@ -136,10 +136,10 @@ namespace Common.Logging.Simple
         /// <summary>
         /// Appends the formatted message to the specified <see cref="StringBuilder"/>.
         /// </summary>
-        /// <param key="stringBuilder">the <see cref="StringBuilder"/> that receíves the formatted message.</param>
-        /// <param key="level"></param>
-        /// <param key="message"></param>
-        /// <param key="e"></param>
+        /// <param name="stringBuilder">the <see cref="StringBuilder"/> that receíves the formatted message.</param>
+        /// <param name="level"></param>
+        /// <param name="message"></param>
+        /// <param name="e"></param>
         protected virtual void FormatOutput(StringBuilder stringBuilder, LogLevel level, object message, Exception e)
         {
             if (stringBuilder == null)
@@ -187,7 +187,7 @@ namespace Common.Logging.Simple
         /// <summary>
         /// Determines if the given log level is currently enabled.
         /// </summary>
-        /// <param key="level"></param>
+        /// <param name="level"></param>
         /// <returns></returns>
         protected virtual bool IsLevelEnabled(LogLevel level)
         {

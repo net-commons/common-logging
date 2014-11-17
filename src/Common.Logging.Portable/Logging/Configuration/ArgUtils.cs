@@ -67,8 +67,8 @@ namespace Common.Logging.Configuration
         /// <summary>
         /// Retrieves the named value from the specified <see cref="NameValueCollection"/>.
         /// </summary>
-        /// <param key="values">may be null</param>
-        /// <param key="key">the value's key</param>
+        /// <param name="values">may be null</param>
+        /// <param name="key">the value's key</param>
         /// <returns>if <paramref key="values"/> is not null, the value returned by values[key]. <c>null</c> otherwise.</returns>
         public static string GetValue(NameValueCollection values, string name)
         {
@@ -78,9 +78,9 @@ namespace Common.Logging.Configuration
         /// <summary>
         /// Retrieves the named value from the specified <see cref="NameValueCollection"/>.
         /// </summary>
-        /// <param key="values">may be null</param>
-        /// <param key="key">the value's key</param>
-        /// <param key="defaultValue">the default value, if not found</param>
+        /// <param name="values">may be null</param>
+        /// <param name="key">the value's key</param>
+        /// <param name="defaultValue">the default value, if not found</param>
         /// <returns>if <paramref key="values"/> is not null, the value returned by values[key]. <c>null</c> otherwise.</returns>
         public static string GetValue(NameValueCollection values, string name, string defaultValue)
         {
@@ -141,8 +141,8 @@ namespace Common.Logging.Configuration
         /// <summary>
         /// Tries parsing <paramref key="stringValue"/> into an enum of the type of <paramref key="defaultValue"/>.
         /// </summary>
-        /// <param key="defaultValue">the default value to return if parsing fails</param>
-        /// <param key="stringValue">the string value to parse</param>
+        /// <param name="defaultValue">the default value to return if parsing fails</param>
+        /// <param name="stringValue">the string value to parse</param>
         /// <returns>the successfully parsed value, <paramref key="defaultValue"/> otherwise.</returns>
         public static T TryParseEnum<T>(T defaultValue, string stringValue) where T : struct
         {
@@ -175,8 +175,8 @@ namespace Common.Logging.Configuration
         /// <summary>
         /// Tries parsing <paramref key="stringValue"/> into the specified return type.
         /// </summary>
-        /// <param key="defaultValue">the default value to return if parsing fails</param>
-        /// <param key="stringValue">the string value to parse</param>
+        /// <param name="defaultValue">the default value to return if parsing fails</param>
+        /// <param name="stringValue">the string value to parse</param>
         /// <returns>the successfully parsed value, <paramref key="defaultValue"/> otherwise.</returns>
         public static T TryParse<T>(T defaultValue, string stringValue)
         {
@@ -282,9 +282,9 @@ namespace Common.Logging.Configuration
         /// <remarks>
         /// If <paramref key="action"/> already throws a ConfigurationException, it will not be wrapped.
         /// </remarks>
-        /// <param key="action">the action to execute</param>
-        /// <param key="messageFormat">the message to be set on the thrown <see cref="ConfigurationException"/></param>
-        /// <param key="args">args to be passed to <see cref="string.Format(string,object[])"/> to format the message</param>
+        /// <param name="action">the action to execute</param>
+        /// <param name="messageFormat">the message to be set on the thrown <see cref="ConfigurationException"/></param>
+        /// <param name="args">args to be passed to <see cref="string.Format(string,object[])"/> to format the message</param>
         public static void Guard(Action action, string messageFormat, params object[] args)
         {
             Guard<int>(delegate
@@ -308,9 +308,9 @@ namespace Common.Logging.Configuration
         /// <remarks>
         /// If <paramref key="function"/> already throws a ConfigurationException, it will not be wrapped.
         /// </remarks>
-        /// <param key="function">the action to execute</param>
-        /// <param key="messageFormat">the message to be set on the thrown <see cref="ConfigurationException"/></param>
-        /// <param key="args">args to be passed to <see cref="string.Format(string,object[])"/> to format the message</param>
+        /// <param name="function">the action to execute</param>
+        /// <param name="messageFormat">the message to be set on the thrown <see cref="ConfigurationException"/></param>
+        /// <param name="args">args to be passed to <see cref="string.Format(string,object[])"/> to format the message</param>
         public static T Guard<T>(Function<T> function, string messageFormat, params object[] args)
         {
             try
