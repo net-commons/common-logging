@@ -54,3 +54,4 @@ src/Common.Logging.NLog21/Common.Logging.NLog21.xml
 src/Common.Logging.NLog30/Common.Logging.NLog30.xml
 src/Common.Logging.NLog31/Common.Logging.NLog31.xml
 src/Common.Logging/Common.Logging.xml
+src/Common.Logging.Portable/Common.Logging.Portable.xml
