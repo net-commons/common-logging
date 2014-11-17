@@ -664,6 +664,16 @@
             Checks if this logger is enabled for the <see cref="F:Common.Logging.LogLevel.Warn"/> level.
             </summary>
         </member>
+        <member name="P:Common.Logging.ILog.GlobalVariablesContext">
+            <summary>
+            Returns the global context for variables
+            </summary>
+        </member>
+        <member name="P:Common.Logging.ILog.ThreadVariablesContext">
+            <summary>
+            Returns the thread-specific context for variables
+            </summary>
+        </member>
         <member name="F:Common.Logging.Factory.AbstractLogger.Write">
             <summary>
             Holds the method for writing a message to the log system.
@@ -1289,6 +1299,16 @@
             Override this in your derived class to comply with the underlying logging system
             </remarks>
         </member>
+        <member name="P:Common.Logging.Factory.AbstractLogger.GlobalVariablesContext">
+            <summary>
+            Returns the global context for variables
+            </summary>
+        </member>
+        <member name="P:Common.Logging.Factory.AbstractLogger.ThreadVariablesContext">
+            <summary>
+            Returns the thread-specific context for variables
+            </summary>
+        </member>
         <member name="T:Common.Logging.Factory.AbstractLogger.FormatMessageCallbackFormattedMessage">
             <summary>
             Format message on demand.
@@ -1419,6 +1439,43 @@
             <returns>
             An ILog instance either obtained from the internal cache or created by a call to <see cref="M:Common.Logging.Factory.AbstractCachingLoggerFactoryAdapter.CreateLogger(System.String)"/>.
             </returns>
+        </member>
+        <member name="T:Common.Logging.IVariablesContext">
+            <summary>
+            A context for logger variables
+            </summary>
+        </member>
+        <member name="M:Common.Logging.IVariablesContext.Set(System.String,System.Object)">
+            <summary>
+            Sets the value of a new or existing variable within the global context
+            </summary>
+            <param name="key">The key of the variable that is to be added</param>
+            <param name="value">The value to add</param>
+        </member>
+        <member name="M:Common.Logging.IVariablesContext.Get(System.String)">
+            <summary>
+            Gets the value of a variable within the global context
+            </summary>
+            <param name="key">The key of the variable to get</param>
+            <returns>The value or null if not found</returns>
+        </member>
+        <member name="M:Common.Logging.IVariablesContext.Contains(System.String)">
+            <summary>
+            Checks if a variable is set within the global context
+            </summary>
+            <param name="key">The key of the variable to check for</param>
+            <returns>True if the variable is set</returns>
+        </member>
+        <member name="M:Common.Logging.IVariablesContext.Remove(System.String)">
+            <summary>
+            Removes a variable from the global context by key
+            </summary>
+            <param name="key">The key of the variable to remove</param>
+        </member>
+        <member name="M:Common.Logging.IVariablesContext.Clear">
+            <summary>
+            Clears the global context variables
+            </summary>
         </member>
         <member name="T:Common.Logging.Simple.CapturingLogger">
             <summary>
@@ -2825,6 +2882,16 @@
             Always returns <see langword="false" />.
             </summary>
         </member>
+        <member name="P:Common.Logging.Simple.NoOpLogger.GlobalVariablesContext">
+            <summary>
+            Returns the global context for variables
+            </summary>
+        </member>
+        <member name="P:Common.Logging.Simple.NoOpLogger.ThreadVariablesContext">
+            <summary>
+            Returns the thread-specific context for variables
+            </summary>
+        </member>
         <member name="T:Common.Logging.Simple.NoOpLoggerFactoryAdapter">
             <summary>
             Factory for creating <see cref="T:Common.Logging.ILog"/> instances that silently ignores
@@ -2889,6 +2956,43 @@
             </summary>
             <param key="key"></param>
             <returns></returns>
+        </member>
+        <member name="T:Common.Logging.Simple.NoOpVariablesContext">
+            <summary>
+            A null-functionality implementation of <see cref="T:Common.Logging.IVariablesContext"/>
+            </summary>
+        </member>
+        <member name="M:Common.Logging.Simple.NoOpVariablesContext.Set(System.String,System.Object)">
+            <summary>
+            Sets the value of a new or existing variable within the global context
+            </summary>
+            <param name="key">The key of the variable that is to be added</param>
+            <param name="value">The value to add</param>
+        </member>
+        <member name="M:Common.Logging.Simple.NoOpVariablesContext.Get(System.String)">
+            <summary>
+            Gets the value of a variable within the global context
+            </summary>
+            <param name="key">The key of the variable to get</param>
+            <returns>The value or null if not found</returns>
+        </member>
+        <member name="M:Common.Logging.Simple.NoOpVariablesContext.Contains(System.String)">
+            <summary>
+            Checks if a variable is set within the global context
+            </summary>
+            <param name="key">The key of the variable to check for</param>
+            <returns>True if the variable is set</returns>
+        </member>
+        <member name="M:Common.Logging.Simple.NoOpVariablesContext.Remove(System.String)">
+            <summary>
+            Removes a variable from the global context by key
+            </summary>
+            <param name="key">The key of the variable to remove</param>
+        </member>
+        <member name="M:Common.Logging.Simple.NoOpVariablesContext.Clear">
+            <summary>
+            Clears the global context variables
+            </summary>
         </member>
     </members>
 </doc>

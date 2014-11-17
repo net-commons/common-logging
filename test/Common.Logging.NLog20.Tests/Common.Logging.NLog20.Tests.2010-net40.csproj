@@ -81,6 +81,7 @@
       <Link>Logger\NLog\NLogLoggerFactoryAdapterTests.cs</Link>
     </Compile>
     <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="Logger\NLog\NLogLoggerFactoryAdapterVariablesContextTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

@@ -107,6 +107,9 @@
     <Compile Include="..\Common.Logging.Portable\Logging\ILoggerFactoryAdapter.cs">
       <Link>Logging\ILoggerFactoryAdapter.cs</Link>
     </Compile>
+    <Compile Include="..\Common.Logging.Portable\Logging\IVariablesContext.cs">
+      <Link>Logging\IVariablesContext.cs</Link>
+    </Compile>
     <Compile Include="..\Common.Logging.Portable\Logging\LogLevel.cs">
       <Link>Logging\LogLevel.cs</Link>
     </Compile>
@@ -142,6 +145,9 @@
     </Compile>
     <Compile Include="..\Common.Logging.Portable\Logging\Simple\NoOpLoggerFactoryAdapter.cs">
       <Link>Logging\Simple\NoOpLoggerFactoryAdapter.cs</Link>
+    </Compile>
+    <Compile Include="..\Common.Logging.Portable\Logging\Simple\NoOpVariablesContext.cs">
+      <Link>Logging\Simple\NoOpVariablesContext.cs</Link>
     </Compile>
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>CommonAssemblyInfo.cs</Link>

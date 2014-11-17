@@ -76,6 +76,7 @@
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="Logging\NLog\CommonLoggingTarget.cs" />
     <Compile Include="Logging\NLog\NLogLogger.cs" />
+    <Compile Include="Logging\NLog\NLogLogger.VariablesContext.cs" />
     <Compile Include="Logging\NLog\NLogLoggerFactoryAdapter.cs" />
   </ItemGroup>
   <ItemGroup>
