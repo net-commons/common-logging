@@ -70,9 +70,9 @@ namespace Common.Logging.Configuration
         /// <param name="values">may be null</param>
         /// <param name="key">the value's key</param>
         /// <returns>if <paramref key="values"/> is not null, the value returned by values[key]. <c>null</c> otherwise.</returns>
-        public static string GetValue(NameValueCollection values, string name)
+        public static string GetValue(NameValueCollection values, string key)
         {
-            return GetValue(values, name, null);
+            return GetValue(values, key, null);
         }
 
         /// <summary>
@@ -82,15 +82,15 @@ namespace Common.Logging.Configuration
         /// <param name="key">the value's key</param>
         /// <param name="defaultValue">the default value, if not found</param>
         /// <returns>if <paramref key="values"/> is not null, the value returned by values[key]. <c>null</c> otherwise.</returns>
-        public static string GetValue(NameValueCollection values, string name, string defaultValue)
+        public static string GetValue(NameValueCollection values, string key, string defaultValue)
         {
             if (values != null)
             {
-                foreach (string key in values.Keys)
+                foreach (string valueKey in values.Keys)
                 {
-                    if (string.Compare(name, key, StringComparison.OrdinalIgnoreCase) == 0)
+                    if (string.Compare(key, valueKey, StringComparison.OrdinalIgnoreCase) == 0)
                     {
-                        return values[name];
+                        return values[key];
                     }
                 }
             }

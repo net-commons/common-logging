@@ -100,7 +100,7 @@ namespace Common.Logging.Simple
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
-        ILog ILoggerFactoryAdapter.GetLogger(string name)
+        ILog ILoggerFactoryAdapter.GetLogger(string key)
         {
             return s_nopLogger;
 

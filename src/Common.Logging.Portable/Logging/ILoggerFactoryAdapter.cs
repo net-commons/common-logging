@@ -43,7 +43,7 @@ namespace Common.Logging
         /// </summary>
         /// <param name="key">The key of the logger</param>
         /// <returns></returns>
-		ILog GetLogger( string name );	
+		ILog GetLogger( string key );	
 
 	}
 }

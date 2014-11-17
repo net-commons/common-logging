@@ -92,9 +92,9 @@ namespace Common.Logging.Factory
         /// <returns>
         /// An ILog instance either obtained from the internal cache or created by a call to <see cref="CreateLogger"/>.
         /// </returns>
-        public ILog GetLogger(string name)
+        public ILog GetLogger(string key)
         {
-            return GetLoggerInternal(name);
+            return GetLoggerInternal(key);
         }
 
         /// <summary>
@@ -104,21 +104,21 @@ namespace Common.Logging.Factory
         /// <returns>
         /// An ILog instance either obtained from the internal cache or created by a call to <see cref="CreateLogger"/>.
         /// </returns>
-        private ILog GetLoggerInternal(string name)
+        private ILog GetLoggerInternal(string key)
         {
             ILog log;
-            if (!_cachedLoggers.TryGetValue(name, out log))
+            if (!_cachedLoggers.TryGetValue(key, out log))
             {
                 lock (_cachedLoggers)
                 {
-                    if (!_cachedLoggers.TryGetValue(name, out log))
+                    if (!_cachedLoggers.TryGetValue(key, out log))
                     {
-                        log = CreateLogger(name);
+                        log = CreateLogger(key);
                         if (log == null)
                         {
-                            throw new ArgumentException(string.Format("{0} returned null on creating logger instance for key {1}", this.GetType().FullName, name));
+                            throw new ArgumentException(string.Format("{0} returned null on creating logger instance for key {1}", this.GetType().FullName, key));
                         }
-                        _cachedLoggers.Add(name, log);
+                        _cachedLoggers.Add(key, log);
                     }
                 }
             }

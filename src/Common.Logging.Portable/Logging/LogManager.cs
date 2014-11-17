@@ -342,9 +342,9 @@ namespace Common.Logging
         /// </summary>
         /// <param name="key">The key.</param>
         /// <returns>the logger instance obtained from the current <see cref="Adapter"/></returns>
-        public static ILog GetLogger(string name)
+        public static ILog GetLogger(string key)
         {
-            return Adapter.GetLogger(name);
+            return Adapter.GetLogger(key);
         }
 
 
