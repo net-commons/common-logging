@@ -42,6 +42,13 @@
       <Link>CommonAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="Logging\FormatMessageHandler.cs" />
+    <Compile Include="Logging\IConfigurationReader.cs" />
+    <Compile Include="Logging\ILog.cs" />
+    <Compile Include="Logging\ILoggerFactoryAdapter.cs" />
+    <Compile Include="Logging\ILogManager.cs" />
+    <Compile Include="Logging\IVariablesContext.cs" />
+    <Compile Include="Logging\LogLevel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
