@@ -103,6 +103,10 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <ProjectReference Include="..\..\src\Common.Logging.Core.2010\Common.Logging.Core.2010.csproj">
+      <Project>{7eeb2191-b3fc-4509-aa4b-a345c386eeed}</Project>
+      <Name>Common.Logging.Core.2010</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\Common.Logging.NLog21\Common.Logging.NLog21.2010-net40.csproj">
       <Project>{6a4b2532-4790-4283-b014-4ba058d76c18}</Project>
       <Name>Common.Logging.NLog21.2010-net40</Name>
@@ -119,7 +123,7 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties ProjectLinkReference="b4bb1353-924a-40f0-9aa5-a7c28ab68f69" ProjectLinkerExcludeFilter="\\?desktop(\\.*)?$;\\?silverlight(\\.*)?$;\.desktop;\.silverlight;\.xaml;^service references(\\.*)?$;\.clientconfig;^web references(\\.*)?$" />
+      <UserProperties ProjectLinkerExcludeFilter="\\?desktop(\\.*)?$;\\?silverlight(\\.*)?$;\.desktop;\.silverlight;\.xaml;^service references(\\.*)?$;\.clientconfig;^web references(\\.*)?$" ProjectLinkReference="b4bb1353-924a-40f0-9aa5-a7c28ab68f69" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
