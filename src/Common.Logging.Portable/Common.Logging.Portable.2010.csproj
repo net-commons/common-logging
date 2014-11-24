@@ -79,6 +79,7 @@
     <Compile Include="Logging\Configuration\NameValueCollection.cs" />
     <Compile Include="Logging\Factory\AbstractLogger.cs" />
     <Compile Include="Logging\Factory\AbstractCachingLoggerFactoryAdapter.cs" />
+    <Compile Include="Logging\Factory\ResharperAnnotation.cs" />
     <Compile Include="Logging\IVariablesContext.cs" />
     <Compile Include="Logging\Simple\CapturingLogger.cs" />
     <Compile Include="Logging\Simple\CapturingLoggerEvent.cs" />

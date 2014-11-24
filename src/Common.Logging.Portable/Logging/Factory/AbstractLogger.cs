@@ -77,6 +77,7 @@ namespace Common.Logging.Factory
                 return cachedMessage;
             }
 
+            [StringFormatMethod("format")]
             private string FormatMessage(string format, params object[] args)
             {
                 cachedMessage = string.Format(formatProvider, format, args);
@@ -105,6 +106,7 @@ namespace Common.Logging.Factory
             /// <param name="formatProvider">The format provider.</param>
             /// <param name="message">The message.</param>
             /// <param name="args">The args.</param>
+            [StringFormatMethod("message")]
             public StringFormatFormattedMessage(IFormatProvider formatProvider, string message, params object[] args)
             {
                 FormatProvider = formatProvider;
@@ -253,6 +255,7 @@ namespace Common.Logging.Factory
         /// <param name="formatProvider">An <see cref="IFormatProvider"/> that supplies culture-specific formatting information.</param>
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="args"></param>
+        [StringFormatMethod("format")]
         public virtual void TraceFormat(IFormatProvider formatProvider, string format, params object[] args)
         {
             if (IsTraceEnabled)
@@ -266,6 +269,7 @@ namespace Common.Logging.Factory
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="exception">The exception to log.</param>
         /// <param name="args"></param>
+        [StringFormatMethod("format")]
         public virtual void TraceFormat(IFormatProvider formatProvider, string format, Exception exception, params object[] args)
         {
             if (IsTraceEnabled)
@@ -277,6 +281,7 @@ namespace Common.Logging.Factory
         /// </summary>
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="args">the list of format arguments</param>
+        [StringFormatMethod("format")]
         public virtual void TraceFormat(string format, params object[] args)
         {
             if (IsTraceEnabled)
@@ -289,6 +294,7 @@ namespace Common.Logging.Factory
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="exception">The exception to log.</param>
         /// <param name="args">the list of format arguments</param>
+        [StringFormatMethod("format")]
         public virtual void TraceFormat(string format, Exception exception, params object[] args)
         {
             if (IsTraceEnabled)
@@ -388,6 +394,7 @@ namespace Common.Logging.Factory
         /// <param name="formatProvider">An <see cref="IFormatProvider"/> that supplies culture-specific formatting information.</param>
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="args"></param>
+        [StringFormatMethod("format")]
         public virtual void DebugFormat(IFormatProvider formatProvider, string format, params object[] args)
         {
             if (IsDebugEnabled)
@@ -401,6 +408,7 @@ namespace Common.Logging.Factory
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="exception">The exception to log.</param>
         /// <param name="args"></param>
+        [StringFormatMethod("format")]
         public virtual void DebugFormat(IFormatProvider formatProvider, string format, Exception exception, params object[] args)
         {
             if (IsDebugEnabled)
@@ -412,6 +420,7 @@ namespace Common.Logging.Factory
         /// </summary>
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="args">the list of format arguments</param>
+        [StringFormatMethod("format")]
         public virtual void DebugFormat(string format, params object[] args)
         {
             if (IsDebugEnabled)
@@ -424,6 +433,7 @@ namespace Common.Logging.Factory
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="exception">The exception to log.</param>
         /// <param name="args">the list of format arguments</param>
+        [StringFormatMethod("format")]
         public virtual void DebugFormat(string format, Exception exception, params object[] args)
         {
             if (IsDebugEnabled)
@@ -523,6 +533,7 @@ namespace Common.Logging.Factory
         /// <param name="formatProvider">An <see cref="IFormatProvider"/> that supplies culture-specific formatting information.</param>
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="args"></param>
+        [StringFormatMethod("format")]
         public virtual void InfoFormat(IFormatProvider formatProvider, string format, params object[] args)
         {
             if (IsInfoEnabled)
@@ -536,6 +547,7 @@ namespace Common.Logging.Factory
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="exception">The exception to log.</param>
         /// <param name="args"></param>
+        [StringFormatMethod("format")]
         public virtual void InfoFormat(IFormatProvider formatProvider, string format, Exception exception, params object[] args)
         {
             if (IsInfoEnabled)
@@ -547,6 +559,7 @@ namespace Common.Logging.Factory
         /// </summary>
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="args">the list of format arguments</param>
+        [StringFormatMethod("format")]
         public virtual void InfoFormat(string format, params object[] args)
         {
             if (IsInfoEnabled)
@@ -559,6 +572,7 @@ namespace Common.Logging.Factory
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="exception">The exception to log.</param>
         /// <param name="args">the list of format arguments</param>
+        [StringFormatMethod("format")]
         public virtual void InfoFormat(string format, Exception exception, params object[] args)
         {
             if (IsInfoEnabled)
@@ -658,6 +672,7 @@ namespace Common.Logging.Factory
         /// <param name="formatProvider">An <see cref="IFormatProvider"/> that supplies culture-specific formatting Warnrmation.</param>
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="args"></param>
+        [StringFormatMethod("format")]
         public virtual void WarnFormat(IFormatProvider formatProvider, string format, params object[] args)
         {
             if (IsWarnEnabled)
@@ -671,6 +686,7 @@ namespace Common.Logging.Factory
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="exception">The exception to log.</param>
         /// <param name="args"></param>
+        [StringFormatMethod("format")]
         public virtual void WarnFormat(IFormatProvider formatProvider, string format, Exception exception, params object[] args)
         {
             if (IsWarnEnabled)
@@ -682,6 +698,7 @@ namespace Common.Logging.Factory
         /// </summary>
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="args">the list of format arguments</param>
+        [StringFormatMethod("format")]
         public virtual void WarnFormat(string format, params object[] args)
         {
             if (IsWarnEnabled)
@@ -694,6 +711,7 @@ namespace Common.Logging.Factory
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="exception">The exception to log.</param>
         /// <param name="args">the list of format arguments</param>
+        [StringFormatMethod("format")]
         public virtual void WarnFormat(string format, Exception exception, params object[] args)
         {
             if (IsWarnEnabled)
@@ -793,6 +811,7 @@ namespace Common.Logging.Factory
         /// <param name="formatProvider">An <see cref="IFormatProvider"/> that supplies culture-specific formatting Errorrmation.</param>
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="args"></param>
+        [StringFormatMethod("format")]
         public virtual void ErrorFormat(IFormatProvider formatProvider, string format, params object[] args)
         {
             if (IsErrorEnabled)
@@ -806,6 +825,7 @@ namespace Common.Logging.Factory
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="exception">The exception to log.</param>
         /// <param name="args"></param>
+        [StringFormatMethod("format")]
         public virtual void ErrorFormat(IFormatProvider formatProvider, string format, Exception exception, params object[] args)
         {
             if (IsErrorEnabled)
@@ -817,6 +837,7 @@ namespace Common.Logging.Factory
         /// </summary>
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="args">the list of format arguments</param>
+        [StringFormatMethod("format")]
         public virtual void ErrorFormat(string format, params object[] args)
         {
             if (IsErrorEnabled)
@@ -829,6 +850,7 @@ namespace Common.Logging.Factory
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="exception">The exception to log.</param>
         /// <param name="args">the list of format arguments</param>
+        [StringFormatMethod("format")]
         public virtual void ErrorFormat(string format, Exception exception, params object[] args)
         {
             if (IsErrorEnabled)
@@ -928,6 +950,7 @@ namespace Common.Logging.Factory
         /// <param name="formatProvider">An <see cref="IFormatProvider"/> that supplies culture-specific formatting Fatalrmation.</param>
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="args"></param>
+        [StringFormatMethod("format")]
         public virtual void FatalFormat(IFormatProvider formatProvider, string format, params object[] args)
         {
             if (IsFatalEnabled)
@@ -941,6 +964,7 @@ namespace Common.Logging.Factory
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="exception">The exception to log.</param>
         /// <param name="args"></param>
+        [StringFormatMethod("format")]
         public virtual void FatalFormat(IFormatProvider formatProvider, string format, Exception exception, params object[] args)
         {
             if (IsFatalEnabled)
@@ -952,6 +976,7 @@ namespace Common.Logging.Factory
         /// </summary>
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="args">the list of format arguments</param>
+        [StringFormatMethod("format")]
         public virtual void FatalFormat(string format, params object[] args)
         {
             if (IsFatalEnabled)
@@ -964,6 +989,7 @@ namespace Common.Logging.Factory
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="exception">The exception to log.</param>
         /// <param name="args">the list of format arguments</param>
+        [StringFormatMethod("format")]
         public virtual void FatalFormat(string format, Exception exception, params object[] args)
         {
             if (IsFatalEnabled)

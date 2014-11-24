@@ -153,6 +153,7 @@
       <Link>CommonAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Logging\Configuration\NameValueCollectionHelper.cs" />
+    <Compile Include="Logging\Factory\ResharperAnnotation.cs" />
     <Compile Include="Logging\Simple\CommonLoggingTraceListener.cs" />
     <Compile Include="Logging\ConfigurationSectionHandler.cs" />
     <Compile Include="Logging\Simple\ConsoleOutLogger.cs" />
