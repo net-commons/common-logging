@@ -8,7 +8,7 @@
     <ProjectGuid>{7EEB2191-B3FC-4509-AA4B-A345C386EEED}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Common.Logging.Core</RootNamespace>
+    <RootNamespace>Common.Logging</RootNamespace>
     <AssemblyName>Common.Logging.Core</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <FileAlignment>512</FileAlignment>

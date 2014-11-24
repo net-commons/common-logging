@@ -69,7 +69,7 @@
     <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Common.Logging.Core.2010\Common.Logging.Core.2010.csproj">
+    <ProjectReference Include="..\Common.Logging.Core\Common.Logging.Core.2010.csproj">
       <Project>{7eeb2191-b3fc-4509-aa4b-a345c386eeed}</Project>
       <Name>Common.Logging.Core.2010</Name>
     </ProjectReference>
