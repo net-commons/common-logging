@@ -102,7 +102,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Common.Logging.Portable\Common.Logging.Portable.2010.csproj">
+    <ProjectReference Include="..\..\src\Common.Logging.Portable\Common.Logging.Portable.2010-net40.csproj">
       <Project>{A777809C-DB8B-4399-B6D4-8B1A4877A0AF}</Project>
       <Name>Common.Logging.Portable.2010-portable</Name>
     </ProjectReference>

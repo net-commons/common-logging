@@ -16,9 +16,9 @@
     <file src="..\..\build\portable\Common.Logging.Portable-net45\Release\Common.Logging.Portable.dll" target="lib\portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1" />
     <file src="..\..\build\portable\Common.Logging.Portable-net45\Release\Common.Logging.Portable.pdb" target="lib\portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1" />
     <file src="..\..\build\portable\Common.Logging.Portable-net45\Release\Common.Logging.Portable.xml" target="lib\portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1" />
-    <file src="..\..\build\portable\Common.Logging.Portable\Release\Common.Logging.Portable.dll" target="lib\portable-win+net40+sl40+wp7" />
-    <file src="..\..\build\portable\Common.Logging.Portable\Release\Common.Logging.Portable.pdb" target="lib\portable-win+net40+sl40+wp7" />
-    <file src="..\..\build\portable\Common.Logging.Portable\Release\Common.Logging.Portable.xml" target="lib\portable-win+net40+sl40+wp7" />
+    <file src="..\..\build\portable\Common.Logging.Portable-net40\Release\Common.Logging.Portable.dll" target="lib\portable-win+net40+sl40+wp7" />
+    <file src="..\..\build\portable\Common.Logging.Portable-net40\Release\Common.Logging.Portable.pdb" target="lib\portable-win+net40+sl40+wp7" />
+    <file src="..\..\build\portable\Common.Logging.Portable-net40\Release\Common.Logging.Portable.xml" target="lib\portable-win+net40+sl40+wp7" />
     <file src="..\..\build\portable\Common.Logging.Portable\Release\Common.Logging.Portable.dll" target="lib\net40" />
     <file src="..\..\build\portable\Common.Logging.Portable\Release\Common.Logging.Portable.pdb" target="lib\net40" />
     <file src="..\..\build\portable\Common.Logging.Portable\Release\Common.Logging.Portable.xml" target="lib\net40" />

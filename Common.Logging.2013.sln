@@ -36,7 +36,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.EntLib60.Tes
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.EntLib60.Tests.Integration.2013-net45", "test\Common.Logging.EntLib60.Tests.Integration\Common.Logging.EntLib60.Tests.Integration.2013-net45.csproj", "{616033E0-5451-4A4F-AC3D-8D925B6E27BD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.Portable.2010", "src\Common.Logging.Portable\Common.Logging.Portable.2010.csproj", "{A777809C-DB8B-4399-B6D4-8B1A4877A0AF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.Portable.2010-net40", "src\Common.Logging.Portable\Common.Logging.Portable.2010-net40.csproj", "{A777809C-DB8B-4399-B6D4-8B1A4877A0AF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.Portable.2010-net45", "src\Common.Logging.Portable\Common.Logging.Portable.2010-net45.csproj", "{0B11809C-0000-0000-0000-000000000000}"
 EndProject
