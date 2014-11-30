@@ -19,9 +19,6 @@
     <file src="..\..\build\portable\Common.Logging.Portable-net40\Release\Common.Logging.Portable.dll" target="lib\portable-win+net40+sl40+wp7" />
     <file src="..\..\build\portable\Common.Logging.Portable-net40\Release\Common.Logging.Portable.pdb" target="lib\portable-win+net40+sl40+wp7" />
     <file src="..\..\build\portable\Common.Logging.Portable-net40\Release\Common.Logging.Portable.xml" target="lib\portable-win+net40+sl40+wp7" />
-    <file src="..\..\build\portable\Common.Logging.Portable\Release\Common.Logging.Portable.dll" target="lib\net40" />
-    <file src="..\..\build\portable\Common.Logging.Portable\Release\Common.Logging.Portable.pdb" target="lib\net40" />
-    <file src="..\..\build\portable\Common.Logging.Portable\Release\Common.Logging.Portable.xml" target="lib\net40" />
     <file src="..\..\build\portable\Common.Logging.Portable-net20\Release\Common.Logging.Portable.dll" target="lib\net35" />
     <file src="..\..\build\portable\Common.Logging.Portable-net20\Release\Common.Logging.Portable.pdb" target="lib\net35" />
     <file src="..\..\build\portable\Common.Logging.Portable-net20\Release\Common.Logging.Portable.xml" target="lib\net35" />
