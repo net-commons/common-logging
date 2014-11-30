@@ -19,6 +19,11 @@
 #endregion
 
 using System;
+
+#if PORTABLE45
+using System.Reflection;
+#endif
+
 namespace Common.Logging.Configuration
 {
     /// <summary>
@@ -45,7 +50,7 @@ namespace Common.Logging.Configuration
         /// </remarks>
         public object GetSection(string sectionName)
         {
-#if PORTABLE
+#if PORTABLE40
             // We should instead look for something implementing 
             // IConfigurationReader in (platform specific) Common.Logging dll and use that
             const string configManager40 = "System.Configuration.ConfigurationManager, System.Configuration, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a";
@@ -55,7 +60,11 @@ namespace Common.Logging.Configuration
                 // Silverlight, and maybe if System.Configuration is not loaded?
                 return null;
             }
+#if PORTABLE45
+            var getSection = configurationManager.GetTypeInfo().GetDeclaredMethod("GetSection");
+#else
             var getSection = configurationManager.GetMethod("GetSection", new[] { typeof(string) });
+#endif
             if (getSection == null)
                 throw new PlatformNotSupportedException("Could not find System.Configuration.ConfigurationManager.GetSection method");
 

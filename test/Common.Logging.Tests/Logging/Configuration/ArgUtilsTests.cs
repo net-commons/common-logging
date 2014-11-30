@@ -106,7 +106,7 @@ namespace Common.Logging.Configuration
                     }
                 );
 
-#if !PORTABLE
+#if !PORTABLE40
             Assert.Throws(
                 Is.TypeOf<ArgumentOutOfRangeException>()
                     .And.Message.EqualTo(new ArgumentOutOfRangeException("this", this.GetType(),string.Format("Type '{0}' of parameter '{1}' is not assignable to target type '{2}'"

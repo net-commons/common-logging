@@ -57,7 +57,7 @@ namespace Common.Logging.Simple
         [Test]
         public void IsSerializable()
         {
-#if !PORTABLE
+#if !PORTABLE40
             Assert.IsTrue(SerializationTestUtils.IsSerializable<AbstractSimpleLogger>());
 #endif
         }

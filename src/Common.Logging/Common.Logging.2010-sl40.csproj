@@ -34,7 +34,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>..\..\build\sl40\Common.Logging\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;SILVERLIGHT;PORTABLE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;SILVERLIGHT;PORTABLE40</DefineConstants>
     <NoStdLib>true</NoStdLib>
     <NoConfig>true</NoConfig>
     <ErrorReport>prompt</ErrorReport>
@@ -45,7 +45,7 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>..\..\build\sl40\Common.Logging\Release\</OutputPath>
-    <DefineConstants>TRACE;SILVERLIGHT PORTABLE</DefineConstants>
+    <DefineConstants>TRACE;SILVERLIGHT PORTABLE40</DefineConstants>
     <NoStdLib>true</NoStdLib>
     <NoConfig>true</NoConfig>
     <ErrorReport>prompt</ErrorReport>
@@ -78,9 +78,9 @@
     <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Common.Logging.Portable\Common.Logging.Portable.2010.csproj">
+    <ProjectReference Include="..\Common.Logging.Portable\Common.Logging.Portable.2010-net40.csproj">
       <Project>{a777809c-db8b-4399-b6d4-8b1a4877a0af}</Project>
-      <Name>Common.Logging.Portable.2010</Name>
+      <Name>Common.Logging.Portable.2010-net40</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />

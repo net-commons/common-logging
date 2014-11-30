@@ -28,7 +28,7 @@ namespace Common.Logging.Simple
     /// </summary>
     /// <author>Gilles Bayon</author>
     /// <author>Erich Eichinger</author>
-#if !PORTABLE
+#if !PORTABLE40
     [Serializable]
 #endif
     [CoverageExclude]

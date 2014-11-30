@@ -26,10 +26,11 @@ using Common.Logging.Configuration;
 using Common.Logging.Simple;
 
 #if !NET20
+using System.Linq;
 using System.Linq.Expressions;
 #endif
 
-#if !PORTABLE
+#if !PORTABLE40
 using System.Configuration;
 using System.Security;
 using System.Security.Permissions;
@@ -191,7 +192,7 @@ namespace Common.Logging
             }
         }
 
-#if PORTABLE && !SILVERLIGHT
+#if PORTABLE40 && !SILVERLIGHT
 
         /// <summary>
         /// Gets the logger by calling <see cref="ILoggerFactoryAdapter.GetLogger(Type)"/>
@@ -256,8 +257,17 @@ namespace Common.Logging
             if (stackFrameType == null)
                 throw new PlatformNotSupportedException("CreateGetClassNameFunction is only supported on platforms where System.Diagnostics.StackFrame exist");
 
+#if PORTABLE40 && !PORTABLE45
             var constructor = stackFrameType.GetConstructor(new[] { typeof(int) });
             var getMethodMethod = stackFrameType.GetMethod("GetMethod");
+#else
+            TypeInfo stackFrameTypeInfo = stackFrameType.GetTypeInfo();
+            var constructor =
+                stackFrameTypeInfo.DeclaredConstructors.First(
+                    ctr => ctr.GetParameters().Select(p => p.ParameterType).SequenceEqual(new[] {typeof (int)}));
+
+            var getMethodMethod = stackFrameTypeInfo.GetDeclaredMethod("GetMethod");
+#endif
 
             if (constructor == null)
                 throw new PlatformNotSupportedException("StackFrame(int skipFrames) constructor not present");
@@ -276,9 +286,12 @@ namespace Common.Logging
             // Expression<TDelegate>.Compile  is missing in portable libraries targeting silverlight
             // but it is present on silverlight so we can just call it 
             //var function = lambda.Compile();
+#if PORTABLE40 && !PORTABLE45
             var compileFunction = lambda.GetType().GetMethod("Compile", new Type[0]);
+#else
+            var compileFunction = lambda.GetType().GetTypeInfo().GetDeclaredMethods("Compile").First(m => !m.GetParameters().Any());
+#endif
             var function = (Func<MethodBase>)compileFunction.Invoke(lambda, null);
-
             return function;
         }
 #else
@@ -368,7 +381,7 @@ namespace Common.Logging
                 string message = (ConfigurationReader.GetType() == typeof(DefaultConfigurationReader))
                                      ? string.Format("no configuration section <{0}> found - suppressing logging output", COMMON_LOGGING_SECTION)
                                      : string.Format("Custom ConfigurationReader '{0}' returned <null> - suppressing logging output", ConfigurationReader.GetType().FullName);
-#if PORTABLE
+#if PORTABLE40
                 Debug.WriteLine(message);
 #else
                 Trace.WriteLine(message);
@@ -381,7 +394,7 @@ namespace Common.Logging
             // ready to use ILoggerFactoryAdapter?
             if (sectionResult is ILoggerFactoryAdapter)
             {
-#if PORTABLE
+#if PORTABLE40
                 Debug.WriteLine(string.Format("Using ILoggerFactoryAdapter returned from custom ConfigurationReader '{0}'", ConfigurationReader.GetType().FullName));
 #else
                 Trace.WriteLine(string.Format("Using ILoggerFactoryAdapter returned from custom ConfigurationReader '{0}'", ConfigurationReader.GetType().FullName));

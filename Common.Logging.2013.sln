@@ -36,7 +36,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.EntLib60.Tes
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.EntLib60.Tests.Integration.2013-net45", "test\Common.Logging.EntLib60.Tests.Integration\Common.Logging.EntLib60.Tests.Integration.2013-net45.csproj", "{616033E0-5451-4A4F-AC3D-8D925B6E27BD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.Portable.2010", "src\Common.Logging.Portable\Common.Logging.Portable.2010.csproj", "{A777809C-DB8B-4399-B6D4-8B1A4877A0AF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.Portable.2010-net40", "src\Common.Logging.Portable\Common.Logging.Portable.2010-net40.csproj", "{A777809C-DB8B-4399-B6D4-8B1A4877A0AF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.Portable.2010-net45", "src\Common.Logging.Portable\Common.Logging.Portable.2010-net45.csproj", "{0B11809C-0000-0000-0000-000000000000}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -88,6 +90,10 @@ Global
 		{A777809C-DB8B-4399-B6D4-8B1A4877A0AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A777809C-DB8B-4399-B6D4-8B1A4877A0AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A777809C-DB8B-4399-B6D4-8B1A4877A0AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B11809C-0000-0000-0000-000000000000}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B11809C-0000-0000-0000-000000000000}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B11809C-0000-0000-0000-000000000000}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B11809C-0000-0000-0000-000000000000}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -104,6 +110,7 @@ Global
 		{A0071391-0897-4A6B-9980-2FFD0BC232D5} = {AA297E2A-2F07-46C8-892C-FE1A148CA575}
 		{616033E0-5451-4A4F-AC3D-8D925B6E27BD} = {AA297E2A-2F07-46C8-892C-FE1A148CA575}
 		{A777809C-DB8B-4399-B6D4-8B1A4877A0AF} = {D26BC7B2-718C-4F97-AF36-4377E19ECE62}
+		{0B11809C-0000-0000-0000-000000000000} = {D26BC7B2-718C-4F97-AF36-4377E19ECE62}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		NAntAddinLastFileName = Common.Logging.build

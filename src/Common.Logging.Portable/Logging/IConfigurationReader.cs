@@ -18,7 +18,7 @@
 
 #endregion
 
-#if PORTABLE
+#if PORTABLE40
 #else
 using System.Configuration;
 #endif

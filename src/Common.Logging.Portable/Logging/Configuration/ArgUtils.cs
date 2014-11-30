@@ -147,7 +147,11 @@ namespace Common.Logging.Configuration
         public static T TryParseEnum<T>(T defaultValue, string stringValue) where T : struct
         {
             Type enumType = typeof(T);
+#if PORTABLE45
+            if (!enumType.GetTypeInfo().IsEnum)
+#else
             if (!enumType.IsEnum)
+#endif
             {
                 throw new ArgumentException(string.Format("Type '{0}' is not an enum type", typeof(T).FullName));
             }
@@ -163,7 +167,7 @@ namespace Common.Logging.Configuration
             }
             catch
             {
-#if PORTABLE
+#if PORTABLE40
                 Debug.WriteLine(string.Format("WARN: failed converting value '{0}' to enum type '{1}'", stringValue, defaultValue.GetType().FullName));
 #else
                 Trace.WriteLine(string.Format("WARN: failed converting value '{0}' to enum type '{1}'", stringValue, defaultValue.GetType().FullName));
@@ -199,7 +203,7 @@ namespace Common.Logging.Configuration
             }
             catch
             {
-#if PORTABLE
+#if PORTABLE40
                 Debug.WriteLine(string.Format("WARN: failed converting value '{0}' to type '{1}' - returning default '{2}'", stringValue, typeof(T).FullName, result));
 #else
                 Trace.WriteLine(string.Format("WARN: failed converting value '{0}' to type '{1}' - returning default '{2}'", stringValue, typeof(T).FullName, result));
@@ -258,9 +262,13 @@ namespace Common.Logging.Configuration
                 throw new ArgumentNullException("valType");
             }
 
+#if PORTABLE45
+            if (!typeof(T).GetTypeInfo().IsSubclassOf(valType))
+#else
             if (!typeof(T).IsAssignableFrom(valType))
+#endif
             {
-#if PORTABLE
+#if PORTABLE40
                 throw new ArgumentOutOfRangeException(paramName, string.Format(messageFormat, args));
 #else
                 throw new ArgumentOutOfRangeException(paramName, valType, string.Format(messageFormat, args));

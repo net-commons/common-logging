@@ -27,7 +27,7 @@ namespace Common.Logging.Factory
     /// Provides base implementation suitable for almost all logger adapters
     /// </summary>
     /// <author>Erich Eichinger</author>
-#if !PORTABLE
+#if !PORTABLE40
     [Serializable]
 #endif
     public abstract class AbstractLogger : ILog
