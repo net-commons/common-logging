@@ -22,8 +22,8 @@
     <file src="..\..\build\portable\Common.Logging.Portable\Release\Common.Logging.Portable.dll" target="lib\net40" />
     <file src="..\..\build\portable\Common.Logging.Portable\Release\Common.Logging.Portable.pdb" target="lib\net40" />
     <file src="..\..\build\portable\Common.Logging.Portable\Release\Common.Logging.Portable.xml" target="lib\net40" />
-    <file src="..\..\build\net20\Common.Logging.Portable\Release\Common.Logging.Portable.dll" target="lib\net35" />
-    <file src="..\..\build\net20\Common.Logging.Portable\Release\Common.Logging.Portable.pdb" target="lib\net35" />
-    <file src="..\..\build\net20\Common.Logging.Portable\Release\Common.Logging.Portable.xml" target="lib\net35" />
+    <file src="..\..\build\portable\Common.Logging.Portable-net20\Release\Common.Logging.Portable.dll" target="lib\net35" />
+    <file src="..\..\build\portable\Common.Logging.Portable-net20\Release\Common.Logging.Portable.pdb" target="lib\net35" />
+    <file src="..\..\build\portable\Common.Logging.Portable-net20\Release\Common.Logging.Portable.xml" target="lib\net35" />
   </files>  
 </package>
