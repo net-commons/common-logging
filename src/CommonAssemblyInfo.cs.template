@@ -22,6 +22,9 @@ using System.Security.Permissions;
 #if PORTABLE40
 [assembly: AssemblyConfigurationAttribute("portable40; release")]
 [assembly: AssemblyInformationalVersionAttribute("@INFORMATIONAL_VERSION@; portable40; release")]
+#elif PORTABLE45
+[assembly: AssemblyConfigurationAttribute("portable45; release")]
+[assembly: AssemblyInformationalVersionAttribute("@INFORMATIONAL_VERSION@; portable45; release")]
 #else
 // Note - if we decide to skip SL4+WP support and only Support SL5 then we should be able to specify AllowPartiallyTrustedCallersAttribute
 // even for Common.Logging.Core
