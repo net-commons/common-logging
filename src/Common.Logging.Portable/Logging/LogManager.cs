@@ -26,6 +26,7 @@ using Common.Logging.Configuration;
 using Common.Logging.Simple;
 
 #if !NET20
+using System.Linq;
 using System.Linq.Expressions;
 #endif
 
@@ -256,8 +257,17 @@ namespace Common.Logging
             if (stackFrameType == null)
                 throw new PlatformNotSupportedException("CreateGetClassNameFunction is only supported on platforms where System.Diagnostics.StackFrame exist");
 
+#if PORTABLE && !PORTABLE45
             var constructor = stackFrameType.GetConstructor(new[] { typeof(int) });
             var getMethodMethod = stackFrameType.GetMethod("GetMethod");
+#else
+            TypeInfo stackFrameTypeInfo = stackFrameType.GetTypeInfo();
+            var constructor =
+                stackFrameTypeInfo.DeclaredConstructors.First(
+                    ctr => ctr.GetParameters().Select(p => p.ParameterType).SequenceEqual(new[] {typeof (int)}));
+
+            var getMethodMethod = stackFrameTypeInfo.GetDeclaredMethod("GetMethod");
+#endif
 
             if (constructor == null)
                 throw new PlatformNotSupportedException("StackFrame(int skipFrames) constructor not present");
@@ -276,9 +286,12 @@ namespace Common.Logging
             // Expression<TDelegate>.Compile  is missing in portable libraries targeting silverlight
             // but it is present on silverlight so we can just call it 
             //var function = lambda.Compile();
+#if PORTABLE && !PORTABLE45
             var compileFunction = lambda.GetType().GetMethod("Compile", new Type[0]);
+#else
+            var compileFunction = lambda.GetType().GetTypeInfo().GetDeclaredMethods("Compile").First(m => !m.GetParameters().Any());
+#endif
             var function = (Func<MethodBase>)compileFunction.Invoke(lambda, null);
-
             return function;
         }
 #else

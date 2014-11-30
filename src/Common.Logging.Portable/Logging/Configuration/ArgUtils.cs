@@ -147,7 +147,11 @@ namespace Common.Logging.Configuration
         public static T TryParseEnum<T>(T defaultValue, string stringValue) where T : struct
         {
             Type enumType = typeof(T);
+#if PORTABLE45
+            if (!enumType.GetTypeInfo().IsEnum)
+#else
             if (!enumType.IsEnum)
+#endif
             {
                 throw new ArgumentException(string.Format("Type '{0}' is not an enum type", typeof(T).FullName));
             }
@@ -258,7 +262,11 @@ namespace Common.Logging.Configuration
                 throw new ArgumentNullException("valType");
             }
 
+#if PORTABLE45
+            if (!typeof(T).GetTypeInfo().IsSubclassOf(valType))
+#else
             if (!typeof(T).IsAssignableFrom(valType))
+#endif
             {
 #if PORTABLE
                 throw new ArgumentOutOfRangeException(paramName, string.Format(messageFormat, args));

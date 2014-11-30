@@ -26,6 +26,10 @@ using System.Text;
 using System.Threading;
 using System.Globalization;
 
+#if !NET20
+using System.Linq;
+#endif
+
 namespace Common.Logging.Simple
 {
     /// <summary>
@@ -98,8 +102,11 @@ namespace Common.Logging.Simple
 
         private static void OutputDetails(IFormatProvider formatProvider, StringBuilder sb, Exception exception)
         {
-#if PORTABLE
+#if PORTABLE && !PORTABLE45
             sb.AppendFormat(formatProvider, "Thread ID : {0}\r\n", Thread.CurrentThread.ManagedThreadId);
+#elif PORTABLE45
+            // Can't access Thread information in PCL profile 259.
+            sb.AppendFormat(formatProvider, "Thread ID : {0}\r\n", "N/A");
 #else
             // output exception details:
             //
@@ -150,11 +157,20 @@ namespace Common.Logging.Simple
             //	Properties:
             //	  ArgumentException.ParamName = "text"
             //
-            var properties = exception.GetType().GetProperties(BindingFlags.FlattenHierarchy |
-                BindingFlags.Instance | BindingFlags.Public);
+            Type exceptionType = exception.GetType();
+
+#if PORTABLE45
+            IEnumerable<PropertyInfo> exceptionProperties =
+                exceptionType.GetRuntimeProperties().Where(pi => pi.GetMethod.IsPublic);
+#else
+            IEnumerable<PropertyInfo> exceptionProperties =
+                exception.GetType().GetProperties(BindingFlags.FlattenHierarchy |
+                                                  BindingFlags.Instance | BindingFlags.Public);
+#endif
+
 
             Boolean first = true;
-            foreach (PropertyInfo property in properties)
+            foreach (PropertyInfo property in exceptionProperties)
             {
                 if (property.DeclaringType == typeof(Exception))
                     continue;
@@ -176,12 +192,12 @@ namespace Common.Logging.Simple
                 if (enumerableValue == null || propertyValue is String)
                 {
                     sb.AppendFormat(formatProvider, "  {0}.{1} = \"{2}\"\r\n",
-                        property.ReflectedType.Name, property.Name, propertyValue);
+                        exceptionType.Name, property.Name, propertyValue);
                 }
                 else
                 {
                     sb.AppendFormat(formatProvider, "  {0}.{1} = {{\r\n",
-                        property.ReflectedType.Name, property.Name);
+                        exceptionType.Name, property.Name);
 
                     foreach (var item in enumerableValue)
                         sb.AppendFormat("    \"{0}\",\r\n", item != null ? item.ToString() : "<null>");
