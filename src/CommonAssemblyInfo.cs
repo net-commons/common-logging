@@ -3,7 +3,7 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Security;
 
-#if !PORTABLE
+#if !PORTABLE40
 using System.Security.Permissions;
 #endif
 
@@ -19,9 +19,9 @@ using System.Security.Permissions;
 
 [assembly: CLSCompliantAttribute(true)]
 
-#if PORTABLE
-[assembly: AssemblyConfigurationAttribute("portable; release")]
-[assembly: AssemblyInformationalVersionAttribute("2.0.0; portable; release")]
+#if PORTABLE40
+[assembly: AssemblyConfigurationAttribute("portable40; release")]
+[assembly: AssemblyInformationalVersionAttribute("2.0.0; portable40; release")]
 #else
 // Note - if we decide to skip SL4+WP support and only Support SL5 then we should be able to specify AllowPartiallyTrustedCallersAttribute
 // even for Common.Logging.Core

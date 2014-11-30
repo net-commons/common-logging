@@ -77,7 +77,7 @@ namespace Common.Logging.Simple
     /// <author>Gilles Bayon</author>
     /// <author>Mark Pollack</author>
     /// <author>Erich Eichinger</author>
-#if !PORTABLE
+#if !PORTABLE40
     [Serializable]
 #endif
     public abstract class AbstractSimpleLoggerFactoryAdapter : AbstractCachingLoggerFactoryAdapter

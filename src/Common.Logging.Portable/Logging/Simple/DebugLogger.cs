@@ -28,7 +28,7 @@ namespace Common.Logging.Simple
     /// Sends log messages to <see cref="System.Diagnostics.Debug" />.
     /// </summary>
     /// <author>Gilles Bayon</author>
-#if !PORTABLE
+#if !PORTABLE40
     [Serializable]
 #endif
 

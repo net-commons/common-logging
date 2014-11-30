@@ -102,7 +102,7 @@ namespace Common.Logging.Simple
 
         private static void OutputDetails(IFormatProvider formatProvider, StringBuilder sb, Exception exception)
         {
-#if PORTABLE && !PORTABLE45
+#if PORTABLE40 && !PORTABLE45
             sb.AppendFormat(formatProvider, "Thread ID : {0}\r\n", Thread.CurrentThread.ManagedThreadId);
 #elif PORTABLE45
             // Can't access Thread information in PCL profile 259.
@@ -239,7 +239,7 @@ namespace Common.Logging.Simple
                 exception.StackTrace);
         }
 
-#if !PORTABLE
+#if !PORTABLE40
         private static void SafeGetTargetSiteInfo(Exception exception, out String assemblyName, out String assemblyModulePath,
            out String typeName, out String methodName)
         {

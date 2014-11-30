@@ -167,7 +167,7 @@ namespace Common.Logging.Configuration
             }
             catch
             {
-#if PORTABLE
+#if PORTABLE40
                 Debug.WriteLine(string.Format("WARN: failed converting value '{0}' to enum type '{1}'", stringValue, defaultValue.GetType().FullName));
 #else
                 Trace.WriteLine(string.Format("WARN: failed converting value '{0}' to enum type '{1}'", stringValue, defaultValue.GetType().FullName));
@@ -203,7 +203,7 @@ namespace Common.Logging.Configuration
             }
             catch
             {
-#if PORTABLE
+#if PORTABLE40
                 Debug.WriteLine(string.Format("WARN: failed converting value '{0}' to type '{1}' - returning default '{2}'", stringValue, typeof(T).FullName, result));
 #else
                 Trace.WriteLine(string.Format("WARN: failed converting value '{0}' to type '{1}' - returning default '{2}'", stringValue, typeof(T).FullName, result));
@@ -268,7 +268,7 @@ namespace Common.Logging.Configuration
             if (!typeof(T).IsAssignableFrom(valType))
 #endif
             {
-#if PORTABLE
+#if PORTABLE40
                 throw new ArgumentOutOfRangeException(paramName, string.Format(messageFormat, args));
 #else
                 throw new ArgumentOutOfRangeException(paramName, valType, string.Format(messageFormat, args));

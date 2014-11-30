@@ -84,7 +84,7 @@ namespace Common
             // Constructor with a string and an inner exception
             CheckPublicConstructor(t, "(string message, Exception inner)",
                                    typeof (String), typeof (Exception));
-#if !PORTABLE
+#if !PORTABLE40
             // check to see if the serialization constructor is present
             // if exception is sealed, constructor should be private
             // if exception is not sealed, constructor should be protected
@@ -117,7 +117,7 @@ namespace Common
                 }
             }
 
-#if !PORTABLE
+#if !PORTABLE40
             // If this exception has any fields, check to make sure it has a 
             // version of GetObjectData. If not, it does't serialize those fields.
             FieldInfo[] fields =

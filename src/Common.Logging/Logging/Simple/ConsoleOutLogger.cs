@@ -30,7 +30,7 @@ namespace Common.Logging.Simple
     /// Sends log messages to <see cref="Console.Out" />.
     /// </summary>
     /// <author>Gilles Bayon</author>
-#if PORTABLE
+#if PORTABLE40
 #else
     [Serializable]
 #endif

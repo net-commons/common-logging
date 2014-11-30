@@ -50,7 +50,7 @@ namespace Common.Logging.Configuration
         /// </remarks>
         public object GetSection(string sectionName)
         {
-#if PORTABLE
+#if PORTABLE40
             // We should instead look for something implementing 
             // IConfigurationReader in (platform specific) Common.Logging dll and use that
             const string configManager40 = "System.Configuration.ConfigurationManager, System.Configuration, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a";
