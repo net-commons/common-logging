@@ -95,6 +95,9 @@
     <Compile Include="..\Common.Logging.Portable\Logging\Factory\AbstractLogger.cs">
       <Link>Logging\Factory\AbstractLogger.cs</Link>
     </Compile>
+    <Compile Include="..\Common.Logging.Portable\Logging\Factory\ResharperAnnotation.cs">
+      <Link>Logging\Factory\ResharperAnnotation.cs</Link>
+    </Compile>
     <Compile Include="..\Common.Logging.Portable\Logging\FormatMessageHandler.cs">
       <Link>Logging\FormatMessageHandler.cs</Link>
     </Compile>
