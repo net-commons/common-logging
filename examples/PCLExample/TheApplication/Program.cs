@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using Common.Logging;
@@ -12,12 +13,15 @@ namespace TheApplication
     {
         static void Main(string[] args)
         {
-            ILogManager manager = new LogManager();
+            var logger = LogManager.GetLogger<Program>();
 
-            var logger = manager.GetLogger<Program>();
+            var logManager = new LogManager();
 
-            var theClassThatLogs = new ThePortableClass(logger);
-            theClassThatLogs.SomeMethodThatLogs("I am the message!");
+            var theClassThatLogs = new PortableClassWithILogDependency(logger);
+            theClassThatLogs.SomeMethodThatLogs("I am the message from the ILog-dependent class");
+
+            var otherClassThatLogs = new PortableClassWithILogManagerDependency(logManager);
+            otherClassThatLogs.SomeMethodThatLogs("I am the message from the ILogManager-dependent class");
 
             Console.ReadKey();
         }

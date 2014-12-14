@@ -6,11 +6,11 @@ using Common.Logging;
 
 namespace ThePortableProject
 {
-    public class ThePortableClass
+    public class PortableClassWithILogDependency
     {
         private readonly ILog _logger;
 
-        public ThePortableClass(ILog logger)
+        public PortableClassWithILogDependency(ILog logger)
         {
             _logger = logger;
         }
