@@ -123,6 +123,12 @@
   <ItemGroup>
     <None Include="Common.Net.snk" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common.Logging.Core\Common.Logging.Core.2010-net20.csproj">
+      <Project>{cadfb630-279f-427c-96a9-d2f9aa718648}</Project>
+      <Name>Common.Logging.Core.2010-net20</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
