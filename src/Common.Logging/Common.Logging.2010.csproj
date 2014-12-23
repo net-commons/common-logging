@@ -87,6 +87,9 @@
     <Compile Include="..\Common.Logging.Portable\Logging\Configuration\NameValueCollection.cs">
       <Link>Logging\Configuration\NameValueCollection.cs</Link>
     </Compile>
+    <Compile Include="..\Common.Logging.Portable\Logging\Configuration\NameValueCollectionHelper.cs">
+      <Link>Logging\Configuration\NameValueCollectionHelper.cs</Link>
+    </Compile>
     <Compile Include="..\Common.Logging.Portable\Logging\Factory\AbstractCachingLoggerFactoryAdapter.cs">
       <Link>Logging\Factory\AbstractCachingLoggerFactoryAdapter.cs</Link>
     </Compile>
@@ -132,7 +135,6 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>CommonAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Logging\Configuration\NameValueCollectionHelper.cs" />
     <Compile Include="Logging\Simple\CommonLoggingTraceListener.cs" />
     <Compile Include="Logging\ConfigurationSectionHandler.cs" />
     <Compile Include="Logging\Simple\ConsoleOutLogger.cs" />
