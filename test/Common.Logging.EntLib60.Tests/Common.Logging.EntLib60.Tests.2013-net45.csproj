@@ -58,6 +58,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\src\Common.Logging.Core\Common.Logging.Core.2010.csproj">
+      <Project>{7eeb2191-b3fc-4509-aa4b-a345c386eeed}</Project>
+      <Name>Common.Logging.Core.2010</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\Common.Logging.EntLib60\Common.Logging.EntLib60.2013-net45.csproj">
       <Project>{c6cc09ad-feb5-4ac3-829f-84c0e58c4ec6}</Project>
       <Name>Common.Logging.EntLib60.2013-net45</Name>
