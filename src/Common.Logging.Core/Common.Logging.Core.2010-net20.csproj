@@ -66,71 +66,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\Common.Logging\Logging\Configuration\NameValueCollectionHelper.cs">
-      <Link>Logging\Configuration\NameValueCollectionHelper.cs</Link>
-    </Compile>
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>CommonAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="CoverageExcludeAttribute.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Logging\Configuration\NameValueCollection.cs" />
-    <Compile Include="Logging\Factory\AbstractLogger.cs" />
-    <Compile Include="Logging\Factory\AbstractCachingLoggerFactoryAdapter.cs" />
-    <Compile Include="Logging\IVariablesContext.cs" />
-    <Compile Include="Logging\Simple\CapturingLogger.cs" />
-    <Compile Include="Logging\Simple\CapturingLoggerEvent.cs" />
-    <Compile Include="Logging\Simple\CapturingLoggerFactoryAdapter.cs" />
-    <Compile Include="Logging\ConfigurationException.cs" />
-    <Compile Include="Logging\Configuration\DefaultConfigurationReader.cs" />
-    <Compile Include="Logging\Configuration\ArgUtils.cs" />
     <Compile Include="Logging\FormatMessageHandler.cs" />
     <Compile Include="Logging\IConfigurationReader.cs" />
     <Compile Include="Logging\ILog.cs" />
     <Compile Include="Logging\ILoggerFactoryAdapter.cs" />
+    <Compile Include="Logging\ILogManager.cs" />
+    <Compile Include="Logging\IVariablesContext.cs" />
     <Compile Include="Logging\LogLevel.cs" />
-    <Compile Include="Logging\LogManager.cs" />
-    <Compile Include="Logging\Configuration\LogSetting.cs" />
-    <Compile Include="Logging\Simple\ExceptionFormatter.cs" />
-    <Compile Include="Logging\Simple\AbstractSimpleLogger.cs" />
-    <Compile Include="Logging\Simple\AbstractSimpleLoggerFactoryAdapter.cs" />
-    <Compile Include="Logging\Simple\DebugLogger.cs" />
-    <Compile Include="Logging\Simple\DebugLoggerFactoryAdapter.cs" />
-    <Compile Include="Logging\Simple\NoOpLogger.cs" />
-    <Compile Include="Logging\Simple\NoOpLoggerFactoryAdapter.cs" />
-    <Compile Include="Logging\Simple\NoOpVariablesContext.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
-      <Install>false</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
-      <Install>true</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
-      <Install>false</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 3.5</ProductName>
-      <Install>false</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 3.5 SP1</ProductName>
-      <Install>false</Install>
-    </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Common.Net.snk" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
