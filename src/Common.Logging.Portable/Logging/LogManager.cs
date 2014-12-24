@@ -231,7 +231,7 @@ namespace Common.Logging
         }
 
 
-#if PORTABLE && !SILVERLIGHT
+#if PORTABLE && !SILVERLIGHT && !NET20
 
         /// <summary>
         /// Gets the logger by calling <see cref="ILoggerFactoryAdapter.GetLogger(Type)"/>
