@@ -565,9 +565,9 @@ ${tool.dir}       : dir for tools
 			<items basedir="${root.dir}/src/">
 				<include name="**/*.nuspec" />
 				<!--
-				NOTE: must exclude Common.Logging.nuspec b/c it has no Common.Logging.* deps and so the XPATH expr. won't find a match in that case and so would fail the XMLPOKE operation otherwise
+				NOTE: must exclude Common.Logging.Core.nuspec b/c it has no Common.Logging.* deps and so the XPATH expr. won't find a match in that case and so would fail the XMLPOKE operation otherwise
 				-->
-				<exclude name="**/Common.Logging.nuspec" />
+				<exclude name="**/Common.Logging.Core.nuspec" />
 			</items>
 		</in>
 		<do>
