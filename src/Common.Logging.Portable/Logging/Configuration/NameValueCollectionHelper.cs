@@ -4,6 +4,8 @@ using System.Text;
 
 namespace Common.Logging.Configuration
 {
+
+#if !PORTABLE || NET20
     /// <summary>
     /// Helper class for working with NameValueCollection
     /// </summary>
@@ -23,4 +25,5 @@ namespace Common.Logging.Configuration
             return result;
         }
     }
+#endif
 }
