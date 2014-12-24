@@ -11,7 +11,8 @@
     <description>Common.Logging library introduces a simple abstraction to allow you to select a specific logging implementation at runtime.</description>
 	<tags>logging log Common.Logging</tags>
     <language>en-US</language>
-    <dependencies>
+      <dependencies>
+      <dependency id="Common.Logging.Core" version="0.0.0" />
     </dependencies>
   </metadata>
   <files>

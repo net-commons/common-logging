@@ -12,6 +12,9 @@
 	<tags>PCL Common.Logging.Portable Common.Logging.Core logging log Common.Logging</tags>
     <language>en-US</language>
   </metadata>
+     <dependencies>
+      <dependency id="Common.Logging.Core" version="0.0.0" />
+    </dependencies>
   <files>
     <file src="..\..\build\portable\Common.Logging.Portable\Release\Common.Logging.Portable.dll" target="lib\portable-win+net40+sl40+wp7" />
     <file src="..\..\build\portable\Common.Logging.Portable\Release\Common.Logging.Portable.pdb" target="lib\portable-win+net40+sl40+wp7" />
