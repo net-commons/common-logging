@@ -39,7 +39,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>..\..\build\net20\Common.Logging.Core\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;NET20; LOGGING_CORE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;NET20; PORTABLE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>Common.Logging.Core.xml</DocumentationFile>
@@ -51,7 +51,7 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>..\..\build\net20\Common.Logging.Core\Release\</OutputPath>
-    <DefineConstants>TRACE;NET20; LOGGING_CORE</DefineConstants>
+    <DefineConstants>TRACE;NET20; PORTABLE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>Common.Logging.Core.xml</DocumentationFile>
