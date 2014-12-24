@@ -69,6 +69,10 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\src\Common.Logging.Core\Common.Logging.Core.2010-net20.csproj">
+      <Project>{cadfb630-279f-427c-96a9-d2f9aa718648}</Project>
+      <Name>Common.Logging.Core.2010-net20</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\Common.Logging.NLog10\Common.Logging.NLog10.2010.csproj">
       <Project>{C3FAAF50-CA05-42A5-9616-B48C21643D03}</Project>
       <Name>Common.Logging.NLog10.2010</Name>

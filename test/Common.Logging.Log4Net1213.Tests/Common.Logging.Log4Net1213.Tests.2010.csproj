@@ -99,6 +99,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\src\Common.Logging.Core\Common.Logging.Core.2010-net20.csproj">
+      <Project>{cadfb630-279f-427c-96a9-d2f9aa718648}</Project>
+      <Name>Common.Logging.Core.2010-net20</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\Common.Logging.Log4Net1213\Common.Logging.Log4Net1213.2010.csproj">
       <Project>{f389f980-1fd2-4290-9377-39831ec4e989}</Project>
       <Name>Common.Logging.Log4Net1213.2010</Name>
