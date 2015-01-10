@@ -16,6 +16,6 @@ on_finish:
 
     # Get-ChildItem -Path (Join-Path $($env:APPVEYOR_BUILD_FOLDER) \build\Debug) -Recurse -File -Filter "*-TestResults.xml" | % { $wc.UploadFile("https://ci.appveyor.com/api/testresults/nunit/$($env:APPVEYOR_JOB_ID)", $_.FullName) }
 
-    Get-ChildItem -Path (Join-Path $($env:APPVEYOR_BUILD_FOLDER) \build\Debug) -Recurse -File -Filter "*-TestResults.xml" | { Write-Host $_.FullName }
+    Get-ChildItem -Path (Join-Path $($env:APPVEYOR_BUILD_FOLDER) \build\Debug) -Recurse -File -Filter "*-TestResults.xml" | % { Write-Host $_.FullName }
 
     # $wc.UploadFile("https://ci.appveyor.com/api/testresults/nunit/$($env:APPVEYOR_JOB_ID)", (Resolve-Path (Join-Path $($env:APPVEYOR_BUILD_FOLDER) \build\Debug\TestResult.xml)))
