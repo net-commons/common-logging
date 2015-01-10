@@ -1,0 +1,16 @@
+version: 1.0.{build}
+configuration: Debug
+build_script:
+- call build-ci.cmd
+test: off
+on_finish:
+- ps: >-
+    # upload test results to AppVeyor
+
+    $wc = New-Object 'System.Net.WebClient'
+
+
+    Get-ChildItem -Path (Join-Path $($env:APPVEYOR_BUILD_FOLDER) \build\Debug) -Recurse -File -Filter "*TestResults.xml" | % { $wc.UploadFile("https://ci.appveyor.com/api/testresults/nunit/$($env:APPVEYOR_JOB_ID)", $_.FullName) }
+
+
+    # $wc.UploadFile("https://ci.appveyor.com/api/testresults/nunit/$($env:APPVEYOR_JOB_ID)", (Resolve-Path (Join-Path $($env:APPVEYOR_BUILD_FOLDER) \build\Debug\TestResult.xml)))
