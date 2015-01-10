@@ -101,9 +101,17 @@
     <Folder Include="Logging\NLog\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\src\Common.Logging.Core\Common.Logging.Core.2010-net20.csproj">
+      <Project>{cadfb630-279f-427c-96a9-d2f9aa718648}</Project>
+      <Name>Common.Logging.Core.2010-net20</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\Common.Logging.NLog20\Common.Logging.NLog20.2010.csproj">
       <Project>{4080ED68-81A9-45C1-8F22-B6015E42756B}</Project>
       <Name>Common.Logging.NLog20.2010</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Common.Logging\Common.Logging.2010.csproj">
+      <Project>{440d903a-d409-48fc-a6c4-3ee69ccd663b}</Project>
+      <Name>Common.Logging.2010</Name>
     </ProjectReference>
     <ProjectReference Include="..\Common.Logging.NLog20.Tests\Common.Logging.NLog20.Tests.2010.csproj">
       <Project>{8531DA29-41AD-465B-9817-2702A903C11D}</Project>

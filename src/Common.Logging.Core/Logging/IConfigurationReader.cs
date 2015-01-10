@@ -47,7 +47,7 @@ namespace Common.Logging
         /// See also <c>System.Configuration.ConfigurationManager</c>
         /// </remarks>
         /// <param name="sectionName">Name of the configuration section.</param>
-        /// <returns>Object created by a corresponding <see cref="IConfigurationSectionHandler"/>.</returns>
+        /// <returns>Object created by a corresponding IConfigurationSectionHandler.</returns>
         object GetSection(string sectionName);
     }
 }

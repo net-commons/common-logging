@@ -565,14 +565,14 @@ ${tool.dir}       : dir for tools
 			<items basedir="${root.dir}/src/">
 				<include name="**/*.nuspec" />
 				<!--
-				NOTE: must exclude Common.Logging.nuspec b/c it has no Common.Logging.* deps and so the XPATH expr. won't find a match in that case and so would fail the XMLPOKE operation otherwise
+				NOTE: must exclude Common.Logging.Core.nuspec b/c it has no Common.Logging.* deps and so the XPATH expr. won't find a match in that case and so would fail the XMLPOKE operation otherwise
 				-->
-				<exclude name="**/Common.Logging.nuspec" />
+				<exclude name="**/Common.Logging.Core.nuspec" />
 			</items>
 		</in>
 		<do>
 			<echo message="Processing nuspec file: ${filename}" />
-			<xmlpoke file="${filename}" xpath="/n:package/n:metadata/n:dependencies/n:dependency[@id='Common.Logging' or @id='Common.Logging.Portable']/@version" value="${nuget.package.version}">
+			<xmlpoke file="${filename}" xpath="/n:package/n:metadata/n:dependencies/n:dependency[@id='Common.Logging' or @id='Common.Logging.Core' or @id='Common.Logging.Portable']/@version" value="${nuget.package.version}">
 				<namespaces>
 					<namespace prefix="n" uri="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd" />
 				</namespaces>

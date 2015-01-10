@@ -2,16 +2,18 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>Common.Logging</id>
-    <version>0.0.0</version> <!-- placeholder value replaced by build script -->
+    <version>0.0.0</version>
+    <!-- placeholder value replaced by build script -->
     <authors>Aleksandar Seovic, Mark Pollack, Erich Eichinger, Stephen Bohlen</authors>
     <owners>Aleksandar Seovic, Mark Pollack, Erich Eichinger, Stephen Bohlen</owners>
     <projectUrl>http://netcommon.sourceforge.net/</projectUrl>
-	<iconUrl>https://raw.githubusercontent.com/net-commons/common-logging/master/nuget-graphics/common-logging-icon.png</iconUrl>
+    <iconUrl>https://raw.githubusercontent.com/net-commons/common-logging/master/nuget-graphics/common-logging-icon.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Common.Logging library introduces a simple abstraction to allow you to select a specific logging implementation at runtime.</description>
-	<tags>logging log Common.Logging</tags>
+    <tags>logging log Common.Logging</tags>
     <language>en-US</language>
     <dependencies>
+      <dependency id="Common.Logging.Core" version="3.0.0-Alpha1" />
     </dependencies>
   </metadata>
   <files>
@@ -21,5 +23,5 @@
     <file src="..\..\build\net40\Common.Logging\Release\Common.Logging.dll" target="lib\net40" />
     <file src="..\..\build\net40\Common.Logging\Release\Common.Logging.pdb" target="lib\net40" />
     <file src="..\..\build\net40\Common.Logging\Release\Common.Logging.xml" target="lib\net40" />
-  </files>  
+  </files>
 </package>

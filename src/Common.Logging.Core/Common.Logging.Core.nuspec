@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Common.Logging.Core</id>
+    <version>0.0.0</version> <!-- placeholder value replaced by build script -->
+    <authors>Aleksandar Seovic, Mark Pollack, Erich Eichinger, Stephen Bohlen</authors>
+    <owners>Aleksandar Seovic, Mark Pollack, Erich Eichinger, Stephen Bohlen</owners>
+    <projectUrl>http://netcommon.sourceforge.net/</projectUrl>
+	<iconUrl>https://raw.githubusercontent.com/net-commons/common-logging/master/nuget-graphics/common-logging-icon.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Common.Logging.Core contains the portable (PCL) implementation of the Common.Logging low-level abstractions common to all other Common.Logging packages.</description>
+	<tags>PCL Common.Logging.Portable Common.Logging.Core logging log Common.Logging</tags>
+    <language>en-US</language>
+  </metadata>
+  <files>
+    <file src="..\..\build\portable\Common.Logging.Core\Release\Common.Logging.Core.dll" target="lib\portable-win+net40+sl40+wp7" />
+    <file src="..\..\build\portable\Common.Logging.Core\Release\Common.Logging.Core.pdb" target="lib\portable-win+net40+sl40+wp7" />
+    <file src="..\..\build\portable\Common.Logging.Core\Release\Common.Logging.Core.xml" target="lib\portable-win+net40+sl40+wp7" />
+    <file src="..\..\build\portable\Common.Logging.Core\Release\Common.Logging.Core.dll" target="lib\net40" />
+    <file src="..\..\build\portable\Common.Logging.Core\Release\Common.Logging.Core.pdb" target="lib\net40" />
+    <file src="..\..\build\portable\Common.Logging.Portable\Release\Common.Logging.Core.xml" target="lib\net40" />
+    <file src="..\..\build\net20\Common.Logging.Portable\Release\Common.Logging.Core.dll" target="lib\net35" />
+    <file src="..\..\build\net20\Common.Logging.Portable\Release\Common.Logging.Core.pdb" target="lib\net35" />
+    <file src="..\..\build\net20\Common.Logging.Portable\Release\Common.Logging.Core.xml" target="lib\net35" />
+  </files>  
+</package>

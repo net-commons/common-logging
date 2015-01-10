@@ -44,7 +44,7 @@
     <DefineConstants>TRACE;DEBUG;NET_4_0</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>Common.Logging.xml</DocumentationFile>
+    <DocumentationFile>..\..\build\net40\Common.Logging\Debug\Common.Logging.xml</DocumentationFile>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <NoWarn>1607</NoWarn>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
@@ -56,7 +56,7 @@
     <DefineConstants>TRACE;NET_4_0</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>3</WarningLevel>
-    <DocumentationFile>Common.Logging.xml</DocumentationFile>
+    <DocumentationFile>..\..\build\net40\Common.Logging\Debug\Common.Logging.xml</DocumentationFile>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <NoWarn>1607</NoWarn>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
@@ -89,32 +89,14 @@
     <Compile Include="..\Common.Logging.Portable\Logging\Configuration\NameValueCollection.cs">
       <Link>Logging\Configuration\NameValueCollection.cs</Link>
     </Compile>
+    <Compile Include="..\Common.Logging.Portable\Logging\Configuration\NameValueCollectionHelper.cs">
+      <Link>Logging\Configuration\NameValueCollectionHelper.cs</Link>
+    </Compile>
     <Compile Include="..\Common.Logging.Portable\Logging\Factory\AbstractCachingLoggerFactoryAdapter.cs">
       <Link>Logging\Factory\AbstractCachingLoggerFactoryAdapter.cs</Link>
     </Compile>
     <Compile Include="..\Common.Logging.Portable\Logging\Factory\AbstractLogger.cs">
       <Link>Logging\Factory\AbstractLogger.cs</Link>
-    </Compile>
-    <Compile Include="..\Common.Logging.Portable\Logging\Factory\ResharperAnnotation.cs">
-      <Link>Logging\Factory\ResharperAnnotation.cs</Link>
-    </Compile>
-    <Compile Include="..\Common.Logging.Portable\Logging\FormatMessageHandler.cs">
-      <Link>Logging\FormatMessageHandler.cs</Link>
-    </Compile>
-    <Compile Include="..\Common.Logging.Portable\Logging\IConfigurationReader.cs">
-      <Link>Logging\IConfigurationReader.cs</Link>
-    </Compile>
-    <Compile Include="..\Common.Logging.Portable\Logging\ILog.cs">
-      <Link>Logging\ILog.cs</Link>
-    </Compile>
-    <Compile Include="..\Common.Logging.Portable\Logging\ILoggerFactoryAdapter.cs">
-      <Link>Logging\ILoggerFactoryAdapter.cs</Link>
-    </Compile>
-    <Compile Include="..\Common.Logging.Portable\Logging\IVariablesContext.cs">
-      <Link>Logging\IVariablesContext.cs</Link>
-    </Compile>
-    <Compile Include="..\Common.Logging.Portable\Logging\LogLevel.cs">
-      <Link>Logging\LogLevel.cs</Link>
     </Compile>
     <Compile Include="..\Common.Logging.Portable\Logging\LogManager.cs">
       <Link>Logging\LogManager.cs</Link>
@@ -155,7 +137,6 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>CommonAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Logging\Configuration\NameValueCollectionHelper.cs" />
     <Compile Include="Logging\Simple\CommonLoggingTraceListener.cs" />
     <Compile Include="Logging\ConfigurationSectionHandler.cs" />
     <Compile Include="Logging\Simple\ConsoleOutLogger.cs" />
@@ -189,6 +170,12 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common.Logging.Core\Common.Logging.Core.2010.csproj">
+      <Project>{7eeb2191-b3fc-4509-aa4b-a345c386eeed}</Project>
+      <Name>Common.Logging.Core.2010</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

@@ -126,6 +126,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.NLog21.Tests
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.NLog21.Tests.2010", "test\Common.Logging.NLog21.Tests\Common.Logging.NLog21.Tests.2010.csproj", "{1F6C1C7D-DBDC-4F59-8BA2-6F00E3F28755}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.Core.2010-net20", "src\Common.Logging.Core\Common.Logging.Core.2010-net20.csproj", "{CADFB630-279F-427C-96A9-D2F9AA718648}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -308,6 +310,10 @@ Global
 		{1F6C1C7D-DBDC-4F59-8BA2-6F00E3F28755}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1F6C1C7D-DBDC-4F59-8BA2-6F00E3F28755}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1F6C1C7D-DBDC-4F59-8BA2-6F00E3F28755}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CADFB630-279F-427C-96A9-D2F9AA718648}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CADFB630-279F-427C-96A9-D2F9AA718648}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CADFB630-279F-427C-96A9-D2F9AA718648}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CADFB630-279F-427C-96A9-D2F9AA718648}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -357,6 +363,7 @@ Global
 		{EDEE0573-A667-4234-B5E3-2E8356A9910A} = {AFF10545-8CA9-4ABF-83B8-E4284611D223}
 		{51137B9A-B07D-4E71-A9F2-14944C2309B7} = {AFF10545-8CA9-4ABF-83B8-E4284611D223}
 		{1F6C1C7D-DBDC-4F59-8BA2-6F00E3F28755} = {AFF10545-8CA9-4ABF-83B8-E4284611D223}
+		{CADFB630-279F-427C-96A9-D2F9AA718648} = {1B370368-837E-4E0B-9D1B-864D53815996}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		NAntAddinLastFileName = Common.Logging.build

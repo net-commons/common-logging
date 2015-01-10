@@ -80,7 +80,7 @@ namespace Common.Logging
     /// <seealso cref="Adapter"/>
     /// <seealso cref="ILoggerFactoryAdapter"/>
     /// <author>Gilles Bayon</author>
-    public static class LogManager
+    public class LogManager : ILogManager
     {
         /// <summary>
         /// The key of the default configuration section to read settings from.
@@ -89,7 +89,16 @@ namespace Common.Logging
         /// You can always change the source of your configuration settings by setting another <see cref="IConfigurationReader"/> instance
         /// on <see cref="ConfigurationReader"/>.
         /// </remarks>
-        public static readonly string COMMON_LOGGING_SECTION = "common/logging";
+        public static string COMMON_LOGGING_SECTION { get { return "common/logging"; } }
+
+        /// <summary>
+        /// The key of the default configuration section to read settings from.
+        /// </summary>
+        /// <remarks>
+        /// You can always change the source of your configuration settings by setting another <see cref="IConfigurationReader"/> instance
+        /// on <see cref="ConfigurationReader"/>.
+        /// </remarks>
+        string ILogManager.COMMON_LOGGING_SECTION { get { return COMMON_LOGGING_SECTION; } }
 
         private static IConfigurationReader _configurationReader;
         private static ILoggerFactoryAdapter _adapter;
@@ -117,6 +126,9 @@ namespace Common.Logging
             Reset(new DefaultConfigurationReader());
         }
 
+        void ILogManager.Reset() { Reset(); }
+
+
         /// <summary>
         /// Reset the <see cref="Common.Logging" /> infrastructure to its default settings. This means, that configuration settings
         /// will be re-read from section <c>&lt;common/logging&gt;</c> of your <c>app.config</c>.
@@ -143,6 +155,8 @@ namespace Common.Logging
             }
         }
 
+        void ILogManager.Reset(IConfigurationReader reader) { Reset(reader); }
+
         /// <summary>
         /// Gets the configuration reader used to initialize the LogManager.
         /// </summary>
@@ -156,6 +170,21 @@ namespace Common.Logging
                 return _configurationReader;
             }
         }
+
+        /// <summary>
+        /// Gets the configuration reader used to initialize the LogManager.
+        /// </summary>
+        /// <remarks>Primarily used for testing purposes but maybe useful to obtain configuration
+        /// information from some place other than the .NET application configuration file.</remarks>
+        /// <value>The configuration reader.</value>
+        IConfigurationReader ILogManager.ConfigurationReader
+        {
+            get
+            {
+                return ConfigurationReader;
+            }
+        }
+
 
         /// <summary>
         /// Gets or sets the adapter.
@@ -191,7 +220,18 @@ namespace Common.Logging
             }
         }
 
-#if PORTABLE && !SILVERLIGHT
+        /// <summary>
+        /// Gets or sets the adapter.
+        /// </summary>
+        /// <value>The adapter.</value>
+        ILoggerFactoryAdapter ILogManager.Adapter
+        {
+            get { return Adapter; }
+            set { Adapter = value; }
+        }
+
+
+#if PORTABLE && !SILVERLIGHT && !NET20
 
         /// <summary>
         /// Gets the logger by calling <see cref="ILoggerFactoryAdapter.GetLogger(Type)"/>
@@ -204,12 +244,32 @@ namespace Common.Logging
         /// </remarks>
         /// <seealso cref="GetLogger(Type)"/>
         /// <returns>the logger instance obtained from the current <see cref="Adapter"/></returns>
+        [Obsolete("Null-Reference Exception when dealing with Dynamic Types, Prefer instead one of the LogManager.GetLogger(...) variants.")]
         [MethodImpl(MethodImplOptions.NoInlining)]
         public static ILog GetCurrentClassLogger()
         {
             var method = GetCallingMethod();
             var declaringType = method.DeclaringType;
             return Adapter.GetLogger(declaringType);
+        }
+
+        /// <summary>
+        /// Gets the logger by calling <see cref="ILoggerFactoryAdapter.GetLogger(Type)"/>
+        /// on the currently configured <see cref="Adapter"/> using the type of the calling class.
+        /// </summary>
+        /// <remarks>
+        /// This method needs to inspect the <see cref="StackTrace"/> in order to determine the calling 
+        /// class. This of course comes with a performance penalty, thus you shouldn't call it too
+        /// often in your application.
+        /// </remarks>
+        /// <seealso cref="GetLogger(Type)"/>
+        /// <returns>the logger instance obtained from the current <see cref="Adapter"/></returns>
+
+        [Obsolete("Null-Reference Exception when dealing with Dynamic Types, Prefer instead one of the LogManager.GetLogger(...) variants.")]
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        ILog ILogManager.GetCurrentClassLogger()
+        {
+            return GetCurrentClassLogger();
         }
 
         [MethodImpl(MethodImplOptions.NoInlining)]
@@ -293,6 +353,7 @@ namespace Common.Logging
         /// </remarks>
         /// <seealso cref="GetLogger(Type)"/>
         /// <returns>the logger instance obtained from the current <see cref="Adapter"/></returns>
+        [Obsolete("Null-Reference Exception when dealing with Dynamic Types, Prefer instead one of the LogManager.GetLogger(...) variants.")]
         [MethodImpl(MethodImplOptions.NoInlining)]
         public static ILog GetCurrentClassLogger()
         {
@@ -300,9 +361,9 @@ namespace Common.Logging
             var adapter = Adapter;
             var method = frame.GetMethod();
             MethodBase upperMethod = method;
-            for(var offset = 2; ; offset++)
+            for (var offset = 2; ; offset++)
             {
-                if((upperMethod == null) || !upperMethod.IsConstructor)
+                if ((upperMethod == null) || !upperMethod.IsConstructor)
                 {
                     break;
                 }
@@ -312,6 +373,21 @@ namespace Common.Logging
             var declaringType = method.DeclaringType;
             return adapter.GetLogger(declaringType);
         }
+
+        /// <summary>
+        /// Gets the logger by calling <see cref="ILoggerFactoryAdapter.GetLogger(Type)"/>
+        /// on the currently configured <see cref="Adapter"/> using the type of the calling class.
+        /// </summary>
+        /// <remarks>
+        /// This method needs to inspect the <see cref="StackTrace"/> in order to determine the calling 
+        /// class. This of course comes with a performance penalty, thus you shouldn't call it too
+        /// often in your application.
+        /// </remarks>
+        /// <seealso cref="GetLogger(Type)"/>
+        /// <returns>the logger instance obtained from the current <see cref="Adapter"/></returns>
+        [Obsolete("Null-Reference Exception when dealing with Dynamic Types, Prefer instead one of the LogManager.GetLogger(...) variants.")]
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        ILog ILogManager.GetCurrentClassLogger() { return GetCurrentClassLogger(); }
 #endif
 
         /// <summary>
@@ -328,12 +404,35 @@ namespace Common.Logging
         /// Gets the logger by calling <see cref="ILoggerFactoryAdapter.GetLogger(Type)"/>
         /// on the currently configured <see cref="Adapter"/> using the specified type.
         /// </summary>
+        /// <returns>the logger instance obtained from the current <see cref="Adapter"/></returns>
+        ILog ILogManager.GetLogger<T>()
+        {
+            return GetLogger<T>();
+        }
+
+
+        /// <summary>
+        /// Gets the logger by calling <see cref="ILoggerFactoryAdapter.GetLogger(Type)"/>
+        /// on the currently configured <see cref="Adapter"/> using the specified type.
+        /// </summary>
         /// <param name="type">The type.</param>
         /// <returns>the logger instance obtained from the current <see cref="Adapter"/></returns>
         public static ILog GetLogger(Type type)
         {
             return Adapter.GetLogger(type);
         }
+
+        /// <summary>
+        /// Gets the logger by calling <see cref="ILoggerFactoryAdapter.GetLogger(Type)"/>
+        /// on the currently configured <see cref="Adapter"/> using the specified type.
+        /// </summary>
+        /// <param name="type">The type.</param>
+        /// <returns>the logger instance obtained from the current <see cref="Adapter"/></returns>
+        ILog ILogManager.GetLogger(Type type)
+        {
+            return GetLogger(type);
+        }
+
 
 
         /// <summary>
@@ -346,6 +445,18 @@ namespace Common.Logging
         {
             return Adapter.GetLogger(key);
         }
+
+        /// <summary>
+        /// Gets the logger by calling <see cref="ILoggerFactoryAdapter.GetLogger(string)"/>
+        /// on the currently configured <see cref="Adapter"/> using the specified key.
+        /// </summary>
+        /// <param name="key">The key.</param>
+        /// <returns>the logger instance obtained from the current <see cref="Adapter"/></returns>
+        ILog ILogManager.GetLogger(string key)
+        {
+            return GetLogger(key);
+        }
+
 
 
         /// <summary>
