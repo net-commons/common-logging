@@ -63,7 +63,8 @@
   </target>
 
   <target name="test" depends="build">
-    <call target="TestAllAssemblies" />
+    <property name="build.dir" value="${root.dir}/build" />
+	<call target="TestAllAssemblies" />
   </target>
 
   <target name="test-integration" depends="test">
@@ -74,6 +75,7 @@
             </fileset>
         </delete>
 -->
+	<property name="build.dir" value="${root.dir}/build" />
     <call target="IntegrationTestAllAssemblies" />
   </target>
 
@@ -384,8 +386,9 @@ ${tool.dir}       : dir for tools
         </items>
       </in>
       <do>
-        <property name="test.assemblyfile" value="${filename}" overwrite="true" />
-        <call target="common.run-tests" />
+	  <echo message="*****Build dir = ${build.dir}, Found test assembly ${filename}" />
+        <!--<property name="test.assemblyfile" value="${filename}" overwrite="true" />
+        <call target="common.run-tests" /> -->
       </do>
     </foreach>
 
