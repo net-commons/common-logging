@@ -25,6 +25,7 @@ namespace Common
         private readonly string TestExecutableFileName = "CommonLoggingBinaryCompatibilityTest.exe";
 
         [Test]
+        [Ignore("Binary Compatibility with ver 1.2 is no longer expected.")]
         public void CanUpgradeFromVersion12()
         {
             CompileAppAgainstVersion12("CommonLoggingBinaryCompatibilityTest.csharp");
@@ -33,6 +34,7 @@ namespace Common
         }
 
         [Test]
+        [Ignore("Binary Compatibility with ver 1.2 is no longer expected.")]
         public void CanUpgradeXmlConfigurationFromVersion12()
         {
             CompileAppAgainstVersion12("CommonLoggingBinaryCompatibilityTest2.csharp");
