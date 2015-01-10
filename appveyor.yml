@@ -3,6 +3,9 @@ configuration: Debug
 build_script:
 - call build-ci.cmd
 test: off
+artifacts:
+- path: .\files.txt
+  name: test results list
 on_finish:
 - ps: >-
     # upload test results to AppVeyor
@@ -11,8 +14,8 @@ on_finish:
 
     Write-Host (Join-Path $($env:APPVEYOR_BUILD_FOLDER) \build\Debug)
 
-    # Get-ChildItem -Path (Join-Path $($env:APPVEYOR_BUILD_FOLDER) \build\Debug) -Recurse -File -Filter "*TestResults.xml" | % { $wc.UploadFile("https://ci.appveyor.com/api/testresults/nunit/$($env:APPVEYOR_JOB_ID)", $_.FullName) }
+    # Get-ChildItem -Path (Join-Path $($env:APPVEYOR_BUILD_FOLDER) \build\Debug) -Recurse -File -Filter "*-TestResults.xml" | % { $wc.UploadFile("https://ci.appveyor.com/api/testresults/nunit/$($env:APPVEYOR_JOB_ID)", $_.FullName) }
 
-    Get-ChildItem -Path (Join-Path $($env:APPVEYOR_BUILD_FOLDER) \build\Debug) -Recurse -File -Filter "*TestResults.xml" | % { Write-Host $_.FullName) }
+    Get-ChildItem -Path (Join-Path $($env:APPVEYOR_BUILD_FOLDER) \build\Debug) -Recurse -File -Filter "*-TestResults.xml" > (Join-Path $($env:APPVEYOR_BUILD_FOLDER) \files.txt)
 
     # $wc.UploadFile("https://ci.appveyor.com/api/testresults/nunit/$($env:APPVEYOR_JOB_ID)", (Resolve-Path (Join-Path $($env:APPVEYOR_BUILD_FOLDER) \build\Debug\TestResult.xml)))
