@@ -386,9 +386,8 @@ ${tool.dir}       : dir for tools
         </items>
       </in>
       <do>
-	  <echo message="*****Build dir = ${build.dir}, Found test assembly ${filename}" />
-        <!--<property name="test.assemblyfile" value="${filename}" overwrite="true" />
-        <call target="common.run-tests" /> -->
+	    <property name="test.assemblyfile" value="${filename}" overwrite="true" />
+        <call target="common.run-tests" />
       </do>
     </foreach>
 
