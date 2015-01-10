@@ -10,7 +10,7 @@ on_finish:
     $wc = New-Object 'System.Net.WebClient'
 
     Write-Host (Join-Path $($env:APPVEYOR_BUILD_FOLDER) \build\Debug)
-	
+
     # Get-ChildItem -Path (Join-Path $($env:APPVEYOR_BUILD_FOLDER) \build\Debug) -Recurse -File -Filter "*TestResults.xml" | % { $wc.UploadFile("https://ci.appveyor.com/api/testresults/nunit/$($env:APPVEYOR_JOB_ID)", $_.FullName) }
 
     Get-ChildItem -Path (Join-Path $($env:APPVEYOR_BUILD_FOLDER) \build\Debug) -Recurse -File -Filter "*TestResults.xml" | % { Write-Host $_.FullName) }
