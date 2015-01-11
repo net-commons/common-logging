@@ -47,7 +47,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\build\net40\Common.Logging.NLog2.Tests.Integration\Release\</OutputPath>
+    <OutputPath>..\..\build\net40\Common.Logging.NLog21.Tests.Integration\Release\</OutputPath>
     <DefineConstants>TRACE;NET_4_0;NLOG2</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
