@@ -353,7 +353,7 @@ ${tool.dir}       : dir for tools
 
     <echo message="Coverage Testing ${test.assemblyname}, File='${test.assemblyfile}', WorkingDir='${test.bin.dir}'" />
 
-    <property name="test.assemblyname.tocover" value="${string::substring(test.assemblyname,0,string::last-index-of(test.assemblyname, '.Tests') )}" overwrite="false" />
+    <property name="test.assemblyname.tocover" value="${string::substring(test.assemblyname,0,string::last-index-of(test.assemblyname, '.Tests') )}" overwrite="true" />
 
     <exec program="${tool.dir}/ncover/ncover.console.exe" workingdir="${test.bin.dir}" verbose="true">
       <arg value="//q" />
