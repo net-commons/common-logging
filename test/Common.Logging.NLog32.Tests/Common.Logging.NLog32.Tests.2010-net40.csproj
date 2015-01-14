@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{2B33D4E2-1F60-4DA6-9B60-424E4359FF74}</ProjectGuid>
+    <ProjectGuid>{5DD06B8D-BF33-488A-8D51-D9568B41FCF7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Common</RootNamespace>
-    <AssemblyName>Common.Logging.NLog31.Tests</AssemblyName>
+    <AssemblyName>Common.Logging.NLog32.Tests</AssemblyName>
     <StartupObject>
     </StartupObject>
     <FileUpgradeFlags>
@@ -39,7 +39,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\build\net40\Common.Logging.NLog31.Tests\Debug\</OutputPath>
+    <OutputPath>..\..\build\net40\Common.Logging.NLog32.Tests\Debug\</OutputPath>
     <DefineConstants>TRACE;DEBUG;NET_4_0;NLOG2</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -50,16 +50,16 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\build\net40\Common.Logging.NLog31.Tests\Release\</OutputPath>
+    <OutputPath>..\..\build\net40\Common.Logging.NLog32.Tests\Release\</OutputPath>
     <DefineConstants>TRACE;NET_4_0;NLOG2</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="NLog, Version=3.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+    <Reference Include="NLog, Version=3.2.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\NLog31\net\4.0\NLog.dll</HintPath>
+      <HintPath>..\..\lib\NLog32\net\4.0\NLog.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework, Version=2.5.0.9015, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -108,9 +108,9 @@
       <Project>{7eeb2191-b3fc-4509-aa4b-a345c386eeed}</Project>
       <Name>Common.Logging.Core.2010</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\Common.Logging.NLog30\Common.Logging.NLog30.2010-net40.csproj">
+    <ProjectReference Include="..\..\src\Common.Logging.NLog32\Common.Logging.NLog32.2010-net40.csproj">
       <Project>{0c674706-2b0b-40e1-88d6-75ece60a5712}</Project>
-      <Name>Common.Logging.NLog30.2010-net40</Name>
+      <Name>Common.Logging.NLog32.2010-net40</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\src\Common.Logging\Common.Logging.2010-net40.csproj">
       <Project>{440D903A-D409-48FC-A6C4-3EE69CCD663B}</Project>
