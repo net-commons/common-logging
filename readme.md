@@ -39,7 +39,7 @@ Then add the relevant sections to your app.config or web.config:
 		  <factoryAdapter type="Common.Logging.Simple.ConsoleOutLoggerFactoryAdapter, Common.Logging">
 			<arg key="level" value="INFO" />
 			<arg key="showLogName" value="true" />
-			<arg key="showDataTime" value="true" />
+			<arg key="showDateTime" value="true" />
 			<arg key="dateTimeFormat" value="yyyy/MM/dd HH:mm:ss:fff" />
 		  </factoryAdapter>
 		</logging>

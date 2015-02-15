@@ -45,7 +45,7 @@ namespace Common.Logging
     ///       &lt;logging&gt;
     ///         &lt;factoryAdapter type=&quot;Common.Logging.Simple.ConsoleOutLoggerFactoryAdapter, Common.Logging&quot;&gt;
     ///           &lt;arg key=&quot;showLogName&quot; value=&quot;true&quot; /&gt;
-    ///           &lt;arg key=&quot;showDataTime&quot; value=&quot;true&quot; /&gt;
+    ///           &lt;arg key=&quot;showDateTime&quot; value=&quot;true&quot; /&gt;
     ///           &lt;arg key=&quot;level&quot; value=&quot;ALL&quot; /&gt;
     ///           &lt;arg key=&quot;dateTimeFormat&quot; value=&quot;yyyy/MM/dd HH:mm:ss:fff&quot; /&gt;
     ///         &lt;/factoryAdapter&gt;
