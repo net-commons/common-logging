@@ -73,6 +73,7 @@
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="Logging\Factory\AbstractLoggerTests.cs" />
     <Compile Include="ExceptionsTest.cs" />
+    <Compile Include="Logging\LogLevelNumericComparisonTests.cs" />
     <Compile Include="Logging\Simple\CapturingLoggerTests.cs" />
     <Compile Include="Logging\Simple\CommonLoggingTraceListenerTests.cs" />
     <Compile Include="Logging\ConfigurationSectionHandlerTests.cs" />

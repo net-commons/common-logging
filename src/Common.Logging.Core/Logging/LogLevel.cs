@@ -18,18 +18,21 @@
 
 #endregion
 
+using System;
+
 namespace Common.Logging
 {
     /// <summary>
     /// The 7 possible logging levels
     /// </summary>
     /// <author>Gilles Bayon</author>
+    [Flags]
     public enum LogLevel
     {
         /// <summary>
         /// All logging levels
         /// </summary>
-        All   = 0,
+        All = 0,
         /// <summary>
         /// A trace logging level
         /// </summary>
@@ -41,22 +44,22 @@ namespace Common.Logging
         /// <summary>
         /// A info logging level
         /// </summary>
-        Info  = 3,
+        Info = 4,
         /// <summary>
         /// A warn logging level
         /// </summary>
-        Warn  = 4,
+        Warn = 8,
         /// <summary>
         /// An error logging level
         /// </summary>
-        Error = 5,
+        Error = 16,
         /// <summary>
         /// A fatal logging level
         /// </summary>
-        Fatal = 6,
+        Fatal = 32,
         /// <summary>
         /// Do not log anything.
         /// </summary>
-        Off  = 7,
+        Off = 64,
     }
 }
