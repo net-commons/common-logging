@@ -169,7 +169,13 @@ namespace Common.Logging.Simple
 
                 Object propertyValue = "<unavailable>";
                 if (property.CanRead)
-                    propertyValue = property.GetValue(exception, null);
+                {
+                    //if property is indexer, has no idea how to output that,
+                    //and, also, without second param GetValue throw error in this case
+                    //so, simple skip this
+                    if (property.GetIndexParameters().Length <= 0)
+                        propertyValue = property.GetValue(exception, null);
+                }
 
                 var enumerableValue = propertyValue as IEnumerable;
 
