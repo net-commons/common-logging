@@ -38,11 +38,11 @@ namespace Common.Logging
         public void ErrorNotThrownWhenLoggedExceptionHasIndexerProperty()
         {
             ILog log = LogManager.GetCurrentClassLogger();
-            ExceptionWithIndexer exception = new ExceptionWithIndexer();
+            ExceptionWithIndexerException exception = new ExceptionWithIndexerException();
             Assert.That(() => log.Error("error catched", exception), Throws.Nothing);
         }
         
-        public class ExceptionWithIndexer : Exception
+        public class ExceptionWithIndexerException : Exception
         {
             public string this[string key]
             {
