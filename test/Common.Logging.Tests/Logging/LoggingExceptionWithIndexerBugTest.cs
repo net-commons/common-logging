@@ -20,6 +20,7 @@
 
 using System;
 using System.Reflection;
+using System.Runtime.Serialization;
 using NUnit.Framework;
 
 namespace Common.Logging
@@ -44,6 +45,22 @@ namespace Common.Logging
         
         public class ExceptionWithIndexerException : Exception
         {
+            public ExceptionWithIndexerException()
+            {
+            }
+
+            public ExceptionWithIndexerException(string message) : base(message)
+            {
+            }
+
+            public ExceptionWithIndexerException(string message, Exception innerException) : base(message, innerException)
+            {
+            }
+
+            protected ExceptionWithIndexerException(SerializationInfo info, StreamingContext context) : base(info, context)
+            {
+            }
+
             public string this[string key]
             {
                 get { return null; }
