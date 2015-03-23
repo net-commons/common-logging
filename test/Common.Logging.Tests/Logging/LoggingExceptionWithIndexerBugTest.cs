@@ -43,6 +43,7 @@ namespace Common.Logging
             Assert.That(() => log.Error("error catched", exception), Throws.Nothing);
         }
         
+        [Serializable]
         public class ExceptionWithIndexerException : Exception
         {
             public ExceptionWithIndexerException()
