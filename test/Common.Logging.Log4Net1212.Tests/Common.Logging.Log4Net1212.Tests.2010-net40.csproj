@@ -9,7 +9,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Common</RootNamespace>
-    <AssemblyName>Common.Logging.Log4Net129.Tests</AssemblyName>
+    <AssemblyName>Common.Logging.Log4Net1212.Tests</AssemblyName>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <OldToolsVersion>3.5</OldToolsVersion>
@@ -77,7 +77,7 @@
       <Name>Common.Logging.Core.2010</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\src\Common.Logging.Log4Net1212\Common.Logging.Log4Net1212.2010-net40.csproj">
-      <Project>{2756B5D0-B576-417F-A107-1695DF76D34A}</Project>
+      <Project>{FE89FAD0-EB54-4F30-9449-6091621AFA8F}</Project>
       <Name>Common.Logging.Log4Net1212.2010-net40</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\src\Common.Logging\Common.Logging.2010-net40.csproj">

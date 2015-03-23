@@ -103,7 +103,7 @@
       <Name>Common.Logging.Core.2010</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\src\Common.Logging.NLog31\Common.Logging.NLog31.2010-net40.csproj">
-      <Project>{0c674706-2b0b-40e1-88d6-75ece60a5712}</Project>
+      <Project>{5535B317-1EFA-4128-AAEB-235354E58299}</Project>
       <Name>Common.Logging.NLog31.2010-net40</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\src\Common.Logging\Common.Logging.2010-net40.csproj">
