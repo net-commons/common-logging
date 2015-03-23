@@ -97,17 +97,17 @@
       <Project>{7eeb2191-b3fc-4509-aa4b-a345c386eeed}</Project>
       <Name>Common.Logging.Core.2010</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\Common.Logging.Log4Net1211\Common.Logging.Log4Net1211.2010-net40.csproj">
-      <Project>{2756B5D0-B576-417F-A107-1695DF76D34A}</Project>
-      <Name>Common.Logging.Log4Net1211.2010-net40</Name>
+    <ProjectReference Include="..\..\src\Common.Logging.Log4Net1212\Common.Logging.Log4Net1212.2010-net40.csproj">
+      <Project>{FE89FAD0-EB54-4F30-9449-6091621AFA8F}</Project>
+      <Name>Common.Logging.Log4Net1212.2010-net40</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\src\Common.Logging\Common.Logging.2010-net40.csproj">
       <Project>{440D903A-D409-48FC-A6C4-3EE69CCD663B}</Project>
       <Name>Common.Logging.2010-net40</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Common.Logging.Log4Net1211.Tests\Common.Logging.Log4Net1211.Tests.2010-net40.csproj">
-      <Project>{C1C5EA00-6553-4C57-B9BC-39B116021715}</Project>
-      <Name>Common.Logging.Log4Net1211.Tests.2010-net40</Name>
+    <ProjectReference Include="..\Common.Logging.Log4Net1212.Tests\Common.Logging.Log4Net1212.Tests.2010-net40.csproj">
+      <Project>{8B40D8CE-A70D-4C4C-AE3B-90819E3EF3C9}</Project>
+      <Name>Common.Logging.Log4Net1212.Tests.2010-net40</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

@@ -109,7 +109,7 @@
       <Name>Common.Logging.Core.2010</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\src\Common.Logging.NLog32\Common.Logging.NLog32.2010-net40.csproj">
-      <Project>{0c674706-2b0b-40e1-88d6-75ece60a5712}</Project>
+      <Project>{33BE0554-42E6-46B5-A340-0A12DA3755DB}</Project>
       <Name>Common.Logging.NLog32.2010-net40</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\src\Common.Logging\Common.Logging.2010-net40.csproj">
@@ -124,7 +124,7 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties ProjectLinkerExcludeFilter="\\?desktop(\\.*)?$;\\?silverlight(\\.*)?$;\.desktop;\.silverlight;\.xaml;^service references(\\.*)?$;\.clientconfig;^web references(\\.*)?$" ProjectLinkReference="b4bb1353-924a-40f0-9aa5-a7c28ab68f69" />
+      <UserProperties ProjectLinkReference="b4bb1353-924a-40f0-9aa5-a7c28ab68f69" ProjectLinkerExcludeFilter="\\?desktop(\\.*)?$;\\?silverlight(\\.*)?$;\.desktop;\.silverlight;\.xaml;^service references(\\.*)?$;\.clientconfig;^web references(\\.*)?$" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
