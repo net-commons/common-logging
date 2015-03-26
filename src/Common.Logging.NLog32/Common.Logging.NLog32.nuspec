@@ -18,8 +18,8 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="..\..\build\net40\Common.Logging.NLog31\Release\Common.Logging.NLog32.dll" target="lib\net40" />
-    <file src="..\..\build\net40\Common.Logging.NLog31\Release\Common.Logging.NLog32.pdb" target="lib\net40" />
-    <file src="..\..\build\net40\Common.Logging.NLog31\Release\Common.Logging.NLog32.xml" target="lib\net40" />
+    <file src="..\..\build\net40\Common.Logging.NLog32\Release\Common.Logging.NLog32.dll" target="lib\net40" />
+    <file src="..\..\build\net40\Common.Logging.NLog32\Release\Common.Logging.NLog32.pdb" target="lib\net40" />
+    <file src="..\..\build\net40\Common.Logging.NLog32\Release\Common.Logging.NLog32.xml" target="lib\net40" />
   </files>
 </package>
