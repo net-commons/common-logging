@@ -3,12 +3,67 @@ Common.Logging CHANGELOG
 http://github.com/net-commons/common-logging
 http://netcommon.sf.net
 
-Release 2.2.0, March 1 2014
+Release 3.1.0, March 26, 2015
 
 Summary: New Features and Bug Fix release
 
+New Features
+ - support for NLog 3.2 added
+ - LogLevel enum now uses [Flags] attribute to support bitwise || operations when interrogating log levels
+
 Bug Fixes
 
+ - ExceptionFormatter.OutputProperties ignores properties of Exception types with indexers (previously resulted in unhandled exception)
+
+---------------------------
+
+Release 3.0.0, January 11, 2015
+
+Summary: New Features and Bug Fix release
+
+New Features
+ - evolve PCL strategy to remove Common.Logging.Portable assembly and migrate only low-level abstractions into Common.Logging.Core PCL assembly
+ - introduce ILogManager interface in support of new PCL strategy
+
+Bug Fixes
+ - misc xmldoc references using invalid <param key"..." /> syntax updated to use proper <param name="..." /> syntax for xml API doc generation
+
+---------------------------
+
+Release 2.3.1, November 1, 2014
+
+Summary: Bug Fix release
+
+Bug Fixes
+ - remove errant readme.txt file from reference in Common.Logging nuspec package definition
+
+---------------------------
+
+Release 2.3.0, November 1, 2014
+
+Summary: New Features and Bug Fix release
+
+New Features
+ - evolve PCL strategy to introduce new Common.Logging.Portable assembly 
+ - colorized added to ConsoleOutLogger
+ - support for Log4NET 1.2.12 added
+ - support for Log4NET 1.2.13 added 
+ - support for EntLib 6.0 added
+ - support for NLog 2.1 added
+ - support for NLog 3.0 added 
+ - support for NLog 3.1 added
+
+Bug Fixes
+ - missing [Serializable] attribute added to EntLibLogger class
+
+---------------------------
+
+Release 2.2.0, March 1 2014
+
+Summary: New Features release
+
+New Features
+ - Initial support of PCL scenarios (introduce Common.Logging.Core PCL assembly to compliment Common.Logging assembly)
 
 ---------------------------
 
