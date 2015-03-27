@@ -22,7 +22,7 @@ Release 3.0.0, January 11, 2015
 Summary: New Features and Bug Fix release
 
 New Features
- - evolve PCL strategy to remove Common.Logging.Portable assembly and migrate only low-level abstractions into Common.Logging.Core PCL assembly
+ - evolve PCL strategy to introduce Common.Logging.Portable assembly for PCL consumption and migrate only low-level abstractions into Common.Logging.Core PCL assembly
  - introduce ILogManager interface in support of new PCL strategy
 
 Bug Fixes
