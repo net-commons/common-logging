@@ -21,7 +21,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>..\..\build\portable\Common.Logging.WinRT\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;WinRT</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;WinRT;PORTABLE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>..\..\build\portable\Common.Logging.WinRT\Debug\Common.Logging.WinRT.XML</DocumentationFile>
@@ -43,6 +43,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\Common.Logging.Portable\CoverageExcludeAttribute.cs">
+      <Link>CoverageExcludeAttribute.cs</Link>
+    </Compile>
     <Compile Include="..\Common.Logging.Portable\Logging\ConfigurationException.cs">
       <Link>Logging\ConfigurationException.cs</Link>
     </Compile>
