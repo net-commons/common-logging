@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Common.Logging.ApplicationInsights0170</id>
+    <version>0.0.0</version>
+    <!-- placeholder value replaced by build script -->
+    <authors>Mihail Smacinih, Stephen Bohlen</authors>
+    <owners>Aleksandar Seovic, Mark Pollack, Erich Eichinger, Stephen Bohlen</owners>
+    <projectUrl>http://netcommon.sourceforge.net/</projectUrl>
+    <iconUrl>https://raw.githubusercontent.com/net-commons/common-logging/master/nuget-graphics/common-logging-icon.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Common.Logging library bindings for Application Insights logging framework.</description>
+    <tags>ApplicationInsights Common.Logging.ApplicationInsights logging log Common.Logging</tags>
+    <language>en-US</language>
+    <dependencies>
+      <dependency id="Common.Logging" version="3.1.0" />
+      <dependency id="Microsoft.ApplicationInsights" version="0.17.0" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="..\..\build\net45\Common.Logging.ApplicationInsights0170\Release\Common.Logging.ApplicationInsights0170.pdb" target="lib\net45" />
+    <file src="..\..\build\net45\Common.Logging.ApplicationInsights0170\Release\Common.Logging.ApplicationInsights0170.xml" target="lib\net45" />
+  </files>
+</package>
