@@ -55,3 +55,4 @@ src/Common.Logging.NLog31/Common.Logging.NLog31.xml
 src/Common.Logging/Common.Logging.xml
 src/Common.Logging.Portable/Common.Logging.Portable.xml
 src/Common.Logging.Core/Common.Logging.Core.xml
+src/Common.Logging.ApplicationInsights0170/Common.Logging.ApplicationInsights0170.xml

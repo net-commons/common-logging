@@ -76,6 +76,22 @@ The app config should then have a common logging section like below. Be sure to 
 </nlog>
 ```
 
+## Application Insights Quickstart
+There are different packages for each major Application Insights version. Install the correct package for your referenced Application Insights version. This example installs the adapter for Application Insights v0.17:
+
+    PM> Install-Package Microsoft.ApplicationInsights -Version 0.17.0
+
+The app config should then have an Application Insights section like below. Be sure to set the InstrumentationKey with your InstrumentationKey retrieved from Application Insights portal https://portal.azure.com.
+
+```xml
+<common>
+    <logging>
+      <factoryAdapter type="Common.Logging.ApplicationInsights.ApplicationInsightsLoggerFactoryAdapter, Common.Logging.ApplicationInsights">
+    	<arg key="InstrumentationKey" value="[YOUR APPLICATION INSIGHTS INSTRUMENTATION KEY]" />
+      </factoryAdapter>
+    </logging>
+</common>
+```
 
 See module documentation and [Source Forge](http://netcommon.sf.net/) for other factoryAdapters and their configuration values
 
