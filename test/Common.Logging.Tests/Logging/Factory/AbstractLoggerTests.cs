@@ -473,6 +473,14 @@ namespace Common.Logging.Factory
             {
                 get { return true; }
             }
+
+            /// <summary>
+            /// Checks if this logger is enabled for the <see cref="LogLevel.Performance"/> level.
+            /// </summary>
+            public override bool IsPerformanceEnabled
+            {
+                get { return true; }
+            }
         }
     }
 }

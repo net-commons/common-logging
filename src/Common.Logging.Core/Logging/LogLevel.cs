@@ -38,28 +38,32 @@ namespace Common.Logging
         /// </summary>
         Trace = 1,
         /// <summary>
+        /// A performance logging level
+        /// </summary>
+        Performance = 2,
+        /// <summary>
         /// A debug logging level
         /// </summary>
-        Debug = 2,
+        Debug = 4,
         /// <summary>
         /// A info logging level
         /// </summary>
-        Info = 4,
+        Info = 8,
         /// <summary>
         /// A warn logging level
         /// </summary>
-        Warn = 8,
+        Warn = 16,
         /// <summary>
         /// An error logging level
         /// </summary>
-        Error = 16,
+        Error = 32,
         /// <summary>
         /// A fatal logging level
         /// </summary>
-        Fatal = 32,
+        Fatal = 64,
         /// <summary>
         /// Do not log anything.
         /// </summary>
-        Off = 64,
+        Off = 128,
     }
 }
