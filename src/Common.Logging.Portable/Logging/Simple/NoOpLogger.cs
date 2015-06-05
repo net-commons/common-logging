@@ -71,6 +71,14 @@ namespace Common.Logging.Simple
         /// <summary>
         /// Always returns <see langword="false" />.
         /// </summary>
+        public bool IsPerformanceEnabled
+        {
+            get { return false; }
+        }
+
+        /// <summary>
+        /// Always returns <see langword="false" />.
+        /// </summary>
         public bool IsErrorEnabled
         {
             get { return false; }
@@ -728,7 +736,114 @@ namespace Common.Logging.Simple
         }
 
         #endregion
- 
+
+        #region Fatal
+
+        /// <summary>
+        /// Ignores message.
+        /// </summary>
+        /// <param name="message"></param>
+        public void Performance(object message)
+        {
+            // NOP - no operation
+        }
+
+        /// <summary>
+        /// Ignores message.
+        /// </summary>
+        /// <param name="message"></param>
+        /// <param name="e"></param>
+        public void Performance(object message, Exception e)
+        {
+            // NOP - no operation
+        }
+
+        /// <summary>
+        /// Ignores message.
+        /// </summary>
+        /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
+        /// <param name="args"></param>
+        public void PerformanceFormat(string format, params object[] args)
+        {
+            // NOP - no operation
+        }
+
+        /// <summary>
+        /// Ignores message.
+        /// </summary>
+        /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
+        /// <param name="exception">The exception to log.</param>
+        /// <param name="args">the list of message format arguments</param>
+        public void PerformanceFormat(string format, Exception exception, params object[] args)
+        {
+            // NOP - no operation
+        }
+
+        /// <summary>
+        /// Ignores message.
+        /// </summary>
+        /// <param name="formatProvider">An <see cref="IFormatProvider"/> that supplies culture-specific formatting Fatalrmation.</param>
+        /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
+        /// <param name="args">the list of message format arguments</param>
+        public void PerformanceFormat(IFormatProvider formatProvider, string format, params object[] args)
+        {
+            // NOP - no operation
+        }
+
+        /// <summary>
+        /// Ignores message.
+        /// </summary>
+        /// <param name="formatProvider">An <see cref="IFormatProvider"/> that supplies culture-specific formatting Fatalrmation.</param>
+        /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
+        /// <param name="exception">The exception to log.</param>
+        /// <param name="args">the list of message format arguments</param>
+        public void PerformanceFormat(IFormatProvider formatProvider, string format, Exception exception, params object[] args)
+        {
+            // NOP - no operation
+        }
+
+        /// <summary>
+        /// Ignores message.
+        /// </summary>
+        /// <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
+        public void Performance(FormatMessageCallback formatMessageCallback)
+        {
+            // NOP - no operation
+        }
+
+        /// <summary>
+        /// Ignores message.
+        /// </summary>
+        /// <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
+        /// <param name="exception">The exception to log, including its stack Fatal.</param>
+        public void Performance(FormatMessageCallback formatMessageCallback, Exception exception)
+        {
+            // NOP - no operation
+        }
+
+        /// <summary>
+        /// Ignores message.
+        /// </summary>
+        /// <param name="formatProvider">An <see cref="IFormatProvider"/> that supplies culture-specific formatting information.</param>
+        /// <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
+        public void Performance(IFormatProvider formatProvider, FormatMessageCallback formatMessageCallback)
+        {
+            // NOP - no operation
+        }
+
+        /// <summary>
+        /// Ignores message.
+        /// </summary>
+        /// <param name="formatProvider">An <see cref="IFormatProvider"/> that supplies culture-specific formatting information.</param>
+        /// <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
+        /// <param name="exception">The exception to log, including its stack Fatal.</param>
+        public void Performance(IFormatProvider formatProvider, FormatMessageCallback formatMessageCallback, Exception exception)
+        {
+            // NOP - no operation
+        }
+
+        #endregion
+
         /// <summary>
         /// Returns the global context for variables
         /// </summary>

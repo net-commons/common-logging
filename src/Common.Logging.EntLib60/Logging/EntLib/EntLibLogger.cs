@@ -136,6 +136,11 @@ namespace Common.Logging.EntLib
         }
 
         /// <summary>
+        /// Gets a value indicating whether this instance is performance enabled.
+        /// </summary>
+        public override bool IsPerformanceEnabled { get { return false; } }
+
+        /// <summary>
         /// Gets a value indicating whether this instance is error enabled.
         /// </summary>
         public override bool IsErrorEnabled
