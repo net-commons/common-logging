@@ -8,7 +8,7 @@ using System.Security;
 // CommonAssemblyInfo.cs
 
 [assembly: AssemblyCompanyAttribute("http://netcommon.sourceforge.net/")]
-[assembly: AssemblyCopyrightAttribute("Copyright 2006-2011 the Common Infrastructure Libraries Team.")]
+[assembly: AssemblyCopyrightAttribute("Copyright 2006-2015 the Common Infrastructure Libraries Team.")]
 [assembly: AssemblyTrademarkAttribute("Apache License, Version 2.0")]
 [assembly: AssemblyCultureAttribute("")]
 [assembly: AssemblyVersionAttribute("3.1.0")]
