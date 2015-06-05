@@ -45,8 +45,21 @@ namespace Common.Logging.ApplicationInsights
             levelMap.Add(Create<LogLevel, SeverityLevel>(LogLevel.All, SeverityLevel.Verbose));
         }
 
+        /// <summary>
+        /// The telemetry client
+        /// </summary>
         public readonly TelemetryClient telemetryClient;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ApplicationInsightsLogger"/> class.
+        /// </summary>
+        /// <param name="instrumentationKey">The instrumentation key.</param>
+        /// <param name="logName">Name of the log.</param>
+        /// <param name="logLevel">The log level.</param>
+        /// <param name="showlevel">if set to <c>true</c> [showlevel].</param>
+        /// <param name="showDateTime">if set to <c>true</c> [show date time].</param>
+        /// <param name="showLogName">if set to <c>true</c> [show log name].</param>
+        /// <param name="dateTimeFormat">The date time format.</param>
         public ApplicationInsightsLogger(string instrumentationKey, string logName, LogLevel logLevel, bool showlevel, bool showDateTime, bool showLogName, string dateTimeFormat)
             : base(logName, logLevel, showlevel, showDateTime, showLogName, dateTimeFormat)
         {
@@ -54,6 +67,12 @@ namespace Common.Logging.ApplicationInsights
             this.telemetryClient.Context.InstrumentationKey = instrumentationKey;
         }
 
+        /// <summary>
+        /// Actually sends the message to the underlying log system.
+        /// </summary>
+        /// <param name="level">the level of this log event.</param>
+        /// <param name="message">the message to log</param>
+        /// <param name="exception">the exception to log (may be null)</param>
         protected override void WriteInternal(LogLevel level, object message, Exception exception)
         {
             if (level.HasFlag(LogLevel.Off)) 
