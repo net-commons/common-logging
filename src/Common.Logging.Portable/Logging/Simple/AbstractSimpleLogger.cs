@@ -211,6 +211,16 @@ namespace Common.Logging.Simple
 
         /// <summary>
         /// Returns <see langword="true" /> if the current <see cref="LogLevel" /> is greater than or
+        /// equal to <see cref="LogLevel.Performance" />. If it is, only messages with a <see cref="LogLevel" /> of
+        /// <see cref="LogLevel.Performance" /> will be sent to <see cref="Console.Out" />.
+        /// </summary>
+        public override bool IsPerformanceEnabled
+        {
+            get { return IsLevelEnabled(LogLevel.Performance); }
+        }
+
+        /// <summary>
+        /// Returns <see langword="true" /> if the current <see cref="LogLevel" /> is greater than or
         /// equal to <see cref="LogLevel.Debug" />. If it is, all messages will be sent to <see cref="Console.Out" />.
         /// </summary>
         public override bool IsDebugEnabled

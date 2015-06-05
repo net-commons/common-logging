@@ -19,6 +19,7 @@
 #endregion
 
 using System;
+using Common.Logging.Factory;
 using FormatMessageCallback = System.Action<Common.Logging.FormatMessageHandler>;
 
 namespace Common.Logging
@@ -72,6 +73,7 @@ namespace Common.Logging
         /// </summary>
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="args">the list of format arguments</param>
+        [StringFormatMethod("format")]
         void TraceFormat(string format, params object[] args);
 
         /// <summary>
@@ -80,6 +82,7 @@ namespace Common.Logging
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="exception">The exception to log.</param>
         /// <param name="args">the list of format arguments</param>
+        [StringFormatMethod("format")]
         void TraceFormat(string format, Exception exception, params object[] args);
 
         /// <summary>
@@ -88,6 +91,7 @@ namespace Common.Logging
         /// <param name="formatProvider">An <see cref="IFormatProvider"/> that supplies culture-specific formatting information.</param>
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="args"></param>
+        [StringFormatMethod("format")]
         void TraceFormat(IFormatProvider formatProvider, string format, params object[] args);
 
         /// <summary>
@@ -97,6 +101,7 @@ namespace Common.Logging
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="exception">The exception to log.</param>
         /// <param name="args"></param>
+        [StringFormatMethod("format")]
         void TraceFormat(IFormatProvider formatProvider, string format, Exception exception, params object[] args);
 
         /// <summary>
@@ -163,6 +168,7 @@ namespace Common.Logging
         /// </summary>
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="args">the list of format arguments</param>
+        [StringFormatMethod("format")]
         void DebugFormat(string format, params object[] args);
 
         /// <summary>
@@ -171,6 +177,7 @@ namespace Common.Logging
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="exception">The exception to log.</param>
         /// <param name="args">the list of format arguments</param>
+        [StringFormatMethod("format")]
         void DebugFormat(string format, Exception exception, params object[] args);
 
         /// <summary>
@@ -179,6 +186,7 @@ namespace Common.Logging
         /// <param name="formatProvider">An <see cref="IFormatProvider"/> that supplies culture-specific formatting information.</param>
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="args"></param>
+        [StringFormatMethod("format")]
         void DebugFormat(IFormatProvider formatProvider, string format, params object[] args);
 
         /// <summary>
@@ -188,6 +196,7 @@ namespace Common.Logging
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="exception">The exception to log.</param>
         /// <param name="args"></param>
+        [StringFormatMethod("format")]
         void DebugFormat(IFormatProvider formatProvider, string format, Exception exception, params object[] args);
 
         /// <summary>
@@ -254,6 +263,7 @@ namespace Common.Logging
         /// </summary>
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="args">the list of format arguments</param>
+        [StringFormatMethod("format")]
         void InfoFormat(string format, params object[] args);
 
         /// <summary>
@@ -262,6 +272,7 @@ namespace Common.Logging
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="exception">The exception to log.</param>
         /// <param name="args">the list of format arguments</param>
+        [StringFormatMethod("format")]
         void InfoFormat(string format, Exception exception, params object[] args);
 
         /// <summary>
@@ -270,6 +281,7 @@ namespace Common.Logging
         /// <param name="formatProvider">An <see cref="IFormatProvider"/> that supplies culture-specific formatting information.</param>
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="args"></param>
+        [StringFormatMethod("format")]
         void InfoFormat(IFormatProvider formatProvider, string format, params object[] args);
 
         /// <summary>
@@ -279,6 +291,7 @@ namespace Common.Logging
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="exception">The exception to log.</param>
         /// <param name="args"></param>
+        [StringFormatMethod("format")]
         void InfoFormat(IFormatProvider formatProvider, string format, Exception exception, params object[] args);
 
         /// <summary>
@@ -345,6 +358,7 @@ namespace Common.Logging
         /// </summary>
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="args">the list of format arguments</param>
+        [StringFormatMethod("format")]
         void WarnFormat(string format, params object[] args);
 
         /// <summary>
@@ -353,6 +367,7 @@ namespace Common.Logging
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="exception">The exception to log.</param>
         /// <param name="args">the list of format arguments</param>
+        [StringFormatMethod("format")]
         void WarnFormat(string format, Exception exception, params object[] args);
 
         /// <summary>
@@ -361,6 +376,7 @@ namespace Common.Logging
         /// <param name="formatProvider">An <see cref="IFormatProvider"/> that supplies culture-specific formatting information.</param>
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="args"></param>
+        [StringFormatMethod("format")]
         void WarnFormat(IFormatProvider formatProvider, string format, params object[] args);
 
         /// <summary>
@@ -370,6 +386,7 @@ namespace Common.Logging
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="exception">The exception to log.</param>
         /// <param name="args"></param>
+        [StringFormatMethod("format")]
         void WarnFormat(IFormatProvider formatProvider, string format, Exception exception, params object[] args);
 
         /// <summary>
@@ -436,6 +453,7 @@ namespace Common.Logging
         /// </summary>
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="args">the list of format arguments</param>
+        [StringFormatMethod("format")]
         void ErrorFormat(string format, params object[] args);
 
         /// <summary>
@@ -444,6 +462,7 @@ namespace Common.Logging
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="exception">The exception to log.</param>
         /// <param name="args">the list of format arguments</param>
+        [StringFormatMethod("format")]
         void ErrorFormat(string format, Exception exception, params object[] args);
 
         /// <summary>
@@ -452,6 +471,7 @@ namespace Common.Logging
         /// <param name="formatProvider">An <see cref="IFormatProvider"/> that supplies culture-specific formatting information.</param>
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="args"></param>
+        [StringFormatMethod("format")]
         void ErrorFormat(IFormatProvider formatProvider, string format, params object[] args);
 
         /// <summary>
@@ -461,6 +481,7 @@ namespace Common.Logging
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="exception">The exception to log.</param>
         /// <param name="args"></param>
+        [StringFormatMethod("format")]
         void ErrorFormat(IFormatProvider formatProvider, string format, Exception exception, params object[] args);
 
         /// <summary>
@@ -527,6 +548,7 @@ namespace Common.Logging
         /// </summary>
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="args">the list of format arguments</param>
+        [StringFormatMethod("format")]
         void FatalFormat(string format, params object[] args);
 
         /// <summary>
@@ -535,6 +557,7 @@ namespace Common.Logging
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="exception">The exception to log.</param>
         /// <param name="args">the list of format arguments</param>
+        [StringFormatMethod("format")]
         void FatalFormat(string format, Exception exception, params object[] args);
 
         /// <summary>
@@ -543,6 +566,7 @@ namespace Common.Logging
         /// <param name="formatProvider">An <see cref="IFormatProvider"/> that supplies culture-specific formatting information.</param>
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="args"></param>
+        [StringFormatMethod("format")]
         void FatalFormat(IFormatProvider formatProvider, string format, params object[] args);
 
         /// <summary>
@@ -552,6 +576,7 @@ namespace Common.Logging
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="exception">The exception to log.</param>
         /// <param name="args"></param>
+        [StringFormatMethod("format")]
         void FatalFormat(IFormatProvider formatProvider, string format, Exception exception, params object[] args);
 
         /// <summary>
@@ -599,6 +624,100 @@ namespace Common.Logging
         void Fatal(IFormatProvider formatProvider, FormatMessageCallback formatMessageCallback, Exception exception);
 
         /// <summary>
+		/// Log a message object with the <see cref="LogLevel.Performance"/> level.
+		/// </summary>
+		/// <param name="message">The message object to log.</param>
+		void Performance( object message );
+
+		/// <summary>
+		/// Log a message object with the <see cref="LogLevel.Performance"/> level including
+		/// the stack trace of the <see cref="Exception"/> passed
+		/// as a parameter.
+		/// </summary>
+		/// <param name="message">The message object to log.</param>
+		/// <param name="exception">The exception to log, including its stack trace.</param>
+		void Performance( object message, Exception exception );
+
+        /// <summary>
+        /// Log a message with the <see cref="LogLevel.Performance"/> level.
+        /// </summary>
+        /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
+        /// <param name="args">the list of format arguments</param>
+        void PerformanceFormat(string format, params object[] args);
+
+        /// <summary>
+        /// Log a message with the <see cref="LogLevel.Performance"/> level.
+        /// </summary>
+        /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
+        /// <param name="exception">The exception to log.</param>
+        /// <param name="args">the list of format arguments</param>
+        [StringFormatMethod("format")]
+        void PerformanceFormat(string format, Exception exception, params object[] args);
+
+        /// <summary>
+        /// Log a message with the <see cref="LogLevel.Performance"/> level.
+        /// </summary>
+        /// <param name="formatProvider">An <see cref="IFormatProvider"/> that supplies culture-specific formatting information.</param>
+        /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
+        /// <param name="args"></param>
+        [StringFormatMethod("format")]
+        void PerformanceFormat(IFormatProvider formatProvider, string format, params object[] args);
+
+        /// <summary>
+        /// Log a message with the <see cref="LogLevel.Performance"/> level.
+        /// </summary>
+        /// <param name="formatProvider">An <see cref="IFormatProvider"/> that supplies culture-specific formatting information.</param>
+        /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
+        /// <param name="exception">The exception to log.</param>
+        /// <param name="args"></param>
+        [StringFormatMethod("format")]
+        void PerformanceFormat(IFormatProvider formatProvider, string format, Exception exception, params object[] args);
+
+        /// <summary>
+        /// Log a message with the <see cref="LogLevel.Performance"/> level using a callback to obtain the message
+        /// </summary>
+        /// <remarks>
+        /// Using this method avoids the cost of creating a message and evaluating message arguments 
+        /// that probably won't be logged due to loglevel settings.
+        /// </remarks>
+        /// <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
+        void Performance(FormatMessageCallback formatMessageCallback);
+
+        /// <summary>
+        /// Log a message with the <see cref="LogLevel.Performance"/> level using a callback to obtain the message
+        /// </summary>
+        /// <remarks>
+        /// Using this method avoids the cost of creating a message and evaluating message arguments 
+        /// that probably won't be logged due to loglevel settings.
+        /// </remarks>
+        /// <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
+        /// <param name="exception">The exception to log, including its stack trace.</param>
+        void Performance(FormatMessageCallback formatMessageCallback, Exception exception);
+
+        /// <summary>
+        /// Log a message with the <see cref="LogLevel.Performance"/> level using a callback to obtain the message
+        /// </summary>
+        /// <remarks>
+        /// Using this method avoids the cost of creating a message and evaluating message arguments 
+        /// that probably won't be logged due to loglevel settings.
+        /// </remarks>
+        /// <param name="formatProvider">An <see cref="IFormatProvider"/> that supplies culture-specific formatting information.</param>
+        /// <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
+        void Performance(IFormatProvider formatProvider, FormatMessageCallback formatMessageCallback);
+
+        /// <summary>
+        /// Log a message with the <see cref="LogLevel.Performance"/> level using a callback to obtain the message
+        /// </summary>
+        /// <remarks>
+        /// Using this method avoids the cost of creating a message and evaluating message arguments 
+        /// that probably won't be logged due to loglevel settings.
+        /// </remarks>
+        /// <param name="formatProvider">An <see cref="IFormatProvider"/> that supplies culture-specific formatting information.</param>
+        /// <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
+        /// <param name="exception">The exception to log, including its stack Debug.</param>
+        void Performance(IFormatProvider formatProvider, FormatMessageCallback formatMessageCallback, Exception exception);
+
+        /// <summary>
         /// Checks if this logger is enabled for the <see cref="LogLevel.Trace"/> level.
         /// </summary>
         bool IsTraceEnabled
@@ -642,6 +761,14 @@ namespace Common.Logging
 		/// Checks if this logger is enabled for the <see cref="LogLevel.Warn"/> level.
 		/// </summary>
 		bool IsWarnEnabled
+		{
+			get;
+		}
+
+        /// <summary>
+		/// Checks if this logger is enabled for the <see cref="LogLevel.Performance"/> level.
+		/// </summary>
+		bool IsPerformanceEnabled
 		{
 			get;
 		}
