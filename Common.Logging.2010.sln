@@ -150,6 +150,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.NLog32.Tests
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.NLog32.Tests.Integration.2010-net40", "test\Common.Logging.NLog32.Integration.Tests\Common.Logging.NLog32.Tests.Integration.2010-net40.csproj", "{81E3FC72-5F94-4169-B44D-8F470382B931}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.NLog40.2010-net40", "src\Common.Logging.NLog40\Common.Logging.NLog40.2010-net40.csproj", "{8D5E6A4E-3775-457B-9BE2-A46D0F8CB4A8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.NLog32.Tests.2010-net40", "test\Common.Logging.NLog32.Tests\Common.Logging.NLog32.Tests.2010-net40.csproj", "{61B1C951-AD48-4398-8DDC-DE5F28378F3B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.NLog32.Tests.Integration.2010-net40", "test\Common.Logging.NLog32.Integration.Tests\Common.Logging.NLog32.Tests.Integration.2010-net40.csproj", "{6BB8A4AF-8B42-4812-BFD3-3E392816CAE9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -368,6 +374,17 @@ Global
 		{81E3FC72-5F94-4169-B44D-8F470382B931}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{81E3FC72-5F94-4169-B44D-8F470382B931}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{81E3FC72-5F94-4169-B44D-8F470382B931}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D5E6A4E-3775-457B-9BE2-A46D0F8CB4A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D5E6A4E-3775-457B-9BE2-A46D0F8CB4A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D5E6A4E-3775-457B-9BE2-A46D0F8CB4A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D5E6A4E-3775-457B-9BE2-A46D0F8CB4A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61B1C951-AD48-4398-8DDC-DE5F28378F3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61B1C951-AD48-4398-8DDC-DE5F28378F3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61B1C951-AD48-4398-8DDC-DE5F28378F3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61B1C951-AD48-4398-8DDC-DE5F28378F3B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6BB8A4AF-8B42-4812-BFD3-3E392816CAE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6BB8A4AF-8B42-4812-BFD3-3E392816CAE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6BB8A4AF-8B42-4812-BFD3-3E392816CAE9}.Release|Any CPU.ActiveCfg = Release|Any 
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -426,6 +443,9 @@ Global
 		{33BE0554-42E6-46B5-A340-0A12DA3755DB} = {C4C06CD4-62A3-4796-950C-126CDD736A19}
 		{5DD06B8D-BF33-488A-8D51-D9568B41FCF7} = {C4C06CD4-62A3-4796-950C-126CDD736A19}
 		{81E3FC72-5F94-4169-B44D-8F470382B931} = {C4C06CD4-62A3-4796-950C-126CDD736A19}
+		{8D5E6A4E-3775-457B-9BE2-A46D0F8CB4A8} = {C4C06CD4-62A3-4796-950C-126CDD736A19}
+		{61B1C951-AD48-4398-8DDC-DE5F28378F3B} = {C4C06CD4-62A3-4796-950C-126CDD736A19}
+		{6BB8A4AF-8B42-4812-BFD3-3E392816CAE9} = {C4C06CD4-62A3-4796-950C-126CDD736A19}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		NAntAddinLastFileName = Common.Logging.build
