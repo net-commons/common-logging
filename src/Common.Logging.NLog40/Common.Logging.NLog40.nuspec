@@ -20,6 +20,6 @@
   <files>
     <file src="..\..\build\net40\Common.Logging.NLog40\Release\Common.Logging.NLog40.dll" target="lib\net40" />
     <file src="..\..\build\net40\Common.Logging.NLog40\Release\Common.Logging.NLog40.pdb" target="lib\net40" />
-    <file src="..\..\build\net40\Common.Logging.NLog340\Release\Common.Logging.NLog40.xml" target="lib\net40" />
+    <file src="..\..\build\net40\Common.Logging.NLog40\Release\Common.Logging.NLog40.xml" target="lib\net40" />
   </files>
 </package>
