@@ -669,7 +669,7 @@ namespace Common.Logging.Factory
         /// <summary>
         /// Log a message with the <see cref="LogLevel.Warn"/> level.
         /// </summary>
-        /// <param name="formatProvider">An <see cref="IFormatProvider"/> that supplies culture-specific formatting Warnrmation.</param>
+        /// <param name="formatProvider">An <see cref="IFormatProvider"/> that supplies culture-specific formatting Information.</param>
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="args"></param>
         [StringFormatMethod("format")]
@@ -682,7 +682,7 @@ namespace Common.Logging.Factory
         /// <summary>
         /// Log a message with the <see cref="LogLevel.Warn"/> level.
         /// </summary>
-        /// <param name="formatProvider">An <see cref="IFormatProvider"/> that supplies culture-specific formatting Warnrmation.</param>
+        /// <param name="formatProvider">An <see cref="IFormatProvider"/> that supplies culture-specific formatting information.</param>
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="exception">The exception to log.</param>
         /// <param name="args"></param>
