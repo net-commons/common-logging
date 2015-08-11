@@ -26,7 +26,7 @@ using Common.Logging.Factory;
 namespace Common.Logging.NLog
 {
     /// <summary>
-    /// Concrete subclass of ILoggerFactoryAdapter specific to NLog 1.0.0.505.
+    /// Concrete subclass of ILoggerFactoryAdapter specific to NLog.
     /// </summary>
     /// <remarks>
     /// <para>Note, that you cannot use NLog in medium trust environments unless you use an unsigned build</para>

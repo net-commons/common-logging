@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{EC54316A-A3B9-4EF5-A74C-1EC2344D0EA4}"
 	ProjectSection(SolutionItems) = preProject
@@ -151,6 +151,13 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.NLog32.Tests.Integration.2010-net40", "test\Common.Logging.NLog32.Integration.Tests\Common.Logging.NLog32.Tests.Integration.2010-net40.csproj", "{81E3FC72-5F94-4169-B44D-8F470382B931}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.WinRT.2010", "src\Common.Logging.WinRT.2010\Common.Logging.WinRT.2010.csproj", "{88808830-F9BE-476B-9F1C-F6E0FFCD4312}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NLog-4.0", "NLog-4.0", "{58478745-EA04-43CD-A407-3E18211B6812}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.NLog40.2010-net40", "src\Common.Logging.NLog40\Common.Logging.NLog40.2010-net40.csproj", "{8D5E6A4E-3775-457B-9BE2-A46D0F8CB4A8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.NLog40.Tests.2010-net40", "test\Common.Logging.NLog40.Tests\Common.Logging.NLog40.Tests.2010-net40.csproj", "{61B1C951-AD48-4398-8DDC-DE5F28378F3B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.NLog40.Tests.Integration.2010-net40", "test\Common.Logging.NLog40.Integration.Tests\Common.Logging.NLog40.Tests.Integration.2010-net40.csproj", "{6BB8A4AF-8B42-4812-BFD3-3E392816CAE9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -374,6 +381,18 @@ Global
 		{88808830-F9BE-476B-9F1C-F6E0FFCD4312}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{88808830-F9BE-476B-9F1C-F6E0FFCD4312}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{88808830-F9BE-476B-9F1C-F6E0FFCD4312}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D5E6A4E-3775-457B-9BE2-A46D0F8CB4A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D5E6A4E-3775-457B-9BE2-A46D0F8CB4A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D5E6A4E-3775-457B-9BE2-A46D0F8CB4A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D5E6A4E-3775-457B-9BE2-A46D0F8CB4A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61B1C951-AD48-4398-8DDC-DE5F28378F3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61B1C951-AD48-4398-8DDC-DE5F28378F3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61B1C951-AD48-4398-8DDC-DE5F28378F3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61B1C951-AD48-4398-8DDC-DE5F28378F3B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6BB8A4AF-8B42-4812-BFD3-3E392816CAE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6BB8A4AF-8B42-4812-BFD3-3E392816CAE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6BB8A4AF-8B42-4812-BFD3-3E392816CAE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6BB8A4AF-8B42-4812-BFD3-3E392816CAE9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -433,6 +452,9 @@ Global
 		{5DD06B8D-BF33-488A-8D51-D9568B41FCF7} = {C4C06CD4-62A3-4796-950C-126CDD736A19}
 		{81E3FC72-5F94-4169-B44D-8F470382B931} = {C4C06CD4-62A3-4796-950C-126CDD736A19}
 		{88808830-F9BE-476B-9F1C-F6E0FFCD4312} = {D26BC7B2-718C-4F97-AF36-4377E19ECE62}
+		{8D5E6A4E-3775-457B-9BE2-A46D0F8CB4A8} = {58478745-EA04-43CD-A407-3E18211B6812}
+		{61B1C951-AD48-4398-8DDC-DE5F28378F3B} = {58478745-EA04-43CD-A407-3E18211B6812}
+		{6BB8A4AF-8B42-4812-BFD3-3E392816CAE9} = {58478745-EA04-43CD-A407-3E18211B6812}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		NAntAddinLastFileName = Common.Logging.build

@@ -6,7 +6,7 @@ Public Class Class1
 
     <Test()> _
     Public Sub CanCompile()
-        Dim log As Common.Logging.ILog = LogManager.GetCurrentClassLogger()
+        Dim log As Common.Logging.ILog = LogManager.GetLogger(Me.GetType)
         log.Trace(Function(m) m("test {0}", "test"))
     End Sub
 End Class
