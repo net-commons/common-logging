@@ -98,9 +98,11 @@ namespace Common.Logging.Simple
 
         private static void OutputDetails(IFormatProvider formatProvider, StringBuilder sb, Exception exception)
         {
-#if PORTABLE
+#if PORTABLE && !WinRT
             sb.AppendFormat(formatProvider, "Thread ID : {0}\r\n", Thread.CurrentThread.ManagedThreadId);
-#else
+#endif
+
+#if !PORTABLE
             // output exception details:
             //
             //	Method        :  set_Attributes
@@ -150,9 +152,13 @@ namespace Common.Logging.Simple
             //	Properties:
             //	  ArgumentException.ParamName = "text"
             //
+#if WinRT
+            var properties = exception.GetType().GetProperties();
+
+#else
             var properties = exception.GetType().GetProperties(BindingFlags.FlattenHierarchy |
                 BindingFlags.Instance | BindingFlags.Public);
-
+#endif
             Boolean first = true;
             foreach (PropertyInfo property in properties)
             {
@@ -178,16 +184,20 @@ namespace Common.Logging.Simple
                 }
 
                 var enumerableValue = propertyValue as IEnumerable;
-
+#if WinRT
+                var propertyTypeName = property.PropertyType.Name;
+#else
+                var propertyTypeName = property.ReflectedType.Name;
+#endif
                 if (enumerableValue == null || propertyValue is String)
                 {
                     sb.AppendFormat(formatProvider, "  {0}.{1} = \"{2}\"\r\n",
-                        property.ReflectedType.Name, property.Name, propertyValue);
+                        propertyTypeName, property.Name, propertyValue);
                 }
                 else
                 {
                     sb.AppendFormat(formatProvider, "  {0}.{1} = {{\r\n",
-                        property.ReflectedType.Name, property.Name);
+                        propertyTypeName, property.Name);
 
                     foreach (var item in enumerableValue)
                         sb.AppendFormat("    \"{0}\",\r\n", item != null ? item.ToString() : "<null>");

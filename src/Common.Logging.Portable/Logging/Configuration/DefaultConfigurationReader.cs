@@ -55,7 +55,11 @@ namespace Common.Logging.Configuration
                 // Silverlight, and maybe if System.Configuration is not loaded?
                 return null;
             }
+#if !WinRT
             var getSection = configurationManager.GetMethod("GetSection", new[] { typeof(string) });
+#else
+            var getSection = configurationManager.GetMethod("GetSection");
+#endif
             if (getSection == null)
                 throw new PlatformNotSupportedException("Could not find System.Configuration.ConfigurationManager.GetSection method");
 

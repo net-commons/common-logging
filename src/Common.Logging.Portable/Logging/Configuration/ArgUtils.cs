@@ -147,7 +147,11 @@ namespace Common.Logging.Configuration
         public static T TryParseEnum<T>(T defaultValue, string stringValue) where T : struct
         {
             Type enumType = typeof(T);
+#if WinRT
+            if (!enumType.IsEnum())
+#else
             if (!enumType.IsEnum)
+#endif
             {
                 throw new ArgumentException(string.Format("Type '{0}' is not an enum type", typeof(T).FullName));
             }
