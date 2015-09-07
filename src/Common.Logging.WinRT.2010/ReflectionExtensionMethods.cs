@@ -180,7 +180,7 @@ namespace Common.Logging
             try
             {
                 PropertyInfo pi = instance.GetType().GetTypeInfo().GetDeclaredProperty(propertyValue);
-                return pi?.GetValue(instance);
+                return pi.GetValue(instance);
             }
             catch
             {
