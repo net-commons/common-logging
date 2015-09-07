@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{EC54316A-A3B9-4EF5-A74C-1EC2344D0EA4}"
 	ProjectSection(SolutionItems) = preProject
@@ -151,6 +151,7 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.NLog32.Tests.Integration.2010-net40", "test\Common.Logging.NLog32.Integration.Tests\Common.Logging.NLog32.Tests.Integration.2010-net40.csproj", "{81E3FC72-5F94-4169-B44D-8F470382B931}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.WinRT.2010", "src\Common.Logging.WinRT.2010\Common.Logging.WinRT.2010.csproj", "{88808830-F9BE-476B-9F1C-F6E0FFCD4312}"
+EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NLog-4.0", "NLog-4.0", "{58478745-EA04-43CD-A407-3E18211B6812}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.NLog40.2010-net40", "src\Common.Logging.NLog40\Common.Logging.NLog40.2010-net40.csproj", "{8D5E6A4E-3775-457B-9BE2-A46D0F8CB4A8}"
