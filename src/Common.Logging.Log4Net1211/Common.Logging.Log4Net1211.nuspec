@@ -13,7 +13,7 @@
     <tags>Log4Net Common.Logging.Log4Net logging log Common.Logging</tags>
     <language>en-US</language>
     <dependencies>
-      <dependency id="Common.Logging" version="3.1.0" />
+      <dependency id="Common.Logging" version="3.3.0" />
       <dependency id="Log4Net" version="1.2.11" />
     </dependencies>
   </metadata>

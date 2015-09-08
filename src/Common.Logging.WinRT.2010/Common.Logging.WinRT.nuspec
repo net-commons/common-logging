@@ -13,12 +13,12 @@
     <tags>PCL Common.Logging.WinRT Common.Logging.Core logging log Common.Logging WinRT UAP UWP</tags>
     <language>en-US</language>
     <dependencies>
-      <dependency id="Common.Logging.Core" version="3.1.0" />
+      <dependency id="Common.Logging.Core" version="3.3.0" />
     </dependencies>
   </metadata>
   <files>
     <file src="..\..\build\portable\Common.Logging.WinRT\Release\Common.Logging.WinRT.dll" target="lib\portable-wpa81+win8+win81+uap10.0" />
     <file src="..\..\build\portable\Common.Logging.WinRT\Release\Common.Logging.WinRT.pdb" target="lib\portable-wpa81+win8+win81+uap10.0" />
     <file src="..\..\build\portable\Common.Logging.WinRT\Release\Common.Logging.WinRT.xml" target="lib\portable-wpa81+win8+win81+uap10.0" />
-   </files>
+  </files>
 </package>
