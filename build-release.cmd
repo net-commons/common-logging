@@ -12,7 +12,7 @@ cls
 @echo .
 
 rem tools\nant\bin\nant.exe -f:Common.Logging.build build package-zip package-nuget -D:project.sign=true -D:package.version=3.1.0 -D:nuget.version.suffix=Alpha1 -D:project.releasetype=release > buildlog.txt
-tools\nant\bin\nant.exe -f:Common.Logging.build build package-zip package-nuget -D:project.sign=true -D:package.version=3.2.0 -D:project.releasetype=release > buildlog.txt
+tools\nant\bin\nant.exe -f:Common.Logging.build build package-zip package-nuget -D:project.sign=true -D:package.version=3.3.0 -D:project.releasetype=release > buildlog.txt
 
 @echo ...complete!
 @echo .
