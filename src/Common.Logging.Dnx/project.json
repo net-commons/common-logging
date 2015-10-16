@@ -1,0 +1,16 @@
+{
+    "version": "3.3.0-*",
+    "description": "Common.Logging.Dnx",
+    "compilationOptions": {
+        "define": [ "PORTABLE" ]
+    },
+    "dependencies": {
+        "Common.Logging.Core.DNX": "3.3.0-*"
+    },
+    "frameworks": {
+        "dnx451": { },
+        "dnxcore50": { }
+    },
+    "compile": [ "../Common.Logging.Portable/**/*.cs", "../CommonAssemblyInfo.cs" ],
+    "compileExclude": [ "../Common.Logging.Portable/Logging/Factory/ResharperAnnotation.cs" ]
+}

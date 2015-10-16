@@ -45,6 +45,9 @@ namespace Common.Logging.Configuration
         /// </remarks>
         public object GetSection(string sectionName)
         {
+#if DNX451 || DNXCORE50     // No System.Configuration in DNX, replace with something DNX-specific?
+            return null;
+#else
 #if PORTABLE
             // We should instead look for something implementing 
             // IConfigurationReader in (platform specific) Common.Logging dll and use that
@@ -66,6 +69,7 @@ namespace Common.Logging.Configuration
             return getSection.Invoke(null, new[] {sectionName});
 #else
             return System.Configuration.ConfigurationManager.GetSection(sectionName);
+#endif
 #endif
         }
     }
