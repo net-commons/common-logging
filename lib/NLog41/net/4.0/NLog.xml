@@ -2024,12 +2024,12 @@
         </member>
         <member name="M:NLog.Config.LoggingRule.#ctor">
             <summary>
-            Initializes a new instance of the <see cref="T:NLog.Config.LoggingRule"/> class.
+            Create an empty <see cref="T:NLog.Config.LoggingRule"/>.
             </summary>
         </member>
         <member name="M:NLog.Config.LoggingRule.#ctor(System.String,NLog.LogLevel,NLog.Targets.Target)">
             <summary>
-            Initializes a new instance of the <see cref="T:NLog.Config.LoggingRule"/> class.
+            Create a new <see cref="T:NLog.Config.LoggingRule"/> with a <paramref name="minLevel"/> which writes to <paramref name="target"/>.
             </summary>
             <param name="loggerNamePattern">Logger name pattern. It may include the '*' wildcard at the beginning, at the end or at both ends.</param>
             <param name="minLevel">Minimum log level needed to trigger this rule.</param>
@@ -2037,11 +2037,10 @@
         </member>
         <member name="M:NLog.Config.LoggingRule.#ctor(System.String,NLog.Targets.Target)">
             <summary>
-            Initializes a new instance of the <see cref="T:NLog.Config.LoggingRule"/> class.
+            Create a (disabled) <see cref="T:NLog.Config.LoggingRule"/>. You should call <see cref="M:NLog.Config.LoggingRule.EnableLoggingForLevel(NLog.LogLevel)"/> to enable logging.
             </summary>
             <param name="loggerNamePattern">Logger name pattern. It may include the '*' wildcard at the beginning, at the end or at both ends.</param>
             <param name="target">Target to be written to when the rule matches.</param>
-            <remarks>By default no logging levels are defined. You should call <see cref="M:NLog.Config.LoggingRule.EnableLoggingForLevel(NLog.LogLevel)"/> and <see cref="M:NLog.Config.LoggingRule.DisableLoggingForLevel(NLog.LogLevel)"/> to set them.</remarks>
         </member>
         <member name="M:NLog.Config.LoggingRule.EnableLoggingForLevel(NLog.LogLevel)">
             <summary>
@@ -2858,6 +2857,13 @@
             </summary>
             <param name="name">The name of the context property.</param>
             <param name="value">The value of the context property.</param>
+            <returns></returns>
+        </member>
+        <member name="M:NLog.Fluent.LogBuilder.Properties(System.Collections.IDictionary)">
+            <summary>
+            Sets multiple per-event context properties on the logging event.
+            </summary>
+            <param name="properties">The properties to set.</param>
             <returns></returns>
         </member>
         <member name="M:NLog.Fluent.LogBuilder.TimeStamp(System.DateTime)">
@@ -15404,14 +15410,14 @@
         </member>
         <member name="M:NLog.MappedDiagnosticsContext.Get(System.String)">
             <summary>
-            Gets the current thread MDC named item.
+            Gets the current thread MDC named item, as <see cref="T:System.String"/>.
             </summary>
             <param name="item">Item name.</param>
             <returns>The value of <paramref name="item"/>, if defined; otherwise <see cref="F:System.String.Empty"/>.</returns>
         </member>
         <member name="M:NLog.MappedDiagnosticsContext.Get(System.String,System.IFormatProvider)">
             <summary>
-            Gets the current thread MDC named item.
+            Gets the current thread MDC named item, as <see cref="T:System.String"/>.
             </summary>
             <param name="item">Item name.</param>
             <param name="formatProvider">The <see cref="T:System.IFormatProvider"/> to use when converting a value to a string.</param>
@@ -15419,7 +15425,7 @@
         </member>
         <member name="M:NLog.MappedDiagnosticsContext.GetObject(System.String)">
             <summary>
-            Gets the current thread MDC named item.
+            Gets the current thread MDC named item, as <see cref="T:System.Object"/>.
             </summary>
             <param name="item">Item name.</param>
             <returns>The value of <paramref name="item"/>, if defined; otherwise <c>null</c>.</returns>
@@ -15429,11 +15435,11 @@
             Checks whether the specified item exists in current thread MDC.
             </summary>
             <param name="item">Item name.</param>
-            <returns>A boolean indicating whether the specified item exists in current thread MDC.</returns>
+            <returns>A boolean indicating whether the specified <paramref name="item"/> exists in current thread MDC.</returns>
         </member>
         <member name="M:NLog.MappedDiagnosticsContext.Remove(System.String)">
             <summary>
-            Removes the specified item from current thread MDC.
+            Removes the specified <paramref name="item"/> from current thread MDC.
             </summary>
             <param name="item">Item name.</param>
         </member>
@@ -15447,7 +15453,6 @@
             Async version of Mapped Diagnostics Context - a logical context structure that keeps a dictionary
             of strings and provides methods to output them in layouts.  Allows for maintaining state across
             asynchronous tasks and call contexts.
-            Mostly for compatibility with log4net (log4net.ThreadLogicalContext).
             </summary>
             <remarks>
             Ideally, these changes should be incorporated as a new version of the MappedDiagnosticsContext class in the original
@@ -15456,10 +15461,25 @@
         </member>
         <member name="M:NLog.MappedDiagnosticsLogicalContext.Get(System.String)">
             <summary>
-            Gets the current logical context named item.
+            Gets the current logical context named item, as <see cref="T:System.String"/>.
             </summary>
             <param name="item">Item name.</param>
-            <returns>The item value of string.Empty if the value is not present.</returns>
+            <returns>The value of <paramref name="item"/>, if defined; otherwise <see cref="F:System.String.Empty"/>.</returns>
+        </member>
+        <member name="M:NLog.MappedDiagnosticsLogicalContext.Get(System.String,System.IFormatProvider)">
+            <summary>
+            Gets the current logical context named item, as <see cref="T:System.String"/>.
+            </summary>
+            <param name="item">Item name.</param>
+            <param name="formatProvider">The <see cref="T:System.IFormatProvider"/> to use when converting a value to a string.</param>
+            <returns>The value of <paramref name="item"/>, if defined; otherwise <see cref="F:System.String.Empty"/>.</returns>
+        </member>
+        <member name="M:NLog.MappedDiagnosticsLogicalContext.GetObject(System.String)">
+            <summary>
+            Gets the current logical context named item, as <see cref="T:System.Object"/>.
+            </summary>
+            <param name="item">Item name.</param>
+            <returns>The value of <paramref name="item"/>, if defined; otherwise <c>null</c>.</returns>
         </member>
         <member name="M:NLog.MappedDiagnosticsLogicalContext.Set(System.String,System.String)">
             <summary>
@@ -15468,16 +15488,23 @@
             <param name="item">Item name.</param>
             <param name="value">Item value.</param>
         </member>
-        <member name="M:NLog.MappedDiagnosticsLogicalContext.Contains(System.String)">
+        <member name="M:NLog.MappedDiagnosticsLogicalContext.Set(System.String,System.Object)">
             <summary>
-            Checks whether the specified item exists in current logical context.
+            Sets the current logical context item to the specified value.
             </summary>
             <param name="item">Item name.</param>
-            <returns>A boolean indicating whether the specified item exists in current thread MDC.</returns>
+            <param name="value">Item value.</param>
+        </member>
+        <member name="M:NLog.MappedDiagnosticsLogicalContext.Contains(System.String)">
+            <summary>
+            Checks whether the specified <paramref name="item"/> exists in current logical context.
+            </summary>
+            <param name="item">Item name.</param>
+            <returns>A boolean indicating whether the specified <paramref name="item"/> exists in current logical context.</returns>
         </member>
         <member name="M:NLog.MappedDiagnosticsLogicalContext.Remove(System.String)">
             <summary>
-            Removes the specified item from current logical context.
+            Removes the specified <paramref name="item"/> from current logical context.
             </summary>
             <param name="item">Item name.</param>
         </member>
@@ -18678,166 +18705,6 @@
             </summary>
             <docgen category='Performance Counter Options' order='10' />
         </member>
-        <member name="T:NLog.Targets.RichTextBoxRowColoringRule">
-            <summary>
-            The row-coloring condition.
-            </summary>
-        </member>
-        <member name="M:NLog.Targets.RichTextBoxRowColoringRule.#cctor">
-            <summary>
-            Initializes static members of the RichTextBoxRowColoringRule class.
-            </summary>
-        </member>
-        <member name="M:NLog.Targets.RichTextBoxRowColoringRule.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:NLog.Targets.RichTextBoxRowColoringRule"/> class.
-            </summary>
-        </member>
-        <member name="M:NLog.Targets.RichTextBoxRowColoringRule.#ctor(System.String,System.String,System.String,System.Drawing.FontStyle)">
-            <summary>
-            Initializes a new instance of the <see cref="T:NLog.Targets.RichTextBoxRowColoringRule"/> class.
-            </summary>
-            <param name="condition">The condition.</param>
-            <param name="fontColor">Color of the foreground text.</param>
-            <param name="backColor">Color of the background text.</param>
-            <param name="fontStyle">The font style.</param>
-        </member>
-        <member name="M:NLog.Targets.RichTextBoxRowColoringRule.#ctor(System.String,System.String,System.String)">
-            <summary>
-            Initializes a new instance of the <see cref="T:NLog.Targets.RichTextBoxRowColoringRule"/> class.
-            </summary>
-            <param name="condition">The condition.</param>
-            <param name="fontColor">Color of the text.</param>
-            <param name="backColor">Color of the background.</param>
-        </member>
-        <member name="M:NLog.Targets.RichTextBoxRowColoringRule.CheckCondition(NLog.LogEventInfo)">
-            <summary>
-            Checks whether the specified log event matches the condition (if any).
-            </summary>
-            <param name="logEvent">
-            Log event.
-            </param>
-            <returns>
-            A value of <see langword="true"/> if the condition is not defined or 
-            if it matches, <see langword="false"/> otherwise.
-            </returns>
-        </member>
-        <member name="P:NLog.Targets.RichTextBoxRowColoringRule.Default">
-            <summary>
-            Gets the default highlighting rule. Doesn't change the color.
-            </summary>
-            <docgen category='Rule Matching Options' order='10' />
-        </member>
-        <member name="P:NLog.Targets.RichTextBoxRowColoringRule.Condition">
-            <summary>
-            Gets or sets the condition that must be met in order to set the specified font color.
-            </summary>
-            <docgen category='Rule Matching Options' order='10' />
-        </member>
-        <member name="P:NLog.Targets.RichTextBoxRowColoringRule.FontColor">
-            <summary>
-            Gets or sets the font color.
-            </summary>
-            <remarks>
-            Names are identical with KnownColor enum extended with Empty value which means that background color won't be changed.
-            </remarks>
-            <docgen category='Formatting Options' order='10' />
-        </member>
-        <member name="P:NLog.Targets.RichTextBoxRowColoringRule.BackgroundColor">
-            <summary>
-            Gets or sets the background color.
-            </summary>
-            <remarks>
-            Names are identical with KnownColor enum extended with Empty value which means that background color won't be changed.
-            </remarks>
-            <docgen category='Formatting Options' order='10' />
-        </member>
-        <member name="P:NLog.Targets.RichTextBoxRowColoringRule.Style">
-            <summary>
-            Gets or sets the font style of matched text. 
-            </summary>
-            <remarks>
-            Possible values are the same as in <c>FontStyle</c> enum in <c>System.Drawing</c>
-            </remarks>
-            <docgen category='Formatting Options' order='10' />
-        </member>
-        <member name="T:NLog.Targets.RichTextBoxWordColoringRule">
-            <summary>
-            Highlighting rule for Win32 colorful console.
-            </summary>
-        </member>
-        <member name="M:NLog.Targets.RichTextBoxWordColoringRule.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:NLog.Targets.RichTextBoxWordColoringRule"/> class.
-            </summary>
-        </member>
-        <member name="M:NLog.Targets.RichTextBoxWordColoringRule.#ctor(System.String,System.String,System.String)">
-            <summary>
-            Initializes a new instance of the <see cref="T:NLog.Targets.RichTextBoxWordColoringRule"/> class.
-            </summary>
-            <param name="text">The text to be matched..</param>
-            <param name="fontColor">Color of the text.</param>
-            <param name="backgroundColor">Color of the background.</param>
-        </member>
-        <member name="M:NLog.Targets.RichTextBoxWordColoringRule.#ctor(System.String,System.String,System.String,System.Drawing.FontStyle)">
-            <summary>
-            Initializes a new instance of the <see cref="T:NLog.Targets.RichTextBoxWordColoringRule"/> class.
-            </summary>
-            <param name="text">The text to be matched..</param>
-            <param name="textColor">Color of the text.</param>
-            <param name="backgroundColor">Color of the background.</param>
-            <param name="fontStyle">The font style.</param>
-        </member>
-        <member name="P:NLog.Targets.RichTextBoxWordColoringRule.Regex">
-            <summary>
-            Gets or sets the regular expression to be matched. You must specify either <c>text</c> or <c>regex</c>.
-            </summary>
-            <docgen category='Rule Matching Options' order='10' />
-        </member>
-        <member name="P:NLog.Targets.RichTextBoxWordColoringRule.Text">
-            <summary>
-            Gets or sets the text to be matched. You must specify either <c>text</c> or <c>regex</c>.
-            </summary>
-            <docgen category='Rule Matching Options' order='10' />
-        </member>
-        <member name="P:NLog.Targets.RichTextBoxWordColoringRule.WholeWords">
-            <summary>
-            Gets or sets a value indicating whether to match whole words only.
-            </summary>
-            <docgen category='Rule Matching Options' order='10' />
-        </member>
-        <member name="P:NLog.Targets.RichTextBoxWordColoringRule.IgnoreCase">
-            <summary>
-            Gets or sets a value indicating whether to ignore case when comparing texts.
-            </summary>
-            <docgen category='Rule Matching Options' order='10' />
-        </member>
-        <member name="P:NLog.Targets.RichTextBoxWordColoringRule.Style">
-            <summary>
-            Gets or sets the font style of matched text. 
-            Possible values are the same as in <c>FontStyle</c> enum in <c>System.Drawing</c>.
-            </summary>
-            <docgen category='Formatting Options' order='10' />
-        </member>
-        <member name="P:NLog.Targets.RichTextBoxWordColoringRule.CompiledRegex">
-            <summary>
-            Gets the compiled regular expression that matches either Text or Regex property.
-            </summary>
-        </member>
-        <member name="P:NLog.Targets.RichTextBoxWordColoringRule.FontColor">
-            <summary>
-            Gets or sets the font color.
-            Names are identical with KnownColor enum extended with Empty value which means that font color won't be changed.
-            </summary>
-            <docgen category='Formatting Options' order='10' />
-        </member>
-        <member name="P:NLog.Targets.RichTextBoxWordColoringRule.BackgroundColor">
-            <summary>
-            Gets or sets the background color. 
-            Names are identical with KnownColor enum extended with Empty value which means that background color won't be changed.
-            </summary>
-            <docgen category='Formatting Options' order='10' />
-        </member>
         <member name="T:NLog.Targets.SmtpAuthenticationMode">
             <summary>
             SMTP authentication modes.
@@ -20132,6 +19999,149 @@
         <member name="M:NLog.Time.TimeSource.ToString">
             <summary>
             Returns a <see cref="T:System.String"/> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents this instance.
+            </returns>
+        </member>
+        <member name="M:NLog.Time.TimeSource.FromSystemTime(System.DateTime)">
+            <summary>
+             Converts the specified system time to the same form as the time value originated from this time source.
+            </summary>
+            <param name="systemTime">The system originated time value to convert.</param>
+            <returns>
+             The value of <paramref name="systemTime"/> converted to the same form 
+             as time values originated from this source.
+            </returns>
+            <remarks>
+             <para>
+              There are situations when NLog have to compare the time originated from TimeSource 
+              to the time originated externally in the system.
+              To be able to provide meaningful result of such comparisons the system time must be expressed in 
+              the same form as TimeSource time.
+            </para>
+            <para>
+              Examples:
+               - If the TimeSource provides time values of local time, it should also convert the provided 
+                 <paramref name="systemTime"/> to the local time.
+               - If the TimeSource shifts or skews its time values, it should also apply 
+                 the same transform to the given <paramref name="systemTime"/>.
+            </para>
+            </remarks>
+        </member>
+        <member name="P:NLog.Time.TimeSource.Time">
+            <summary>
+            Gets current time.
+            </summary>
+        </member>
+        <member name="P:NLog.Time.TimeSource.Current">
+            <summary>
+            Gets or sets current global time source used in all log events.
+            </summary>
+            <remarks>
+            Default time source is <see cref="T:NLog.Time.FastLocalTimeSource"/>.
+            </remarks>
+        </member>
+        <member name="M:NLog.Time.AccurateLocalTimeSource.FromSystemTime(System.DateTime)">
+            <summary>
+             Converts the specified system time to the same form as the time value originated from this time source.
+            </summary>
+            <param name="systemTime">The system originated time value to convert.</param>
+            <returns>
+             The value of <paramref name="systemTime"/> converted to local time.
+            </returns>
+        </member>
+        <member name="P:NLog.Time.AccurateLocalTimeSource.Time">
+            <summary>
+            Gets current local time directly from DateTime.Now.
+            </summary>
+        </member>
+        <member name="T:NLog.Time.AccurateUtcTimeSource">
+            <summary>
+            Current UTC time retrieved directly from DateTime.UtcNow.
+            </summary>
+        </member>
+        <member name="M:NLog.Time.AccurateUtcTimeSource.FromSystemTime(System.DateTime)">
+            <summary>
+             Converts the specified system time to the same form as the time value originated from this time source.
+            </summary>
+            <param name="systemTime">The system originated time value to convert.</param>
+            <returns>
+             The value of <paramref name="systemTime"/> converted to UTC time.
+            </returns>
+        </member>
+        <member name="P:NLog.Time.AccurateUtcTimeSource.Time">
+            <summary>
+            Gets current UTC time directly from DateTime.UtcNow.
+            </summary>
+        </member>
+        <member name="T:NLog.Time.CachedTimeSource">
+            <summary>
+            Fast time source that updates current time only once per tick (15.6 milliseconds).
+            </summary>
+        </member>
+        <member name="P:NLog.Time.CachedTimeSource.FreshTime">
+            <summary>
+            Gets raw uncached time from derived time source.
+            </summary>
+        </member>
+        <member name="P:NLog.Time.CachedTimeSource.Time">
+            <summary>
+            Gets current time cached for one system tick (15.6 milliseconds).
+            </summary>
+        </member>
+        <member name="T:NLog.Time.FastLocalTimeSource">
+            <summary>
+            Fast local time source that is updated once per tick (15.6 milliseconds).
+            </summary>
+        </member>
+        <member name="M:NLog.Time.FastLocalTimeSource.FromSystemTime(System.DateTime)">
+            <summary>
+             Converts the specified system time to the same form as the time value originated from this time source.
+            </summary>
+            <param name="systemTime">The system originated time value to convert.</param>
+            <returns>
+             The value of <paramref name="systemTime"/> converted to local time.
+            </returns>
+        </member>
+        <member name="P:NLog.Time.FastLocalTimeSource.FreshTime">
+            <summary>
+            Gets uncached local time directly from DateTime.Now.
+            </summary>
+        </member>
+        <member name="T:NLog.Time.FastUtcTimeSource">
+            <summary>
+            Fast UTC time source that is updated once per tick (15.6 milliseconds).
+            </summary>
+        </member>
+        <member name="M:NLog.Time.FastUtcTimeSource.FromSystemTime(System.DateTime)">
+            <summary>
+             Converts the specified system time to the same form as the time value originated from this time source.
+            </summary>
+            <param name="systemTime">The system originated time value to convert.</param>
+            <returns>
+             The value of <paramref name="systemTime"/> converted to UTC time.
+            </returns>
+        </member>
+        <member name="P:NLog.Time.FastUtcTimeSource.FreshTime">
+            <summary>
+            Gets uncached UTC time directly from DateTime.UtcNow.
+            </summary>
+        </member>
+        <member name="T:NLog.Time.TimeSourceAttribute">
+            <summary>
+            Marks class as a time source and assigns a name to it.
+            </summary>
+        </member>
+        <member name="M:NLog.Time.TimeSourceAttribute.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NLog.Time.TimeSourceAttribute"/> class.
+            </summary>
+            <param name="name">Name of the time source.</param>
+        </member>
+    </members>
+</doc>
+tance.
             </summary>
             <returns>
             A <see cref="T:System.String"/> that represents this instance.
