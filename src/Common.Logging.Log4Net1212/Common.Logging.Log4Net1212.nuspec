@@ -14,7 +14,7 @@
     <language>en-US</language>
     <dependencies>
       <dependency id="Common.Logging" version="3.3.1" />
-      <dependency id="Log4Net" version="1.2.12" />
+      <dependency id="Log4Net" version="[2.0.2]" />
     </dependencies>
   </metadata>
   <files>
