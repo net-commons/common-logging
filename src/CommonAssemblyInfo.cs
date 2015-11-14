@@ -19,7 +19,13 @@ using System.Security.Permissions;
 
 [assembly: CLSCompliantAttribute(true)]
 
-#if PORTABLE
+#if DNX451
+[assembly: AssemblyConfigurationAttribute("dnx-4.5.1; release")]
+[assembly: AssemblyInformationalVersionAttribute("3.3.0; dnx-4.5.1; release")]
+#elif DNXCORE50
+[assembly: AssemblyConfigurationAttribute("dnxcore-5.0; release")]
+[assembly: AssemblyInformationalVersionAttribute("3.3.0; dnxcore-5.0; release")]
+#elif PORTABLE
 [assembly: AssemblyConfigurationAttribute("portable; release")]
 [assembly: AssemblyInformationalVersionAttribute("3.3.0; portable; release")]
 #else
