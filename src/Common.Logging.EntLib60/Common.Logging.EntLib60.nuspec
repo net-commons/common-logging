@@ -13,7 +13,7 @@
     <tags>EntLib Common.Logging.EntLib logging log Common.Logging</tags>
     <language>en-US</language>
     <dependencies>
-      <dependency id="Common.Logging" version="3.3.0" />
+      <dependency id="Common.Logging" version="3.3.1" />
       <dependency id="EnterpriseLibrary.Common" version="6.0.1304" />
       <dependency id="EnterpriseLibrary.Logging" version="6.0.1304" />
     </dependencies>

@@ -19,27 +19,21 @@ using System.Security.Permissions;
 
 [assembly: CLSCompliantAttribute(true)]
 
-#if DNX451
-[assembly: AssemblyConfigurationAttribute("dnx-4.5.1; release")]
-[assembly: AssemblyInformationalVersionAttribute("3.3.0; dnx-4.5.1; release")]
-#elif DNXCORE50
-[assembly: AssemblyConfigurationAttribute("dnxcore-5.0; release")]
-[assembly: AssemblyInformationalVersionAttribute("3.3.0; dnxcore-5.0; release")]
-#elif PORTABLE
+#if PORTABLE
 [assembly: AssemblyConfigurationAttribute("portable; release")]
-[assembly: AssemblyInformationalVersionAttribute("3.3.0; portable; release")]
+[assembly: AssemblyInformationalVersionAttribute("3.3.1; portable; release")]
 #else
 // Note - if we decide to skip SL4+WP support and only Support SL5 then we should be able to specify AllowPartiallyTrustedCallersAttribute
 // even for Common.Logging.Core
 [assembly: AllowPartiallyTrustedCallers()]
 [assembly: AssemblyConfigurationAttribute("net-4.5.win32; release")]
-[assembly: AssemblyInformationalVersionAttribute("3.3.0; net-4.5.win32; release")]
+[assembly: AssemblyInformationalVersionAttribute("3.3.1; net-4.5.win32; release")]
 #endif
 
 [assembly: AssemblyCompanyAttribute("http://netcommon.sourceforge.net/")]
 [assembly: AssemblyCopyrightAttribute("Copyright 2006-2011 the Common Infrastructure Libraries Team.")]
 [assembly: AssemblyTrademarkAttribute("Apache License, Version 2.0")]
 [assembly: AssemblyCultureAttribute("")]
-[assembly: AssemblyVersionAttribute("3.3.0")]
+[assembly: AssemblyVersionAttribute("3.3.1")]
 [assembly: AssemblyDelaySignAttribute(false)]
 
