@@ -80,10 +80,8 @@
     <Compile Include="..\Common.Logging.NLog10.Tests\Logger\NLog\NLogLoggerFactoryAdapterTests.cs">
       <Link>Logger\NLog\NLogLoggerFactoryAdapterTests.cs</Link>
     </Compile>
-    <Compile Include="..\Common.Logging.NLog20.Tests\Logger\NLog\NLogLoggerFactoryAdapterVariablesContextTests.cs">
-      <Link>Logger\NLog\NLogLoggerFactoryAdapterVariablesContextTests.cs</Link>
-    </Compile>
     <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="Logger\NLog\NLogLoggerFactoryAdapterVariablesContextTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
