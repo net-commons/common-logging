@@ -53,7 +53,7 @@ namespace Common.Logging.Simple
 
         /// <summary>
         /// Do the actual logging by constructing the log message using a <see cref="StringBuilder" /> then
-        /// sending the output to <see cref="Debug.Out" />.
+        /// sending the output to Debug >> Out" />.
         /// </summary>
         /// <param name="level">The <see cref="LogLevel" /> of the message.</param>
         /// <param name="message">The log message.</param>
