@@ -20,6 +20,7 @@
 
 using Common.Logging.Configuration;
 using Common.Logging.Factory;
+using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
 using Microsoft.Practices.EnterpriseLibrary.Logging;
 
 namespace Common.Logging.EntLib
@@ -99,12 +100,23 @@ namespace Common.Logging.EntLib
                     {
                         if (_logWriter == null)
                         {
-                            _logWriter = Logger.Writer;
+                            _logWriter = GetWriter();
                         }
                     }
                 }
                 return _logWriter;
             }
+        }
+
+        private LogWriter GetWriter()
+        {
+            //per http://growingtech.blogspot.it/2013/05/enterprise-library-60-logwriter-has-not.html 
+            //  we have to explicitly set the writer for EntLib6 before we can return it
+            var configurationSource = ConfigurationSourceFactory.Create();
+            var logWriterFactory = new LogWriterFactory(configurationSource);
+            Logger.SetLogWriter(logWriterFactory.Create());
+
+            return Logger.Writer;
         }
 
         /// <summary>
@@ -157,7 +169,7 @@ namespace Common.Logging.EntLib
         /// </summary>
         protected virtual ILog CreateLogger(string name, LogWriter logWriter, EntLibLoggerSettings settings)
         {
-            return new EntLibLogger(name, LogWriter, _settings);
+            return new EntLibLogger(name, LogWriter, settings);
         }
     }
 }
