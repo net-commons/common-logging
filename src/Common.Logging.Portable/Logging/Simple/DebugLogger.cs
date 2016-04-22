@@ -18,6 +18,9 @@
 
 #endregion
 
+ 
+ #define DEBUG //local #define so that the compiler won't optimize away the calls to Debug.WriteLine in RELEASE builds of this class
+
 using System;
 using System.Text;
 using System.Diagnostics;
@@ -38,7 +41,7 @@ namespace Common.Logging.Simple
         /// Creates and initializes a logger that writes messages to <see cref="System.Diagnostics.Debug" />.
         /// </summary>
         /// <param name="logName">The key, usually type key of the calling class, of the logger.</param>
-        /// <param name="logLevel">The current logging threshold. Messages recieved that are beneath this threshold will not be logged.</param>
+        /// <param name="logLevel">The current logging threshold. Messages received that are beneath this threshold will not be logged.</param>
         /// <param name="showLevel">Include the current log level in the log message.</param>
         /// <param name="showDateTime">Include the current time in the log message.</param>
         /// <param name="showLogName">Include the instance key in the log message.</param>
@@ -50,7 +53,7 @@ namespace Common.Logging.Simple
 
         /// <summary>
         /// Do the actual logging by constructing the log message using a <see cref="StringBuilder" /> then
-        /// sending the output to <see cref="Console.Out" />.
+        /// sending the output to <see cref="Debug.Out" />.
         /// </summary>
         /// <param name="level">The <see cref="LogLevel" /> of the message.</param>
         /// <param name="message">The log message.</param>
