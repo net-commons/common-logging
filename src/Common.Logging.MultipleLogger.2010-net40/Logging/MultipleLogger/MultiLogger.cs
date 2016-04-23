@@ -5,7 +5,7 @@ using System.Linq;
 namespace Common.Logging.MultipleLogger
 {
     /// <summary>
-    /// Multi logger logs an event to multipe loggers
+    /// Multi logger logs an event to multiple loggers
     /// </summary>
     /// <seealso cref="Common.Logging.ILog" />
     public class MultiLogger : ILog
