@@ -27,7 +27,7 @@ namespace Common.Logging.MultipleLogger.Tests.Logging.MultipleLogger
             _multipleLoggerFactoryAdapter.LoggerFactoryAdapters.Add(_log4NetLoggerFactoryAdapter);
             _multipleLoggerFactoryAdapter.LoggerFactoryAdapters.Add(_nLogLoggerFactoryAdapter);
 
-            //these tests will only work if all of the loggers actually *support* VariablesContext with other than the No-Op 'placeholder' support
+            //these tests will only work if all of the loggers actually *support* VariablesContext with other than the No-Op 'placeholder'
             Assume.That(_log4NetLoggerFactoryAdapter.GetLogger(typeof(MultipleLoggerGlobalVariableContextTests)).GlobalVariablesContext, Is.Not.InstanceOf<NoOpVariablesContext>());
             Assume.That(_nLogLoggerFactoryAdapter.GetLogger(typeof(MultipleLoggerGlobalVariableContextTests)).GlobalVariablesContext, Is.Not.InstanceOf<NoOpVariablesContext>());
         }
@@ -37,14 +37,14 @@ namespace Common.Logging.MultipleLogger.Tests.Logging.MultipleLogger
         public void WhenValueHasBeenSet_CanGetValue()
         {
             LogManager.Adapter = _multipleLoggerFactoryAdapter;
-            var multilogger = LogManager.GetLogger<MultipleLoggerGlobalVariableContextTests>();
+            var multiLogger = LogManager.GetLogger<MultipleLoggerGlobalVariableContextTests>();
 
             const string EXPECTED_VALUE = "myValue";
             const string KEY = "myKey";
 
-            multilogger.GlobalVariablesContext.Set(KEY, EXPECTED_VALUE);
+            multiLogger.GlobalVariablesContext.Set(KEY, EXPECTED_VALUE);
 
-            var actualValue = multilogger.GlobalVariablesContext.Get(KEY);
+            var actualValue = multiLogger.GlobalVariablesContext.Get(KEY);
 
             Assert.That((string)actualValue == EXPECTED_VALUE);
         }
@@ -54,9 +54,9 @@ namespace Common.Logging.MultipleLogger.Tests.Logging.MultipleLogger
         public void WhenValueHasNotBeenSet_CanReturnNoValue()
         {
             LogManager.Adapter = _multipleLoggerFactoryAdapter;
-            var multilogger = LogManager.GetLogger<MultipleLoggerGlobalVariableContextTests>();
+            var multiLogger = LogManager.GetLogger<MultipleLoggerGlobalVariableContextTests>();
 
-            var actualValue = multilogger.GlobalVariablesContext.Get("KEY_NEVER_SET");
+            var actualValue = multiLogger.GlobalVariablesContext.Get("KEY_NEVER_SET");
 
             //NOTE: the impl. for NLog returns string.Empty for no match so getting that back = PASS
             Assert.That((string) actualValue == string.Empty);
@@ -66,12 +66,12 @@ namespace Common.Logging.MultipleLogger.Tests.Logging.MultipleLogger
         public void SettingValueResultsInValueSetOnAllMemberLoggers()
         {
             LogManager.Adapter = _multipleLoggerFactoryAdapter;
-            var multilogger = LogManager.GetLogger<MultipleLoggerGlobalVariableContextTests>();
+            var multiLogger = LogManager.GetLogger<MultipleLoggerGlobalVariableContextTests>();
 
             const string EXPECTED_VALUE = "myValue";
             const string KEY = "myKey";
 
-            multilogger.GlobalVariablesContext.Set(KEY, EXPECTED_VALUE);
+            multiLogger.GlobalVariablesContext.Set(KEY, EXPECTED_VALUE);
 
 
             LogManager.Adapter = _log4NetLoggerFactoryAdapter;
