@@ -68,6 +68,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Logging\MultipleLogger\FileBasedConfigurationTests.cs" />
     <Compile Include="Logging\MultipleLogger\MultipleLoggerGlobalVariableContextTests.cs" />
   </ItemGroup>
   <ItemGroup>

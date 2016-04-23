@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using Common.Logging.Configuration;
+
 
 namespace Common.Logging.MultipleLogger
 {
@@ -20,6 +22,12 @@ namespace Common.Logging.MultipleLogger
         public MultiLoggerFactoryAdapter()
         {
             LoggerFactoryAdapters = new List<ILoggerFactoryAdapter>();
+        }
+
+
+        public MultiLoggerFactoryAdapter(NameValueCollection properties)
+        {
+            //TODO: read properties (as needed) and then parse remaining section for individual adapters to load/read
         }
 
         /// <summary>
