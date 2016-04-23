@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Common.Logging.MultiLogger.Logging
+namespace Common.Logging.MultipleLogger
 {
     /// <summary>
     /// Multi Factory Logger Factory Adapter can use multiple logging factory
@@ -45,7 +45,7 @@ namespace Common.Logging.MultiLogger.Logging
                 loggers.Add(f.GetLogger(loggerName));
             }
 
-            return new Common.Logging.MultiLogger.MultiLogger(loggers);
+            return new MultiLogger(loggers);
         }
 
         /// <summary>
@@ -62,7 +62,7 @@ namespace Common.Logging.MultiLogger.Logging
                 loggers.Add(f.GetLogger(type));
             }
 
-            return new Common.Logging.MultiLogger.MultiLogger(loggers);
+            return new MultiLogger(loggers);
         }
     }
 }

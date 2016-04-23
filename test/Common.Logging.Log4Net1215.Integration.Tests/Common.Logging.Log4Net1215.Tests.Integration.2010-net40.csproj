@@ -105,9 +105,9 @@
       <Project>{440D903A-D409-48FC-A6C4-3EE69CCD663B}</Project>
       <Name>Common.Logging.2010-net40</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Common.Logging.Log4Net1215.Tests\Common.Logging.Log4Net1215.Tests.2010-net40.csproj">
+    <ProjectReference Include="..\Common.Logging.Log4Net1213.Tests\Common.Logging.Log4Net1213.Tests.2010-net40.csproj">
       <Project>{1ef3d7be-ba9d-4d32-924d-3a58c48cbc28}</Project>
-      <Name>Common.Logging.Log4Net1215.Tests.2010-net40</Name>
+      <Name>Common.Logging.Log4Net1213.Tests.2010-net40</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

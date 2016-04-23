@@ -7,8 +7,8 @@
     <ProjectGuid>{FBDBA010-0EC2-4834-83E0-74A24B17D09A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Common.Logging.MultiLogger</RootNamespace>
-    <AssemblyName>Common.Logging.MultiLogger</AssemblyName>
+    <RootNamespace>Common.Logging.MultipleLogger</RootNamespace>
+    <AssemblyName>Common.Logging.MultipleLogger</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

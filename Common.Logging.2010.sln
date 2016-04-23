@@ -176,9 +176,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.Log4Net1215.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.Log4Net1215.Tests.Integration.2010-net40", "test\Common.Logging.Log4Net1215.Integration.Tests\Common.Logging.Log4Net1215.Tests.Integration.2010-net40.csproj", "{30CA2352-4681-41A8-BF41-71C7D18EFE59}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MultiLogger", "MultiLogger", "{9E16B2FE-7363-44DC-80E5-47FD70850B4C}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MultipleLogger", "MultipleLogger", "{9BA9A360-FD8A-480E-8916-7F6289AB3177}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.MultiLogger.2010-net40", "src\Common.Logging.MultiLogger.2010-net40\Common.Logging.MultiLogger.2010-net40.csproj", "{FBDBA010-0EC2-4834-83E0-74A24B17D09A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.MultipleLogger.2010-net40", "src\Common.Logging.MultipleLogger.2010-net40\Common.Logging.MultipleLogger.2010-net40.csproj", "{FBDBA010-0EC2-4834-83E0-74A24B17D09A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -510,7 +510,7 @@ Global
 		{280D71D5-3BF4-4420-B578-C2367567627E} = {0760E89B-7FEB-45E5-9ED9-A62FD47AB733}
 		{57E811A6-D98D-4308-ADAE-0B61A06272AE} = {0760E89B-7FEB-45E5-9ED9-A62FD47AB733}
 		{30CA2352-4681-41A8-BF41-71C7D18EFE59} = {0760E89B-7FEB-45E5-9ED9-A62FD47AB733}
-		{FBDBA010-0EC2-4834-83E0-74A24B17D09A} = {9E16B2FE-7363-44DC-80E5-47FD70850B4C}
+		{FBDBA010-0EC2-4834-83E0-74A24B17D09A} = {9BA9A360-FD8A-480E-8916-7F6289AB3177}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		NAntAddinLastFileName = Common.Logging.build

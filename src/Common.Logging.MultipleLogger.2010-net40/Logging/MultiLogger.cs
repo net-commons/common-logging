@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Common.Logging.MultiLogger
+namespace Common.Logging.MultipleLogger
 {
     /// <summary>
     /// Multi logger logs an event to multipe loggers
