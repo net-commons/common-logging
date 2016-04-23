@@ -25,9 +25,19 @@ namespace Common.Logging.MultipleLogger
         }
 
 
-        public MultiLoggerFactoryAdapter(NameValueCollection properties)
+        public MultiLoggerFactoryAdapter(NameValueCollection properties) : this()
         {
-            //TODO: read properties (as needed) and then parse remaining section for individual adapters to load/read
+            var reader = new DefaultConfigurationReader();
+
+            var childFactoryAdapterSettings = reader.GetSection("common/logging.multipleLoggers");
+
+            if (!(childFactoryAdapterSettings is List<LogSetting>))
+                return;
+
+            foreach (var factoryAdapterSetting in childFactoryAdapterSettings as List<LogSetting>)
+            {
+                LoggerFactoryAdapters.Add(LogManager.BuildLoggerFactoryAdapterFromLogSettings(factoryAdapterSetting));
+            }
         }
 
         /// <summary>

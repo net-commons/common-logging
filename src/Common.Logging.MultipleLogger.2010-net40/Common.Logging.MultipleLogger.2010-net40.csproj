@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="Logging\ConfigurationSectionHandler.cs" />
     <Compile Include="Logging\MultipleLogger\MutliLoggerThreadVariablesContext.cs" />
     <Compile Include="Logging\MultipleLogger\MutliLoggerGlobalVariablesContext.cs" />
     <Compile Include="Logging\MultipleLogger\MultiLogger.cs" />

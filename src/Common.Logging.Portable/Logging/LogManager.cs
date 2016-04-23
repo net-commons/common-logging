@@ -524,7 +524,7 @@ namespace Common.Logging
         /// </summary>
         /// <param name="setting"></param>
         /// <returns>the <see cref="ILoggerFactoryAdapter"/> instance. Is never <c>null</c></returns>
-        private static ILoggerFactoryAdapter BuildLoggerFactoryAdapterFromLogSettings(LogSetting setting)
+        public static ILoggerFactoryAdapter BuildLoggerFactoryAdapterFromLogSettings(LogSetting setting)
         {
             ArgUtils.AssertNotNull("setting", setting);
             // already ensured by LogSetting

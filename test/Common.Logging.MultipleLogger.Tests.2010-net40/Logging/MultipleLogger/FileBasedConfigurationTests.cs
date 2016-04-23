@@ -15,7 +15,7 @@ namespace Common.Logging.MultipleLogger.Tests.Logging.MultipleLogger
         {
             var multiLogger = LogManager.GetLogger<FileBasedConfigurationTests>();
 
-            //the only way to test for certain is to use private reflection to grab the configured loggers...
+            //the only way to test with certainty is to use private reflection to grab the configured loggers...
             var configuredLoggers =
                 typeof (MultiLogger).GetField("_loggers", BindingFlags.NonPublic | BindingFlags.Instance)?
                     .GetValue(multiLogger) as List<ILog>;
