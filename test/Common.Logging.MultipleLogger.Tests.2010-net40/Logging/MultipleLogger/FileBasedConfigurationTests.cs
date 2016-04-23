@@ -36,9 +36,11 @@ namespace Common.Logging.MultipleLogger.Tests.Logging.MultipleLogger
             var multiLogger = LogManager.GetLogger<FileBasedConfigurationTests>();
 
             //the only way to test with certainty is to use private reflection to grab the configured loggers...
-            var configuredLoggers =
-                typeof (MultiLogger).GetField("_loggers", BindingFlags.NonPublic | BindingFlags.Instance)?
-                    .GetValue(multiLogger) as List<ILog>;
+            var fieldInfo = typeof(MultiLogger).GetField("_loggers", BindingFlags.NonPublic | BindingFlags.Instance);
+
+            Assume.That(fieldInfo, Is.Not.Null,"unable to retrieve private field '_loggers' to inspect configured loggers.");
+
+            var configuredLoggers = fieldInfo.GetValue(multiLogger) as List<ILog>;
 
             Assert.That(configuredLoggers, Is.Not.Null);
             Assert.That(configuredLoggers.Any(logger => logger is Log4NetLogger));
