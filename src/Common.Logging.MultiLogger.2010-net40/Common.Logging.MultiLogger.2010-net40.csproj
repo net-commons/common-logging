@@ -7,8 +7,8 @@
     <ProjectGuid>{FBDBA010-0EC2-4834-83E0-74A24B17D09A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Common.Logging.MultiLogger._2010_net40</RootNamespace>
-    <AssemblyName>Common.Logging.MultiLogger.2010-net40</AssemblyName>
+    <RootNamespace>Common.Logging.MultiLogger</RootNamespace>
+    <AssemblyName>Common.Logging.MultiLogger</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,8 +40,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="Logging\MultiLogger.cs" />
+    <Compile Include="Logging\MultiLoggerFactoryAdapter.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common.Logging.Core\Common.Logging.Core.2010.csproj">
+      <Project>{7eeb2191-b3fc-4509-aa4b-a345c386eeed}</Project>
+      <Name>Common.Logging.Core.2010</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Common.Logging\Common.Logging.2010-net40.csproj">
+      <Project>{440d903a-d409-48fc-a6c4-3ee69ccd663b}</Project>
+      <Name>Common.Logging.2010-net40</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
