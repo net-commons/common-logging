@@ -43,7 +43,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Logging\MultipleLogger\" />
     <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
@@ -51,14 +50,25 @@
       <Project>{7eeb2191-b3fc-4509-aa4b-a345c386eeed}</Project>
       <Name>Common.Logging.Core.2010</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\src\Common.Logging.Log4Net129\Common.Logging.Log4Net129.2010-net40.csproj">
+      <Project>{a6a7257a-d1ae-4a09-8c1c-f55e099c8a8a}</Project>
+      <Name>Common.Logging.Log4Net129.2010-net40</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\Common.Logging.MultipleLogger.2010-net40\Common.Logging.MultipleLogger.2010-net40.csproj">
       <Project>{fbdba010-0ec2-4834-83e0-74a24b17d09a}</Project>
       <Name>Common.Logging.MultipleLogger.2010-net40</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Common.Logging.NLog41\Common.Logging.NLog41.2010-net40.csproj">
+      <Project>{bbf526e6-1da3-479e-ac22-a9c45c95cc4a}</Project>
+      <Name>Common.Logging.NLog41.2010-net40</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\src\Common.Logging\Common.Logging.2010-net40.csproj">
       <Project>{440d903a-d409-48fc-a6c4-3ee69ccd663b}</Project>
       <Name>Common.Logging.2010-net40</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Logging\MultipleLogger\MultipleLoggerGlobalVariableContextTests.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
