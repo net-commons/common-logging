@@ -16,9 +16,11 @@ namespace Common.Logging.MultipleLogger
         /// Initializes a new instance of the <see cref="MultiLogger"/> class.
         /// </summary>
         /// <param name="loggers">The loggers.</param>
-        public MultiLogger(List<ILog> loggers)
+        public MultiLogger(IEnumerable<ILog> loggers)
         {
-            _loggers = loggers;
+            _loggers = loggers.ToList();
+            GlobalVariablesContext = new MultiLoggerGlobalVariablesContext(_loggers);
+            ThreadVariablesContext = new MultiLoggerThreadVariablesContext(_loggers);
         }
 
         /// <summary>
@@ -29,7 +31,7 @@ namespace Common.Logging.MultipleLogger
         /// <param name="exception">The exception to log, including its stack Debug.</param>
         public void Debug(IFormatProvider formatProvider, Action<FormatMessageHandler> formatMessageCallback, Exception exception)
         {
-            _loggers.ForEach(l => l.Debug(formatProvider, formatMessageCallback, exception));
+            _loggers.ForEach(logger => logger.Debug(formatProvider, formatMessageCallback, exception));
         }
 
         /// <summary>
@@ -39,7 +41,7 @@ namespace Common.Logging.MultipleLogger
         /// <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
         public void Debug(IFormatProvider formatProvider, Action<FormatMessageHandler> formatMessageCallback)
         {
-            _loggers.ForEach(l => l.Debug(formatProvider, formatMessageCallback));
+            _loggers.ForEach(logger => logger.Debug(formatProvider, formatMessageCallback));
         }
 
         /// <summary>
@@ -49,7 +51,7 @@ namespace Common.Logging.MultipleLogger
         /// <param name="exception">The exception to log, including its stack trace.</param>
         public void Debug(Action<FormatMessageHandler> formatMessageCallback, Exception exception)
         {
-            _loggers.ForEach(l => l.Debug(formatMessageCallback, exception));
+            _loggers.ForEach(logger => logger.Debug(formatMessageCallback, exception));
         }
 
         /// <summary>
@@ -58,7 +60,7 @@ namespace Common.Logging.MultipleLogger
         /// <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
         public void Debug(Action<FormatMessageHandler> formatMessageCallback)
         {
-            _loggers.ForEach(l => l.Debug(formatMessageCallback));
+            _loggers.ForEach(logger => logger.Debug(formatMessageCallback));
         }
 
         /// <summary>
@@ -70,7 +72,7 @@ namespace Common.Logging.MultipleLogger
         /// <param name="exception">The exception to log, including its stack trace.</param>
         public void Debug(object message, Exception exception)
         {
-            _loggers.ForEach(l => l.Debug(message, exception));
+            _loggers.ForEach(logger => logger.Debug(message, exception));
         }
 
         /// <summary>
@@ -79,7 +81,7 @@ namespace Common.Logging.MultipleLogger
         /// <param name="message">The message object to log.</param>
         public void Debug(object message)
         {
-            _loggers.ForEach(l => l.Debug(message));
+            _loggers.ForEach(logger => logger.Debug(message));
         }
 
         /// <summary>
@@ -91,7 +93,7 @@ namespace Common.Logging.MultipleLogger
         /// <param name="args"></param>
         public void DebugFormat(IFormatProvider formatProvider, string format, Exception exception, params object[] args)
         {
-            _loggers.ForEach(l => l.DebugFormat(formatProvider, format, exception, args));
+            _loggers.ForEach(logger => logger.DebugFormat(formatProvider, format, exception, args));
         }
 
         /// <summary>
@@ -102,7 +104,7 @@ namespace Common.Logging.MultipleLogger
         /// <param name="args"></param>
         public void DebugFormat(IFormatProvider formatProvider, string format, params object[] args)
         {
-            _loggers.ForEach(l => l.DebugFormat(formatProvider, format, args));
+            _loggers.ForEach(logger => logger.DebugFormat(formatProvider, format, args));
         }
 
         /// <summary>
@@ -113,7 +115,7 @@ namespace Common.Logging.MultipleLogger
         /// <param name="args">the list of format arguments</param>
         public void DebugFormat(string format, Exception exception, params object[] args)
         {
-            _loggers.ForEach(l => l.DebugFormat(format, args));
+            _loggers.ForEach(logger => logger.DebugFormat(format, args));
         }
 
         /// <summary>
@@ -123,7 +125,7 @@ namespace Common.Logging.MultipleLogger
         /// <param name="args">the list of format arguments</param>
         public void DebugFormat(string format, params object[] args)
         {
-            _loggers.ForEach(l => l.DebugFormat(format, args));
+            _loggers.ForEach(logger => logger.DebugFormat(format, args));
         }
 
         /// <summary>
@@ -134,7 +136,7 @@ namespace Common.Logging.MultipleLogger
         /// <param name="exception">The exception to log, including its stack Error.</param>
         public void Error(IFormatProvider formatProvider, Action<FormatMessageHandler> formatMessageCallback, Exception exception)
         {
-            _loggers.ForEach(l => l.Error(formatProvider, formatMessageCallback, exception));
+            _loggers.ForEach(logger => logger.Error(formatProvider, formatMessageCallback, exception));
         }
 
         /// <summary>
@@ -144,7 +146,7 @@ namespace Common.Logging.MultipleLogger
         /// <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
         public void Error(IFormatProvider formatProvider, Action<FormatMessageHandler> formatMessageCallback)
         {
-            _loggers.ForEach(l => l.Error(formatProvider, formatMessageCallback));
+            _loggers.ForEach(logger => logger.Error(formatProvider, formatMessageCallback));
         }
 
         /// <summary>
@@ -154,7 +156,7 @@ namespace Common.Logging.MultipleLogger
         /// <param name="exception">The exception to log, including its stack trace.</param>
         public void Error(Action<FormatMessageHandler> formatMessageCallback, Exception exception)
         {
-            _loggers.ForEach(l => l.Error(formatMessageCallback, exception));
+            _loggers.ForEach(logger => logger.Error(formatMessageCallback, exception));
         }
 
         /// <summary>
@@ -163,7 +165,7 @@ namespace Common.Logging.MultipleLogger
         /// <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
         public void Error(Action<FormatMessageHandler> formatMessageCallback)
         {
-            _loggers.ForEach(l => l.Error(formatMessageCallback));
+            _loggers.ForEach(logger => logger.Error(formatMessageCallback));
         }
 
         /// <summary>
@@ -175,7 +177,7 @@ namespace Common.Logging.MultipleLogger
         /// <param name="exception">The exception to log, including its stack trace.</param>
         public void Error(object message, Exception exception)
         {
-            _loggers.ForEach(l => l.Error(message, exception));
+            _loggers.ForEach(logger => logger.Error(message, exception));
         }
 
         /// <summary>
@@ -184,7 +186,7 @@ namespace Common.Logging.MultipleLogger
         /// <param name="message">The message object to log.</param>
         public void Error(object message)
         {
-            _loggers.ForEach(l => l.Error(message));
+            _loggers.ForEach(logger => logger.Error(message));
         }
 
         /// <summary>
@@ -196,7 +198,7 @@ namespace Common.Logging.MultipleLogger
         /// <param name="args"></param>
         public void ErrorFormat(IFormatProvider formatProvider, string format, Exception exception, params object[] args)
         {
-            _loggers.ForEach(l => l.DebugFormat(formatProvider, format, exception, args));
+            _loggers.ForEach(logger => logger.DebugFormat(formatProvider, format, exception, args));
         }
 
         /// <summary>
@@ -207,7 +209,7 @@ namespace Common.Logging.MultipleLogger
         /// <param name="args"></param>
         public void ErrorFormat(IFormatProvider formatProvider, string format, params object[] args)
         {
-            _loggers.ForEach(l => l.DebugFormat(formatProvider, format, args));
+            _loggers.ForEach(logger => logger.DebugFormat(formatProvider, format, args));
         }
 
         /// <summary>
@@ -218,7 +220,7 @@ namespace Common.Logging.MultipleLogger
         /// <param name="args">the list of format arguments</param>
         public void ErrorFormat(string format, Exception exception, params object[] args)
         {
-            _loggers.ForEach(l => l.DebugFormat(format, exception, args));
+            _loggers.ForEach(logger => logger.DebugFormat(format, exception, args));
         }
 
         /// <summary>
@@ -228,7 +230,7 @@ namespace Common.Logging.MultipleLogger
         /// <param name="args">the list of format arguments</param>
         public void ErrorFormat(string format, params object[] args)
         {
-            _loggers.ForEach(l => l.DebugFormat(format, args));
+            _loggers.ForEach(logger => logger.DebugFormat(format, args));
         }
 
         /// <summary>
@@ -239,7 +241,7 @@ namespace Common.Logging.MultipleLogger
         /// <param name="exception">The exception to log, including its stack Fatal.</param>
         public void Fatal(IFormatProvider formatProvider, Action<FormatMessageHandler> formatMessageCallback, Exception exception)
         {
-            _loggers.ForEach(l => l.Fatal(formatProvider, formatMessageCallback, exception));
+            _loggers.ForEach(logger => logger.Fatal(formatProvider, formatMessageCallback, exception));
         }
 
         /// <summary>
@@ -249,7 +251,7 @@ namespace Common.Logging.MultipleLogger
         /// <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
         public void Fatal(IFormatProvider formatProvider, Action<FormatMessageHandler> formatMessageCallback)
         {
-            _loggers.ForEach(l => l.Fatal(formatProvider, formatMessageCallback));
+            _loggers.ForEach(logger => logger.Fatal(formatProvider, formatMessageCallback));
         }
 
         /// <summary>
@@ -259,7 +261,7 @@ namespace Common.Logging.MultipleLogger
         /// <param name="exception">The exception to log, including its stack trace.</param>
         public void Fatal(Action<FormatMessageHandler> formatMessageCallback, Exception exception)
         {
-            _loggers.ForEach(l => l.Fatal(formatMessageCallback, exception));
+            _loggers.ForEach(logger => logger.Fatal(formatMessageCallback, exception));
         }
 
         /// <summary>
@@ -268,7 +270,7 @@ namespace Common.Logging.MultipleLogger
         /// <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
         public void Fatal(Action<FormatMessageHandler> formatMessageCallback)
         {
-            _loggers.ForEach(l => l.Fatal(formatMessageCallback));
+            _loggers.ForEach(logger => logger.Fatal(formatMessageCallback));
         }
 
         /// <summary>
@@ -280,7 +282,7 @@ namespace Common.Logging.MultipleLogger
         /// <param name="exception">The exception to log, including its stack trace.</param>
         public void Fatal(object message, Exception exception)
         {
-            _loggers.ForEach(l => l.Fatal(message, exception));
+            _loggers.ForEach(logger => logger.Fatal(message, exception));
         }
 
         /// <summary>
@@ -289,7 +291,7 @@ namespace Common.Logging.MultipleLogger
         /// <param name="message">The message object to log.</param>
         public void Fatal(object message)
         {
-            _loggers.ForEach(l => l.Fatal(message));
+            _loggers.ForEach(logger => logger.Fatal(message));
         }
 
         /// <summary>
@@ -301,7 +303,7 @@ namespace Common.Logging.MultipleLogger
         /// <param name="args"></param>
         public void FatalFormat(IFormatProvider formatProvider, string format, Exception exception, params object[] args)
         {
-            _loggers.ForEach(l => l.FatalFormat(formatProvider, format, exception, args));
+            _loggers.ForEach(logger => logger.FatalFormat(formatProvider, format, exception, args));
         }
 
         /// <summary>
@@ -312,7 +314,7 @@ namespace Common.Logging.MultipleLogger
         /// <param name="args"></param>
         public void FatalFormat(IFormatProvider formatProvider, string format, params object[] args)
         {
-            _loggers.ForEach(l => l.FatalFormat(formatProvider, format, args));
+            _loggers.ForEach(logger => logger.FatalFormat(formatProvider, format, args));
         }
 
         /// <summary>
@@ -323,7 +325,7 @@ namespace Common.Logging.MultipleLogger
         /// <param name="args">the list of format arguments</param>
         public void FatalFormat(string format, Exception exception, params object[] args)
         {
-            _loggers.ForEach(l => l.FatalFormat(format, exception, args));
+            _loggers.ForEach(logger => logger.FatalFormat(format, exception, args));
         }
 
         /// <summary>
@@ -333,7 +335,7 @@ namespace Common.Logging.MultipleLogger
         /// <param name="args">the list of format arguments</param>
         public void FatalFormat(string format, params object[] args)
         {
-            _loggers.ForEach(l => l.FatalFormat(format, args));
+            _loggers.ForEach(logger => logger.FatalFormat(format, args));
         }
 
         /// <summary>
@@ -344,7 +346,7 @@ namespace Common.Logging.MultipleLogger
         /// <param name="exception">The exception to log, including its stack Info.</param>
         public void Info(IFormatProvider formatProvider, Action<FormatMessageHandler> formatMessageCallback, Exception exception)
         {
-            _loggers.ForEach(l => l.Info(formatProvider, formatMessageCallback, exception));
+            _loggers.ForEach(logger => logger.Info(formatProvider, formatMessageCallback, exception));
         }
 
         /// <summary>
@@ -354,7 +356,7 @@ namespace Common.Logging.MultipleLogger
         /// <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
         public void Info(IFormatProvider formatProvider, Action<FormatMessageHandler> formatMessageCallback)
         {
-            _loggers.ForEach(l => l.Info(formatProvider, formatMessageCallback));
+            _loggers.ForEach(logger => logger.Info(formatProvider, formatMessageCallback));
         }
 
         /// <summary>
@@ -364,7 +366,7 @@ namespace Common.Logging.MultipleLogger
         /// <param name="exception">The exception to log, including its stack trace.</param>
         public void Info(Action<FormatMessageHandler> formatMessageCallback, Exception exception)
         {
-            _loggers.ForEach(l => l.Info(formatMessageCallback, exception));
+            _loggers.ForEach(logger => logger.Info(formatMessageCallback, exception));
         }
 
         /// <summary>
@@ -373,7 +375,7 @@ namespace Common.Logging.MultipleLogger
         /// <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
         public void Info(Action<FormatMessageHandler> formatMessageCallback)
         {
-            _loggers.ForEach(l => l.Info(formatMessageCallback));
+            _loggers.ForEach(logger => logger.Info(formatMessageCallback));
         }
 
         /// <summary>
@@ -385,7 +387,7 @@ namespace Common.Logging.MultipleLogger
         /// <param name="exception">The exception to log, including its stack trace.</param>
         public void Info(object message, Exception exception)
         {
-            _loggers.ForEach(l => l.Info(message, exception));
+            _loggers.ForEach(logger => logger.Info(message, exception));
         }
 
         /// <summary>
@@ -394,7 +396,7 @@ namespace Common.Logging.MultipleLogger
         /// <param name="message">The message object to log.</param>
         public void Info(object message)
         {
-            _loggers.ForEach(l => l.Info(message));
+            _loggers.ForEach(logger => logger.Info(message));
         }
 
         /// <summary>
@@ -406,7 +408,7 @@ namespace Common.Logging.MultipleLogger
         /// <param name="args"></param>
         public void InfoFormat(IFormatProvider formatProvider, string format, Exception exception, params object[] args)
         {
-            _loggers.ForEach(l => l.InfoFormat(formatProvider, format, exception, args));
+            _loggers.ForEach(logger => logger.InfoFormat(formatProvider, format, exception, args));
         }
 
         /// <summary>
@@ -417,7 +419,7 @@ namespace Common.Logging.MultipleLogger
         /// <param name="args"></param>
         public void InfoFormat(IFormatProvider formatProvider, string format, params object[] args)
         {
-            _loggers.ForEach(l => l.InfoFormat(formatProvider, format, args));
+            _loggers.ForEach(logger => logger.InfoFormat(formatProvider, format, args));
         }
 
         /// <summary>
@@ -428,7 +430,7 @@ namespace Common.Logging.MultipleLogger
         /// <param name="args">the list of format arguments</param>
         public void InfoFormat(string format, Exception exception, params object[] args)
         {
-            _loggers.ForEach(l => l.InfoFormat(format, exception, args));
+            _loggers.ForEach(logger => logger.InfoFormat(format, exception, args));
         }
 
         /// <summary>
@@ -438,7 +440,7 @@ namespace Common.Logging.MultipleLogger
         /// <param name="args">the list of format arguments</param>
         public void InfoFormat(string format, params object[] args)
         {
-            _loggers.ForEach(l => l.InfoFormat(format, args));
+            _loggers.ForEach(logger => logger.InfoFormat(format, args));
         }
 
         /// <summary>
@@ -495,7 +497,8 @@ namespace Common.Logging.MultipleLogger
         /// <value>The global variables context.</value>
         public IVariablesContext GlobalVariablesContext
         {
-            get { throw new NotSupportedException("GlobalVariablesContext not supported for Multilogger"); }
+            get;
+            private set;
         }
 
 
@@ -505,7 +508,8 @@ namespace Common.Logging.MultipleLogger
         /// <value>The thread variables context.</value>
         public IVariablesContext ThreadVariablesContext
         {
-            get {throw new NotSupportedException("ThreadVariablesContext not supported for MultiLogger");}
+            get;
+            private set;
         }
 
         /// <summary>
@@ -516,7 +520,7 @@ namespace Common.Logging.MultipleLogger
         /// <param name="exception">The exception to log, including its stack trace.</param>
         public void Trace(IFormatProvider formatProvider, Action<FormatMessageHandler> formatMessageCallback, Exception exception)
         {
-            _loggers.ForEach(l => l.Trace(formatProvider, formatMessageCallback, exception));
+            _loggers.ForEach(logger => logger.Trace(formatProvider, formatMessageCallback, exception));
         }
 
         /// <summary>
@@ -526,7 +530,7 @@ namespace Common.Logging.MultipleLogger
         /// <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
         public void Trace(IFormatProvider formatProvider, Action<FormatMessageHandler> formatMessageCallback)
         {
-            _loggers.ForEach(l => l.Trace(formatProvider, formatMessageCallback));
+            _loggers.ForEach(logger => logger.Trace(formatProvider, formatMessageCallback));
         }
 
         /// <summary>
@@ -536,7 +540,7 @@ namespace Common.Logging.MultipleLogger
         /// <param name="exception">The exception to log, including its stack trace.</param>
         public void Trace(Action<FormatMessageHandler> formatMessageCallback, Exception exception)
         {
-            _loggers.ForEach(l => l.Trace(formatMessageCallback, exception));
+            _loggers.ForEach(logger => logger.Trace(formatMessageCallback, exception));
         }
 
         /// <summary>
@@ -545,7 +549,7 @@ namespace Common.Logging.MultipleLogger
         /// <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
         public void Trace(Action<FormatMessageHandler> formatMessageCallback)
         {
-            _loggers.ForEach(l => l.Trace(formatMessageCallback));
+            _loggers.ForEach(logger => logger.Trace(formatMessageCallback));
         }
 
         /// <summary>
@@ -557,7 +561,7 @@ namespace Common.Logging.MultipleLogger
         /// <param name="exception">The exception to log, including its stack trace.</param>
         public void Trace(object message, Exception exception)
         {
-            _loggers.ForEach(l => l.Trace(message, exception));
+            _loggers.ForEach(logger => logger.Trace(message, exception));
         }
 
         /// <summary>
@@ -566,7 +570,7 @@ namespace Common.Logging.MultipleLogger
         /// <param name="message">The message object to log.</param>
         public void Trace(object message)
         {
-            _loggers.ForEach(l => l.Trace(message));
+            _loggers.ForEach(logger => logger.Trace(message));
         }
 
         /// <summary>
@@ -578,7 +582,7 @@ namespace Common.Logging.MultipleLogger
         /// <param name="args"></param>
         public void TraceFormat(IFormatProvider formatProvider, string format, Exception exception, params object[] args)
         {
-            _loggers.ForEach(l => l.TraceFormat(formatProvider, format, exception, args));
+            _loggers.ForEach(logger => logger.TraceFormat(formatProvider, format, exception, args));
         }
 
         /// <summary>
@@ -589,7 +593,7 @@ namespace Common.Logging.MultipleLogger
         /// <param name="args"></param>
         public void TraceFormat(IFormatProvider formatProvider, string format, params object[] args)
         {
-            _loggers.ForEach(l => l.TraceFormat(formatProvider, format, args));
+            _loggers.ForEach(logger => logger.TraceFormat(formatProvider, format, args));
         }
 
         /// <summary>
@@ -600,7 +604,7 @@ namespace Common.Logging.MultipleLogger
         /// <param name="args">the list of format arguments</param>
         public void TraceFormat(string format, Exception exception, params object[] args)
         {
-            _loggers.ForEach(l => l.TraceFormat(format, exception, args));
+            _loggers.ForEach(logger => logger.TraceFormat(format, exception, args));
         }
 
         /// <summary>
@@ -610,7 +614,7 @@ namespace Common.Logging.MultipleLogger
         /// <param name="args">the list of format arguments</param>
         public void TraceFormat(string format, params object[] args)
         {
-            _loggers.ForEach(l => l.TraceFormat(format, args));
+            _loggers.ForEach(logger => logger.TraceFormat(format, args));
         }
 
         /// <summary>
@@ -621,7 +625,7 @@ namespace Common.Logging.MultipleLogger
         /// <param name="exception">The exception to log, including its stack Warn.</param>
         public void Warn(IFormatProvider formatProvider, Action<FormatMessageHandler> formatMessageCallback, Exception exception)
         {
-            _loggers.ForEach(l => l.Warn(formatProvider, formatMessageCallback, exception));
+            _loggers.ForEach(logger => logger.Warn(formatProvider, formatMessageCallback, exception));
         }
 
         /// <summary>
@@ -631,7 +635,7 @@ namespace Common.Logging.MultipleLogger
         /// <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
         public void Warn(IFormatProvider formatProvider, Action<FormatMessageHandler> formatMessageCallback)
         {
-            _loggers.ForEach(l => l.Warn(formatProvider, formatMessageCallback));
+            _loggers.ForEach(logger => logger.Warn(formatProvider, formatMessageCallback));
         }
 
         /// <summary>
@@ -641,7 +645,7 @@ namespace Common.Logging.MultipleLogger
         /// <param name="exception">The exception to log, including its stack trace.</param>
         public void Warn(Action<FormatMessageHandler> formatMessageCallback, Exception exception)
         {
-            _loggers.ForEach(l => l.Warn(formatMessageCallback, exception));
+            _loggers.ForEach(logger => logger.Warn(formatMessageCallback, exception));
         }
 
         /// <summary>
@@ -650,7 +654,7 @@ namespace Common.Logging.MultipleLogger
         /// <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
         public void Warn(Action<FormatMessageHandler> formatMessageCallback)
         {
-            _loggers.ForEach(l => l.Warn(formatMessageCallback));
+            _loggers.ForEach(logger => logger.Warn(formatMessageCallback));
         }
 
         /// <summary>
@@ -662,7 +666,7 @@ namespace Common.Logging.MultipleLogger
         /// <param name="exception">The exception to log, including its stack trace.</param>
         public void Warn(object message, Exception exception)
         {
-            _loggers.ForEach(l => l.Warn(message, exception));
+            _loggers.ForEach(logger => logger.Warn(message, exception));
         }
 
         /// <summary>
@@ -671,7 +675,7 @@ namespace Common.Logging.MultipleLogger
         /// <param name="message">The message object to log.</param>
         public void Warn(object message)
         {
-            _loggers.ForEach(l => l.Warn(message));
+            _loggers.ForEach(logger => logger.Warn(message));
         }
 
         /// <summary>
@@ -683,7 +687,7 @@ namespace Common.Logging.MultipleLogger
         /// <param name="args"></param>
         public void WarnFormat(IFormatProvider formatProvider, string format, Exception exception, params object[] args)
         {
-            _loggers.ForEach(l => l.WarnFormat(formatProvider, format, exception, args));
+            _loggers.ForEach(logger => logger.WarnFormat(formatProvider, format, exception, args));
         }
 
         /// <summary>
@@ -694,7 +698,7 @@ namespace Common.Logging.MultipleLogger
         /// <param name="args"></param>
         public void WarnFormat(IFormatProvider formatProvider, string format, params object[] args)
         {
-            _loggers.ForEach(l => l.WarnFormat(formatProvider, format, args));
+            _loggers.ForEach(logger => logger.WarnFormat(formatProvider, format, args));
         }
 
         /// <summary>
@@ -705,7 +709,7 @@ namespace Common.Logging.MultipleLogger
         /// <param name="args">the list of format arguments</param>
         public void WarnFormat(string format, Exception exception, params object[] args)
         {
-            _loggers.ForEach(l => l.WarnFormat(format, exception, args));
+            _loggers.ForEach(logger => logger.WarnFormat(format, exception, args));
         }
 
         /// <summary>
@@ -715,7 +719,7 @@ namespace Common.Logging.MultipleLogger
         /// <param name="args">the list of format arguments</param>
         public void WarnFormat(string format, params object[] args)
         {
-            _loggers.ForEach(l => l.WarnFormat(format, args));
+            _loggers.ForEach(logger => logger.WarnFormat(format, args));
         }
     }
 }
