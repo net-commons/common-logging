@@ -41,7 +41,15 @@ namespace Common.Logging.MultipleLogger
         {
             //note: this impl. assumes that all loggers in the multi-logger collection have the same value for the key
             // this is a safe assumption *only* because of the enforced semantics around the Set() implementation for this class 
-            return _loggers.FirstOrDefault(logger => logger.GlobalVariablesContext.Get(key) != null)?.GlobalVariablesContext.Get(key);
+            var candidate = _loggers.FirstOrDefault(logger => logger.GlobalVariablesContext.Get(key) != null);
+
+            if (null != candidate)
+            {
+                return candidate.GlobalVariablesContext.Get(key); ;
+            }
+
+
+            return null;
         }
 
         /// <summary>
@@ -58,14 +66,16 @@ namespace Common.Logging.MultipleLogger
         /// Removes a variable from the global context by key
         /// </summary>
         /// <param name="key">The key of the variable to remove</param>
-        public void Remove(string key) {
+        public void Remove(string key)
+        {
             _loggers.ForEach(logger => logger.GlobalVariablesContext.Remove(key));
         }
 
         /// <summary>
         /// Clears the global context variables
         /// </summary>
-        public void Clear() {
+        public void Clear()
+        {
             _loggers.ForEach(logger => logger.GlobalVariablesContext.Clear());
         }
     }

@@ -41,7 +41,15 @@ namespace Common.Logging.MultipleLogger
         {
             //note: this impl. assumes that all loggers in the multi-logger collection have the same value for the key
             // this is a safe assumption *only* because of the enforced semantics around the Set() implementation for this class 
-            return _loggers.FirstOrDefault(logger => logger.ThreadVariablesContext.Get(key) != null)?.ThreadVariablesContext.Get(key);
+            var candidate = _loggers.FirstOrDefault(logger => logger.ThreadVariablesContext.Get(key) != null);
+
+            if (null != candidate)
+            {
+                return candidate.ThreadVariablesContext.Get(key); ;
+            }
+
+
+            return null;
         }
 
         /// <summary>
