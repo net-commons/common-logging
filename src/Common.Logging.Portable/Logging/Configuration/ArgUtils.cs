@@ -147,7 +147,7 @@ namespace Common.Logging.Configuration
         public static T TryParseEnum<T>(T defaultValue, string stringValue) where T : struct
         {
             Type enumType = typeof(T);
-#if DNXCORE50
+#if DOTNETCORE
             if (!enumType.GetTypeInfo().IsEnum)
 #elif WinRT
             if (!enumType.IsEnum())

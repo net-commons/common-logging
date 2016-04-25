@@ -1,5 +1,9 @@
 {
   "sdk": {
-    "version": "1.0.0-beta8"
-  }
+    "version": "1.0.0-rc1-update1"
+	},
+	"projects":[
+        "Common.Logging.Core.Dnx",
+        "Common.Logging.Dnx"
+    ]
 }

@@ -45,7 +45,7 @@ namespace Common.Logging.Configuration
         /// </remarks>
         public object GetSection(string sectionName)
         {
-#if DNX451 || DNXCORE50     // No System.Configuration in DNX, replace with something DNX-specific?
+#if DOTNETCORE     // No System.Configuration in DotNetCore, replace with something DotNetCore-specific?
             return null;
 #else
 #if PORTABLE

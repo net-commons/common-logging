@@ -98,7 +98,7 @@ namespace Common.Logging.Simple
 
         private static void OutputDetails(IFormatProvider formatProvider, StringBuilder sb, Exception exception)
         {
-#if PORTABLE && !WinRT && !DNXCORE50
+#if PORTABLE && !WinRT && !DOTNETCORE
             sb.AppendFormat(formatProvider, "Thread ID : {0}\r\n", Thread.CurrentThread.ManagedThreadId);
 #endif
 
@@ -184,7 +184,7 @@ namespace Common.Logging.Simple
                 }
 
                 var enumerableValue = propertyValue as IEnumerable;
-#if WinRT || DNXCORE50
+#if WinRT || DOTNETCORE
                 var propertyTypeName = property.PropertyType.Name;
 #else
                 var propertyTypeName = property.ReflectedType.Name;
