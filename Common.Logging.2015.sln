@@ -46,9 +46,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.ApplicationI
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.ApplicationInsights0170.Tests.2013-net45", "test\Common.Logging.ApplicationInsights0170.Tests\Common.Logging.ApplicationInsights0170.Tests.2013-net45.csproj", "{9202E384-BA52-4AE8-8D1A-9059E3BCA2EC}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Common.Logging.Core.Dnx", "src\Common.Logging.Core.Dnx\Common.Logging.Core.Dnx.xproj", "{B7A3507B-7346-4FCA-8B6F-9405E50A6BD4}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Common.Logging.Core.DotNetCore", "src\Common.Logging.Core.DotNetCore\Common.Logging.Core.DotNetCore.xproj", "{B7A3507B-7346-4FCA-8B6F-9405E50A6BD4}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Common.Logging.Dnx", "src\Common.Logging.Dnx\Common.Logging.Dnx.xproj", "{62D1BD54-10D9-4F6A-BF5F-5447A55C987F}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Common.Logging.DotNetCore", "src\Common.Logging.DotNetCore\Common.Logging.DotNetCore.xproj", "{62D1BD54-10D9-4F6A-BF5F-5447A55C987F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,11 +1,11 @@
 {
   "version": "3.3.0-*",
-  "description": "Common.Logging.Dnx",
+  "description": "Common.Logging.DotNetCore",
   "compilationOptions": {
     "define": [ "PORTABLE", "DOTNETCORE" ]
   },
   "dependencies": {
-    "Common.Logging.Core.Dnx": "3.3.0-*",
+    "Common.Logging.Core.DotNetCore": "3.3.0-*",
     "Microsoft.CSharp": "4.0.0",
     "System.Collections": "4.0.10",
     "System.Linq": "4.0.0",

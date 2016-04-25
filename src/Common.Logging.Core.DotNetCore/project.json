@@ -1,6 +1,6 @@
 ﻿{
   "version": "3.3.0-*",
-  "description": "Common.Logging.Core.Dnx",
+  "description": "Common.Logging.Core.DotNetCore",
   "compilationOptions": {
     "define": [ "PORTABLE", "DOTNETCORE" ]
   },
