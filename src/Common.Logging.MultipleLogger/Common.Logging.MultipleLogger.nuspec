@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Common.Logging.MultipleLogger</id>
+    <version>0.0.0</version>
+    <!-- placeholder value replaced by build script -->
+    <authors>Aleksandar Seovic, Mark Pollack, Erich Eichinger, Stephen Bohlen</authors>
+    <owners>Aleksandar Seovic, Mark Pollack, Erich Eichinger, Stephen Bohlen</owners>
+    <projectUrl>http://netcommon.sourceforge.net/</projectUrl>
+    <iconUrl>https://raw.githubusercontent.com/net-commons/common-logging/master/nuget-graphics/common-logging-icon.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Common.Logging adapter for logging to multiple target logging frameworks at once.</description>
+    <tags>Common.Logging.MultipleLogger multiple logging log Common.Logging</tags>
+    <language>en-US</language>
+    <dependencies>
+      <dependency id="Common.Logging" version="3.3.2-Alpha1" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="..\..\build\net40\Common.Logging.MultipleLogger\Release\Common.Logging.MultipleLogger.dll" target="lib\net35" />
+    <file src="..\..\build\net40\Common.Logging.MultipleLogger\Release\Common.Logging.MultipleLogger.pdb" target="lib\net35" />
+    <file src="..\..\build\net40\Common.Logging.MultipleLogger\Release\Common.Logging.MultipleLogger.xml" target="lib\net35" />
+  </files>
+</package>
