@@ -61,4 +61,5 @@ src/Common.Logging.NLog41/Common.Logging.NLog41.xml
 src/Common.Logging/Common.Logging.xml
 src/Common.Logging.Portable/Common.Logging.Portable.xml
 src/Common.Logging.Core/Common.Logging.Core.xml
+src/Common.Logging.MultipleLogger/Common.Logging.MultipleLogger.xml
 src/Common.Logging.ApplicationInsights0170/Common.Logging.ApplicationInsights0170.xml
