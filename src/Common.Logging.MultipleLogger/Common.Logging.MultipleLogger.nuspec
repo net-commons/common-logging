@@ -17,8 +17,8 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="..\..\build\net40\Common.Logging.MultipleLogger\Release\Common.Logging.MultipleLogger.dll" target="lib\net35" />
-    <file src="..\..\build\net40\Common.Logging.MultipleLogger\Release\Common.Logging.MultipleLogger.pdb" target="lib\net35" />
-    <file src="..\..\build\net40\Common.Logging.MultipleLogger\Release\Common.Logging.MultipleLogger.xml" target="lib\net35" />
+    <file src="..\..\build\net40\Common.Logging.MultipleLogger\Release\Common.Logging.MultipleLogger.dll" target="lib\net40" />
+    <file src="..\..\build\net40\Common.Logging.MultipleLogger\Release\Common.Logging.MultipleLogger.pdb" target="lib\net40" />
+    <file src="..\..\build\net40\Common.Logging.MultipleLogger\Release\Common.Logging.MultipleLogger.xml" target="lib\net40" />
   </files>
 </package>
