@@ -54,7 +54,7 @@
       <Project>{a6a7257a-d1ae-4a09-8c1c-f55e099c8a8a}</Project>
       <Name>Common.Logging.Log4Net129.2010-net40</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\Common.Logging.MultipleLogger.2010-net40\Common.Logging.MultipleLogger.2010-net40.csproj">
+    <ProjectReference Include="..\..\src\Common.Logging.MultipleLogger\Common.Logging.MultipleLogger.2010-net40.csproj">
       <Project>{fbdba010-0ec2-4834-83e0-74a24b17d09a}</Project>
       <Name>Common.Logging.MultipleLogger.2010-net40</Name>
     </ProjectReference>

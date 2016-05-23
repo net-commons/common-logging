@@ -178,9 +178,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.Log4Net1215.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MultipleLogger", "MultipleLogger", "{9BA9A360-FD8A-480E-8916-7F6289AB3177}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.MultipleLogger.2010-net40", "src\Common.Logging.MultipleLogger.2010-net40\Common.Logging.MultipleLogger.2010-net40.csproj", "{FBDBA010-0EC2-4834-83E0-74A24B17D09A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.MultipleLogger.2010-net40", "src\Common.Logging.MultipleLogger\Common.Logging.MultipleLogger.2010-net40.csproj", "{FBDBA010-0EC2-4834-83E0-74A24B17D09A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.MultipleLogger.Tests.2010-net40", "test\Common.Logging.MultipleLogger.Tests.2010-net40\Common.Logging.MultipleLogger.Tests.2010-net40.csproj", "{45CFBF3B-71B0-48C8-A921-1194040668CC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.MultipleLogger.Tests.2010-net40", "test\Common.Logging.MultipleLogger.Tests\Common.Logging.MultipleLogger.Tests.2010-net40.csproj", "{45CFBF3B-71B0-48C8-A921-1194040668CC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
