@@ -51,11 +51,16 @@
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="Logging\ETW\ETWLogger.cs" />
+    <Compile Include="Logging\ETW\ETWLoggerFactoryAdapter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Common.Logging.Core\Common.Logging.Core.2010.csproj">
+      <Project>{7EEB2191-B3FC-4509-AA4B-A345C386EEED}</Project>
+      <Name>Common.Logging.Core.2010</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Common.Logging\Common.Logging.2010-net40.csproj">
       <Project>{440d903a-d409-48fc-a6c4-3ee69ccd663b}</Project>
       <Name>Common.Logging.2010-net40</Name>
