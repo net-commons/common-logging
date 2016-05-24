@@ -44,7 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="Class1.cs" />
+    <Compile Include="Logging\ETW\ETWLogger.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
