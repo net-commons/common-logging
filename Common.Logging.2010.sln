@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{EC54316A-A3B9-4EF5-A74C-1EC2344D0EA4}"
 	ProjectSection(SolutionItems) = preProject
@@ -181,6 +181,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.MultipleLogger.2010-net40", "src\Common.Logging.MultipleLogger\Common.Logging.MultipleLogger.2010-net40.csproj", "{FBDBA010-0EC2-4834-83E0-74A24B17D09A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.MultipleLogger.Tests.2010-net40", "test\Common.Logging.MultipleLogger.Tests\Common.Logging.MultipleLogger.Tests.2010-net40.csproj", "{45CFBF3B-71B0-48C8-A921-1194040668CC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ETWLogger", "ETWLogger", "{9A1E119A-EB79-4C34-AC05-3840D3F5C6D0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.ETWLogger.2010-net40", "src\Common.Logging.ETWLogger\Common.Logging.ETWLogger.2010-net40.csproj", "{0C801912-8AFE-47E4-BFF2-D861E688A300}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -448,6 +452,10 @@ Global
 		{45CFBF3B-71B0-48C8-A921-1194040668CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{45CFBF3B-71B0-48C8-A921-1194040668CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{45CFBF3B-71B0-48C8-A921-1194040668CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C801912-8AFE-47E4-BFF2-D861E688A300}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C801912-8AFE-47E4-BFF2-D861E688A300}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C801912-8AFE-47E4-BFF2-D861E688A300}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C801912-8AFE-47E4-BFF2-D861E688A300}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -518,6 +526,7 @@ Global
 		{30CA2352-4681-41A8-BF41-71C7D18EFE59} = {0760E89B-7FEB-45E5-9ED9-A62FD47AB733}
 		{FBDBA010-0EC2-4834-83E0-74A24B17D09A} = {9BA9A360-FD8A-480E-8916-7F6289AB3177}
 		{45CFBF3B-71B0-48C8-A921-1194040668CC} = {9BA9A360-FD8A-480E-8916-7F6289AB3177}
+		{0C801912-8AFE-47E4-BFF2-D861E688A300} = {9A1E119A-EB79-4C34-AC05-3840D3F5C6D0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		NAntAddinLastFileName = Common.Logging.build
