@@ -11,6 +11,7 @@ namespace Common.Logging.ETW
 {
     public sealed class ETWLogger : AbstractLogger
     {
+        //TODO: think carefully about how to deal with toggling these values when there's only GETTERs to override ...
         public override bool IsTraceEnabled { get; }
         public override bool IsDebugEnabled { get; }
         public override bool IsErrorEnabled { get; }
@@ -18,12 +19,11 @@ namespace Common.Logging.ETW
         public override bool IsInfoEnabled { get; }
         public override bool IsWarnEnabled { get { return true; } }
 
+        private readonly ICommonLoggingEventSource _eventSource;
 
-        public ICommonLoggingEventSource ETWEventSource { get; set; }
-
-        public ETWLogger()
+        public ETWLogger(ICommonLoggingEventSource eventSource)
         {
-            ETWEventSource = new CommonLoggingEventSource();
+            _eventSource = eventSource;
         }
 
 
@@ -32,25 +32,25 @@ namespace Common.Logging.ETW
             switch (level)
             {
                 case LogLevel.All:
-                    ETWEventSource.Trace(message.ToString());
+                    _eventSource.Trace(message.ToString());
                     break;
                 case LogLevel.Trace:
-                    ETWEventSource.Trace(message.ToString());
+                    _eventSource.Trace(message.ToString());
                     break;
                 case LogLevel.Debug:
-                    ETWEventSource.Debug(message.ToString());
+                    _eventSource.Debug(message.ToString());
                     break;
                 case LogLevel.Info:
-                    ETWEventSource.Info(message.ToString());
+                    _eventSource.Info(message.ToString());
                     break;
                 case LogLevel.Warn:
-                    ETWEventSource.Warn(message.ToString());
+                    _eventSource.Warn(message.ToString());
                     break;
                 case LogLevel.Error:
-                    ETWEventSource.Error(message.ToString());
+                    _eventSource.Error(message.ToString());
                     break;
                 case LogLevel.Fatal:
-                    ETWEventSource.Fatal(message.ToString());
+                    _eventSource.Fatal(message.ToString());
                     break;
                 case LogLevel.Off:
                     break;
