@@ -29,6 +29,7 @@ namespace Common.Logging.ETW
 
         protected override void WriteInternal(LogLevel level, object message, Exception exception)
         {
+            //TODO: determine mechanism to handle/process exception arg (and to handle case where 'message' isn't a string!)
             switch (level)
             {
                 case LogLevel.All:
