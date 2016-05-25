@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,7 +14,7 @@ namespace Common.Logging.ETW
     {
         //TODO: think carefully about how to deal with toggling these values when there's only GETTERs to override ...
         public override bool IsTraceEnabled { get; }
-        public override bool IsDebugEnabled { get; }
+        public override bool IsDebugEnabled { get { return true; } }
         public override bool IsErrorEnabled { get; }
         public override bool IsFatalEnabled { get; }
         public override bool IsInfoEnabled { get; }
@@ -29,34 +30,46 @@ namespace Common.Logging.ETW
 
         protected override void WriteInternal(LogLevel level, object message, Exception exception)
         {
-            //TODO: determine mechanism to handle/process exception arg (and to handle case where 'message' isn't a string!)
+
             switch (level)
             {
                 case LogLevel.All:
-                    _eventSource.Trace(message.ToString());
+                    InvokeMethodOnEventSource(message, exception, _eventSource.Trace, _eventSource.TraceException);
                     break;
                 case LogLevel.Trace:
-                    _eventSource.Trace(message.ToString());
+                    InvokeMethodOnEventSource(message, exception, _eventSource.Trace, _eventSource.TraceException);
                     break;
                 case LogLevel.Debug:
-                    _eventSource.Debug(message.ToString());
+                    InvokeMethodOnEventSource(message, exception, _eventSource.Debug, _eventSource.DebugException);
                     break;
                 case LogLevel.Info:
-                    _eventSource.Info(message.ToString());
+                    InvokeMethodOnEventSource(message, exception, _eventSource.Info, _eventSource.InfoException);
                     break;
                 case LogLevel.Warn:
-                    _eventSource.Warn(message.ToString());
+                    InvokeMethodOnEventSource(message, exception, _eventSource.Warn, _eventSource.WarnException);
                     break;
                 case LogLevel.Error:
-                    _eventSource.Error(message.ToString());
+                    InvokeMethodOnEventSource(message, exception, _eventSource.Error, _eventSource.ErrorException);
                     break;
                 case LogLevel.Fatal:
-                    _eventSource.Fatal(message.ToString());
+                    InvokeMethodOnEventSource(message, exception, _eventSource.Fatal, _eventSource.FatalException);
                     break;
                 case LogLevel.Off:
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(level), level, "invalid logging level");
+            }
+        }
+
+        private void InvokeMethodOnEventSource(object message, Exception exception, Action<string> noExceptionMethod, Action<string, string> exceptionMethod)
+        {
+            if (null == exception)
+            {
+                noExceptionMethod.Invoke(message.ToString());
+            }
+            else
+            {
+                exceptionMethod.Invoke(message.ToString(), exception.ToString());
             }
         }
     }

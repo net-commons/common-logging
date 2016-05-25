@@ -1,4 +1,6 @@
-﻿using Microsoft.Diagnostics.Tracing;
+﻿using System;
+using System.Diagnostics.Eventing.Reader;
+using Microsoft.Diagnostics.Tracing;
 
 namespace Common.Logging.ETW
 {
@@ -40,6 +42,45 @@ namespace Common.Logging.ETW
         {
             WriteEvent(6, message);
         }
+
+        [Event(11)]
+        public void TraceException(string message, string exception)
+        {
+            WriteEvent(11, message, exception);
+        }
+
+        [Event(12)]
+        public void DebugException(string message, string exception)
+        {
+            WriteEvent(12, message, exception);
+        }
+
+        [Event(13)]
+        public void InfoException(string message, string exception)
+        {
+            WriteEvent(13, message, exception);
+        }
+
+        [Event(14)]
+        public void WarnException(string message, string exception)
+        {
+            WriteEvent(14, message, exception);
+        }
+
+        [Event(15)]
+        public void ErrorException(string message, string exception)
+        {
+            WriteEvent(15, message, exception);
+        }
+
+        [Event(16)]
+        public void FatalException(string message, string exception)
+        {
+            WriteEvent(16, message, exception);
+        }
+
+
+
     }
 
     public interface ICommonLoggingEventSource
@@ -50,5 +91,12 @@ namespace Common.Logging.ETW
         void Warn(string message);
         void Error(string message);
         void Fatal(string message);
+
+        void TraceException(string message, string exception);
+        void DebugException(string message, string exception);
+        void InfoException(string message, string exception);
+        void WarnException(string message, string exception);
+        void ErrorException(string message, string exception);
+        void FatalException(string message, string exception);
     }
 }

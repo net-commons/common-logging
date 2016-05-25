@@ -29,6 +29,15 @@ namespace Common.Logging.ETWLogger.Tests
 
             logger.Warn("This is a test message from ETW source!");
         }
+
+        [Test]
+        public void LoggingWithException()
+        {
+            var adapter = new ETWLoggerFactoryAdapter();
+            var logger = adapter.GetLogger(typeof(TestHarness));
+
+            logger.Debug("This is a test message from ETW source!");
+        }
     }
 
 
@@ -57,7 +66,7 @@ namespace Common.Logging.ETWLogger.Tests
         public void Warn(string message)
         {
             //note: method intentionally ignores the 'message' arg passed in order to demonstrate different behavior in the test
-            WriteEvent(4,"This is a message from a custom logging source class.");
+            WriteEvent(4, "This is a message from a custom logging source class.");
         }
 
         [Event(5)]
@@ -71,5 +80,42 @@ namespace Common.Logging.ETWLogger.Tests
         {
             throw new NotImplementedException();
         }
+
+        [Event(11)]
+        public void TraceException(string message, string exception)
+        {
+            throw new NotImplementedException();
+        }
+
+        [Event(12)]
+        public void DebugException(string message, string exception)
+        {
+            throw new NotImplementedException();
+        }
+
+        [Event(13)]
+        public void InfoException(string message, string exception)
+        {
+            throw new NotImplementedException();
+        }
+
+        [Event(14)]
+        public void WarnException(string message, string exception)
+        {
+            throw new NotImplementedException();
+        }
+
+        [Event(15)]
+        public void ErrorException(string message, string exception)
+        {
+            throw new NotImplementedException();
+        }
+
+        [Event(16)]
+        public void FatalException(string message, string exception)
+        {
+            throw new NotImplementedException();
+        }
+        
     }
 }
