@@ -51,8 +51,10 @@
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="Logging\ETW\ETWLogger.cs" />
+    <Compile Include="Logging\ETW\ETWLoggerConfiguration.cs" />
     <Compile Include="Logging\ETW\ETWLoggerFactoryAdapter.cs" />
     <Compile Include="Logging\ETW\CommonLoggingEventSource.cs" />
+    <Compile Include="Logging\ETW\ICommonLoggingEventSource.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />

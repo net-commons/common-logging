@@ -12,19 +12,21 @@ namespace Common.Logging.ETW
 {
     public sealed class ETWLogger : AbstractLogger
     {
-        //TODO: think carefully about how to deal with toggling these values when there's only GETTERs to override ...
-        public override bool IsTraceEnabled { get; }
-        public override bool IsDebugEnabled { get { return true; } }
-        public override bool IsErrorEnabled { get; }
-        public override bool IsFatalEnabled { get; }
-        public override bool IsInfoEnabled { get; }
-        public override bool IsWarnEnabled { get { return true; } }
+        public override bool IsTraceEnabled { get { return Configuration.IsTraceEnabled; } }
+        public override bool IsDebugEnabled { get { return Configuration.IsDebugEnabled; } }
+        public override bool IsErrorEnabled { get { return Configuration.IsErrorEnabled; } }
+        public override bool IsFatalEnabled { get { return Configuration.IsFatalEnabled; } }
+        public override bool IsInfoEnabled { get { return Configuration.IsInfoEnabled; } }
+        public override bool IsWarnEnabled { get { return Configuration.IsWarnEnabled; } }
+
+        public ETWLoggerConfiguration Configuration { private get; set; }
 
         private readonly ICommonLoggingEventSource _eventSource;
 
         public ETWLogger(ICommonLoggingEventSource eventSource)
         {
             _eventSource = eventSource;
+            Configuration = new ETWLoggerConfiguration();
         }
 
 
