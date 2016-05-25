@@ -5,328 +5,58 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Diagnostics.Tracing;
 using Common.Logging;
+using Common.Logging.Factory;
 
 namespace Common.Logging.ETW
 {
-    public class ETWLogger : EventSource, ILog
+    public sealed class ETWLogger : AbstractLogger
     {
+        public override bool IsTraceEnabled { get; }
+        public override bool IsDebugEnabled { get; }
+        public override bool IsErrorEnabled { get; }
+        public override bool IsFatalEnabled { get; }
+        public override bool IsInfoEnabled { get; }
+        public override bool IsWarnEnabled { get { return true; } }
 
-        
 
-        
-        #region ILog members
+        public ICommonLoggingEventSource ETWEventSource { get; set; }
 
-        public void Trace(object message)
+        public ETWLogger()
         {
-            throw new NotImplementedException();
+            ETWEventSource = new CommonLoggingEventSource();
         }
 
-        public void Trace(object message, Exception exception)
+
+        protected override void WriteInternal(LogLevel level, object message, Exception exception)
         {
-            throw new NotImplementedException();
+            switch (level)
+            {
+                case LogLevel.All:
+                    ETWEventSource.Trace(message.ToString());
+                    break;
+                case LogLevel.Trace:
+                    ETWEventSource.Trace(message.ToString());
+                    break;
+                case LogLevel.Debug:
+                    ETWEventSource.Debug(message.ToString());
+                    break;
+                case LogLevel.Info:
+                    ETWEventSource.Info(message.ToString());
+                    break;
+                case LogLevel.Warn:
+                    ETWEventSource.Warn(message.ToString());
+                    break;
+                case LogLevel.Error:
+                    ETWEventSource.Error(message.ToString());
+                    break;
+                case LogLevel.Fatal:
+                    ETWEventSource.Fatal(message.ToString());
+                    break;
+                case LogLevel.Off:
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(level), level, "invalid logging level");
+            }
         }
-
-        public void TraceFormat(string format, params object[] args)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void TraceFormat(string format, Exception exception, params object[] args)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void TraceFormat(IFormatProvider formatProvider, string format, params object[] args)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void TraceFormat(IFormatProvider formatProvider, string format, Exception exception, params object[] args)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Trace(Action<FormatMessageHandler> formatMessageCallback)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Trace(Action<FormatMessageHandler> formatMessageCallback, Exception exception)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Trace(IFormatProvider formatProvider, Action<FormatMessageHandler> formatMessageCallback)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Trace(IFormatProvider formatProvider, Action<FormatMessageHandler> formatMessageCallback, Exception exception)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Debug(object message)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Debug(object message, Exception exception)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void DebugFormat(string format, params object[] args)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void DebugFormat(string format, Exception exception, params object[] args)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void DebugFormat(IFormatProvider formatProvider, string format, params object[] args)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void DebugFormat(IFormatProvider formatProvider, string format, Exception exception, params object[] args)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Debug(Action<FormatMessageHandler> formatMessageCallback)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Debug(Action<FormatMessageHandler> formatMessageCallback, Exception exception)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Debug(IFormatProvider formatProvider, Action<FormatMessageHandler> formatMessageCallback)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Debug(IFormatProvider formatProvider, Action<FormatMessageHandler> formatMessageCallback, Exception exception)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Info(object message)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Info(object message, Exception exception)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void InfoFormat(string format, params object[] args)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void InfoFormat(string format, Exception exception, params object[] args)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void InfoFormat(IFormatProvider formatProvider, string format, params object[] args)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void InfoFormat(IFormatProvider formatProvider, string format, Exception exception, params object[] args)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Info(Action<FormatMessageHandler> formatMessageCallback)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Info(Action<FormatMessageHandler> formatMessageCallback, Exception exception)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Info(IFormatProvider formatProvider, Action<FormatMessageHandler> formatMessageCallback)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Info(IFormatProvider formatProvider, Action<FormatMessageHandler> formatMessageCallback, Exception exception)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Warn(object message)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Warn(object message, Exception exception)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void WarnFormat(string format, params object[] args)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void WarnFormat(string format, Exception exception, params object[] args)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void WarnFormat(IFormatProvider formatProvider, string format, params object[] args)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void WarnFormat(IFormatProvider formatProvider, string format, Exception exception, params object[] args)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Warn(Action<FormatMessageHandler> formatMessageCallback)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Warn(Action<FormatMessageHandler> formatMessageCallback, Exception exception)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Warn(IFormatProvider formatProvider, Action<FormatMessageHandler> formatMessageCallback)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Warn(IFormatProvider formatProvider, Action<FormatMessageHandler> formatMessageCallback, Exception exception)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Error(object message)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Error(object message, Exception exception)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void ErrorFormat(string format, params object[] args)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void ErrorFormat(string format, Exception exception, params object[] args)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void ErrorFormat(IFormatProvider formatProvider, string format, params object[] args)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void ErrorFormat(IFormatProvider formatProvider, string format, Exception exception, params object[] args)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Error(Action<FormatMessageHandler> formatMessageCallback)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Error(Action<FormatMessageHandler> formatMessageCallback, Exception exception)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Error(IFormatProvider formatProvider, Action<FormatMessageHandler> formatMessageCallback)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Error(IFormatProvider formatProvider, Action<FormatMessageHandler> formatMessageCallback, Exception exception)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Fatal(object message)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Fatal(object message, Exception exception)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void FatalFormat(string format, params object[] args)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void FatalFormat(string format, Exception exception, params object[] args)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void FatalFormat(IFormatProvider formatProvider, string format, params object[] args)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void FatalFormat(IFormatProvider formatProvider, string format, Exception exception, params object[] args)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Fatal(Action<FormatMessageHandler> formatMessageCallback)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Fatal(Action<FormatMessageHandler> formatMessageCallback, Exception exception)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Fatal(IFormatProvider formatProvider, Action<FormatMessageHandler> formatMessageCallback)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Fatal(IFormatProvider formatProvider, Action<FormatMessageHandler> formatMessageCallback, Exception exception)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool IsTraceEnabled { get; }
-        public bool IsDebugEnabled { get; }
-        public bool IsErrorEnabled { get; }
-        public bool IsFatalEnabled { get; }
-        public bool IsInfoEnabled { get; }
-        public bool IsWarnEnabled { get; }
-        public IVariablesContext GlobalVariablesContext { get; }
-        public IVariablesContext ThreadVariablesContext { get; }
-
-        #endregion
     }
-
-
 }

@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{0C801912-8AFE-47E4-BFF2-D861E688A300}</ProjectGuid>
+    <ProjectGuid>{FAF6E2F6-55CB-4870-85C5-32F5505BD677}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Common.Logging.ETWLogger</RootNamespace>
-    <AssemblyName>Common.Logging.ETWLogger</AssemblyName>
+    <RootNamespace>Common.Logging.ETWLogger.Tests</RootNamespace>
+    <AssemblyName>Common.Logging.ETWLogger.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -19,25 +19,26 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\build\net40\Common.Logging.ETWLogger\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE;NET_4_0</DefineConstants>
+    <OutputPath>..\..\build\net40\Common.Logging.ETWLogger.Tests\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;NET_4_0</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>..\..\build\net40\Common.Logging.ETWLogger\Debug\Common.Logging.ETWLogger.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\build\net40\Common.Logging.ETWLogger\Release\</OutputPath>
+    <OutputPath>..\..\build\net40\Common.Logging.ETWLogger.Tests\Release\</OutputPath>
     <DefineConstants>TRACE;NET_4_0</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>..\..\build\net40\Common.Logging.ETWLogger\Release\Common.Logging.ETWLogger.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Diagnostics.Tracing.EventSource, Version=1.1.28.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.Diagnostics.Tracing.EventSource.Redist.1.1.28\lib\net40\Microsoft.Diagnostics.Tracing.EventSource.dll</HintPath>
       <Private>True</Private>
+    </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>..\..\lib\net\2.0\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -49,20 +50,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="Logging\ETW\ETWLogger.cs" />
-    <Compile Include="Logging\ETW\ETWLoggerFactoryAdapter.cs" />
-    <Compile Include="Logging\ETW\CommonLoggingEventSource.cs" />
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Common.Logging.Core\Common.Logging.Core.2010.csproj">
-      <Project>{7EEB2191-B3FC-4509-AA4B-A345C386EEED}</Project>
+    <Compile Include="Logging\ETWLogger\TestHarness.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Common.Logging.Core\Common.Logging.Core.2010.csproj">
+      <Project>{7eeb2191-b3fc-4509-aa4b-a345c386eeed}</Project>
       <Name>Common.Logging.Core.2010</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Common.Logging\Common.Logging.2010-net40.csproj">
+    <ProjectReference Include="..\..\src\Common.Logging.ETWLogger\Common.Logging.ETWLogger.2010-net40.csproj">
+      <Project>{0c801912-8afe-47e4-bff2-d861e688a300}</Project>
+      <Name>Common.Logging.ETWLogger.2010-net40</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Common.Logging\Common.Logging.2010-net40.csproj">
       <Project>{440d903a-d409-48fc-a6c4-3ee69ccd663b}</Project>
       <Name>Common.Logging.2010-net40</Name>
     </ProjectReference>

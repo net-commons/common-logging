@@ -186,6 +186,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ETWLogger", "ETWLogger", "{
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.ETWLogger.2010-net40", "src\Common.Logging.ETWLogger\Common.Logging.ETWLogger.2010-net40.csproj", "{0C801912-8AFE-47E4-BFF2-D861E688A300}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging.ETWLogger.Tests.2010-net40", "test\Common.Logging.ETWLogger.Tests\Common.Logging.ETWLogger.Tests.2010-net40.csproj", "{FAF6E2F6-55CB-4870-85C5-32F5505BD677}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -456,6 +458,10 @@ Global
 		{0C801912-8AFE-47E4-BFF2-D861E688A300}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0C801912-8AFE-47E4-BFF2-D861E688A300}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0C801912-8AFE-47E4-BFF2-D861E688A300}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FAF6E2F6-55CB-4870-85C5-32F5505BD677}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FAF6E2F6-55CB-4870-85C5-32F5505BD677}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FAF6E2F6-55CB-4870-85C5-32F5505BD677}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FAF6E2F6-55CB-4870-85C5-32F5505BD677}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -527,6 +533,7 @@ Global
 		{FBDBA010-0EC2-4834-83E0-74A24B17D09A} = {9BA9A360-FD8A-480E-8916-7F6289AB3177}
 		{45CFBF3B-71B0-48C8-A921-1194040668CC} = {9BA9A360-FD8A-480E-8916-7F6289AB3177}
 		{0C801912-8AFE-47E4-BFF2-D861E688A300} = {9A1E119A-EB79-4C34-AC05-3840D3F5C6D0}
+		{FAF6E2F6-55CB-4870-85C5-32F5505BD677} = {9A1E119A-EB79-4C34-AC05-3840D3F5C6D0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		NAntAddinLastFileName = Common.Logging.build
