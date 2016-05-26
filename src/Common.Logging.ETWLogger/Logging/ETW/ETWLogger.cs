@@ -24,9 +24,13 @@ namespace Common.Logging.ETW
         private readonly ICommonLoggingEventSource _eventSource;
 
         public ETWLogger(ICommonLoggingEventSource eventSource)
+            : this(eventSource, new ETWLoggerConfiguration())
+        { }
+
+        public ETWLogger(ICommonLoggingEventSource eventSource, ETWLoggerConfiguration configuration)
         {
             _eventSource = eventSource;
-            Configuration = new ETWLoggerConfiguration();
+            Configuration = configuration;
         }
 
 

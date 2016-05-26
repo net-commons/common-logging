@@ -64,7 +64,7 @@ namespace Common.Logging.NLog
     public class NLogLoggerFactoryAdapter : AbstractCachingLoggerFactoryAdapter
     {
          /// <summary>
-        /// Constructor for binary backwards compatibility with non-portableversions
+        /// Constructor for binary backwards compatibility with non-portable versions
         /// </summary>
         /// <param name="properties">The properties.</param>
         [Obsolete("Use Constructor taking Common.Logging.Configuration.NameValueCollection instead")]

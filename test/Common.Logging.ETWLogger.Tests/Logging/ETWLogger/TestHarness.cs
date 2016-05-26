@@ -27,7 +27,7 @@ namespace Common.Logging.ETWLogger.Tests
             adapter.ETWEventSource = new MyTestLoggerEventSource();
             var logger = adapter.GetLogger(typeof(TestHarness));
 
-            logger.Warn("This is a test message from ETW source!");
+            logger.Warn("This message should never appear in the ETW logs b/c its ignored by the custom logger!");
         }
 
         [Test]
