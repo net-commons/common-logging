@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Common.Logging.Configuration;
 using Common.Logging.ETW;
 using Microsoft.Diagnostics.Tracing;
 using NUnit.Framework;
@@ -37,6 +38,16 @@ namespace Common.Logging.ETWLogger.Tests
             var logger = adapter.GetLogger(typeof(TestHarness));
 
             logger.Debug("This is a test message from ETW source!");
+        }
+
+
+        [Test]
+        public void MyMethod()
+        {
+            var props = new NameValueCollection { { "level", "debug" } };
+            var adapter = new ETWLoggerFactoryAdapter(props);
+
+            Assert.That(adapter.Configuration.IsTraceEnabled);
         }
     }
 
@@ -116,6 +127,6 @@ namespace Common.Logging.ETWLogger.Tests
         {
             throw new NotImplementedException();
         }
-        
+
     }
 }

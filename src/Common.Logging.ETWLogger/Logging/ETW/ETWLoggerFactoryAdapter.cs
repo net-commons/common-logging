@@ -49,48 +49,50 @@ namespace Common.Logging.ETW
                 ETWEventSource = new CommonLoggingEventSource();
             }
 
-            //read any enable/disable logging types and react accordingly
-            var isTraceEnabled = properties?["isTraceEnabled"];
-            var isDebugEnabled = properties?["isDebugEnabled"];
-            var isErrorEnabled = properties?["isErrorEnabled"];
-            var isFatalEnabled = properties?["isFatalEnabled"];
-            var isInfoEnabled = properties?["isInfoEnabled"];
-            var isWarnEnabled = properties?["isWarnEnabled"];
+            //as a default, we log NOTHING
+            LogLevel logLevel = LogLevel.Off;
 
-            //create a collection of these to make it simpler to analyze whether any are actually specified
-            var enablingDirectives = new List<string>
-            {
-                isTraceEnabled,
-                isDebugEnabled,
-                isErrorEnabled,
-                isFatalEnabled,
-                isInfoEnabled,
-                isWarnEnabled
-            };
+            //read the value from the config
+            var levelSetting = properties?["level"];
 
-            //if any enabling directives are set ...
-            if (enablingDirectives.Any(setting => setting != null))
+            //if we have a value, react accordingly
+            if (!string.IsNullOrWhiteSpace(levelSetting))
             {
-                //...create a config instance with all properties set to specified values, defaulting to FALSE
-                //  for any values unspecified in properties
-                var config = new ETWLoggerConfiguration
+                switch (levelSetting.ToUpper())
                 {
-                    IsTraceEnabled = IsSettingEnabled(isTraceEnabled),
-                    IsDebugEnabled = IsSettingEnabled(isDebugEnabled),
-                    IsErrorEnabled = IsSettingEnabled(isErrorEnabled),
-                    IsFatalEnabled = IsSettingEnabled(isFatalEnabled),
-                    IsInfoEnabled = IsSettingEnabled(isInfoEnabled),
-                    IsWarnEnabled = IsSettingEnabled(isWarnEnabled)
-                };
+                    case "TRACE":
+                        logLevel = LogLevel.Trace;
+                        break;
 
-                Configuration = config;
+                    case "DEBUG":
+                        logLevel = LogLevel.Debug | LogLevel.Trace;
+                        break;
+
+                    case "INFO":
+                        logLevel = LogLevel.Info | LogLevel.Debug | LogLevel.Trace;
+                        break;
+
+                    case "WARN":
+                        logLevel = LogLevel.Warn | LogLevel.Info | LogLevel.Debug | LogLevel.Trace;
+                        break;
+
+                    case "ERROR":
+                        logLevel = LogLevel.Error | LogLevel.Warn | LogLevel.Info | LogLevel.Debug | LogLevel.Trace;
+                        break;
+
+                    case "FATAL":
+                    case "ALL":
+                        logLevel = LogLevel.Fatal | LogLevel.Error | LogLevel.Warn | LogLevel.Info | LogLevel.Debug | LogLevel.Trace;
+                        break;
+
+                    //if we don't get a valid value, throw
+                    default:
+                        throw new ConfigurationException("Invalid value for 'level' argument in configuration.");
+                }
 
             }
-            else
-            {
-                //...else just create the configuration object with all defaults
-                Configuration = new ETWLoggerConfiguration();
-            }
+
+            Configuration = new ETWLoggerConfiguration() { LogLevel = logLevel };
         }
 
         private bool IsSettingEnabled(string setting)
