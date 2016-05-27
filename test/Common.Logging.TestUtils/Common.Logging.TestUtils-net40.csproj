@@ -67,6 +67,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Logging\ILogTestsBase.cs" />
+    <Compile Include="Logging\StandaloneConfigurationReader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestUtil\CapturingTraceListener.cs" />
     <Compile Include="TestUtil\SecurityTemplate.cs" />
