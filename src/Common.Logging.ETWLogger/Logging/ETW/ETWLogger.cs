@@ -68,7 +68,7 @@ namespace Common.Logging.ETW
                     break;
 
                 default:
-                    throw new ArgumentOutOfRangeException(nameof(level), level, "invalid logging level");
+                    throw new ArgumentOutOfRangeException("level", level, "invalid logging level");
             }
         }
 
