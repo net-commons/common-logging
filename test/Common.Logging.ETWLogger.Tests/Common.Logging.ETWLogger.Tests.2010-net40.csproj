@@ -53,7 +53,10 @@
     <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Logging\ETWLogger\TestHarness.cs" />
+    <Compile Include="Logging\ETWLogger\BasicIntegrationTestHarness.cs" />
+    <Compile Include="Logging\ETWLogger\ETWLoggerFactoryAdapterConfigurationTests.cs" />
+    <Compile Include="Logging\ETWLogger\ETWLoggerTests.cs" />
+    <Compile Include="Logging\ETWLogger\MyCustomEventSource.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\Common.Logging.Core\Common.Logging.Core.2010.csproj">
