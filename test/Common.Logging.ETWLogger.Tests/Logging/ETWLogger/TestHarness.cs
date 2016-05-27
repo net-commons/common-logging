@@ -49,7 +49,7 @@ namespace Common.Logging.ETWLogger.Tests
 
             var logger = adapter.GetLogger("");
 
-            Assert.That(logger.IsTraceEnabled);
+            Assert.That(logger.IsFatalEnabled);
         }
     }
 

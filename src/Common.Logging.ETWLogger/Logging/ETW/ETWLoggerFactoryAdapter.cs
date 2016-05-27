@@ -20,9 +20,9 @@ namespace Common.Logging.ETW
             : base(true)
         {
             //assign an instance of a custom ICommonLoggingEventSource if specified, else use default type
-            var commonLoggingEventSourceTypeDescriptor = properties?["commonLoggingEventSourceType"];
+            var commonLoggingEventSourceTypeDescriptor = ArgUtils.TryParse(string.Empty, ArgUtils.GetValue(properties, "commonLoggingEventSourceType"));
 
-            if (commonLoggingEventSourceTypeDescriptor != null)
+            if (!string.IsNullOrEmpty(commonLoggingEventSourceTypeDescriptor))
             {
                 var type = Type.GetType(commonLoggingEventSourceTypeDescriptor);
 
@@ -40,7 +40,7 @@ namespace Common.Logging.ETW
                     }
                     catch (Exception exception) //no matter the underlying exception type we want to report it as a Config Exception
                     {
-                        throw new ConfigurationException("Error in commonLoggingEventSourceType property.", exception);
+                        throw new ConfigurationException("Error in 'commonLoggingEventSourceType' arg.", exception);
                     }
                 }
             }
@@ -49,50 +49,41 @@ namespace Common.Logging.ETW
                 ETWEventSource = new CommonLoggingEventSource();
             }
 
-            //as a default, we log NOTHING
-            LogLevel logLevel = LogLevel.Off;
+            //set the logging level; default to ALL
+            var levelSetting = ArgUtils.TryParseEnum(LogLevel.All, ArgUtils.GetValue(properties, "level"));
 
-            //read the value from the config
-            var levelSetting = properties?["level"];
-
-            //if we have a value, react accordingly
-            if (!string.IsNullOrWhiteSpace(levelSetting))
+            switch (levelSetting)
             {
-                switch (levelSetting.ToUpper())
-                {
-                    case "TRACE":
-                        logLevel = LogLevel.Trace;
-                        break;
+                case LogLevel.Trace:
+                case LogLevel.All:
+                    LogLevel = LogLevel.Trace | LogLevel.Debug | LogLevel.Info | LogLevel.Warn | LogLevel.Error | LogLevel.Fatal;
+                    break;
 
-                    case "DEBUG":
-                        logLevel = LogLevel.Debug | LogLevel.Trace;
-                        break;
+                case LogLevel.Debug:
+                    LogLevel = LogLevel.Debug | LogLevel.Info | LogLevel.Warn | LogLevel.Error | LogLevel.Fatal;
+                    break;
 
-                    case "INFO":
-                        logLevel = LogLevel.Info | LogLevel.Debug | LogLevel.Trace;
-                        break;
+                case LogLevel.Info:
+                    LogLevel = LogLevel.Info | LogLevel.Warn | LogLevel.Error | LogLevel.Fatal;
+                    break;
 
-                    case "WARN":
-                        logLevel = LogLevel.Warn | LogLevel.Info | LogLevel.Debug | LogLevel.Trace;
-                        break;
+                case LogLevel.Warn:
+                    LogLevel = LogLevel.Warn | LogLevel.Error | LogLevel.Fatal;
+                    break;
 
-                    case "ERROR":
-                        logLevel = LogLevel.Error | LogLevel.Warn | LogLevel.Info | LogLevel.Debug | LogLevel.Trace;
-                        break;
+                case LogLevel.Error:
+                    LogLevel = LogLevel.Error | LogLevel.Fatal;
+                    break;
 
-                    case "FATAL":
-                    case "ALL":
-                        logLevel = LogLevel.Fatal | LogLevel.Error | LogLevel.Warn | LogLevel.Info | LogLevel.Debug | LogLevel.Trace;
-                        break;
+                case LogLevel.Fatal:
+                    LogLevel = LogLevel.Fatal;
+                    break;
 
-                    //if we don't get a valid value, throw
-                    default:
-                        throw new ConfigurationException("Invalid value for 'level' argument in configuration.");
-                }
-
+                case LogLevel.Off:
+                default:
+                    break;
             }
-
-            LogLevel = logLevel;
+            
         }
 
         protected override ILog CreateLogger(string name)
