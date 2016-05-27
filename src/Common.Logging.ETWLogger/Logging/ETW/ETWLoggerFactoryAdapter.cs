@@ -29,7 +29,9 @@ namespace Common.Logging.ETW
                 if (null == type)
                 {
                     throw new ConfigurationException(
-                        $"Error in 'commonLoggingEventSourceType' arg.  Unable to determine TYPE information from value {commonLoggingEventSourceTypeDescriptor}");
+                        string.Format(
+                            "Error in 'commonLoggingEventSourceType' arg.  Unable to determine TYPE information from value {0}",
+                            commonLoggingEventSourceTypeDescriptor));
                 }
 
                 try
