@@ -8,7 +8,7 @@ namespace Common.Logging.ETW
 {
     public class ETWLoggerFactoryAdapter : AbstractCachingLoggerFactoryAdapter
     {
-        public ETWLoggerConfiguration Configuration { get; set; }
+        public LogLevel LogLevel { get; set; }
 
         public ICommonLoggingEventSource ETWEventSource { get; set; }
 
@@ -92,23 +92,14 @@ namespace Common.Logging.ETW
 
             }
 
-            Configuration = new ETWLoggerConfiguration() { LogLevel = logLevel };
+            LogLevel = logLevel;
         }
-
-        private bool IsSettingEnabled(string setting)
-        {
-            if (null == setting)
-                return false;
-
-            return setting.ToUpper() == "TRUE" || setting == "1" || setting == "YES";
-        }
-
 
         protected override ILog CreateLogger(string name)
         {
             //TODO: determine whether we should be bothering to respect the 'name' arg here
             //  (probably NOT b/c ETW doesn't actually rely upon diff. instances of loggers for diff. types)
-            return new ETWLogger(ETWEventSource, Configuration);
+            return new ETWLogger(ETWEventSource, LogLevel);
         }
     }
 }

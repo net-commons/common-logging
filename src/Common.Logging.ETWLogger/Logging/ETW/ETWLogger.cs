@@ -12,25 +12,25 @@ namespace Common.Logging.ETW
 {
     public sealed class ETWLogger : AbstractLogger
     {
-        public override bool IsTraceEnabled { get { return Configuration.IsTraceEnabled; } }
-        public override bool IsDebugEnabled { get { return Configuration.IsDebugEnabled; } }
-        public override bool IsErrorEnabled { get { return Configuration.IsErrorEnabled; } }
-        public override bool IsFatalEnabled { get { return Configuration.IsFatalEnabled; } }
-        public override bool IsInfoEnabled { get { return Configuration.IsInfoEnabled; } }
-        public override bool IsWarnEnabled { get { return Configuration.IsWarnEnabled; } }
+        public override bool IsTraceEnabled { get { return _logLevel.HasFlag(LogLevel.Trace); } }
+        public override bool IsDebugEnabled { get { return _logLevel.HasFlag(LogLevel.Debug); } }
+        public override bool IsErrorEnabled { get { return _logLevel.HasFlag(LogLevel.Error); } }
+        public override bool IsFatalEnabled { get { return _logLevel.HasFlag(LogLevel.Fatal); } }
+        public override bool IsInfoEnabled { get { return _logLevel.HasFlag(LogLevel.Info); } }
+        public override bool IsWarnEnabled { get { return _logLevel.HasFlag(LogLevel.Warn); } }
 
-        public ETWLoggerConfiguration Configuration { private get; set; }
-
+        
         private readonly ICommonLoggingEventSource _eventSource;
+        private LogLevel _logLevel;
 
         public ETWLogger(ICommonLoggingEventSource eventSource)
-            : this(eventSource, new ETWLoggerConfiguration())
+            : this(eventSource, LogLevel.All)
         { }
 
-        public ETWLogger(ICommonLoggingEventSource eventSource, ETWLoggerConfiguration configuration)
+        public ETWLogger(ICommonLoggingEventSource eventSource, LogLevel logLevel)
         {
             _eventSource = eventSource;
-            Configuration = configuration;
+            _logLevel = logLevel;
         }
 
 

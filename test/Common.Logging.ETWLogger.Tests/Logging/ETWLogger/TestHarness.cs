@@ -47,7 +47,9 @@ namespace Common.Logging.ETWLogger.Tests
             var props = new NameValueCollection { { "level", "debug" } };
             var adapter = new ETWLoggerFactoryAdapter(props);
 
-            Assert.That(adapter.Configuration.IsTraceEnabled);
+            var logger = adapter.GetLogger("");
+
+            Assert.That(logger.IsTraceEnabled);
         }
     }
 
