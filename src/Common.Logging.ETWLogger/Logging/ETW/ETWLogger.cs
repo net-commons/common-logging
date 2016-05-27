@@ -40,28 +40,33 @@ namespace Common.Logging.ETW
             switch (level)
             {
                 case LogLevel.All:
-                    InvokeMethodOnEventSource(message, exception, _eventSource.Trace, _eventSource.TraceException);
-                    break;
                 case LogLevel.Trace:
                     InvokeMethodOnEventSource(message, exception, _eventSource.Trace, _eventSource.TraceException);
                     break;
+                
                 case LogLevel.Debug:
                     InvokeMethodOnEventSource(message, exception, _eventSource.Debug, _eventSource.DebugException);
                     break;
+
                 case LogLevel.Info:
                     InvokeMethodOnEventSource(message, exception, _eventSource.Info, _eventSource.InfoException);
                     break;
+
                 case LogLevel.Warn:
                     InvokeMethodOnEventSource(message, exception, _eventSource.Warn, _eventSource.WarnException);
                     break;
+
                 case LogLevel.Error:
                     InvokeMethodOnEventSource(message, exception, _eventSource.Error, _eventSource.ErrorException);
                     break;
+
                 case LogLevel.Fatal:
                     InvokeMethodOnEventSource(message, exception, _eventSource.Fatal, _eventSource.FatalException);
                     break;
+
                 case LogLevel.Off:
                     break;
+
                 default:
                     throw new ArgumentOutOfRangeException(nameof(level), level, "invalid logging level");
             }

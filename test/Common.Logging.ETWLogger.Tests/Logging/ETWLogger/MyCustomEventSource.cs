@@ -28,6 +28,7 @@ namespace Common.Logging.ETWLogger.Tests
         public void Warn(string message)
         {
             //note: method intentionally ignores the 'message' arg passed in order to demonstrate different behavior in the test
+            // that can be seen when reviewing ETW output via e.g., PerfView or other tools
             WriteEvent(4, "This is a message from a custom logging source class.");
         }
 

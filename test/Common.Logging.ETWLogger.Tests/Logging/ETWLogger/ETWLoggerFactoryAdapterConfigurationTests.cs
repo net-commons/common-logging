@@ -12,12 +12,12 @@ namespace Common.Logging.ETWLogger.Tests
         {
             const string xml =
                 @"<?xml version='1.0' encoding='UTF-8' ?>
-    <logging>
-      <factoryAdapter type='Common.Logging.ETW.ETWLoggerFactoryAdapter, Common.Logging.ETWLogger'>
-      </factoryAdapter>
-    </logging>";
-            StandaloneConfigurationReader reader = new StandaloneConfigurationReader(xml);
-            LogSetting setting = reader.GetSection(null) as LogSetting;
+                <logging>
+                  <factoryAdapter type='Common.Logging.ETW.ETWLoggerFactoryAdapter, Common.Logging.ETWLogger'>
+                  </factoryAdapter>
+                </logging>";
+            var reader = new StandaloneConfigurationReader(xml);
+            var setting = reader.GetSection(null) as LogSetting;
 
 
             Assume.That(setting, Is.Not.Null, "Failed to parse config to create expected LogSetting instance.");
@@ -34,13 +34,13 @@ namespace Common.Logging.ETWLogger.Tests
         {
             const string xml =
                 @"<?xml version='1.0' encoding='UTF-8' ?>
-    <logging>
-      <factoryAdapter type='Common.Logging.ETW.ETWLoggerFactoryAdapter, Common.Logging.ETWLogger'>
-        arg key='level' value='warn' />
-      </factoryAdapter>
-    </logging>";
-            StandaloneConfigurationReader reader = new StandaloneConfigurationReader(xml);
-            LogSetting setting = reader.GetSection(null) as LogSetting;
+                <logging>
+                  <factoryAdapter type='Common.Logging.ETW.ETWLoggerFactoryAdapter, Common.Logging.ETWLogger'>
+                    arg key='level' value='warn' />
+                  </factoryAdapter>
+                </logging>";
+            var reader = new StandaloneConfigurationReader(xml);
+            var setting = reader.GetSection(null) as LogSetting;
 
 
             Assume.That(setting, Is.Not.Null, "Failed to parse config to create expected LogSetting instance.");
@@ -57,12 +57,12 @@ namespace Common.Logging.ETWLogger.Tests
         {
             const string xml =
                 @"<?xml version='1.0' encoding='UTF-8' ?>
-    <logging>
-      <factoryAdapter type='Common.Logging.ETW.ETWLoggerFactoryAdapter, Common.Logging.ETWLogger'>
-      </factoryAdapter>
-    </logging>";
-            StandaloneConfigurationReader reader = new StandaloneConfigurationReader(xml);
-            LogSetting setting = reader.GetSection(null) as LogSetting;
+                <logging>
+                  <factoryAdapter type='Common.Logging.ETW.ETWLoggerFactoryAdapter, Common.Logging.ETWLogger'>
+                  </factoryAdapter>
+                </logging>";
+            var reader = new StandaloneConfigurationReader(xml);
+            var setting = reader.GetSection(null) as LogSetting;
 
 
             Assume.That(setting, Is.Not.Null, "Failed to parse config to create expected LogSetting instance.");
@@ -79,13 +79,13 @@ namespace Common.Logging.ETWLogger.Tests
         {
             const string xml =
                 @"<?xml version='1.0' encoding='UTF-8' ?>
-    <logging>
-      <factoryAdapter type='Common.Logging.ETW.ETWLoggerFactoryAdapter, Common.Logging.ETWLogger'>
-        <arg key='commonLoggingEventSourceType' value='Common.Logging.ETWLogger.Tests.MyCustomEventSource,Common.Logging.ETWLogger.Tests'/>
-      </factoryAdapter>
-    </logging>";
-            StandaloneConfigurationReader reader = new StandaloneConfigurationReader(xml);
-            LogSetting setting = reader.GetSection(null) as LogSetting;
+                <logging>
+                  <factoryAdapter type='Common.Logging.ETW.ETWLoggerFactoryAdapter, Common.Logging.ETWLogger'>
+                    <arg key='commonLoggingEventSourceType' value='Common.Logging.ETWLogger.Tests.MyCustomEventSource,Common.Logging.ETWLogger.Tests'/>
+                  </factoryAdapter>
+                </logging>";
+            var reader = new StandaloneConfigurationReader(xml);
+            var setting = reader.GetSection(null) as LogSetting;
 
 
             Assume.That(setting, Is.Not.Null, "Failed to parse config to create expected LogSetting instance.");
@@ -103,13 +103,13 @@ namespace Common.Logging.ETWLogger.Tests
         {
             const string xml =
                 @"<?xml version='1.0' encoding='UTF-8' ?>
-    <logging>
-      <factoryAdapter type='Common.Logging.ETW.ETWLoggerFactoryAdapter, Common.Logging.ETWLogger'>
-        <arg key='commonLoggingEventSourceType' value='I am not a type specification.'/>
-      </factoryAdapter>
-    </logging>";
-            StandaloneConfigurationReader reader = new StandaloneConfigurationReader(xml);
-            LogSetting setting = reader.GetSection(null) as LogSetting;
+                <logging>
+                  <factoryAdapter type='Common.Logging.ETW.ETWLoggerFactoryAdapter, Common.Logging.ETWLogger'>
+                    <arg key='commonLoggingEventSourceType' value='I am not a type specification.'/>
+                  </factoryAdapter>
+                </logging>";
+            var reader = new StandaloneConfigurationReader(xml);
+            var setting = reader.GetSection(null) as LogSetting;
 
             Assume.That(setting, Is.Not.Null, "Failed to parse config to create expected LogSetting instance.");
             Assert.Throws<ConfigurationException>(() => new ETWLoggerFactoryAdapter(setting.Properties));
@@ -121,13 +121,13 @@ namespace Common.Logging.ETWLogger.Tests
         {
             const string xml =
                 @"<?xml version='1.0' encoding='UTF-8' ?>
-    <logging>
-      <factoryAdapter type='Common.Logging.ETW.ETWLoggerFactoryAdapter, Common.Logging.ETWLogger'>
-        <arg key='commonLoggingEventSourceType' value='Common.Logging.ETW.ETWLogger,Common.Logging.ETWLogger'/>
-      </factoryAdapter>
-    </logging>";
-            StandaloneConfigurationReader reader = new StandaloneConfigurationReader(xml);
-            LogSetting setting = reader.GetSection(null) as LogSetting;
+                <logging>
+                  <factoryAdapter type='Common.Logging.ETW.ETWLoggerFactoryAdapter, Common.Logging.ETWLogger'>
+                    <arg key='commonLoggingEventSourceType' value='Common.Logging.ETW.ETWLogger,Common.Logging.ETWLogger'/>
+                  </factoryAdapter>
+                </logging>";
+            var reader = new StandaloneConfigurationReader(xml);
+            var setting = reader.GetSection(null) as LogSetting;
 
             Assume.That(setting, Is.Not.Null, "Failed to parse config to create expected LogSetting instance.");
             Assert.Throws<ConfigurationException>(() => new ETWLoggerFactoryAdapter(setting.Properties));
