@@ -37,7 +37,7 @@ namespace Common.Logging.ETWLogger.Tests
             var adapter = new ETWLoggerFactoryAdapter();
             var logger = adapter.GetLogger(typeof(TestHarness));
 
-            logger.Debug("This is a test message from ETW source!");
+            logger.Debug("This is a test message from ETW source!", new Exception("I am the test exception"));
         }
 
 
