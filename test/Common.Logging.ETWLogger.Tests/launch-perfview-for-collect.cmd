@@ -1,1 +1,1 @@
-perfview /Providers=*Common.Logging.ETWLogger,*MyTestLoggerEventSource collect
+perfview /Providers=*Common.Logging.ETWLogger,*MyCustomEventSource collect
