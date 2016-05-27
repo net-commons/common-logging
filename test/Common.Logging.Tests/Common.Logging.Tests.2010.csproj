@@ -86,7 +86,6 @@
     <Compile Include="Logging\Simple\TraceLoggerTests.cs" />
     <Compile Include="Logging\Simple\NoOpLoggerTests.cs" />
     <Compile Include="Logging\Simple\AbstractSimpleLoggerTestsBase.cs" />
-    <Compile Include="Logging\StandaloneConfigurationReader.cs" />
     <Compile Include="MethodInvokePerformanceTests.cs" />
     <Compile Include="PerformanceTests.cs" />
     <Compile Include="StopWatch.cs" />
