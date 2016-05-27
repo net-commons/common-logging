@@ -68,9 +68,12 @@
       <Project>{440d903a-d409-48fc-a6c4-3ee69ccd663b}</Project>
       <Name>Common.Logging.2010-net40</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Common.Logging.TestUtils\Common.Logging.TestUtils-net40.csproj">
+      <Project>{f5193cd8-b431-48ed-b101-d8dbef766140}</Project>
+      <Name>Common.Logging.TestUtils-net40</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

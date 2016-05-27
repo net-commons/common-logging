@@ -20,28 +20,31 @@ namespace Common.Logging.ETW
             : base(true)
         {
             //assign an instance of a custom ICommonLoggingEventSource if specified, else use default type
-            var commonLoggingEventSourceTypeDescriptor = ArgUtils.TryParse(string.Empty, ArgUtils.GetValue(properties, "commonLoggingEventSourceType"));
+            var commonLoggingEventSourceTypeDescriptor = ArgUtils.GetValue(properties, "commonLoggingEventSourceType", string.Empty);
 
             if (!string.IsNullOrEmpty(commonLoggingEventSourceTypeDescriptor))
             {
                 var type = Type.GetType(commonLoggingEventSourceTypeDescriptor);
 
-                if (type != null)
+                if (null == type)
                 {
-                    try
-                    {
-                        var candidate = Activator.CreateInstance(type) as ICommonLoggingEventSource;
+                    throw new ConfigurationException(
+                        $"Error in 'commonLoggingEventSourceType' arg.  Unable to determine TYPE information from value {commonLoggingEventSourceTypeDescriptor}");
+                }
 
-                        if (candidate != null)
-                        {
-                            ETWEventSource = candidate;
-                        }
+                try
+                {
+                    var candidate = Activator.CreateInstance(type) as ICommonLoggingEventSource;
 
-                    }
-                    catch (Exception exception) //no matter the underlying exception type we want to report it as a Config Exception
+                    if (candidate != null)
                     {
-                        throw new ConfigurationException("Error in 'commonLoggingEventSourceType' arg.", exception);
+                        ETWEventSource = candidate;
                     }
+
+                }
+                catch (Exception exception) //no matter the underlying exception type we want to report it as a Config Exception
+                {
+                    throw new ConfigurationException("Error in 'commonLoggingEventSourceType' arg.", exception);
                 }
             }
             else
@@ -83,7 +86,7 @@ namespace Common.Logging.ETW
                 default:
                     break;
             }
-            
+
         }
 
         protected override ILog CreateLogger(string name)
