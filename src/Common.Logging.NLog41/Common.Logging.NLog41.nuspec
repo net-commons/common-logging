@@ -6,7 +6,7 @@
     <!-- placeholder value replaced by build script -->
     <authors>Aleksandar Seovic, Mark Pollack, Erich Eichinger, Stephen Bohlen</authors>
     <owners>Aleksandar Seovic, Mark Pollack, Erich Eichinger, Stephen Bohlen</owners>
-    <projectUrl>http://netcommon.sourceforge.net/</projectUrl>
+    <projectUrl>http://net-commons.github.io/common-logging/</projectUrl>
     <iconUrl>https://raw.githubusercontent.com/net-commons/common-logging/master/nuget-graphics/common-logging-icon.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Common.Logging library bindings for NLog 4.1 logging framework.</description>

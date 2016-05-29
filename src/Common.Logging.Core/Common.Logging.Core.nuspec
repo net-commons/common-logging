@@ -5,7 +5,7 @@
     <version>0.0.0</version> <!-- placeholder value replaced by build script -->
     <authors>Aleksandar Seovic, Mark Pollack, Erich Eichinger, Stephen Bohlen</authors>
     <owners>Aleksandar Seovic, Mark Pollack, Erich Eichinger, Stephen Bohlen</owners>
-    <projectUrl>http://netcommon.sourceforge.net/</projectUrl>
+    <projectUrl>http://net-commons.github.io/common-logging/</projectUrl>
 	<iconUrl>https://raw.githubusercontent.com/net-commons/common-logging/master/nuget-graphics/common-logging-icon.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Common.Logging.Core contains the portable (PCL) implementation of the Common.Logging low-level abstractions common to all other Common.Logging packages.</description>
