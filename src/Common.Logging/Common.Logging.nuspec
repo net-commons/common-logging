@@ -13,7 +13,7 @@
     <tags>logging log Common.Logging</tags>
     <language>en-US</language>
     <dependencies>
-      <dependency id="Common.Logging.Core" version="3.3.2-Alpha2" />
+      <dependency id="Common.Logging.Core" version="3.3.2-Alpha3" />
     </dependencies>
   </metadata>
   <files>

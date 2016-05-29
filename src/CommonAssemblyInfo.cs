@@ -21,13 +21,13 @@ using System.Security.Permissions;
 
 #if PORTABLE
 [assembly: AssemblyConfigurationAttribute("portable; release")]
-[assembly: AssemblyInformationalVersionAttribute("3.3.2-Alpha2; portable; release")]
+[assembly: AssemblyInformationalVersionAttribute("3.3.2-Alpha3; portable; release")]
 #else
 // Note - if we decide to skip SL4+WP support and only Support SL5 then we should be able to specify AllowPartiallyTrustedCallersAttribute
 // even for Common.Logging.Core
 [assembly: AllowPartiallyTrustedCallers()]
 [assembly: AssemblyConfigurationAttribute("net-4.5.win32; release")]
-[assembly: AssemblyInformationalVersionAttribute("3.3.2-Alpha2; net-4.5.win32; release")]
+[assembly: AssemblyInformationalVersionAttribute("3.3.2-Alpha3; net-4.5.win32; release")]
 #endif
 
 [assembly: AssemblyCompanyAttribute("http://netcommon.sourceforge.net/")]
