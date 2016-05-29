@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Common.Logging.ETWLogger</id>
+    <version>0.0.0</version>
+    <!-- placeholder value replaced by build script -->
+    <authors>Aleksandar Seovic, Mark Pollack, Erich Eichinger, Stephen Bohlen</authors>
+    <owners>Aleksandar Seovic, Mark Pollack, Erich Eichinger, Stephen Bohlen</owners>
+    <projectUrl>http://net-commons.github.io/common-logging/</projectUrl>
+    <iconUrl>https://raw.githubusercontent.com/net-commons/common-logging/master/nuget-graphics/common-logging-icon.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Common.Logging adapter for logging to Event Tracing for Windows (ETW) subsystem.</description>
+    <tags>Common.Logging.ETWLogger ETW Event Tracing Windows logging log Common.Logging</tags>
+    <language>en-US</language>
+    <dependencies>
+      <dependency id="Common.Logging" version="3.3.2-Alpha1" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="..\..\build\net40\Common.Logging.ETWLogger\Release\Common.Logging.ETWLogger.dll" target="lib\net40" />
+    <file src="..\..\build\net40\Common.Logging.ETWLogger\Release\Common.Logging.ETWLogger.pdb" target="lib\net40" />
+    <file src="..\..\build\net40\Common.Logging.ETWLogger\Release\Common.Logging.ETWLogger.xml" target="lib\net40" />
+  </files>
+</package>
