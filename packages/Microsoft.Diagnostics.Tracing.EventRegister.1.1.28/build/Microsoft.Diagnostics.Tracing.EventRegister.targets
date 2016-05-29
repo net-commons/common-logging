@@ -1,0 +1,155 @@
+<!--
+***********************************************************************************************
+EventRegister.targets
+
+WARNING:  DO NOT MODIFY this file unless you are knowledgeable about MSBuild and have
+          created a backup copy.  Incorrect changes to this file will make it
+          impossible to load or build your projects from the command-line or the IDE.
+
+Copyright (C) Microsoft Corporation. All rights reserved.
+***********************************************************************************************
+-->
+<!--
+  This .targets file provides 4 properties and 1 item group that may be overridden in the 
+  "main" project:
+      $(EtwManifestOutDir)   - allows the user to determine the folder in which the .MAN and .DLL
+                               files will be generated. Defaults to $(FullOutputPath).
+      $(EtwManifestBaseName) - allows the user to determine the base file name for the output.
+                               Defaults to $(AssemblyName)
+      $(EtwManifestGenerator)- allows the user to override the default validator and manifest 
+                               generation. Default is "builtin" which performs most validation
+                               and uses a builtin generator. Specify "base" to allow the base
+                               EventSource class to be used for running the validation and
+                               manifest generation
+      $(EtwManifestForceAll) - forces generation of manifests for all events source classes
+                               not only for the ones that need it (the ones using channel 
+                               support). Defaults to false.
+      @(EventSourceFullPathNames) - this is the item group that may specify a set of assemblies
+                               defining the base EventSource type. This should ONLY be used when
+                               $(EtwManifestGenerator) is set to "base" *and* when msbuild is not
+                               able to find this assembly when it builds the @(ReferencePath) 
+                               (this should be an EXTREMELY rare occurrence).
+-->
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <EventRegisterImported>true</EventRegisterImported>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <CreateEtwManifestsAndRegDllsDependsOn>
+      InitializeCreateEtwManifestsAndRegDlls;
+      CalculateOutputEtwManifestsAndRegDlls;
+      CreateResponseFile;
+      CreateEtwManifestsAndRegDllsCore;
+    </CreateEtwManifestsAndRegDllsDependsOn>
+  </PropertyGroup>
+  <Target Name="CreateEtwManifestsAndRegDlls" 
+        DependsOnTargets="PrepareForRun;$(CreateEtwManifestsAndRegDllsDependsOn)" 
+        AfterTargets="PrepareForRun" />
+
+  <Target Name="InitializeCreateEtwManifestsAndRegDlls">
+    <PropertyGroup>
+      <FullOutputPath>$([System.IO.Path]::GetFullPath('$(OutDir)'))</FullOutputPath>
+    </PropertyGroup>
+
+    <!-- Overridable properties -->
+    <PropertyGroup>
+      <EtwManifestOutDir    Condition="'$(EtwManifestOutDir)' == ''">$(FullOutputPath)</EtwManifestOutDir>
+      <EtwManifestOutDir    Condition="'$(EtwManifestOutDir)' != '' and !HasTrailingSlash('$(EtwManifestOutDir)')">$(EtwManifestOutDir)\</EtwManifestOutDir>
+      <EtwManifestBaseName  Condition="'$(EtwManifestBaseName)' == ''">$(AssemblyName)</EtwManifestBaseName>
+      <EtwManifestGenerator Condition="$(EtwManifestGenerator) == ''">builtin</EtwManifestGenerator>
+      <EtwManifestForceAll  Condition="$(EtwManifestForceAll) != 'true'">false</EtwManifestForceAll>
+    </PropertyGroup>
+
+    <PropertyGroup>
+      <AssmName>$(FullOutputPath)$(AssemblyName)$(TargetExt)</AssmName>
+      <EventRegisterResponseFile>$(EtwManifestOutDir)$(AssemblyName).eventRegister.rsp</EventRegisterResponseFile>
+      <EtwManifestPattern>$(EtwManifestOutDir)$(EtwManifestBaseName).*.etwManifest.???</EtwManifestPattern>
+      <EtwManifestXmlPrefix Condition="'$(EtwManifestOutDir)$(EtwManifestBaseName)' != '$(FullOutputPath)$(AssemblyName)'">&quot;$(EtwManifestOutDir)$(EtwManifestBaseName)&quot;</EtwManifestXmlPrefix>
+    </PropertyGroup>
+  </Target>
+
+  <!-- 
+      Since there is no msbuild transform we can use to determine the output files from the input 
+      assembly we need a different approach. This target enables incremental builds support by 
+      storing the .MAN & .DLL generated files to a "list" file; thus we are later able to use 
+      this file to determine if we need to re-run the CreateEtwManifestsAndRegDllsCore target 
+      or not.
+  -->
+  <Target Name="CalculateOutputEtwManifestsAndRegDlls">
+    <ItemGroup>
+      <!-- "list" file containing etw manifests and registration dlls generated in previous build -->
+      <EtwManifestsLogOut Include="$(EtwManifestOutDir)$(EtwManifestBaseName).etwManifests.lst" />
+    </ItemGroup>
+    <ReadLinesFromFile
+        Condition="Exists(@(EtwManifestsLogOut))"
+        File="@(EtwManifestsLogOut)" >
+        <!-- each line in the "list" file represents a .MAN or .DLL file from a previous build -->
+        <Output
+            TaskParameter="Lines"
+            ItemName="EtwManifests"/>
+    </ReadLinesFromFile>
+  </Target>
+
+  <Target Name="CreateResponseFile">
+    <!-- Build (potentially large) argument list to prepare for writing it to the response file -->
+    <PropertyGroup>
+      <!-- Note that we escape ';' as '%3B' to avoid having the list of items written out as separate lines in the response file -->
+      <EventRegisterRefPath Condition="'@(EventSourceFullPathNames)' != ''">@(EventSourceFullPathNames, '%3B')%3B</EventRegisterRefPath>
+      <EventRegisterRefPath>$(EventRegisterRefPath)@(ReferencePath, '%3B')</EventRegisterRefPath>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <EventRegisterArgs Include="-ReferencePath:&quot;$(EventRegisterRefPath)&quot;" />
+      <EventRegisterArgs Include="-ManifestGenerator:$(EtwManifestGenerator)" />
+      <EventRegisterArgs Include="-ForceAll" Condition="'$(EtwManifestForceAll)' == 'true'" />
+    </ItemGroup>
+
+    <MakeDir Condition="!Exists($(EtwManifestOutDir))" Directories="$(EtwManifestOutDir)" />
+
+    <!-- Note: the WriteLinesToFile interprets 'Lines' as a list of items that are semicolon separated.
+               Consequently all ';' get translated into new lines (which is why we escaped semicolons 
+               as %3B above.
+    -->
+    <WriteLinesToFile
+        File="$(EventRegisterResponseFile)"
+        Lines="@(EventRegisterArgs)"
+        Overwrite="true"
+        Encoding="Unicode"/>
+
+  </Target>
+
+  <!--
+      This target does the heavy lifting of actually invoking eventRegister.exe and generating 
+      the new "list" file
+  -->
+  <Target Name="CreateEtwManifestsAndRegDllsCore" 
+          Inputs="$(AssmName)" 
+          Outputs="@(EtwManifestsLogOut);@(EtwManifests)" 
+          DependsOnTargets="PrepareForRun" 
+          AfterTargets="PrepareForRun">
+
+    <Exec 
+      Command="&quot;$(MSBuildThisFileDirectory)eventRegister.exe&quot; -DumpRegDlls @&quot;$(EventRegisterResponseFile)&quot; &quot;$(AssmName)&quot; $(EtwManifestXmlPrefix)"
+      StandardOutputImportance="high"  
+    />
+
+    <!-- Remove response file -->
+    <Delete Files="$(EventRegisterResponseFile)" ContinueOnError="true" />
+
+    <ItemGroup>
+      <!-- after running eventRegister.exe all files matching the pattern in 
+           $(EtwManifestPattern) are considered outputs of the current build -->
+      <EtwManifestsWritten Include="$(EtwManifestPattern)" />
+      <!-- update FileWrites to properly participate in "clean" -->
+      <FileWrites Include="@(EtwManifestsLogOut);@(EtwManifestsWritten)" />
+    </ItemGroup>
+
+    <!-- save the names of the newly generated files to the "list" file -->
+    <WriteLinesToFile
+        File="@(EtwManifestsLogOut)"
+        Lines="@(EtwManifestsWritten)"
+        Overwrite="true"
+        Encoding="Unicode"/>
+  </Target>
+</Project>
