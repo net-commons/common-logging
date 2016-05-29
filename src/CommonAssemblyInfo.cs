@@ -30,7 +30,7 @@ using System.Security.Permissions;
 [assembly: AssemblyInformationalVersionAttribute("3.3.2-Alpha1; net-4.5.win32; release")]
 #endif
 
-[assembly: AssemblyCompanyAttribute("http://netcommon.sourceforge.net/")]
+[assembly: AssemblyCompanyAttribute("http://net-commons.github.io/common-logging/")]
 [assembly: AssemblyCopyrightAttribute("Copyright 2006-2011 the Common Infrastructure Libraries Team.")]
 [assembly: AssemblyTrademarkAttribute("Apache License, Version 2.0")]
 [assembly: AssemblyCultureAttribute("")]
