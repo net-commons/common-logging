@@ -56,6 +56,16 @@ namespace Common.Logging.Factory
             protected readonly FormatMessageCallback formatMessageCallback;
 
             /// <summary>
+            /// The cached format
+            /// </summary>
+            protected volatile string cachedFormat;
+            
+            /// <summary>
+            /// The cached arguments
+            /// </summary>
+            protected volatile object[] cachedArguments;
+
+            /// <summary>
             /// Initializes a new instance of the <see cref="FormatMessageCallbackFormattedMessage"/> class.
             /// </summary>
             /// <param name="formatMessageCallback">The format message callback.</param>
@@ -95,9 +105,20 @@ namespace Common.Logging.Factory
             /// <param name="args">The arguments.</param>
             /// <returns>System.String.</returns>
             [StringFormatMethod("format")]
-            protected virtual string FormatMessage(string format, params object[] args)
+            protected string FormatMessage(string format, params object[] args)
             {
-                cachedMessage = string.Format(formatProvider, format, args);
+                if (args.Length > 0 && formatProvider != null)
+                    cachedMessage = string.Format(formatProvider, format, args);
+                else if (args.Length > 0)
+                    cachedMessage = string.Format(format, args);
+                else if (formatProvider != null)
+                    cachedMessage = string.Format(formatProvider, format);
+                else
+                    cachedMessage = format;
+
+                cachedFormat = format;
+                cachedArguments = args;
+
                 return cachedMessage;
             }
         }

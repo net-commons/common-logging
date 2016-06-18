@@ -44,33 +44,7 @@ namespace Common.Logging.Serilog
         /// </summary>
         protected class SerilogFormatMessageCallbackFormattedMessage : FormatMessageCallbackFormattedMessage
         {
-            private volatile string cachedFormat;
-            private volatile object[] cachedArguments;
-
-            /// <summary>
-            /// Formats the message.
-            /// </summary>
-            /// <param name="format">The format.</param>
-            /// <param name="args">The arguments.</param>
-            /// <returns>System.String.</returns>
-            protected override string FormatMessage(string format, params object[] args)
-            {
-                //Serilog will blow up if any formatting is attempted on the string. Neither format or args should ever be passed to this method from serilog. 
-                if (args.Length > 0 && formatProvider != null)
-                    cachedMessage = string.Format(formatProvider, format, args);
-                else if (args.Length > 0)
-                    cachedMessage = string.Format(format, args);
-                else if (formatProvider != null)
-                    cachedMessage = string.Format(formatProvider, format);
-                else
-                    cachedMessage = format;
-
-                cachedFormat = format;
-                cachedArguments = args;
-
-                return cachedMessage;
-            }
-
+            
             /// <summary>
             /// Calls FormatMessageCallbackFormattedMessage.formatMessageCallback and returns result.
             /// This allows Serilog to work propery, since it has its own formatting.
