@@ -51,11 +51,11 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\build\net40\Common.Logging.NLog10\Release\</OutputPath>
-    <DefineConstants>TRACE;NET_4_0;NLOG1</DefineConstants>
+    <OutputPath>..\..\build\net45\Common.Logging.Serilog1514\Release\</OutputPath>
+    <DefineConstants>TRACE;NET_4_0</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>Common.Logging.NLog10.xml</DocumentationFile>
+    <DocumentationFile>Common.Logging.Serilog1514.xml</DocumentationFile>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <NoWarn>1607</NoWarn>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
