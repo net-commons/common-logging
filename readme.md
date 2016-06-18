@@ -7,15 +7,14 @@
 ## Introduction
 
 Provides a simple logging abstraction to switch between different logging implementations.
-There is current support for log4net, NLog and Enterprise Library logging.
+There is current support for log4net, NLog, Microsoft Enterprise Library logging, Microsoft Application Insights, Microsoft Event Tracing for Windows, and Serilog.
 
-Additionally Common.Logging comes with a set of base classes making the integration of any log
-system a breeze.
+Additionally Common.Logging comes with a set of base classes making the integration of any log system a breeze.
 
 See also
 
-* [Github](http://github.com/net-commons/common-logging)
-* [Source Forge](http://netcommon.sf.net/)
+* [Github Repo](http://github.com/net-commons/common-logging)
+* [Project Website](http://net-commons.github.io/common-logging)
 * [NuGet](https://www.nuget.org/packages/Common.Logging/): `Install-Package Common.Logging` 
 
 ## Console Quickstart
@@ -111,6 +110,6 @@ The Common Infrastructure Libraries for .NET are released under the terms of the
 
 * Clone the [GitHub repository](https://github.com/net-commons/common-logging) 
 * Install Silverlight SDK 5
-* [Optional] Install Java for the documenation builder
+* [Optional] Install Java for the documentation builder
 * Create a strong name key. `c:\netcommon>sn -k common.net.snk`
 * Build the the solution. `c:\netcommon>build-release.cmd`
