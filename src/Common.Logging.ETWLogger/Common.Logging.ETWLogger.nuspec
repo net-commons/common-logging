@@ -13,7 +13,7 @@
     <tags>Common.Logging.ETWLogger ETW Event Tracing Windows logging log Common.Logging</tags>
     <language>en-US</language>
     <dependencies>
-      <dependency id="Common.Logging" version="3.3.2-Alpha3" />
+      <dependency id="Common.Logging" version="3.4-Alpha1" />
       <dependency id="Microsoft.Diagnostics.Tracing.EventSource.Redist" version="[1.1.28]" />
     </dependencies>
   </metadata>
