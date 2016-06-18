@@ -50,6 +50,14 @@
     <property name="solution-file-filter" value="*.2013.sln" />
     <property name="build.dir" value="${root.dir}/build/net45" />
     <call target="build-all" />
+	
+	<!-- force net-4.5 -->
+    <property name="nant.settings.currentframework" value="net-4.5"/>
+    <property name="solution-file-filter" value="*.2015.sln" />
+    <property name="build.dir" value="${root.dir}/build/net45" />
+    <setenv name="VisualStudioVersion" value="14.0" /> <!-- have to force VS version to 14.0 in order to resolve .NET Core MSBUILD target -->
+	<call target="build-all" />
+	<setenv name="VisualStudioVersion" value="" /> <!-- clear the env var so its not laying around causing trouble for other tasks -->
 
   </target>
 
