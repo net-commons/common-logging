@@ -63,3 +63,4 @@ src/Common.Logging.Portable/Common.Logging.Portable.xml
 src/Common.Logging.Core/Common.Logging.Core.xml
 src/Common.Logging.MultipleLogger/Common.Logging.MultipleLogger.xml
 src/Common.Logging.ApplicationInsights0170/Common.Logging.ApplicationInsights0170.xml
+src/Common.Logging.Serilog1514/Common.Logging.Serilog1514.xml
