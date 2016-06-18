@@ -36,9 +36,94 @@ namespace Common.Logging.Serilog
     /// <author>Aaron Mell</author>
     public partial class SerilogLogger : AbstractLogger
     {
+
+        #region SerilogSerilogFormatMessageCallbackFormattedMessage
+
+        /// <summary>
+        /// Format message on demand.
+        /// </summary>
+        protected class SerilogFormatMessageCallbackFormattedMessage : FormatMessageCallbackFormattedMessage
+        {
+            private volatile string cachedFormat;
+            private volatile object[] cachedArguments;
+
+            /// <summary>
+            /// Formats the message.
+            /// </summary>
+            /// <param name="format">The format.</param>
+            /// <param name="args">The arguments.</param>
+            /// <returns>System.String.</returns>
+            protected override string FormatMessage(string format, params object[] args)
+            {
+                //Serilog will blow up if any formatting is attempted on the string. Neither format or args should ever be passed to this method from serilog. 
+                if (args.Length > 0 && formatProvider != null)
+                    cachedMessage = string.Format(formatProvider, format, args);
+                else if (args.Length > 0)
+                    cachedMessage = string.Format(format, args);
+                else if (formatProvider != null)
+                    cachedMessage = string.Format(formatProvider, format);
+                else
+                    cachedMessage = format;
+
+                cachedFormat = format;
+                cachedArguments = args;
+
+                return cachedMessage;
+            }
+
+            /// <summary>
+            /// Calls FormatMessageCallbackFormattedMessage.formatMessageCallback and returns result.
+            /// This allows Serilog to work propery, since it has its own formatting.
+            /// </summary>
+            /// <returns></returns>
+            public string ToParameters(out object[] arguments)
+            {
+                if (cachedFormat == null && formatMessageCallback != null)
+                {
+                    //Calling this instead of a new function, because the return value must be a string.
+                    formatMessageCallback(FormatMessage);
+                }
+
+                arguments = cachedArguments;
+
+                return cachedFormat;
+            }
+
+
+            /// <summary>
+            /// Initializes a new instance of the <see cref="SerilogFormatMessageCallbackFormattedMessage"/> class.
+            /// </summary>
+            /// <param name="formatMessageCallback">The format message callback.</param>
+            public SerilogFormatMessageCallbackFormattedMessage(FormatMessageCallback formatMessageCallback) : base(formatMessageCallback)
+            {
+            }
+
+            /// <summary>
+            /// Initializes a new instance of the <see cref="SerilogFormatMessageCallbackFormattedMessage"/> class.
+            /// </summary>
+            /// <param name="formatProvider">The format provider.</param>
+            /// <param name="formatMessageCallback">The format message callback.</param>
+            public SerilogFormatMessageCallbackFormattedMessage(IFormatProvider formatProvider, FormatMessageCallback formatMessageCallback) : base(formatProvider, formatMessageCallback)
+            {
+            }
+        }
+
+
+
+
+        #endregion
+
+
+
+
+
+
+
+
+
         #region Fields
 
-        private readonly ILogger _logger;      
+        private readonly ILogger _logger;
 
         #endregion
 
@@ -206,7 +291,7 @@ namespace Common.Logging.Serilog
             if (IsTraceEnabled)
             {
                 object[] arguments;
-                var format = new FormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
+                var format = new SerilogFormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
 
                 _logger.Verbose(format, arguments);
 
@@ -227,7 +312,7 @@ namespace Common.Logging.Serilog
             if (IsTraceEnabled)
             {
                 object[] arguments;
-                var format = new FormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
+                var format = new SerilogFormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
 
                 _logger.Verbose(exception, format, arguments);
             }
@@ -248,7 +333,7 @@ namespace Common.Logging.Serilog
             {
                 object[] arguments;
 
-                var format = new FormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
+                var format = new SerilogFormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
 
                 _logger.Verbose(format, arguments);
             }
@@ -270,7 +355,7 @@ namespace Common.Logging.Serilog
             {
                 object[] arguments;
 
-                var format = new FormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
+                var format = new SerilogFormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
 
                 _logger.Verbose(exception, format, arguments);
             }
@@ -280,10 +365,10 @@ namespace Common.Logging.Serilog
 
         #region Debug
 
-            /// <summary>
-            /// Log a message object with the <see cref="LogLevel.Debug"/> level.
-            /// </summary>
-            /// <param name="message">The message object to log.</param>
+        /// <summary>
+        /// Log a message object with the <see cref="LogLevel.Debug"/> level.
+        /// </summary>
+        /// <param name="message">The message object to log.</param>
         public override void Debug(object message)
         {
             if (IsDebugEnabled)
@@ -365,7 +450,7 @@ namespace Common.Logging.Serilog
             {
                 object[] arguments;
 
-                var format = new FormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
+                var format = new SerilogFormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
 
                 _logger.Debug(format, arguments);
             }
@@ -387,7 +472,7 @@ namespace Common.Logging.Serilog
                 {
                     object[] arguments;
 
-                    var format = new FormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
+                    var format = new SerilogFormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
 
                     _logger.Debug(exception, format, arguments);
                 }
@@ -408,7 +493,7 @@ namespace Common.Logging.Serilog
             {
                 object[] arguments;
 
-                var format = new FormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
+                var format = new SerilogFormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
 
                 _logger.Debug(format, arguments);
             }
@@ -430,7 +515,7 @@ namespace Common.Logging.Serilog
             {
                 object[] arguments;
 
-                var format = new FormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
+                var format = new SerilogFormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
 
                 _logger.Debug(exception, format, arguments);
             }
@@ -525,7 +610,7 @@ namespace Common.Logging.Serilog
             {
                 object[] arguments;
 
-                var format = new FormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
+                var format = new SerilogFormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
 
                 _logger.Information(format, arguments);
             }
@@ -546,7 +631,7 @@ namespace Common.Logging.Serilog
             {
                 object[] arguments;
 
-                var format = new FormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
+                var format = new SerilogFormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
 
                 _logger.Information(exception, format, arguments);
             }
@@ -567,7 +652,7 @@ namespace Common.Logging.Serilog
             {
                 object[] arguments;
 
-                var format = new FormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
+                var format = new SerilogFormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
 
                 _logger.Information(format, arguments);
             }
@@ -589,7 +674,7 @@ namespace Common.Logging.Serilog
             {
                 object[] arguments;
 
-                var format = new FormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
+                var format = new SerilogFormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
 
                 _logger.Information(exception, format, arguments);
             }
@@ -684,7 +769,7 @@ namespace Common.Logging.Serilog
             {
                 object[] arguments;
 
-                var format = new FormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
+                var format = new SerilogFormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
 
                 _logger.Warning(format, arguments);
             }
@@ -705,7 +790,7 @@ namespace Common.Logging.Serilog
             {
                 object[] arguments;
 
-                var format = new FormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
+                var format = new SerilogFormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
 
                 _logger.Warning(exception, format, arguments);
             }
@@ -726,7 +811,7 @@ namespace Common.Logging.Serilog
             {
                 object[] arguments;
 
-                var format = new FormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
+                var format = new SerilogFormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
 
                 _logger.Warning(format, arguments);
             }
@@ -748,7 +833,7 @@ namespace Common.Logging.Serilog
             {
                 object[] arguments;
 
-                var format = new FormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
+                var format = new SerilogFormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
 
                 _logger.Warning(exception, format, arguments);
             }
@@ -843,7 +928,7 @@ namespace Common.Logging.Serilog
             {
                 object[] arguments;
 
-                var format = new FormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
+                var format = new SerilogFormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
 
                 _logger.Error(format, arguments);
             }
@@ -864,7 +949,7 @@ namespace Common.Logging.Serilog
             {
                 object[] arguments;
 
-                var format = new FormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
+                var format = new SerilogFormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
 
                 _logger.Error(exception, format, arguments);
             }
@@ -885,7 +970,7 @@ namespace Common.Logging.Serilog
             {
                 object[] arguments;
 
-                var format = new FormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
+                var format = new SerilogFormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
 
                 _logger.Error(format, arguments);
             }
@@ -907,7 +992,7 @@ namespace Common.Logging.Serilog
             {
                 object[] arguments;
 
-                var format = new FormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
+                var format = new SerilogFormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
 
                 _logger.Error(exception, format, arguments);
             }
@@ -1005,11 +1090,11 @@ namespace Common.Logging.Serilog
             {
                 object[] arguments;
 
-                var format = new FormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
+                var format = new SerilogFormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
 
                 _logger.Fatal(format, arguments);
             }
-               
+
         }
 
         /// <summary>
@@ -1027,7 +1112,7 @@ namespace Common.Logging.Serilog
             {
                 object[] arguments;
 
-                var format = new FormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
+                var format = new SerilogFormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
 
                 _logger.Fatal(exception, format, arguments);
 
@@ -1049,7 +1134,7 @@ namespace Common.Logging.Serilog
             {
                 object[] arguments;
 
-                var format = new FormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
+                var format = new SerilogFormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
 
                 _logger.Fatal(format, arguments);
 
@@ -1072,7 +1157,7 @@ namespace Common.Logging.Serilog
             {
                 object[] arguments;
 
-                var format = new FormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
+                var format = new SerilogFormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
 
                 _logger.Fatal(exception, format, arguments);
             }
@@ -1083,7 +1168,7 @@ namespace Common.Logging.Serilog
         #endregion
 
 
-                /// <summary>
+        /// <summary>
         /// Actually sends the message to the underlying log system.
         /// </summary>
         /// <param name="level">the level of this log event.</param>
@@ -1092,6 +1177,6 @@ namespace Common.Logging.Serilog
         protected override void WriteInternal(LogLevel level, object message, Exception exception)
         {
             //Do nothing here. This method is not compatible with Serilog            
-        }        
+        }
     }
 }

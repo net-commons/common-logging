@@ -37,15 +37,23 @@ namespace Common.Logging.Factory
         /// <summary>
         /// Format message on demand.
         /// </summary>
+        [CLSCompliant(false)]
         protected class FormatMessageCallbackFormattedMessage
         {
-            private volatile string cachedMessage;
-            private volatile string cachedFormat;
-            private volatile object[] cachedArguments;
-
-
-            private readonly IFormatProvider formatProvider;
-            private readonly FormatMessageCallback formatMessageCallback;
+            /// <summary>
+            /// The cached message
+            /// </summary>
+            protected volatile string cachedMessage;
+            
+            /// <summary>
+            /// The format provider
+            /// </summary>
+            protected readonly IFormatProvider formatProvider;
+            
+            /// <summary>
+            /// The format message callback
+            /// </summary>
+            protected readonly FormatMessageCallback formatMessageCallback;
 
             /// <summary>
             /// Initializes a new instance of the <see cref="FormatMessageCallbackFormattedMessage"/> class.
@@ -81,39 +89,15 @@ namespace Common.Logging.Factory
             }
 
             /// <summary>
-            /// Calls <see cref="formatMessageCallback"/> and returns result.
-            /// This allows Serilog to work propery, since it has its own formatting.
+            /// Formats the message.
             /// </summary>
-            /// <returns></returns>
-            public string ToParameters(out object[] arguments)
-            {
-                if (cachedFormat == null && formatMessageCallback != null)
-                {
-                    //Calling this instead of a new function, because the return value must be a string.
-                    formatMessageCallback(FormatMessage);
-                }
-
-                arguments = cachedArguments;
-
-                return cachedFormat;
-            }          
-
+            /// <param name="format">The format.</param>
+            /// <param name="args">The arguments.</param>
+            /// <returns>System.String.</returns>
             [StringFormatMethod("format")]
-            private string FormatMessage(string format, params object[] args)
+            protected virtual string FormatMessage(string format, params object[] args)
             {
-                //Serilog will blow up if any formatting is attempted on the string. Neither format or args should ever be passed to this method from serilog. 
-                if (args.Length > 0 && formatProvider != null)
-                    cachedMessage = string.Format(formatProvider, format, args);
-                else if (args.Length > 0)
-                    cachedMessage = string.Format(format, args);
-                else if (formatProvider != null)
-                    cachedMessage = string.Format(formatProvider, format);
-                else
-                    cachedMessage = format;
-
-                cachedFormat = format;
-                cachedArguments = args;
-
+                cachedMessage = string.Format(formatProvider, format, args);
                 return cachedMessage;
             }
         }
