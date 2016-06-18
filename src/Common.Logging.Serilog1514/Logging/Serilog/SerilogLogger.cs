@@ -1,7 +1,7 @@
-﻿#region License
+#region License
 
 /*
- * Copyright © 2002-2009 the original author or authors.
+ * Copyright © 2002-2007 the original author or authors.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,243 +19,105 @@
 #endregion
 
 using System;
+using Common.Logging.Factory;
 using FormatMessageCallback = System.Action<Common.Logging.FormatMessageHandler>;
+using Serilog;
+using Serilog.Events;
 
-namespace Common.Logging.Factory
+namespace Common.Logging.Serilog
 {
     /// <summary>
-    /// Provides base implementation suitable for almost all logger adapters
+    /// Concrete implementation of <see cref="ILog"/> interface specific to Serilog 1.5.14
     /// </summary>
-    /// <author>Erich Eichinger</author>
-#if !PORTABLE
-    [Serializable]
-#endif
-    public abstract class AbstractLogger : ILog
+    /// <remarks>
+    /// Unlike other logging libraries, Serilog is built with powerful structured event data in mind.
+    /// http://serilog.net/
+    /// </remarks>
+    /// <author>Aaron Mell</author>
+    public partial class SerilogLogger : AbstractLogger
     {
-        #region FormatMessageCallbackFormattedMessage
+        #region Fields
 
-        /// <summary>
-        /// Format message on demand.
-        /// </summary>
-        protected class FormatMessageCallbackFormattedMessage
-        {
-            private volatile string cachedMessage;
-            private volatile string cachedFormat;
-            private volatile object[] cachedArguments;
-
-
-            private readonly IFormatProvider formatProvider;
-            private readonly FormatMessageCallback formatMessageCallback;
-
-            /// <summary>
-            /// Initializes a new instance of the <see cref="FormatMessageCallbackFormattedMessage"/> class.
-            /// </summary>
-            /// <param name="formatMessageCallback">The format message callback.</param>
-            public FormatMessageCallbackFormattedMessage(FormatMessageCallback formatMessageCallback)
-            {
-                this.formatMessageCallback = formatMessageCallback;
-            }
-
-            /// <summary>
-            /// Initializes a new instance of the <see cref="FormatMessageCallbackFormattedMessage"/> class.
-            /// </summary>
-            /// <param name="formatProvider">The format provider.</param>
-            /// <param name="formatMessageCallback">The format message callback.</param>
-            public FormatMessageCallbackFormattedMessage(IFormatProvider formatProvider, FormatMessageCallback formatMessageCallback)
-            {
-                this.formatProvider = formatProvider;
-                this.formatMessageCallback = formatMessageCallback;
-            }
-
-            /// <summary>
-            /// Calls <see cref="formatMessageCallback"/> and returns result.
-            /// </summary>
-            /// <returns></returns>
-            public override string ToString()
-            {
-                if (cachedMessage == null && formatMessageCallback != null)
-                {
-                    formatMessageCallback(FormatMessage);
-                }
-                return cachedMessage;
-            }
-
-            /// <summary>
-            /// Calls <see cref="formatMessageCallback"/> and returns result.
-            /// This allows Serilog to work propery, since it has its own formatting.
-            /// </summary>
-            /// <returns></returns>
-            public string ToParameters(out object[] arguments)
-            {
-                if (cachedFormat == null && formatMessageCallback != null)
-                {
-                    //Calling this instead of a new function, because the return value must be a string.
-                    formatMessageCallback(FormatMessage);
-                }
-
-                arguments = cachedArguments;
-
-                return cachedFormat;
-            }          
-
-            [StringFormatMethod("format")]
-            private string FormatMessage(string format, params object[] args)
-            {
-                //Serilog will blow up if any formatting is attempted on the string. Neither format or args should ever be passed to this method from serilog. 
-                if (args.Length > 0 && formatProvider != null)
-                    cachedMessage = string.Format(formatProvider, format, args);
-                else if (args.Length > 0)
-                    cachedMessage = string.Format(format, args);
-                else if (formatProvider != null)
-                    cachedMessage = string.Format(formatProvider, format);
-                else
-                    cachedMessage = format;
-
-                cachedFormat = format;
-                cachedArguments = args;
-
-                return cachedMessage;
-            }
-        }
-
-        #endregion
-
-        #region StringFormatFormattedMessage
-
-        /// <summary>
-        /// Format string on demand.
-        /// </summary>
-        protected class StringFormatFormattedMessage
-        {
-            private volatile string cachedMessage;
-
-            private readonly IFormatProvider FormatProvider;
-            private readonly string Message;
-            private readonly object[] Args;
-
-            /// <summary>
-            /// Initializes a new instance of the <see cref="StringFormatFormattedMessage"/> class.
-            /// </summary>
-            /// <param name="formatProvider">The format provider.</param>
-            /// <param name="message">The message.</param>
-            /// <param name="args">The args.</param>
-            [StringFormatMethod("message")]
-            public StringFormatFormattedMessage(IFormatProvider formatProvider, string message, params object[] args)
-            {
-                FormatProvider = formatProvider;
-                Message = message;
-                Args = args;
-            }
-
-            /// <summary>
-            /// Runs <see cref="string.Format(System.IFormatProvider,string,object[])"/> on supplied arguemnts.
-            /// </summary>
-            /// <returns>string</returns>
-            public override string ToString()
-            {
-                if (cachedMessage == null && Message != null)
-                {
-                    cachedMessage = string.Format(FormatProvider, Message, Args);
-                }
-                return cachedMessage;
-            }
-        }
+        private readonly ILogger _logger;      
 
         #endregion
 
         /// <summary>
-        /// Represents a method responsible for writing a message to the log system.
+        /// Constructor
         /// </summary>
-        protected delegate void WriteHandler(LogLevel level, object message, Exception exception);
-
-        /// <summary>
-        /// Holds the method for writing a message to the log system.
-        /// </summary>
-        private readonly WriteHandler Write;
-
-        /// <summary>
-        /// Creates a new logger instance using <see cref="WriteInternal"/> for 
-        /// writing log events to the underlying log system.
-        /// </summary>
-        /// <seealso cref="GetWriteHandler"/>
-        protected AbstractLogger()
+        protected internal SerilogLogger(ILogger logger)
         {
-            Write = GetWriteHandler();
-            if (Write == null)
-            {
-                Write = new WriteHandler(WriteInternal);
-            }
+            _logger = logger;
+        }
+
+        #region ILog Members
+
+        /// <summary>
+        /// Gets a value indicating whether this instance is trace enabled.
+        /// </summary>
+        /// <value>
+        /// 	<c>true</c> if this instance is trace enabled; otherwise, <c>false</c>.
+        /// </value>
+        public override bool IsTraceEnabled
+        {
+            get { return _logger.IsEnabled(LogEventLevel.Verbose); }
         }
 
         /// <summary>
-        /// Override this method to use a different method than <see cref="WriteInternal"/> 
-        /// for writing log events to the underlying log system.
+        /// Gets a value indicating whether this instance is debug enabled.
         /// </summary>
-        /// <remarks>
-        /// Usually you don't need to override thise method. The default implementation returns
-        /// <c>null</c> to indicate that the default handler <see cref="WriteInternal"/> should be 
-        /// used.
-        /// </remarks>
-        protected virtual WriteHandler GetWriteHandler()
+        /// <value>
+        /// 	<c>true</c> if this instance is debug enabled; otherwise, <c>false</c>.
+        /// </value>
+        public override bool IsDebugEnabled
         {
-            return null;
+            get { return _logger.IsEnabled(LogEventLevel.Debug); }
         }
 
         /// <summary>
-        /// Checks if this logger is enabled for the <see cref="LogLevel.Trace"/> level.
+        /// Gets a value indicating whether this instance is info enabled.
         /// </summary>
-        /// <remarks>
-        /// Override this in your derived class to comply with the underlying logging system
-        /// </remarks>
-        public abstract bool IsTraceEnabled { get; }
+        /// <value>
+        /// 	<c>true</c> if this instance is info enabled; otherwise, <c>false</c>.
+        /// </value>
+        public override bool IsInfoEnabled
+        {
+            get { return _logger.IsEnabled(LogEventLevel.Information); }
+        }
+
 
         /// <summary>
-        /// Checks if this logger is enabled for the <see cref="LogLevel.Debug"/> level.
+        /// Gets a value indicating whether this instance is warn enabled.
         /// </summary>
-        /// <remarks>
-        /// Override this in your derived class to comply with the underlying logging system
-        /// </remarks>
-        public abstract bool IsDebugEnabled { get; }
+        /// <value>
+        /// 	<c>true</c> if this instance is warn enabled; otherwise, <c>false</c>.
+        /// </value>
+        public override bool IsWarnEnabled
+        {
+            get { return _logger.IsEnabled(LogEventLevel.Warning); }
+        }
 
         /// <summary>
-        /// Checks if this logger is enabled for the <see cref="LogLevel.Info"/> level.
+        /// Gets a value indicating whether this instance is error enabled.
         /// </summary>
-        /// <remarks>
-        /// Override this in your derived class to comply with the underlying logging system
-        /// </remarks>
-        public abstract bool IsInfoEnabled { get; }
+        /// <value>
+        /// 	<c>true</c> if this instance is error enabled; otherwise, <c>false</c>.
+        /// </value>
+        public override bool IsErrorEnabled
+        {
+            get { return _logger.IsEnabled(LogEventLevel.Error); }
+        }
 
         /// <summary>
-        /// Checks if this logger is enabled for the <see cref="LogLevel.Warn"/> level.
+        /// Gets a value indicating whether this instance is fatal enabled.
         /// </summary>
-        /// <remarks>
-        /// Override this in your derived class to comply with the underlying logging system
-        /// </remarks>
-        public abstract bool IsWarnEnabled { get; }
-
-        /// <summary>
-        /// Checks if this logger is enabled for the <see cref="LogLevel.Error"/> level.
-        /// </summary>
-        /// <remarks>
-        /// Override this in your derived class to comply with the underlying logging system
-        /// </remarks>
-        public abstract bool IsErrorEnabled { get; }
-
-        /// <summary>
-        /// Checks if this logger is enabled for the <see cref="LogLevel.Fatal"/> level.
-        /// </summary>
-        /// <remarks>
-        /// Override this in your derived class to comply with the underlying logging system
-        /// </remarks>
-        public abstract bool IsFatalEnabled { get; }
-
-        /// <summary>
-        /// Actually sends the message to the underlying log system.
-        /// </summary>
-        /// <param name="level">the level of this log event.</param>
-        /// <param name="message">the message to log</param>
-        /// <param name="exception">the exception to log (may be null)</param>
-        protected abstract void WriteInternal(LogLevel level, object message, Exception exception);
+        /// <value>
+        /// 	<c>true</c> if this instance is fatal enabled; otherwise, <c>false</c>.
+        /// </value>
+        public override bool IsFatalEnabled
+        {
+            get { return _logger.IsEnabled(LogEventLevel.Fatal); }
+        }
 
         #region Trace
 
@@ -263,10 +125,11 @@ namespace Common.Logging.Factory
         /// Log a message object with the <see cref="LogLevel.Trace"/> level.
         /// </summary>
         /// <param name="message">The message object to log.</param>
-        public virtual void Trace(object message)
+        public override void Trace(object message)
         {
             if (IsTraceEnabled)
-                Write(LogLevel.Trace, message, null);
+                _logger.Verbose(message.ToString());
+
         }
 
         /// <summary>
@@ -276,10 +139,10 @@ namespace Common.Logging.Factory
         /// </summary>
         /// <param name="message">The message object to log.</param>
         /// <param name="exception">The exception to log, including its stack trace.</param>
-        public virtual void Trace(object message, Exception exception)
+        public override void Trace(object message, Exception exception)
         {
             if (IsTraceEnabled)
-                Write(LogLevel.Trace, message, exception);
+                _logger.Verbose(exception, message.ToString());
         }
 
         /// <summary>
@@ -288,11 +151,10 @@ namespace Common.Logging.Factory
         /// <param name="formatProvider">An <see cref="IFormatProvider"/> that supplies culture-specific formatting information.</param>
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="args"></param>
-        [StringFormatMethod("format")]
-        public virtual void TraceFormat(IFormatProvider formatProvider, string format, params object[] args)
+        public override void TraceFormat(IFormatProvider formatProvider, string format, params object[] args)
         {
             if (IsTraceEnabled)
-                Write(LogLevel.Trace, new StringFormatFormattedMessage(formatProvider, format, args), null);
+                _logger.Verbose(format, args);
         }
 
         /// <summary>
@@ -302,11 +164,10 @@ namespace Common.Logging.Factory
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="exception">The exception to log.</param>
         /// <param name="args"></param>
-        [StringFormatMethod("format")]
-        public virtual void TraceFormat(IFormatProvider formatProvider, string format, Exception exception, params object[] args)
+        public override void TraceFormat(IFormatProvider formatProvider, string format, Exception exception, params object[] args)
         {
             if (IsTraceEnabled)
-                Write(LogLevel.Trace, new StringFormatFormattedMessage(formatProvider, format, args), exception);
+                _logger.Verbose(exception, format, args);
         }
 
         /// <summary>
@@ -314,11 +175,10 @@ namespace Common.Logging.Factory
         /// </summary>
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="args">the list of format arguments</param>
-        [StringFormatMethod("format")]
-        public virtual void TraceFormat(string format, params object[] args)
+        public override void TraceFormat(string format, params object[] args)
         {
             if (IsTraceEnabled)
-                Write(LogLevel.Trace, new StringFormatFormattedMessage(null, format, args), null);
+                _logger.Verbose(format, args);
         }
 
         /// <summary>
@@ -327,11 +187,10 @@ namespace Common.Logging.Factory
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="exception">The exception to log.</param>
         /// <param name="args">the list of format arguments</param>
-        [StringFormatMethod("format")]
-        public virtual void TraceFormat(string format, Exception exception, params object[] args)
+        public new virtual void TraceFormat(string format, Exception exception, params object[] args)
         {
             if (IsTraceEnabled)
-                Write(LogLevel.Trace, new StringFormatFormattedMessage(null, format, args), exception);
+                _logger.Verbose(exception, format, args);
         }
 
         /// <summary>
@@ -342,10 +201,16 @@ namespace Common.Logging.Factory
         /// that probably won't be logged due to loglevel settings.
         /// </remarks>
         /// <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
-        public virtual void Trace(FormatMessageCallback formatMessageCallback)
+        public override void Trace(FormatMessageCallback formatMessageCallback)
         {
             if (IsTraceEnabled)
-                Write(LogLevel.Trace, new FormatMessageCallbackFormattedMessage(formatMessageCallback), null);
+            {
+                object[] arguments;
+                var format = new FormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
+
+                _logger.Verbose(format, arguments);
+
+            }
         }
 
         /// <summary>
@@ -357,10 +222,15 @@ namespace Common.Logging.Factory
         /// </remarks>
         /// <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
         /// <param name="exception">The exception to log, including its stack trace.</param>
-        public virtual void Trace(FormatMessageCallback formatMessageCallback, Exception exception)
+        public override void Trace(FormatMessageCallback formatMessageCallback, Exception exception)
         {
             if (IsTraceEnabled)
-                Write(LogLevel.Trace, new FormatMessageCallbackFormattedMessage(formatMessageCallback), exception);
+            {
+                object[] arguments;
+                var format = new FormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
+
+                _logger.Verbose(exception, format, arguments);
+            }
         }
 
         /// <summary>
@@ -372,10 +242,16 @@ namespace Common.Logging.Factory
         /// </remarks>
         /// <param name="formatProvider">An <see cref="IFormatProvider"/> that supplies culture-specific formatting information.</param>
         /// <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
-        public virtual void Trace(IFormatProvider formatProvider, FormatMessageCallback formatMessageCallback)
+        public override void Trace(IFormatProvider formatProvider, FormatMessageCallback formatMessageCallback)
         {
             if (IsTraceEnabled)
-                Write(LogLevel.Trace, new FormatMessageCallbackFormattedMessage(formatProvider, formatMessageCallback), null);
+            {
+                object[] arguments;
+
+                var format = new FormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
+
+                _logger.Verbose(format, arguments);
+            }
         }
 
         /// <summary>
@@ -388,24 +264,30 @@ namespace Common.Logging.Factory
         /// <param name="formatProvider">An <see cref="IFormatProvider"/> that supplies culture-specific formatting information.</param>
         /// <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
         /// <param name="exception">The exception to log, including its stack trace.</param>
-        public virtual void Trace(IFormatProvider formatProvider, FormatMessageCallback formatMessageCallback, Exception exception)
+        public override void Trace(IFormatProvider formatProvider, FormatMessageCallback formatMessageCallback, Exception exception)
         {
             if (IsTraceEnabled)
-                Write(LogLevel.Trace, new FormatMessageCallbackFormattedMessage(formatProvider, formatMessageCallback), exception);
+            {
+                object[] arguments;
+
+                var format = new FormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
+
+                _logger.Verbose(exception, format, arguments);
+            }
         }
 
         #endregion
 
         #region Debug
 
-        /// <summary>
-        /// Log a message object with the <see cref="LogLevel.Debug"/> level.
-        /// </summary>
-        /// <param name="message">The message object to log.</param>
-        public virtual void Debug(object message)
+            /// <summary>
+            /// Log a message object with the <see cref="LogLevel.Debug"/> level.
+            /// </summary>
+            /// <param name="message">The message object to log.</param>
+        public override void Debug(object message)
         {
             if (IsDebugEnabled)
-                Write(LogLevel.Debug, message, null);
+                _logger.Debug(message.ToString());
         }
 
         /// <summary>
@@ -415,10 +297,10 @@ namespace Common.Logging.Factory
         /// </summary>
         /// <param name="message">The message object to log.</param>
         /// <param name="exception">The exception to log, including its stack Debug.</param>
-        public virtual void Debug(object message, Exception exception)
+        public override void Debug(object message, Exception exception)
         {
             if (IsDebugEnabled)
-                Write(LogLevel.Debug, message, exception);
+                _logger.Debug(exception, message.ToString());
         }
 
         /// <summary>
@@ -427,11 +309,10 @@ namespace Common.Logging.Factory
         /// <param name="formatProvider">An <see cref="IFormatProvider"/> that supplies culture-specific formatting information.</param>
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="args"></param>
-        [StringFormatMethod("format")]
-        public virtual void DebugFormat(IFormatProvider formatProvider, string format, params object[] args)
+        public override void DebugFormat(IFormatProvider formatProvider, string format, params object[] args)
         {
             if (IsDebugEnabled)
-                Write(LogLevel.Debug, new StringFormatFormattedMessage(formatProvider, format, args), null);
+                _logger.Debug(format, args);
         }
 
         /// <summary>
@@ -441,11 +322,10 @@ namespace Common.Logging.Factory
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="exception">The exception to log.</param>
         /// <param name="args"></param>
-        [StringFormatMethod("format")]
-        public virtual void DebugFormat(IFormatProvider formatProvider, string format, Exception exception, params object[] args)
+        public override void DebugFormat(IFormatProvider formatProvider, string format, Exception exception, params object[] args)
         {
             if (IsDebugEnabled)
-                Write(LogLevel.Debug, new StringFormatFormattedMessage(formatProvider, format, args), exception);
+                _logger.Debug(exception, format, args);
         }
 
         /// <summary>
@@ -453,11 +333,10 @@ namespace Common.Logging.Factory
         /// </summary>
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="args">the list of format arguments</param>
-        [StringFormatMethod("format")]
-        public virtual void DebugFormat(string format, params object[] args)
+        public override void DebugFormat(string format, params object[] args)
         {
             if (IsDebugEnabled)
-                Write(LogLevel.Debug, new StringFormatFormattedMessage(null, format, args), null);
+                _logger.Debug(format, args);
         }
 
         /// <summary>
@@ -466,11 +345,10 @@ namespace Common.Logging.Factory
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="exception">The exception to log.</param>
         /// <param name="args">the list of format arguments</param>
-        [StringFormatMethod("format")]
-        public virtual void DebugFormat(string format, Exception exception, params object[] args)
+        public override void DebugFormat(string format, Exception exception, params object[] args)
         {
             if (IsDebugEnabled)
-                Write(LogLevel.Debug, new StringFormatFormattedMessage(null, format, args), exception);
+                _logger.Debug(exception, format, args);
         }
 
         /// <summary>
@@ -481,10 +359,16 @@ namespace Common.Logging.Factory
         /// that probably won't be logged due to loglevel settings.
         /// </remarks>
         /// <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
-        public virtual void Debug(FormatMessageCallback formatMessageCallback)
+        public override void Debug(FormatMessageCallback formatMessageCallback)
         {
             if (IsDebugEnabled)
-                Write(LogLevel.Debug, new FormatMessageCallbackFormattedMessage(formatMessageCallback), null);
+            {
+                object[] arguments;
+
+                var format = new FormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
+
+                _logger.Debug(format, arguments);
+            }
         }
 
         /// <summary>
@@ -496,10 +380,17 @@ namespace Common.Logging.Factory
         /// </remarks>
         /// <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
         /// <param name="exception">The exception to log, including its stack Debug.</param>
-        public virtual void Debug(FormatMessageCallback formatMessageCallback, Exception exception)
+        public override void Debug(FormatMessageCallback formatMessageCallback, Exception exception)
         {
             if (IsDebugEnabled)
-                Write(LogLevel.Debug, new FormatMessageCallbackFormattedMessage(formatMessageCallback), exception);
+                if (IsDebugEnabled)
+                {
+                    object[] arguments;
+
+                    var format = new FormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
+
+                    _logger.Debug(exception, format, arguments);
+                }
         }
 
         /// <summary>
@@ -511,10 +402,16 @@ namespace Common.Logging.Factory
         /// </remarks>
         /// <param name="formatProvider">An <see cref="IFormatProvider"/> that supplies culture-specific formatting information.</param>
         /// <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
-        public virtual void Debug(IFormatProvider formatProvider, FormatMessageCallback formatMessageCallback)
+        public override void Debug(IFormatProvider formatProvider, FormatMessageCallback formatMessageCallback)
         {
             if (IsDebugEnabled)
-                Write(LogLevel.Debug, new FormatMessageCallbackFormattedMessage(formatProvider, formatMessageCallback), null);
+            {
+                object[] arguments;
+
+                var format = new FormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
+
+                _logger.Debug(format, arguments);
+            }
         }
 
         /// <summary>
@@ -527,10 +424,16 @@ namespace Common.Logging.Factory
         /// <param name="formatProvider">An <see cref="IFormatProvider"/> that supplies culture-specific formatting information.</param>
         /// <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
         /// <param name="exception">The exception to log, including its stack Debug.</param>
-        public virtual void Debug(IFormatProvider formatProvider, FormatMessageCallback formatMessageCallback, Exception exception)
+        public override void Debug(IFormatProvider formatProvider, FormatMessageCallback formatMessageCallback, Exception exception)
         {
             if (IsDebugEnabled)
-                Write(LogLevel.Debug, new FormatMessageCallbackFormattedMessage(formatProvider, formatMessageCallback), exception);
+            {
+                object[] arguments;
+
+                var format = new FormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
+
+                _logger.Debug(exception, format, arguments);
+            }
         }
 
         #endregion
@@ -541,10 +444,10 @@ namespace Common.Logging.Factory
         /// Log a message object with the <see cref="LogLevel.Info"/> level.
         /// </summary>
         /// <param name="message">The message object to log.</param>
-        public virtual void Info(object message)
+        public override void Info(object message)
         {
             if (IsInfoEnabled)
-                Write(LogLevel.Info, message, null);
+                _logger.Information(message.ToString());
         }
 
         /// <summary>
@@ -554,10 +457,10 @@ namespace Common.Logging.Factory
         /// </summary>
         /// <param name="message">The message object to log.</param>
         /// <param name="exception">The exception to log, including its stack Info.</param>
-        public virtual void Info(object message, Exception exception)
+        public override void Info(object message, Exception exception)
         {
             if (IsInfoEnabled)
-                Write(LogLevel.Info, message, exception);
+                _logger.Information(exception, message.ToString());
         }
 
         /// <summary>
@@ -566,11 +469,10 @@ namespace Common.Logging.Factory
         /// <param name="formatProvider">An <see cref="IFormatProvider"/> that supplies culture-specific formatting information.</param>
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="args"></param>
-        [StringFormatMethod("format")]
-        public virtual void InfoFormat(IFormatProvider formatProvider, string format, params object[] args)
+        public override void InfoFormat(IFormatProvider formatProvider, string format, params object[] args)
         {
             if (IsInfoEnabled)
-                Write(LogLevel.Info, new StringFormatFormattedMessage(formatProvider, format, args), null);
+                _logger.Information(format, args);
         }
 
         /// <summary>
@@ -580,11 +482,10 @@ namespace Common.Logging.Factory
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="exception">The exception to log.</param>
         /// <param name="args"></param>
-        [StringFormatMethod("format")]
-        public virtual void InfoFormat(IFormatProvider formatProvider, string format, Exception exception, params object[] args)
+        public override void InfoFormat(IFormatProvider formatProvider, string format, Exception exception, params object[] args)
         {
             if (IsInfoEnabled)
-                Write(LogLevel.Info, new StringFormatFormattedMessage(formatProvider, format, args), exception);
+                _logger.Information(exception, format, args);
         }
 
         /// <summary>
@@ -592,11 +493,10 @@ namespace Common.Logging.Factory
         /// </summary>
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="args">the list of format arguments</param>
-        [StringFormatMethod("format")]
-        public virtual void InfoFormat(string format, params object[] args)
+        public override void InfoFormat(string format, params object[] args)
         {
             if (IsInfoEnabled)
-                Write(LogLevel.Info, new StringFormatFormattedMessage(null, format, args), null);
+                _logger.Information(format, args);
         }
 
         /// <summary>
@@ -605,11 +505,10 @@ namespace Common.Logging.Factory
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="exception">The exception to log.</param>
         /// <param name="args">the list of format arguments</param>
-        [StringFormatMethod("format")]
-        public virtual void InfoFormat(string format, Exception exception, params object[] args)
+        public override void InfoFormat(string format, Exception exception, params object[] args)
         {
             if (IsInfoEnabled)
-                Write(LogLevel.Info, new StringFormatFormattedMessage(null, format, args), exception);
+                _logger.Information(exception, format, args);
         }
 
         /// <summary>
@@ -620,10 +519,16 @@ namespace Common.Logging.Factory
         /// that probably won't be logged due to loglevel settings.
         /// </remarks>
         /// <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
-        public virtual void Info(FormatMessageCallback formatMessageCallback)
+        public override void Info(FormatMessageCallback formatMessageCallback)
         {
             if (IsInfoEnabled)
-                Write(LogLevel.Info, new FormatMessageCallbackFormattedMessage(formatMessageCallback), null);
+            {
+                object[] arguments;
+
+                var format = new FormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
+
+                _logger.Information(format, arguments);
+            }
         }
 
         /// <summary>
@@ -635,10 +540,16 @@ namespace Common.Logging.Factory
         /// </remarks>
         /// <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
         /// <param name="exception">The exception to log, including its stack Info.</param>
-        public virtual void Info(FormatMessageCallback formatMessageCallback, Exception exception)
+        public override void Info(FormatMessageCallback formatMessageCallback, Exception exception)
         {
             if (IsInfoEnabled)
-                Write(LogLevel.Info, new FormatMessageCallbackFormattedMessage(formatMessageCallback), exception);
+            {
+                object[] arguments;
+
+                var format = new FormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
+
+                _logger.Information(exception, format, arguments);
+            }
         }
 
         /// <summary>
@@ -650,10 +561,16 @@ namespace Common.Logging.Factory
         /// </remarks>
         /// <param name="formatProvider">An <see cref="IFormatProvider"/> that supplies culture-specific formatting information.</param>
         /// <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
-        public virtual void Info(IFormatProvider formatProvider, FormatMessageCallback formatMessageCallback)
+        public override void Info(IFormatProvider formatProvider, FormatMessageCallback formatMessageCallback)
         {
             if (IsInfoEnabled)
-                Write(LogLevel.Info, new FormatMessageCallbackFormattedMessage(formatProvider, formatMessageCallback), null);
+            {
+                object[] arguments;
+
+                var format = new FormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
+
+                _logger.Information(format, arguments);
+            }
         }
 
         /// <summary>
@@ -666,10 +583,16 @@ namespace Common.Logging.Factory
         /// <param name="formatProvider">An <see cref="IFormatProvider"/> that supplies culture-specific formatting information.</param>
         /// <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
         /// <param name="exception">The exception to log, including its stack Info.</param>
-        public virtual void Info(IFormatProvider formatProvider, FormatMessageCallback formatMessageCallback, Exception exception)
+        public override void Info(IFormatProvider formatProvider, FormatMessageCallback formatMessageCallback, Exception exception)
         {
             if (IsInfoEnabled)
-                Write(LogLevel.Info, new FormatMessageCallbackFormattedMessage(formatProvider, formatMessageCallback), exception);
+            {
+                object[] arguments;
+
+                var format = new FormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
+
+                _logger.Information(exception, format, arguments);
+            }
         }
 
         #endregion
@@ -680,10 +603,10 @@ namespace Common.Logging.Factory
         /// Log a message object with the <see cref="LogLevel.Warn"/> level.
         /// </summary>
         /// <param name="message">The message object to log.</param>
-        public virtual void Warn(object message)
+        public override void Warn(object message)
         {
             if (IsWarnEnabled)
-                Write(LogLevel.Warn, message, null);
+                _logger.Warning(message.ToString());
         }
 
         /// <summary>
@@ -693,10 +616,10 @@ namespace Common.Logging.Factory
         /// </summary>
         /// <param name="message">The message object to log.</param>
         /// <param name="exception">The exception to log, including its stack Warn.</param>
-        public virtual void Warn(object message, Exception exception)
+        public override void Warn(object message, Exception exception)
         {
             if (IsWarnEnabled)
-                Write(LogLevel.Warn, message, exception);
+                _logger.Warning(exception, message.ToString());
         }
 
         /// <summary>
@@ -705,25 +628,23 @@ namespace Common.Logging.Factory
         /// <param name="formatProvider">An <see cref="IFormatProvider"/> that supplies culture-specific formatting Information.</param>
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="args"></param>
-        [StringFormatMethod("format")]
-        public virtual void WarnFormat(IFormatProvider formatProvider, string format, params object[] args)
+        public override void WarnFormat(IFormatProvider formatProvider, string format, params object[] args)
         {
             if (IsWarnEnabled)
-                Write(LogLevel.Warn, new StringFormatFormattedMessage(formatProvider, format, args), null);
+                _logger.Warning(format, args);
         }
 
         /// <summary>
         /// Log a message with the <see cref="LogLevel.Warn"/> level.
         /// </summary>
-        /// <param name="formatProvider">An <see cref="IFormatProvider"/> that supplies culture-specific formatting information.</param>
+        /// <param name="formatProvider">An <see cref="IFormatProvider"/> that supplies culture-specific formatting Information.</param>
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="exception">The exception to log.</param>
         /// <param name="args"></param>
-        [StringFormatMethod("format")]
-        public virtual void WarnFormat(IFormatProvider formatProvider, string format, Exception exception, params object[] args)
+        public override void WarnFormat(IFormatProvider formatProvider, string format, Exception exception, params object[] args)
         {
             if (IsWarnEnabled)
-                Write(LogLevel.Warn, new StringFormatFormattedMessage(formatProvider, format, args), exception);
+                _logger.Warning(exception, format, args);
         }
 
         /// <summary>
@@ -731,11 +652,10 @@ namespace Common.Logging.Factory
         /// </summary>
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="args">the list of format arguments</param>
-        [StringFormatMethod("format")]
-        public virtual void WarnFormat(string format, params object[] args)
+        public override void WarnFormat(string format, params object[] args)
         {
             if (IsWarnEnabled)
-                Write(LogLevel.Warn, new StringFormatFormattedMessage(null, format, args), null);
+                _logger.Warning(format, args);
         }
 
         /// <summary>
@@ -744,11 +664,10 @@ namespace Common.Logging.Factory
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="exception">The exception to log.</param>
         /// <param name="args">the list of format arguments</param>
-        [StringFormatMethod("format")]
-        public virtual void WarnFormat(string format, Exception exception, params object[] args)
+        public override void WarnFormat(string format, Exception exception, params object[] args)
         {
             if (IsWarnEnabled)
-                Write(LogLevel.Warn, new StringFormatFormattedMessage(null, format, args), exception);
+                _logger.Warning(exception, format, args);
         }
 
         /// <summary>
@@ -759,10 +678,16 @@ namespace Common.Logging.Factory
         /// that probably won't be logged due to loglevel settings.
         /// </remarks>
         /// <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
-        public virtual void Warn(FormatMessageCallback formatMessageCallback)
+        public override void Warn(FormatMessageCallback formatMessageCallback)
         {
             if (IsWarnEnabled)
-                Write(LogLevel.Warn, new FormatMessageCallbackFormattedMessage(formatMessageCallback), null);
+            {
+                object[] arguments;
+
+                var format = new FormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
+
+                _logger.Warning(format, arguments);
+            }
         }
 
         /// <summary>
@@ -774,10 +699,16 @@ namespace Common.Logging.Factory
         /// </remarks>
         /// <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
         /// <param name="exception">The exception to log, including its stack Warn.</param>
-        public virtual void Warn(FormatMessageCallback formatMessageCallback, Exception exception)
+        public override void Warn(FormatMessageCallback formatMessageCallback, Exception exception)
         {
             if (IsWarnEnabled)
-                Write(LogLevel.Warn, new FormatMessageCallbackFormattedMessage(formatMessageCallback), exception);
+            {
+                object[] arguments;
+
+                var format = new FormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
+
+                _logger.Warning(exception, format, arguments);
+            }
         }
 
         /// <summary>
@@ -789,10 +720,16 @@ namespace Common.Logging.Factory
         /// </remarks>
         /// <param name="formatProvider">An <see cref="IFormatProvider"/> that supplies culture-specific formatting information.</param>
         /// <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
-        public virtual void Warn(IFormatProvider formatProvider, FormatMessageCallback formatMessageCallback)
+        public override void Warn(IFormatProvider formatProvider, FormatMessageCallback formatMessageCallback)
         {
             if (IsWarnEnabled)
-                Write(LogLevel.Warn, new FormatMessageCallbackFormattedMessage(formatProvider, formatMessageCallback), null);
+            {
+                object[] arguments;
+
+                var format = new FormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
+
+                _logger.Warning(format, arguments);
+            }
         }
 
         /// <summary>
@@ -805,10 +742,16 @@ namespace Common.Logging.Factory
         /// <param name="formatProvider">An <see cref="IFormatProvider"/> that supplies culture-specific formatting information.</param>
         /// <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
         /// <param name="exception">The exception to log, including its stack Warn.</param>
-        public virtual void Warn(IFormatProvider formatProvider, FormatMessageCallback formatMessageCallback, Exception exception)
+        public override void Warn(IFormatProvider formatProvider, FormatMessageCallback formatMessageCallback, Exception exception)
         {
             if (IsWarnEnabled)
-                Write(LogLevel.Warn, new FormatMessageCallbackFormattedMessage(formatProvider, formatMessageCallback), exception);
+            {
+                object[] arguments;
+
+                var format = new FormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
+
+                _logger.Warning(exception, format, arguments);
+            }
         }
 
         #endregion
@@ -819,10 +762,10 @@ namespace Common.Logging.Factory
         /// Log a message object with the <see cref="LogLevel.Error"/> level.
         /// </summary>
         /// <param name="message">The message object to log.</param>
-        public virtual void Error(object message)
+        public override void Error(object message)
         {
             if (IsErrorEnabled)
-                Write(LogLevel.Error, message, null);
+                _logger.Error(message.ToString());
         }
 
         /// <summary>
@@ -832,10 +775,10 @@ namespace Common.Logging.Factory
         /// </summary>
         /// <param name="message">The message object to log.</param>
         /// <param name="exception">The exception to log, including its stack Error.</param>
-        public virtual void Error(object message, Exception exception)
+        public override void Error(object message, Exception exception)
         {
             if (IsErrorEnabled)
-                Write(LogLevel.Error, message, exception);
+                _logger.Error(exception, message.ToString());
         }
 
         /// <summary>
@@ -844,11 +787,10 @@ namespace Common.Logging.Factory
         /// <param name="formatProvider">An <see cref="IFormatProvider"/> that supplies culture-specific formatting Errorrmation.</param>
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="args"></param>
-        [StringFormatMethod("format")]
-        public virtual void ErrorFormat(IFormatProvider formatProvider, string format, params object[] args)
+        public override void ErrorFormat(IFormatProvider formatProvider, string format, params object[] args)
         {
             if (IsErrorEnabled)
-                Write(LogLevel.Error, new StringFormatFormattedMessage(formatProvider, format, args), null);
+                _logger.Error(format, args);
         }
 
         /// <summary>
@@ -858,11 +800,10 @@ namespace Common.Logging.Factory
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="exception">The exception to log.</param>
         /// <param name="args"></param>
-        [StringFormatMethod("format")]
-        public virtual void ErrorFormat(IFormatProvider formatProvider, string format, Exception exception, params object[] args)
+        public override void ErrorFormat(IFormatProvider formatProvider, string format, Exception exception, params object[] args)
         {
             if (IsErrorEnabled)
-                Write(LogLevel.Error, new StringFormatFormattedMessage(formatProvider, format, args), exception);
+                _logger.Error(exception, format, args);
         }
 
         /// <summary>
@@ -870,11 +811,10 @@ namespace Common.Logging.Factory
         /// </summary>
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="args">the list of format arguments</param>
-        [StringFormatMethod("format")]
-        public virtual void ErrorFormat(string format, params object[] args)
+        public override void ErrorFormat(string format, params object[] args)
         {
             if (IsErrorEnabled)
-                Write(LogLevel.Error, new StringFormatFormattedMessage(null, format, args), null);
+                _logger.Error(format, args);
         }
 
         /// <summary>
@@ -883,11 +823,10 @@ namespace Common.Logging.Factory
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="exception">The exception to log.</param>
         /// <param name="args">the list of format arguments</param>
-        [StringFormatMethod("format")]
-        public virtual void ErrorFormat(string format, Exception exception, params object[] args)
+        public override void ErrorFormat(string format, Exception exception, params object[] args)
         {
             if (IsErrorEnabled)
-                Write(LogLevel.Error, new StringFormatFormattedMessage(null, format, args), exception);
+                _logger.Error(exception, format, args);
         }
 
         /// <summary>
@@ -898,10 +837,16 @@ namespace Common.Logging.Factory
         /// that probably won't be logged due to loglevel settings.
         /// </remarks>
         /// <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
-        public virtual void Error(FormatMessageCallback formatMessageCallback)
+        public override void Error(FormatMessageCallback formatMessageCallback)
         {
             if (IsErrorEnabled)
-                Write(LogLevel.Error, new FormatMessageCallbackFormattedMessage(formatMessageCallback), null);
+            {
+                object[] arguments;
+
+                var format = new FormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
+
+                _logger.Error(format, arguments);
+            }
         }
 
         /// <summary>
@@ -913,10 +858,16 @@ namespace Common.Logging.Factory
         /// </remarks>
         /// <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
         /// <param name="exception">The exception to log, including its stack Error.</param>
-        public virtual void Error(FormatMessageCallback formatMessageCallback, Exception exception)
+        public override void Error(FormatMessageCallback formatMessageCallback, Exception exception)
         {
             if (IsErrorEnabled)
-                Write(LogLevel.Error, new FormatMessageCallbackFormattedMessage(formatMessageCallback), exception);
+            {
+                object[] arguments;
+
+                var format = new FormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
+
+                _logger.Error(exception, format, arguments);
+            }
         }
 
         /// <summary>
@@ -928,10 +879,16 @@ namespace Common.Logging.Factory
         /// </remarks>
         /// <param name="formatProvider">An <see cref="IFormatProvider"/> that supplies culture-specific formatting information.</param>
         /// <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
-        public virtual void Error(IFormatProvider formatProvider, FormatMessageCallback formatMessageCallback)
+        public override void Error(IFormatProvider formatProvider, FormatMessageCallback formatMessageCallback)
         {
             if (IsErrorEnabled)
-                Write(LogLevel.Error, new FormatMessageCallbackFormattedMessage(formatProvider, formatMessageCallback), null);
+            {
+                object[] arguments;
+
+                var format = new FormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
+
+                _logger.Error(format, arguments);
+            }
         }
 
         /// <summary>
@@ -944,10 +901,16 @@ namespace Common.Logging.Factory
         /// <param name="formatProvider">An <see cref="IFormatProvider"/> that supplies culture-specific formatting information.</param>
         /// <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
         /// <param name="exception">The exception to log, including its stack Error.</param>
-        public virtual void Error(IFormatProvider formatProvider, FormatMessageCallback formatMessageCallback, Exception exception)
+        public override void Error(IFormatProvider formatProvider, FormatMessageCallback formatMessageCallback, Exception exception)
         {
             if (IsErrorEnabled)
-                Write(LogLevel.Error, new FormatMessageCallbackFormattedMessage(formatProvider, formatMessageCallback), exception);
+            {
+                object[] arguments;
+
+                var format = new FormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
+
+                _logger.Error(exception, format, arguments);
+            }
         }
 
         #endregion
@@ -958,10 +921,10 @@ namespace Common.Logging.Factory
         /// Log a message object with the <see cref="LogLevel.Fatal"/> level.
         /// </summary>
         /// <param name="message">The message object to log.</param>
-        public virtual void Fatal(object message)
+        public override void Fatal(object message)
         {
             if (IsFatalEnabled)
-                Write(LogLevel.Fatal, message, null);
+                _logger.Fatal(message.ToString());
         }
 
         /// <summary>
@@ -971,10 +934,11 @@ namespace Common.Logging.Factory
         /// </summary>
         /// <param name="message">The message object to log.</param>
         /// <param name="exception">The exception to log, including its stack Fatal.</param>
-        public virtual void Fatal(object message, Exception exception)
+        public override void Fatal(object message, Exception exception)
         {
             if (IsFatalEnabled)
-                Write(LogLevel.Fatal, message, exception);
+                _logger.Fatal(exception, message.ToString());
+
         }
 
         /// <summary>
@@ -983,11 +947,11 @@ namespace Common.Logging.Factory
         /// <param name="formatProvider">An <see cref="IFormatProvider"/> that supplies culture-specific formatting Fatalrmation.</param>
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="args"></param>
-        [StringFormatMethod("format")]
-        public virtual void FatalFormat(IFormatProvider formatProvider, string format, params object[] args)
+        public override void FatalFormat(IFormatProvider formatProvider, string format, params object[] args)
         {
             if (IsFatalEnabled)
-                Write(LogLevel.Fatal, new StringFormatFormattedMessage(formatProvider, format, args), null);
+                _logger.Fatal(format, args);
+
         }
 
         /// <summary>
@@ -997,11 +961,10 @@ namespace Common.Logging.Factory
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="exception">The exception to log.</param>
         /// <param name="args"></param>
-        [StringFormatMethod("format")]
-        public virtual void FatalFormat(IFormatProvider formatProvider, string format, Exception exception, params object[] args)
+        public override void FatalFormat(IFormatProvider formatProvider, string format, Exception exception, params object[] args)
         {
             if (IsFatalEnabled)
-                Write(LogLevel.Fatal, new StringFormatFormattedMessage(formatProvider, format, args), exception);
+                _logger.Fatal(exception, format, args);
         }
 
         /// <summary>
@@ -1009,11 +972,11 @@ namespace Common.Logging.Factory
         /// </summary>
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="args">the list of format arguments</param>
-        [StringFormatMethod("format")]
-        public virtual void FatalFormat(string format, params object[] args)
+        public override void FatalFormat(string format, params object[] args)
         {
             if (IsFatalEnabled)
-                Write(LogLevel.Fatal, new StringFormatFormattedMessage(null, format, args), null);
+                _logger.Fatal(format, args);
+
         }
 
         /// <summary>
@@ -1022,11 +985,10 @@ namespace Common.Logging.Factory
         /// <param name="format">The format of the message object to log.<see cref="string.Format(string,object[])"/> </param>
         /// <param name="exception">The exception to log.</param>
         /// <param name="args">the list of format arguments</param>
-        [StringFormatMethod("format")]
-        public virtual void FatalFormat(string format, Exception exception, params object[] args)
+        public override void FatalFormat(string format, Exception exception, params object[] args)
         {
             if (IsFatalEnabled)
-                Write(LogLevel.Fatal, new StringFormatFormattedMessage(null, format, args), exception);
+                _logger.Fatal(exception, format, args);
         }
 
         /// <summary>
@@ -1037,10 +999,17 @@ namespace Common.Logging.Factory
         /// that probably won't be logged due to loglevel settings.
         /// </remarks>
         /// <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
-        public virtual void Fatal(FormatMessageCallback formatMessageCallback)
+        public override void Fatal(FormatMessageCallback formatMessageCallback)
         {
             if (IsFatalEnabled)
-                Write(LogLevel.Fatal, new FormatMessageCallbackFormattedMessage(formatMessageCallback), null);
+            {
+                object[] arguments;
+
+                var format = new FormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
+
+                _logger.Fatal(format, arguments);
+            }
+               
         }
 
         /// <summary>
@@ -1052,10 +1021,17 @@ namespace Common.Logging.Factory
         /// </remarks>
         /// <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
         /// <param name="exception">The exception to log, including its stack Fatal.</param>
-        public virtual void Fatal(FormatMessageCallback formatMessageCallback, Exception exception)
+        public override void Fatal(FormatMessageCallback formatMessageCallback, Exception exception)
         {
             if (IsFatalEnabled)
-                Write(LogLevel.Fatal, new FormatMessageCallbackFormattedMessage(formatMessageCallback), exception);
+            {
+                object[] arguments;
+
+                var format = new FormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
+
+                _logger.Fatal(exception, format, arguments);
+
+            }
         }
 
         /// <summary>
@@ -1067,10 +1043,17 @@ namespace Common.Logging.Factory
         /// </remarks>
         /// <param name="formatProvider">An <see cref="IFormatProvider"/> that supplies culture-specific formatting information.</param>
         /// <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
-        public virtual void Fatal(IFormatProvider formatProvider, FormatMessageCallback formatMessageCallback)
+        public override void Fatal(IFormatProvider formatProvider, FormatMessageCallback formatMessageCallback)
         {
             if (IsFatalEnabled)
-                Write(LogLevel.Fatal, new FormatMessageCallbackFormattedMessage(formatProvider, formatMessageCallback), null);
+            {
+                object[] arguments;
+
+                var format = new FormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
+
+                _logger.Fatal(format, arguments);
+
+            }
         }
 
         /// <summary>
@@ -1083,28 +1066,32 @@ namespace Common.Logging.Factory
         /// <param name="formatProvider">An <see cref="IFormatProvider"/> that supplies culture-specific formatting information.</param>
         /// <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
         /// <param name="exception">The exception to log, including its stack Fatal.</param>
-        public virtual void Fatal(IFormatProvider formatProvider, FormatMessageCallback formatMessageCallback, Exception exception)
+        public override void Fatal(IFormatProvider formatProvider, FormatMessageCallback formatMessageCallback, Exception exception)
         {
             if (IsFatalEnabled)
-                Write(LogLevel.Fatal, new FormatMessageCallbackFormattedMessage(formatProvider, formatMessageCallback), exception);
+            {
+                object[] arguments;
+
+                var format = new FormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
+
+                _logger.Fatal(exception, format, arguments);
+            }
         }
 
         #endregion
 
-        /// <summary>
-        /// Returns the global context for variables
-        /// </summary>
-        public virtual IVariablesContext GlobalVariablesContext
-        {
-            get { return new Simple.NoOpVariablesContext(); }
-        }
+        #endregion
 
-        /// <summary>
-        /// Returns the thread-specific context for variables
+
+                /// <summary>
+        /// Actually sends the message to the underlying log system.
         /// </summary>
-        public virtual IVariablesContext ThreadVariablesContext
+        /// <param name="level">the level of this log event.</param>
+        /// <param name="message">the message to log</param>
+        /// <param name="exception">the exception to log (may be null)</param>
+        protected override void WriteInternal(LogLevel level, object message, Exception exception)
         {
-            get { return new Simple.NoOpVariablesContext(); }
-        }
+            //Do nothing here. This method is not compatible with Serilog            
+        }        
     }
 }
