@@ -14,10 +14,13 @@
     <language>en-US</language>
     <dependencies>
       <dependency id="Common.Logging" version="3.3.2-Alpha3" />
-      <dependency id="NLog" version="2.1.0" />
+      <dependency id="NLog" version="[2.1.0]" />
     </dependencies>
   </metadata>
   <files>
+    <file src="..\..\build\net20\Common.Logging.NLog21\Release\Common.Logging.NLog21.dll" target="lib\net20" />
+    <file src="..\..\build\net20\Common.Logging.NLog21\Release\Common.Logging.NLog21.pdb" target="lib\net20" />
+    <file src="..\..\build\net20\Common.Logging.NLog21\Release\Common.Logging.NLog21.xml" target="lib\net20" />
     <file src="..\..\build\net20\Common.Logging.NLog21\Release\Common.Logging.NLog21.dll" target="lib\net35" />
     <file src="..\..\build\net20\Common.Logging.NLog21\Release\Common.Logging.NLog21.pdb" target="lib\net35" />
     <file src="..\..\build\net20\Common.Logging.NLog21\Release\Common.Logging.NLog21.xml" target="lib\net35" />
