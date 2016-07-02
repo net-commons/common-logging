@@ -1,13 +1,14 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 14.0.23107.0
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{EC54316A-A3B9-4EF5-A74C-1EC2344D0EA4}"
 	ProjectSection(SolutionItems) = preProject
 		changelog.txt = changelog.txt
 		Common.Logging.build = Common.Logging.build
 		src\CommonAssemblyInfo.cs.template = src\CommonAssemblyInfo.cs.template
+		global.json = global.json
 		doc\api\introduction.html = doc\api\introduction.html
 		Logging.ndoc = Logging.ndoc
 	EndProjectSection
