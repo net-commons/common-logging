@@ -1,11 +1,13 @@
 {
-  "version": "3.3.0-*",
+  "version": "3.4.0-*",
   "description": "Common.Logging.DotNetCore",
-  "compilationOptions": {
-    "define": [ "PORTABLE", "DOTNETCORE" ]
+  "buildOptions": {
+    "define": [ "PORTABLE", "DOTNETCORE" ],
+    "compile": [ "../Common.Logging.Portable/**/*.cs", "../CommonAssemblyInfo.cs" ],
+    "compileExclude": [ "../Common.Logging.Portable/Logging/Factory/ResharperAnnotation.cs" ]
   },
   "dependencies": {
-    "Common.Logging.Core.DotNetCore": "3.3.0-*",
+    "Common.Logging.Core.DotNetCore": "3.4.0-*",
     "Microsoft.CSharp": "4.0.0",
     "System.Collections": "4.0.10",
     "System.Linq": "4.0.0",
@@ -14,7 +16,6 @@
   },
   "frameworks": {
     "dotnet": { }
-  },
-  "compile": [ "../Common.Logging.Portable/**/*.cs", "../CommonAssemblyInfo.cs" ],
-  "compileExclude": [ "../Common.Logging.Portable/Logging/Factory/ResharperAnnotation.cs" ],
+  }
+  
 }

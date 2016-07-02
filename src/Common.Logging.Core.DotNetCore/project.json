@@ -1,13 +1,13 @@
 ﻿{
-  "version": "3.3.0-*",
+  "version": "3.4.0-*",
   "description": "Common.Logging.Core.DotNetCore",
-  "compilationOptions": {
-    "define": [ "PORTABLE", "DOTNETCORE" ]
+  "buildOptions": {
+    "define": [ "PORTABLE", "DOTNETCORE" ],
+    "compile": [ "../Common.Logging.Core/**/*.cs", "../CommonAssemblyInfo.cs" ]
   },
   "frameworks": {
     "dotnet": { }
   },
-  "compile": [ "../Common.Logging.Core/**/*.cs", "../CommonAssemblyInfo.cs" ],
   "dependencies": {
     "Microsoft.CSharp": "4.0.0",
     "System.Collections": "4.0.10",
