@@ -24,9 +24,38 @@
     <fail message="project.sign='true' but keyfile ${root.dir+'/Common.Net.snk'} is missing" />
   </if>
 
+  <call target="find-latest-msbuild.exe" />
+
+  
+  <!--
+    find the latest installed version of MSBUILD.exe (can't assume always in the %SYSTEMROOM%\Microsoft.NET\Framework path
+	since later versions of MSBUILD (since .NET 4.5) don't rev with the Framework and instead install separately either as part of VS installation
+	or as a separate install of the "Microsoft Build Tools" MSI)
+  -->  
+  <target name="find-latest-msbuild.exe">
+
+  <!-- assume we'll use the verison in the Framework folder as the default - note: this is the LAST version deployed w/ the Framwork -->
   <readregistry property="net40.install.dir" key="SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full\InstallPath" hive="LocalMachine" failonerror="true" />
   <property name="msbuild.exe" value="${net40.install.dir}\msbuild.exe" />
+  
+  <property name="progFiles.x86" value="${environment::get-variable('ProgramFiles(x86)')}" />
+	
+	<!-- if there's one from VS 2013 installation, use it instead -->
+	<property name="msbuild.exe" value="${progFiles.x86}\MSBuild\12.0\Bin\msbuild.exe" if="${file::exists(progFiles.x86 + '\MSBuild\12.0\Bin\msbuild.exe')}" /> 
+	
+	<!-- if there's one from VS 2015 installation, use it instead -->
+	<property name="msbuild.exe" value="${progFiles.x86}\MSBuild\14.0\Bin\msbuild.exe" if="${file::exists(progFiles.x86 + '\MSBuild\14.0\Bin\msbuild.exe')}" /> 
+	
+	<echo message="Building all solutions using msbuild.exe found at ${msbuild.exe}" />
+	<echo message="If build is failing due to e.g., 'invalid numeric comparison' errors, ensure you have the latest MSBUILD tools installed from https://www.microsoft.com/en-us/download/details.aspx?id=48159" />
+  </target>
+  
+  
+  
+  
 
+  
+  
 
 
   <target name="init" depends="clean, update-dependencies, restore-nuget-packages" />
