@@ -18,6 +18,8 @@
 
 #endregion
 
+using System.Security;
+using Common.TestUtil;
 using NUnit.Framework;
 
 namespace Common.Logging.Serilog
@@ -26,13 +28,24 @@ namespace Common.Logging.Serilog
     /// Test for the Serilog implementation of ILog 
     /// </summary>
     /// <author>Aaron Mell</author>
-    [Ignore("TODO: investigate SecurityException failing two of the tests in the base class fixture.")]
     [TestFixture]
     public class SerilogTests : ILogTestsBase
     {
         protected override ILoggerFactoryAdapter GetLoggerFactoryAdapter()
         {
             return new SerilogLoggerFactoryAdapter(new Common.Logging.Configuration.NameValueCollection());
+        }
+
+        /// <summary>
+        /// Serilog lacks <see cref="AllowPartiallyTrustedCallersAttribute"/> 
+        /// and therefore needs full trust environments.
+        /// </summary>
+        protected override string CompliantTrustLevelName
+        {
+            get
+            {
+                return SecurityTemplate.PERMISSIONSET_FULLTRUST;
+            }
         }
 
         [Test]
