@@ -19,7 +19,7 @@ namespace Common.Logging.ETW
         public override bool IsInfoEnabled { get { return _logLevel.HasFlag(LogLevel.Info); } }
         public override bool IsWarnEnabled { get { return _logLevel.HasFlag(LogLevel.Warn); } }
 
-        
+
         private readonly ICommonLoggingEventSource _eventSource;
         private LogLevel _logLevel;
 
@@ -43,7 +43,7 @@ namespace Common.Logging.ETW
                 case LogLevel.Trace:
                     InvokeMethodOnEventSource(message, exception, _eventSource.Trace, _eventSource.TraceException);
                     break;
-                
+
                 case LogLevel.Debug:
                     InvokeMethodOnEventSource(message, exception, _eventSource.Debug, _eventSource.DebugException);
                     break;
@@ -74,14 +74,20 @@ namespace Common.Logging.ETW
 
         private void InvokeMethodOnEventSource(object message, Exception exception, Action<string> noExceptionMethod, Action<string, string> exceptionMethod)
         {
-            if (null == exception)
+            if (null == exception && null != message)
             {
                 noExceptionMethod.Invoke(message.ToString());
+                return;
             }
-            else
+
+            if (null == exception)
             {
-                exceptionMethod.Invoke(message.ToString(), exception.ToString());
+                noExceptionMethod.Invoke(null);
+                return;
             }
+
+            exceptionMethod.Invoke(message.ToString(), exception.ToString());
+
         }
     }
 }

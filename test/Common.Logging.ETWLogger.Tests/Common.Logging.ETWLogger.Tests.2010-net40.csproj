@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="Logging\ETWLogger\BasicIntegrationTestHarness.cs" />
     <Compile Include="Logging\ETWLogger\ETWLoggerFactoryAdapterConfigurationTests.cs" />
+    <Compile Include="Logging\ETWLogger\ETWLoggerFactoryAdapterTests.cs" />
     <Compile Include="Logging\ETWLogger\ETWLoggerTests.cs" />
     <Compile Include="Logging\ETWLogger\MyCustomEventSource.cs" />
   </ItemGroup>
