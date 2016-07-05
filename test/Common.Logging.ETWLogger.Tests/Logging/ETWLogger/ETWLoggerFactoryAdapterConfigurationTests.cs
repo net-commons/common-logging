@@ -70,7 +70,7 @@ namespace Common.Logging.ETWLogger.Tests
 
             var adapter = new ETWLoggerFactoryAdapter(setting.Properties);
 
-            Assert.That(adapter.ETWEventSource, Is.TypeOf<CommonLoggingEventSource>());
+            Assert.That(adapter.EventSource, Is.TypeOf<CommonLoggingEventSource>());
 
         }
 
@@ -93,7 +93,7 @@ namespace Common.Logging.ETWLogger.Tests
 
             var adapter = new ETWLoggerFactoryAdapter(setting.Properties);
 
-            Assert.That(adapter.ETWEventSource, Is.TypeOf<MyCustomEventSource>());
+            Assert.That(adapter.EventSource, Is.TypeOf<MyCustomEventSource>());
 
         }
 
