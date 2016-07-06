@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using Common.Logging.Configuration;
 using Common.Logging.Factory;
 
@@ -152,7 +153,7 @@ namespace Common.Logging.ETW
                     if (EventSourceRegistry[eventSourceType] != candidate)
                     {
                         //...react accordingly to the attempted duplicate registration
-                        ThrowIfDuplicateEventSourceTypeRegistrationNotPermitted();
+                        ThrowIfDuplicateEventSourceTypeRegistrationNotPermitted(eventSourceType);
                     }
 
                     //if we get this far, replace the existing instance with the new instance
@@ -164,12 +165,19 @@ namespace Common.Logging.ETW
             }
         }
 
-        private void ThrowIfDuplicateEventSourceTypeRegistrationNotPermitted()
+        private void ThrowIfDuplicateEventSourceTypeRegistrationNotPermitted(Type eventSourceType)
         {
             if (!_permitDuplicateEventSourceRegistration)
             {
-                //TODO: expand on the detail in this exception
-                throw new InvalidOperationException();
+                var message = new StringBuilder();
+                message.AppendLine("Error attempting to register an instance of type " + eventSourceType.FullName + " as an EventSource on the ETWLoggerFactoryAdapters.");
+                message.AppendLine("Attempting to register an EventSource-derived subclass with the adapter that has already been registered is not supported.");
+                message.AppendLine("By default, Common.Logging will not permit more than a single registration of each EventSource subclass across all ETWLoggerFactoryAdapters in a single AppDomain.");
+                message.AppendLine("For more details as to the reasoning for this constraint, see https://github.com/net-commons/common-logging/issues/125");
+                message.AppendLine("To opt out of Common.Logging\'s enforcement of this constraint (at your own risk), set <arg key=\'permitDuplicateEventSourceRegistration\' value=\'true\'/>  in your config file.");
+
+
+                throw new InvalidOperationException(message.ToString());
             }
         }
 
