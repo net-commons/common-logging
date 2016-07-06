@@ -130,12 +130,12 @@ namespace Common.Logging.ETW
 
         private void RecordEventSource(ICommonLoggingEventSource candidate)
         {
-            
+
             //if we have a valid object
             if (candidate != null)
             {
                 var eventSourceType = candidate.GetType();
-                
+
                 //if we don't already have an instance of this same type in the registry...
                 if (!EventSourceRegistry.ContainsKey(eventSourceType))
                 {
@@ -143,14 +143,11 @@ namespace Common.Logging.ETW
                 }
                 else
                 {
-                    if (eventSourceType != typeof(CommonLoggingEventSource))
-                    {
-                        //process the condition where we have a duplicate
-                        ThrowIfDuplicateEventSourceTypeRegistrationNotPermitted();
+                    //process the condition where we have a duplicate
+                    ThrowIfDuplicateEventSourceTypeRegistrationNotPermitted();
 
-                        //if we get this far, replace the existing instance with the new instance
-                        EventSourceRegistry[eventSourceType] = candidate;
-                    }
+                    //if we get this far, replace the existing instance with the new instance
+                    EventSourceRegistry[eventSourceType] = candidate;
                 }
 
                 //set the type designator so we can keep track of the correct EventSource Type for this adapter
@@ -163,7 +160,7 @@ namespace Common.Logging.ETW
             if (!_permitDuplicateEventSourceRegistration)
             {
                 //TODO: expand on the detail in this exception
-                throw new ArgumentException();
+                throw new InvalidOperationException();
             }
         }
 

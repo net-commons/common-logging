@@ -40,6 +40,9 @@
     <Reference Include="nunit.framework">
       <HintPath>..\..\lib\net\2.0\nunit.framework.dll</HintPath>
     </Reference>
+    <Reference Include="Rhino.Mocks">
+      <HintPath>..\..\lib\net\2.0\Rhino.Mocks.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -54,6 +57,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Logging\ETWLogger\BasicIntegrationTestHarness.cs" />
+    <Compile Include="Logging\ETWLogger\TestEventSource3.cs" />
+    <Compile Include="Logging\ETWLogger\TestEventSource2.cs" />
+    <Compile Include="Logging\ETWLogger\TestEventSource1.cs" />
+    <Compile Include="Logging\ETWLogger\DuplicateRegisteredEventSource.cs" />
     <Compile Include="Logging\ETWLogger\ETWLoggerFactoryAdapterConfigurationTests.cs" />
     <Compile Include="Logging\ETWLogger\ETWLoggerFactoryAdapterTests.cs" />
     <Compile Include="Logging\ETWLogger\ETWLoggerTests.cs" />

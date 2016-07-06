@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using Common.Logging.Configuration;
 using Common.Logging.ETW;
 using NUnit.Framework;
+using Rhino.Mocks;
 
 namespace Common.Logging.ETWLogger.Tests
 {
@@ -38,14 +40,37 @@ namespace Common.Logging.ETWLogger.Tests
             logger.Debug("This is a test message from ETW source!", new Exception("I am the test exception"));
         }
 
+        [Test]
+        public void ByDefaultCannotSetEventSourceToSameTypeMultipleTimesOnSingleAdapter()
+        {
+            //setting the EventSource once is permitted
+            var adapter = new ETWLoggerFactoryAdapter { EventSource = new TestEventSource3() };
+
+            //setting it to another instance of the same type again is not
+            Assert.Throws<InvalidOperationException>(() => adapter.EventSource = new TestEventSource3());
+        }
+
+        
+        [Test]
+        public void ByDefaultCannotSetEventSourceToSameTypeMultipleTimesEvenOnDifferentAdapters()
+        {
+            //register the event source with an adapter once
+            new ETWLoggerFactoryAdapter { EventSource = new DuplicateRegisteredEventSource() };
+
+            //registering the same event source (type) a second time should throw even on a different adapter
+            Assert.Throws<InvalidOperationException>(() => new ETWLoggerFactoryAdapter { EventSource = new DuplicateRegisteredEventSource() });
+        }
 
         [Test]
-        public void MyMethod()
+        public void CanSetDifferentEventSourceTypesOnMultipleAdapters()
         {
-            new ETWLoggerFactoryAdapter();
-            new ETWLoggerFactoryAdapter();
-            new ETWLoggerFactoryAdapter();
-            new ETWLoggerFactoryAdapter();
+            var adapter1 = new ETWLoggerFactoryAdapter { EventSource = new TestEventSource1() };
+            var adapter2 = new ETWLoggerFactoryAdapter { EventSource = new TestEventSource2() };
+
+            Assert.That(adapter1.EventSource is TestEventSource1);
+            Assert.That(adapter2.EventSource is TestEventSource2);
         }
+
+
     }
 }
