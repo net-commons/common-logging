@@ -57,6 +57,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Logging\ETWLogger\BasicIntegrationTestHarness.cs" />
+    <Compile Include="Logging\ETWLogger\ETWLoggerFactoryAdapterEventSourceRegistrationTests.cs" />
+    <Compile Include="Logging\ETWLogger\TestEventSourceForConfigFile.cs" />
+    <Compile Include="Logging\ETWLogger\TestEventSource5.cs" />
+    <Compile Include="Logging\ETWLogger\TestEventSource4.cs" />
     <Compile Include="Logging\ETWLogger\TestEventSource3.cs" />
     <Compile Include="Logging\ETWLogger\TestEventSource2.cs" />
     <Compile Include="Logging\ETWLogger\TestEventSource1.cs" />
@@ -64,7 +68,7 @@
     <Compile Include="Logging\ETWLogger\ETWLoggerFactoryAdapterConfigurationTests.cs" />
     <Compile Include="Logging\ETWLogger\ETWLoggerFactoryAdapterTests.cs" />
     <Compile Include="Logging\ETWLogger\ETWLoggerTests.cs" />
-    <Compile Include="Logging\ETWLogger\MyCustomEventSource.cs" />
+    <Compile Include="Logging\ETWLogger\CustomTestEventSource.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\Common.Logging.Core\Common.Logging.Core.2010.csproj">

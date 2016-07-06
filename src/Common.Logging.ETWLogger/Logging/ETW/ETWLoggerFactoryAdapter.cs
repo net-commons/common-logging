@@ -9,10 +9,17 @@ namespace Common.Logging.ETW
     public class ETWLoggerFactoryAdapter : AbstractCachingLoggerFactoryAdapter
     {
 
-
+        //static (shared) dictionary of all EventSource subclasses used by *all* instances of this adapter
+        // NOTE: this field is static so that the adapter may enforce single registration of each EventSource subclass type
+        //          across *all* instances of this adapter in a single AppDomain.  Duplicate ctor invocations of any single EventSource
+        //          subclass will otherwise result in errors (possibly accompanied by missed log entries) in the ETW subsystem in the OS)
+        //       see https://github.com/net-commons/common-logging/issues/125 for more details.
         private static readonly Dictionary<Type, ICommonLoggingEventSource> EventSourceRegistry = new Dictionary<Type, ICommonLoggingEventSource>();
 
+        //the type of event source used by this adapter; acts as a KEY to the shared static dictionary of registrations
         private Type _eventSourceType;
+
+        //controls whether to throw on attempts to duplicate any event source type registrations
         private bool _permitDuplicateEventSourceRegistration;
 
         public LogLevel LogLevel { get; set; }
@@ -43,10 +50,7 @@ namespace Common.Logging.ETW
 
         private void CheckPermitDuplicateEventSourceRegistration(NameValueCollection properties)
         {
-            //TODO: parse properties to see if 'ignore duplicate event source' param is set
-
-            //for now, *DON'T* throw
-            _permitDuplicateEventSourceRegistration = false;
+            _permitDuplicateEventSourceRegistration = ArgUtils.TryParse(false, ArgUtils.GetValue(properties, "permitDuplicateEventSourceRegistration"));
         }
 
         private void ConfigureLogLevel(NameValueCollection properties)
@@ -139,12 +143,17 @@ namespace Common.Logging.ETW
                 //if we don't already have an instance of this same type in the registry...
                 if (!EventSourceRegistry.ContainsKey(eventSourceType))
                 {
+                    //...add it
                     EventSourceRegistry.Add(eventSourceType, candidate);
                 }
                 else
                 {
-                    //process the condition where we have a duplicate
-                    ThrowIfDuplicateEventSourceTypeRegistrationNotPermitted();
+                    //if the incoming instance is _not_ the same instance as that already registered...
+                    if (EventSourceRegistry[eventSourceType] != candidate)
+                    {
+                        //...react accordingly to the attempted duplicate registration
+                        ThrowIfDuplicateEventSourceTypeRegistrationNotPermitted();
+                    }
 
                     //if we get this far, replace the existing instance with the new instance
                     EventSourceRegistry[eventSourceType] = candidate;

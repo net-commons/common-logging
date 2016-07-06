@@ -81,7 +81,7 @@ namespace Common.Logging.ETWLogger.Tests
                 @"<?xml version='1.0' encoding='UTF-8' ?>
                 <logging>
                   <factoryAdapter type='Common.Logging.ETW.ETWLoggerFactoryAdapter, Common.Logging.ETWLogger'>
-                    <arg key='commonLoggingEventSourceType' value='Common.Logging.ETWLogger.Tests.MyCustomEventSource,Common.Logging.ETWLogger.Tests'/>
+                    <arg key='commonLoggingEventSourceType' value='Common.Logging.ETWLogger.Tests.TestEventSourceForConfigFile,Common.Logging.ETWLogger.Tests'/>
                   </factoryAdapter>
                 </logging>";
             var reader = new StandaloneConfigurationReader(xml);
@@ -93,7 +93,7 @@ namespace Common.Logging.ETWLogger.Tests
 
             var adapter = new ETWLoggerFactoryAdapter(setting.Properties);
 
-            Assert.That(adapter.EventSource, Is.TypeOf<MyCustomEventSource>());
+            Assert.That(adapter.EventSource, Is.TypeOf<TestEventSourceForConfigFile>());
 
         }
 
