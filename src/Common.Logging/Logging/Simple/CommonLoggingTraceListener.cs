@@ -61,6 +61,7 @@ namespace Common.Logging.Simple
     {
         private TraceEventType _defaultTraceEventType = TraceEventType.Verbose;
         private string _loggerNameFormat = "{listenerName}.{sourceName}";
+        private int _callDepth;
 
         #region Properties
 
@@ -176,7 +177,20 @@ namespace Common.Logging.Simple
         protected virtual void Log(TraceEventType eventType, string source, int id, string format, params object[] args)
         {
             source = this.LoggerNameFormat.Replace("{listenerName}", this.Name).Replace("{sourceName}", ""+source);
+
+
+            //ensure that Log(...) isn't called recursively
+            // necessary b/c Log4Net calls Trace.Write(...) during its initialization this otherwise results in a StackOverflow exception 
+            // (see https://github.com/net-commons/common-logging/issues/127 for details)
+            _callDepth++;
+
+            if (_callDepth > 1)
+                return;
+
             ILog log = LogManager.GetLogger(source);
+
+            _callDepth--;
+
             LogLevel logLevel = MapLogLevel(eventType);
 
             switch (logLevel)
