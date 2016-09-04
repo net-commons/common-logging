@@ -76,6 +76,7 @@
     <Compile Include="Logging\ILog.cs" />
     <Compile Include="Logging\ILoggerFactoryAdapter.cs" />
     <Compile Include="Logging\ILogManager.cs" />
+    <Compile Include="Logging\INestedVariablesContext.cs" />
     <Compile Include="Logging\IVariablesContext.cs" />
     <Compile Include="Logging\LogLevel.cs" />
   </ItemGroup>
