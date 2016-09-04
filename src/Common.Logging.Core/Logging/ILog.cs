@@ -671,20 +671,28 @@ namespace Common.Logging
 			get;
 		}
 
-        /// <summary>
-        /// Returns the global context for variables
-        /// </summary>
-        IVariablesContext GlobalVariablesContext
-        {
-            get;
-        }
+		/// <summary>
+		/// Returns the global context for variables
+		/// </summary>
+		IVariablesContext GlobalVariablesContext
+		{
+			get;
+		}
 
-        /// <summary>
-        /// Returns the thread-specific context for variables
-        /// </summary>
-        IVariablesContext ThreadVariablesContext
-        {
-            get;
-        }
+		/// <summary>
+		/// Returns the thread-specific context for variables
+		/// </summary>
+		IVariablesContext ThreadVariablesContext
+		{
+			get;
+		}
+
+		/// <summary>
+		/// Returns the thread-specific context for nested variables (for NDC, eg.)
+		/// </summary>
+		INestedVariablesContext NestedThreadVariablesContext
+		{
+			get;
+		}
 	}
 }
