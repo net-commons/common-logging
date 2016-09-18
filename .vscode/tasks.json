@@ -1,0 +1,30 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "0.1.0",
+    "command": "dotnet",
+    "isShellCommand": true,
+    "args": [],
+    "tasks": [
+        {
+            "taskName": "build",
+            "args":
+             [ 
+                "src/Common.Logging.Core.DotNetCore/project.json",
+                "src/Common.Logging.DotNetCore/project.json"
+             ],
+            "isBuildCommand": true,
+            "showOutput": "silent",
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "taskName": "test",
+            "args":
+             [ 
+                "src/Common.Logging.Tests/project.json"
+             ],
+            "showOutput": "silent",
+            "isTestCommand": true
+        }        
+    ]
+}
