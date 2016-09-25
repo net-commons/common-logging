@@ -19,6 +19,9 @@
   <property name="doc.dir" value="${root.dir}/doc" />
   <property name="tool.dir" value="${root.dir}/tools" />
   <property name="lib.dir" value="${root.dir}/lib" />
+  
+  <property name="buildconfigflag.debug" value="true" overwrite="false"/>
+  <property name="buildconfigflag.release" value="true" overwrite="false"/>
 
   <if test="${project.sign and not(file::exists(root.dir + '/Common.Net.snk'))}">
     <fail message="project.sign='true' but keyfile ${root.dir+'/Common.Net.snk'} is missing" />
@@ -92,11 +95,16 @@
 
   <target name="build-all" depends="init, update-common-assemblyinfo">
     
-    <property name="buildconfiguration" value="Debug" />
-    <call target="RebuildAllSolutions" />
-
-    <property name="buildconfiguration" value="Release" />
-    <call target="RebuildAllSolutions" />
+	<if test="${buildconfigflag.debug}">
+		<property name="buildconfiguration" value="Debug" />
+		<call target="RebuildAllSolutions" />
+	</if>
+	
+    
+	<if test="${buildconfigflag.release}">
+		<property name="buildconfiguration" value="Release" />
+		<call target="RebuildAllSolutions" />
+	</if>
   </target>
 
   <target name="test" depends="build">
