@@ -572,14 +572,14 @@ ${tool.dir}       : dir for tools
 	<call target="clean-nuget-package-dir" />
 
     <!-- copy .NET Core dlls from build dirs -->
-    <copy todir="${build.dir}/netstandard1.0/Common.Logging.Core/Release">
+    <copy todir="${root.dir}/build/netstandard1.0/Common.Logging.Core/Release">
       <fileset basedir="src/Common.Logging.Core.DotNetCore/bin/Release/netstandard1.0">
         <include name="Common.Logging.Core.dll"/>
         <include name="Common.Logging.Core.pdb"/>
         <include name="Common.Logging.Core.xml"/>
       </fileset>
     </copy>
-    <copy todir="${build.dir}/netstandard1.3/Common.Logging/Release">
+    <copy todir="${root.dir}/build/netstandard1.3/Common.Logging/Release">
       <fileset basedir="src/Common.Logging.DotNetCore/bin/Release/netstandard1.3">
         <include name="Common.Logging.dll"/>
         <include name="Common.Logging.pdb"/>
