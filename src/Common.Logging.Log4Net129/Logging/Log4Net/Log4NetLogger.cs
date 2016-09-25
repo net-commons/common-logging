@@ -183,20 +183,28 @@ namespace Common.Logging.Log4Net
 
         #endregion
 
-        /// <summary>
-        /// Returns the global context for variables
-        /// </summary>
-        public override IVariablesContext GlobalVariablesContext
-        {
-            get { return new Log4NetGlobalVariablesContext(); }
-        }
+	    /// <summary>
+	    /// Returns the global context for variables
+	    /// </summary>
+	    public override IVariablesContext GlobalVariablesContext
+	    {
+		    get { return new Log4NetGlobalVariablesContext(); }
+	    }
 
-        /// <summary>
-        /// Returns the thread-specific context for variables
-        /// </summary>
-        public override IVariablesContext ThreadVariablesContext
-        {
-            get { return new Log4NetThreadVariablesContext(); }
-        }
+	    /// <summary>
+	    /// Returns the thread-specific context for variables
+	    /// </summary>
+	    public override IVariablesContext ThreadVariablesContext
+	    {
+		    get { return new Log4NetThreadVariablesContext(); }
+	    }
+
+	    /// <summary>
+	    /// 
+	    /// </summary>
+	    public override INestedVariablesContext NestedThreadVariablesContext
+	    {
+		    get { return new Log4NetNestedThreadVariablesContext(); }
+	    }
     }
 }

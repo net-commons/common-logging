@@ -157,5 +157,39 @@ namespace Common.Logging.Log4Net
 
             Assert.AreEqual("TestValue", actualValue);
         }
-    }
+
+
+		[Test]
+		public void CheckNestedThreadVariablesSet()
+		{
+			NameValueCollection props = new NameValueCollection();
+			props["configType"] = "external";
+			var a = new Log4NetLoggerFactoryAdapter(props);
+
+			bool hasItems = a.GetLogger(this.GetType()).NestedThreadVariablesContext.HasItems;
+			Assert.AreEqual(false, hasItems);
+
+			a.GetLogger(this.GetType()).NestedThreadVariablesContext.Push("TestValue1");
+			a.GetLogger(this.GetType()).NestedThreadVariablesContext.Push("TestValue2");
+
+			hasItems = a.GetLogger(this.GetType()).NestedThreadVariablesContext.HasItems;
+			Assert.AreEqual(true, hasItems);
+
+			int depth = global::log4net.NDC.Depth;
+			Assert.AreEqual(2, depth);
+
+			var actualValue = global::log4net.NDC.Pop();
+			Assert.AreEqual("TestValue2", actualValue);
+
+			actualValue = global::log4net.NDC.Pop();
+			Assert.AreEqual("TestValue1", actualValue);
+
+			hasItems = a.GetLogger(this.GetType()).NestedThreadVariablesContext.HasItems;
+			Assert.AreEqual(false, hasItems);
+
+			depth = global::log4net.NDC.Depth;
+			Assert.AreEqual(0, depth);
+		}
+
+	}
 }

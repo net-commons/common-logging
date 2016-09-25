@@ -19,6 +19,7 @@
 #endregion
 
 using System;
+using Common.Logging.Simple;
 using FormatMessageCallback = System.Action<Common.Logging.FormatMessageHandler>;
 
 namespace Common.Logging.Factory
@@ -1110,6 +1111,15 @@ namespace Common.Logging.Factory
         public virtual IVariablesContext ThreadVariablesContext
         {
             get { return new Simple.NoOpVariablesContext(); }
+        }
+
+
+        /// <summary>
+        /// Returns the thread-specific context for nested variables (for NDC, eg.)
+        /// </summary>
+        public virtual INestedVariablesContext NestedThreadVariablesContext
+        {
+            get { return new NoOpNestedVariablesContext(); }
         }
     }
 }
