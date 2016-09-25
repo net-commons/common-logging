@@ -11,16 +11,23 @@
     <description>Common.Logging.Core contains the portable (PCL) implementation of the Common.Logging low-level abstractions common to all other Common.Logging packages.</description>
 	<tags>PCL Common.Logging.Portable Common.Logging.Core logging log Common.Logging</tags>
     <language>en-US</language>
+    <dependencies>
+      <group targetFramework=".NETStandard1.0">
+        <dependency id="Microsoft.CSharp" version="[4.0.1, )" />
+      </group>
+    </dependencies>
   </metadata>
   <files>
     <file src="..\..\build\portable\Common.Logging.Core\Release\Common.Logging.Core.dll" target="lib\portable-win+net40+sl40+wp7+wpa81" />
     <file src="..\..\build\portable\Common.Logging.Core\Release\Common.Logging.Core.pdb" target="lib\portable-win+net40+sl40+wp7+wpa81" />
     <file src="..\..\build\portable\Common.Logging.Core\Release\Common.Logging.Core.xml" target="lib\portable-win+net40+sl40+wp7+wpa81" />
+
     <file src="..\..\build\portable\Common.Logging.Core\Release\Common.Logging.Core.dll" target="lib\net40" />
     <file src="..\..\build\portable\Common.Logging.Core\Release\Common.Logging.Core.pdb" target="lib\net40" />
-    <file src="..\..\build\portable\Common.Logging.Portable\Release\Common.Logging.Core.xml" target="lib\net40" />
-    <file src="..\..\build\net20\Common.Logging.Portable\Release\Common.Logging.Core.dll" target="lib\net35" />
-    <file src="..\..\build\net20\Common.Logging.Portable\Release\Common.Logging.Core.pdb" target="lib\net35" />
-    <file src="..\..\build\net20\Common.Logging.Portable\Release\Common.Logging.Core.xml" target="lib\net35" />
+    <file src="..\..\build\portable\Common.Logging.Core\Release\Common.Logging.Core.xml" target="lib\net40" />
+
+    <file src="..\..\build\netstandard1.0\Common.Logging.Core\Release\Common.Logging.Core.dll" target="lib\netstandard1.0" />
+    <file src="..\..\build\netstandard1.0\Common.Logging.Core\Release\Common.Logging.Core.pdb" target="lib\netstandard1.0" />
+    <file src="..\..\build\netstandard1.0\Common.Logging.Core\Release\Common.Logging.Core.xml" target="lib\netstandard1.0" />
   </files>  
 </package>

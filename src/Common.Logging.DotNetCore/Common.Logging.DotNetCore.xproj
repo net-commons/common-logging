@@ -8,8 +8,6 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>62d1bd54-10d9-4f6a-bf5f-5447a55c987f</ProjectGuid>
     <RootNamespace>Common.Logging</RootNamespace>
-    <BaseIntermediateOutputPath Condition="'$(BaseIntermediateOutputPath)'=='' ">..\..\Build\DotNetCore</BaseIntermediateOutputPath>
-    <OutputPath Condition="'$(OutputPath)'=='' ">..\..\Build\DotNetCore</OutputPath>
   </PropertyGroup>
   <PropertyGroup>
     <SchemaVersion>2.0</SchemaVersion>

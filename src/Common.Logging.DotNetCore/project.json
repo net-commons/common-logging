@@ -1,21 +1,32 @@
 {
   "version": "3.4.0-*",
-  "description": "Common.Logging.DotNetCore",
   "buildOptions": {
+    "keyFile": "../../Common.Net.snk",
     "define": [ "PORTABLE", "DOTNETCORE" ],
-    "compile": [ "../Common.Logging.Portable/**/*.cs", "../CommonAssemblyInfo.cs" ],
-    "compileExclude": [ "../Common.Logging.Portable/Logging/Factory/ResharperAnnotation.cs" ]
+    "compile": {
+      "include": [ "../Common.Logging.Portable/**/*.cs", "../CommonAssemblyInfo.cs" ],
+      "exclude": [ "../Common.Logging.Portable/Logging/Factory/ResharperAnnotation.cs" ]
+    },
+    "debugType": "portable",
+    "xmlDoc": true,
+    "outputName": "Common.Logging"
   },
   "dependencies": {
-    "Common.Logging.Core.DotNetCore": "3.4.0-*",
-    "Microsoft.CSharp": "4.0.0",
-    "System.Collections": "4.0.10",
-    "System.Linq": "4.0.0",
-    "System.Runtime": "4.0.20",
-    "System.Threading": "4.0.10"
+    "Common.Logging.Core.DotNetCore": {
+      "target": "project"
+    }
   },
   "frameworks": {
-    "dotnet": { }
+    "netstandard1.3": {
+      "dependencies": {
+        "Microsoft.CSharp": "4.0.1",
+        "System.Collections": "4.0.11",
+        "System.Diagnostics.Debug": "4.0.11",
+        "System.Globalization": "4.0.11",
+        "System.Reflection.TypeExtensions": "4.1.0",
+        "System.Runtime.Extensions": "4.1.0",
+        "System.Threading": "4.0.11"
+      }
+    }
   }
-  
 }

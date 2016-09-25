@@ -13,15 +13,37 @@
     <tags>logging log Common.Logging</tags>
     <language>en-US</language>
     <dependencies>
-      <dependency id="Common.Logging.Core" version="3.4-Alpha1" />
-    </dependencies>
+      <group targetFramework="net35">
+        <dependency id="Common.Logging.Core" version="3.4-Alpha1" />
+      </group>
+      <group targetFramework="net40">
+        <dependency id="Common.Logging.Core" version="3.4-Alpha1" />
+      </group>
+      <group targetFramework=".NETStandard1.3">
+        <dependency id="Microsoft.CSharp" version="[4.0.1, )" />
+        <dependency id="System.Collections" version="[4.0.11, )" />
+        <dependency id="System.Diagnostics.Debug" version="[4.0.11, )" />
+        <dependency id="System.Globalization" version="[4.0.11, )" />
+        <dependency id="System.Reflection.TypeExtensions" version="[4.1.0, )" />
+        <dependency id="System.Runtime.Extensions" version="[4.1.0, )" />
+        <dependency id="System.Threading" version="[4.0.11, )" />
+        <dependency id="Common.Logging.Core" version="[3.4.0, )" />
+     </group>
+    </dependencies>  
+
   </metadata>
   <files>
     <file src="..\..\build\net20\Common.Logging\Release\Common.Logging.dll" target="lib\net35" />
     <file src="..\..\build\net20\Common.Logging\Release\Common.Logging.pdb" target="lib\net35" />
     <file src="..\..\build\net20\Common.Logging\Release\Common.Logging.xml" target="lib\net35" />
+
     <file src="..\..\build\net40\Common.Logging\Release\Common.Logging.dll" target="lib\net40" />
     <file src="..\..\build\net40\Common.Logging\Release\Common.Logging.pdb" target="lib\net40" />
     <file src="..\..\build\net40\Common.Logging\Release\Common.Logging.xml" target="lib\net40" />
+
+    <file src="..\..\build\netstandard1.3\Common.Logging\Release\Common.Logging.dll" target="lib\netstandard1.3" />
+    <file src="..\..\build\netstandard1.3\Common.Logging\Release\Common.Logging.pdb" target="lib\netstandard1.3" />
+    <file src="..\..\build\netstandard1.3\Common.Logging\Release\Common.Logging.xml" target="lib\netstandard1.3" />
   </files>
+  
 </package>
