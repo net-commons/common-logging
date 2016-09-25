@@ -20,30 +20,22 @@
 
 namespace Common.Logging.NLog
 {
-	public partial class NLogLogger
-	{
-		/// <summary>
-		/// Returns the global context for variables
-		/// </summary>
-		public override IVariablesContext GlobalVariablesContext
-		{
-			get { return new NLogGlobalVariablesContext(); }
-		}
+    public partial class NLogLogger
+    {
+        /// <summary>
+        /// Returns the global context for variables
+        /// </summary>
+        public override IVariablesContext GlobalVariablesContext
+        {
+            get { return new NLogGlobalVariablesContext(); }
+        }
 
-		/// <summary>
-		/// Returns the thread-specific context for variables
-		/// </summary>
-		public override IVariablesContext ThreadVariablesContext
-		{
-			get { return new NLogThreadVariablesContext(); }
-		}
-
-		/// <summary>
-		/// Returns the thread-specific context for nested variables (for NDC, eg.)
-		/// </summary>
-		public override INestedVariablesContext NestedThreadVariablesContext
-		{
-			get { return new NLogNestedThreadVariablesContext(); }
-		}
-	}
+        /// <summary>
+        /// Returns the thread-specific context for variables
+        /// </summary>
+        public override IVariablesContext ThreadVariablesContext
+        {
+            get { return new NLogThreadVariablesContext(); }
+        }
+    }
 }

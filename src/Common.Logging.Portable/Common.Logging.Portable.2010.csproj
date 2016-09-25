@@ -87,7 +87,6 @@
     <Compile Include="Logging\Configuration\DefaultConfigurationReader.cs" />
     <Compile Include="Logging\Configuration\ArgUtils.cs" />
     <Compile Include="Logging\Configuration\LogSetting.cs" />
-    <Compile Include="Logging\Simple\NoOpNestedVariablesContext.cs" />
     <Compile Include="Logging\Simple\NoOpVariablesContext.cs" />
     <Compile Include="Logging\Simple\ExceptionFormatter.cs" />
     <Compile Include="Logging\Simple\AbstractSimpleLogger.cs" />

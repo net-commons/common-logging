@@ -744,13 +744,5 @@ namespace Common.Logging.Simple
         {
             get { return new NoOpVariablesContext(); }
         }
-
-        /// <summary>
-        /// Returns the thread-specific context for variables
-        /// </summary>
-        public INestedVariablesContext NestedThreadVariablesContext
-        {
-            get { return new NoOpNestedVariablesContext(); }
-        }
     }
 }
