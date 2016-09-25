@@ -1,7 +1,6 @@
 {
   "version": "3.4.0-*",
   "buildOptions": {
-    "keyFile": "../../Common.Net.snk",
     "define": [ "PORTABLE", "DOTNETCORE" ],
     "compile": {
       "include": [ "../Common.Logging.Core/**/*.cs", "../CommonAssemblyInfo.cs" ]
@@ -9,6 +8,13 @@
     "debugType": "portable",
     "xmlDoc": true,
     "outputName": "Common.Logging.Core"
+  },
+  "configurations": {
+    "Release": {
+      "buildOptions": {
+        "keyFile": "../../Common.Net.snk"
+      }
+    }
   },
   "frameworks": {
     "netstandard1.0": {
