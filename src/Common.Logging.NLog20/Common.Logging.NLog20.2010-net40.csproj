@@ -84,6 +84,7 @@
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="Logging\NLog\NLogGlobalVariablesContext.cs" />
     <Compile Include="Logging\NLog\NLogLogger.VariablesContext.cs" />
+    <Compile Include="Logging\NLog\NLogNestedThreadVariablesContext.cs" />
     <Compile Include="Logging\NLog\NLogThreadVariablesContext.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -117,7 +118,7 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties ProjectLinkerExcludeFilter="\\?desktop(\\.*)?$;\\?silverlight(\\.*)?$;\.desktop;\.silverlight;\.xaml;^service references(\\.*)?$;\.clientconfig;^web references(\\.*)?$" ProjectLinkReference="c3faaf50-ca05-42a5-9616-b48c21643d03" />
+      <UserProperties ProjectLinkReference="c3faaf50-ca05-42a5-9616-b48c21643d03" ProjectLinkerExcludeFilter="\\?desktop(\\.*)?$;\\?silverlight(\\.*)?$;\.desktop;\.silverlight;\.xaml;^service references(\\.*)?$;\.clientconfig;^web references(\\.*)?$" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

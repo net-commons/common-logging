@@ -19,6 +19,7 @@
 #endregion
 
 using Common.Logging;
+using Common.Logging.Configuration;
 using Common.Logging.NLog;
 using NUnit.Framework;
 
@@ -51,5 +52,37 @@ namespace Common.Logger.NLog
 
             Assert.AreEqual("TestValue", actualValue);
         }
+
+	    [Test]
+	    public void CheckNestedThreadVariablesSet()
+	    {
+		    var a = new NLogLoggerFactoryAdapter((NameValueCollection) null);
+
+		    var hasItems = a.GetLogger(this.GetType()).NestedThreadVariablesContext.HasItems;
+		    Assert.AreEqual(false, hasItems);
+
+		    a.GetLogger(this.GetType()).NestedThreadVariablesContext.Push("TestValue1");
+
+		    hasItems = a.GetLogger(this.GetType()).NestedThreadVariablesContext.HasItems;
+		    Assert.AreEqual(true, hasItems);
+
+		    a.GetLogger(this.GetType()).NestedThreadVariablesContext.Push("TestValue2");
+
+		    int depth = global::NLog.NestedDiagnosticsContext.GetAllMessages().Length;
+		    Assert.AreEqual(2, depth);
+
+		    var actualValue = a.GetLogger(this.GetType()).NestedThreadVariablesContext.Pop();
+		    Assert.AreEqual("TestValue2", actualValue);
+
+		    actualValue = a.GetLogger(this.GetType()).NestedThreadVariablesContext.Pop();
+		    Assert.AreEqual("TestValue1", actualValue);
+
+		    hasItems = a.GetLogger(this.GetType()).NestedThreadVariablesContext.HasItems;
+		    Assert.AreEqual(false, hasItems);
+
+		    depth = global::NLog.NestedDiagnosticsContext.GetAllMessages().Length;
+		    Assert.AreEqual(0, depth);
+	    }
+
     }
 }
