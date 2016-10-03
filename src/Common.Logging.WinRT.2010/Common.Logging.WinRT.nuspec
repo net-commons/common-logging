@@ -13,7 +13,7 @@
     <tags>PCL Common.Logging.WinRT Common.Logging.Core logging log Common.Logging WinRT UAP UWP</tags>
     <language>en-US</language>
     <dependencies>
-      <dependency id="Common.Logging.Core" version="3.4-Alpha2" />
+      <dependency id="Common.Logging.Core" version="3.4-Beta1" />
     </dependencies>
   </metadata>
   <files>

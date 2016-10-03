@@ -14,10 +14,10 @@
     <language>en-US</language>
     <dependencies>
       <group targetFramework="net35">
-        <dependency id="Common.Logging.Core" version="3.4-Alpha2" />
+        <dependency id="Common.Logging.Core" version="3.4-Beta1" />
       </group>
       <group targetFramework="net40">
-        <dependency id="Common.Logging.Core" version="3.4-Alpha2" />
+        <dependency id="Common.Logging.Core" version="3.4-Beta1" />
       </group>
       <group targetFramework=".NETStandard1.3">
         <dependency id="Microsoft.CSharp" version="[4.0.1, )" />
@@ -27,7 +27,7 @@
         <dependency id="System.Reflection.TypeExtensions" version="[4.1.0, )" />
         <dependency id="System.Runtime.Extensions" version="[4.1.0, )" />
         <dependency id="System.Threading" version="[4.0.11, )" />
-        <dependency id="Common.Logging.Core" version="3.4-Alpha2" />
+        <dependency id="Common.Logging.Core" version="3.4-Beta1" />
       </group>
     </dependencies>
   </metadata>
