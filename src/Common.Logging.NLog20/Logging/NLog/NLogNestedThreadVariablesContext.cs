@@ -56,6 +56,6 @@ namespace Common.Logging.NLog
 		/// <summary>
 		/// Returns true if there is at least one item in the nested context; false, if empty
 		/// </summary>
-		public bool HasItems => ContextNLog.TopObject != null;
+		public bool HasItems => ContextNLog.GetAllMessages().Length > 0;
 	}
 }

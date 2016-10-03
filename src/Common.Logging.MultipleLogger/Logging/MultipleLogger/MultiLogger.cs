@@ -21,6 +21,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Common.Logging.Simple;
 
 namespace Common.Logging.MultipleLogger
 {
@@ -41,6 +42,7 @@ namespace Common.Logging.MultipleLogger
             _loggers = loggers.ToList();
             GlobalVariablesContext = new MultiLoggerGlobalVariablesContext(_loggers);
             ThreadVariablesContext = new MultiLoggerThreadVariablesContext(_loggers);
+            NestedThreadVariablesContext = new NoOpNestedVariablesContext();
         }
 
         /// <summary>
@@ -527,6 +529,12 @@ namespace Common.Logging.MultipleLogger
         /// </summary>
         /// <value>The thread variables context.</value>
         public IVariablesContext ThreadVariablesContext
+        {
+            get;
+            private set;
+        }
+
+        public INestedVariablesContext NestedThreadVariablesContext
         {
             get;
             private set;

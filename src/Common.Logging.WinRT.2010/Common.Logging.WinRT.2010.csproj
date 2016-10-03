@@ -103,6 +103,9 @@
     <Compile Include="..\Common.Logging.Portable\Logging\Simple\NoOpLoggerFactoryAdapter.cs">
       <Link>Logging\Simple\NoOpLoggerFactoryAdapter.cs</Link>
     </Compile>
+    <Compile Include="..\Common.Logging.Portable\Logging\Simple\NoOpNestedVariablesContext.cs">
+      <Link>Logging\Simple\NoOpNestedVariablesContext.cs</Link>
+    </Compile>
     <Compile Include="..\Common.Logging.Portable\Logging\Simple\NoOpVariablesContext.cs">
       <Link>Logging\Simple\NoOpVariablesContext.cs</Link>
     </Compile>

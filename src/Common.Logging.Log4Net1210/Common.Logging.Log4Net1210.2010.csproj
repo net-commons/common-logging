@@ -70,6 +70,9 @@
     <Compile Include="..\Common.Logging.Log4Net129\Logging\Log4Net\Log4NetGlobalVariablesContext.cs">
       <Link>Logging\Log4Net\Log4NetGlobalVariablesContext.cs</Link>
     </Compile>
+    <Compile Include="..\Common.Logging.Log4Net129\Logging\Log4Net\Log4NetNestedThreadVariablesContext.cs">
+      <Link>Logging\Log4Net\Log4NetNestedThreadVariablesContext.cs</Link>
+    </Compile>
     <Compile Include="..\Common.Logging.Log4Net129\Logging\Log4Net\Log4NetThreadVariablesContext.cs">
       <Link>Logging\Log4Net\Log4NetThreadVariablesContext.cs</Link>
     </Compile>
