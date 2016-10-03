@@ -187,6 +187,28 @@ namespace Common.Logging
 
 
         /// <summary>
+        /// Reset the <see cref="Common.Logging" /> infrastructure to the provided configuration.
+        /// </summary>
+        /// <remarks>
+        /// <b>Note:</b><see cref="ILog"/> instances already handed out from this LogManager are not(!) affected.
+        /// Configuring LogManager only affects new instances being handed out.
+        /// </remarks>
+        /// <param name="configuration">
+        /// the <see cref="LogConfiguration"/> containing settings for
+        /// re-initializing the LogManager.
+        /// </param>
+        public static void Configure(LogConfiguration configuration)
+        {
+            if (configuration == null)
+            {
+                throw new ArgumentNullException("configuration");
+            }
+
+            Reset(new LogConfigurationReader(configuration));
+        }
+
+
+        /// <summary>
         /// Gets or sets the adapter.
         /// </summary>
         /// <value>The adapter.</value>

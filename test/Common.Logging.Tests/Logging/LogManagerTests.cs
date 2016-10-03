@@ -117,6 +117,42 @@ namespace Common.Logging
         }
 
         [Test]
+        public void ConfigureFromLogConfiguration()
+        {
+            ILog log;
+
+            // accepts simple factory adapter
+            LogManager.Configure(new LogConfiguration() {
+                FactoryAdapter = new FactoryAdapterConfiguration()
+                {
+                    Type = typeof(TraceLoggerFactoryAdapter).FullName
+                }
+            });
+            log = LogManager.GetLogger<LogManagerTests>();
+            Assert.AreEqual(typeof(TraceLogger), log.GetType());
+
+            // accepts parameterized factory adapter
+            LogManager.Configure(new LogConfiguration()
+            {
+                FactoryAdapter = new FactoryAdapterConfiguration()
+                {
+                    Type = typeof(DebugLoggerFactoryAdapter).FullName,
+                    Arguments = new NameValueCollection
+                    {
+                        { "level", "All" },
+                        { "showDateTime", "true" },
+                        { "showLogName", "true"},
+                        { "showLevel", "true"},
+                        { "dateTimeFormat", "yyyy/MM/dd hh:tt:ss.fff" }
+                    }
+                }
+            });
+            log = LogManager.GetLogger<LogManagerTests>();
+            Assert.AreEqual(typeof(DebugOutLogger), log.GetType());
+            Assert.AreEqual(true, ((DebugOutLogger) log).ShowLogName);
+        }
+
+        [Test]
         public void ConfigureFromStandaloneConfig()
         {
             const string xml =
