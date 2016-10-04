@@ -16,6 +16,7 @@
     <OutputPath>.\Help</OutputPath>
     <CleanupOutputPath>true</CleanupOutputPath>
     <HelpFileName>Common.Logging.2010</HelpFileName>
+    <HelpFileNamingMethod>MemberName</HelpFileNamingMethod>
     <ImageFolderPath />
     <HtmlFormats>
       <HtmlHelp>true</HtmlHelp>

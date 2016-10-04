@@ -14,7 +14,9 @@
 <HelpConfigurations selected="HelpFile">
   <HelpConfiguration name="HelpFile">
     <OutputPath>.\Help</OutputPath>
+    <CleanupOutputPath>true</CleanupOutputPath>
     <HelpFileName>Common.Logging.2010</HelpFileName>
+    <HelpFileNamingMethod>MemberName</HelpFileNamingMethod>
     <ImageFolderPath />
     <HtmlFormats>
       <HtmlHelp>true</HtmlHelp>
@@ -32,10 +34,17 @@
       <EnableTags>false</EnableTags>
       <TagList />
     </IncludeScopes>
+    <SyntaxLanguages>
+      <CSharp>true</CSharp>
+      <VisualBasic>true</VisualBasic>
+      <CPlusPlus>true</CPlusPlus>
+    </SyntaxLanguages>
     <ResolveCrefLinks>true</ResolveCrefLinks>
     <HeaderText />
     <FooterText />
     <SelectedProjects />
   </HelpConfiguration>
 </HelpConfigurations>
+<GeneralProperties>
+</GeneralProperties>
 </GhostDoc>
