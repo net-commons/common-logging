@@ -81,6 +81,15 @@
     <Compile Include="..\Common.Logging.Portable\Logging\Configuration\DefaultConfigurationReader.cs">
       <Link>Logging\Configuration\DefaultConfigurationReader.cs</Link>
     </Compile>
+    <Compile Include="..\Common.Logging.Portable\Logging\Configuration\FactoryAdapterConfiguration.cs">
+      <Link>Logging\Configuration\FactoryAdapterConfiguration.cs</Link>
+    </Compile>
+    <Compile Include="..\Common.Logging.Portable\Logging\Configuration\LogConfiguration.cs">
+      <Link>Logging\Configuration\LogConfiguration.cs</Link>
+    </Compile>
+    <Compile Include="..\Common.Logging.Portable\Logging\Configuration\LogConfigurationReader.cs">
+      <Link>Logging\Configuration\LogConfigurationReader.cs</Link>
+    </Compile>
     <Compile Include="..\Common.Logging.Portable\Logging\Configuration\LogSetting.cs">
       <Link>Logging\Configuration\LogSetting.cs</Link>
     </Compile>
