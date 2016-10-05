@@ -1,0 +1,10 @@
+version: '2'
+
+services:
+  dotnetcorewebapplication:
+    image: user/dotnetcorewebapplication${TAG}
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "80"
