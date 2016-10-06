@@ -1,9 +1,11 @@
 {
   "sdk": {
     "version": "1.0.0-preview2-003121"
-	},
-	"projects":[
-        "Common.Logging.Core.DotNetCore",
-        "Common.Logging.DotNetCore"
-    ]
+  },
+  "projects":[
+    "Common.Logging.Core.DotNetCore",
+    "Common.Logging.DotNetCore",
+    "src",
+    "examples"
+  ]
 }
