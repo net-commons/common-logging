@@ -682,6 +682,11 @@ ${tool.dir}       : dir for tools
 	  commandline="restore Common.Logging.2015.sln" 
 	  workingdir="."
 	  failonerror="true" />
+	<exec 
+	  program="dotnet"
+	  commandline="restore" 
+	  workingdir="."
+	  failonerror="true" />
 </target>
 
 
