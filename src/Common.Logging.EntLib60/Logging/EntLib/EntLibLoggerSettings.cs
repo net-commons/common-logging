@@ -40,9 +40,15 @@ namespace Common.Logging.EntLib
         public static readonly string DEFAULTEXCEPTIONFORMAT = "Exception[ message = $(exception.message), source = $(exception.source), targetsite = $(exception.targetsite), stacktrace = $(exception.stacktrace) ]";
 
         /// <summary>
+        /// the default log category used for logging in Enterprise Library.
+        /// </summary>
+        public static readonly string DEFAULTLOGCATEGORY = "";
+
+        /// <summary>
         /// the default priority to be used.
         /// </summary>
         public readonly int priority = DEFAULTPRIORITY;
+
         //format like nlog is better? - i.e. ${exception:format=message,stacktrace:separator=, }
         /// <summary>
         /// the exception format to be used.
@@ -50,12 +56,18 @@ namespace Common.Logging.EntLib
         public readonly string exceptionFormat = DEFAULTEXCEPTIONFORMAT;
 
         /// <summary>
+        /// the default log category used for logging in Enterprise Library.
+        /// </summary>
+        public readonly string logCategory = DEFAULTLOGCATEGORY;
+
+        /// <summary>
         /// Initializes a new instance.
         /// </summary>
-        public EntLibLoggerSettings(int defaultPriority, string exceptionFormat)
+        public EntLibLoggerSettings(int defaultPriority, string exceptionFormat, string defaultLogCategory)
         {
             this.priority = defaultPriority;
             this.exceptionFormat = exceptionFormat;
+            this.logCategory = defaultLogCategory;
         }
     }
 }
