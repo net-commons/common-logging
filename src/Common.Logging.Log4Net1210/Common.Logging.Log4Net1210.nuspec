@@ -12,6 +12,7 @@
     <description>Common.Logging library bindings for Log4Net 1.2.10 logging framework.</description>
     <tags>Log4Net Common.Logging.Log4Net logging log Common.Logging</tags>
     <language>en-US</language>
+	<tags>log4net common logging</tags>
     <dependencies>
       <dependency id="Common.Logging" version="3.4-Beta2" />
       <dependency id="log4net" version="[1.2.10]" />
