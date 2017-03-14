@@ -58,6 +58,7 @@ src/Common.Logging.NLog31/Common.Logging.NLog31.xml
 src/Common.Logging.NLog32/Common.Logging.NLog32.xml
 src/Common.Logging.NLog40/Common.Logging.NLog40.xml
 src/Common.Logging.NLog41/Common.Logging.NLog41.xml
+src/Common.Logging.NLog41/Common.Logging.NLog444.xml
 src/Common.Logging/Common.Logging.xml
 src/Common.Logging.Portable/Common.Logging.Portable.xml
 src/Common.Logging.Core/Common.Logging.Core.xml
