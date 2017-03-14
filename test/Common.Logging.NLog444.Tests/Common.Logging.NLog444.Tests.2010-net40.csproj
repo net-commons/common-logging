@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{3175D550-BF85-40E4-93DA-CC705159D98F}</ProjectGuid>
+    <ProjectGuid>{B7D67E2A-4EAA-4779-BAB8-94EFE70E434D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Common</RootNamespace>
-    <AssemblyName>Common.Logging.NLog41.Tests</AssemblyName>
+    <AssemblyName>Common.Logging.NLog444.Tests</AssemblyName>
     <StartupObject>
     </StartupObject>
     <FileUpgradeFlags>
@@ -39,7 +39,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\build\net40\Common.Logging.NLog41.Tests\Debug\</OutputPath>
+    <OutputPath>..\..\build\net40\Common.Logging.NLog444.Tests\Debug\</OutputPath>
     <DefineConstants>TRACE;DEBUG;NET_4_0;NLOG2</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -50,16 +50,15 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\build\net40\Common.Logging.NLog41.Tests\Release\</OutputPath>
+    <OutputPath>..\..\build\net40\Common.Logging.NLog444.Tests\Release\</OutputPath>
     <DefineConstants>TRACE;NET_4_0;NLOG2</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="NLog, Version=3.2.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\NLog41\net\4.0\NLog.dll</HintPath>
+    <Reference Include="NLog">
+      <HintPath>..\..\lib\NLog444\net\4.0\NLog.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework, Version=2.5.0.9015, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -80,8 +79,10 @@
     <Compile Include="..\Common.Logging.NLog10.Tests\Logger\NLog\NLogLoggerFactoryAdapterTests.cs">
       <Link>Logger\NLog\NLogLoggerFactoryAdapterTests.cs</Link>
     </Compile>
+    <Compile Include="..\Common.Logging.NLog41.Tests\Logger\NLog\NLogLoggerFactoryAdapterVariablesContextTests.cs">
+      <Link>Logger\NLog\NLogLoggerFactoryAdapterVariablesContextTests.cs</Link>
+    </Compile>
     <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="Logger\NLog\NLogLoggerFactoryAdapterVariablesContextTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -106,9 +107,9 @@
       <Project>{7eeb2191-b3fc-4509-aa4b-a345c386eeed}</Project>
       <Name>Common.Logging.Core.2010</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\Common.Logging.NLog41\Common.Logging.NLog41.2010-net40.csproj">
+    <ProjectReference Include="..\..\src\Common.Logging.NLog444\Common.Logging.NLog444.2010-net40.csproj">
       <Project>{bbf526e6-1da3-479e-ac22-a9c45c95cc4a}</Project>
-      <Name>Common.Logging.NLog41.2010-net40</Name>
+      <Name>Common.Logging.NLog444.2010-net40</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\src\Common.Logging\Common.Logging.2010-net40.csproj">
       <Project>{440D903A-D409-48FC-A6C4-3EE69CCD663B}</Project>
