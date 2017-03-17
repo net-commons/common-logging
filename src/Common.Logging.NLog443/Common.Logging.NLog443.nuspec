@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
-    <id>Common.Logging.NLog444</id>
+    <id>Common.Logging.NLog443</id>
     <version>0.0.0</version>
     <!-- placeholder value replaced by build script -->
     <authors>Aleksandar Seovic, Mark Pollack, Erich Eichinger, Stephen Bohlen</authors>
@@ -9,17 +9,17 @@
     <projectUrl>http://net-commons.github.io/common-logging/</projectUrl>
     <iconUrl>https://raw.githubusercontent.com/net-commons/common-logging/master/nuget-graphics/common-logging-icon.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Common.Logging library bindings for NLog 4.4.4	logging framework.</description>
+    <description>Common.Logging library bindings for NLog 4.4.3	logging framework.</description>
     <tags>NLog Common.Logging.NLog logging log Common.Logging</tags>
     <language>en-US</language>
     <dependencies>
       <dependency id="Common.Logging" version="3.4-Beta2" />
-      <dependency id="NLog" version="4.4.4" />
+      <dependency id="NLog" version="4.4.3" />
     </dependencies>
   </metadata>
   <files>
-    <file src="..\..\build\net40\Common.Logging.NLog444\Release\Common.Logging.NLog444.dll" target="lib\net40" />
-    <file src="..\..\build\net40\Common.Logging.NLog444\Release\Common.Logging.NLog444.pdb" target="lib\net40" />
-    <file src="..\..\build\net40\Common.Logging.NLog444\Release\Common.Logging.NLog444.xml" target="lib\net40" />
+    <file src="..\..\build\net40\Common.Logging.NLog443\Release\Common.Logging.NLog443.dll" target="lib\net40" />
+    <file src="..\..\build\net40\Common.Logging.NLog443\Release\Common.Logging.NLog443.pdb" target="lib\net40" />
+    <file src="..\..\build\net40\Common.Logging.NLog443\Release\Common.Logging.NLog443.xml" target="lib\net40" />
   </files>
 </package>
