@@ -3,6 +3,7 @@
 ## Project Build Status
 [![Build status](https://ci.appveyor.com/api/projects/status/nyht5oguhan7gk2c/branch/master?svg=true)](https://ci.appveyor.com/project/sbohlen/common-logging/branch/master)
 
+*Note: Build may periodically fail due to issues with the code-coverage tooling (NCover) being unable to reliably connect to the test-runner during test-runs on the CI server platform we've selected (Appveyor).  Work continues to investigate this further, but until resolved properly visitors are advised to discount failing builds reported here. 
 
 ## Introduction
 
