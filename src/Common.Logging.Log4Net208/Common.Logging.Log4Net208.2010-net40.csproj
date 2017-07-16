@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{9E443037-619D-4D49-988A-D8D1F18F379A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Common</RootNamespace>
+    <AssemblyName>Common.Logging.Log4Net208</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\build\net40\Common.Logging.Log4Net208\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;NET_4_0</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>Common.Logging.Log4Net208.xml</DocumentationFile>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\build\net40\Common.Logging.Log4Net208\Release\</OutputPath>
+    <DefineConstants>TRACE;NET_4_0</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>Common.Logging.Log4Net208.xml</DocumentationFile>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\Log4Net208\net\net40-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\Common.Logging.Log4Net129\Logging\Log4Net\CommonLoggingAppender.cs">
+      <Link>Logging\Log4Net\CommonLoggingAppender.cs</Link>
+    </Compile>
+    <Compile Include="..\Common.Logging.Log4Net129\Logging\Log4Net\Log4NetGlobalVariablesContext.cs">
+      <Link>Logging\Log4Net\Log4NetGlobalVariablesContext.cs</Link>
+    </Compile>
+    <Compile Include="..\Common.Logging.Log4Net129\Logging\Log4Net\Log4NetLogger.cs">
+      <Link>Logging\Log4Net\Log4NetLogger.cs</Link>
+    </Compile>
+    <Compile Include="..\Common.Logging.Log4Net129\Logging\Log4Net\Log4NetLoggerFactoryAdapter.cs">
+      <Link>Logging\Log4Net\Log4NetLoggerFactoryAdapter.cs</Link>
+    </Compile>
+    <Compile Include="..\Common.Logging.Log4Net129\Logging\Log4Net\Log4NetNestedThreadVariablesContext.cs">
+      <Link>Logging\Log4Net\Log4NetNestedThreadVariablesContext.cs</Link>
+    </Compile>
+    <Compile Include="..\Common.Logging.Log4Net129\Logging\Log4Net\Log4NetThreadVariablesContext.cs">
+      <Link>Logging\Log4Net\Log4NetThreadVariablesContext.cs</Link>
+    </Compile>
+    <Compile Include="..\CommonAssemblyInfo.cs">
+      <Link>CommonAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common.Logging.Core\Common.Logging.Core.2010.csproj">
+      <Project>{7eeb2191-b3fc-4509-aa4b-a345c386eeed}</Project>
+      <Name>Common.Logging.Core.2010</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Common.Logging\Common.Logging.2010-net40.csproj">
+      <Project>{440D903A-D409-48FC-A6C4-3EE69CCD663B}</Project>
+      <Name>Common.Logging.2010-net40</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
