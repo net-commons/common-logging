@@ -102,17 +102,17 @@
       <Project>{7eeb2191-b3fc-4509-aa4b-a345c386eeed}</Project>
       <Name>Common.Logging.Core.2010</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\Common.Logging.NLog443\Common.Logging.NLog443.2010-net40.csproj">
+    <ProjectReference Include="..\..\src\Common.Logging.NLog41\Common.Logging.NLog41.2010-net40.csproj">
       <Project>{bbf526e6-1da3-479e-ac22-a9c45c95cc4a}</Project>
-      <Name>Common.Logging.NLog443.2010-net40</Name>
+      <Name>Common.Logging.NLog41.2010-net40</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\src\Common.Logging\Common.Logging.2010-net40.csproj">
       <Project>{440D903A-D409-48FC-A6C4-3EE69CCD663B}</Project>
       <Name>Common.Logging.2010-net40</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Common.Logging.NLog443.Tests\Common.Logging.NLog443.Tests.2010-net40.csproj">
+    <ProjectReference Include="..\Common.Logging.NLog41.Tests\Common.Logging.NLog41.Tests.2010-net40.csproj">
       <Project>{3175d550-bf85-40e4-93da-cc705159d98f}</Project>
-      <Name>Common.Logging.NLog443.Tests.2010-net40</Name>
+      <Name>Common.Logging.NLog41.Tests.2010-net40</Name>
     </ProjectReference>
     <ProjectReference Include="..\Common.Logging.TestUtils\Common.Logging.TestUtils-net40.csproj">
       <Project>{F5193CD8-B431-48ED-B101-D8DBEF766140}</Project>
@@ -122,7 +122,7 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties ProjectLinkerExcludeFilter="\\?desktop(\\.*)?$;\\?silverlight(\\.*)?$;\.desktop;\.silverlight;\.xaml;^service references(\\.*)?$;\.clientconfig;^web references(\\.*)?$" ProjectLinkReference="ee5ca38f-3f29-43e1-b385-03798eddc765" />
+      <UserProperties ProjectLinkReference="ee5ca38f-3f29-43e1-b385-03798eddc765" ProjectLinkerExcludeFilter="\\?desktop(\\.*)?$;\\?silverlight(\\.*)?$;\.desktop;\.silverlight;\.xaml;^service references(\\.*)?$;\.clientconfig;^web references(\\.*)?$" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
