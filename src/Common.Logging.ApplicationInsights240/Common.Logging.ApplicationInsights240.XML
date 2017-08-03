@@ -70,7 +70,7 @@
             </summary>
             <remarks>
             Looks for level, showDateTime, showLogName, dateTimeFormat items from 
-            <paramref name="properties"/> for use when the GetLogger methods are called.
+            <paramref name="properties" /> for use when the GetLogger methods are called.
             <see cref="T:Common.Logging.ConfigurationSectionHandler"/> for more information on how to use the 
             standard .NET application configuraiton file (App.config/Web.config) 
             to configure this adapter.

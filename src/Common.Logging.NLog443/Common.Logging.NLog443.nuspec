@@ -13,7 +13,7 @@
     <tags>NLog Common.Logging.NLog logging log Common.Logging</tags>
     <language>en-US</language>
     <dependencies>
-      <dependency id="Common.Logging" version="3.4-RC1" />
+      <dependency id="Common.Logging" version="3.4.0" />
       <dependency id="NLog" version="4.4.3" />
     </dependencies>
   </metadata>
