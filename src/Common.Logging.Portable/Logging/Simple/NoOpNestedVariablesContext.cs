@@ -35,7 +35,7 @@ namespace Common.Logging.Simple
 		/// <summary>
 		/// 
 		/// </summary>
-		public bool HasItems { get; } = false;
+		public bool HasItems { get; private set; }
 
 		private class NoOpDisposable : IDisposable
 		{
