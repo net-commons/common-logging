@@ -98,7 +98,7 @@
       <Name>Common.Logging.Core.2010</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\src\Common.Logging.Log4Net208\Common.Logging.Log4Net208.2010-net40.csproj">
-      <Project>{280d71d5-3bf4-4420-b578-c2367567627e}</Project>
+      <Project>{9e443037-619d-4d49-988a-d8d1f18f379a}</Project>
       <Name>Common.Logging.Log4Net208.2010-net40</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\src\Common.Logging\Common.Logging.2010-net40.csproj">
@@ -106,7 +106,7 @@
       <Name>Common.Logging.2010-net40</Name>
     </ProjectReference>
     <ProjectReference Include="..\Common.Logging.Log4Net208.Tests\Common.Logging.Log4Net208.Tests.2010-net40.csproj">
-      <Project>{57e811a6-d98d-4308-adae-0b61a06272ae}</Project>
+      <Project>{aabb8caa-00b3-436f-b440-35e5daa72763}</Project>
       <Name>Common.Logging.Log4Net208.Tests.2010-net40</Name>
     </ProjectReference>
   </ItemGroup>
