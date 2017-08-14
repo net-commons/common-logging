@@ -21,5 +21,11 @@
     <file src="..\..\build\net40\Common.Logging.NLog4411\Release\Common.Logging.NLog4411.dll" target="lib\net40" />
     <file src="..\..\build\net40\Common.Logging.NLog4411\Release\Common.Logging.NLog4411.pdb" target="lib\net40" />
     <file src="..\..\build\net40\Common.Logging.NLog4411\Release\Common.Logging.NLog4411.xml" target="lib\net40" />
+    <file src="..\..\build\net40\Common.Logging.NLog4411\Release\Common.Logging.NLog4411.dll" target="lib\MonoAndroid10" />
+    <file src="..\..\build\net40\Common.Logging.NLog4411\Release\Common.Logging.NLog4411.pdb" target="lib\MonoAndroid10" />
+    <file src="..\..\build\net40\Common.Logging.NLog4411\Release\Common.Logging.NLog4411.xml" target="lib\MonoAndroid10" />
+    <file src="..\..\build\net40\Common.Logging.NLog4411\Release\Common.Logging.NLog4411.dll" target="lib\Xamarin.iOS10" />
+    <file src="..\..\build\net40\Common.Logging.NLog4411\Release\Common.Logging.NLog4411.pdb" target="lib\Xamarin.iOS10" />
+    <file src="..\..\build\net40\Common.Logging.NLog4411\Release\Common.Logging.NLog4411.xml" target="lib\Xamarin.iOS10" />
   </files>
 </package>
