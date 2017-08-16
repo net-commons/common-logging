@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Common.Logging.NLog4412</id>
+    <version>0.0.0</version>
+    <!-- placeholder value replaced by build script -->
+    <authors>Aleksandar Seovic, Mark Pollack, Erich Eichinger, Stephen Bohlen</authors>
+    <owners>Aleksandar Seovic, Mark Pollack, Erich Eichinger, Stephen Bohlen</owners>
+    <projectUrl>http://net-commons.github.io/common-logging/</projectUrl>
+    <iconUrl>https://raw.githubusercontent.com/net-commons/common-logging/master/nuget-graphics/common-logging-icon.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Common.Logging library bindings for NLog 4.4.12	logging framework.</description>
+    <tags>NLog Common.Logging.NLog logging log Common.Logging</tags>
+    <language>en-US</language>
+    <dependencies>
+      <dependency id="Common.Logging" version="3.4.1" />
+      <dependency id="NLog" version="4.4.12" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="..\..\build\net40\Common.Logging.NLog4412\Release\Common.Logging.NLog4412.dll" target="lib\net40" />
+    <file src="..\..\build\net40\Common.Logging.NLog4412\Release\Common.Logging.NLog4412.pdb" target="lib\net40" />
+    <file src="..\..\build\net40\Common.Logging.NLog4412\Release\Common.Logging.NLog4412.xml" target="lib\net40" />
+    <file src="..\..\build\net40\Common.Logging.NLog4412\Release\Common.Logging.NLog4412.dll" target="lib\MonoAndroid10" />
+    <file src="..\..\build\net40\Common.Logging.NLog4412\Release\Common.Logging.NLog4412.pdb" target="lib\MonoAndroid10" />
+    <file src="..\..\build\net40\Common.Logging.NLog4412\Release\Common.Logging.NLog4412.xml" target="lib\MonoAndroid10" />
+    <file src="..\..\build\net40\Common.Logging.NLog4412\Release\Common.Logging.NLog4412.dll" target="lib\Xamarin.iOS10" />
+    <file src="..\..\build\net40\Common.Logging.NLog4412\Release\Common.Logging.NLog4412.pdb" target="lib\Xamarin.iOS10" />
+    <file src="..\..\build\net40\Common.Logging.NLog4412\Release\Common.Logging.NLog4412.xml" target="lib\Xamarin.iOS10" />
+  </files>
+</package>
