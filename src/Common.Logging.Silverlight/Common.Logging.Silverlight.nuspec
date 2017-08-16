@@ -13,7 +13,7 @@
     <tags>Silverlight Common.Logging.Silverlight logging log Common.Logging</tags>
     <language>en-US</language>
     <dependencies>
-      <dependency id="Common.Logging.Portable" version="3.4.0" />
+      <dependency id="Common.Logging.Portable" version="3.4.1" />
     </dependencies>
   </metadata>
   <files>

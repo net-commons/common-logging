@@ -13,7 +13,7 @@
     <tags>Serilog Common.Logging.Serilog logging log Common.Logging</tags>
     <language>en-US</language>
     <dependencies>
-      <dependency id="Common.Logging" version="3.4.0" />
+      <dependency id="Common.Logging" version="3.4.1" />
       <dependency id="Serilog" version="[1.5.14]" />
     </dependencies>
   </metadata>
