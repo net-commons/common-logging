@@ -54,18 +54,20 @@ Then add the relevant sections to your `app.config` or `web.config`:
 ```
 
 ## NLog Quickstart
-There are different packages for each major NLog version. Install the correct package for your referenced NLog version. This example installs the adapter for NLog v2.0:
+There are different packages for each major NLog version. Install the correct package for your referenced NLog version. This example installs the adapter for NLog v4.1:
 
-    PM> Install-Package Common.Logging.NLog20
+    PM> Install-Package Common.Logging.NLog41
 
-If you are using NLog v3.0, you should install the `Common.Logging.NLog30` package and so on.  
+If you are using NLog v4.0, you should install the `Common.Logging.NLog40` package and so on.  
+
+NB: Because NLog is using semver and the same strong name for every major version, Common.Logging.NLog40 and Common.Logging.NLog41 works for all NLog 4.x version. Common.Logging.NLog41 is the recommend version
 
 The app config should then have a common logging section like below. Be sure to match the `factoryAdapter type` with your installed `Common.Logging.NLogXX` version. 
 
 ```xml
 <common>
     <logging>
-      <factoryAdapter type="Common.Logging.NLog.NLogLoggerFactoryAdapter, Common.Logging.NLog20">
+      <factoryAdapter type="Common.Logging.NLog.NLogLoggerFactoryAdapter, Common.Logging.NLog41">
     	<arg key="configType" value="INLINE" />
       </factoryAdapter>
     </logging>
