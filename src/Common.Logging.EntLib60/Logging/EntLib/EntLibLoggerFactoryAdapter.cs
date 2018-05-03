@@ -18,6 +18,7 @@
 
 #endregion
 
+using System;
 using Common.Logging.Configuration;
 using Common.Logging.Factory;
 using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
@@ -123,8 +124,11 @@ namespace Common.Logging.EntLib
         /// Initializes a new instance of the <see cref="EntLibLoggerFactoryAdapter"/> class.
         /// </summary>
         public EntLibLoggerFactoryAdapter()
-            : this(EntLibLoggerSettings.DEFAULTPRIORITY, EntLibLoggerSettings.DEFAULTEXCEPTIONFORMAT, null)
-        { }
+            : this(
+                EntLibLoggerSettings.DEFAULTPRIORITY, EntLibLoggerSettings.DEFAULTEXCEPTIONFORMAT, null,
+                EntLibLoggerSettings.DEFAULTLOGCATEGORY)
+        {
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="EntLibLoggerFactoryAdapter"/> class
@@ -133,14 +137,16 @@ namespace Common.Logging.EntLib
         /// <param name="defaultPriority">defaults to <see cref="EntLibLoggerSettings.DEFAULTPRIORITY"/></param>
         /// <param name="exceptionFormat">defaults to <see cref="EntLibLoggerSettings.DEFAULTEXCEPTIONFORMAT"/></param>
         /// <param name="logWriter">a <see cref="LogWriter"/> instance to use</param>
-        public EntLibLoggerFactoryAdapter(int defaultPriority, string exceptionFormat, LogWriter logWriter)
+        /// <param name="logCategory">defaults to <see cref="EntLibLoggerSettings.DEFAULTLOGCATEGORY"/></param>
+        public EntLibLoggerFactoryAdapter(int defaultPriority, string exceptionFormat, LogWriter logWriter,
+            string logCategory)
             : base(true)
         {
             if (exceptionFormat.Length == 0)
             {
                 exceptionFormat = null;
             }
-            _settings = new EntLibLoggerSettings(defaultPriority, exceptionFormat);
+            _settings = new EntLibLoggerSettings(defaultPriority, exceptionFormat, logCategory);
             _logWriter = logWriter;
         }
 
@@ -151,17 +157,20 @@ namespace Common.Logging.EntLib
         /// <param name="properties">The properties.</param>
         public EntLibLoggerFactoryAdapter(NameValueCollection properties)
             : this(ArgUtils.TryParse(EntLibLoggerSettings.DEFAULTPRIORITY, ArgUtils.GetValue(properties, "priority"))
-                 , ArgUtils.Coalesce(ArgUtils.GetValue(properties, "exceptionFormat"), EntLibLoggerSettings.DEFAULTEXCEPTIONFORMAT)
-                 , null
+                , ArgUtils.Coalesce(ArgUtils.GetValue(properties, "exceptionFormat"), EntLibLoggerSettings.DEFAULTEXCEPTIONFORMAT)
+                , null
+                , ArgUtils.Coalesce(ArgUtils.GetValue(properties, "logCategory"), EntLibLoggerSettings.DEFAULTLOGCATEGORY)
             )
-        { }
+        {
+        }
 
         /// <summary>
         /// Creates a new <see cref="EntLibLogger"/> instance.
         /// </summary>
         protected override ILog CreateLogger(string name)
         {
-            return CreateLogger(name, LogWriter, _settings);
+            var logCategory = String.IsNullOrWhiteSpace(_settings.logCategory) ? name : _settings.logCategory;
+            return CreateLogger(logCategory, LogWriter, _settings);
         }
 
         /// <summary>

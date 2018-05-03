@@ -35,7 +35,7 @@ namespace Common.Logging.EntLib
         protected override ILoggerFactoryAdapter GetLoggerFactoryAdapter()
         {
             LogWriter lw = new LogWriter(new List<ILogFilter>(), new List<LogSource>(), new LogSource("errorSource"), "default");
-            return new EntLibLoggerFactoryAdapter(EntLibLoggerSettings.DEFAULTPRIORITY, EntLibLoggerSettings.DEFAULTEXCEPTIONFORMAT, lw);
+            return new EntLibLoggerFactoryAdapter(EntLibLoggerSettings.DEFAULTPRIORITY, EntLibLoggerSettings.DEFAULTEXCEPTIONFORMAT, lw, EntLibLoggerSettings.DEFAULTLOGCATEGORY);
         }
 
         [Test]

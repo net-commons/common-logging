@@ -83,15 +83,15 @@ namespace Common.Logging.EntLib
                 , true
                 );
 
-            return new TestEntLibLoggerFactoryAdapter(5, EntLibLoggerSettings.DEFAULTEXCEPTIONFORMAT, logWriter);
+            return new TestEntLibLoggerFactoryAdapter(5, EntLibLoggerSettings.DEFAULTEXCEPTIONFORMAT, logWriter, EntLibLoggerSettings.DEFAULTLOGCATEGORY);
         }
 
         private class TestEntLibLoggerFactoryAdapter: EntLibLoggerFactoryAdapter
         {
             public LogEntry LastLogEntry;
 
-            public TestEntLibLoggerFactoryAdapter(int defaultPriority, string exceptionFormat, LogWriter logWriter) 
-                : base(defaultPriority, exceptionFormat, logWriter)
+            public TestEntLibLoggerFactoryAdapter(int defaultPriority, string exceptionFormat, LogWriter logWriter, string logCategory) 
+                : base(defaultPriority, exceptionFormat, logWriter, logCategory)
             {
             }
 
