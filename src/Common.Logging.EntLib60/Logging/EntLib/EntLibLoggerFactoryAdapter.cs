@@ -40,8 +40,10 @@ namespace Common.Logging.EntLib
     /// <code>
     /// &lt;configuration&gt;
     ///   &lt;configSections&gt;
-    ///       &lt;section name=&quot;logging&quot; type=&quot;Common.Logging.ConfigurationSectionHandler, Common.Logging&quot; /&gt;
-    ///       &lt;section name=&quot;loggingConfiguration&quot; type=&quot;Microsoft.Practices.EnterpriseLibrary.Logging.Configuration.LoggingSettings, Microsoft.Practices.EnterpriseLibrary.Logging, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35&quot; /&gt;
+    ///       &lt;sectionGroup name=&quot;common&quot;&gt;
+    ///         &lt;section name=&quot;logging&quot; type=&quot;Common.Logging.ConfigurationSectionHandler, Common.Logging&quot; /&gt;
+    ///       &lt;/sectionGroup&gt;
+    ///       &lt;section name=&quot;loggingConfiguration&quot; type=&quot;Microsoft.Practices.EnterpriseLibrary.Logging.Configuration.LoggingSettings, Microsoft.Practices.EnterpriseLibrary.Logging&quot; /&gt;
     ///   &lt;/configSections&gt;
     ///   &lt;common&gt;
     ///     &lt;logging&gt;
