@@ -46,7 +46,7 @@ namespace Common.Logging.NLog
         {
             /// <summary>
             /// Calls FormatMessageCallbackFormattedMessage.formatMessageCallback and returns result.
-            /// This allows Serilog to work propery, since it has its own formatting.
+            /// This allows NLog to work propery, since it has its own formatting.
             /// </summary>
             /// <returns></returns>
             public string ToParameters(out object[] arguments)
@@ -443,7 +443,7 @@ namespace Common.Logging.NLog
             if (IsDebugEnabled)
             {
                 object[] arguments;
-                var format = new NLogFormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
+                var format = new NLogFormatMessageCallbackFormattedMessage(formatProvider, formatMessageCallback).ToParameters(out arguments);
                 _logger.Debug(format, arguments);
             }
         }
@@ -463,7 +463,7 @@ namespace Common.Logging.NLog
             if (IsDebugEnabled)
             {
                 object[] arguments;
-                var format = new NLogFormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
+                var format = new NLogFormatMessageCallbackFormattedMessage(formatProvider, formatMessageCallback).ToParameters(out arguments);
                 _logger.Debug(exception, format, arguments);
             }
         }
@@ -594,7 +594,7 @@ namespace Common.Logging.NLog
             if (IsInfoEnabled)
             {
                 object[] arguments;
-                var format = new NLogFormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
+                var format = new NLogFormatMessageCallbackFormattedMessage(formatProvider, formatMessageCallback).ToParameters(out arguments);
                 _logger.Info(format, arguments);
             }
         }
@@ -614,7 +614,7 @@ namespace Common.Logging.NLog
             if (IsInfoEnabled)
             {
                 object[] arguments;
-                var format = new NLogFormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
+                var format = new NLogFormatMessageCallbackFormattedMessage(formatProvider, formatMessageCallback).ToParameters(out arguments);
                 _logger.Info(exception, format, arguments);
             }
         }
@@ -745,7 +745,7 @@ namespace Common.Logging.NLog
             if (IsWarnEnabled)
             {
                 object[] arguments;
-                var format = new NLogFormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
+                var format = new NLogFormatMessageCallbackFormattedMessage(formatProvider, formatMessageCallback).ToParameters(out arguments);
                 _logger.Warn(format, arguments);
             }
         }
@@ -765,7 +765,7 @@ namespace Common.Logging.NLog
             if (IsWarnEnabled)
             {
                 object[] arguments;
-                var format = new NLogFormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
+                var format = new NLogFormatMessageCallbackFormattedMessage(formatProvider, formatMessageCallback).ToParameters(out arguments);
                 _logger.Warn(exception, format, arguments);
             }
         }
@@ -896,7 +896,7 @@ namespace Common.Logging.NLog
             if (IsErrorEnabled)
             {
                 object[] arguments;
-                var format = new NLogFormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
+                var format = new NLogFormatMessageCallbackFormattedMessage(formatProvider, formatMessageCallback).ToParameters(out arguments);
                 _logger.Error(formatProvider, format, arguments);
             }
         }
@@ -916,7 +916,7 @@ namespace Common.Logging.NLog
             if (IsErrorEnabled)
             {
                 object[] arguments;
-                var format = new NLogFormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
+                var format = new NLogFormatMessageCallbackFormattedMessage(formatProvider, formatMessageCallback).ToParameters(out arguments);
                 _logger.Error(exception, formatProvider, format, arguments);
             }
         }
@@ -1047,7 +1047,7 @@ namespace Common.Logging.NLog
             if (IsFatalEnabled)
             {
                 object[] arguments;
-                var format = new NLogFormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
+                var format = new NLogFormatMessageCallbackFormattedMessage(formatProvider, formatMessageCallback).ToParameters(out arguments);
                 _logger.Fatal(formatProvider, format, arguments);
             }
         }
@@ -1067,7 +1067,7 @@ namespace Common.Logging.NLog
             if (IsFatalEnabled)
             {
                 object[] arguments;
-                var format = new NLogFormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
+                var format = new NLogFormatMessageCallbackFormattedMessage(formatProvider, formatMessageCallback).ToParameters(out arguments);
                 _logger.Fatal(exception, formatProvider, format, arguments);
             }
         }
@@ -1085,7 +1085,7 @@ namespace Common.Logging.NLog
         /// <param name="exception">the exception to log (may be null)</param>
         protected override void WriteInternal(LogLevel level, object message, Exception exception)
         {
-            //Do nothing here. This method is not compatible with Serilog            
+            //Do nothing here. This method is not compatible with NLog 4.5            
         }
     }
 }
