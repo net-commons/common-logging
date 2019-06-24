@@ -11,6 +11,7 @@
     <CurrentYear>$([System.DateTime]::Now.ToString(yyyy))</CurrentYear>
     <Copyright>Copyright (c) 2006-$(CurrentYear) The Common Infrastructure Libraries Team</Copyright>    
     <PackageId>Common.Logging.NLog45</PackageId>
+    <Description>Common.Logging library bindings for NLog 4.5 logging framework with message template support.</Description>
     <PackageTags>NLog;Common.Logging.NLog;logging log;Common.Logging </PackageTags>
     <PackageIconUrl>https://raw.githubusercontent.com/net-commons/common-logging/master/nuget-graphics/common-logging-icon.png</PackageIconUrl>
     <PackageProjectUrl>https://net-commons.github.io/common-logging/</PackageProjectUrl>

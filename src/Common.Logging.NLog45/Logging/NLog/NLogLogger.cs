@@ -23,21 +23,21 @@ using Common.Logging.Factory;
 using FormatMessageCallback = System.Action<Common.Logging.FormatMessageHandler>;
 using LogLevelNLog = NLog.LogLevel;
 using LoggerNLog = NLog.Logger;
+using LogEventInfo = NLog.LogEventInfo;
 
 namespace Common.Logging.NLog
 {
     /// <summary>
-    /// Concrete implementation of <see cref="ILog"/> interface specific to Serilog 1.5.14
+    /// Concrete implementation of <see cref="ILog"/> interface specific to NLog 4.5
     /// </summary>
     /// <remarks>
-    /// Unlike other logging libraries, Serilog is built with powerful structured event data in mind.
-    /// http://serilog.net/
+    /// NLog 4.5 supports message templates https://messagetemplates.org/ that extends <see cref="string.Format(string,object[])"/>
     /// </remarks>
     /// <author>Aaron Mell</author>
     public partial class NLogLogger : AbstractLogger
     {
 
-        #region SerilogSerilogFormatMessageCallbackFormattedMessage
+        #region NLogFormatMessageCallbackFormattedMessage
 
         /// <summary>
         /// Format message on demand.
@@ -177,7 +177,7 @@ namespace Common.Logging.NLog
         public override void Trace(object message)
         {
             if (IsTraceEnabled)
-                _logger.Trace("{0}", message);
+                WriteObjectToNLog(LogLevelNLog.Trace, null, message);
         }
 
         /// <summary>
@@ -190,7 +190,7 @@ namespace Common.Logging.NLog
         public override void Trace(object message, Exception exception)
         {
             if (IsTraceEnabled)
-                _logger.Trace(exception, "{0}", message);
+                WriteObjectToNLog(LogLevelNLog.Trace, exception, message);
         }
 
         /// <summary>
@@ -202,7 +202,7 @@ namespace Common.Logging.NLog
         public override void TraceFormat(IFormatProvider formatProvider, string format, params object[] args)
         {
             if (IsTraceEnabled)
-                _logger.Trace(formatProvider, format, args);
+                WriteToNLog(LogLevelNLog.Trace, formatProvider, null, format, args);
         }
 
         /// <summary>
@@ -215,7 +215,7 @@ namespace Common.Logging.NLog
         public override void TraceFormat(IFormatProvider formatProvider, string format, Exception exception, params object[] args)
         {
             if (IsTraceEnabled)
-                _logger.Trace(exception, formatProvider, format, args);
+                WriteToNLog(LogLevelNLog.Trace, formatProvider, exception, format, args);
         }
 
         /// <summary>
@@ -226,7 +226,7 @@ namespace Common.Logging.NLog
         public override void TraceFormat(string format, params object[] args)
         {
             if (IsTraceEnabled)
-                _logger.Trace(format, args);
+                WriteToNLog(LogLevelNLog.Trace, null, null, format, args);
         }
 
         /// <summary>
@@ -238,32 +238,28 @@ namespace Common.Logging.NLog
         public new virtual void TraceFormat(string format, Exception exception, params object[] args)
         {
             if (IsTraceEnabled)
-                _logger.Trace(exception, format, args);
+                WriteToNLog(LogLevelNLog.Trace, null, exception, format, args);
         }
 
         /// <summary>
         /// Log a message with the <see cref="LogLevel.Trace"/> level using a callback to obtain the message
         /// </summary>
         /// <remarks>
-        /// Using this method avoids the cost of creating a message and evaluating message arguments 
+        /// Using this method avoids the cost of creating a message and evaluating message arguments
         /// that probably won't be logged due to loglevel settings.
         /// </remarks>
         /// <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
         public override void Trace(FormatMessageCallback formatMessageCallback)
         {
             if (IsTraceEnabled)
-            {
-                object[] arguments;
-                var format = new NLogFormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
-                _logger.Trace(format, arguments);
-            }
+                WriteCallbackToNLog(LogLevelNLog.Trace, null, formatMessageCallback);
         }
 
         /// <summary>
         /// Log a message with the <see cref="LogLevel.Trace"/> level using a callback to obtain the message
         /// </summary>
         /// <remarks>
-        /// Using this method avoids the cost of creating a message and evaluating message arguments 
+        /// Using this method avoids the cost of creating a message and evaluating message arguments
         /// that probably won't be logged due to loglevel settings.
         /// </remarks>
         /// <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
@@ -271,18 +267,14 @@ namespace Common.Logging.NLog
         public override void Trace(FormatMessageCallback formatMessageCallback, Exception exception)
         {
             if (IsTraceEnabled)
-            {
-                object[] arguments;
-                var format = new NLogFormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
-                _logger.Trace(exception, format, arguments);
-            }
+                WriteCallbackToNLog(LogLevelNLog.Trace, exception, formatMessageCallback, null);
         }
 
         /// <summary>
         /// Log a message with the <see cref="LogLevel.Trace"/> level using a callback to obtain the message
         /// </summary>
         /// <remarks>
-        /// Using this method avoids the cost of creating a message and evaluating message arguments 
+        /// Using this method avoids the cost of creating a message and evaluating message arguments
         /// that probably won't be logged due to loglevel settings.
         /// </remarks>
         /// <param name="formatProvider">An <see cref="IFormatProvider"/> that supplies culture-specific formatting information.</param>
@@ -290,18 +282,14 @@ namespace Common.Logging.NLog
         public override void Trace(IFormatProvider formatProvider, FormatMessageCallback formatMessageCallback)
         {
             if (IsTraceEnabled)
-            {
-                object[] arguments;
-                var format = new NLogFormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
-                _logger.Trace(format, arguments);
-            }
+                WriteCallbackToNLog(LogLevelNLog.Trace, null, formatMessageCallback, formatProvider);
         }
 
         /// <summary>
         /// Log a message with the <see cref="LogLevel.Trace"/> level using a callback to obtain the message
         /// </summary>
         /// <remarks>
-        /// Using this method avoids the cost of creating a message and evaluating message arguments 
+        /// Using this method avoids the cost of creating a message and evaluating message arguments
         /// that probably won't be logged due to loglevel settings.
         /// </remarks>
         /// <param name="formatProvider">An <see cref="IFormatProvider"/> that supplies culture-specific formatting information.</param>
@@ -310,11 +298,7 @@ namespace Common.Logging.NLog
         public override void Trace(IFormatProvider formatProvider, FormatMessageCallback formatMessageCallback, Exception exception)
         {
             if (IsTraceEnabled)
-            {
-                object[] arguments;
-                var format = new NLogFormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
-                _logger.Trace(exception, format, arguments);
-            }
+                WriteCallbackToNLog(LogLevelNLog.Trace, exception, formatMessageCallback, formatProvider);
         }
 
         #endregion
@@ -328,7 +312,7 @@ namespace Common.Logging.NLog
         public override void Debug(object message)
         {
             if (IsDebugEnabled)
-                _logger.Debug("{0}", message);
+                WriteObjectToNLog(LogLevelNLog.Debug, null, message);
         }
 
         /// <summary>
@@ -341,7 +325,7 @@ namespace Common.Logging.NLog
         public override void Debug(object message, Exception exception)
         {
             if (IsDebugEnabled)
-                _logger.Debug(exception, "{0}", message);
+                WriteObjectToNLog(LogLevelNLog.Debug, exception, message);
         }
 
         /// <summary>
@@ -353,7 +337,7 @@ namespace Common.Logging.NLog
         public override void DebugFormat(IFormatProvider formatProvider, string format, params object[] args)
         {
             if (IsDebugEnabled)
-                _logger.Debug(formatProvider, format, args);
+                WriteToNLog(LogLevelNLog.Debug, formatProvider, null, format, args);
         }
 
         /// <summary>
@@ -366,7 +350,7 @@ namespace Common.Logging.NLog
         public override void DebugFormat(IFormatProvider formatProvider, string format, Exception exception, params object[] args)
         {
             if (IsDebugEnabled)
-                _logger.Debug(exception, formatProvider, format, args);
+                WriteToNLog(LogLevelNLog.Debug, formatProvider, exception, format, args);
         }
 
         /// <summary>
@@ -377,7 +361,7 @@ namespace Common.Logging.NLog
         public override void DebugFormat(string format, params object[] args)
         {
             if (IsDebugEnabled)
-                _logger.Debug(format, args);
+                WriteToNLog(LogLevelNLog.Debug, null, null, format, args);
         }
 
         /// <summary>
@@ -389,32 +373,28 @@ namespace Common.Logging.NLog
         public override void DebugFormat(string format, Exception exception, params object[] args)
         {
             if (IsDebugEnabled)
-                _logger.Debug(exception, format, args);
+                WriteToNLog(LogLevelNLog.Debug, null, exception, format, args);
         }
 
         /// <summary>
         /// Log a message with the <see cref="LogLevel.Debug"/> level using a callback to obtain the message
         /// </summary>
         /// <remarks>
-        /// Using this method avoids the cost of creating a message and evaluating message arguments 
+        /// Using this method avoids the cost of creating a message and evaluating message arguments
         /// that probably won't be logged due to loglevel settings.
         /// </remarks>
         /// <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
         public override void Debug(FormatMessageCallback formatMessageCallback)
         {
             if (IsDebugEnabled)
-            {
-                object[] arguments;
-                var format = new NLogFormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
-                _logger.Debug(format, arguments);
-            }
+                WriteCallbackToNLog(LogLevelNLog.Debug, null, formatMessageCallback);
         }
 
         /// <summary>
         /// Log a message with the <see cref="LogLevel.Debug"/> level using a callback to obtain the message
         /// </summary>
         /// <remarks>
-        /// Using this method avoids the cost of creating a message and evaluating message arguments 
+        /// Using this method avoids the cost of creating a message and evaluating message arguments
         /// that probably won't be logged due to loglevel settings.
         /// </remarks>
         /// <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
@@ -422,18 +402,14 @@ namespace Common.Logging.NLog
         public override void Debug(FormatMessageCallback formatMessageCallback, Exception exception)
         {
             if (IsDebugEnabled)
-            {
-                object[] arguments;
-                var format = new NLogFormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
-                _logger.Debug(exception, format, arguments);
-            }
+                WriteCallbackToNLog(LogLevelNLog.Debug, exception, formatMessageCallback);
         }
 
         /// <summary>
         /// Log a message with the <see cref="LogLevel.Debug"/> level using a callback to obtain the message
         /// </summary>
         /// <remarks>
-        /// Using this method avoids the cost of creating a message and evaluating message arguments 
+        /// Using this method avoids the cost of creating a message and evaluating message arguments
         /// that probably won't be logged due to loglevel settings.
         /// </remarks>
         /// <param name="formatProvider">An <see cref="IFormatProvider"/> that supplies culture-specific formatting information.</param>
@@ -441,18 +417,14 @@ namespace Common.Logging.NLog
         public override void Debug(IFormatProvider formatProvider, FormatMessageCallback formatMessageCallback)
         {
             if (IsDebugEnabled)
-            {
-                object[] arguments;
-                var format = new NLogFormatMessageCallbackFormattedMessage(formatProvider, formatMessageCallback).ToParameters(out arguments);
-                _logger.Debug(format, arguments);
-            }
+                WriteCallbackToNLog(LogLevelNLog.Debug, null, formatMessageCallback, formatProvider);
         }
 
         /// <summary>
         /// Log a message with the <see cref="LogLevel.Debug"/> level using a callback to obtain the message
         /// </summary>
         /// <remarks>
-        /// Using this method avoids the cost of creating a message and evaluating message arguments 
+        /// Using this method avoids the cost of creating a message and evaluating message arguments
         /// that probably won't be logged due to loglevel settings.
         /// </remarks>
         /// <param name="formatProvider">An <see cref="IFormatProvider"/> that supplies culture-specific formatting information.</param>
@@ -461,11 +433,7 @@ namespace Common.Logging.NLog
         public override void Debug(IFormatProvider formatProvider, FormatMessageCallback formatMessageCallback, Exception exception)
         {
             if (IsDebugEnabled)
-            {
-                object[] arguments;
-                var format = new NLogFormatMessageCallbackFormattedMessage(formatProvider, formatMessageCallback).ToParameters(out arguments);
-                _logger.Debug(exception, format, arguments);
-            }
+                WriteCallbackToNLog(LogLevelNLog.Debug, exception, formatMessageCallback, formatProvider);
         }
 
         #endregion
@@ -479,7 +447,7 @@ namespace Common.Logging.NLog
         public override void Info(object message)
         {
             if (IsInfoEnabled)
-                _logger.Info("{0}", message);
+                WriteObjectToNLog(LogLevelNLog.Info, null, message);
         }
 
         /// <summary>
@@ -492,7 +460,7 @@ namespace Common.Logging.NLog
         public override void Info(object message, Exception exception)
         {
             if (IsInfoEnabled)
-                _logger.Info(exception, "{0}", message);
+                WriteObjectToNLog(LogLevelNLog.Info, exception, message);
         }
 
         /// <summary>
@@ -504,7 +472,7 @@ namespace Common.Logging.NLog
         public override void InfoFormat(IFormatProvider formatProvider, string format, params object[] args)
         {
             if (IsInfoEnabled)
-                _logger.Info(formatProvider, format, args);
+                WriteToNLog(LogLevelNLog.Info, formatProvider, null, format, args);
         }
 
         /// <summary>
@@ -517,7 +485,7 @@ namespace Common.Logging.NLog
         public override void InfoFormat(IFormatProvider formatProvider, string format, Exception exception, params object[] args)
         {
             if (IsInfoEnabled)
-                _logger.Info(exception, formatProvider, format, args);
+                WriteToNLog(LogLevelNLog.Info, formatProvider, exception, format, args);
         }
 
         /// <summary>
@@ -528,7 +496,7 @@ namespace Common.Logging.NLog
         public override void InfoFormat(string format, params object[] args)
         {
             if (IsInfoEnabled)
-                _logger.Info(format, args);
+                WriteToNLog(LogLevelNLog.Info, null, null, format, args);
         }
 
         /// <summary>
@@ -540,32 +508,28 @@ namespace Common.Logging.NLog
         public override void InfoFormat(string format, Exception exception, params object[] args)
         {
             if (IsInfoEnabled)
-                _logger.Info(exception, format, args);
+                WriteToNLog(LogLevelNLog.Info, null, exception, format, args);
         }
 
         /// <summary>
         /// Log a message with the <see cref="LogLevel.Info"/> level using a callback to obtain the message
         /// </summary>
         /// <remarks>
-        /// Using this method avoids the cost of creating a message and evaluating message arguments 
+        /// Using this method avoids the cost of creating a message and evaluating message arguments
         /// that probably won't be logged due to loglevel settings.
         /// </remarks>
         /// <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
         public override void Info(FormatMessageCallback formatMessageCallback)
         {
             if (IsInfoEnabled)
-            {
-                object[] arguments;
-                var format = new NLogFormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
-                _logger.Info(format, arguments);
-            }
+                WriteCallbackToNLog(LogLevelNLog.Info, null, formatMessageCallback);
         }
 
         /// <summary>
         /// Log a message with the <see cref="LogLevel.Info"/> level using a callback to obtain the message
         /// </summary>
         /// <remarks>
-        /// Using this method avoids the cost of creating a message and evaluating message arguments 
+        /// Using this method avoids the cost of creating a message and evaluating message arguments
         /// that probably won't be logged due to loglevel settings.
         /// </remarks>
         /// <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
@@ -573,18 +537,14 @@ namespace Common.Logging.NLog
         public override void Info(FormatMessageCallback formatMessageCallback, Exception exception)
         {
             if (IsInfoEnabled)
-            {
-                object[] arguments;
-                var format = new NLogFormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
-                _logger.Info(exception, format, arguments);
-            }
+                WriteCallbackToNLog(LogLevelNLog.Info, exception, formatMessageCallback);
         }
 
         /// <summary>
         /// Log a message with the <see cref="LogLevel.Info"/> level using a callback to obtain the message
         /// </summary>
         /// <remarks>
-        /// Using this method avoids the cost of creating a message and evaluating message arguments 
+        /// Using this method avoids the cost of creating a message and evaluating message arguments
         /// that probably won't be logged due to loglevel settings.
         /// </remarks>
         /// <param name="formatProvider">An <see cref="IFormatProvider"/> that supplies culture-specific formatting information.</param>
@@ -592,18 +552,14 @@ namespace Common.Logging.NLog
         public override void Info(IFormatProvider formatProvider, FormatMessageCallback formatMessageCallback)
         {
             if (IsInfoEnabled)
-            {
-                object[] arguments;
-                var format = new NLogFormatMessageCallbackFormattedMessage(formatProvider, formatMessageCallback).ToParameters(out arguments);
-                _logger.Info(format, arguments);
-            }
+                WriteCallbackToNLog(LogLevelNLog.Info, null, formatMessageCallback, formatProvider);
         }
 
         /// <summary>
         /// Log a message with the <see cref="LogLevel.Info"/> level using a callback to obtain the message
         /// </summary>
         /// <remarks>
-        /// Using this method avoids the cost of creating a message and evaluating message arguments 
+        /// Using this method avoids the cost of creating a message and evaluating message arguments
         /// that probably won't be logged due to loglevel settings.
         /// </remarks>
         /// <param name="formatProvider">An <see cref="IFormatProvider"/> that supplies culture-specific formatting information.</param>
@@ -612,11 +568,7 @@ namespace Common.Logging.NLog
         public override void Info(IFormatProvider formatProvider, FormatMessageCallback formatMessageCallback, Exception exception)
         {
             if (IsInfoEnabled)
-            {
-                object[] arguments;
-                var format = new NLogFormatMessageCallbackFormattedMessage(formatProvider, formatMessageCallback).ToParameters(out arguments);
-                _logger.Info(exception, format, arguments);
-            }
+                WriteCallbackToNLog(LogLevelNLog.Info, exception, formatMessageCallback, formatProvider);
         }
 
         #endregion
@@ -630,7 +582,7 @@ namespace Common.Logging.NLog
         public override void Warn(object message)
         {
             if (IsWarnEnabled)
-                _logger.Warn("{0}", message);
+                WriteObjectToNLog(LogLevelNLog.Warn, null, message);
         }
 
         /// <summary>
@@ -643,7 +595,7 @@ namespace Common.Logging.NLog
         public override void Warn(object message, Exception exception)
         {
             if (IsWarnEnabled)
-                _logger.Warn(exception, "{0}", message);
+                WriteObjectToNLog(LogLevelNLog.Warn, exception, message);
         }
 
         /// <summary>
@@ -655,7 +607,7 @@ namespace Common.Logging.NLog
         public override void WarnFormat(IFormatProvider formatProvider, string format, params object[] args)
         {
             if (IsWarnEnabled)
-                _logger.Warn(formatProvider, format, args);
+                WriteToNLog(LogLevelNLog.Warn, formatProvider, null, format, args);
         }
 
         /// <summary>
@@ -668,7 +620,7 @@ namespace Common.Logging.NLog
         public override void WarnFormat(IFormatProvider formatProvider, string format, Exception exception, params object[] args)
         {
             if (IsWarnEnabled)
-                _logger.Warn(exception, formatProvider, format, args);
+                WriteToNLog(LogLevelNLog.Warn, formatProvider, exception, format, args);
         }
 
         /// <summary>
@@ -679,7 +631,7 @@ namespace Common.Logging.NLog
         public override void WarnFormat(string format, params object[] args)
         {
             if (IsWarnEnabled)
-                _logger.Warn(format, args);
+                WriteToNLog(LogLevelNLog.Warn, null, null, format, args);
         }
 
         /// <summary>
@@ -691,32 +643,28 @@ namespace Common.Logging.NLog
         public override void WarnFormat(string format, Exception exception, params object[] args)
         {
             if (IsWarnEnabled)
-                _logger.Warn(exception, format, args);
+                WriteToNLog(LogLevelNLog.Warn, null, exception, format, args);
         }
 
         /// <summary>
         /// Log a message with the <see cref="LogLevel.Warn"/> level using a callback to obtain the message
         /// </summary>
         /// <remarks>
-        /// Using this method avoids the cost of creating a message and evaluating message arguments 
+        /// Using this method avoids the cost of creating a message and evaluating message arguments
         /// that probably won't be logged due to loglevel settings.
         /// </remarks>
         /// <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
         public override void Warn(FormatMessageCallback formatMessageCallback)
         {
             if (IsWarnEnabled)
-            {
-                object[] arguments;
-                var format = new NLogFormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
-                _logger.Warn(format, arguments);
-            }
+                WriteCallbackToNLog(LogLevelNLog.Warn, null, formatMessageCallback);
         }
 
         /// <summary>
         /// Log a message with the <see cref="LogLevel.Warn"/> level using a callback to obtain the message
         /// </summary>
         /// <remarks>
-        /// Using this method avoids the cost of creating a message and evaluating message arguments 
+        /// Using this method avoids the cost of creating a message and evaluating message arguments
         /// that probably won't be logged due to loglevel settings.
         /// </remarks>
         /// <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
@@ -724,18 +672,14 @@ namespace Common.Logging.NLog
         public override void Warn(FormatMessageCallback formatMessageCallback, Exception exception)
         {
             if (IsWarnEnabled)
-            {
-                object[] arguments;
-                var format = new NLogFormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
-                _logger.Warn(exception, format, arguments);
-            }
+                WriteCallbackToNLog(LogLevelNLog.Warn, exception, formatMessageCallback);
         }
 
         /// <summary>
         /// Log a message with the <see cref="LogLevel.Warn"/> level using a callback to obtain the message
         /// </summary>
         /// <remarks>
-        /// Using this method avoids the cost of creating a message and evaluating message arguments 
+        /// Using this method avoids the cost of creating a message and evaluating message arguments
         /// that probably won't be logged due to loglevel settings.
         /// </remarks>
         /// <param name="formatProvider">An <see cref="IFormatProvider"/> that supplies culture-specific formatting information.</param>
@@ -743,18 +687,14 @@ namespace Common.Logging.NLog
         public override void Warn(IFormatProvider formatProvider, FormatMessageCallback formatMessageCallback)
         {
             if (IsWarnEnabled)
-            {
-                object[] arguments;
-                var format = new NLogFormatMessageCallbackFormattedMessage(formatProvider, formatMessageCallback).ToParameters(out arguments);
-                _logger.Warn(format, arguments);
-            }
+                WriteCallbackToNLog(LogLevelNLog.Warn, null, formatMessageCallback, formatProvider);
         }
 
         /// <summary>
         /// Log a message with the <see cref="LogLevel.Warn"/> level using a callback to obtain the message
         /// </summary>
         /// <remarks>
-        /// Using this method avoids the cost of creating a message and evaluating message arguments 
+        /// Using this method avoids the cost of creating a message and evaluating message arguments
         /// that probably won't be logged due to loglevel settings.
         /// </remarks>
         /// <param name="formatProvider">An <see cref="IFormatProvider"/> that supplies culture-specific formatting information.</param>
@@ -763,11 +703,7 @@ namespace Common.Logging.NLog
         public override void Warn(IFormatProvider formatProvider, FormatMessageCallback formatMessageCallback, Exception exception)
         {
             if (IsWarnEnabled)
-            {
-                object[] arguments;
-                var format = new NLogFormatMessageCallbackFormattedMessage(formatProvider, formatMessageCallback).ToParameters(out arguments);
-                _logger.Warn(exception, format, arguments);
-            }
+                WriteCallbackToNLog(LogLevelNLog.Warn, exception, formatMessageCallback, formatProvider);
         }
 
         #endregion
@@ -781,7 +717,7 @@ namespace Common.Logging.NLog
         public override void Error(object message)
         {
             if (IsErrorEnabled)
-                _logger.Error(message.ToString());
+                WriteObjectToNLog(LogLevelNLog.Error, null, message);
         }
 
         /// <summary>
@@ -794,7 +730,7 @@ namespace Common.Logging.NLog
         public override void Error(object message, Exception exception)
         {
             if (IsErrorEnabled)
-                _logger.Error(exception, message.ToString());
+                WriteObjectToNLog(LogLevelNLog.Error, exception, message);
         }
 
         /// <summary>
@@ -806,7 +742,7 @@ namespace Common.Logging.NLog
         public override void ErrorFormat(IFormatProvider formatProvider, string format, params object[] args)
         {
             if (IsErrorEnabled)
-                _logger.Error(format, args);
+                WriteToNLog(LogLevelNLog.Error, formatProvider, null, format, args);
         }
 
         /// <summary>
@@ -819,7 +755,7 @@ namespace Common.Logging.NLog
         public override void ErrorFormat(IFormatProvider formatProvider, string format, Exception exception, params object[] args)
         {
             if (IsErrorEnabled)
-                _logger.Error(exception, format, args);
+                WriteToNLog(LogLevelNLog.Error, formatProvider, exception, format, args);
         }
 
         /// <summary>
@@ -830,7 +766,7 @@ namespace Common.Logging.NLog
         public override void ErrorFormat(string format, params object[] args)
         {
             if (IsErrorEnabled)
-                _logger.Error(format, args);
+                WriteToNLog(LogLevelNLog.Error, null, null, format, args);
         }
 
         /// <summary>
@@ -842,32 +778,28 @@ namespace Common.Logging.NLog
         public override void ErrorFormat(string format, Exception exception, params object[] args)
         {
             if (IsErrorEnabled)
-                _logger.Error(exception, format, args);
+                WriteToNLog(LogLevelNLog.Error, null, exception, format, args);
         }
 
         /// <summary>
         /// Log a message with the <see cref="LogLevel.Error"/> level using a callback to obtain the message
         /// </summary>
         /// <remarks>
-        /// Using this method avoids the cost of creating a message and evaluating message arguments 
+        /// Using this method avoids the cost of creating a message and evaluating message arguments
         /// that probably won't be logged due to loglevel settings.
         /// </remarks>
         /// <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
         public override void Error(FormatMessageCallback formatMessageCallback)
         {
             if (IsErrorEnabled)
-            {
-                object[] arguments;
-                var format = new NLogFormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
-                _logger.Error(format, arguments);
-            }
+                WriteCallbackToNLog(LogLevelNLog.Error, null, formatMessageCallback);
         }
 
         /// <summary>
         /// Log a message with the <see cref="LogLevel.Error"/> level using a callback to obtain the message
         /// </summary>
         /// <remarks>
-        /// Using this method avoids the cost of creating a message and evaluating message arguments 
+        /// Using this method avoids the cost of creating a message and evaluating message arguments
         /// that probably won't be logged due to loglevel settings.
         /// </remarks>
         /// <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
@@ -875,18 +807,14 @@ namespace Common.Logging.NLog
         public override void Error(FormatMessageCallback formatMessageCallback, Exception exception)
         {
             if (IsErrorEnabled)
-            {
-                object[] arguments;
-                var format = new NLogFormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
-                _logger.Error(exception, format, arguments);
-            }
+                WriteCallbackToNLog(LogLevelNLog.Error, exception, formatMessageCallback);
         }
 
         /// <summary>
         /// Log a message with the <see cref="LogLevel.Error"/> level using a callback to obtain the message
         /// </summary>
         /// <remarks>
-        /// Using this method avoids the cost of creating a message and evaluating message arguments 
+        /// Using this method avoids the cost of creating a message and evaluating message arguments
         /// that probably won't be logged due to loglevel settings.
         /// </remarks>
         /// <param name="formatProvider">An <see cref="IFormatProvider"/> that supplies culture-specific formatting information.</param>
@@ -894,18 +822,14 @@ namespace Common.Logging.NLog
         public override void Error(IFormatProvider formatProvider, FormatMessageCallback formatMessageCallback)
         {
             if (IsErrorEnabled)
-            {
-                object[] arguments;
-                var format = new NLogFormatMessageCallbackFormattedMessage(formatProvider, formatMessageCallback).ToParameters(out arguments);
-                _logger.Error(formatProvider, format, arguments);
-            }
+                WriteCallbackToNLog(LogLevelNLog.Error, null, formatMessageCallback, formatProvider);
         }
 
         /// <summary>
         /// Log a message with the <see cref="LogLevel.Error"/> level using a callback to obtain the message
         /// </summary>
         /// <remarks>
-        /// Using this method avoids the cost of creating a message and evaluating message arguments 
+        /// Using this method avoids the cost of creating a message and evaluating message arguments
         /// that probably won't be logged due to loglevel settings.
         /// </remarks>
         /// <param name="formatProvider">An <see cref="IFormatProvider"/> that supplies culture-specific formatting information.</param>
@@ -914,11 +838,7 @@ namespace Common.Logging.NLog
         public override void Error(IFormatProvider formatProvider, FormatMessageCallback formatMessageCallback, Exception exception)
         {
             if (IsErrorEnabled)
-            {
-                object[] arguments;
-                var format = new NLogFormatMessageCallbackFormattedMessage(formatProvider, formatMessageCallback).ToParameters(out arguments);
-                _logger.Error(exception, formatProvider, format, arguments);
-            }
+                WriteCallbackToNLog(LogLevelNLog.Error, exception, formatMessageCallback, formatProvider);
         }
 
         #endregion
@@ -932,7 +852,7 @@ namespace Common.Logging.NLog
         public override void Fatal(object message)
         {
             if (IsFatalEnabled)
-                _logger.Fatal("{0}", message);
+                WriteObjectToNLog(LogLevelNLog.Fatal, null, message);
         }
 
         /// <summary>
@@ -945,7 +865,7 @@ namespace Common.Logging.NLog
         public override void Fatal(object message, Exception exception)
         {
             if (IsFatalEnabled)
-                _logger.Fatal(exception, "{0}", message);
+                WriteObjectToNLog(LogLevelNLog.Fatal, exception, message);
         }
 
         /// <summary>
@@ -957,7 +877,7 @@ namespace Common.Logging.NLog
         public override void FatalFormat(IFormatProvider formatProvider, string format, params object[] args)
         {
             if (IsFatalEnabled)
-                _logger.Fatal(formatProvider, format, args);
+                WriteToNLog(LogLevelNLog.Fatal, formatProvider, null, format, args);
         }
 
         /// <summary>
@@ -970,7 +890,7 @@ namespace Common.Logging.NLog
         public override void FatalFormat(IFormatProvider formatProvider, string format, Exception exception, params object[] args)
         {
             if (IsFatalEnabled)
-                _logger.Fatal(exception, formatProvider, format, args);
+                WriteToNLog(LogLevelNLog.Fatal, formatProvider, exception, format, args);
         }
 
         /// <summary>
@@ -981,7 +901,7 @@ namespace Common.Logging.NLog
         public override void FatalFormat(string format, params object[] args)
         {
             if (IsFatalEnabled)
-                _logger.Fatal(format, args);
+                WriteToNLog(LogLevelNLog.Fatal, null, null, format, args);
         }
 
         /// <summary>
@@ -993,32 +913,28 @@ namespace Common.Logging.NLog
         public override void FatalFormat(string format, Exception exception, params object[] args)
         {
             if (IsFatalEnabled)
-                _logger.Fatal(exception, format, args);
+                WriteToNLog(LogLevelNLog.Fatal, null, exception, format, args);
         }
 
         /// <summary>
         /// Log a message with the <see cref="LogLevel.Fatal"/> level using a callback to obtain the message
         /// </summary>
         /// <remarks>
-        /// Using this method avoids the cost of creating a message and evaluating message arguments 
+        /// Using this method avoids the cost of creating a message and evaluating message arguments
         /// that probably won't be logged due to loglevel settings.
         /// </remarks>
         /// <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
         public override void Fatal(FormatMessageCallback formatMessageCallback)
         {
             if (IsFatalEnabled)
-            {
-                object[] arguments;
-                var format = new NLogFormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
-                _logger.Fatal(format, arguments);
-            }
+                WriteCallbackToNLog(LogLevelNLog.Fatal, null, formatMessageCallback);
         }
 
         /// <summary>
         /// Log a message with the <see cref="LogLevel.Fatal"/> level using a callback to obtain the message
         /// </summary>
         /// <remarks>
-        /// Using this method avoids the cost of creating a message and evaluating message arguments 
+        /// Using this method avoids the cost of creating a message and evaluating message arguments
         /// that probably won't be logged due to loglevel settings.
         /// </remarks>
         /// <param name="formatMessageCallback">A callback used by the logger to obtain the message if log level is matched</param>
@@ -1026,18 +942,14 @@ namespace Common.Logging.NLog
         public override void Fatal(FormatMessageCallback formatMessageCallback, Exception exception)
         {
             if (IsFatalEnabled)
-            {
-                object[] arguments;
-                var format = new NLogFormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out arguments);
-                _logger.Fatal(exception, format, arguments);
-            }
+                WriteCallbackToNLog(LogLevelNLog.Fatal, exception, formatMessageCallback);
         }
 
         /// <summary>
         /// Log a message with the <see cref="LogLevel.Fatal"/> level using a callback to obtain the message
         /// </summary>
         /// <remarks>
-        /// Using this method avoids the cost of creating a message and evaluating message arguments 
+        /// Using this method avoids the cost of creating a message and evaluating message arguments
         /// that probably won't be logged due to loglevel settings.
         /// </remarks>
         /// <param name="formatProvider">An <see cref="IFormatProvider"/> that supplies culture-specific formatting information.</param>
@@ -1045,18 +957,14 @@ namespace Common.Logging.NLog
         public override void Fatal(IFormatProvider formatProvider, FormatMessageCallback formatMessageCallback)
         {
             if (IsFatalEnabled)
-            {
-                object[] arguments;
-                var format = new NLogFormatMessageCallbackFormattedMessage(formatProvider, formatMessageCallback).ToParameters(out arguments);
-                _logger.Fatal(formatProvider, format, arguments);
-            }
+                WriteCallbackToNLog(LogLevelNLog.Fatal, null, formatMessageCallback, formatProvider);
         }
 
         /// <summary>
         /// Log a message with the <see cref="LogLevel.Fatal"/> level using a callback to obtain the message
         /// </summary>
         /// <remarks>
-        /// Using this method avoids the cost of creating a message and evaluating message arguments 
+        /// Using this method avoids the cost of creating a message and evaluating message arguments
         /// that probably won't be logged due to loglevel settings.
         /// </remarks>
         /// <param name="formatProvider">An <see cref="IFormatProvider"/> that supplies culture-specific formatting information.</param>
@@ -1065,11 +973,7 @@ namespace Common.Logging.NLog
         public override void Fatal(IFormatProvider formatProvider, FormatMessageCallback formatMessageCallback, Exception exception)
         {
             if (IsFatalEnabled)
-            {
-                object[] arguments;
-                var format = new NLogFormatMessageCallbackFormattedMessage(formatProvider, formatMessageCallback).ToParameters(out arguments);
-                _logger.Fatal(exception, formatProvider, format, arguments);
-            }
+                WriteCallbackToNLog(LogLevelNLog.Fatal, exception, formatMessageCallback, formatProvider);
         }
 
         #endregion
@@ -1086,6 +990,35 @@ namespace Common.Logging.NLog
         protected override void WriteInternal(LogLevel level, object message, Exception exception)
         {
             //Do nothing here. This method is not compatible with NLog 4.5            
+        }
+
+        private void WriteCallbackToNLog(LogLevelNLog level, Exception exception, FormatMessageCallback formatMessageCallback)
+        {
+            object[] args;
+            var format = new NLogFormatMessageCallbackFormattedMessage(formatMessageCallback).ToParameters(out args);
+            WriteToNLog(level, null, exception, format, args);
+        }
+
+        private void WriteCallbackToNLog(LogLevelNLog level, Exception exception, FormatMessageCallback formatMessageCallback, IFormatProvider formatProvider)
+        {
+            object[] args;
+            var format = new NLogFormatMessageCallbackFormattedMessage(formatProvider, formatMessageCallback).ToParameters(out args);
+            WriteToNLog(level, formatProvider, exception, format, args);
+        }
+
+        private void WriteObjectToNLog(LogLevelNLog level, Exception exception, object value)
+        {
+            string message = value as string;
+            if (message != null)
+                WriteToNLog(level, null, exception, message, null);
+            else
+                WriteToNLog(level, null, exception, "{0}", new[] { value });
+        }
+
+        private void WriteToNLog(LogLevelNLog level, IFormatProvider formatProvider, Exception exception, string format, object[] args)
+        {
+            var logEvent = new LogEventInfo(level, _logger.Name, formatProvider, format, args, exception);
+            _logger.Log(typeof(NLogLogger), logEvent);
         }
     }
 }
