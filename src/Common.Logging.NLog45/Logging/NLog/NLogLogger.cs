@@ -1010,9 +1010,15 @@ namespace Common.Logging.NLog
         {
             string message = value as string;
             if (message != null)
+            {
                 WriteToNLog(level, null, exception, message, null);
+            }
             else
+            {
+                if (exception == null)
+                    exception = value as Exception;
                 WriteToNLog(level, null, exception, "{0}", new[] { value });
+            }
         }
 
         private void WriteToNLog(LogLevelNLog level, IFormatProvider formatProvider, Exception exception, string format, object[] args)
