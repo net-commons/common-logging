@@ -63,7 +63,8 @@ namespace Common.Logging.NLog
     /// <author>Erich Eichinger</author>
     public class NLogLoggerFactoryAdapter : AbstractCachingLoggerFactoryAdapter
     {
-         /// <summary>
+#if !PORTABLE
+        /// <summary>
         /// Constructor for binary backwards compatibility with non-portable versions
         /// </summary>
         /// <param name="properties">The properties.</param>
@@ -71,6 +72,7 @@ namespace Common.Logging.NLog
         public NLogLoggerFactoryAdapter(System.Collections.Specialized.NameValueCollection properties)
             : this(NameValueCollectionHelper.ToCommonLoggingCollection(properties))
         { }
+#endif
 
         /// <summary>
         /// Constructor
@@ -89,9 +91,11 @@ namespace Common.Logging.NLog
 
                 if (properties["configFile"] != null) {
                     configFile = properties["configFile"];
+#if !PORTABLE
                     if (configFile.StartsWith("~/") || configFile.StartsWith("~\\")) {
                         configFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory.TrimEnd('/', '\\') + "/", configFile.Substring(2));
                     }
+#endif
                 }
 
                 if (configType == "FILE") {

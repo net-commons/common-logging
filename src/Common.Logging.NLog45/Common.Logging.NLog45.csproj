@@ -1,0 +1,56 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <VersionPrefix>3.4.2</VersionPrefix>
+    <TargetFrameworks>net45;netstandard1.3;netstandard2.0</TargetFrameworks>
+    <DefineConstants>$(DefineConstants);NLOG2;NLOG4;PORTABLE</DefineConstants>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <AssemblyName>Common.Logging.NLog45</AssemblyName>
+    <Authors>Aleksandar Seovic,  Mark Pollack,  Erich Eichinger,  Stephen Bohlen</Authors>
+    <Company>http://netcommon.sourceforge.net/</Company>
+    <CurrentYear>$([System.DateTime]::Now.ToString(yyyy))</CurrentYear>
+    <Copyright>Copyright (c) 2006-$(CurrentYear) The Common Infrastructure Libraries Team</Copyright>    
+    <PackageId>Common.Logging.NLog45</PackageId>
+    <Description>Common.Logging library bindings for NLog 4.5 logging framework with message template support.</Description>
+    <PackageTags>NLog;Common.Logging.NLog;logging log;Common.Logging </PackageTags>
+    <PackageIconUrl>https://raw.githubusercontent.com/net-commons/common-logging/master/nuget-graphics/common-logging-icon.png</PackageIconUrl>
+    <PackageProjectUrl>https://net-commons.github.io/common-logging/</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/net-commons/common-logging/blob/master/license.txt</PackageLicenseUrl>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/net-commons/common-logging.git</RepositoryUrl>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\Common.Logging.NLog10\Logging\NLog\CommonLoggingTarget.cs" Link="Logging\NLog\CommonLoggingTarget.cs" />
+    <Compile Include="..\Common.Logging.NLog10\Logging\NLog\NLogLoggerFactoryAdapter.cs" Link="Logging\NLog\NLogLoggerFactoryAdapter.cs" />
+    <Compile Include="..\Common.Logging.NLog20\Logging\NLog\NLogLogger.VariablesContext.cs" Link="Logging\NLog\NLogLogger.VariablesContext.cs" />
+    <Compile Include="..\Common.Logging.NLog41\Logging\NLog\NLogGlobalVariablesContext.cs" Link="Logging\NLog\NLogGlobalVariablesContext.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NLog" Version="4.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Common.Logging.DotNetCore\Common.Logging.DotNetCore.2017.csproj" />
+    <ProjectReference Include="..\Common.Logging.Core.DotNetCore\Common.Logging.Core.DotNetCore.2017.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <AssemblyOriginatorKeyFile>../../Common.Net.snk</AssemblyOriginatorKeyFile>
+    <SignAssembly>true</SignAssembly>
+    <PublicSign Condition=" '$(OS)' != 'Windows_NT' ">true</PublicSign>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard1.3' ">
+    <NetStandardImplicitPackageVersion>1.6.0</NetStandardImplicitPackageVersion>
+  </PropertyGroup> 
+
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net45' ">
+    <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
+    <DefineConstants>$(DefineConstants);NET_4_0</DefineConstants>
+    <DebugType Condition=" '$(Configuration)' == 'Debug' ">Full</DebugType>
+  </PropertyGroup>
+
+</Project>
