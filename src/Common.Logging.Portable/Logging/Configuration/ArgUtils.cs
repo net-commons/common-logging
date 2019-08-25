@@ -106,7 +106,7 @@ namespace Common.Logging.Configuration
         /// <seealso cref="Coalesce{T}"/>
         public static string Coalesce(params string[] values)
         {
-            return Coalesce(delegate(string v) { return !string.IsNullOrEmpty(v); }, values);
+            return Coalesce(delegate (string v) { return !string.IsNullOrEmpty(v); }, values);
         }
 
         /// <summary>
@@ -124,7 +124,7 @@ namespace Common.Logging.Configuration
 
             if (predicate == null)
             {
-                predicate = delegate(T v) { return v != null; };
+                predicate = delegate (T v) { return v != null; };
             }
 
             for (int i = 0; i < values.Length; i++)
@@ -158,7 +158,6 @@ namespace Common.Logging.Configuration
                 throw new ArgumentException(string.Format("Type '{0}' is not an enum type", typeof(T).FullName));
             }
 
-            
             try
             {
                 // If a string is specified then try to parse and return it
@@ -264,7 +263,11 @@ namespace Common.Logging.Configuration
                 throw new ArgumentNullException("valType");
             }
 
+#if DOTNETCORE
+            if (!typeof(T).GetTypeInfo().IsAssignableFrom(valType.GetTypeInfo()))
+#else
             if (!typeof(T).IsAssignableFrom(valType))
+#endif
             {
 #if PORTABLE
                 throw new ArgumentOutOfRangeException(paramName, string.Format(messageFormat, args));

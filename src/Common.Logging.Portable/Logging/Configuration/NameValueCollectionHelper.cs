@@ -5,7 +5,7 @@ using System.Text;
 namespace Common.Logging.Configuration
 {
 
-#if !PORTABLE || NET20
+#if !PORTABLE || NET20 || DOTNETCORE
     /// <summary>
     /// Helper class for working with NameValueCollection
     /// </summary>
