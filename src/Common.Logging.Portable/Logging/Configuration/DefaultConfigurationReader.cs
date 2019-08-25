@@ -45,8 +45,19 @@ namespace Common.Logging.Configuration
         /// </remarks>
         public object GetSection(string sectionName)
         {
-#if DOTNETCORE     // No System.Configuration in DotNetCore, replace with something DotNetCore-specific?
-            return null;
+#if DOTNETCORE     
+            const string configManager40 = "System.Configuration.ConfigurationManager, System.Configuration.ConfigurationManager";
+            var configurationManager = Type.GetType(configManager40);
+            if (configurationManager == null)
+            {
+                return null;
+            }
+
+            var getSection = configurationManager.GetMethod("GetSection");
+            if (getSection == null)
+                throw new PlatformNotSupportedException("Could not find System.Configuration.ConfigurationManager.GetSection method");
+
+            return getSection.Invoke(null, new[] { sectionName });
 #else
 #if PORTABLE
             // We should instead look for something implementing 
