@@ -85,8 +85,10 @@ namespace Common.Logging.Simple
         /// <param name="properties">The name value collection, typically specified by the user in 
         /// a configuration section named common/logging.</param>
         public ConsoleOutLoggerFactoryAdapter(NameValueCollection properties)
-            : base(properties)
-        { }
+	        : base(properties)
+        {
+	        this.useColor = ArgUtils.TryParse(false, ArgUtils.GetValue(properties, "useColor"));
+        }
 
 #if !SILVERLIGHT
         /// <summary>
