@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Common.Logging.Log4Net2012</id>
+    <version>0.0.0</version>
+    <!-- placeholder value replaced by build script -->
+    <authors>Aleksandar Seovic, Mark Pollack, Erich Eichinger, Stephen Bohlen, G. Stoynev</authors>
+    <owners>Aleksandar Seovic, Mark Pollack, Erich Eichinger, Stephen Bohlen</owners>
+    <projectUrl>http://net-commons.github.io/common-logging/</projectUrl>
+    <iconUrl>https://raw.githubusercontent.com/net-commons/common-logging/master/nuget-graphics/common-logging-icon.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Common.Logging library bindings for Log4Net 2.0.12 logging framework.</description>
+    <tags>Log4Net Common.Logging.Log4Net logging log Common.Logging</tags>
+    <language>en-US</language>
+    <dependencies>
+      <dependency id="Common.Logging" version="3.4.1" />
+      <dependency id="Log4Net" version="[2.0.12]" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="..\..\build\net20\Common.Logging.Log4Net2012\Release\Common.Logging.Log4Net2012.dll" target="lib\net35" />
+    <file src="..\..\build\net20\Common.Logging.Log4Net2012\Release\Common.Logging.Log4Net2012.pdb" target="lib\net35" />
+    <file src="..\..\build\net20\Common.Logging.Log4Net2012\Release\Common.Logging.Log4Net2012.xml" target="lib\net35" />
+    <file src="..\..\build\net40\Common.Logging.Log4Net2012\Release\Common.Logging.Log4Net2012.dll" target="lib\net40" />
+    <file src="..\..\build\net40\Common.Logging.Log4Net2012\Release\Common.Logging.Log4Net2012.pdb" target="lib\net40" />
+    <file src="..\..\build\net40\Common.Logging.Log4Net2012\Release\Common.Logging.Log4Net2012.xml" target="lib\net40" />
+  </files>
+</package>
